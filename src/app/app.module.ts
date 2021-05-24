@@ -1,16 +1,43 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
+import {PursuitComponent} from './pursuit/pursuit.component';
+import {FormsModule} from "@angular/forms";
+import {HeaderComponent} from './header/header.component';
+import {RouterModule} from "@angular/router";
+import {HomeComponent} from './home/home.component';
+import {AppRoutingModule} from "./app-routing.module";
+import { CharacterComponent } from './character/character.component';
+import { CharacterListComponent } from './character/character-list/character-list.component';
+import { CharacterDetailComponent } from './character/character-detail/character-detail.component';
+import { CharacterEditComponent } from './character/character-edit/character-edit.component';
+import { CharacterStartComponent } from './character/character-start/character-start.component';
+import { CharacterItemComponent } from './character/character-list/character-item/character-item.component';
+import { DropdownDirective } from './shared/dropdown.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PursuitComponent,
+    HeaderComponent,
+    HomeComponent,
+    CharacterComponent,
+    CharacterListComponent,
+    CharacterDetailComponent,
+    CharacterEditComponent,
+    CharacterStartComponent,
+    CharacterItemComponent,
+    DropdownDirective
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    RouterModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

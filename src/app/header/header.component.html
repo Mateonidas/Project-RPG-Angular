@@ -1,0 +1,13 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a routerLink="/" class="navbar-brand">Project RPG</a>
+    </div>
+    <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="/characters">Postacie</a></li>
+        <li routerLinkActive="active"><a routerLink="/pursuit">Pościg</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
