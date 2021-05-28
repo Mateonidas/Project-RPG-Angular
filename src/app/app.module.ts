@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {PursuitComponent} from './pursuit/pursuit.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HeaderComponent} from './header/header.component';
 import {RouterModule} from "@angular/router";
 import {HomeComponent} from './home/home.component';
@@ -30,12 +30,13 @@ import { DropdownDirective } from './shared/dropdown.directive';
     CharacterItemComponent,
     DropdownDirective
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    RouterModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        RouterModule,
+        AppRoutingModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
