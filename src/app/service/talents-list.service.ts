@@ -7,8 +7,16 @@ import {Talent} from "../model/talent.model";
 export class TalentsListService {
 
   private talentsList: Talent[] = [
-
+    new Talent('Ambidextrous' ,'Oburęczność', 0,2)
   ]
 
   constructor() { }
+
+  getTalentsList() {
+    return this.talentsList.slice();
+  }
+
+  getTalentById(id: number) {
+    return this.talentsList[id];
+  }
 }

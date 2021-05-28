@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Character} from "../../model/character.model";
 import {CharacterService} from "../character-service/character.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-character-list',
@@ -10,7 +11,9 @@ import {CharacterService} from "../character-service/character.service";
 export class CharacterListComponent implements OnInit {
   characters!: Character[];
 
-  constructor(private characterService: CharacterService) {
+  constructor(private characterService: CharacterService,
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -18,6 +21,6 @@ export class CharacterListComponent implements OnInit {
   }
 
   onAddCharacter() {
-
+    this.router.navigate(['new'], {relativeTo: this.route});
   }
 }

@@ -1,1 +1,110 @@
-<p>character-edit works!</p>
+<div class="row">
+  <div class="col-xs-8">
+    <form (ngSubmit)="onSubmit()" #characterForm="ngForm">
+      <div class="row">
+        <div class="col-xs-12 form-group">
+          <h4>Nazwa</h4>
+          <input type="text" class="form-control" name="name" ngModel>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 form-group">
+          <h4>Opis</h4>
+          <input type="text" class="form-control" name="description" ngModel>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 form-group">
+          <h4>Cechy</h4>
+          <table class="table table-bordered table-condensed" ngModelGroup="characteristics">
+            <thead class="thead-dark">
+            <tr>
+              <th scope="col">Sz</th>
+              <th scope="col">WW</th>
+              <th scope="col">US</th>
+              <th scope="col">S</th>
+              <th scope="col">Wt</th>
+              <th scope="col">I</th>
+              <th scope="col">Zw</th>
+              <th scope="col">Zr</th>
+              <th scope="col">Int</th>
+              <th scope="col">SW</th>
+              <th scope="col">Ogd</th>
+              <th scope="col">Żyw</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>
+                <input type="text" class="form-control table-input" name="movement" ngModel>
+              </td>
+              <td>
+                <input type="text" class="form-control table-input" name="weaponSkill" ngModel>
+              </td>
+              <td>
+                <input type="text" class="form-control table-input" name="ballisticSkill" ngModel>
+              </td>
+              <td>
+                <input type="text" class="form-control table-input" name="strength" ngModel>
+              </td>
+              <td>
+                <input type="text" class="form-control table-input" name="toughness" ngModel>
+              </td>
+              <td>
+                <input type="text" class="form-control table-input" name="initiative" ngModel>
+              </td>
+              <td>
+                <input type="text" class="form-control table-input" name="agility" ngModel>
+              </td>
+              <td>
+                <input type="text" class="form-control table-input" name="dexterity" ngModel>
+              </td>
+              <td>
+                <input type="text" class="form-control table-input" name="intelligence" ngModel>
+              </td>
+              <td>
+                <input type="text" class="form-control table-input" name="willpower" ngModel>
+              </td>
+              <td>
+                <input type="text" class="form-control table-input" name="fellowship" ngModel>
+              </td>
+              <td>
+                <input type="text" class="form-control table-input" name="wounds" ngModel>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <h4>Umiejętności</h4>
+          <div class="row" *ngFor="let skill of characterForm.value.skill">
+            <div class="col-xs-2">
+              <h4>{{skill}}</h4>
+            </div>
+          </div>
+
+          <div class="row">
+            <select name="skill" ngModel>
+              <option *ngFor="let skill of skillsList">
+                {{skillsListEnum[skill]}}
+              </option>
+            </select>
+            <input type="text" name="skillValue" ngModel>
+            <button class="btn btn-primary" type="submit" (click)="onAddSkill()">+</button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <hr>
+        <div class="col-xs-12">
+          <button class="btn btn-primary" type="submit">Dodaj</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

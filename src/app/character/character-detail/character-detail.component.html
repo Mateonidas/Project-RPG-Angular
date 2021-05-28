@@ -84,8 +84,65 @@
     <h4>Talenty</h4>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let talent of character.talents">
-        {{talent.name}} - {{talent.level}}
+        {{talent.nameTranslation}} - {{talent.level}}
       </li>
     </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h4>Broń</h4>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Nazwa</th>
+        <th scope="col">Kategoria</th>
+        <th scope="col">Zasięg</th>
+        <th scope="col">Obrażenia</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let weapon of character.weapons">
+        <td>{{weapon.nameTranslation}}</td>
+        <td>{{weapon.category}}</td>
+        <td>{{weapon.range}}</td>
+        <td>
+          <span *ngIf="weapon.isUsingStrength; else elseBlock">+BS+{{weapon.damage}}</span>
+          <ng-template #elseBlock>{{weapon.damage}}</ng-template>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h4>Pancerz</h4>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Nazwa</th>
+        <th scope="col">Kategoria</th>
+        <th scope="col">Kara</th>
+        <th scope="col">Lokalizacja</th>
+        <th scope="col">Punkty Pancerza</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let armor of character.armor">
+        <td>{{armor.name}}</td>
+        <td>{{armor.category}}</td>
+        <td>{{armor.penalty}}</td>
+        <td>
+          <ul>
+            <li *ngFor="let localization of armor.localization">
+              {{localization}}
+            </li>
+          </ul>
+        </td>
+        <td>{{armor.armorPoints}}</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>

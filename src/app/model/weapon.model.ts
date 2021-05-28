@@ -1,5 +1,6 @@
 export class Weapon {
   public name: string;
+  public nameTranslation: string;
   public type: string;
   public category: string
   public range: string;
@@ -8,9 +9,9 @@ export class Weapon {
   public advantages: string[];
   public disadvantages: string[];
 
-
-  constructor(name: string, type: string, category: string, range: string, damage: number, isUsingStrength: boolean, advantages: string[], disadvantages: string[]) {
+  constructor(name: string, nameTranslation: string, type: string, category: string, range: string, damage: number, isUsingStrength: boolean, advantages: string[], disadvantages: string[]) {
     this.name = name;
+    this.nameTranslation = nameTranslation;
     this.type = type;
     this.category = category;
     this.range = range;

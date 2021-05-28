@@ -4,6 +4,8 @@ import {Subject} from "rxjs";
 import {Characteristic} from "../../model/characteristic.model";
 import {Skill, SkillsList} from "../../model/skill.model";
 import {Talent} from "../../model/talent.model";
+import {Weapon} from "../../model/weapon.model";
+import {Armor} from "../../model/armor.model";
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +24,15 @@ export class CharacterService {
         new Skill(SkillsList.MeleeBasic, 40)
       ],
       [
-        new Talent('Oburęczność', 2)
+        new Talent('Ambidextrous' ,'Oburęczność', 1,2)
       ],
-      [],
-      []
+      [
+        new Weapon('Hand Weapon', 'Broń ręczna', 'melee', 'Podstawowa', 'Średnia', 4, true, [], [])
+      ],
+      [
+        new Armor('Skórzana kurta', 'Miękka Skóra', '-', ['ramiona', 'korpus'], 1, [], []),
+        new Armor('Skórzane nogawice', 'Miękka Skóra', '-', ['nogi'], 1, [], [])
+      ]
     )
   ];
 
