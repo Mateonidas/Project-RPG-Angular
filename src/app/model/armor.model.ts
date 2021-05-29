@@ -18,3 +18,10 @@ export class Armor {
     this.disadvantages = disadvantages;
   }
 }
+
+export class ArmorsList {
+  public armorList = [
+    new Armor('Skórzana kurta', 'Miękka Skóra', '-', ['ramiona', 'korpus'], 1, [], []),
+    new Armor('Skórzane nogawice', 'Miękka Skóra', '-', ['nogi'], 1, [], [])
+  ]
+}

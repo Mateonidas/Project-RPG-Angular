@@ -7,13 +7,15 @@
           <input type="text" class="form-control" formControlName="name">
         </div>
       </div>
+
+      <hr>
       <div class="row">
         <div class="col-xs-12 form-group">
           <h4>Opis</h4>
-          <input type="text" class="form-control" formControlName="name">
+          <input type="text" class="form-control" formControlName="description">
         </div>
       </div>
-
+      <hr>
       <div class="row">
         <div class="col-xs-12 form-group" formArrayName="characteristics">
           <h4>Cechy</h4>
@@ -45,11 +47,14 @@
         </div>
       </div>
 
+      <hr>
       <div class="row">
         <div class="col-xs-12" formArrayName="skills">
+          <h4>Umiejętności</h4>
           <div class="row" *ngFor="let skill of skills; let i = index" [formGroupName]="i">
             <div class="col-xs-8">
               <select formControlName="name">
+                <option value="" selected>Wybierz</option>
                 <option *ngFor="let skill of skillsList">
                   {{skillsListEnum[skill]}}
                 </option>
@@ -57,7 +62,7 @@
             </div>
             <div class="col-xs-2">
               <input
-                type="number"
+                type="text"
                 class="form-control"
                 formControlName="value">
             </div>
@@ -68,7 +73,6 @@
                 (click)="onDeleteSkill(i)">X</button>
             </div>
           </div>
-          <hr>
           <div class="row">
             <div class="col-xs-12">
               <button type="button" class="btn btn-success" (click)="onAddSkill()">Dodaj Umiejętność</button>
@@ -77,8 +81,102 @@
         </div>
       </div>
 
+      <hr>
       <div class="row">
-        <hr>
+        <div class="col-xs-12" formArrayName="talents">
+          <h4>Talenty</h4>
+          <div class="row" *ngFor="let talent of talents; let i = index" [formGroupName]="i">
+            <div class="col-xs-6">
+              <select formControlName="talent" (change)="onSetTalent(i)">
+                <option value="" selected>Wybierz</option>
+                <option *ngFor="let talent of talentsList.talentsList" [ngValue]="talent">
+                  {{talent.nameTranslation}}
+                </option>
+              </select>
+            </div>
+            <div class="col-xs-2">
+              <span>{{talent.value.level}}</span>
+            </div>
+            <div class="col-xs-2">
+              <input
+                type="text"
+                class="form-control"
+                (keyup)="onSetTalentLevel($event, i)"
+              >
+            </div>
+            <div class="col-xs-2">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDeleteTalent(i)">X</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <button type="button" class="btn btn-success" (click)="onAddTalent()">Dodaj Talent</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
+        <div class="col-xs-12" formArrayName="weapons">
+          <h4>Broń</h4>
+          <div class="row" *ngFor="let weapon of weapons; let i = index" [formGroupName]="i">
+            <div class="col-xs-8">
+              <select formControlName="name">
+                <option value="" selected>Wybierz</option>
+                <option *ngFor="let weapon of weaponsList.weaponsList">
+                  {{weapon.nameTranslation}}
+                </option>
+              </select>
+            </div>
+            <div class="col-xs-2">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDeleteWeapon(i)">X</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <button type="button" class="btn btn-success" (click)="onAddWeapon()">Dodaj Broń</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
+        <div class="col-xs-12" formArrayName="armors">
+          <h4>Pancerz</h4>
+          <div class="row" *ngFor="let armor of armors; let i = index" [formGroupName]="i">
+            <div class="col-xs-8">
+              <select formControlName="name">
+                <option value="" selected>Wybierz</option>
+                <option *ngFor="let armor of armorsList.armorList">
+                  {{armor.name}}
+                </option>
+              </select>
+            </div>
+            <div class="col-xs-2">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDeleteArmor(i)">X</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <button type="button" class="btn btn-success" (click)="onAddArmor()">Dodaj Pancerz</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
         <div class="col-xs-12">
           <button class="btn btn-primary" type="submit">Dodaj</button>
         </div>

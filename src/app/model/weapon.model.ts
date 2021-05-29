@@ -21,3 +21,10 @@ export class Weapon {
     this.disadvantages = disadvantages;
   }
 }
+
+export class WeaponsList {
+  public weaponsList = [
+    new Weapon('Hand Weapon', 'Broń ręczna', 'melee', 'Podstawowa', 'Średnia', 4, true, [], []),
+    new Weapon('Crossbow', 'Kusza', 'range', 'Kusze', '60', 9, false, [], [])
+  ]
+}

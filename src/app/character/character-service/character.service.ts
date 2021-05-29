@@ -24,7 +24,7 @@ export class CharacterService {
         new Skill(SkillsList.MeleeBasic, 40)
       ],
       [
-        new Talent('Ambidextrous' ,'Oburęczność', 1,2)
+        new Talent('Ambidextrous' ,'Oburęczność', 1,'2')
       ],
       [
         new Weapon('Hand Weapon', 'Broń ręczna', 'melee', 'Podstawowa', 'Średnia', 4, true, [], [])
@@ -42,5 +42,10 @@ export class CharacterService {
 
   getCharacter(id: number) {
     return this.characters[id];
+  }
+
+  addNewCharacter(character: Character) {
+    this.characters.push(character);
+    this.charactersChanged.next(this.characters.slice());
   }
 }
