@@ -53,10 +53,10 @@
           <h4>Umiejętności</h4>
           <div class="row" *ngFor="let skill of skills; let i = index" [formGroupName]="i">
             <div class="col-xs-8">
-              <select formControlName="name">
+              <select formControlName="skill">
                 <option value="" selected>Wybierz</option>
-                <option *ngFor="let skill of skillsList">
-                  {{skillsListEnum[skill]}}
+                <option *ngFor="let skill of skillsList.skillsList" [ngValue]="skill">
+                  {{skill.nameTranslation}}
                 </option>
               </select>
             </div>
@@ -87,7 +87,7 @@
           <h4>Talenty</h4>
           <div class="row" *ngFor="let talent of talents; let i = index" [formGroupName]="i">
             <div class="col-xs-6">
-              <select formControlName="talent" (change)="onSetTalent(i)">
+              <select formControlName="talent">
                 <option value="" selected>Wybierz</option>
                 <option *ngFor="let talent of talentsList.talentsList" [ngValue]="talent">
                   {{talent.nameTranslation}}
@@ -125,9 +125,9 @@
           <h4>Broń</h4>
           <div class="row" *ngFor="let weapon of weapons; let i = index" [formGroupName]="i">
             <div class="col-xs-8">
-              <select formControlName="name">
+              <select formControlName="weapon">
                 <option value="" selected>Wybierz</option>
-                <option *ngFor="let weapon of weaponsList.weaponsList">
+                <option *ngFor="let weapon of weaponsList.weaponsList" [ngValue]="weapon">
                   {{weapon.nameTranslation}}
                 </option>
               </select>
@@ -153,9 +153,9 @@
           <h4>Pancerz</h4>
           <div class="row" *ngFor="let armor of armors; let i = index" [formGroupName]="i">
             <div class="col-xs-8">
-              <select formControlName="name">
+              <select formControlName="armor">
                 <option value="" selected>Wybierz</option>
-                <option *ngFor="let armor of armorsList.armorList">
+                <option *ngFor="let armor of armorsList.armorList" [ngValue]="armor">
                   {{armor.name}}
                 </option>
               </select>

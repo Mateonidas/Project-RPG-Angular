@@ -21,7 +21,7 @@ export class CharacterService {
         4, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 15
       ),
       [
-        new Skill(SkillsList.MeleeBasic, 40)
+        new Skill('MeleeBasic', 'Walka Wręcz (Podstawowa)', 40)
       ],
       [
         new Talent('Ambidextrous' ,'Oburęczność', 1,'2')
