@@ -75,6 +75,11 @@ export class CharacterEditComponent implements OnInit {
 
   onSubmit() {
     this.characterService.addNewCharacter(this.createCharacter());
+    this.onCancel()
+  }
+
+  onCancel() {
+    this.router.navigate(['../'], {relativeTo: this.route});
   }
 
   onAddSkill() {
