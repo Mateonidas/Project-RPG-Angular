@@ -1,12 +1,11 @@
-export class Talent {
-  public name: string;
-  public nameTranslation: string;
+import {Model} from "./model";
+
+export class Talent extends Model{
   public level: number;
   public maxLevel: string;
 
   constructor(name: string, nameTranslation: string, level: number, maxLevel: string) {
-    this.name = name;
-    this.nameTranslation = nameTranslation;
+    super(name, nameTranslation)
     this.level = level;
     this.maxLevel = maxLevel;
   }

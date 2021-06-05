@@ -1,12 +1,10 @@
-export class Skill {
-  public name: string;
-  public nameTranslation: string;
+import {Model} from "./model";
+
+export class Skill extends Model{
   public value: number;
 
-
   constructor(name: string, nameTranslation: string, value: number) {
-    this.name = name;
-    this.nameTranslation = nameTranslation;
+    super(name, nameTranslation);
     this.value = value;
   }
 }

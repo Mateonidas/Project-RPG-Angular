@@ -1,6 +1,6 @@
-export class Weapon {
-  public name: string;
-  public nameTranslation: string;
+import {Model} from "./model";
+
+export class Weapon extends Model{
   public type: string;
   public category: string
   public range: string;
@@ -10,8 +10,7 @@ export class Weapon {
   public disadvantages: string[];
 
   constructor(name: string, nameTranslation: string, type: string, category: string, range: string, damage: number, isUsingStrength: boolean, advantages: string[], disadvantages: string[]) {
-    this.name = name;
-    this.nameTranslation = nameTranslation;
+    super(name, nameTranslation)
     this.type = type;
     this.category = category;
     this.range = range;

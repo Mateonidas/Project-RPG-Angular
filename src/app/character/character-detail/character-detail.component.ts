@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Character} from "../../model/character.model";
 import {CharacterService} from "../character-service/character.service";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 @Component({
   selector: 'app-character-detail',
@@ -13,7 +13,8 @@ export class CharacterDetailComponent implements OnInit {
   private id!: number;
 
   constructor(private characterService: CharacterService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -28,7 +29,7 @@ export class CharacterDetailComponent implements OnInit {
   }
 
   onEditCharacter() {
-
+    this.router.navigate(['edit'], {relativeTo: this.route});
   }
 
   onDeleteCharacter() {

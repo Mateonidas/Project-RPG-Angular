@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {AbstractControl, FormArray, FormControl, FormGroup, NgForm} from "@angular/forms";
 import {Skill, SkillsList} from "../../model/skill.model";
 import {Talent, TalentsList} from "../../model/talent.model";
@@ -8,6 +8,7 @@ import {Armor, ArmorsList} from "../../model/armor.model";
 import {CharacterService} from "../character-service/character.service";
 import {Character} from "../../model/character.model";
 import {Characteristic} from "../../model/characteristic.model";
+import {Model} from "../../model/model";
 
 @Component({
   selector: 'app-character-edit',
@@ -23,24 +24,50 @@ export class CharacterEditComponent implements OnInit {
   id!: number;
   editMode = false;
 
-
   constructor(private route: ActivatedRoute,
               private router: Router,
               private characterService: CharacterService) {
   }
 
   ngOnInit(): void {
-    this.initForm();
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = +params['id'];
+        this.editMode = params['id'] != null;
+        this.initForm();
+      }
+    )
   }
 
   private initForm() {
     let characterName = '';
     let characterDescription = '';
-    let characteristics = CharacterEditComponent.initCharacteristicsTable();
+    let characteristics;
     let skills = new FormArray([]);
     let talents = new FormArray([]);
     let weapons = new FormArray([]);
     let armors = new FormArray([]);
+
+    if (this.editMode) {
+      const character = this.characterService.getCharacter(this.id);
+      characterName = character.name;
+      characterDescription = character.description;
+      characteristics = CharacterEditComponent.initEditCharacteristicsTable(character.characteristics);
+      if (character.skills) {
+        this.prepareSkillsList(skills, character.skills);
+      }
+      if (character.talents) {
+        this.prepareTalentsList(talents, character.talents);
+      }
+      if (character.weapons) {
+        this.prepareWeaponsList(weapons, character.weapons);
+      }
+      if (character.armor) {
+        this.prepareArmorList(armors, character.armor);
+      }
+    } else {
+      characteristics = CharacterEditComponent.initCharacteristicsTable();
+    }
 
     this.characterForm = new FormGroup({
       'name': new FormControl(characterName),
@@ -74,12 +101,83 @@ export class CharacterEditComponent implements OnInit {
   }
 
   onSubmit() {
-    this.characterService.addNewCharacter(this.createCharacter());
+    if(this.editMode){
+      this.characterService.updateCharacter(this.id, this.createCharacter());
+    }else {
+      this.characterService.addNewCharacter(this.createCharacter());
+    }
     this.onCancel()
   }
 
   onCancel() {
     this.router.navigate(['../'], {relativeTo: this.route});
+  }
+
+  compareModels(c1: Model, c2: Model): boolean {
+    return c1 && c2 ? c1.name === c2.name : c1 === c2;
+  }
+
+  prepareSkillsList(skills: FormArray, skillsList: Skill[]) {
+    for (let skill of skillsList) {
+      skills.push(
+        new FormGroup({
+          'skill': new FormControl(skill),
+          'name': new FormControl(skill.name),
+          'nameTranslation': new FormControl(skill.nameTranslation),
+          'value': new FormControl(skill.value),
+        })
+      )
+    }
+  }
+
+  prepareTalentsList(talents: FormArray, talentsList: Talent[]) {
+    for (let talent of talentsList) {
+      talents.push(
+        new FormGroup({
+          'talent': new FormControl(talent),
+          'name': new FormControl(talent.name),
+          'nameTranslation': new FormControl(talent.nameTranslation),
+          'level': new FormControl(talent.level),
+          'maxLevel': new FormControl(talent.maxLevel),
+        })
+      )
+    }
+  }
+
+  prepareWeaponsList(weapons: FormArray, weaponsList: Weapon[]) {
+    for (let weapon of weaponsList) {
+      weapons.push(
+        new FormGroup({
+          'weapon': new FormControl(weapon),
+          'name': new FormControl(weapon.name),
+          'nameTranslation': new FormControl(weapon.nameTranslation),
+          'type': new FormControl(weapon.type),
+          'category': new FormControl(weapon.category),
+          'range': new FormControl(weapon.range),
+          'damage': new FormControl(weapon.damage),
+          'isUsingStrength': new FormControl(weapon.isUsingStrength),
+          'advantages': new FormControl(weapon.advantages),
+          'disadvantages': new FormControl(weapon.disadvantages),
+        })
+      )
+    }
+  }
+
+  prepareArmorList(armors: FormArray, armorsList: Armor[]) {
+    for (let armor of armorsList) {
+      armors.push(
+        new FormGroup({
+          'armor': new FormControl(armor),
+          'name': new FormControl(armor.name),
+          'category': new FormControl(null),
+          'penalty': new FormControl(null),
+          'localization': new FormControl(null),
+          'armorPoints': new FormControl(null),
+          'advantages': new FormControl(null),
+          'disadvantages': new FormControl(null),
+        })
+      )
+    }
   }
 
   onAddSkill() {
@@ -125,8 +223,9 @@ export class CharacterEditComponent implements OnInit {
   onAddArmor() {
     (<FormArray>this.characterForm.get('armors')).push(
       new FormGroup({
-        'armor': new FormControl(new Armor('', '', '', [], 0, [], [])),
+        'armor': new FormControl(new Armor('', '', '', '', [], 0, [], [])),
         'name': new FormControl(null),
+        'nameTranslation': new FormControl(null),
         'category': new FormControl(null),
         'penalty': new FormControl(null),
         'localization': new FormControl(null),
@@ -150,7 +249,7 @@ export class CharacterEditComponent implements OnInit {
   }
 
   onDeleteArmor(index: number) {
-    (<FormArray>this.characterForm.get('armor')).removeAt(index);
+    (<FormArray>this.characterForm.get('armors')).removeAt(index);
   }
 
   private static initCharacteristicsTable() {
@@ -202,6 +301,59 @@ export class CharacterEditComponent implements OnInit {
       new FormGroup({
         'name': new FormControl('Żyw'),
         'value': new FormControl('')
+      }),
+    ]);
+  }
+
+  private static initEditCharacteristicsTable(characteristics: Characteristic) {
+    return new FormArray([
+      new FormGroup({
+        'name': new FormControl('Sz'),
+        'value': new FormControl(characteristics.movement)
+      }),
+      new FormGroup({
+        'name': new FormControl('WW'),
+        'value': new FormControl(characteristics.weaponSkill)
+      }),
+      new FormGroup({
+        'name': new FormControl('US'),
+        'value': new FormControl(characteristics.ballisticSkill)
+      }),
+      new FormGroup({
+        'name': new FormControl('S'),
+        'value': new FormControl(characteristics.strength)
+      }),
+      new FormGroup({
+        'name': new FormControl('Wt'),
+        'value': new FormControl(characteristics.toughness)
+      }),
+      new FormGroup({
+        'name': new FormControl('I'),
+        'value': new FormControl(characteristics.initiative)
+      }),
+      new FormGroup({
+        'name': new FormControl('Zw'),
+        'value': new FormControl(characteristics.agility)
+      }),
+      new FormGroup({
+        'name': new FormControl('Zr'),
+        'value': new FormControl(characteristics.dexterity)
+      }),
+      new FormGroup({
+        'name': new FormControl('Int'),
+        'value': new FormControl(characteristics.intelligence)
+      }),
+      new FormGroup({
+        'name': new FormControl('SW'),
+        'value': new FormControl(characteristics.willpower)
+      }),
+      new FormGroup({
+        'name': new FormControl('Ogd'),
+        'value': new FormControl(characteristics.fellowship)
+      }),
+      new FormGroup({
+        'name': new FormControl('Żyw'),
+        'value': new FormControl(characteristics.wounds)
       }),
     ]);
   }
@@ -292,6 +444,7 @@ export class CharacterEditComponent implements OnInit {
   configureArmors() {
     this.armors.forEach(armor => {
       armor.value.name = armor.value.armor.name;
+      armor.value.nameTranslation = armor.value.armor.nameTranslation;
       armor.value.category = armor.value.armor.category;
       armor.value.penalty = armor.value.armor.penalty;
       armor.value.localization = armor.value.armor.localization;

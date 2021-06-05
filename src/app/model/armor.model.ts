@@ -1,5 +1,6 @@
-export class Armor {
-  public name: string;
+import {Model} from "./model";
+
+export class Armor extends Model{
   public category: string;
   public penalty: string;
   public localization: string[];
@@ -8,8 +9,8 @@ export class Armor {
   public disadvantages: string[];
 
 
-  constructor(name: string, category: string, penalty: string, localization: string[], armorPoints: number, advantages: string[], disadvantages: string[]) {
-    this.name = name;
+  constructor(name: string, nameTranslation: string, category: string, penalty: string, localization: string[], armorPoints: number, advantages: string[], disadvantages: string[]) {
+    super(name, nameTranslation);
     this.category = category;
     this.penalty = penalty;
     this.localization = localization;
@@ -21,7 +22,7 @@ export class Armor {
 
 export class ArmorsList {
   public armorList = [
-    new Armor('Skórzana kurta', 'Miękka Skóra', '-', ['ramiona', 'korpus'], 1, [], []),
-    new Armor('Skórzane nogawice', 'Miękka Skóra', '-', ['nogi'], 1, [], [])
+    new Armor('Leather Jack', 'Skórzana kurta', 'Miękka Skóra', '-', ['ramiona', 'korpus'], 1, [], []),
+    new Armor('Leather Leggings', 'Skórzane nogawice', 'Miękka Skóra', '-', ['nogi'], 1, [], [])
   ]
 }

@@ -30,8 +30,8 @@ export class CharacterService {
         new Weapon('Hand Weapon', 'Broń ręczna', 'melee', 'Podstawowa', 'Średnia', 4, true, [], [])
       ],
       [
-        new Armor('Skórzana kurta', 'Miękka Skóra', '-', ['ramiona', 'korpus'], 1, [], []),
-        new Armor('Skórzane nogawice', 'Miękka Skóra', '-', ['nogi'], 1, [], [])
+        new Armor('Leather Jack', 'Skórzana kurta', 'Miękka Skóra', '-', ['ramiona', 'korpus'], 1, [], []),
+        new Armor('Leather Leggings', 'Skórzane nogawice', 'Miękka Skóra', '-', ['nogi'], 1, [], [])
       ]
     )
   ];
@@ -46,6 +46,11 @@ export class CharacterService {
 
   addNewCharacter(character: Character) {
     this.characters.push(character);
+    this.charactersChanged.next(this.characters.slice());
+  }
+
+  updateCharacter(index: number, character: Character) {
+    this.characters[index] = character;
     this.charactersChanged.next(this.characters.slice());
   }
 }

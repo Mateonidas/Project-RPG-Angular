@@ -15,6 +15,7 @@ const routes: Routes = [
       {path: '', component: CharacterStartComponent},
       {path: 'new', component: CharacterEditComponent},
       {path: ':id', component: CharacterDetailComponent},
+      {path: ':id/edit', component: CharacterEditComponent},
     ]}
 ]
 
