@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success">Dodaj Postać</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <app-skirmish-character-item
+      *ngFor="let skirmishCharacter of skirmishCharacters; let i = index"
+      [skirmishCharacter]="skirmishCharacter"
+      [index]="i">
+    </app-skirmish-character-item>
+  </div>
+</div>

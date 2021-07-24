@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Character} from "../../model/character.model";
 import {CharacterService} from "../character-service/character.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
+import {SkirmishService} from "../../skirmish/skirmish-service/skirmish.service";
 
 @Component({
   selector: 'app-character-detail',
@@ -13,6 +14,7 @@ export class CharacterDetailComponent implements OnInit {
   private id!: number;
 
   constructor(private characterService: CharacterService,
+              private skirmishService: SkirmishService,
               private route: ActivatedRoute,
               private router: Router) { }
 
@@ -25,7 +27,7 @@ export class CharacterDetailComponent implements OnInit {
   }
 
   onAddToFight() {
-
+    this.skirmishService.addNewSkirmishCharacter(this.character);
   }
 
   onEditCharacter() {

@@ -3,6 +3,7 @@ import {Skill} from "./skill.model";
 import {Talent} from "./talent.model";
 import {Weapon} from "./weapon.model";
 import {Armor} from "./armor.model";
+import {TemporaryParameters} from "./temporary-parameters.model";
 
 export class Character {
   public name!: string;
@@ -12,7 +13,6 @@ export class Character {
   public talents!: Talent[];
   public weapons!: Weapon[];
   public armor!: Armor[];
-
 
   constructor(name: string, description: string, characteristics: Characteristic, skills: Skill[], talents: Talent[], weapons: Weapon[], armor: Armor[]) {
     this.name = name;
