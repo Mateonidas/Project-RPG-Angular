@@ -1,10 +1,37 @@
-<a
-  style="cursor: pointer"
-  [routerLink]="[index]"
-  routerLinkActive="active"
-  class="list-group-item clearfix">
-  <div class="pull-left">
-    <h4 class="list-group-item-heading">{{skirmishCharacter.name}}</h4>
-    <p class="list-group-item-text">{{skirmishCharacter.description}}</p>
+<div class="dropdown show">
+  <a
+    style="cursor: pointer"
+    [routerLink]="[index]"
+    routerLinkActive="active"
+    class="col-xs-12 list-group-item clearfix btn btn-secondary dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="col-xs-6">
+      <h4 class="list-group-item-heading">{{skirmishCharacter.name}}</h4>
+      <p class="list-group-item-text">{{skirmishCharacter.description}}</p>
+    </div>
+    <div class="col-xs-3">
+      <h5 class="list-group-item-heading">Inicjatywa</h5>
+      <p class="list-group-item-text">{{skirmishCharacter.temporaryParameters.skirmishInitiative}}</p>
+    </div>
+    <div class="col-xs-3">
+      <h5 class="list-group-item-heading">Żywotność</h5>
+      <p class="list-group-item-text">{{skirmishCharacter.temporaryParameters.currentWounds}}
+        /{{skirmishCharacter.characteristics.wounds}}</p>
+    </div>
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
   </div>
-</a>
+</div>
+
+<!--<div class="dropdown">-->
+<!--  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--    Dropdown button-->
+<!--  </button>-->
+<!--  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+<!--    <a class="dropdown-item" href="#">Action</a>-->
+<!--    <a class="dropdown-item" href="#">Another action</a>-->
+<!--    <a class="dropdown-item" href="#">Something else here</a>-->
+<!--  </div>-->
+<!--</div>-->

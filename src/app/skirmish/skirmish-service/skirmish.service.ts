@@ -1,7 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Subject} from "rxjs";
 import {Character} from "../../model/character.model";
 import {SkirmishCharacter} from "../../model/skirmish-character.model";
+import {Characteristic} from "../../model/characteristic.model";
+import {Skill} from "../../model/skill.model";
+import {Talent} from "../../model/talent.model";
+import {Weapon} from "../../model/weapon.model";
+import {Armor} from "../../model/armor.model";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +14,31 @@ import {SkirmishCharacter} from "../../model/skirmish-character.model";
 export class SkirmishService {
 
   skirmishCharactersChanged = new Subject<SkirmishCharacter[]>();
-  skirmishCharacters: SkirmishCharacter[] = [];
+  skirmishCharacters: SkirmishCharacter[] = [
+    new SkirmishCharacter(
+      new Character(
+        'Markus',
+        'Mieszkaniec Ubersreiku.',
+
+        new Characteristic(
+          4, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 15
+        ),
+        [
+          new Skill('MeleeBasic', 'Walka Wręcz (Podstawowa)', 40)
+        ],
+        [
+          new Talent('Ambidextrous', 'Oburęczność', 1, '2')
+        ],
+        [
+          new Weapon('Hand Weapon', 'Broń ręczna', 'melee', 'Podstawowa', 'Średnia', 4, true, [], [])
+        ],
+        [
+          new Armor('Leather Jack', 'Skórzana kurta', 'Miękka Skóra', '-', ['ramiona', 'korpus'], 1, [], []),
+          new Armor('Leather Leggings', 'Skórzane nogawice', 'Miękka Skóra', '-', ['nogi'], 1, [], [])
+        ]
+      )
+    )
+  ];
 
   getSkirmishCharacters() {
     return this.skirmishCharacters.slice();
