@@ -1,22 +1,19 @@
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-md-12">
     <h1>{{character.name}}</h1>
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
-    <div class="btn-group" appDropdown>
-      <button
-        type="button"
-        class="btn btn-primary dropdown-toggle"
-      >
+  <div class="col-md-12">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         Zarządzaj Postacią
         <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu">
-        <li><a style="cursor:pointer;" (click)="onAddToFight()">Dodaj do walki</a></li>
-        <li><a style="cursor: pointer" (click)="onEditCharacter()">Edytuj Postać</a></li>
-        <li><a style="cursor: pointer" (click)="onDeleteCharacter()">Usuń Postać</a></li>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" style="cursor:pointer;" (click)="onAddToFight()">Dodaj do walki</a></li>
+        <li><a class="dropdown-item" style="cursor: pointer" (click)="onEditCharacter()">Edytuj Postać</a></li>
+        <li><a class="dropdown-item" style="cursor: pointer" (click)="onDeleteCharacter()">Usuń Postać</a></li>
       </ul>
     </div>
   </div>
@@ -30,8 +27,9 @@
     <br>
   </div>
 </div>
+<hr>
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-md-12">
     <h4>Cechy</h4>
     <table class="table table-bordered">
       <thead class="thead-dark">
@@ -69,8 +67,9 @@
     </table>
   </div>
 </div>
+<hr>
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-md-12">
     <h4>Umiejętności</h4>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let skill of character.skills">
@@ -79,8 +78,9 @@
     </ul>
   </div>
 </div>
+<hr>
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-md-12">
     <h4>Talenty</h4>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let talent of character.talents">
@@ -88,9 +88,9 @@
       </li>
     </ul>
   </div>
-</div>
+</div><hr>
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-md-12">
     <h4>Broń</h4>
     <table class="table table-bordered">
       <thead class="thead-dark">
@@ -115,8 +115,9 @@
     </table>
   </div>
 </div>
+<hr>
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-md-12">
     <h4>Pancerz</h4>
     <table class="table table-bordered">
       <thead class="thead-dark">
