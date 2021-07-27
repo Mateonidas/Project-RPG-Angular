@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-xs-8">
+  <div class="col-md-10">
     <form [formGroup]="characterForm" (ngSubmit)="onSubmit()">
       <div class="row">
-        <div class="col-xs-12 form-group">
+        <div class="col-md-12 form-group">
           <h4>Nazwa</h4>
           <input type="text" class="form-control" formControlName="name">
         </div>
@@ -10,16 +10,16 @@
 
       <hr>
       <div class="row">
-        <div class="col-xs-12 form-group">
+        <div class="col-md-12 form-group">
           <h4>Opis</h4>
           <input type="text" class="form-control" formControlName="description">
         </div>
       </div>
       <hr>
       <div class="row">
-        <div class="col-xs-12 form-group" formArrayName="characteristics">
+        <div class="col-md-12 form-group" formArrayName="characteristics">
           <h4>Cechy</h4>
-          <table class="table table-bordered table-condensed">
+          <table class="table table-bordered h-25">
             <thead>
             <tr>
               <th scope="col">Sz</th>
@@ -49,23 +49,23 @@
 
       <hr>
       <div class="row">
-        <div class="col-xs-12" formArrayName="skills">
+        <div class="col-md-12" formArrayName="skills">
           <h4>Umiejętności</h4>
-          <div class="row" *ngFor="let skillControl of skills; let i = index" [formGroupName]="i">
-            <div class="col-xs-8">
-              <select formControlName="skill" [compareWith]="compareModels">
+          <div class="row mb-2" *ngFor="let skillControl of skills; let i = index" [formGroupName]="i">
+            <div class="col-md-8">
+              <select class="form-select" formControlName="skill" [compareWith]="compareModels">
                 <option [ngValue]="skill" *ngFor="let skill of skillsList.skillsList" [selected]="skill.name == 'MeleeParry'" >
                   {{skill.nameTranslation}}
                 </option>
               </select>
             </div>
-            <div class="col-xs-2">
+            <div class="col-md-2">
               <input
                 type="text"
                 class="form-control"
                 formControlName="value">
             </div>
-            <div class="col-xs-2">
+            <div class="col-md-2">
               <button
                 type="button"
                 class="btn btn-danger"
@@ -74,7 +74,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-xs-12">
+            <div class="col-md-12">
               <button type="button" class="btn btn-success" (click)="onAddSkill()">Dodaj Umiejętność</button>
             </div>
           </div>
@@ -83,17 +83,17 @@
 
       <hr>
       <div class="row">
-        <div class="col-xs-12" formArrayName="talents">
+        <div class="col-md-12" formArrayName="talents">
           <h4>Talenty</h4>
-          <div class="row" *ngFor="let talentControl of talents; let i = index" [formGroupName]="i">
-            <div class="col-xs-8">
-              <select formControlName="talent" [compareWith]="compareModels">
+          <div class="row mb-2" *ngFor="let talentControl of talents; let i = index" [formGroupName]="i">
+            <div class="col-md-8">
+              <select class="form-select" formControlName="talent" [compareWith]="compareModels">
                 <option *ngFor="let talent of talentsList.talentsList" [ngValue]="talent">
                   {{talent.nameTranslation}}
                 </option>
               </select>
             </div>
-            <div class="col-xs-2">
+            <div class="col-md-2">
               <input
                 type="text"
                 class="form-control"
@@ -101,7 +101,7 @@
                 (keyup)="onSetTalentLevel($event, i)"
               >
             </div>
-            <div class="col-xs-2">
+            <div class="col-md-2">
               <button
                 type="button"
                 class="btn btn-danger"
@@ -110,7 +110,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-xs-12">
+            <div class="col-md-12">
               <button type="button" class="btn btn-success" (click)="onAddTalent()">Dodaj Talent</button>
             </div>
           </div>
@@ -119,17 +119,17 @@
 
       <hr>
       <div class="row">
-        <div class="col-xs-12" formArrayName="weapons">
+        <div class="col-md-12" formArrayName="weapons">
           <h4>Broń</h4>
-          <div class="row" *ngFor="let weaponControl of weapons; let i = index" [formGroupName]="i">
-            <div class="col-xs-8">
-              <select formControlName="weapon" [compareWith]="compareModels">
+          <div class="row mb-2" *ngFor="let weaponControl of weapons; let i = index" [formGroupName]="i">
+            <div class="col-md-10">
+              <select class="form-select" formControlName="weapon" [compareWith]="compareModels">
                 <option *ngFor="let weapon of weaponsList.weaponsList" [ngValue]="weapon">
                   {{weapon.nameTranslation}}
                 </option>
               </select>
             </div>
-            <div class="col-xs-2">
+            <div class="col-md-2">
               <button
                 type="button"
                 class="btn btn-danger"
@@ -138,7 +138,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-xs-12">
+            <div class="col-md-12">
               <button type="button" class="btn btn-success" (click)="onAddWeapon()">Dodaj Broń</button>
             </div>
           </div>
@@ -147,17 +147,17 @@
 
       <hr>
       <div class="row">
-        <div class="col-xs-12" formArrayName="armors">
+        <div class="col-md-12" formArrayName="armors">
           <h4>Pancerz</h4>
-          <div class="row" *ngFor="let armorControl of armors; let i = index" [formGroupName]="i">
-            <div class="col-xs-8">
-              <select formControlName="armor" [compareWith]="compareModels">
+          <div class="row mb-2" *ngFor="let armorControl of armors; let i = index" [formGroupName]="i">
+            <div class="col-md-10">
+              <select class="form-select" formControlName="armor" [compareWith]="compareModels">
                 <option *ngFor="let armor of armorsList.armorList" [ngValue]="armor">
                   {{armor.nameTranslation}}
                 </option>
               </select>
             </div>
-            <div class="col-xs-2">
+            <div class="col-md-2">
               <button
                 type="button"
                 class="btn btn-danger"
@@ -166,7 +166,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-xs-12">
+            <div class="col-md-12">
               <button type="button" class="btn btn-success" (click)="onAddArmor()">Dodaj Pancerz</button>
             </div>
           </div>
@@ -175,8 +175,8 @@
 
       <hr>
       <div class="row">
-        <div class="col-xs-12">
-          <button class="btn btn-primary" type="submit">{{ editMode ? 'Edytuj' : 'Dodaj' }}</button>
+        <div class="col-md-12">
+          <button class="btn btn-primary me-2" type="submit">{{ editMode ? 'Edytuj' : 'Dodaj' }}</button>
           <button type="submit" class="btn btn-danger" (click)="onCancel()">Powrót</button>
         </div>
       </div>
