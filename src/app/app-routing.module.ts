@@ -7,6 +7,8 @@ import {CharacterStartComponent} from "./character/character-start/character-sta
 import {CharacterDetailComponent} from "./character/character-detail/character-detail.component";
 import {CharacterEditComponent} from "./character/character-edit/character-edit.component";
 import {SkirmishComponent} from "./skirmish/skirmish.component";
+import {SkirmishCharacterDetailsComponent} from "./skirmish/skirmish-character-details/skirmish-character-details.component";
+import {SkirmishCharacterEditComponent} from "./skirmish/skirmish-character-edit/skirmish-character-edit.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -18,7 +20,10 @@ const routes: Routes = [
       {path: ':id', component: CharacterDetailComponent},
       {path: ':id/edit', component: CharacterEditComponent},
     ]},
-  {path: 'skirmish', component: SkirmishComponent}
+  {path: 'skirmish', component: SkirmishComponent, children: [
+      {path: ':id', component: SkirmishCharacterDetailsComponent},
+      {path: ':id/edit', component: SkirmishCharacterEditComponent},
+    ]}
 ]
 
 @NgModule({

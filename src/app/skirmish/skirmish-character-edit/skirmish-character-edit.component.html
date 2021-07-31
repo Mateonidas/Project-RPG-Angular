@@ -15,6 +15,20 @@
           <input type="text" class="form-control" formControlName="description">
         </div>
       </div>
+
+<!--      <hr>-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-12 form-group">-->
+<!--          <h4>Parametry tymczasowe</h4>-->
+
+<!--          <h4>Żywotność</h4>-->
+<!--          <input type="number" class="form-control" formControlName="temporaryWounds">-->
+
+<!--          <h4>Inicjatywa</h4>-->
+<!--          <input type="number" class="form-control" formControlName="temporaryInitiative">-->
+<!--        </div>-->
+<!--      </div>-->
+
       <hr>
       <div class="row">
         <div class="col-md-12 form-group" formArrayName="characteristics">
@@ -176,7 +190,7 @@
       <hr>
       <div class="row">
         <div class="col-md-12">
-          <button class="btn btn-primary me-2" type="submit">{{ editMode ? 'Edytuj' : 'Dodaj' }}</button>
+          <button class="btn btn-primary me-2" type="submit">{{ 'Edytuj' }}</button>
           <button type="submit" class="btn btn-danger" (click)="onCancel()">Powrót</button>
         </div>
       </div>

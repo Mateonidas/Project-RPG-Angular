@@ -18,6 +18,9 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { SkirmishComponent } from './skirmish/skirmish.component';
 import { SkirmishCharactersListComponent } from './skirmish/skirmish-characters-list/skirmish-characters-list.component';
 import { SkirmishCharacterItemComponent } from './skirmish/skirmish-characters-list/skirmish-character-item/skirmish-character-item.component';
+import { SkirmishCharacterDetailsComponent } from './skirmish/skirmish-character-details/skirmish-character-details.component';
+import { SkirmishCharacterEditComponent } from './skirmish/skirmish-character-edit/skirmish-character-edit.component';
+import { EditFormComponent } from './edit-form/edit-form.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { SkirmishCharacterItemComponent } from './skirmish/skirmish-characters-l
     DropdownDirective,
     SkirmishComponent,
     SkirmishCharactersListComponent,
-    SkirmishCharacterItemComponent
+    SkirmishCharacterItemComponent,
+    SkirmishCharacterDetailsComponent,
+    SkirmishCharacterEditComponent,
+    EditFormComponent
   ],
     imports: [
         BrowserModule,

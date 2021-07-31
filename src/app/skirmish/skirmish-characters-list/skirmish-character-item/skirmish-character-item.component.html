@@ -2,7 +2,6 @@
 <a
   style="cursor: pointer"
   class="list-group-item clearfix rounded mb-2"  id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"
-  [routerLink]="[index]"
   routerLinkActive="active">
   <div class="row">
     <div class="col-md-6">
@@ -22,7 +21,7 @@
 </a>
 
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <a class="dropdown-item" href="#">Szczegóły</a>
+    <a class="dropdown-item" [routerLink]="[index]">Szczegóły</a>
     <a class="dropdown-item" href="#">Akcje</a>
   </div>
 </div>
