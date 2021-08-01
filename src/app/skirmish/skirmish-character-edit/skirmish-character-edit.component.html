@@ -16,18 +16,34 @@
         </div>
       </div>
 
-<!--      <hr>-->
-<!--      <div class="row">-->
-<!--        <div class="col-md-12 form-group">-->
-<!--          <h4>Parametry tymczasowe</h4>-->
-
-<!--          <h4>Żywotność</h4>-->
-<!--          <input type="number" class="form-control" formControlName="temporaryWounds">-->
-
-<!--          <h4>Inicjatywa</h4>-->
-<!--          <input type="number" class="form-control" formControlName="temporaryInitiative">-->
-<!--        </div>-->
-<!--      </div>-->
+      <hr>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <h4>Parametry tymczasowe</h4>
+          <table class="table table-bordered h-25">
+            <thead class="thead-dark">
+            <tr>
+              <th scope="col">Nazwa</th>
+              <th scope="col">Wartość</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>Żywotność</td>
+              <td>
+                <input type="text" class="form-control table-input" formControlName="temporaryWounds">
+              </td>
+            </tr>
+            <tr>
+              <td>Inicjatywa</td>
+              <td>
+                <input type="text" class="form-control table-input" formControlName="temporaryInitiative">
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       <hr>
       <div class="row">

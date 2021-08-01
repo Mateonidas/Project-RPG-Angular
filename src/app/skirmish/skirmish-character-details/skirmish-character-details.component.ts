@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Character} from "../../model/character.model";
 import {SkirmishService} from "../skirmish-service/skirmish.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
+import {SkirmishCharacter} from "../../model/skirmish-character.model";
 
 @Component({
   selector: 'app-skirmish-character-details',
@@ -10,7 +10,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 })
 export class SkirmishCharacterDetailsComponent implements OnInit {
 
-  skirmishCharacter!: Character;
+  skirmishCharacter!: SkirmishCharacter;
   private id!: number;
 
   constructor(private skirmishService: SkirmishService,

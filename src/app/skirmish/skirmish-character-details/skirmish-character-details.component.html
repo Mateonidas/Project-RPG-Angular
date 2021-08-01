@@ -3,6 +3,7 @@
     <h1>{{skirmishCharacter.name}}</h1>
   </div>
 </div>
+
 <div class="row">
   <div class="col-md-12">
     <div class="dropdown">
@@ -10,6 +11,7 @@
     </div>
   </div>
 </div>
+
 <div class="row">
   <div class="col-xs-12">
     <br>
@@ -19,6 +21,32 @@
     <br>
   </div>
 </div>
+
+<hr>
+<div class="row">
+  <div class="col-md-12">
+    <h4>Parametry tymczasowe</h4>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Nazwa</th>
+        <th scope="col">Wartość</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Żywotność</td>
+        <td>{{skirmishCharacter.temporaryParameters.currentWounds}}/{{skirmishCharacter.characteristics.wounds}}</td>
+      </tr>
+      <tr>
+        <td>Inicjatywa</td>
+        <td>{{skirmishCharacter.temporaryParameters.skirmishInitiative}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 <hr>
 <div class="row">
   <div class="col-md-12">
@@ -59,6 +87,7 @@
     </table>
   </div>
 </div>
+
 <hr>
 <div class="row">
   <div class="col-md-12">
@@ -70,6 +99,7 @@
     </ul>
   </div>
 </div>
+
 <hr>
 <div class="row">
   <div class="col-md-12">
@@ -80,7 +110,9 @@
       </li>
     </ul>
   </div>
-</div><hr>
+</div>
+
+<hr>
 <div class="row">
   <div class="col-md-12">
     <h4>Broń</h4>
@@ -107,6 +139,7 @@
     </table>
   </div>
 </div>
+
 <hr>
 <div class="row">
   <div class="col-md-12">
