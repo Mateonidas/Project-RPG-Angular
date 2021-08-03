@@ -13,4 +13,8 @@ export class SkirmishCharacter extends Character {
   setTemporaryParameters(temporaryParameters: TemporaryParameters) {
     this.temporaryParameters = temporaryParameters;
   }
+
+  getSkirmishInitiative() {
+    return this.temporaryParameters.skirmishInitiative;
+  }
 }

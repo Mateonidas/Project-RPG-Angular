@@ -9,6 +9,7 @@ import {CharacterEditComponent} from "./character/character-edit/character-edit.
 import {SkirmishComponent} from "./skirmish/skirmish.component";
 import {SkirmishCharacterDetailsComponent} from "./skirmish/skirmish-character-details/skirmish-character-details.component";
 import {SkirmishCharacterEditComponent} from "./skirmish/skirmish-character-edit/skirmish-character-edit.component";
+import {SkirmishActionsListComponent} from "./skirmish/skirmish-actions-list/skirmish-actions-list.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'skirmish', component: SkirmishComponent, children: [
       {path: ':id', component: SkirmishCharacterDetailsComponent},
       {path: ':id/edit', component: SkirmishCharacterEditComponent},
+      {path: ':id/actions', component: SkirmishActionsListComponent},
     ]}
 ]
 
