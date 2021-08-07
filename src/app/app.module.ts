@@ -23,6 +23,7 @@ import { SkirmishCharacterEditComponent } from './skirmish/skirmish-character-ed
 import { EditFormComponent } from './edit-form/edit-form.component';
 import { InitiativeDialogWindow } from './dialog-window/initiative-dialog-window/initiative-dialog-window.component';
 import { SkirmishActionsListComponent } from './skirmish/skirmish-actions-list/skirmish-actions-list.component';
+import { SkirmishActionsAttackComponent } from './skirmish/skirmish-actions-list/skirmish-actions-attack/skirmish-actions-attack.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { SkirmishActionsListComponent } from './skirmish/skirmish-actions-list/s
     SkirmishCharacterEditComponent,
     EditFormComponent,
     InitiativeDialogWindow,
-    SkirmishActionsListComponent
+    SkirmishActionsListComponent,
+    SkirmishActionsAttackComponent
   ],
     imports: [
         BrowserModule,

@@ -1,0 +1,38 @@
+<div class="row">
+  <h4>Atak</h4>
+</div>
+<hr>
+
+<div class="row">
+  <div class="col-md-10">
+    <form [formGroup]="attackForm" (ngSubmit)="onSubmit()">
+
+      <div class="row mb-4">
+        <h5>Kategoria ataku</h5>
+        <div class="col-md-8">
+          <select class="form-select" formControlName="attackCategory" (change)="onCategoryChange()">
+            <option [ngValue]="attackCategory"
+                    [selected]="attackCategory.name == 'MeleeAttack'"
+                    *ngFor="let attackCategory of attacksCategoryList">
+              {{attackCategory.nameTranslation}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <h5>Typ ataku</h5>
+        <div class="col-md-8">
+          <select class="form-select" formControlName="attackType">
+            <option [ngValue]="attackType"
+                    [selected]="attackType.name == 'BasicAttack'"
+                    *ngFor="let attackType of attacksTypeList">
+              {{attackType.nameTranslation}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
