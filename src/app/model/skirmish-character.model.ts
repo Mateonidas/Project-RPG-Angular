@@ -1,5 +1,6 @@
 import {Character} from "./character.model";
 import {TemporaryParameters} from "./temporary-parameters.model";
+import {BodyLocalization} from "./body-localization.model";
 
 export class SkirmishCharacter extends Character {
 
@@ -16,5 +17,17 @@ export class SkirmishCharacter extends Character {
 
   getSkirmishInitiative() {
     return this.temporaryParameters.skirmishInitiative;
+  }
+
+  getArmorForBodyLocalization(localization: BodyLocalization){
+    let armorForLocation = this.armor.filter(armor => armor.localization.includes(localization));
+
+    let armorPoints = 0;
+
+    for(let armor of armorForLocation) {
+      armorPoints += armor.armorPoints;
+    }
+
+    return armorPoints;
   }
 }

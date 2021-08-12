@@ -31,7 +31,6 @@ export class SkirmishCharactersListComponent implements OnInit {
 
   initiativeRolls() {
     for (let skirmishCharacter of this.skirmishCharacters) {
-      console.log(skirmishCharacter.name)
       const modalRef = this.modalService.open(InitiativeDialogWindow);
       modalRef.componentInstance.name = skirmishCharacter.name;
       modalRef.componentInstance.rollEntry.subscribe((rollValue: number) => {

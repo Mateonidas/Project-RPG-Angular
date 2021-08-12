@@ -9,6 +9,7 @@ import {CharacterFormArraysWrapper} from "../model/character-form-arrays-wrapper
 import {Model} from "../model/model";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Characteristic} from "../model/characteristic.model";
+import {AttacksCategoryList} from "../model/attack/attacks-category-list.model";
 
 @Component({
   selector: 'app-edit-form',
@@ -205,7 +206,7 @@ export class EditFormComponent implements OnInit {
   onAddWeapon() {
     (<FormArray>this.editCharacterForm.get('weapons')).push(
       new FormGroup({
-        'weapon': new FormControl(new Weapon('', '', '', '', '', 0, true, [], [])),
+        'weapon': new FormControl(new Weapon('', '', AttacksCategoryList.getAttacksCategoryByName(''), '', '', 0, true, [], [])),
         'name': new FormControl(null),
         'nameTranslation': new FormControl(null),
         'type': new FormControl(null),

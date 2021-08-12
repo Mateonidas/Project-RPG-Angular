@@ -6,6 +6,8 @@ import {Skill, SkillsList} from "../../model/skill.model";
 import {Talent} from "../../model/talent.model";
 import {Weapon} from "../../model/weapon.model";
 import {Armor} from "../../model/armor.model";
+import {AttacksCategoryList} from "../../model/attack/attacks-category-list.model";
+import {BodyLocalizationList} from "../../model/body-localization.model";
 
 @Injectable({
   providedIn: 'root'
@@ -27,11 +29,11 @@ export class CharacterService {
         new Talent('Ambidextrous' ,'Oburęczność', 1,'2')
       ],
       [
-        new Weapon('Hand Weapon', 'Broń ręczna', 'melee', 'Podstawowa', 'Średnia', 4, true, [], [])
+        new Weapon('Hand Weapon', 'Broń ręczna', AttacksCategoryList.getAttacksCategoryByName('MeleeAttack'), 'Podstawowa', 'Średnia', 4, true, [], [])
       ],
       [
-        new Armor('Leather Jack', 'Skórzana kurta', 'Miękka Skóra', '-', ['ramiona', 'korpus'], 1, [], []),
-        new Armor('Leather Leggings', 'Skórzane nogawice', 'Miękka Skóra', '-', ['nogi'], 1, [], [])
+        new Armor('Leather Jack', 'Skórzana kurta', 'Miękka Skóra', '-', [BodyLocalizationList.arms, BodyLocalizationList.body], 1, [], []),
+        new Armor('Leather Leggings', 'Skórzane nogawice', 'Miękka Skóra', '-', [BodyLocalizationList.legs], 1, [], [])
       ]
     )
   ];

@@ -2,6 +2,7 @@ import {AttackCategory} from "./attack-category.model";
 
 export class AttacksCategoryList {
   public static attacksCategoryList = [
+    new AttackCategory('', ''),
     new AttackCategory('RangedAttack', 'Atak dystansowy'),
     new AttackCategory('MeleeAttack', 'Atak w zwarciu'),
   ]

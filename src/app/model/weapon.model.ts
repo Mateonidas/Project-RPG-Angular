@@ -1,7 +1,9 @@
 import {Model} from "./model";
+import {AttackCategory} from "./attack/attack-category.model";
+import {AttacksCategoryList} from "./attack/attacks-category-list.model";
 
 export class Weapon extends Model{
-  public type: string;
+  public type: AttackCategory;
   public category: string
   public range: string;
   public damage: number;
@@ -9,7 +11,7 @@ export class Weapon extends Model{
   public advantages: string[];
   public disadvantages: string[];
 
-  constructor(name: string, nameTranslation: string, type: string, category: string, range: string, damage: number, isUsingStrength: boolean, advantages: string[], disadvantages: string[]) {
+  constructor(name: string, nameTranslation: string, type: AttackCategory, category: string, range: string, damage: number, isUsingStrength: boolean, advantages: string[], disadvantages: string[]) {
     super(name, nameTranslation)
     this.type = type;
     this.category = category;
@@ -23,7 +25,7 @@ export class Weapon extends Model{
 
 export class WeaponsList {
   public weaponsList = [
-    new Weapon('Hand Weapon', 'Broń ręczna', 'melee', 'Podstawowa', 'Średnia', 4, true, [], []),
-    new Weapon('Crossbow', 'Kusza', 'range', 'Kusze', '60', 9, false, [], [])
+    new Weapon('Hand Weapon', 'Broń ręczna', AttacksCategoryList.getAttacksCategoryByName('MeleeAttack'), 'Podstawowa', 'Średnia', 4, true, [], []),
+    new Weapon('Crossbow', 'Kusza', AttacksCategoryList.getAttacksCategoryByName('RangedAttack'), 'Kusze', '60', 9, false, [], [])
   ]
 }

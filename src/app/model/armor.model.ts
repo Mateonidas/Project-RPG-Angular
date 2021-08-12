@@ -1,15 +1,16 @@
 import {Model} from "./model";
+import {BodyLocalization, BodyLocalizationList} from "./body-localization.model";
 
 export class Armor extends Model{
   public category: string;
   public penalty: string;
-  public localization: string[];
+  public localization: BodyLocalization[];
   public armorPoints: number;
   public advantages: string[];
   public disadvantages: string[];
 
 
-  constructor(name: string, nameTranslation: string, category: string, penalty: string, localization: string[], armorPoints: number, advantages: string[], disadvantages: string[]) {
+  constructor(name: string, nameTranslation: string, category: string, penalty: string, localization: BodyLocalization[], armorPoints: number, advantages: string[], disadvantages: string[]) {
     super(name, nameTranslation);
     this.category = category;
     this.penalty = penalty;
@@ -22,7 +23,7 @@ export class Armor extends Model{
 
 export class ArmorsList {
   public armorList = [
-    new Armor('Leather Jack', 'Skórzana kurta', 'Miękka Skóra', '-', ['ramiona', 'korpus'], 1, [], []),
-    new Armor('Leather Leggings', 'Skórzane nogawice', 'Miękka Skóra', '-', ['nogi'], 1, [], [])
+    new Armor('Leather Jack', 'Skórzana kurta', 'Miękka Skóra', '-', [BodyLocalizationList.arms, BodyLocalizationList.body], 1, [], []),
+    new Armor('Leather Leggings', 'Skórzane nogawice', 'Miękka Skóra', '-', [BodyLocalizationList.legs], 1, [], [])
   ]
 }
