@@ -9,8 +9,9 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 export class SaveRollDialogWindowComponent implements OnInit {
 
   @Input() name!: string;
-  @Output() rollEntry: EventEmitter<any> = new EventEmitter();
+  @Output() rollEntry = new EventEmitter<{rollValue: number, modifier: number}>();
   public rollValue!: number;
+  public modifier!: number;
 
   constructor(public activeModal: NgbActiveModal) { }
 
@@ -18,7 +19,7 @@ export class SaveRollDialogWindowComponent implements OnInit {
   }
 
   onSave(): void {
-    this.rollEntry.emit(this.rollValue);
+    this.rollEntry.emit({rollValue: this.rollValue, modifier : this.modifier});
     this.activeModal.close('Close click')
   }
 

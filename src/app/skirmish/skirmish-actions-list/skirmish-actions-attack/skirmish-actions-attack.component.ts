@@ -64,12 +64,13 @@ export class SkirmishActionsAttackComponent implements OnInit {
   }
 
   attackRoll() {
-    let attackerRoll = this.attackForm.get('roll')?.value + this.attackForm.get('modifier')?.value;
+    let attackerRoll = this.attackForm.get('roll')?.value;
+    let attackerModifier = this.attackForm.get('modifier')?.value;
     let target = this.attackForm.get('target')?.value;
 
-    this.createSaveRollDialog().subscribe((targetSaveRoll: number) => {
-      let attackerSuccessLevel = this.calculateSuccessLevel(this.skirmishCharacter.characteristics.weaponSkill, attackerRoll);
-      let targetSuccessLevel = this.calculateSuccessLevel(target.characteristics.weaponSkill, targetSaveRoll);
+    this.createSaveRollDialog().subscribe((targetRoll: {rollValue: number, modifier: number}) => {
+      let attackerSuccessLevel = this.calculateSuccessLevel(this.skirmishCharacter.characteristics.weaponSkill, attackerRoll, attackerModifier);
+      let targetSuccessLevel = this.calculateSuccessLevel(target.characteristics.weaponSkill, targetRoll.rollValue, targetRoll.modifier);
       this.calculateAttackResult(attackerSuccessLevel, targetSuccessLevel, target);
     })
   }
@@ -80,8 +81,8 @@ export class SkirmishActionsAttackComponent implements OnInit {
     return modalRef.componentInstance.rollEntry;
   }
 
-  calculateSuccessLevel(skillValue: number, rollValue: number) {
-    return (Math.floor(skillValue/10) - Math.floor(rollValue/10));
+  calculateSuccessLevel(skillValue: number, rollValue: number, modifier: number) {
+    return (Math.floor((skillValue + modifier) / 10) - Math.floor(rollValue/10));
   }
 
   calculateAttackResult(attackerSuccessLevel: number, targetSuccessLevel: number, target: SkirmishCharacter){

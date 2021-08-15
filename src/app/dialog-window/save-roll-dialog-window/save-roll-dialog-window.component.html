@@ -4,6 +4,8 @@
 <div class="modal-body">
   <p>Rzut dla: {{name}}</p>
   <input type="number" class="form-control" [(ngModel)]="rollValue">
+  <p>Modyfikator</p>
+  <input type="number" class="form-control" [(ngModel)]="modifier">
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)="onSave()">Zapisz</button>
