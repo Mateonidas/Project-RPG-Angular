@@ -48,7 +48,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
       'weapon': new FormControl(null),
       'target': new FormControl(null),
       'roll': new FormControl(null),
-      'modifier': new FormControl(null),
+      'modifier': new FormControl(0),
     })
 
     this.skirmishCharacter = this.skirmishService.getSkirmishCharacter(this.id);
