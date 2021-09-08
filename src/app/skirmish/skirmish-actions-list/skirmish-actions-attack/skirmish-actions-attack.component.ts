@@ -10,6 +10,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {InitiativeDialogWindow} from "../../../dialog-window/initiative-dialog-window/initiative-dialog-window.component";
 import {SaveRollDialogWindowComponent} from "../../../dialog-window/save-roll-dialog-window/save-roll-dialog-window.component";
 import {BodyLocalizationList} from "../../../model/body-localization.model";
+import { AttackType } from 'src/app/model/attack/attack-type.model';
 
 @Component({
   selector: 'app-skirmish-actions-attack',
@@ -20,7 +21,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
 
   attackForm!: FormGroup;
   skirmishCharacter!: SkirmishCharacter;
-  attacksTypeList = AttacksTypeList.attacksTypeList;
+  attacksTypeList!: AttackType[];
   attacksCategoryList = AttacksCategoryList.attacksCategoryList;
   skirmishCharactersList!: SkirmishCharacter[];
   characterWeapons!: Weapon[];
@@ -42,21 +43,21 @@ export class SkirmishActionsAttackComponent implements OnInit {
   }
 
   private initForm() {
-    this.attackForm = new FormGroup({
-      'attackCategory': new FormControl(null),
-      'attackType': new FormControl(null),
-      'weapon': new FormControl(null),
-      'target': new FormControl(null),
-      'roll': new FormControl(null),
-      'modifier': new FormControl(0),
-    })
-
     this.skirmishCharacter = this.skirmishService.getSkirmishCharacter(this.id);
     this.skirmishCharactersList = this.skirmishService.getSkirmishCharacters();
     this.skirmishCharactersList.splice(this.id, 1);
 
     this.attacksTypeList = AttacksTypeList.attacksTypeList.filter(x => x.category.name === 'MeleeAttack');
     this.characterWeapons = this.skirmishCharacter.weapons.filter(x => x.type.name === 'MeleeAttack');
+
+    this.attackForm = new FormGroup({
+      'attackCategory': new FormControl(AttacksCategoryList.getAttacksCategoryByName('MeleeAttack')),
+      'attackType': new FormControl(this.attacksTypeList[0]),
+      'weapon': new FormControl(this.characterWeapons[0]),
+      'target': new FormControl(this.skirmishCharactersList[0]),
+      'roll': new FormControl(null),
+      'modifier': new FormControl(0),
+    })
   }
 
   onSubmit() {

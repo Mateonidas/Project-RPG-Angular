@@ -12,7 +12,6 @@
         <div class="col-md-8">
           <select class="form-select" formControlName="attackCategory" (change)="onCategoryChange()">
             <option [ngValue]="attackCategory"
-                    [selected]="attackCategory.name == 'MeleeAttack'"
                     *ngFor="let attackCategory of attacksCategoryList">
               {{attackCategory.nameTranslation}}
             </option>
@@ -25,8 +24,7 @@
         <div class="col-md-8">
           <select class="form-select" formControlName="attackType">
             <option [ngValue]="attackType"
-                    [selected]="attackType.name == 'BasicAttack'"
-                    *ngFor="let attackType of attacksTypeList">
+                    *ngFor="let attackType of attacksTypeList; let i = index">
               {{attackType.nameTranslation}}
             </option>
           </select>
@@ -38,7 +36,7 @@
         <div class="col-md-8">
           <select class="form-select" formControlName="weapon">
             <option [ngValue]="weapon"
-                    *ngFor="let weapon of characterWeapons">
+                    *ngFor="let weapon of characterWeapons; let i = index">
               {{weapon.nameTranslation}}
             </option>
           </select>
@@ -50,7 +48,7 @@
         <div class="col-md-8">
           <select class="form-select" formControlName="target">
             <option [ngValue]="target"
-                    *ngFor="let target of skirmishCharactersList">
+                    *ngFor="let target of skirmishCharactersList; let i = index">
               {{target.name}}
             </option>
           </select>
