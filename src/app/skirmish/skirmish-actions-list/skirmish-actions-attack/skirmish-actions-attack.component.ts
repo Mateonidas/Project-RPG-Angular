@@ -139,5 +139,8 @@ export class SkirmishActionsAttackComponent implements OnInit {
     let category = this.attackForm.get('attackCategory')?.value.name;
     this.attacksTypeList = AttacksTypeList.attacksTypeList.filter(x => x.category.name === category);
     this.characterWeapons = this.skirmishCharacter.weapons.filter(x => x.type.name === category);
+
+    this.attackForm.setControl("attackType", new FormControl(this.attacksTypeList[0]));
+    this.attackForm.setControl("weapon", new FormControl(this.characterWeapons[0]));
   }
 }
