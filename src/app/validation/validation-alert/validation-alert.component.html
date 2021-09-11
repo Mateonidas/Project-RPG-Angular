@@ -1,0 +1,8 @@
+<div *ngIf="control?.invalid && (control?.dirty || control?.touched)"
+     class="alert alert-danger"
+     style="margin-top: 5px;"
+>
+  <div *ngIf="control?.errors?.required">
+    Pole nie może być puste
+  </div>
+</div>
