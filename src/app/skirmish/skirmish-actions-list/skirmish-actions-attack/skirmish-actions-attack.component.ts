@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {AttacksCategoryList} from "../../../model/attack/attacks-category-list.model";
 import {AttacksTypeList} from "../../../model/attack/attacks-type-list.model";
@@ -51,12 +51,12 @@ export class SkirmishActionsAttackComponent implements OnInit {
     this.characterWeapons = this.skirmishCharacter.weapons.filter(x => x.type.name === 'MeleeAttack');
 
     this.attackForm = new FormGroup({
-      'attackCategory': new FormControl(AttacksCategoryList.getAttacksCategoryByName('MeleeAttack')),
-      'attackType': new FormControl(this.attacksTypeList[0]),
-      'weapon': new FormControl(this.characterWeapons[0]),
-      'target': new FormControl(this.skirmishCharactersList[0]),
-      'roll': new FormControl(null),
-      'modifier': new FormControl(0),
+      'attackCategory': new FormControl(AttacksCategoryList.getAttacksCategoryByName('MeleeAttack'), [Validators.required]),
+      'attackType': new FormControl(this.attacksTypeList[0], [Validators.required]),
+      'weapon': new FormControl(this.characterWeapons[0], [Validators.required]),
+      'target': new FormControl(this.skirmishCharactersList[0], [Validators.required]),
+      'roll': new FormControl(null, [Validators.required]),
+      'modifier': new FormControl(0, [Validators.required]),
     })
   }
 
@@ -65,9 +65,9 @@ export class SkirmishActionsAttackComponent implements OnInit {
   }
 
   attackRoll() {
-    let attackerRoll = this.attackForm.get('roll')?.value;
-    let attackerModifier = this.attackForm.get('modifier')?.value;
-    let target = this.attackForm.get('target')?.value;
+    let attackerRoll = this.roll?.value;
+    let attackerModifier = this.modifier?.value;
+    let target = this.target?.value;
 
     this.createSaveRollDialog().subscribe((targetRoll: {rollValue: number, modifier: number}) => {
       let attackerSuccessLevel = this.calculateSuccessLevel(this.skirmishCharacter.characteristics.weaponSkill, attackerRoll, attackerModifier);
@@ -78,7 +78,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
 
   createSaveRollDialog(){
     const modalRef = this.modalService.open(SaveRollDialogWindowComponent);
-    modalRef.componentInstance.name = this.attackForm.get('target')?.value.name;
+    modalRef.componentInstance.name = this.target?.value.name;
     return modalRef.componentInstance.rollEntry;
   }
 
@@ -93,7 +93,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
   }
 
   calculateDamage(attackerSuccessLevel: number, targetSuccessLevel: number, target: SkirmishCharacter) {
-    let weapon = this.attackForm.get('weapon')?.value;
+    let weapon = this.weapon?.value;
     let weaponDamage = weapon.damage;
     if (weapon.isUsingStrength) {
       weaponDamage += Math.floor(this.skirmishCharacter.characteristics.strength / 10);
@@ -112,8 +112,8 @@ export class SkirmishActionsAttackComponent implements OnInit {
   }
 
   calculateAttackLocalization() {
-    let attackerRoll = this.attackForm.get('roll')?.value + this.attackForm.get('modifier')?.value;
-    let target = this.attackForm.get('target')?.value;
+    let attackerRoll = this.roll?.value + this.modifier?.value;
+    let target = this.target?.value;
 
     if(attackerRoll >= 1 && attackerRoll <= 9) {
       return target.getArmorForBodyLocalization(BodyLocalizationList.head);
@@ -136,11 +136,35 @@ export class SkirmishActionsAttackComponent implements OnInit {
   }
 
   onCategoryChange() {
-    let category = this.attackForm.get('attackCategory')?.value.name;
+    let category = this.attackCategory?.value.name;
     this.attacksTypeList = AttacksTypeList.attacksTypeList.filter(x => x.category.name === category);
     this.characterWeapons = this.skirmishCharacter.weapons.filter(x => x.type.name === category);
 
-    this.attackForm.setControl("attackType", new FormControl(this.attacksTypeList[0]));
-    this.attackForm.setControl("weapon", new FormControl(this.characterWeapons[0]));
+    this.attackType?.setValue(this.attacksTypeList[0]);
+    this.weapon?.setValue(this.characterWeapons[0]);
+  }
+
+  get attackCategory() {
+    return this.attackForm.get('attackCategory');
+  }
+
+  get attackType() {
+    return this.attackForm.get('attackType');
+  }
+
+  get weapon() {
+    return this.attackForm.get('weapon');
+  }
+
+  get target() {
+    return this.attackForm.get('target');
+  }
+
+  get roll() {
+    return this.attackForm.get('roll');
+  }
+
+  get modifier() {
+    return this.attackForm.get('modifier');
   }
 }

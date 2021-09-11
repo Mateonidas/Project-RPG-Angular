@@ -55,7 +55,8 @@ export class SkirmishService {
           new Talent('Ambidextrous', 'Oburęczność', 1, '2')
         ],
         [
-          new Weapon('Hand Weapon', 'Broń ręczna', AttacksCategoryList.getAttacksCategoryByName('MeleeAttack'), 'Podstawowa', 'Średnia', 4, true, [], [])
+          new Weapon('Hand Weapon', 'Broń ręczna', AttacksCategoryList.getAttacksCategoryByName('MeleeAttack'), 'Podstawowa', 'Średnia', 4, true, [], []),
+          new Weapon('Crossbow', 'Kusza', AttacksCategoryList.getAttacksCategoryByName('RangedAttack'), 'Kusze', '60', 9, false, [], [])
         ],
         [
           new Armor('Leather Jack', 'Skórzana kurta', 'Miękka Skóra', '-', [BodyLocalizationList.arms, BodyLocalizationList.body], 1, [], []),
