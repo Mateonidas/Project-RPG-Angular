@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {AttacksCategoryList} from "../../../model/attack/attacks-category-list.model";
@@ -7,10 +7,9 @@ import {SkirmishService} from "../../skirmish-service/skirmish.service";
 import {SkirmishCharacter} from "../../../model/skirmish-character.model";
 import {Weapon} from "../../../model/weapon.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {InitiativeDialogWindow} from "../../../dialog-window/initiative-dialog-window/initiative-dialog-window.component";
 import {SaveRollDialogWindowComponent} from "../../../dialog-window/save-roll-dialog-window/save-roll-dialog-window.component";
 import {BodyLocalizationList} from "../../../model/body-localization.model";
-import { AttackType } from 'src/app/model/attack/attack-type.model';
+import {AttackType} from 'src/app/model/attack/attack-type.model';
 
 @Component({
   selector: 'app-skirmish-actions-attack',
@@ -69,25 +68,25 @@ export class SkirmishActionsAttackComponent implements OnInit {
     let attackerModifier = this.modifier?.value;
     let target = this.target?.value;
 
-    this.createSaveRollDialog().subscribe((targetRoll: {rollValue: number, modifier: number}) => {
-      let attackerSuccessLevel = this.calculateSuccessLevel(this.skirmishCharacter.characteristics.weaponSkill, attackerRoll, attackerModifier);
+    this.createSaveRollDialog().subscribe((targetRoll: { rollValue: number, modifier: number }) => {
+      let attackerSuccessLevel = this.calculateSuccessLevel(this.skirmishCharacter.characteristics.weaponSkill.value, attackerRoll, attackerModifier);
       let targetSuccessLevel = this.calculateSuccessLevel(target.characteristics.weaponSkill, targetRoll.rollValue, targetRoll.modifier);
       this.calculateAttackResult(attackerSuccessLevel, targetSuccessLevel, target);
     })
   }
 
-  createSaveRollDialog(){
+  createSaveRollDialog() {
     const modalRef = this.modalService.open(SaveRollDialogWindowComponent);
-    modalRef.componentInstance.name = this.target?.value.name;
+    modalRef.componentInstance.target = this.target?.value;
     return modalRef.componentInstance.rollEntry;
   }
 
   calculateSuccessLevel(skillValue: number, rollValue: number, modifier: number) {
-    return (Math.floor((skillValue + modifier) / 10) - Math.floor(rollValue/10));
+    return (Math.floor((skillValue + modifier) / 10) - Math.floor(rollValue / 10));
   }
 
-  calculateAttackResult(attackerSuccessLevel: number, targetSuccessLevel: number, target: SkirmishCharacter){
-    if(attackerSuccessLevel > targetSuccessLevel) {
+  calculateAttackResult(attackerSuccessLevel: number, targetSuccessLevel: number, target: SkirmishCharacter) {
+    if (attackerSuccessLevel > targetSuccessLevel) {
       this.calculateDamage(attackerSuccessLevel, targetSuccessLevel, target);
     }
   }
@@ -96,15 +95,15 @@ export class SkirmishActionsAttackComponent implements OnInit {
     let weapon = this.weapon?.value;
     let weaponDamage = weapon.damage;
     if (weapon.isUsingStrength) {
-      weaponDamage += Math.floor(this.skirmishCharacter.characteristics.strength / 10);
+      weaponDamage += Math.floor(this.skirmishCharacter.characteristics.strength.value / 10);
     }
 
     let successLevelsDifference = attackerSuccessLevel - targetSuccessLevel
-    let targetToughnessBonus = Math.floor(target.characteristics.toughness/10);
+    let targetToughnessBonus = Math.floor(target.characteristics.toughness.value / 10);
     let armorPoints = this.calculateAttackLocalization();
     let damage = successLevelsDifference + weaponDamage - targetToughnessBonus - armorPoints;
 
-    if(damage < 1) {
+    if (damage < 1) {
       damage = 1;
     }
 
@@ -115,22 +114,17 @@ export class SkirmishActionsAttackComponent implements OnInit {
     let attackerRoll = this.roll?.value + this.modifier?.value;
     let target = this.target?.value;
 
-    if(attackerRoll >= 1 && attackerRoll <= 9) {
+    if (attackerRoll >= 1 && attackerRoll <= 9) {
       return target.getArmorForBodyLocalization(BodyLocalizationList.head);
-    }
-    else if(attackerRoll >= 10 && attackerRoll <= 24) {
+    } else if (attackerRoll >= 10 && attackerRoll <= 24) {
       return target.getArmorForBodyLocalization(BodyLocalizationList.arms);
-    }
-    else if(attackerRoll >= 25 && attackerRoll <= 44) {
+    } else if (attackerRoll >= 25 && attackerRoll <= 44) {
       return target.getArmorForBodyLocalization(BodyLocalizationList.arms);
-    }
-    else if(attackerRoll >= 45 && attackerRoll <= 79) {
+    } else if (attackerRoll >= 45 && attackerRoll <= 79) {
       return target.getArmorForBodyLocalization(BodyLocalizationList.body);
-    }
-    else if(attackerRoll >= 80 && attackerRoll <= 89) {
+    } else if (attackerRoll >= 80 && attackerRoll <= 89) {
       return target.getArmorForBodyLocalization(BodyLocalizationList.legs);
-    }
-    else if(attackerRoll >= 90 && attackerRoll <= 100) {
+    } else if (attackerRoll >= 90 && attackerRoll <= 100) {
       return target.getArmorForBodyLocalization(BodyLocalizationList.legs);
     }
   }

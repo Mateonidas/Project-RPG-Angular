@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {SkirmishCharacter} from "../../model/skirmish-character.model";
 
 @Component({
   selector: 'app-save-roll-dialog-window',
@@ -9,7 +10,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class SaveRollDialogWindowComponent implements OnInit {
 
-  @Input() name!: string;
+  @Input() target!: SkirmishCharacter;
   @Output() rollEntry = new EventEmitter<{rollValue: number, modifier: number}>();
   public saveForm!: FormGroup;
 
@@ -22,6 +23,7 @@ export class SaveRollDialogWindowComponent implements OnInit {
   initForm() {
     this.saveForm = new FormGroup({
       'roll': new FormControl(null, [Validators.required]),
+      'usedSkillOrCharacteristic': new FormControl(null, [Validators.required]),
       'modifier': new FormControl(0, [Validators.required]),
     })
   }

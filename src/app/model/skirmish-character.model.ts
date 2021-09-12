@@ -8,7 +8,7 @@ export class SkirmishCharacter extends Character {
 
   constructor(character: Character) {
     super(character.name, character.description, character.characteristics, character.skills, character.talents, character.weapons, character.armor);
-    this.temporaryParameters = new TemporaryParameters(character.characteristics.wounds, character.characteristics.initiative);
+    this.temporaryParameters = new TemporaryParameters(character.characteristics.wounds.value, character.characteristics.initiative.value);
   }
 
   setTemporaryParameters(temporaryParameters: TemporaryParameters) {

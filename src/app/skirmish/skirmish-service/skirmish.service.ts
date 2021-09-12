@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Subject} from "rxjs";
 import {Character} from "../../model/character.model";
 import {SkirmishCharacter} from "../../model/skirmish-character.model";
-import {Characteristic} from "../../model/characteristic.model";
+import {Characteristics} from "../../model/characteristic.model";
 import {Skill} from "../../model/skill.model";
 import {Talent} from "../../model/talent.model";
 import {Weapon} from "../../model/weapon.model";
@@ -22,7 +22,7 @@ export class SkirmishService {
         'Markus',
         'Mieszkaniec Ubersreiku.',
 
-        new Characteristic(
+        new Characteristics(
           4, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 15
         ),
         [
@@ -45,7 +45,7 @@ export class SkirmishService {
         'Zygfryd',
         'Mieszkaniec Altdorfu.',
 
-        new Characteristic(
+        new Characteristics(
           4, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 15
         ),
         [

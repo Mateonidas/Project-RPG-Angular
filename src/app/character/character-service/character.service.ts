@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Character} from "../../model/character.model";
 import {Subject} from "rxjs";
-import {Characteristic} from "../../model/characteristic.model";
-import {Skill, SkillsList} from "../../model/skill.model";
+import {Skill} from "../../model/skill.model";
 import {Talent} from "../../model/talent.model";
 import {Weapon} from "../../model/weapon.model";
 import {Armor} from "../../model/armor.model";
 import {AttacksCategoryList} from "../../model/attack/attacks-category-list.model";
 import {BodyLocalizationList} from "../../model/body-localization.model";
+import {Characteristics} from "../../model/characteristic.model";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class CharacterService {
       'Markus',
       'Mieszkaniec Ubersreiku.',
 
-      new Characteristic(
+      new Characteristics(
         4, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 15
       ),
       [

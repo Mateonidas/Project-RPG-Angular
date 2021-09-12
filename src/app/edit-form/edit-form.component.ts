@@ -8,7 +8,7 @@ import {Armor, ArmorsList} from "../model/armor.model";
 import {CharacterFormArraysWrapper} from "../model/character-form-arrays-wrapper.model";
 import {Model} from "../model/model";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {Characteristic} from "../model/characteristic.model";
+import {Characteristics} from "../model/characteristic.model";
 import {AttacksCategoryList} from "../model/attack/attacks-category-list.model";
 
 @Component({
@@ -119,55 +119,55 @@ export class EditFormComponent implements OnInit {
     }
   }
 
-  protected static initEditCharacteristicsTable(characteristics: Characteristic) {
+  protected static initEditCharacteristicsTable(characteristics: Characteristics) {
     return new FormArray([
       new FormGroup({
         'name': new FormControl('Sz'),
-        'value': new FormControl(characteristics.movement)
+        'value': new FormControl(characteristics.movement.value)
       }),
       new FormGroup({
         'name': new FormControl('WW'),
-        'value': new FormControl(characteristics.weaponSkill)
+        'value': new FormControl(characteristics.weaponSkill.value)
       }),
       new FormGroup({
         'name': new FormControl('US'),
-        'value': new FormControl(characteristics.ballisticSkill)
+        'value': new FormControl(characteristics.ballisticSkill.value)
       }),
       new FormGroup({
         'name': new FormControl('S'),
-        'value': new FormControl(characteristics.strength)
+        'value': new FormControl(characteristics.strength.value)
       }),
       new FormGroup({
         'name': new FormControl('Wt'),
-        'value': new FormControl(characteristics.toughness)
+        'value': new FormControl(characteristics.toughness.value)
       }),
       new FormGroup({
         'name': new FormControl('I'),
-        'value': new FormControl(characteristics.initiative)
+        'value': new FormControl(characteristics.initiative.value)
       }),
       new FormGroup({
         'name': new FormControl('Zw'),
-        'value': new FormControl(characteristics.agility)
+        'value': new FormControl(characteristics.agility.value)
       }),
       new FormGroup({
         'name': new FormControl('Zr'),
-        'value': new FormControl(characteristics.dexterity)
+        'value': new FormControl(characteristics.dexterity.value)
       }),
       new FormGroup({
         'name': new FormControl('Int'),
-        'value': new FormControl(characteristics.intelligence)
+        'value': new FormControl(characteristics.intelligence.value)
       }),
       new FormGroup({
         'name': new FormControl('SW'),
-        'value': new FormControl(characteristics.willpower)
+        'value': new FormControl(characteristics.willpower.value)
       }),
       new FormGroup({
         'name': new FormControl('Ogd'),
-        'value': new FormControl(characteristics.fellowship)
+        'value': new FormControl(characteristics.fellowship.value)
       }),
       new FormGroup({
         'name': new FormControl('Żyw'),
-        'value': new FormControl(characteristics.wounds)
+        'value': new FormControl(characteristics.wounds.value)
       }),
     ]);
   }
@@ -242,7 +242,7 @@ export class EditFormComponent implements OnInit {
 
   configureCharacteristics() {
     const characteristicsValues = this.editCharacterForm.value.characteristics;
-    return new Characteristic(
+    return new Characteristics(
       characteristicsValues[0].value,
       characteristicsValues[1].value,
       characteristicsValues[2].value,

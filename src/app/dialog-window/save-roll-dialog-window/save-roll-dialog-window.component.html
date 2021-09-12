@@ -4,17 +4,38 @@
   </div>
 
   <div class="modal-body">
-    <p>Rzut dla: {{name}}</p>
-    <input type="number" class="form-control" formControlName="roll">
-    <app-validation-alert
-      [control]="roll">
-    </app-validation-alert>
+    <div class="mt-2">
+      <p>Rzut dla: {{target.name}}</p>
+      <input type="number" class="form-control" formControlName="roll">
+      <app-validation-alert
+        [control]="roll">
+      </app-validation-alert>
+    </div>
 
-    <p>Modyfikator</p>
-    <input type="number" class="form-control" formControlName="modifier">
-    <app-validation-alert
-      [control]="modifier">
-    </app-validation-alert>
+    <div class="mt-2">
+      <p>Używana umiejętność/cecha</p>
+      <select class="form-select" formControlName="usedSkillOrCharacteristic">
+        <option [ngValue]="skill"
+                *ngFor="let skill of target.skills">
+          {{skill.nameTranslation}}
+        </option>
+      </select>
+
+      <select class="form-select">
+        <option [ngValue]="characteristic"
+                *ngFor="let characteristic of target.characteristics.characteristics">
+          {{characteristic.nameTranslation}}
+        </option>
+      </select>
+    </div>
+
+    <div class="mt-2">
+      <p>Modyfikator</p>
+      <input type="number" class="form-control" formControlName="modifier">
+      <app-validation-alert
+        [control]="modifier">
+      </app-validation-alert>
+    </div>
   </div>
 
   <div class="modal-footer">

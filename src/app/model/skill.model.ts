@@ -11,6 +11,7 @@ export class Skill extends Model{
 
 export class SkillsList {
   public skillsList = [
+    new Skill('Dodge', 'Unik', 0),
     new Skill('MeleeBasic', 'Walka Wręcz (Podstawowa)', 0),
     new Skill('MeleeCavalry', 'Walka Wręcz (Kawaleryjska)', 0),
     new Skill('MeleeFencing', 'Walka Wręcz (Szermiercza)', 0),
@@ -20,4 +21,8 @@ export class SkillsList {
     new Skill('MeleePolearm', 'Walka Wręcz (Drzewcowa)', 0),
     new Skill('MeleeTwoHanded', 'Walka Wręcz (Dwuręczna)', 0),
   ]
+
+  private getSkillByName(name: string): Skill {
+    return <Skill>this.skillsList.find(x => x.name == name);
+  }
 }
