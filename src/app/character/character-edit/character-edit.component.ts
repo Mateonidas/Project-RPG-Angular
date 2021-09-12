@@ -3,7 +3,6 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {CharacterService} from "../character-service/character.service";
 import {Character} from "../../model/character.model";
-import {Characteristic} from "../../model/characteristic.model";
 import {EditFormComponent} from "../../edit-form/edit-form.component";
 import {CharacterFormArraysWrapper} from "../../model/character-form-arrays-wrapper.model";
 
