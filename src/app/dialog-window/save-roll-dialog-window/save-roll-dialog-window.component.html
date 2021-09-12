@@ -2,18 +2,21 @@
   <div class="modal-header">
     <h4 class="modal-title">Rzut na obronę</h4>
   </div>
+
   <div class="modal-body">
     <p>Rzut dla: {{name}}</p>
     <input type="number" class="form-control" formControlName="roll">
     <app-validation-alert
       [control]="roll">
     </app-validation-alert>
+
     <p>Modyfikator</p>
     <input type="number" class="form-control" formControlName="modifier">
     <app-validation-alert
       [control]="modifier">
     </app-validation-alert>
   </div>
+
   <div class="modal-footer">
     <button type="submit" class="btn btn-outline-dark" [disabled]="!saveForm.valid">Zapisz</button>
   </div>
