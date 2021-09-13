@@ -11,7 +11,7 @@ import {SkirmishCharacter} from "../../model/skirmish-character.model";
 export class SaveRollDialogWindowComponent implements OnInit {
 
   @Input() target!: SkirmishCharacter;
-  @Output() rollEntry = new EventEmitter<{rollValue: number, modifier: number}>();
+  @Output() rollEntry = new EventEmitter<{rollValue: number, skillOrCharacteristicValue: number, modifier: number}>();
   public saveForm!: FormGroup;
 
   constructor(public activeModal: NgbActiveModal) { }
@@ -23,13 +23,14 @@ export class SaveRollDialogWindowComponent implements OnInit {
   initForm() {
     this.saveForm = new FormGroup({
       'roll': new FormControl(null, [Validators.required]),
-      'usedSkillOrCharacteristic': new FormControl(null, [Validators.required]),
+      'checkSkillOrCharacteristic': new FormControl(null, [Validators.required]),
+      'skillOrCharacteristic': new FormControl(null, [Validators.required]),
       'modifier': new FormControl(0, [Validators.required]),
     })
   }
 
   onSave(): void {
-    this.rollEntry.emit({rollValue: this.roll?.value, modifier : this.modifier?.value});
+    this.rollEntry.emit({rollValue: this.roll?.value, skillOrCharacteristicValue: this.skillOrCharacteristic?.value.value, modifier : this.modifier?.value});
     this.activeModal.close('Close click')
   }
 
@@ -39,5 +40,13 @@ export class SaveRollDialogWindowComponent implements OnInit {
 
   get modifier() {
     return this.saveForm.get('modifier');
+  }
+
+  get checkSkillOrCharacteristic() {
+    return this.saveForm.get('checkSkillOrCharacteristic')?.value;
+  }
+
+  get skillOrCharacteristic() {
+    return this.saveForm.get('skillOrCharacteristic');
   }
 }

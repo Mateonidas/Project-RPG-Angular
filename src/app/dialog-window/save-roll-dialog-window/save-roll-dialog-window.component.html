@@ -14,17 +14,20 @@
 
     <div class="mt-2">
       <p>Używana umiejętność/cecha</p>
-      <select class="form-select" formControlName="usedSkillOrCharacteristic">
+      <input type="radio" formControlName="checkSkillOrCharacteristic" value="1" > Umiejętności
+      <input type="radio" formControlName="checkSkillOrCharacteristic" value="0" > Cechy
+
+      <select *ngIf="checkSkillOrCharacteristic == 1" class="form-select" formControlName="skillOrCharacteristic">
         <option [ngValue]="skill"
                 *ngFor="let skill of target.skills">
-          {{skill.nameTranslation}}
+          {{skill.nameTranslation}} - {{skill.value}}
         </option>
       </select>
 
-      <select class="form-select">
+      <select *ngIf="checkSkillOrCharacteristic == 0" class="form-select" formControlName="skillOrCharacteristic">
         <option [ngValue]="characteristic"
                 *ngFor="let characteristic of target.characteristics.characteristics">
-          {{characteristic.nameTranslation}}
+          {{characteristic.nameTranslation}} - {{characteristic.value}}
         </option>
       </select>
     </div>

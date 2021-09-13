@@ -49,7 +49,7 @@ export class SkirmishService {
           4, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 15
         ),
         [
-          new Skill('MeleeBasic', 'Walka Wręcz (Podstawowa)', 40)
+          new Skill('MeleeBasic', 'Walka Wręcz (Podstawowa)', 50)
         ],
         [
           new Talent('Ambidextrous', 'Oburęczność', 1, '2')

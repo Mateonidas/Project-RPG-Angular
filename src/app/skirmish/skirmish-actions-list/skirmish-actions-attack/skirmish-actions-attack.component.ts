@@ -68,9 +68,9 @@ export class SkirmishActionsAttackComponent implements OnInit {
     let attackerModifier = this.modifier?.value;
     let target = this.target?.value;
 
-    this.createSaveRollDialog().subscribe((targetRoll: { rollValue: number, modifier: number }) => {
+    this.createSaveRollDialog().subscribe((targetDefence: { rollValue: number, skillOrCharacteristicValue: number, modifier: number }) => {
       let attackerSuccessLevel = this.calculateSuccessLevel(this.skirmishCharacter.characteristics.weaponSkill.value, attackerRoll, attackerModifier);
-      let targetSuccessLevel = this.calculateSuccessLevel(target.characteristics.weaponSkill, targetRoll.rollValue, targetRoll.modifier);
+      let targetSuccessLevel = this.calculateSuccessLevel(targetDefence.skillOrCharacteristicValue, targetDefence.rollValue, targetDefence.modifier);
       this.calculateAttackResult(attackerSuccessLevel, targetSuccessLevel, target);
     })
   }
