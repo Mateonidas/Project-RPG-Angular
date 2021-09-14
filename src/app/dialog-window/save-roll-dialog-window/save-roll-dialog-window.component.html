@@ -26,7 +26,7 @@
 
       <select *ngIf="checkSkillOrCharacteristic == 0" class="form-select" formControlName="skillOrCharacteristic">
         <option [ngValue]="characteristic"
-                *ngFor="let characteristic of target.characteristics.characteristics">
+                *ngFor="let characteristic of characteristics">
           {{characteristic.nameTranslation}} - {{characteristic.value}}
         </option>
       </select>

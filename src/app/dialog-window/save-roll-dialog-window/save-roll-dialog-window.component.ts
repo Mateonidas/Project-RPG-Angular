@@ -49,4 +49,8 @@ export class SaveRollDialogWindowComponent implements OnInit {
   get skillOrCharacteristic() {
     return this.saveForm.get('skillOrCharacteristic');
   }
+
+  get characteristics() {
+    return this.target.characteristics.characteristics.filter(x => x.name != 'Movement' && x.name != 'Wounds');
+  }
 }
