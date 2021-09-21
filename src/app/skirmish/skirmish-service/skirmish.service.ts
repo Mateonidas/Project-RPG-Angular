@@ -2,13 +2,12 @@ import {Injectable} from '@angular/core';
 import {Subject} from "rxjs";
 import {Character} from "../../model/character.model";
 import {SkirmishCharacter} from "../../model/skirmish-character.model";
-import {Characteristics} from "../../model/characteristic.model";
 import {Skill} from "../../model/skill.model";
 import {Talent} from "../../model/talent.model";
-import {Weapon} from "../../model/weapon.model";
+import {WeaponsList} from "../../model/weapon.model";
 import {Armor} from "../../model/armor.model";
-import {AttacksCategoryList} from "../../model/attack/attacks-category-list.model";
 import {BodyLocalizationList} from "../../model/body-localization.model";
+import {CharacterCharacteristics} from "../../model/characterCharacteristic.model";
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +21,7 @@ export class SkirmishService {
         'Markus',
         'Mieszkaniec Ubersreiku.',
 
-        new Characteristics(
+        new CharacterCharacteristics(
           4, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 15
         ),
         [
@@ -32,7 +31,7 @@ export class SkirmishService {
           new Talent('Ambidextrous', 'Oburęczność', 1, '2')
         ],
         [
-          new Weapon('Hand Weapon', 'Broń ręczna', AttacksCategoryList.getAttacksCategoryByName('MeleeAttack'), 'Podstawowa', 'Średnia', 4, true, [], [])
+          WeaponsList.handWeapon
         ],
         [
           new Armor('Leather Jack', 'Skórzana kurta', 'Miękka Skóra', '-', [BodyLocalizationList.arms, BodyLocalizationList.body], 1, [], []),
@@ -45,7 +44,7 @@ export class SkirmishService {
         'Zygfryd',
         'Mieszkaniec Altdorfu.',
 
-        new Characteristics(
+        new CharacterCharacteristics(
           4, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 15
         ),
         [
@@ -55,8 +54,8 @@ export class SkirmishService {
           new Talent('Ambidextrous', 'Oburęczność', 1, '2')
         ],
         [
-          new Weapon('Hand Weapon', 'Broń ręczna', AttacksCategoryList.getAttacksCategoryByName('MeleeAttack'), 'Podstawowa', 'Średnia', 4, true, [], []),
-          new Weapon('Crossbow', 'Kusza', AttacksCategoryList.getAttacksCategoryByName('RangedAttack'), 'Kusze', '60', 9, false, [], [])
+          WeaponsList.handWeapon,
+          WeaponsList.crossbow
         ],
         [
           new Armor('Leather Jack', 'Skórzana kurta', 'Miękka Skóra', '-', [BodyLocalizationList.arms, BodyLocalizationList.body], 1, [], []),

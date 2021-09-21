@@ -8,8 +8,7 @@ import {Armor, ArmorsList} from "../model/armor.model";
 import {CharacterFormArraysWrapper} from "../model/character-form-arrays-wrapper.model";
 import {Model} from "../model/model";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {Characteristics} from "../model/characteristic.model";
-import {AttacksCategoryList} from "../model/attack/attacks-category-list.model";
+import {CharacterCharacteristics} from "../model/characterCharacteristic.model";
 
 @Component({
   selector: 'app-edit-form',
@@ -19,9 +18,9 @@ import {AttacksCategoryList} from "../model/attack/attacks-category-list.model";
 export class EditFormComponent implements OnInit {
 
   editCharacterForm!: FormGroup;
-  skillsList = new SkillsList();
+  skillsList = SkillsList.skillsList;
   talentsList = new TalentsList();
-  weaponsList = new WeaponsList();
+  weaponsList = WeaponsList.list;
   armorsList = new ArmorsList();
   id!: number;
 
@@ -90,8 +89,8 @@ export class EditFormComponent implements OnInit {
           'weapon': new FormControl(weapon),
           'name': new FormControl(weapon.name),
           'nameTranslation': new FormControl(weapon.nameTranslation),
-          'type': new FormControl(weapon.type),
-          'category': new FormControl(weapon.category),
+          'type': new FormControl(weapon.attackType),
+          'category': new FormControl(weapon.weaponGroup),
           'range': new FormControl(weapon.range),
           'damage': new FormControl(weapon.damage),
           'isUsingStrength': new FormControl(weapon.isUsingStrength),
@@ -119,7 +118,7 @@ export class EditFormComponent implements OnInit {
     }
   }
 
-  protected static initEditCharacteristicsTable(characteristics: Characteristics) {
+  protected static initEditCharacteristicsTable(characteristics: CharacterCharacteristics) {
     return new FormArray([
       new FormGroup({
         'name': new FormControl('Sz'),
@@ -206,7 +205,7 @@ export class EditFormComponent implements OnInit {
   onAddWeapon() {
     (<FormArray>this.editCharacterForm.get('weapons')).push(
       new FormGroup({
-        'weapon': new FormControl(new Weapon('', '', AttacksCategoryList.getAttacksCategoryByName(''), '', '', 0, true, [], [])),
+        'weapon': new FormControl(null),
         'name': new FormControl(null),
         'nameTranslation': new FormControl(null),
         'type': new FormControl(null),
@@ -242,7 +241,7 @@ export class EditFormComponent implements OnInit {
 
   configureCharacteristics() {
     const characteristicsValues = this.editCharacterForm.value.characteristics;
-    return new Characteristics(
+    return new CharacterCharacteristics(
       characteristicsValues[0].value,
       characteristicsValues[1].value,
       characteristicsValues[2].value,

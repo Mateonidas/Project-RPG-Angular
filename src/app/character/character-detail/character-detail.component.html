@@ -104,7 +104,7 @@
       <tbody>
       <tr *ngFor="let weapon of character.weapons">
         <td>{{weapon.nameTranslation}}</td>
-        <td>{{weapon.category}}</td>
+        <td>{{weapon.weaponGroup}}</td>
         <td>{{weapon.range}}</td>
         <td>
           <span *ngIf="weapon.isUsingStrength; else elseBlock">+BS+{{weapon.damage}}</span>

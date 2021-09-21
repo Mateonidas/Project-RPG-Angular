@@ -1,20 +1,21 @@
 import {Model} from "./model";
-import {AttackCategory} from "./attack/attack-category.model";
-import {AttacksCategoryList} from "./attack/attacks-category-list.model";
+import {AttackCategory, AttacksCategoryList} from "./attack/attack-category.model";
+import {WeaponGroup, WeaponGroupsList} from "./weapon-type.model";
+import {ListModel} from "./list-model";
 
-export class Weapon extends Model{
-  public type: AttackCategory;
-  public category: string
+export class Weapon extends Model {
+  public attackType: AttackCategory;
+  public weaponGroup: WeaponGroup;
   public range: string;
   public damage: number;
   public isUsingStrength: boolean;
   public advantages: string[];
   public disadvantages: string[];
 
-  constructor(name: string, nameTranslation: string, type: AttackCategory, category: string, range: string, damage: number, isUsingStrength: boolean, advantages: string[], disadvantages: string[]) {
+  constructor(name: string, nameTranslation: string, type: AttackCategory, category: WeaponGroup, range: string, damage: number, isUsingStrength: boolean, advantages: string[], disadvantages: string[]) {
     super(name, nameTranslation)
-    this.type = type;
-    this.category = category;
+    this.attackType = type;
+    this.weaponGroup = category;
     this.range = range;
     this.damage = damage;
     this.isUsingStrength = isUsingStrength;
@@ -23,9 +24,17 @@ export class Weapon extends Model{
   }
 }
 
-export class WeaponsList {
-  public weaponsList = [
-    new Weapon('Hand Weapon', 'Broń ręczna', AttacksCategoryList.getAttacksCategoryByName('MeleeAttack'), 'Podstawowa', 'Średnia', 4, true, [], []),
-    new Weapon('Crossbow', 'Kusza', AttacksCategoryList.getAttacksCategoryByName('RangedAttack'), 'Kusze', '60', 9, false, [], [])
+export class WeaponsList extends ListModel{
+  static list = [
+    new Weapon('HandWeapon', 'Broń ręczna', AttacksCategoryList.meleeAttack, WeaponGroupsList.basic, 'Średnia', 4, true, [], []),
+    new Weapon('Crossbow', 'Kusza', AttacksCategoryList.rangedAttack, WeaponGroupsList.crossbow, '60', 9, false, [], [])
   ]
+
+  static get handWeapon(): Weapon {
+    return <Weapon>this.getListElementByName('HandWeapon');
+  }
+
+  static get crossbow(): Weapon {
+    return <Weapon>this.getListElementByName('Crossbow');
+  }
 }

@@ -51,6 +51,6 @@ export class SaveRollDialogWindowComponent implements OnInit {
   }
 
   get characteristics() {
-    return this.target.characteristics.characteristics.filter(x => x.name != 'Movement' && x.name != 'Wounds');
+    return this.target.characteristics.characteristics.filter(x => x.characteristic.name != 'Movement' && x.characteristic.name != 'Wounds');
   }
 }

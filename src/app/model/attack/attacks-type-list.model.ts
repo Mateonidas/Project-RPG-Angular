@@ -1,5 +1,5 @@
 import {AttackType} from "./attack-type.model";
-import {AttacksCategoryList} from "./attacks-category-list.model";
+import {AttacksCategoryList} from "./attack-category.model";
 
 export class AttacksTypeList {
   public static attacksTypeList = [

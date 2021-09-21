@@ -10,8 +10,9 @@ export class Skill extends Model{
 }
 
 export class SkillsList {
-  public skillsList = [
+  public static skillsList = [
     new Skill('Dodge', 'Unik', 0),
+    new Skill('RangedCrossbow', 'Broń Zasięgowa (Kusze)', 0),
     new Skill('MeleeBasic', 'Walka Wręcz (Podstawowa)', 0),
     new Skill('MeleeCavalry', 'Walka Wręcz (Kawaleryjska)', 0),
     new Skill('MeleeFencing', 'Walka Wręcz (Szermiercza)', 0),
@@ -22,7 +23,15 @@ export class SkillsList {
     new Skill('MeleeTwoHanded', 'Walka Wręcz (Dwuręczna)', 0),
   ]
 
-  private getSkillByName(name: string): Skill {
+  private static getSkillByName(name: string): Skill {
     return <Skill>this.skillsList.find(x => x.name == name);
+  }
+
+  static get meleeBasic() {
+    return this.getSkillByName('MeleeBasic');
+  }
+
+  static get rangedCrossbow() {
+    return this.getSkillByName('RangedCrossbow');
   }
 }

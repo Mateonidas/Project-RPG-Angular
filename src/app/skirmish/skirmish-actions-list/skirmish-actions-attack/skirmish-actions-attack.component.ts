@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {AttacksCategoryList} from "../../../model/attack/attacks-category-list.model";
+import {AttacksCategoryList} from "../../../model/attack/attack-category.model";
 import {AttacksTypeList} from "../../../model/attack/attacks-type-list.model";
 import {SkirmishService} from "../../skirmish-service/skirmish.service";
 import {SkirmishCharacter} from "../../../model/skirmish-character.model";
@@ -47,7 +47,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
     this.skirmishCharactersList.splice(this.id, 1);
 
     this.attacksTypeList = AttacksTypeList.attacksTypeList.filter(x => x.category.name === 'MeleeAttack');
-    this.characterWeapons = this.skirmishCharacter.weapons.filter(x => x.type.name === 'MeleeAttack');
+    this.characterWeapons = this.skirmishCharacter.weapons.filter(x => x.attackType.name === 'MeleeAttack');
 
     this.attackForm = new FormGroup({
       'attackCategory': new FormControl(AttacksCategoryList.getAttacksCategoryByName('MeleeAttack'), [Validators.required]),
@@ -64,6 +64,12 @@ export class SkirmishActionsAttackComponent implements OnInit {
   }
 
   attackRoll() {
+    let attackerWeapon = this.weapon?.value;
+    let skill = this.skirmishCharacter.skills.find(attackerWeapon.weaponGroup.usedSkill);
+    // if (this.skirmishCharacter.skills.find(attackerWeapon.weaponGroup.usedSkill) === undefined) {
+    //   console.log('Maslo');
+    // }
+
     let attackerRoll = this.roll?.value;
     let attackerModifier = this.modifier?.value;
     let target = this.target?.value;
@@ -132,7 +138,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
   onCategoryChange() {
     let category = this.attackCategory?.value.name;
     this.attacksTypeList = AttacksTypeList.attacksTypeList.filter(x => x.category.name === category);
-    this.characterWeapons = this.skirmishCharacter.weapons.filter(x => x.type.name === category);
+    this.characterWeapons = this.skirmishCharacter.weapons.filter(x => x.attackType.name === category);
 
     this.attackType?.setValue(this.attacksTypeList[0]);
     this.weapon?.setValue(this.characterWeapons[0]);

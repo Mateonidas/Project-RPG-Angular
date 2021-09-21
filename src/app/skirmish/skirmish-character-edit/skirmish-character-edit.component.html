@@ -84,7 +84,7 @@
           <div class="row mb-2" *ngFor="let skillControl of skills; let i = index" [formGroupName]="i">
             <div class="col-md-8">
               <select class="form-select" formControlName="skill" [compareWith]="compareModels">
-                <option [ngValue]="skill" *ngFor="let skill of skillsList.skillsList" [selected]="skill.name == 'MeleeParry'" >
+                <option [ngValue]="skill" *ngFor="let skill of skillsList" [selected]="skill.name == 'MeleeParry'" >
                   {{skill.nameTranslation}}
                 </option>
               </select>
@@ -154,7 +154,7 @@
           <div class="row mb-2" *ngFor="let weaponControl of weapons; let i = index" [formGroupName]="i">
             <div class="col-md-10">
               <select class="form-select" formControlName="weapon" [compareWith]="compareModels">
-                <option *ngFor="let weapon of weaponsList.weaponsList" [ngValue]="weapon">
+                <option *ngFor="let weapon of weaponsList" [ngValue]="weapon">
                   {{weapon.nameTranslation}}
                 </option>
               </select>
