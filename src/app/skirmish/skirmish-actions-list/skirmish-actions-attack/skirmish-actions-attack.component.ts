@@ -5,7 +5,7 @@ import {AttacksCategoryList} from "../../../model/attack/attack-category.model";
 import {AttacksTypeList} from "../../../model/attack/attacks-type-list.model";
 import {SkirmishService} from "../../skirmish-service/skirmish.service";
 import {SkirmishCharacter} from "../../../model/skirmish-character.model";
-import {Weapon} from "../../../model/weapon.model";
+import {Weapon} from "../../../model/weapon/weapon.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {SaveRollDialogWindowComponent} from "../../../dialog-window/save-roll-dialog-window/save-roll-dialog-window.component";
 import {BodyLocalizationList} from "../../../model/body-localization.model";
@@ -21,7 +21,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
   attackForm!: FormGroup;
   skirmishCharacter!: SkirmishCharacter;
   attacksTypeList!: AttackType[];
-  attacksCategoryList = AttacksCategoryList.attacksCategoryList;
+  attacksCategoryList = AttacksCategoryList.list;
   skirmishCharactersList!: SkirmishCharacter[];
   characterWeapons!: Weapon[];
   id!: number;
@@ -50,7 +50,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
     this.characterWeapons = this.skirmishCharacter.weapons.filter(x => x.attackType.name === 'MeleeAttack');
 
     this.attackForm = new FormGroup({
-      'attackCategory': new FormControl(AttacksCategoryList.getAttacksCategoryByName('MeleeAttack'), [Validators.required]),
+      'attackCategory': new FormControl(AttacksCategoryList.meleeAttack, [Validators.required]),
       'attackType': new FormControl(this.attacksTypeList[0], [Validators.required]),
       'weapon': new FormControl(this.characterWeapons[0], [Validators.required]),
       'target': new FormControl(this.skirmishCharactersList[0], [Validators.required]),
@@ -64,21 +64,28 @@ export class SkirmishActionsAttackComponent implements OnInit {
   }
 
   attackRoll() {
-    let attackerWeapon = this.weapon?.value;
-    let skill = this.skirmishCharacter.skills.find(attackerWeapon.weaponGroup.usedSkill);
-    // if (this.skirmishCharacter.skills.find(attackerWeapon.weaponGroup.usedSkill) === undefined) {
-    //   console.log('Maslo');
-    // }
-
+    let attackParameter = this.setAttackParameter();
     let attackerRoll = this.roll?.value;
     let attackerModifier = this.modifier?.value;
     let target = this.target?.value;
 
     this.createSaveRollDialog().subscribe((targetDefence: { rollValue: number, skillOrCharacteristicValue: number, modifier: number }) => {
-      let attackerSuccessLevel = this.calculateSuccessLevel(this.skirmishCharacter.characteristics.weaponSkill.value, attackerRoll, attackerModifier);
+      let attackerSuccessLevel = this.calculateSuccessLevel(attackParameter.value, attackerRoll, attackerModifier);
       let targetSuccessLevel = this.calculateSuccessLevel(targetDefence.skillOrCharacteristicValue, targetDefence.rollValue, targetDefence.modifier);
       this.calculateAttackResult(attackerSuccessLevel, targetSuccessLevel, target);
     })
+  }
+
+  //Is this a good name?
+  setAttackParameter() {
+    let attackerWeapon = this.weapon?.value;
+
+    let skill = this.skirmishCharacter.skills.find(characterSkill => characterSkill.skill == attackerWeapon.weaponGroup.usedSkill);
+    if (skill === undefined) {
+      return  this.skirmishCharacter.characteristics.getCharacteristic(attackerWeapon.attackType.usedCharacteristic);
+    }
+
+    return skill
   }
 
   createSaveRollDialog() {

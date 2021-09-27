@@ -45,6 +45,10 @@ export class CharacterCharacteristics {
         return <CharacterCharacteristic>this._characteristics.find(x => x.characteristic.name == name);
     }
 
+    public getCharacteristic(characteristic: Characteristic) {
+      return <CharacterCharacteristic>this._characteristics.find(x => x.characteristic == characteristic);
+    }
+
     get characteristics(): CharacterCharacteristic[] {
         return this._characteristics;
     }

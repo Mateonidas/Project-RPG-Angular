@@ -1,5 +1,6 @@
 import {Model} from "../model";
-import {Characteristic, Characteristics} from "../characteristic.model";
+import {Characteristic, Characteristics} from "../characteristic/characteristic.model";
+import {ListModel} from "../list-model";
 
 export class AttackCategory extends Model {
   public usedCharacteristic: Characteristic;
@@ -10,21 +11,17 @@ export class AttackCategory extends Model {
   }
 }
 
-export class AttacksCategoryList {
-  public static attacksCategoryList = [
+export class AttacksCategoryList extends ListModel{
+  public static list = [
     new AttackCategory('RangedAttack', 'Atak dystansowy', Characteristics.ballisticSkill),
     new AttackCategory('MeleeAttack', 'Atak w zwarciu', Characteristics.weaponSkill),
   ]
 
-  static getAttacksCategoryByName(name: string): AttackCategory {
-    return <AttackCategory>this.attacksCategoryList.find(x => x.name == name);
-  }
-
   static get rangedAttack() {
-    return this.getAttacksCategoryByName('RangedAttack');
+    return <AttackCategory>this.getListItemByName('RangedAttack');
   }
 
   static get meleeAttack() {
-    return this.getAttacksCategoryByName('MeleeAttack');
+    return <AttackCategory>this.getListItemByName('MeleeAttack');
   }
 }

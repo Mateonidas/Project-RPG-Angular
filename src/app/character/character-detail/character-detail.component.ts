@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Character} from "../../model/character.model";
 import {CharacterService} from "../character-service/character.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
@@ -16,7 +16,8 @@ export class CharacterDetailComponent implements OnInit {
   constructor(private characterService: CharacterService,
               private skirmishService: SkirmishService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {

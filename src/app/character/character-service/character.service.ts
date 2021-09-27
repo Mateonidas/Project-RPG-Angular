@@ -1,13 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Character} from "../../model/character.model";
 import {Subject} from "rxjs";
-import {Skill} from "../../model/skill.model";
+import {CharacterSkill, SkillsList} from "../../model/skill/skill.model";
 import {Talent} from "../../model/talent.model";
-import {Weapon, WeaponsList} from "../../model/weapon.model";
+import {WeaponsList} from "../../model/weapon/weapon.model";
 import {Armor} from "../../model/armor.model";
-import {AttacksCategoryList} from "../../model/attack/attack-category.model";
 import {BodyLocalizationList} from "../../model/body-localization.model";
-import {CharacterCharacteristics} from "../../model/characterCharacteristic.model";
+import {CharacterCharacteristics} from "../../model/characteristic/characterCharacteristic.model";
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +22,10 @@ export class CharacterService {
         4, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 15
       ),
       [
-        new Skill('MeleeBasic', 'Walka Wręcz (Podstawowa)', 40)
+        new CharacterSkill(SkillsList.meleeBasic, 40)
       ],
       [
-        new Talent('Ambidextrous' ,'Oburęczność', 1,'2')
+        new Talent('Ambidextrous', 'Oburęczność', 1, '2')
       ],
       [
         WeaponsList.handWeapon

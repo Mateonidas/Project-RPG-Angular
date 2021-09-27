@@ -72,8 +72,8 @@
   <div class="col-md-12">
     <h4>Umiejętności</h4>
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let skill of character.skills">
-        {{skill.nameTranslation}} - {{skill.value}}
+      <li class="list-group-item" *ngFor="let characterSkill of character.skills">
+        {{characterSkill.skill.nameTranslation}} - {{characterSkill.value}}
       </li>
     </ul>
   </div>
@@ -104,7 +104,7 @@
       <tbody>
       <tr *ngFor="let weapon of character.weapons">
         <td>{{weapon.nameTranslation}}</td>
-        <td>{{weapon.weaponGroup}}</td>
+        <td>{{weapon.weaponGroup.nameTranslation}}</td>
         <td>{{weapon.range}}</td>
         <td>
           <span *ngIf="weapon.isUsingStrength; else elseBlock">+BS+{{weapon.damage}}</span>

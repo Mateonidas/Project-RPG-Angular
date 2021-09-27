@@ -1,20 +1,19 @@
-import {Skill} from "./skill.model";
+import {CharacterSkill} from "./skill/skill.model";
 import {Talent} from "./talent.model";
-import {Weapon} from "./weapon.model";
+import {Weapon} from "./weapon/weapon.model";
 import {Armor} from "./armor.model";
-import {CharacterCharacteristics} from "./characterCharacteristic.model";
+import {CharacterCharacteristics} from "./characteristic/characterCharacteristic.model";
 
 export class Character {
   public name!: string;
   public description!: string;
   public characteristics!: CharacterCharacteristics;
-  public skills!: Skill[];
+  public skills!: CharacterSkill[];
   public talents!: Talent[];
   public weapons!: Weapon[];
   public armor!: Armor[];
 
-
-  constructor(name: string, description: string, characteristics: CharacterCharacteristics, skills: Skill[], talents: Talent[], weapons: Weapon[], armor: Armor[]) {
+  constructor(name: string, description: string, characteristics: CharacterCharacteristics, skills: CharacterSkill[], talents: Talent[], weapons: Weapon[], armor: Armor[]) {
     this.name = name;
     this.description = description;
     this.characteristics = characteristics;

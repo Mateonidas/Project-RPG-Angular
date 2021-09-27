@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Character} from "../model/character.model";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
-import {Skill, SkillsList} from "../model/skill.model";
+import {CharacterSkill, SkillsList} from "../model/skill/skill.model";
 import {Talent, TalentsList} from "../model/talent.model";
-import {Weapon, WeaponsList} from "../model/weapon.model";
+import {Weapon, WeaponsList} from "../model/weapon/weapon.model";
 import {Armor, ArmorsList} from "../model/armor.model";
 import {CharacterFormArraysWrapper} from "../model/character-form-arrays-wrapper.model";
 import {Model} from "../model/model";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {CharacterCharacteristics} from "../model/characterCharacteristic.model";
+import {CharacterCharacteristics} from "../model/characteristic/characterCharacteristic.model";
 
 @Component({
   selector: 'app-edit-form',
@@ -18,7 +18,7 @@ import {CharacterCharacteristics} from "../model/characterCharacteristic.model";
 export class EditFormComponent implements OnInit {
 
   editCharacterForm!: FormGroup;
-  skillsList = SkillsList.skillsList;
+  skillsList = SkillsList.list;
   talentsList = new TalentsList();
   weaponsList = WeaponsList.list;
   armorsList = new ArmorsList();
@@ -37,7 +37,7 @@ export class EditFormComponent implements OnInit {
     )
   }
 
-  protected initForm(){
+  protected initForm() {
   }
 
   protected prepareEditData(character: Character, formArrays: CharacterFormArraysWrapper) {
@@ -55,14 +55,14 @@ export class EditFormComponent implements OnInit {
     }
   }
 
-  prepareSkillsList(skills: FormArray, skillsList: Skill[]) {
-    for (let skill of skillsList) {
+  prepareSkillsList(skills: FormArray, skillsList: CharacterSkill[]) {
+    for (let characterSkill of skillsList) {
       skills.push(
         new FormGroup({
-          'skill': new FormControl(skill),
-          'name': new FormControl(skill.name),
-          'nameTranslation': new FormControl(skill.nameTranslation),
-          'value': new FormControl(skill.value),
+          'skill': new FormControl(characterSkill.skill),
+          'name': new FormControl(characterSkill.skill.name),
+          'nameTranslation': new FormControl(characterSkill.skill.nameTranslation),
+          'value': new FormControl(characterSkill.value),
         })
       )
     }

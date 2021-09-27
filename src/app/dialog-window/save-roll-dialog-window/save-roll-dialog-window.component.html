@@ -18,9 +18,9 @@
       <input type="radio" formControlName="checkSkillOrCharacteristic" value="0" > Cechy
 
       <select *ngIf="checkSkillOrCharacteristic == 1" class="form-select" formControlName="skillOrCharacteristic">
-        <option [ngValue]="skill"
-                *ngFor="let skill of target.skills">
-          {{skill.nameTranslation}} - {{skill.value}}
+        <option [ngValue]="skillCharacter"
+                *ngFor="let skillCharacter of target.skills">
+          {{skillCharacter.skill.nameTranslation}} - {{skillCharacter.value}}
         </option>
       </select>
 
