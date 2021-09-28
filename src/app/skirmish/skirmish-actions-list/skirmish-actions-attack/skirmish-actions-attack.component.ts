@@ -59,30 +59,38 @@ export class SkirmishActionsAttackComponent implements OnInit {
     })
   }
 
+  onCategoryChange() {
+    let category = this.attackCategory?.value.name;
+    this.attacksTypeList = AttacksTypeList.attacksTypeList.filter(x => x.category.name === category);
+    this.characterWeapons = this.skirmishCharacter.weapons.filter(x => x.attackType.name === category);
+
+    this.attackType?.setValue(this.attacksTypeList[0]);
+    this.weapon?.setValue(this.characterWeapons[0]);
+  }
+
   onSubmit() {
     this.attackRoll();
   }
 
   attackRoll() {
-    let attackParameter = this.setAttackParameter();
+    let attackTrait = this.getAttackTrait();
     let attackerRoll = this.roll?.value;
     let attackerModifier = this.modifier?.value;
     let target = this.target?.value;
 
     this.createSaveRollDialog().subscribe((targetDefence: { rollValue: number, skillOrCharacteristicValue: number, modifier: number }) => {
-      let attackerSuccessLevel = this.calculateSuccessLevel(attackParameter.value, attackerRoll, attackerModifier);
+      let attackerSuccessLevel = this.calculateSuccessLevel(attackTrait.value, attackerRoll, attackerModifier);
       let targetSuccessLevel = this.calculateSuccessLevel(targetDefence.skillOrCharacteristicValue, targetDefence.rollValue, targetDefence.modifier);
-      this.calculateAttackResult(attackerSuccessLevel, targetSuccessLevel, target);
+      this.checkAttackResult(attackerSuccessLevel, targetSuccessLevel, target);
     })
   }
 
-  //Is this a good name?
-  setAttackParameter() {
+  getAttackTrait() {
     let attackerWeapon = this.weapon?.value;
 
     let skill = this.skirmishCharacter.skills.find(characterSkill => characterSkill.skill == attackerWeapon.weaponGroup.usedSkill);
     if (skill === undefined) {
-      return  this.skirmishCharacter.characteristics.getCharacteristic(attackerWeapon.attackType.usedCharacteristic);
+      return this.skirmishCharacter.characteristics.getCharacteristic(attackerWeapon.attackType.usedCharacteristic);
     }
 
     return skill
@@ -98,35 +106,42 @@ export class SkirmishActionsAttackComponent implements OnInit {
     return (Math.floor((skillValue + modifier) / 10) - Math.floor(rollValue / 10));
   }
 
-  calculateAttackResult(attackerSuccessLevel: number, targetSuccessLevel: number, target: SkirmishCharacter) {
+  checkAttackResult(attackerSuccessLevel: number, targetSuccessLevel: number, target: SkirmishCharacter) {
     if (attackerSuccessLevel > targetSuccessLevel) {
       this.calculateDamage(attackerSuccessLevel, targetSuccessLevel, target);
     }
   }
 
   calculateDamage(attackerSuccessLevel: number, targetSuccessLevel: number, target: SkirmishCharacter) {
+    let successLevelsDifference = this.calculateSuccessLevelDifference(attackerSuccessLevel, targetSuccessLevel);
     let weapon = this.weapon?.value;
-    let weaponDamage = weapon.damage;
-    if (weapon.isUsingStrength) {
-      weaponDamage += Math.floor(this.skirmishCharacter.characteristics.strength.value / 10);
-    }
+    let weaponDamage = this.calculateWeaponDamage(weapon, this.skirmishCharacter);
+    let targetToughnessBonus = this.calculateTraitBonus(target.characteristics.toughness.value);
+    let attackerRoll = this.roll?.value + this.modifier?.value;
+    let armorPoints = this.getArmorPointsFromAttackLocalization(attackerRoll, this.target?.value);
 
-    let successLevelsDifference = attackerSuccessLevel - targetSuccessLevel
-    let targetToughnessBonus = Math.floor(target.characteristics.toughness.value / 10);
-    let armorPoints = this.calculateAttackLocalization();
-    let damage = successLevelsDifference + weaponDamage - targetToughnessBonus - armorPoints;
-
-    if (damage < 1) {
-      damage = 1;
-    }
-
+    let damage = this.calculateFinalDamage(successLevelsDifference, weaponDamage, targetToughnessBonus, armorPoints);
     target.temporaryParameters.currentWounds -= damage;
   }
 
-  calculateAttackLocalization() {
-    let attackerRoll = this.roll?.value + this.modifier?.value;
-    let target = this.target?.value;
+  private calculateWeaponDamage(weapon: Weapon, character: SkirmishCharacter) {
+    let weaponDamage = weapon.damage;
+    if (weapon.isUsingStrength) {
+      weaponDamage += Math.floor(character.characteristics.strength.value / 10);
+    }
 
+    return weaponDamage;
+  }
+
+  private calculateSuccessLevelDifference(firstSuccessLevel: number, secondSuccessLevel: number) {
+    return firstSuccessLevel - secondSuccessLevel;
+  }
+
+  private calculateTraitBonus(traitValue: number) {
+    return Math.floor(traitValue / 10);
+  }
+
+  private getArmorPointsFromAttackLocalization(attackerRoll: number, target: SkirmishCharacter): number {
     if (attackerRoll >= 1 && attackerRoll <= 9) {
       return target.getArmorForBodyLocalization(BodyLocalizationList.head);
     } else if (attackerRoll >= 10 && attackerRoll <= 24) {
@@ -139,16 +154,19 @@ export class SkirmishActionsAttackComponent implements OnInit {
       return target.getArmorForBodyLocalization(BodyLocalizationList.legs);
     } else if (attackerRoll >= 90 && attackerRoll <= 100) {
       return target.getArmorForBodyLocalization(BodyLocalizationList.legs);
+    } else {
+      return 0;
     }
   }
 
-  onCategoryChange() {
-    let category = this.attackCategory?.value.name;
-    this.attacksTypeList = AttacksTypeList.attacksTypeList.filter(x => x.category.name === category);
-    this.characterWeapons = this.skirmishCharacter.weapons.filter(x => x.attackType.name === category);
+  private calculateFinalDamage(successLevelsDifference: number, weaponDamage: number, targetToughnessBonus: number, armorPoints: number) {
+    let damage = successLevelsDifference + weaponDamage - targetToughnessBonus - armorPoints;
 
-    this.attackType?.setValue(this.attacksTypeList[0]);
-    this.weapon?.setValue(this.characterWeapons[0]);
+    if (damage < 1) {
+      damage = 1;
+    }
+
+    return damage;
   }
 
   get attackCategory() {
