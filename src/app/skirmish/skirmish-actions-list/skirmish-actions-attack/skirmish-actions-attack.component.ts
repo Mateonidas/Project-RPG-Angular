@@ -73,7 +73,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
   }
 
   attackRoll() {
-    let attackTrait = this.getAttackTrait();
+    let attackTrait = this.skirmishService.getFightTrait(this.weapon?.value, this.skirmishCharacter);
     let attackerRoll = this.roll?.value;
     let attackerModifier = this.modifier?.value;
     let target = this.target?.value;
@@ -83,17 +83,6 @@ export class SkirmishActionsAttackComponent implements OnInit {
       let targetSuccessLevel = this.calculateSuccessLevel(targetDefence.skillOrCharacteristicValue, targetDefence.rollValue, targetDefence.modifier);
       this.checkAttackResult(attackerSuccessLevel, targetSuccessLevel, target);
     })
-  }
-
-  getAttackTrait() {
-    let attackerWeapon = this.weapon?.value;
-
-    let skill = this.skirmishCharacter.skills.find(characterSkill => characterSkill.skill == attackerWeapon.weaponGroup.usedSkill);
-    if (skill === undefined) {
-      return this.skirmishCharacter.characteristics.getCharacteristic(attackerWeapon.attackType.usedCharacteristic);
-    }
-
-    return skill
   }
 
   createSaveRollDialog() {

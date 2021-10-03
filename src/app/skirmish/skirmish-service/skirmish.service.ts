@@ -4,7 +4,7 @@ import {Character} from "../../model/character.model";
 import {SkirmishCharacter} from "../../model/skirmish-character.model";
 import {CharacterSkill, SkillsList} from "../../model/skill/skill.model";
 import {Talent} from "../../model/talent.model";
-import {WeaponsList} from "../../model/weapon/weapon.model";
+import {Weapon, WeaponsList} from "../../model/weapon/weapon.model";
 import {Armor} from "../../model/armor.model";
 import {BodyLocalizationList} from "../../model/body-localization.model";
 import {CharacterCharacteristics} from "../../model/characteristic/characterCharacteristic.model";
@@ -81,5 +81,14 @@ export class SkirmishService {
   updateSkirmishCharacter(id: number, skirmishCharacter: SkirmishCharacter) {
     this.skirmishCharacters[id] = skirmishCharacter;
     this.skirmishCharactersChanged.next(this.skirmishCharacters.slice());
+  }
+
+  getFightTrait(weapon: Weapon, character: SkirmishCharacter) {
+    let skill = character.skills.find(characterSkill => characterSkill.skill == weapon.weaponGroup.usedSkill);
+    if (skill === undefined) {
+      return character.characteristics.getCharacteristic(weapon.attackType.usedCharacteristic);
+    }
+
+    return skill;
   }
 }
