@@ -10,6 +10,8 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {SaveRollDialogWindowComponent} from "../../../dialog-window/save-roll-dialog-window/save-roll-dialog-window.component";
 import {BodyLocalizationList} from "../../../model/body-localization.model";
 import {AttackType} from 'src/app/model/attack/attack-type.model';
+import {AttackReportService} from "../../../attack-report-service/attack-report.service";
+import {AttackReportDialogWindowComponent} from "../../../dialog-window/report-dialog-window/attack-report-dialog-window.component";
 
 @Component({
   selector: 'app-skirmish-actions-attack',
@@ -29,7 +31,8 @@ export class SkirmishActionsAttackComponent implements OnInit {
   constructor(protected router: Router,
               protected route: ActivatedRoute,
               protected skirmishService: SkirmishService,
-              private modalService: NgbModal) {
+              private modalService: NgbModal,
+              private attackReportService: AttackReportService) {
   }
 
   ngOnInit(): void {
@@ -73,15 +76,30 @@ export class SkirmishActionsAttackComponent implements OnInit {
   }
 
   attackRoll() {
-    let attackTrait = this.skirmishService.getFightTrait(this.weapon?.value, this.skirmishCharacter);
-    let attackerRoll = this.roll?.value;
-    let attackerModifier = this.modifier?.value;
-    let target = this.target?.value;
+    this.attackReportService.attackerName = this.skirmishCharacter.name;
 
-    this.createSaveRollDialog().subscribe((targetDefence: { rollValue: number, skillOrCharacteristicValue: number, modifier: number }) => {
+    let attackTrait = this.skirmishService.getFightTrait(this.weapon?.value, this.skirmishCharacter);
+    this.attackReportService.attackerAttackTrait = attackTrait.base.nameTranslation;
+
+    let attackerRoll = this.roll?.value;
+    this.attackReportService.attackerRoll = String(attackerRoll);
+
+    let attackerModifier = this.modifier?.value;
+    this.attackReportService.attackerModifier = String(attackerModifier);
+
+    let target = this.target?.value;
+    this.attackReportService.targetName = target.name;
+
+    this.createSaveRollDialog().subscribe((targetDefence: { rollValue: number, defendTraitValue: number, modifier: number }) => {
+      this.attackReportService.targetRoll = String(targetDefence.rollValue);
+      this.attackReportService.targetModifier = String(targetDefence.modifier);
+
       let attackerSuccessLevel = this.calculateSuccessLevel(attackTrait.value, attackerRoll, attackerModifier);
-      let targetSuccessLevel = this.calculateSuccessLevel(targetDefence.skillOrCharacteristicValue, targetDefence.rollValue, targetDefence.modifier);
+      this.attackReportService.attackerSuccessLevel = String(attackerSuccessLevel);
+      let targetSuccessLevel = this.calculateSuccessLevel(targetDefence.defendTraitValue, targetDefence.rollValue, targetDefence.modifier);
+      this.attackReportService.targetSuccessLevel = String(targetSuccessLevel);
       this.checkAttackResult(attackerSuccessLevel, targetSuccessLevel, target);
+      this.createReportDialog();
     })
   }
 
@@ -91,13 +109,21 @@ export class SkirmishActionsAttackComponent implements OnInit {
     return modalRef.componentInstance.rollEntry;
   }
 
+  createReportDialog() {
+    this.modalService.open(AttackReportDialogWindowComponent);
+  }
+
   calculateSuccessLevel(skillValue: number, rollValue: number, modifier: number) {
     return (Math.floor((skillValue + modifier) / 10) - Math.floor(rollValue / 10));
   }
 
   checkAttackResult(attackerSuccessLevel: number, targetSuccessLevel: number, target: SkirmishCharacter) {
     if (attackerSuccessLevel > targetSuccessLevel) {
+      this.attackReportService.result = 'Cel został trafiony.'
       this.calculateDamage(attackerSuccessLevel, targetSuccessLevel, target);
+    } else {
+      this.attackReportService.result = 'Cel wychodzi bez szwanku.'
+      this.attackReportService.damage = '0';
     }
   }
 
@@ -110,6 +136,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
     let armorPoints = this.getArmorPointsFromAttackLocalization(attackerRoll, this.target?.value);
 
     let damage = this.calculateFinalDamage(successLevelsDifference, weaponDamage, targetToughnessBonus, armorPoints);
+    this.attackReportService.damage = String(damage);
     target.temporaryParameters.currentWounds -= damage;
   }
 

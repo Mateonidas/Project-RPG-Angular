@@ -1,11 +1,11 @@
 import {Characteristic, Characteristics} from "./characteristic.model";
 
 export class CharacterCharacteristic {
-    public characteristic: Characteristic;
+    public base: Characteristic;
     public value: number;
 
     constructor(characteristic: Characteristic, value: number) {
-        this.characteristic = characteristic;
+        this.base = characteristic;
         this.value = value;
     }
 }
@@ -42,11 +42,11 @@ export class CharacterCharacteristics {
     }
 
     private getCharacteristicByName(name: string): CharacterCharacteristic {
-        return <CharacterCharacteristic>this._characteristics.find(x => x.characteristic.name == name);
+        return <CharacterCharacteristic>this._characteristics.find(x => x.base.name == name);
     }
 
     public getCharacteristic(characteristic: Characteristic) {
-      return <CharacterCharacteristic>this._characteristics.find(x => x.characteristic == characteristic);
+      return <CharacterCharacteristic>this._characteristics.find(x => x.base == characteristic);
     }
 
     get characteristics(): CharacterCharacteristic[] {

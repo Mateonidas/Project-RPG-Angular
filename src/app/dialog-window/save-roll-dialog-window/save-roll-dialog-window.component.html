@@ -28,14 +28,14 @@
       <select *ngIf="checkDefendTrait == 'skill'" class="form-select" formControlName="defendTrait">
         <option [ngValue]="skillCharacter"
                 *ngFor="let skillCharacter of target.skills">
-          {{skillCharacter.skill.nameTranslation}} - {{skillCharacter.value}}
+          {{skillCharacter.base.nameTranslation}} - {{skillCharacter.value}}
         </option>
       </select>
 
       <select *ngIf="checkDefendTrait == 'characteristic'" class="form-select" formControlName="defendTrait">
         <option [ngValue]="characterCharacteristic"
                 *ngFor="let characterCharacteristic of characteristics">
-          {{characterCharacteristic.characteristic.nameTranslation}} - {{characterCharacteristic.value}}
+          {{characterCharacteristic.base.nameTranslation}} - {{characterCharacteristic.value}}
         </option>
       </select>
     </div>

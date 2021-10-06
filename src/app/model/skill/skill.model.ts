@@ -29,11 +29,11 @@ export class SkillsList extends ListModel {
 }
 
 export class CharacterSkill {
-  public skill: Skill;
+  public base: Skill;
   public value: number;
 
   constructor(skill: Skill, value: number) {
-    this.skill = skill;
+    this.base = skill;
     this.value = value;
   }
 }

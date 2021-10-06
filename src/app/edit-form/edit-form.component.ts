@@ -59,9 +59,9 @@ export class EditFormComponent implements OnInit {
     for (let characterSkill of skillsList) {
       skills.push(
         new FormGroup({
-          'skill': new FormControl(characterSkill.skill),
-          'name': new FormControl(characterSkill.skill.name),
-          'nameTranslation': new FormControl(characterSkill.skill.nameTranslation),
+          'skill': new FormControl(characterSkill.base),
+          'name': new FormControl(characterSkill.base.name),
+          'nameTranslation': new FormControl(characterSkill.base.nameTranslation),
           'value': new FormControl(characterSkill.value),
         })
       )

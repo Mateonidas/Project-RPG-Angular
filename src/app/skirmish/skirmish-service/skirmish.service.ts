@@ -84,7 +84,7 @@ export class SkirmishService {
   }
 
   getFightTrait(weapon: Weapon, character: SkirmishCharacter) {
-    let skill = character.skills.find(characterSkill => characterSkill.skill == weapon.weaponGroup.usedSkill);
+    let skill = character.skills.find(characterSkill => characterSkill.base == weapon.weaponGroup.usedSkill);
     if (skill === undefined) {
       return character.characteristics.getCharacteristic(weapon.attackType.usedCharacteristic);
     }

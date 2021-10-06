@@ -3,6 +3,7 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SkirmishCharacter} from "../../model/skirmish-character.model";
 import {SkirmishService} from "../../skirmish/skirmish-service/skirmish.service";
+import {AttackReportService} from "../../attack-report-service/attack-report.service";
 
 @Component({
   selector: 'app-save-roll-dialog-window',
@@ -16,7 +17,8 @@ export class SaveRollDialogWindowComponent implements OnInit {
   public saveForm!: FormGroup;
 
   constructor(public activeModal: NgbActiveModal,
-              protected skirmishService: SkirmishService) {
+              protected skirmishService: SkirmishService,
+              private attackReportService: AttackReportService) {
   }
 
   ngOnInit(): void {
@@ -42,13 +44,21 @@ export class SaveRollDialogWindowComponent implements OnInit {
   }
 
   calculateDefendTrait() {
+    let defendTrait;
+
     if (this.checkDefendTrait === 'skill' || this.checkDefendTrait === 'characteristic') {
-      return this.defendTrait?.value.value;
-    } else if (this.checkDefendTrait === 'weapon') {
-      return this.skirmishService.getFightTrait(this.defendTrait?.value, this.target).value;
+      defendTrait = this.defendTrait?.value;
+      this.attackReportService.targetDefenceTrait = defendTrait.base.nameTranslation;
+
+      return defendTrait.value;
+    }
+    else if (this.checkDefendTrait === 'weapon') {
+      defendTrait = this.skirmishService.getFightTrait(this.defendTrait?.value, this.target);
+      this.attackReportService.targetDefenceTrait = defendTrait.base.nameTranslation;
+
+      return defendTrait.value;
     }
   }
-
 
   get roll() {
     return this.saveForm.get('roll');
@@ -67,7 +77,7 @@ export class SaveRollDialogWindowComponent implements OnInit {
   }
 
   get characteristics() {
-    return this.target.characteristics.characteristics.filter(x => x.characteristic.name != 'Movement' && x.characteristic.name != 'Wounds');
+    return this.target.characteristics.characteristics.filter(x => x.base.name != 'Movement' && x.base.name != 'Wounds');
   }
 
   get characterWeapon() {
