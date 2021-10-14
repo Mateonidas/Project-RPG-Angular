@@ -21,7 +21,7 @@ export class EditFormComponent implements OnInit {
   skillsList = SkillsList.list;
   talentsList = new TalentsList();
   weaponsList = WeaponsList.list;
-  armorsList = new ArmorsList();
+  armorsList = ArmorsList.list;
   id!: number;
 
   constructor(protected router: Router,

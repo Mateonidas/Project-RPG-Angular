@@ -14,11 +14,16 @@ export class WeaponGroup extends Model {
 export class WeaponGroupsList extends ListModel {
   public static list = [
     new WeaponGroup('Basic', 'Podstawowa', SkillsList.meleeBasic),
+    new WeaponGroup('Fencing', 'Szermiercza', SkillsList.meleeFencing),
     new WeaponGroup('Crossbow', 'Kusze', SkillsList.rangedCrossbow),
   ]
 
   static get basic() {
     return <WeaponGroup>this.getListItemByName('Basic');
+  }
+
+  static get fencing() {
+    return <WeaponGroup>this.getListItemByName('Fencing');
   }
 
   static get crossbow() {

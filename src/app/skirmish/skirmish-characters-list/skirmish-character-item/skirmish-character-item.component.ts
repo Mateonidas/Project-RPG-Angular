@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {SkirmishCharacter} from "../../../model/skirmish-character.model";
+import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.model";
 
 @Component({
   selector: 'app-skirmish-character-item',

@@ -15,27 +15,12 @@
     <div class="mt-2">
       <p>Używana umiejętność/cecha</p>
       <input type="radio" formControlName="checkDefendTrait" value="weapon"> Broń
-      <input type="radio" formControlName="checkDefendTrait" value="skill"> Umiejętności
-      <input type="radio" formControlName="checkDefendTrait" value="characteristic"> Cechy
+      <input type="radio" formControlName="checkDefendTrait" value="dodge"> Unik
 
       <select *ngIf="checkDefendTrait == 'weapon'" class="form-select" formControlName="defendTrait">
         <option [ngValue]="weapon"
                 *ngFor="let weapon of characterWeapon; let i = index">
           {{weapon.nameTranslation}}
-        </option>
-      </select>
-
-      <select *ngIf="checkDefendTrait == 'skill'" class="form-select" formControlName="defendTrait">
-        <option [ngValue]="skillCharacter"
-                *ngFor="let skillCharacter of target.skills">
-          {{skillCharacter.base.nameTranslation}} - {{skillCharacter.value}}
-        </option>
-      </select>
-
-      <select *ngIf="checkDefendTrait == 'characteristic'" class="form-select" formControlName="defendTrait">
-        <option [ngValue]="characterCharacteristic"
-                *ngFor="let characterCharacteristic of characteristics">
-          {{characterCharacteristic.base.nameTranslation}} - {{characterCharacteristic.value}}
         </option>
       </select>
     </div>

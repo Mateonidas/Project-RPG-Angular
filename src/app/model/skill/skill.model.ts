@@ -19,12 +19,20 @@ export class SkillsList extends ListModel {
     new Skill('MeleeTwoHanded', 'Walka Wręcz (Dwuręczna)'),
   ]
 
-  static get meleeBasic(): Skill {
-    return <Skill>this.getListItemByName('MeleeBasic');
+  static get dodge(): Skill {
+    return <Skill>this.getListItemByName('Dodge');
   }
 
   static get rangedCrossbow(): Skill {
     return <Skill>this.getListItemByName('RangedCrossbow');
+  }
+
+  static get meleeBasic(): Skill {
+    return <Skill>this.getListItemByName('MeleeBasic');
+  }
+
+  static get meleeFencing(): Skill {
+    return <Skill>this.getListItemByName('MeleeFencing');
   }
 }
 

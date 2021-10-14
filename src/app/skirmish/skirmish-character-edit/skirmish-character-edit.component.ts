@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Character} from "../../model/character.model";
 import {SkirmishService} from "../skirmish-service/skirmish.service";
-import {SkirmishCharacter} from "../../model/skirmish-character.model";
+import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {CharacterFormArraysWrapper} from "../../model/character-form-arrays-wrapper.model";
 import {EditFormComponent} from "../../edit-form/edit-form.component";
 import {TemporaryParameters} from "../../model/temporary-parameters.model";

@@ -6,15 +6,4 @@ export class ListModel {
   public static getListItemByName(name: string) {
     return this.list.find(x => x.name == name);
   }
-
-  //Czy to czarodziejstwo w ogóle zadziała?
-  // public static generateGetters() {
-  //   for(let element in this.list) {
-  //     Object.defineProperty(this, element, {
-  //       get: () => {
-  //         return this.list[element];
-  //       }
-  //     })
-  //   }
-  // }
 }

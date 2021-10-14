@@ -182,7 +182,7 @@
           <div class="row mb-2" *ngFor="let armorControl of armors; let i = index" [formGroupName]="i">
             <div class="col-md-10">
               <select class="form-select" formControlName="armor" [compareWith]="compareModels">
-                <option *ngFor="let armor of armorsList.armorList" [ngValue]="armor">
+                <option *ngFor="let armor of armorsList" [ngValue]="armor">
                   {{armor.nameTranslation}}
                 </option>
               </select>

@@ -4,7 +4,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {AttacksCategoryList} from "../../../model/attack/attack-category.model";
 import {AttacksTypeList} from "../../../model/attack/attacks-type-list.model";
 import {SkirmishService} from "../../skirmish-service/skirmish.service";
-import {SkirmishCharacter} from "../../../model/skirmish-character.model";
+import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.model";
 import {Weapon} from "../../../model/weapon/weapon.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {SaveRollDialogWindowComponent} from "../../../dialog-window/save-roll-dialog-window/save-roll-dialog-window.component";
@@ -12,6 +12,7 @@ import {BodyLocalizationList} from "../../../model/body-localization.model";
 import {AttackType} from 'src/app/model/attack/attack-type.model';
 import {AttackReportService} from "../../../attack-report-service/attack-report.service";
 import {AttackReportDialogWindowComponent} from "../../../dialog-window/report-dialog-window/attack-report-dialog-window.component";
+import {WeaponTraitsList} from "../../../model/weapon/weaponTraits/weapon.advantages.model";
 
 @Component({
   selector: 'app-skirmish-actions-attack',
@@ -21,7 +22,7 @@ import {AttackReportDialogWindowComponent} from "../../../dialog-window/report-d
 export class SkirmishActionsAttackComponent implements OnInit {
 
   attackForm!: FormGroup;
-  skirmishCharacter!: SkirmishCharacter;
+  attacker!: SkirmishCharacter;
   attacksTypeList!: AttackType[];
   attacksCategoryList = AttacksCategoryList.list;
   skirmishCharactersList!: SkirmishCharacter[];
@@ -45,12 +46,12 @@ export class SkirmishActionsAttackComponent implements OnInit {
   }
 
   private initForm() {
-    this.skirmishCharacter = this.skirmishService.getSkirmishCharacter(this.id);
+    this.attacker = this.skirmishService.getSkirmishCharacter(this.id);
     this.skirmishCharactersList = this.skirmishService.getSkirmishCharacters();
     this.skirmishCharactersList.splice(this.id, 1);
 
     this.attacksTypeList = AttacksTypeList.attacksTypeList.filter(x => x.category.name === 'MeleeAttack');
-    this.characterWeapons = this.skirmishCharacter.weapons.filter(x => x.attackType.name === 'MeleeAttack');
+    this.characterWeapons = this.attacker.weapons.filter(x => x.attackType.name === 'MeleeAttack');
 
     this.attackForm = new FormGroup({
       'attackCategory': new FormControl(AttacksCategoryList.meleeAttack, [Validators.required]),
@@ -65,7 +66,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
   onCategoryChange() {
     let category = this.attackCategory?.value.name;
     this.attacksTypeList = AttacksTypeList.attacksTypeList.filter(x => x.category.name === category);
-    this.characterWeapons = this.skirmishCharacter.weapons.filter(x => x.attackType.name === category);
+    this.characterWeapons = this.attacker.weapons.filter(x => x.attackType.name === category);
 
     this.attackType?.setValue(this.attacksTypeList[0]);
     this.weapon?.setValue(this.characterWeapons[0]);
@@ -76,41 +77,61 @@ export class SkirmishActionsAttackComponent implements OnInit {
   }
 
   attackRoll() {
-    this.attackReportService.attackerName = this.skirmishCharacter.name;
+    // let attacker = new FightParametersWrapper();
+    // attacker.skirmishCharacter = this.skirmishCharacter;
+    this.attacker.isAttacker = true;
+    this.attacker.isDodging = false;
+    this.attackReportService.attackerName = this.attacker.name;
 
-    let attackTrait = this.skirmishService.getFightTrait(this.weapon?.value, this.skirmishCharacter);
+    this.attacker.usedWeapon = this.weapon?.value;
+    let attackTrait = this.attacker.getFightTrait();
     this.attackReportService.attackerAttackTrait = attackTrait.base.nameTranslation;
 
-    let attackerRoll = this.roll?.value;
-    this.attackReportService.attackerRoll = String(attackerRoll);
+    this.attacker.roll = this.roll?.value;
+    this.attackReportService.attackerRoll = String(this.attacker.roll);
 
-    let attackerModifier = this.modifier?.value;
-    this.attackReportService.attackerModifier = String(attackerModifier);
+    this.attacker.modifier = this.modifier?.value;
+    this.attackReportService.attackerModifier = String(this.attacker.modifier);
 
-    let target = this.target?.value;
-    this.attackReportService.targetName = target.name;
+    let defender = new SkirmishCharacter(this.target?.value);
+    // defender.skirmishCharacter = this.target?.value;
+    defender.isAttacker = false;
+    this.attackReportService.targetName = defender.name;
 
-    this.createSaveRollDialog().subscribe((targetDefence: { rollValue: number, defendTraitValue: number, modifier: number }) => {
-      this.attackReportService.targetRoll = String(targetDefence.rollValue);
-      this.attackReportService.targetModifier = String(targetDefence.modifier);
-
-      let attackerSuccessLevel = this.calculateSuccessLevel(attackTrait.value, attackerRoll, attackerModifier);
+    this.createSaveRollDialog(defender).subscribe(() => {
+      this.checkFightTraits(this.attacker, defender);
+      let attackerSuccessLevel = this.calculateSuccessLevel(attackTrait.value, this.attacker.roll, this.attacker.modifier);
       this.attackReportService.attackerSuccessLevel = String(attackerSuccessLevel);
-      let targetSuccessLevel = this.calculateSuccessLevel(targetDefence.defendTraitValue, targetDefence.rollValue, targetDefence.modifier);
+
+      let targetSuccessLevel = this.calculateSuccessLevel(defender.getFightTrait().value, defender.roll, defender.modifier);
       this.attackReportService.targetSuccessLevel = String(targetSuccessLevel);
-      this.checkAttackResult(attackerSuccessLevel, targetSuccessLevel, target);
+
+      this.checkAttackResult(attackerSuccessLevel, targetSuccessLevel, defender);
       this.createReportDialog();
     })
   }
 
-  createSaveRollDialog() {
+  createSaveRollDialog(defender: SkirmishCharacter) {
     const modalRef = this.modalService.open(SaveRollDialogWindowComponent);
-    modalRef.componentInstance.target = this.target?.value;
-    return modalRef.componentInstance.rollEntry;
+    modalRef.componentInstance.target = defender;
+    return modalRef.componentInstance.emitter;
   }
 
   createReportDialog() {
     this.modalService.open(AttackReportDialogWindowComponent);
+  }
+
+  checkFightTraits(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
+    this.checkWeaponTraits(attacker, defender);
+    this.checkWeaponTraits(defender, attacker);
+  }
+
+  checkWeaponTraits(owner: SkirmishCharacter, opponent: SkirmishCharacter) {
+    if (owner.usedWeapon !== undefined) {
+      if (!owner.checkIfWeaponAdvantagesAreIgnored()) {
+        WeaponTraitsList.checkFast(owner, opponent);
+      }
+    }
   }
 
   calculateSuccessLevel(skillValue: number, rollValue: number, modifier: number) {
@@ -130,7 +151,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
   calculateDamage(attackerSuccessLevel: number, targetSuccessLevel: number, target: SkirmishCharacter) {
     let successLevelsDifference = this.calculateSuccessLevelDifference(attackerSuccessLevel, targetSuccessLevel);
     let weapon = this.weapon?.value;
-    let weaponDamage = this.calculateWeaponDamage(weapon, this.skirmishCharacter);
+    let weaponDamage = this.calculateWeaponDamage(weapon, this.attacker);
     let targetToughnessBonus = this.calculateTraitBonus(target.characteristics.toughness.value);
     let attackerRoll = this.roll?.value + this.modifier?.value;
     let armorPoints = this.getArmorPointsFromAttackLocalization(attackerRoll, this.target?.value);

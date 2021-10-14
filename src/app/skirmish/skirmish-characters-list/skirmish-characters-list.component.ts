@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SkirmishCharacter} from "../../model/skirmish-character.model";
+import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {Subscription} from "rxjs";
 import {SkirmishService} from "../skirmish-service/skirmish.service";
 import {ActivatedRoute, Router} from "@angular/router";

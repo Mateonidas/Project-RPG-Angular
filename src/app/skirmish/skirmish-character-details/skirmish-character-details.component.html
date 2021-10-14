@@ -123,6 +123,7 @@
         <th scope="col">Kategoria</th>
         <th scope="col">Zasięg</th>
         <th scope="col">Obrażenia</th>
+        <th scope="col">Zalety i Wady</th>
       </tr>
       </thead>
       <tbody>
@@ -133,6 +134,10 @@
         <td>
           <span *ngIf="weapon.isUsingStrength; else elseBlock">+BS+{{weapon.damage}}</span>
           <ng-template #elseBlock>+{{weapon.damage}}</ng-template>
+        </td>
+        <td>
+          <span *ngFor="let advantage of weapon.advantages"> {{advantage.nameTranslation}}</span>
+          <!--          <span *ngFor="let disadvantage of weapon.disadvantages"> {{disadvantage.nameTranslation}}</span>-->
         </td>
       </tr>
       </tbody>

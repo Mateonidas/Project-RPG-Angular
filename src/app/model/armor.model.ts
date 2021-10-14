@@ -1,5 +1,6 @@
 import {Model} from "./model";
 import {BodyLocalization, BodyLocalizationList} from "./body-localization.model";
+import {ListModel} from "./list-model";
 
 export class Armor extends Model{
   public category: string;
@@ -21,8 +22,8 @@ export class Armor extends Model{
   }
 }
 
-export class ArmorsList {
-  public armorList = [
+export class ArmorsList extends ListModel{
+  public static list = [
     new Armor('Leather Jack', 'Skórzana kurta', 'Miękka Skóra', '-', [BodyLocalizationList.arms, BodyLocalizationList.body], 1, [], []),
     new Armor('Leather Leggings', 'Skórzane nogawice', 'Miękka Skóra', '-', [BodyLocalizationList.legs], 1, [], [])
   ]

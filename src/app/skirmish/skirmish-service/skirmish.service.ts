@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Subject} from "rxjs";
 import {Character} from "../../model/character.model";
-import {SkirmishCharacter} from "../../model/skirmish-character.model";
+import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {CharacterSkill, SkillsList} from "../../model/skill/skill.model";
 import {Talent} from "../../model/talent.model";
 import {Weapon, WeaponsList} from "../../model/weapon/weapon.model";
@@ -25,13 +25,13 @@ export class SkirmishService {
           4, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 15
         ),
         [
-          new CharacterSkill(SkillsList.meleeBasic, 40)
+          new CharacterSkill(SkillsList.meleeFencing, 40)
         ],
         [
           new Talent('Ambidextrous', 'Oburęczność', 1, '2')
         ],
         [
-          WeaponsList.handWeapon
+          WeaponsList.rapier
         ],
         [
           new Armor('Leather Jack', 'Skórzana kurta', 'Miękka Skóra', '-', [BodyLocalizationList.arms, BodyLocalizationList.body], 1, [], []),
@@ -81,14 +81,5 @@ export class SkirmishService {
   updateSkirmishCharacter(id: number, skirmishCharacter: SkirmishCharacter) {
     this.skirmishCharacters[id] = skirmishCharacter;
     this.skirmishCharactersChanged.next(this.skirmishCharacters.slice());
-  }
-
-  getFightTrait(weapon: Weapon, character: SkirmishCharacter) {
-    let skill = character.skills.find(characterSkill => characterSkill.base == weapon.weaponGroup.usedSkill);
-    if (skill === undefined) {
-      return character.characteristics.getCharacteristic(weapon.attackType.usedCharacteristic);
-    }
-
-    return skill;
   }
 }
