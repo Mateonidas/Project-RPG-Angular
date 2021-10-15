@@ -67,6 +67,16 @@
     </table>
   </div>
 </div>
+
+<hr>
+<div class="row">
+  <div class="col-md-12">
+    <h4>Wiodąca ręka</h4>
+    <h5 *ngIf="character.isRightHanded">- Prawa</h5>
+    <h5 *ngIf="!character.isRightHanded">- Lewa</h5>
+  </div>
+</div>
+
 <hr>
 <div class="row">
   <div class="col-md-12">

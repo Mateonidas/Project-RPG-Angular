@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AttackReportService} from "../../attack-report-service/attack-report.service";
+import {AttackReportService} from "../report-dialog-window/attack-report-service/attack-report.service";
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 
 @Component({

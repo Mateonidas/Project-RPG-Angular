@@ -1,6 +1,6 @@
-import {Model} from "./model";
+import {Model} from "../model";
 import {BodyLocalization, BodyLocalizationList} from "./body-localization.model";
-import {ListModel} from "./list-model";
+import {ListModel} from "../list-model";
 
 export class Armor extends Model{
   public category: string;

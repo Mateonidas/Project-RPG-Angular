@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AttackReportService} from "../../attack-report-service/attack-report.service";
+import {AttackReportService} from "./attack-report-service/attack-report.service";
 
 @Component({
   selector: 'app-report-dialog-window',

@@ -1,6 +1,6 @@
-import {Character} from "../character.model";
-import {TemporaryParameters} from "../temporary-parameters.model";
-import {BodyLocalization} from "../body-localization.model";
+import {Character} from "../character/character.model";
+import {TemporaryParameters} from "./temporary-parameters.model";
+import {BodyLocalization} from "../armor/body-localization.model";
 import {Weapon} from "../weapon/weapon.model";
 import {SkillsList} from "../skill/skill.model";
 import {Characteristics} from "../characteristic/characteristic.model";
@@ -15,7 +15,7 @@ export class SkirmishCharacter extends Character {
   private _isDodging!: boolean
 
   constructor(character: Character) {
-    super(character.name, character.description, character.characteristics, character.skills, character.talents, character.weapons, character.armor);
+    super(character.name, character.description, character.characteristics, character.skills, character.talents, character.isRightHanded, character.weapons, character.armor);
     this.temporaryParameters = new TemporaryParameters(character.characteristics.wounds.value, character.characteristics.initiative.value);
   }
 

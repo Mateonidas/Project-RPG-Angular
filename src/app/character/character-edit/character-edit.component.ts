@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {CharacterService} from "../character-service/character.service";
-import {Character} from "../../model/character.model";
+import {Character} from "../../model/character/character.model";
 import {EditFormComponent} from "../../edit-form/edit-form.component";
-import {CharacterFormArraysWrapper} from "../../model/character-form-arrays-wrapper.model";
+import {CharacterFormArraysWrapper} from "../../model/character/character-form-arrays-wrapper.model";
 
 @Component({
   selector: 'app-character-edit',
@@ -43,6 +43,7 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
       characterName = character.name;
       characterDescription = character.description;
       characteristics = CharacterEditComponent.initEditCharacteristicsTable(character.characteristics);
+      this.isRightHanded = character.isRightHanded;
       this.prepareEditData(character, formArrays)
     } else {
       characteristics = CharacterEditComponent.initCharacteristicsTable();
@@ -54,6 +55,7 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
       'characteristics': characteristics,
       'skills': formArrays.skills,
       'talents': formArrays.talents,
+      'isRightHanded': new FormControl(this.isRightHanded),
       'weapons': formArrays.weapons,
       'armors': formArrays.armors
     });
@@ -132,6 +134,7 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
     const characteristics = this.configureCharacteristics();
     const skills = this.editCharacterForm.value.skills;
     const talents = this.editCharacterForm.value.talents;
+    const isRightHanded = this.editCharacterForm.value.isRightHanded;
     const weapons = this.editCharacterForm.value.weapons;
     const armors = this.editCharacterForm.value.armors;
 
@@ -141,6 +144,7 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
       characteristics,
       skills,
       talents,
+      isRightHanded,
       weapons,
       armors
     );

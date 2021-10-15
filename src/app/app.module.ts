@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
-import {PursuitComponent} from './pursuit/pursuit.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HeaderComponent} from './header/header.component';
 import {RouterModule} from "@angular/router";
@@ -31,7 +30,6 @@ import { AttackReportDialogWindowComponent } from './dialog-window/report-dialog
 @NgModule({
   declarations: [
     AppComponent,
-    PursuitComponent,
     HeaderComponent,
     HomeComponent,
     CharacterComponent,

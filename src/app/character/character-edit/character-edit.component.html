@@ -49,11 +49,20 @@
 
       <hr>
       <div class="row">
+        <div class="col-md-12">
+          <h4>Ręka wiodąca</h4>
+          <input type="radio" formControlName="isRightHanded" [value] = true> Prawa
+          <input type="radio" formControlName="isRightHanded" [value] = false> Lewa
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
         <div class="col-md-12" formArrayName="skills">
           <h4>Umiejętności</h4>
           <div class="row mb-2" *ngFor="let skillControl of skills; let i = index" [formGroupName]="i">
             <div class="col-md-8">
-              <select class="form-select" formControlName="skill" [compareWith]="compareModels">
+              <select class="form-select" formControlName="base" [compareWith]="compareModels">
                 <option *ngFor="let skill of skillsList" [ngValue]="skill">
                   {{skill.nameTranslation}}
                 </option>

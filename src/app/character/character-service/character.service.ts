@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {Character} from "../../model/character.model";
+import {Character} from "../../model/character/character.model";
 import {Subject} from "rxjs";
 import {CharacterSkill, SkillsList} from "../../model/skill/skill.model";
-import {Talent} from "../../model/talent.model";
+import {Talent} from "../../model/talent/talent.model";
 import {WeaponsList} from "../../model/weapon/weapon.model";
-import {Armor} from "../../model/armor.model";
-import {BodyLocalizationList} from "../../model/body-localization.model";
+import {Armor} from "../../model/armor/armor.model";
+import {BodyLocalizationList} from "../../model/armor/body-localization.model";
 import {CharacterCharacteristics} from "../../model/characteristic/characterCharacteristic.model";
 
 @Injectable({
@@ -27,6 +27,7 @@ export class CharacterService {
       [
         new Talent('Ambidextrous', 'Oburęczność', 1, '2')
       ],
+      true,
       [
         WeaponsList.handWeapon
       ],

@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Character} from "../model/character.model";
+import {Character} from "../model/character/character.model";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {CharacterSkill, SkillsList} from "../model/skill/skill.model";
-import {Talent, TalentsList} from "../model/talent.model";
+import {Talent, TalentsList} from "../model/talent/talent.model";
 import {Weapon, WeaponsList} from "../model/weapon/weapon.model";
-import {Armor, ArmorsList} from "../model/armor.model";
-import {CharacterFormArraysWrapper} from "../model/character-form-arrays-wrapper.model";
+import {Armor, ArmorsList} from "../model/armor/armor.model";
+import {CharacterFormArraysWrapper} from "../model/character/character-form-arrays-wrapper.model";
 import {Model} from "../model/model";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {CharacterCharacteristics} from "../model/characteristic/characterCharacteristic.model";
@@ -22,6 +22,7 @@ export class EditFormComponent implements OnInit {
   talentsList = new TalentsList();
   weaponsList = WeaponsList.list;
   armorsList = ArmorsList.list;
+  isRightHanded = true;
   id!: number;
 
   constructor(protected router: Router,
@@ -59,9 +60,7 @@ export class EditFormComponent implements OnInit {
     for (let characterSkill of skillsList) {
       skills.push(
         new FormGroup({
-          'skill': new FormControl(characterSkill.base),
-          'name': new FormControl(characterSkill.base.name),
-          'nameTranslation': new FormControl(characterSkill.base.nameTranslation),
+          'base': new FormControl(characterSkill.base),
           'value': new FormControl(characterSkill.value),
         })
       )
@@ -87,15 +86,6 @@ export class EditFormComponent implements OnInit {
       weapons.push(
         new FormGroup({
           'weapon': new FormControl(weapon),
-          'name': new FormControl(weapon.name),
-          'nameTranslation': new FormControl(weapon.nameTranslation),
-          'type': new FormControl(weapon.attackType),
-          'category': new FormControl(weapon.weaponGroup),
-          'range': new FormControl(weapon.range),
-          'damage': new FormControl(weapon.damage),
-          'isUsingStrength': new FormControl(weapon.isUsingStrength),
-          'advantages': new FormControl(weapon.advantages),
-          'disadvantages': new FormControl(weapon.disadvantages),
         })
       )
     }
@@ -182,9 +172,7 @@ export class EditFormComponent implements OnInit {
   onAddSkill() {
     (<FormArray>this.editCharacterForm.get('skills')).push(
       new FormGroup({
-        'skill': new FormControl(null),
-        'name': new FormControl(null),
-        'nameTranslation': new FormControl(null),
+        'base': new FormControl(null),
         'value': new FormControl(null),
       })
     )
@@ -208,8 +196,8 @@ export class EditFormComponent implements OnInit {
         'weapon': new FormControl(null),
         'name': new FormControl(null),
         'nameTranslation': new FormControl(null),
-        'type': new FormControl(null),
-        'category': new FormControl(null),
+        'attackType': new FormControl(null),
+        'weaponGroup': new FormControl(null),
         'range': new FormControl(null),
         'damage': new FormControl(null),
         'isUsingStrength': new FormControl(null),
@@ -258,17 +246,9 @@ export class EditFormComponent implements OnInit {
   }
 
   configureFields() {
-    this.configureSkills();
     this.configureTalents();
     this.configureWeapons();
     this.configureArmors();
-  }
-
-  configureSkills() {
-    this.skills.forEach(skill => {
-      skill.value.name = skill.value.skill.name;
-      skill.value.nameTranslation = skill.value.skill.nameTranslation;
-    })
   }
 
   configureTalents() {
@@ -283,8 +263,8 @@ export class EditFormComponent implements OnInit {
     this.weapons.forEach(weapon => {
       weapon.value.name = weapon.value.weapon.name;
       weapon.value.nameTranslation = weapon.value.weapon.nameTranslation;
-      weapon.value.type = weapon.value.weapon.type;
-      weapon.value.category = weapon.value.weapon.category;
+      weapon.value.attackType = weapon.value.weapon.attackType;
+      weapon.value.weaponGroup = weapon.value.weapon.weaponGroup;
       weapon.value.range = weapon.value.weapon.range;
       weapon.value.damage = weapon.value.weapon.damage;
       weapon.value.isUsingStrength = weapon.value.weapon.isUsingStrength;

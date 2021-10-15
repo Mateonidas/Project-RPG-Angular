@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Subject} from "rxjs";
-import {Character} from "../../model/character.model";
+import {Character} from "../../model/character/character.model";
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {CharacterSkill, SkillsList} from "../../model/skill/skill.model";
-import {Talent} from "../../model/talent.model";
+import {Talent} from "../../model/talent/talent.model";
 import {Weapon, WeaponsList} from "../../model/weapon/weapon.model";
-import {Armor} from "../../model/armor.model";
-import {BodyLocalizationList} from "../../model/body-localization.model";
+import {Armor} from "../../model/armor/armor.model";
+import {BodyLocalizationList} from "../../model/armor/body-localization.model";
 import {CharacterCharacteristics} from "../../model/characteristic/characterCharacteristic.model";
 
 @Injectable({
@@ -30,6 +30,7 @@ export class SkirmishService {
         [
           new Talent('Ambidextrous', 'Oburęczność', 1, '2')
         ],
+        true,
         [
           WeaponsList.rapier
         ],
@@ -53,6 +54,7 @@ export class SkirmishService {
         [
           new Talent('Ambidextrous', 'Oburęczność', 1, '2')
         ],
+        true,
         [
           WeaponsList.handWeapon,
           WeaponsList.crossbow

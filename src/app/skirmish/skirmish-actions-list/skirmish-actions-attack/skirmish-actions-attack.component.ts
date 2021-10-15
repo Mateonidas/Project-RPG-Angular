@@ -8,9 +8,9 @@ import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.mode
 import {Weapon} from "../../../model/weapon/weapon.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {SaveRollDialogWindowComponent} from "../../../dialog-window/save-roll-dialog-window/save-roll-dialog-window.component";
-import {BodyLocalizationList} from "../../../model/body-localization.model";
+import {BodyLocalizationList} from "../../../model/armor/body-localization.model";
 import {AttackType} from 'src/app/model/attack/attack-type.model';
-import {AttackReportService} from "../../../attack-report-service/attack-report.service";
+import {AttackReportService} from "../../../dialog-window/report-dialog-window/attack-report-service/attack-report.service";
 import {AttackReportDialogWindowComponent} from "../../../dialog-window/report-dialog-window/attack-report-dialog-window.component";
 import {WeaponTraitsList} from "../../../model/weapon/weaponTraits/weapon.advantages.model";
 
@@ -77,8 +77,6 @@ export class SkirmishActionsAttackComponent implements OnInit {
   }
 
   attackRoll() {
-    // let attacker = new FightParametersWrapper();
-    // attacker.skirmishCharacter = this.skirmishCharacter;
     this.attacker.isAttacker = true;
     this.attacker.isDodging = false;
     this.attackReportService.attackerName = this.attacker.name;
@@ -94,7 +92,6 @@ export class SkirmishActionsAttackComponent implements OnInit {
     this.attackReportService.attackerModifier = String(this.attacker.modifier);
 
     let defender = new SkirmishCharacter(this.target?.value);
-    // defender.skirmishCharacter = this.target?.value;
     defender.isAttacker = false;
     this.attackReportService.targetName = defender.name;
 
