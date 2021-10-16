@@ -50,7 +50,7 @@ export class SaveRollDialogWindowComponent implements OnInit {
       this.attackReportService.targetDefenceTrait = 'Broń: ' + this.target.usedWeapon.nameTranslation;
     } else {
       this.target.isDodging = true;
-      this.attackReportService.targetDefenceTrait = 'Unik.';
+      this.attackReportService.targetDefenceTrait = 'Unik';
     }
   }
 

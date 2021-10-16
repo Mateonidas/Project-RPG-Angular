@@ -83,7 +83,13 @@ export class SkirmishActionsAttackComponent implements OnInit {
 
     this.attacker.usedWeapon = this.weapon?.value;
     let attackTrait = this.attacker.getFightTrait();
-    this.attackReportService.attackerAttackTrait = attackTrait.base.nameTranslation;
+
+    if(this.attacker.usedWeapon === undefined) {
+      this.attackReportService.attackerAttackTrait = 'Cecha: ' + attackTrait.base.nameTranslation;
+    } else {
+      this.attackReportService.attackerAttackTrait = 'Broń: ' + this.attacker.usedWeapon.nameTranslation;
+    }
+
 
     this.attacker.roll = this.roll?.value;
     this.attackReportService.attackerRoll = String(this.attacker.roll);
@@ -91,7 +97,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
     this.attacker.modifier = this.modifier?.value;
     this.attackReportService.attackerModifier = String(this.attacker.modifier);
 
-    let defender = new SkirmishCharacter(this.target?.value);
+    let defender = this.target?.value;
     defender.isAttacker = false;
     this.attackReportService.targetName = defender.name;
 
