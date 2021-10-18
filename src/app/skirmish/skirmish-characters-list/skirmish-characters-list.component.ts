@@ -34,7 +34,7 @@ export class SkirmishCharactersListComponent implements OnInit {
       const modalRef = this.modalService.open(InitiativeDialogWindow);
       modalRef.componentInstance.name = skirmishCharacter.name;
       modalRef.componentInstance.rollEntry.subscribe((rollValue: number) => {
-        skirmishCharacter.temporaryParameters.skirmishInitiative += rollValue;
+        skirmishCharacter.skirmishInitiative += rollValue;
       })
     }
   }
@@ -44,10 +44,10 @@ export class SkirmishCharactersListComponent implements OnInit {
   }
 
   compareSkirmishCharactersInitiative(a: SkirmishCharacter, b: SkirmishCharacter) {
-    if(a.temporaryParameters.skirmishInitiative < b.temporaryParameters.skirmishInitiative) {
+    if(a.skirmishInitiative < b.skirmishInitiative) {
       return 1;
     }
-    if(a.temporaryParameters.skirmishInitiative > b.temporaryParameters.skirmishInitiative) {
+    if(a.skirmishInitiative > b.skirmishInitiative) {
       return -1;
     }
     return 0;

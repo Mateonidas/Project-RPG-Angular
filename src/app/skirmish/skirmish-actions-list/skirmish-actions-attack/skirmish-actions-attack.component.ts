@@ -84,7 +84,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
     this.attacker.usedWeapon = this.weapon?.value;
     let attackTrait = this.attacker.getFightTrait();
 
-    if(this.attacker.usedWeapon === undefined) {
+    if (this.attacker.usedWeapon === undefined) {
       this.attackReportService.attackerAttackTrait = 'Cecha: ' + attackTrait.base.nameTranslation;
     } else {
       this.attackReportService.attackerAttackTrait = 'Broń: ' + this.attacker.usedWeapon.nameTranslation;
@@ -103,13 +103,13 @@ export class SkirmishActionsAttackComponent implements OnInit {
 
     this.createSaveRollDialog(defender).subscribe(() => {
       this.checkFightTraits(this.attacker, defender);
-      let attackerSuccessLevel = this.calculateSuccessLevel(attackTrait.value, this.attacker.roll, this.attacker.modifier);
-      this.attackReportService.attackerSuccessLevel = String(attackerSuccessLevel);
+      this.attacker.successLevel = this.calculateSuccessLevel(attackTrait.value, this.attacker);
+      this.attackReportService.attackerSuccessLevel = String(this.attacker.successLevel);
 
-      let targetSuccessLevel = this.calculateSuccessLevel(defender.getFightTrait().value, defender.roll, defender.modifier);
-      this.attackReportService.targetSuccessLevel = String(targetSuccessLevel);
+      defender.successLevel = this.calculateSuccessLevel(defender.getFightTrait().value, defender);
+      this.attackReportService.targetSuccessLevel = String(defender.successLevel);
 
-      this.checkAttackResult(attackerSuccessLevel, targetSuccessLevel, defender);
+      this.checkAttackResult(this.attacker, defender);
       this.createReportDialog();
     })
   }
@@ -137,34 +137,39 @@ export class SkirmishActionsAttackComponent implements OnInit {
     }
   }
 
-  calculateSuccessLevel(skillValue: number, rollValue: number, modifier: number) {
-    return (Math.floor((skillValue + modifier) / 10) - Math.floor(rollValue / 10));
+  calculateSuccessLevel(skillValue: number, skirmishCharacter: SkirmishCharacter) {
+    return (Math.floor((skillValue + skirmishCharacter.modifier) / 10)
+      - Math.floor(skirmishCharacter.roll / 10)
+      + skirmishCharacter.advantage);
   }
 
-  checkAttackResult(attackerSuccessLevel: number, targetSuccessLevel: number, target: SkirmishCharacter) {
-    if (attackerSuccessLevel > targetSuccessLevel) {
+  checkAttackResult(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
+    if (attacker.successLevel > defender.successLevel) {
       this.attackReportService.result = 'Cel został trafiony.'
-      this.calculateDamage(attackerSuccessLevel, targetSuccessLevel, target);
+      attacker.advantage += 1;
+      defender.advantage = 0;
+      this.calculateDamage(attacker, defender);
     } else {
+      defender.advantage += 1;
+      attacker.advantage = 0;
       this.attackReportService.result = 'Cel wychodzi bez szwanku.'
       this.attackReportService.damage = '0';
     }
   }
 
-  calculateDamage(attackerSuccessLevel: number, targetSuccessLevel: number, target: SkirmishCharacter) {
-    let successLevelsDifference = this.calculateSuccessLevelDifference(attackerSuccessLevel, targetSuccessLevel);
-    let weapon = this.weapon?.value;
-    let weaponDamage = this.calculateWeaponDamage(weapon, this.attacker);
-    let targetToughnessBonus = this.calculateTraitBonus(target.characteristics.toughness.value);
-    let attackerRoll = this.roll?.value + this.modifier?.value;
-    let armorPoints = this.getArmorPointsFromAttackLocalization(attackerRoll, this.target?.value);
+  calculateDamage(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
+    let damage = this.calculateFinalDamage(
+      this.calculateSuccessLevelDifference(attacker.successLevel, defender.successLevel),
+      this.calculateWeaponDamage(attacker),
+      this.calculateTraitBonus(defender.characteristics.toughness.value),
+      this.getArmorPointsFromAttackLocalization(attacker.roll, this.target?.value));
 
-    let damage = this.calculateFinalDamage(successLevelsDifference, weaponDamage, targetToughnessBonus, armorPoints);
     this.attackReportService.damage = String(damage);
-    target.temporaryParameters.currentWounds -= damage;
+    defender.currentWounds -= damage;
   }
 
-  private calculateWeaponDamage(weapon: Weapon, character: SkirmishCharacter) {
+  private calculateWeaponDamage(character: SkirmishCharacter) {
+    let weapon = character.usedWeapon;
     let weaponDamage = weapon.damage;
     if (weapon.isUsingStrength) {
       weaponDamage += Math.floor(character.characteristics.strength.value / 10);

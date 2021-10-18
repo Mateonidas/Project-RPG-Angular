@@ -6,7 +6,6 @@ import {SkirmishService} from "../skirmish-service/skirmish.service";
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {CharacterFormArraysWrapper} from "../../model/character/character-form-arrays-wrapper.model";
 import {EditFormComponent} from "../../edit-form/edit-form.component";
-import {TemporaryParameters} from "../../model/skirmish/temporary-parameters.model";
 
 @Component({
   selector: 'app-skirmish-character-edit',
@@ -24,7 +23,6 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
   initForm() {
     let characterName = '';
     let characterDescription = '';
-    let temporaryParameters;
     let isRightHanded;
     let characteristics;
     let formArrays = new CharacterFormArraysWrapper();
@@ -32,7 +30,6 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
     const character = this.skirmishService.getSkirmishCharacter(this.id);
     characterName = character.name;
     characterDescription = character.description;
-    temporaryParameters = character.temporaryParameters;
     isRightHanded = character.isRightHanded;
     characteristics = SkirmishCharacterEditComponent.initEditCharacteristicsTable(character.characteristics);
 
@@ -41,8 +38,9 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
     this.editCharacterForm = new FormGroup({
       'name': new FormControl(characterName),
       'description': new FormControl(characterDescription),
-      'temporaryWounds': new FormControl(temporaryParameters.currentWounds),
-      'temporaryInitiative': new FormControl(temporaryParameters.skirmishInitiative),
+      'currentWounds': new FormControl(character.currentWounds),
+      'skirmishInitiative': new FormControl(character.skirmishInitiative),
+      'advantage': new FormControl(character.advantage),
       'characteristics': characteristics,
       'skills': formArrays.skills,
       'talents': formArrays.talents,
@@ -65,7 +63,6 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
   createCharacterModel() {
     const name = this.editCharacterForm.value.name;
     const description = this.editCharacterForm.value.description;
-    const temporaryParameters = this.configureTemporaryParameters();
     const characteristics = this.configureCharacteristics();
     const skills = this.editCharacterForm.value.skills;
     const talents = this.editCharacterForm.value.talents;
@@ -83,14 +80,10 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
       weapons,
       armors
     ));
-    skirmishCharacter.setTemporaryParameters(temporaryParameters);
+    skirmishCharacter.currentWounds = this.editCharacterForm.value.currentWounds;
+    skirmishCharacter.skirmishInitiative = this.editCharacterForm.value.skirmishInitiative;
+    skirmishCharacter.advantage = this.editCharacterForm.value.advantage;
 
     return skirmishCharacter;
-  }
-
-  configureTemporaryParameters() {
-    return new TemporaryParameters(
-      this.editCharacterForm.value.temporaryWounds,
-      this.editCharacterForm.value.temporaryInitiative)
   }
 }

@@ -1,5 +1,4 @@
 import {Character} from "../character/character.model";
-import {TemporaryParameters} from "./temporary-parameters.model";
 import {BodyLocalization} from "../armor/body-localization.model";
 import {Weapon} from "../weapon/weapon.model";
 import {SkillsList} from "../skill/skill.model";
@@ -7,24 +6,21 @@ import {Characteristics} from "../characteristic/characteristic.model";
 
 export class SkirmishCharacter extends Character {
 
-  public temporaryParameters: TemporaryParameters;
   private _roll!: number;
   private _modifier!: number;
   private _usedWeapon!: Weapon;
   private _isAttacker!: boolean;
-  private _isDodging!: boolean
+  private _isDodging!: boolean;
+  private _currentWounds!: number;
+  private _skirmishInitiative!: number;
+  private _advantage!: number;
+  private _successLevel!: number;
 
   constructor(character: Character) {
     super(character.name, character.description, character.characteristics, character.skills, character.talents, character.isRightHanded, character.weapons, character.armor);
-    this.temporaryParameters = new TemporaryParameters(character.characteristics.wounds.value, character.characteristics.initiative.value);
-  }
-
-  setTemporaryParameters(temporaryParameters: TemporaryParameters) {
-    this.temporaryParameters = temporaryParameters;
-  }
-
-  getSkirmishInitiative() {
-    return this.temporaryParameters.skirmishInitiative;
+    this._currentWounds = character.characteristics.wounds.value;
+    this._skirmishInitiative = character.characteristics.initiative.value;
+    this._advantage = 0;
   }
 
   getArmorForBodyLocalization(localization: BodyLocalization){
@@ -112,5 +108,37 @@ export class SkirmishCharacter extends Character {
 
   set isDodging(value: boolean) {
     this._isDodging = value;
+  }
+
+  get currentWounds(): number {
+    return this._currentWounds;
+  }
+
+  set currentWounds(value: number) {
+    this._currentWounds = value;
+  }
+
+  get skirmishInitiative(): number {
+    return this._skirmishInitiative;
+  }
+
+  set skirmishInitiative(value: number) {
+    this._skirmishInitiative = value;
+  }
+
+  get advantage(): number {
+    return this._advantage;
+  }
+
+  set advantage(value: number) {
+    this._advantage = value;
+  }
+
+  get successLevel(): number {
+    return this._successLevel;
+  }
+
+  set successLevel(value: number) {
+    this._successLevel = value;
   }
 }
