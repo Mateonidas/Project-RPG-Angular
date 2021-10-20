@@ -24,7 +24,15 @@ export class Armor extends Model{
 
 export class ArmorsList extends ListModel{
   public static list = [
-    new Armor('Leather Jack', 'Skórzana kurta', 'Miękka Skóra', '-', [BodyLocalizationList.arms, BodyLocalizationList.body], 1, [], []),
-    new Armor('Leather Leggings', 'Skórzane nogawice', 'Miękka Skóra', '-', [BodyLocalizationList.legs], 1, [], [])
+    new Armor('leatherJack', 'Skórzana kurta', 'Miękka Skóra', '-', [BodyLocalizationList.leftArm, BodyLocalizationList.rightArm, BodyLocalizationList.body], 1, [], []),
+    new Armor('leatherLeggings', 'Skórzane nogawice', 'Miękka Skóra', '-', [BodyLocalizationList.leftLeg, BodyLocalizationList.rightLeg], 1, [], [])
   ]
+
+  static get leatherJack() {
+    return <Armor>ArmorsList.getListItemByName('leatherJack');
+  }
+
+  static get leatherLeggings() {
+    return <Armor>ArmorsList.getListItemByName('leatherLeggings');
+  }
 }

@@ -3,18 +3,18 @@ import {Model} from "../model";
 
 export class ConditionsList extends ListModel {
   public static list = [
-    new Model('Ablaze','Podpalenie'),
-    new Model('Bleeding','Krwawienie'),
-    new Model('Blinded','Oślepienie'),
-    new Model('Broken','Panika'),
-    new Model('Deafened','Ogłuszenie'),
-    new Model('Entangled','Pochwycenie'),
-    new Model('Fatigued','Zmęczenie'),
-    new Model('Poisoned','Zatrucie'),
-    new Model('Prone','Powalenie'),
-    new Model('Stunned','Oszołomienie'),
-    new Model('Surprised','Zaskoczenie'),
-    new Model('Unconscious','Utrata Przytomności'),
+    new Model('Ablaze', 'Podpalenie'),
+    new Model('Bleeding', 'Krwawienie'),
+    new Model('Blinded', 'Oślepienie'),
+    new Model('Broken', 'Panika'),
+    new Model('Deafened', 'Ogłuszenie'),
+    new Model('Entangled', 'Pochwycenie'),
+    new Model('Fatigued', 'Zmęczenie'),
+    new Model('Poisoned', 'Zatrucie'),
+    new Model('Prone', 'Powalenie'),
+    new Model('Stunned', 'Oszołomienie'),
+    new Model('Surprised', 'Zaskoczenie'),
+    new Model('Unconscious', 'Utrata Przytomności'),
   ]
 
   static get ablaze() {

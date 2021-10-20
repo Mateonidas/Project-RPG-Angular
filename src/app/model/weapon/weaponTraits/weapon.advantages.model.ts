@@ -20,11 +20,13 @@ export class WeaponTraitsList extends ListModel {
   }
 
   static checkFast(owner: SkirmishCharacter, opponent: SkirmishCharacter) {
-    if (owner.isAttacker) {
-      if (opponent.isDodging) {
-        opponent.modifier -= 10;
-      } else if (!this.checkIfExist(opponent.usedWeapon.advantages, this.fast)) {
-        opponent.modifier -= 10;
+    if(this.checkIfExist(owner.usedWeapon.advantages, this.fast)) {
+      if (owner.isAttacker) {
+        if (opponent.isDodging) {
+          opponent.modifier -= 10;
+        } else if (!this.checkIfExist(opponent.usedWeapon.advantages, this.fast)) {
+          opponent.modifier -= 10;
+        }
       }
     }
   }

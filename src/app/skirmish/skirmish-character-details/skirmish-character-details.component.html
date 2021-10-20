@@ -54,6 +54,18 @@
 <hr>
 <div class="row">
   <div class="col-md-12">
+    <h4>Stany</h4>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let condition of skirmishCharacter.conditions">
+        {{condition.base.nameTranslation}} {{condition.value}}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+<div class="row">
+  <div class="col-md-12">
     <h4>Cechy</h4>
     <table class="table table-bordered">
       <thead class="thead-dark">

@@ -4,9 +4,8 @@ import {Character} from "../../model/character/character.model";
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {CharacterSkill, SkillsList} from "../../model/skill/skill.model";
 import {Talent} from "../../model/talent/talent.model";
-import {Weapon, WeaponsList} from "../../model/weapon/weapon.model";
-import {Armor} from "../../model/armor/armor.model";
-import {BodyLocalizationList} from "../../model/armor/body-localization.model";
+import {WeaponsList} from "../../model/weapon/weapon.model";
+import {ArmorsList} from "../../model/armor/armor.model";
 import {CharacterCharacteristics} from "../../model/characteristic/character-characteristic.model";
 
 @Injectable({
@@ -35,8 +34,8 @@ export class SkirmishService {
           WeaponsList.rapier
         ],
         [
-          new Armor('Leather Jack', 'Skórzana kurta', 'Miękka Skóra', '-', [BodyLocalizationList.arms, BodyLocalizationList.body], 1, [], []),
-          new Armor('Leather Leggings', 'Skórzane nogawice', 'Miękka Skóra', '-', [BodyLocalizationList.legs], 1, [], [])
+          ArmorsList.leatherJack,
+          ArmorsList.leatherLeggings,
         ]
       )
     ),
@@ -60,8 +59,8 @@ export class SkirmishService {
           WeaponsList.crossbow
         ],
         [
-          new Armor('Leather Jack', 'Skórzana kurta', 'Miękka Skóra', '-', [BodyLocalizationList.arms, BodyLocalizationList.body], 1, [], []),
-          new Armor('Leather Leggings', 'Skórzane nogawice', 'Miękka Skóra', '-', [BodyLocalizationList.legs], 1, [], [])
+          ArmorsList.leatherJack,
+          ArmorsList.leatherLeggings,
         ]
       )
     )

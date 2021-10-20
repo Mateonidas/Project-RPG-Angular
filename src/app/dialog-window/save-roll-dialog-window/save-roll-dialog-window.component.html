@@ -26,6 +26,12 @@
     </div>
 
     <div class="mt-2">
+      <p>Flankowany</p>
+      <input type="radio" formControlName="isFlanked" [value]=true> Tak
+      <input type="radio" formControlName="isFlanked" [value]=false> Nie
+    </div>
+
+    <div class="mt-2">
       <p>Modyfikator</p>
       <input type="number" class="form-control" formControlName="modifier">
       <app-validation-alert

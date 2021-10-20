@@ -27,6 +27,7 @@ export class SaveRollDialogWindowComponent implements OnInit {
     this.saveForm = new FormGroup({
       'roll': new FormControl(null, [Validators.required]),
       'checkDefendTrait': new FormControl(null, [Validators.required]),
+      'isFlanked': new FormControl(false),
       'defendTrait': new FormControl(null),
       'modifier': new FormControl(0, [Validators.required]),
     })
@@ -38,6 +39,7 @@ export class SaveRollDialogWindowComponent implements OnInit {
     this.calculateDefendTrait();
     this.target.modifier = this.modifier?.value;
     this.attackReportService.targetModifier = String(this.target.modifier);
+    this.target.isFlanked = this.isFlanked?.value;
 
     this.emitter.emit();
     this.activeModal.close('Close click')
@@ -76,5 +78,9 @@ export class SaveRollDialogWindowComponent implements OnInit {
 
   get characterWeapon() {
     return this.target.weapons;
+  }
+
+  get isFlanked() {
+    return this.saveForm.get('isFlanked');
   }
 }

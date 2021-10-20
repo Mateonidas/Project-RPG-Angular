@@ -1,6 +1,14 @@
 <div class="row">
   <div class="col-md-12">
+    <h3>Runda: {{roundNumber}}</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
     <div class="dropdown">
+      <button class="btn btn-danger me-2" type="button" (click)="endTurn()">
+        Koniec rundy
+      </button>
       <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         Inicjatywa
         <span class="caret"></span>

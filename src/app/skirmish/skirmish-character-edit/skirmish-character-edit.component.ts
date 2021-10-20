@@ -1,11 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {Character} from "../../model/character/character.model";
 import {SkirmishService} from "../skirmish-service/skirmish.service";
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {CharacterFormArraysWrapper} from "../../model/character/character-form-arrays-wrapper.model";
 import {EditFormComponent} from "../../edit-form/edit-form.component";
+import {Weapon} from "../../model/weapon/weapon.model";
+import {Condition} from "../../model/conditions/condition.model";
+import {ConditionsList} from "../../model/conditions/conditions-list.model";
 
 @Component({
   selector: 'app-skirmish-character-edit',
@@ -14,6 +17,8 @@ import {EditFormComponent} from "../../edit-form/edit-form.component";
 })
 export class SkirmishCharacterEditComponent extends EditFormComponent implements OnInit {
 
+  conditionList = ConditionsList.list;
+
   constructor(router: Router,
               route: ActivatedRoute,
               private skirmishService: SkirmishService) {
@@ -21,17 +26,13 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
   }
 
   initForm() {
-    let characterName = '';
-    let characterDescription = '';
-    let isRightHanded;
-    let characteristics;
-    let formArrays = new CharacterFormArraysWrapper();
-
     const character = this.skirmishService.getSkirmishCharacter(this.id);
-    characterName = character.name;
-    characterDescription = character.description;
-    isRightHanded = character.isRightHanded;
-    characteristics = SkirmishCharacterEditComponent.initEditCharacteristicsTable(character.characteristics);
+    let characterName = character.name;
+    let characterDescription = character.description;
+    let isRightHanded = character.isRightHanded;
+    let characteristics = SkirmishCharacterEditComponent.initEditCharacteristicsTable(character.characteristics);
+    let conditions = this.prepareConditionsList(character.conditions);
+    let formArrays = new CharacterFormArraysWrapper();
 
     this.prepareEditData(character, formArrays);
 
@@ -41,6 +42,7 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
       'currentWounds': new FormControl(character.currentWounds),
       'skirmishInitiative': new FormControl(character.skirmishInitiative),
       'advantage': new FormControl(character.advantage),
+      'conditions': conditions,
       'characteristics': characteristics,
       'skills': formArrays.skills,
       'talents': formArrays.talents,
@@ -83,7 +85,38 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
     skirmishCharacter.currentWounds = this.editCharacterForm.value.currentWounds;
     skirmishCharacter.skirmishInitiative = this.editCharacterForm.value.skirmishInitiative;
     skirmishCharacter.advantage = this.editCharacterForm.value.advantage;
+    skirmishCharacter.conditions = this.editCharacterForm.value.conditions;
 
     return skirmishCharacter;
+  }
+
+  prepareConditionsList(conditionsList:Condition[]) {
+    let conditions = new FormArray([]);
+    for (let condition of conditionsList) {
+      conditions.push(
+        new FormGroup({
+          'base': new FormControl(condition.base),
+          'value': new FormControl(condition.value),
+        })
+      )
+    }
+    return conditions;
+  }
+
+  get conditions() {
+    return (<FormArray>this.editCharacterForm.get('conditions')).controls;
+  }
+
+  onAddCondition() {
+    (<FormArray>this.editCharacterForm.get('conditions')).push(
+      new FormGroup({
+        'base': new FormControl(null),
+        'value': new FormControl(null),
+      })
+    )
+  }
+
+  onDeleteCondition(index: number) {
+    (<FormArray>this.editCharacterForm.get('conditions')).removeAt(index);
   }
 }

@@ -26,6 +26,7 @@ import { SkirmishActionsAttackComponent } from './skirmish/skirmish-actions-list
 import { SaveRollDialogWindowComponent } from './dialog-window/save-roll-dialog-window/save-roll-dialog-window.component';
 import { ValidationAlertComponent } from './validation/validation-alert/validation-alert.component';
 import { AttackReportDialogWindowComponent } from './dialog-window/report-dialog-window/attack-report-dialog-window.component';
+import { RollDialogWindowComponent } from './dialog-window/roll-dialog-window/roll-dialog-window.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { AttackReportDialogWindowComponent } from './dialog-window/report-dialog
     SkirmishActionsAttackComponent,
     SaveRollDialogWindowComponent,
     ValidationAlertComponent,
-    AttackReportDialogWindowComponent
+    AttackReportDialogWindowComponent,
+    RollDialogWindowComponent
   ],
     imports: [
         BrowserModule,

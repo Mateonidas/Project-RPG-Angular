@@ -8,12 +8,13 @@ import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.mode
 import {Weapon} from "../../../model/weapon/weapon.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {SaveRollDialogWindowComponent} from "../../../dialog-window/save-roll-dialog-window/save-roll-dialog-window.component";
-import {BodyLocalizationList} from "../../../model/armor/body-localization.model";
 import {AttackType} from 'src/app/model/attack/attack-type.model';
 import {AttackReportService} from "../../../dialog-window/report-dialog-window/attack-report-service/attack-report.service";
 import {AttackReportDialogWindowComponent} from "../../../dialog-window/report-dialog-window/attack-report-dialog-window.component";
 import {WeaponTraitsList} from "../../../model/weapon/weaponTraits/weapon.advantages.model";
 import {ConditionsList} from "../../../model/conditions/conditions-list.model";
+import {CalculationService} from "../../../shared/services/calculation.service";
+import {ConditionService} from "../../../shared/services/condition.service";
 
 @Component({
   selector: 'app-skirmish-actions-attack',
@@ -34,7 +35,9 @@ export class SkirmishActionsAttackComponent implements OnInit {
               protected route: ActivatedRoute,
               protected skirmishService: SkirmishService,
               private modalService: NgbModal,
-              private attackReportService: AttackReportService) {
+              private attackReportService: AttackReportService,
+              private calculateService: CalculationService,
+              private conditionService: ConditionService) {
   }
 
   ngOnInit(): void {
@@ -104,10 +107,12 @@ export class SkirmishActionsAttackComponent implements OnInit {
 
     this.createSaveRollDialog(defender).subscribe(() => {
       this.checkFightTraits(this.attacker, defender);
-      this.attacker.successLevel = this.calculateSuccessLevel(attackTrait.value, this.attacker);
+      this.attackReportService.targetModifier = String(defender.modifier);
+
+      this.attacker.successLevel = this.calculateService.calculateSuccessLevel(attackTrait.value, this.attacker);
       this.attackReportService.attackerSuccessLevel = String(this.attacker.successLevel);
 
-      defender.successLevel = this.calculateSuccessLevel(defender.getFightTrait().value, defender);
+      defender.successLevel = this.calculateService.calculateSuccessLevel(defender.getFightTrait().value, defender);
       this.attackReportService.targetSuccessLevel = String(defender.successLevel);
 
       this.checkAttackResult(this.attacker, defender);
@@ -140,17 +145,13 @@ export class SkirmishActionsAttackComponent implements OnInit {
   }
 
   checkConditions(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
+    this.conditionService.fightCheckCondition(attacker, defender);
+    this.conditionService.fightCheckCondition(defender, attacker);
     for(let condition of defender.conditions) {
       if(condition.base === ConditionsList.prone) {
         attacker.modifier += 20;
       }
     }
-  }
-
-  calculateSuccessLevel(skillValue: number, skirmishCharacter: SkirmishCharacter) {
-    return (Math.floor((skillValue + skirmishCharacter.modifier) / 10)
-      - Math.floor(skirmishCharacter.roll / 10)
-      + skirmishCharacter.advantage);
   }
 
   checkAttackResult(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
@@ -169,9 +170,9 @@ export class SkirmishActionsAttackComponent implements OnInit {
 
   calculateDamage(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
     let damage = this.calculateFinalDamage(
-      this.calculateSuccessLevelDifference(attacker.successLevel, defender.successLevel),
+      this.calculateService.calculateSuccessLevelDifference(attacker.successLevel, defender.successLevel),
       this.calculateWeaponDamage(attacker),
-      this.calculateTraitBonus(defender.characteristics.toughness.value),
+      this.calculateService.calculateTraitBonus(defender.characteristics.toughness.value),
       this.getArmorPointsFromAttackLocalization(attacker.roll, defender));
 
     this.attackReportService.damage = String(damage);
@@ -192,27 +193,19 @@ export class SkirmishActionsAttackComponent implements OnInit {
     return weaponDamage;
   }
 
-  private calculateSuccessLevelDifference(firstSuccessLevel: number, secondSuccessLevel: number) {
-    return firstSuccessLevel - secondSuccessLevel;
-  }
-
-  private calculateTraitBonus(traitValue: number) {
-    return Math.floor(traitValue / 10);
-  }
-
   private getArmorPointsFromAttackLocalization(attackerRoll: number, target: SkirmishCharacter): number {
     if (attackerRoll >= 1 && attackerRoll <= 9) {
-      return target.getArmorForBodyLocalization(BodyLocalizationList.head);
+      return target.armorBodyLocalization.headArmor;
     } else if (attackerRoll >= 10 && attackerRoll <= 24) {
-      return target.getArmorForBodyLocalization(BodyLocalizationList.arms);
+      return target.armorBodyLocalization.leftArmArmor;
     } else if (attackerRoll >= 25 && attackerRoll <= 44) {
-      return target.getArmorForBodyLocalization(BodyLocalizationList.arms);
+      return target.armorBodyLocalization.rightArmArmor;
     } else if (attackerRoll >= 45 && attackerRoll <= 79) {
-      return target.getArmorForBodyLocalization(BodyLocalizationList.body);
+      return target.armorBodyLocalization.bodyArmor;
     } else if (attackerRoll >= 80 && attackerRoll <= 89) {
-      return target.getArmorForBodyLocalization(BodyLocalizationList.legs);
+      return target.armorBodyLocalization.leftLegArmor;
     } else if (attackerRoll >= 90 && attackerRoll <= 100) {
-      return target.getArmorForBodyLocalization(BodyLocalizationList.legs);
+      return target.armorBodyLocalization.rightLegArmor;
     } else {
       return 0;
     }
