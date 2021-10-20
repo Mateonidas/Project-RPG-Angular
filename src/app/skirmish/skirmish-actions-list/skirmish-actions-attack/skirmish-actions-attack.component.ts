@@ -13,6 +13,7 @@ import {AttackType} from 'src/app/model/attack/attack-type.model';
 import {AttackReportService} from "../../../dialog-window/report-dialog-window/attack-report-service/attack-report.service";
 import {AttackReportDialogWindowComponent} from "../../../dialog-window/report-dialog-window/attack-report-dialog-window.component";
 import {WeaponTraitsList} from "../../../model/weapon/weaponTraits/weapon.advantages.model";
+import {ConditionsList} from "../../../model/conditions/conditions-list.model";
 
 @Component({
   selector: 'app-skirmish-actions-attack',
@@ -125,6 +126,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
   }
 
   checkFightTraits(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
+    this.checkConditions(attacker, defender);
     this.checkWeaponTraits(attacker, defender);
     this.checkWeaponTraits(defender, attacker);
   }
@@ -133,6 +135,14 @@ export class SkirmishActionsAttackComponent implements OnInit {
     if (owner.usedWeapon !== undefined) {
       if (!owner.checkIfWeaponAdvantagesAreIgnored()) {
         WeaponTraitsList.checkFast(owner, opponent);
+      }
+    }
+  }
+
+  checkConditions(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
+    for(let condition of defender.conditions) {
+      if(condition.base === ConditionsList.prone) {
+        attacker.modifier += 20;
       }
     }
   }
@@ -162,10 +172,14 @@ export class SkirmishActionsAttackComponent implements OnInit {
       this.calculateSuccessLevelDifference(attacker.successLevel, defender.successLevel),
       this.calculateWeaponDamage(attacker),
       this.calculateTraitBonus(defender.characteristics.toughness.value),
-      this.getArmorPointsFromAttackLocalization(attacker.roll, this.target?.value));
+      this.getArmorPointsFromAttackLocalization(attacker.roll, defender));
 
     this.attackReportService.damage = String(damage);
     defender.currentWounds -= damage;
+    if(defender.currentWounds <= 0) {
+      defender.currentWounds = 0;
+      defender.addCondition(ConditionsList.prone);
+    }
   }
 
   private calculateWeaponDamage(character: SkirmishCharacter) {

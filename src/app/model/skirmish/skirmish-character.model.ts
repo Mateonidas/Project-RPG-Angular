@@ -3,6 +3,9 @@ import {BodyLocalization} from "../armor/body-localization.model";
 import {Weapon} from "../weapon/weapon.model";
 import {SkillsList} from "../skill/skill.model";
 import {Characteristics} from "../characteristic/characteristic.model";
+import {Condition} from "../conditions/condition.model";
+import {Model} from "../model";
+import {ConditionsList} from "../conditions/conditions-list.model";
 
 export class SkirmishCharacter extends Character {
 
@@ -15,6 +18,7 @@ export class SkirmishCharacter extends Character {
   private _skirmishInitiative!: number;
   private _advantage!: number;
   private _successLevel!: number;
+  private _conditions: Condition[] = [];
 
   constructor(character: Character) {
     super(character.name, character.description, character.characteristics, character.skills, character.talents, character.isRightHanded, character.weapons, character.armor);
@@ -23,12 +27,12 @@ export class SkirmishCharacter extends Character {
     this._advantage = 0;
   }
 
-  getArmorForBodyLocalization(localization: BodyLocalization){
+  getArmorForBodyLocalization(localization: BodyLocalization) {
     let armorForLocation = this.armor.filter(armor => armor.localization.includes(localization));
 
     let armorPoints = 0;
 
-    for(let armor of armorForLocation) {
+    for (let armor of armorForLocation) {
       armorPoints += armor.armorPoints;
     }
 
@@ -68,6 +72,27 @@ export class SkirmishCharacter extends Character {
   checkIfWeaponAdvantagesAreIgnored() {
     let skill = this.skills.find(characterSkill => characterSkill.base == this.usedWeapon.weaponGroup.usedSkill);
     return skill === undefined;
+  }
+
+  addCondition(newCondition: Model) {
+    if ( this.conditions.length === 0) {
+      this.conditions.push(new Condition(newCondition, 1));
+    } else {
+      for (let condition of this.conditions) {
+        if (condition.base === newCondition) {
+          if (!(condition.base === ConditionsList.prone ||
+            condition.base === ConditionsList.stunned ||
+            condition.base === ConditionsList.surprised))
+            condition.value += 1;
+        } else {
+          this.conditions.push(new Condition(newCondition, 1));
+        }
+      }
+    }
+  }
+
+  get conditions(): Condition[] {
+    return this._conditions;
   }
 
   get roll(): number {

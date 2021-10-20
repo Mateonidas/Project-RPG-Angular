@@ -2,7 +2,7 @@ import {CharacterSkill} from "../skill/skill.model";
 import {Talent} from "../talent/talent.model";
 import {Weapon} from "../weapon/weapon.model";
 import {Armor} from "../armor/armor.model";
-import {CharacterCharacteristics} from "../characteristic/characterCharacteristic.model";
+import {CharacterCharacteristics} from "../characteristic/character-characteristic.model";
 
 export class Character {
   public name!: string;

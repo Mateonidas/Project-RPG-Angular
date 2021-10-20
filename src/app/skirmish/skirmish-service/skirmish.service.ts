@@ -7,7 +7,7 @@ import {Talent} from "../../model/talent/talent.model";
 import {Weapon, WeaponsList} from "../../model/weapon/weapon.model";
 import {Armor} from "../../model/armor/armor.model";
 import {BodyLocalizationList} from "../../model/armor/body-localization.model";
-import {CharacterCharacteristics} from "../../model/characteristic/characterCharacteristic.model";
+import {CharacterCharacteristics} from "../../model/characteristic/character-characteristic.model";
 
 @Injectable({
   providedIn: 'root'

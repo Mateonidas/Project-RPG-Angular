@@ -8,7 +8,7 @@ import {Armor, ArmorsList} from "../model/armor/armor.model";
 import {CharacterFormArraysWrapper} from "../model/character/character-form-arrays-wrapper.model";
 import {Model} from "../model/model";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {CharacterCharacteristics} from "../model/characteristic/characterCharacteristic.model";
+import {CharacterCharacteristics} from "../model/characteristic/character-characteristic.model";
 
 @Component({
   selector: 'app-edit-form',

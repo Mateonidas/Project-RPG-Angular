@@ -17,7 +17,20 @@
       <p class="list-group-item-text">{{skirmishCharacter.currentWounds}}
         /{{skirmishCharacter.characteristics.wounds.value}}</p>
     </div>
+  </div><div class="row">
+  <div class="col-md-6">
   </div>
+  <div class="col-md-3">
+    <h6 class="list-group-item-heading">Przewagi</h6>
+    <p class="list-group-item-text">{{skirmishCharacter.advantage}}</p>
+  </div>
+  <div class="col-md-3">
+    <h6 class="list-group-item-heading">Stany</h6>
+    <p *ngFor="let condition of skirmishCharacter.conditions" class="list-group-item-text">
+      - {{condition.base.nameTranslation}} {{condition.value}}
+    </p>
+  </div>
+</div>
 </a>
 
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
