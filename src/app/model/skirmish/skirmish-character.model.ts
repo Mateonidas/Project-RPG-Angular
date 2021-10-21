@@ -131,7 +131,7 @@ export class SkirmishCharacter extends Character {
 
   clearConditionsWithZeroValue() {
     for(let condition of this.conditions) {
-      if(condition.value === 0) {
+      if(condition.value <= 0) {
         this.removeCondition(condition.base);
       }
     }

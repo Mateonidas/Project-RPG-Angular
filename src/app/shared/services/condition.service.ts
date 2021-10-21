@@ -56,9 +56,9 @@ export class ConditionService {
   private checkAblaze(character: SkirmishCharacter, condition: Condition) {
     if (condition.base === ConditionsList.ablaze) {
       this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k10)', false)
-        .subscribe((value: { roll: number, modifier: number}) => {
+        .subscribe((value: { roll: number, modifier: number }) => {
           let damage = value.roll + (condition.value - 1);
-          this.calculateAblazeDamage(damage, character);
+          character.currentWounds -= this.calculateAblazeDamage(damage, character);
         })
     }
   }
@@ -70,56 +70,71 @@ export class ConditionService {
       finalDamage = 1;
     }
 
-    character.currentWounds -= finalDamage;
+    return finalDamage;
   }
 
   private checkBleeding(character: SkirmishCharacter, condition: Condition) {
-    character.currentWounds -= condition.value;
-    if (character.currentWounds <= 0) {
-      character.currentWounds = 0;
-      if (character.checkIfHasCondition(ConditionsList.unconscious)) {
-        this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k100)', false)
-          .subscribe((value: { roll: number, modifier: number }) => {
-            let deadBorder = condition.value * 10;
-            if (value.roll <= deadBorder) {
-              character.isDead = true;
-            }
-          })
-      } else {
+    if (character.checkIfHasCondition(ConditionsList.unconscious)) {
+      this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k100)', false)
+        .subscribe((value: { roll: number, modifier: number }) => {
+          this.checkBleedingOut(condition, value, character);
+        })
+    } else {
+      character.currentWounds -= condition.value;
+      if (character.currentWounds <= 0) {
+        character.currentWounds = 0;
         character.addCondition(ConditionsList.unconscious);
       }
     }
+  }
 
+  private checkBleedingOut(
+    condition: Condition,
+    value: { roll: number; modifier: number },
+    character: SkirmishCharacter)
+  {
+    let deadBorder = condition.value * 10;
+    if (value.roll <= deadBorder) {
+      character.isDead = true;
+    }
   }
 
   private checkBroken(character: SkirmishCharacter, condition: Condition) {
-    if(!character.isEngaged) {
+    if (!character.isEngaged) {
       this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k100)', true)
         .subscribe((value: { roll: number, modifier: number }) => {
           character.roll = value.roll;
           character.modifier = value.modifier;
-          let skill = character.getSkill(SkillsList.cool);
-          if(skill === undefined) {
-            skill = character.characteristics.willpower;
-          }
-          let successLevel = this.calculateService.calculateSuccessLevel(skill.value, character);
-          if(successLevel >= 0) {
-            condition.value -= successLevel + 1;
-          }
+          this.calculateBrokenLevel(character, condition);
         })
     }
   }
 
+  private calculateBrokenLevel(character: SkirmishCharacter, condition: Condition) {
+    let skill = character.getSkill(SkillsList.cool);
+    if (skill === undefined) {
+      skill = character.characteristics.willpower;
+    }
+    let successLevel = this.calculateService.calculateSuccessLevel(skill.value, character);
+    if (successLevel >= 0) {
+      condition.value -= successLevel + 1;
+      if (condition.value <= 0) {
+        character.removeCondition(ConditionsList.broken);
+        character.addCondition(ConditionsList.fatigued);
+      }
+    }
+  }
+
   private checkBlinded(condition: Condition) {
-      condition.value -= 0.5;
+    condition.value -= 0.5;
   }
 
   private checkDeafened(condition: Condition) {
     condition.value -= 1;
   }
 
-  private setConditionModifier(modifier: number){
-    if(modifier > this.conditionModifier) {
+  private setConditionModifier(modifier: number) {
+    if (modifier > this.conditionModifier) {
       this.conditionModifier = modifier;
     }
   }
@@ -165,7 +180,7 @@ export class ConditionService {
   }
 
   private checkDeafenedInFight(owner: SkirmishCharacter, opponent: SkirmishCharacter, conditionLevel: number) {
-    if(opponent.isAttacker && owner.isFlanked) {
+    if (opponent.isAttacker && owner.isFlanked) {
       this.setConditionModifier(10 * conditionLevel);
     }
   }
