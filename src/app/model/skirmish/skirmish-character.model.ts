@@ -30,6 +30,8 @@ export class SkirmishCharacter extends Character {
     this._currentWounds = character.characteristics.wounds.value;
     this._skirmishInitiative = character.characteristics.initiative.value;
     this._advantage = 0;
+    this.roll = 0;
+    this.modifier = 0;
     this.conditions = [];
     this.fillLocalizationArmorPoints();
     this._isDead = false;
@@ -125,14 +127,6 @@ export class SkirmishCharacter extends Character {
         } else {
           this.conditions.push(new Condition(newCondition, 1));
         }
-      }
-    }
-  }
-
-  clearConditionsWithZeroValue() {
-    for(let condition of this.conditions) {
-      if(condition.value <= 0) {
-        this.removeCondition(condition.base);
       }
     }
   }

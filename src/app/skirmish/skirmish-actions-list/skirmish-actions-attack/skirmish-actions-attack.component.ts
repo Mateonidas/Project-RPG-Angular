@@ -13,7 +13,7 @@ import {AttackReportService} from "../../../dialog-window/report-dialog-window/a
 import {AttackReportDialogWindowComponent} from "../../../dialog-window/report-dialog-window/attack-report-dialog-window.component";
 import {WeaponTraitsList} from "../../../model/weapon/weaponTraits/weapon.advantages.model";
 import {ConditionsList} from "../../../model/conditions/conditions-list.model";
-import {CalculationService} from "../../../shared/services/calculation.service";
+import {RollService} from "../../../shared/services/roll.service";
 import {ConditionService} from "../../../shared/services/condition.service";
 
 @Component({
@@ -36,7 +36,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
               protected skirmishService: SkirmishService,
               private modalService: NgbModal,
               private attackReportService: AttackReportService,
-              private calculateService: CalculationService,
+              private calculateService: RollService,
               private conditionService: ConditionService) {
   }
 

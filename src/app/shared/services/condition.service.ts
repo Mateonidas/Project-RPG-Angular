@@ -4,7 +4,7 @@ import {Condition} from "../../model/conditions/condition.model";
 import {ConditionsList} from "../../model/conditions/conditions-list.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {RollDialogWindowComponent} from "../../dialog-window/roll-dialog-window/roll-dialog-window.component";
-import {CalculationService} from "./calculation.service";
+import {RollService} from "./roll.service";
 import {SkillsList} from "../../model/skill/skill.model";
 
 @Injectable({
@@ -15,7 +15,7 @@ export class ConditionService {
   private conditionModifier = 0;
 
   constructor(private modalService: NgbModal,
-              private calculateService: CalculationService) {
+              private rollService: RollService) {
   }
 
   private createRollDialog(name: string, useModifier: boolean) {
@@ -50,7 +50,24 @@ export class ConditionService {
         }
       }
     }
-    character.clearConditionsWithZeroValue();
+    this.clearConditionsWithZeroValue(character);
+  }
+
+  clearConditionsWithZeroValue(character: SkirmishCharacter) {
+    for (let condition of character.conditions) {
+      if (condition.value <= 0) {
+        switch (condition.base) {
+          case ConditionsList.bleeding: {
+            character.removeCondition(condition.base);
+            character.addCondition(ConditionsList.fatigued);
+            break
+          }
+          default: {
+            character.removeCondition(condition.base);
+          }
+        }
+      }
+    }
   }
 
   private checkAblaze(character: SkirmishCharacter, condition: Condition) {
@@ -64,7 +81,7 @@ export class ConditionService {
   }
 
   private calculateAblazeDamage(damage: number, character: SkirmishCharacter) {
-    let finalDamage = damage - this.calculateService.calculateTraitBonus(character.characteristics.toughness.value) - character.getArmorFromLessArmoredLocalization();
+    let finalDamage = damage - this.rollService.calculateTraitBonus(character.characteristics.toughness.value) - character.getArmorFromLessArmoredLocalization();
 
     if (finalDamage <= 0) {
       finalDamage = 1;
@@ -94,7 +111,10 @@ export class ConditionService {
     character: SkirmishCharacter)
   {
     let deadBorder = condition.value * 10;
-    if (value.roll <= deadBorder) {
+    if(this.rollService.checkIfRollIsDouble(value.roll)){
+      condition.value -= 1;
+    }
+    else if (value.roll <= deadBorder) {
       character.isDead = true;
     }
   }
@@ -115,7 +135,7 @@ export class ConditionService {
     if (skill === undefined) {
       skill = character.characteristics.willpower;
     }
-    let successLevel = this.calculateService.calculateSuccessLevel(skill.value, character);
+    let successLevel = this.rollService.calculateSuccessLevel(skill.value, character);
     if (successLevel >= 0) {
       condition.value -= successLevel + 1;
       if (condition.value <= 0) {
@@ -181,7 +201,7 @@ export class ConditionService {
 
   private checkDeafenedInFight(owner: SkirmishCharacter, opponent: SkirmishCharacter, conditionLevel: number) {
     if (opponent.isAttacker && owner.isFlanked) {
-      this.setConditionModifier(10 * conditionLevel);
+      opponent.modifier += 10 * conditionLevel;
     }
   }
 

@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CalculationService {
+export class RollService {
 
-  constructor() { }
+  constructor() {
+  }
 
   calculateSuccessLevelDifference(firstSuccessLevel: number, secondSuccessLevel: number) {
     return firstSuccessLevel - secondSuccessLevel;
@@ -20,5 +21,9 @@ export class CalculationService {
     return (Math.floor((skillValue + skirmishCharacter.modifier) / 10)
       - Math.floor(skirmishCharacter.roll / 10)
       + skirmishCharacter.advantage);
+  }
+
+  checkIfRollIsDouble(roll: number) {
+    return roll.toLocaleString()[0] === roll.toLocaleString()[1];
   }
 }

@@ -1,4 +1,4 @@
-import {fakeAsync, TestBed} from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 import {ConditionService} from "./condition.service";
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {Character} from "../../model/character/character.model";
@@ -14,13 +14,24 @@ describe('ConditionService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     conditionService = TestBed.inject(ConditionService);
-    prepareSkirmishCharacter();
-
+    skirmishCharacter = prepareSkirmishCharacter();
   })
 
   it('should be created', () => {
     expect(conditionService).toBeTruthy();
   })
+
+  it('should not set modifier if character has no conditions', () => {
+    let opponent  = prepareSkirmishCharacter();
+
+    conditionService['fightCheckCondition'](skirmishCharacter, opponent);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      modifier: 0
+    }));
+    expect(opponent).toEqual(objectContaining({
+      modifier: 0
+    }));
+  });
 
   //----Ablaze condition
   it('should remove 2 wounds from ablaze ', () => {
@@ -73,6 +84,55 @@ describe('ConditionService', () => {
     }))
   });
 
+  it('character should not be dead after successful roll on bleeding out', () => {
+    addBleedingCondition(4);
+
+    conditionService['checkBleedingOut'](skirmishCharacter.conditions[0],{roll: 50, modifier: 0} ,skirmishCharacter);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      isDead: false
+    }))
+  });
+
+  it('should remove one level of bleeding condition after double in roll on bleeding out', () => {
+    addBleedingCondition(4);
+
+    let conditions = [
+      new Condition(ConditionsList.bleeding, 3)
+    ]
+
+    conditionService['checkBleedingOut'](skirmishCharacter.conditions[0],{roll: 22, modifier: 0} ,skirmishCharacter);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      conditions: conditions
+    }))
+  });
+
+  it('should add fatigue condition if bleeding condition was removed', () => {
+    addBleedingCondition(0);
+
+    let conditions = [
+      new Condition(ConditionsList.fatigued, 1)
+    ];
+
+    conditionService['clearConditionsWithZeroValue'](skirmishCharacter);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      conditions: conditions
+    }))
+  });
+
+  //----Blinded condition
+  it('should set modifier if character is blinded', () => {
+    let opponent  = prepareSkirmishCharacter();
+    addBlindedCondition(2);
+
+    conditionService['fightCheckCondition'](skirmishCharacter, opponent);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      modifier: -20
+    }));
+    expect(opponent).toEqual(objectContaining({
+      modifier: 20
+    }));
+  });
+
   //----Broken condition
   it('should remove broken condition and add fatigue condition after roll with enough success level', () => {
     addBrokenCondition(2);
@@ -89,7 +149,7 @@ describe('ConditionService', () => {
     }));
   });
 
-  it('shouldn"t remove broken condition and add fatigue condition after roll with not enough success level', () => {
+  it('should not remove broken condition and add fatigue condition after roll with not enough success level', () => {
     addBrokenCondition(2);
     skirmishCharacter.roll = 40;
     skirmishCharacter.modifier = 0;
@@ -104,7 +164,7 @@ describe('ConditionService', () => {
     }));
   });
 
-  it('shouldn"t remove broken condition after failure roll',() => {
+  it('should not remove broken condition after failure roll',() => {
     addBrokenCondition(2);
     skirmishCharacter.roll = 50;
     skirmishCharacter.modifier = 0;
@@ -119,8 +179,33 @@ describe('ConditionService', () => {
     }));
   });
 
+  it('should set modifier if character is broken', () => {
+    let opponent  = prepareSkirmishCharacter();
+    addBrokenCondition(2);
+
+    conditionService['fightCheckCondition'](skirmishCharacter, opponent);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      modifier: -20
+    }));
+  });
+
+  //----Deafened condition
+  it('should set modifier if character is deafened nad flanked', () => {
+    addDeafenedCondition(2);
+    skirmishCharacter.isFlanked = false;
+
+    let opponent  = prepareSkirmishCharacter();
+    opponent.isAttacker = true;
+
+    conditionService['fightCheckCondition'](skirmishCharacter, opponent);
+    expect(opponent).toEqual(objectContaining({
+      modifier: 20
+    }));
+  });
+
+
   function prepareSkirmishCharacter() {
-    skirmishCharacter = new SkirmishCharacter(
+    return  new SkirmishCharacter(
       new Character(
         'Markus',
         'Mieszkaniec Ubersreiku.',
@@ -135,9 +220,6 @@ describe('ConditionService', () => {
         []
       )
     );
-    skirmishCharacter.conditions = [
-      new Condition(ConditionsList.broken, 2)
-    ]
   }
 
   function addAblazeCondition(level: number) {
@@ -152,9 +234,63 @@ describe('ConditionService', () => {
     ]
   }
 
+  function addBlindedCondition(level: number) {
+    skirmishCharacter.conditions = [
+      new Condition(ConditionsList.blinded, level)
+    ]
+  }
+
   function addBrokenCondition(level: number) {
     skirmishCharacter.conditions = [
       new Condition(ConditionsList.broken, level)
+    ]
+  }
+
+  function addDeafenedCondition(level: number) {
+    skirmishCharacter.conditions = [
+      new Condition(ConditionsList.deafened, level)
+    ]
+  }
+
+  function addEntangledCondition(level: number) {
+    skirmishCharacter.conditions = [
+      new Condition(ConditionsList.entangled, level)
+    ]
+  }
+
+  function addFatiguedCondition(level: number) {
+    skirmishCharacter.conditions = [
+      new Condition(ConditionsList.fatigued, level)
+    ]
+  }
+
+  function addPoisonedCondition(level: number) {
+    skirmishCharacter.conditions = [
+      new Condition(ConditionsList.poisoned, level)
+    ]
+  }
+
+  function addProneCondition(level: number) {
+    skirmishCharacter.conditions = [
+      new Condition(ConditionsList.prone, level)
+    ]
+  }
+
+  function addStunnedCondition(level: number) {
+    skirmishCharacter.conditions = [
+      new Condition(ConditionsList.stunned, level)
+    ]
+  }
+
+  function addSurprisedCondition(level: number) {
+    skirmishCharacter.conditions = [
+      new Condition(ConditionsList.surprised, level)
+    ]
+  }
+
+  function addUnconsciousCondition(level: number) {
+    skirmishCharacter.conditions = [
+      new Condition(ConditionsList.unconscious, level)
     ]
   }
 })
