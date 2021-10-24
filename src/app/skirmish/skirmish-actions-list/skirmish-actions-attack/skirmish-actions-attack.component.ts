@@ -36,7 +36,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
               protected skirmishService: SkirmishService,
               private modalService: NgbModal,
               private attackReportService: AttackReportService,
-              private calculateService: RollService,
+              private rollService: RollService,
               private conditionService: ConditionService) {
   }
 
@@ -109,10 +109,16 @@ export class SkirmishActionsAttackComponent implements OnInit {
       this.checkFightTraits(this.attacker, defender);
       this.attackReportService.targetModifier = String(defender.modifier);
 
-      this.attacker.successLevel = this.calculateService.calculateSuccessLevel(attackTrait.value, this.attacker);
+      this.attacker.successLevel = RollService.calculateSuccessLevel(attackTrait.value, this.attacker);
       this.attackReportService.attackerSuccessLevel = String(this.attacker.successLevel);
 
-      defender.successLevel = this.calculateService.calculateSuccessLevel(defender.getFightTrait().value, defender);
+      if(defender.checkIfHasCondition(ConditionsList.surprised)){
+        defender.successLevel = 0;
+      }
+      else {
+        defender.successLevel = RollService.calculateSuccessLevel(defender.getFightTrait().value, defender);
+      }
+
       this.attackReportService.targetSuccessLevel = String(defender.successLevel);
 
       this.checkAttackResult(this.attacker, defender);
@@ -170,17 +176,14 @@ export class SkirmishActionsAttackComponent implements OnInit {
 
   calculateDamage(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
     let damage = this.calculateFinalDamage(
-      this.calculateService.calculateSuccessLevelDifference(attacker.successLevel, defender.successLevel),
+      this.rollService.calculateSuccessLevelDifference(attacker.successLevel, defender.successLevel),
       this.calculateWeaponDamage(attacker),
-      this.calculateService.calculateTraitBonus(defender.characteristics.toughness.value),
+      RollService.calculateTraitBonus(defender.characteristics.toughness.value),
       this.getArmorPointsFromAttackLocalization(attacker.roll, defender));
 
     this.attackReportService.damage = String(damage);
     defender.currentWounds -= damage;
-    if(defender.currentWounds <= 0) {
-      defender.currentWounds = 0;
-      defender.addCondition(ConditionsList.prone);
-    }
+    this.conditionService.checkProneAfterDamage(defender);
   }
 
   private calculateWeaponDamage(character: SkirmishCharacter) {

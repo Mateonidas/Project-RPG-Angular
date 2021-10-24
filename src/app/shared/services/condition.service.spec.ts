@@ -17,6 +17,7 @@ describe('ConditionService', () => {
     skirmishCharacter = prepareSkirmishCharacter();
   })
 
+  //----General tests
   it('should be created', () => {
     expect(conditionService).toBeTruthy();
   })
@@ -32,6 +33,35 @@ describe('ConditionService', () => {
       modifier: 0
     }));
   });
+
+  it('should set modifier only from condition with highest level', () => {
+    let opponent  = prepareSkirmishCharacter();
+    opponent.isAttacker = true;
+
+    addBlindedCondition(2);
+    addDeafenedCondition(3);
+    addFatiguedCondition(5);
+    skirmishCharacter.isFlanked = true;
+
+    conditionService.fightCheckCondition(skirmishCharacter, opponent);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      modifier: -50
+    }));
+  });
+
+  it('should set character unconscious after Toughness Bonus rounds when character has 0 wounds', () => {
+    skirmishCharacter.currentWounds = 0;
+    skirmishCharacter.unconsciousCounter = 0;
+
+    let conditions = [
+      new Condition(ConditionsList.unconscious, 1),
+    ]
+
+    conditionService.endTurnCheckConditions(skirmishCharacter);
+    expect(skirmishCharacter).toEqual(objectContaining({
+        conditions: conditions
+    }));
+  })
 
   //----Ablaze condition
   it('should remove 2 wounds from ablaze ', () => {
@@ -122,7 +152,7 @@ describe('ConditionService', () => {
   //----Blinded condition
   it('should set modifier if character is blinded', () => {
     let opponent  = prepareSkirmishCharacter();
-    addBlindedCondition(2);
+    addBlindedCondition(1.5);
 
     conditionService['fightCheckCondition'](skirmishCharacter, opponent);
     expect(skirmishCharacter).toEqual(objectContaining({
@@ -132,6 +162,19 @@ describe('ConditionService', () => {
       modifier: 20
     }));
   });
+
+  it('should remove half of level of deafened condition at the end of turn', () => {
+    addBlindedCondition(1);
+
+    let conditions = [
+      new Condition(ConditionsList.blinded, 0.5)
+    ]
+
+    conditionService.endTurnCheckConditions(skirmishCharacter);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      conditions: conditions
+    }))
+  })
 
   //----Broken condition
   it('should remove broken condition and add fatigue condition after roll with enough success level', () => {
@@ -190,9 +233,9 @@ describe('ConditionService', () => {
   });
 
   //----Deafened condition
-  it('should set modifier if character is deafened nad flanked', () => {
+  it('should set modifier if character is deafened and flanked', () => {
     addDeafenedCondition(2);
-    skirmishCharacter.isFlanked = false;
+    skirmishCharacter.isFlanked = true;
 
     let opponent  = prepareSkirmishCharacter();
     opponent.isAttacker = true;
@@ -203,7 +246,245 @@ describe('ConditionService', () => {
     }));
   });
 
+  it('should not set modifier if character is deafened but not flanked', () => {
+    addDeafenedCondition(2);
+    skirmishCharacter.isFlanked = false;
 
+    let opponent  = prepareSkirmishCharacter();
+    opponent.isAttacker = true;
+
+    conditionService['fightCheckCondition'](skirmishCharacter, opponent);
+    expect(opponent).toEqual(objectContaining({
+      modifier: 0
+    }));
+  });
+
+  it('should remove one level of deafened condition at the end of turn', () => {
+    addDeafenedCondition(2);
+
+    let conditions = [
+      new Condition(ConditionsList.deafened, 1)
+    ]
+
+    conditionService.endTurnCheckConditions(skirmishCharacter);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      conditions: conditions
+    }))
+  })
+
+  it('should remove deafened condition with 0 level at the end of turn', () => {
+    addDeafenedCondition(1);
+
+    conditionService.endTurnCheckConditions(skirmishCharacter);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      conditions: []
+    }))
+  })
+
+  //----Entangled condition
+  it('should add modifier if character is entangled', () => {
+    addEntangledCondition(2);
+
+    let opponent = prepareSkirmishCharacter();
+
+    conditionService.fightCheckCondition(skirmishCharacter, opponent);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      modifier: -20
+    }))
+  })
+
+  //----Fatigued condition
+  it('should add modifier if character is fatigued', () => {
+    addFatiguedCondition(2);
+
+    let opponent = prepareSkirmishCharacter();
+
+    conditionService.fightCheckCondition(skirmishCharacter, opponent);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      modifier: -20
+    }))
+  })
+
+  //----Poisoned condition
+  it('should remove 4 wounds at the end of turn if character is poisoned', () => {
+    addPoisonedCondition(4);
+
+    conditionService.endTurnCheckConditions(skirmishCharacter);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      currentWounds: 11
+    }))
+  })
+
+  it('should add modifier if character is poisoned', () => {
+    addPoisonedCondition(3);
+
+    let opponent = prepareSkirmishCharacter();
+
+    conditionService.fightCheckCondition(skirmishCharacter, opponent);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      modifier: -30
+    }))
+  })
+
+  it('character should die if is unconscious and poisoned and endurance test failed', () => {
+    addPoisonedCondition(3);
+    skirmishCharacter.roll = 50;
+    skirmishCharacter.modifier = 0;
+
+    conditionService['checkDeathFromPoison'](skirmishCharacter);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      isDead: true
+    }))
+  })
+
+  it('character should not die if is unconscious and poisoned and endurance test was successful', () => {
+    addPoisonedCondition(3);
+    skirmishCharacter.roll = 30;
+    skirmishCharacter.modifier = 0;
+
+    conditionService['checkDeathFromPoison'](skirmishCharacter);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      isDead: false
+    }))
+  })
+
+  it('should remove one level of poisoned condition after successful endurance test at the end of turn', () => {
+    addPoisonedCondition(3);
+    skirmishCharacter.roll = 40;
+
+    let conditions = [
+      new Condition(ConditionsList.poisoned, 2)
+    ]
+
+    conditionService['calculatePoisonedLevel'](skirmishCharacter, skirmishCharacter.conditions[0]);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      conditions: conditions
+    }))
+  })
+
+  it('should add fatigued condition after removing all levels of poisoned condition', () => {
+    addPoisonedCondition(1);
+    skirmishCharacter.roll = 40;
+
+    let conditions = [
+      new Condition(ConditionsList.fatigued, 1)
+    ]
+
+    conditionService['calculatePoisonedLevel'](skirmishCharacter, skirmishCharacter.conditions[0]);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      conditions: conditions
+    }))
+  })
+
+  //----Prone condition
+  it('should add prone condition after drop wounds to 0', () => {
+    skirmishCharacter.currentWounds = 0;
+
+    let conditions = [
+      new Condition(ConditionsList.prone, 1)
+    ]
+
+    conditionService.checkProneAfterDamage(skirmishCharacter);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      conditions: conditions
+    }))
+  })
+
+  it('should add modifier when defender has prone condition', () => {
+    addProneCondition(1);
+    let opponent = prepareSkirmishCharacter();
+
+    conditionService.fightCheckCondition(skirmishCharacter, opponent);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      modifier: -20
+    }))
+    expect(opponent).toEqual(objectContaining({
+      modifier: 20
+    }))
+  })
+
+  it('should remove one level of stunned condition after successful endurance test at the end of turn', () => {
+    addStunnedCondition(3);
+    skirmishCharacter.roll = 40;
+
+    let conditions = [
+      new Condition(ConditionsList.stunned, 2)
+    ]
+
+    conditionService['calculateStunnedLevel'](skirmishCharacter, skirmishCharacter.conditions[0]);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      conditions: conditions
+    }))
+  })
+
+  //----Stunned condition
+  it('should add modifier to defender and advantage to opponent when defender has stunned condition', () => {
+    addStunnedCondition(2);
+    let opponent = prepareSkirmishCharacter();
+
+    conditionService.fightCheckCondition(skirmishCharacter, opponent);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      modifier: -20
+    }))
+    expect(opponent).toEqual(objectContaining({
+      advantage: 1
+    }))
+  })
+
+  it('should add fatigued condition after removing all levels of stunned condition', () => {
+    addStunnedCondition(1);
+    skirmishCharacter.roll = 40;
+
+    let conditions = [
+      new Condition(ConditionsList.fatigued, 1)
+    ]
+
+    conditionService['calculateStunnedLevel'](skirmishCharacter, skirmishCharacter.conditions[0]);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      conditions: conditions
+    }))
+  })
+
+  it('should not add fatigued condition after removing all levels of stunned condition if character already has fatigued condition', () => {
+    addStunnedCondition(1);
+    addFatiguedCondition(1)
+    skirmishCharacter.roll = 40;
+
+    let conditions = [
+      new Condition(ConditionsList.fatigued, 1)
+    ];
+
+    conditionService['calculateStunnedLevel'](skirmishCharacter, skirmishCharacter.conditions[0]);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      conditions: conditions
+    }));
+  })
+
+  //----Surprised condition
+  it('should add modifier to opponent if character is surprised and remove this condition after first attack', () => {
+    addSurprisedCondition(1)
+    let opponent = prepareSkirmishCharacter()
+
+    conditionService.fightCheckCondition(skirmishCharacter, opponent);
+    expect(opponent).toEqual(objectContaining({
+      modifier: 20,
+      advantage: 1
+    }));
+    expect(skirmishCharacter).toEqual(objectContaining({
+      conditions: []
+    }));
+  })
+
+  it('should remove surprised condition at then end of turn', () => {
+    addSurprisedCondition(1)
+
+    conditionService.endTurnCheckConditions(skirmishCharacter);
+    expect(skirmishCharacter).toEqual(objectContaining({
+      conditions: []
+    }));
+  })
+
+  //----Prepare test data
   function prepareSkirmishCharacter() {
     return  new SkirmishCharacter(
       new Character(

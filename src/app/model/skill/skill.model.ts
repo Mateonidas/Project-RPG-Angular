@@ -9,6 +9,7 @@ export class SkillsList extends ListModel {
   public static list = [
     new Skill('Cool', 'Opanowanie'),
     new Skill('Dodge', 'Unik'),
+    new Skill('Endurance', 'Odporność'),
     new Skill('RangedCrossbow', 'Broń Zasięgowa (Kusze)'),
     new Skill('MeleeBasic', 'Walka Wręcz (Podstawowa)'),
     new Skill('MeleeCavalry', 'Walka Wręcz (Kawaleryjska)'),
@@ -26,6 +27,10 @@ export class SkillsList extends ListModel {
 
   static get dodge(): Skill {
     return <Skill>this.getListItemByName('Dodge');
+  }
+
+  static get endurance(): Skill {
+    return <Skill>this.getListItemByName('Endurance');
   }
 
   static get rangedCrossbow(): Skill {

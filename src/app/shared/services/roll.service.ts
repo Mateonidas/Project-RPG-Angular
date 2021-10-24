@@ -13,11 +13,11 @@ export class RollService {
     return firstSuccessLevel - secondSuccessLevel;
   }
 
-  calculateTraitBonus(traitValue: number) {
+  static calculateTraitBonus(traitValue: number) {
     return Math.floor(traitValue / 10);
   }
 
-  calculateSuccessLevel(skillValue: number, skirmishCharacter: SkirmishCharacter) {
+  static calculateSuccessLevel(skillValue: number, skirmishCharacter: SkirmishCharacter) {
     return (Math.floor((skillValue + skirmishCharacter.modifier) / 10)
       - Math.floor(skirmishCharacter.roll / 10)
       + skirmishCharacter.advantage);

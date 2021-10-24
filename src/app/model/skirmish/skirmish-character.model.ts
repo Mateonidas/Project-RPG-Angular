@@ -7,6 +7,7 @@ import {Condition} from "../conditions/condition.model";
 import {Model} from "../model";
 import {ConditionsList} from "../conditions/conditions-list.model";
 import {ArmorBodyLocalization} from "../armor/armor-body-localization.model";
+import {RollService} from "../../shared/services/roll.service";
 
 export class SkirmishCharacter extends Character {
 
@@ -24,6 +25,7 @@ export class SkirmishCharacter extends Character {
   private _isDead!: boolean;
   private _isEngaged!: boolean;
   private _isFlanked!: boolean;
+  private _unconsciousCounter!: number;
 
   constructor(character: Character) {
     super(character.name, character.description, character.characteristics, character.skills, character.talents, character.isRightHanded, character.weapons, character.armor);
@@ -36,6 +38,7 @@ export class SkirmishCharacter extends Character {
     this.fillLocalizationArmorPoints();
     this._isDead = false;
     this._isEngaged = false;
+    this.resetUnconsciousCounter();
   }
 
   private fillLocalizationArmorPoints() {
@@ -114,19 +117,25 @@ export class SkirmishCharacter extends Character {
     return this.conditions.filter(e => e.base === condition).length > 0;
   }
 
+  resetUnconsciousCounter() {
+    this.unconsciousCounter = RollService.calculateTraitBonus(this.characteristics.toughness.value);
+  }
+
   addCondition(newCondition: Model) {
     if (this.conditions.length === 0) {
       this.conditions.push(new Condition(newCondition, 1));
     } else {
+      let found = false;
       for (let condition of this.conditions) {
         if (condition.base === newCondition) {
           if (!(condition.base === ConditionsList.prone ||
             condition.base === ConditionsList.unconscious ||
             condition.base === ConditionsList.surprised))
             condition.value += 1;
-        } else {
-          this.conditions.push(new Condition(newCondition, 1));
         }
+      }
+      if(!found) {
+        this.conditions.push(new Condition(newCondition, 1));
       }
     }
   }
@@ -246,5 +255,13 @@ export class SkirmishCharacter extends Character {
 
   set isFlanked(value: boolean) {
     this._isFlanked = value;
+  }
+
+  get unconsciousCounter(): number {
+    return this._unconsciousCounter;
+  }
+
+  set unconsciousCounter(value: number) {
+    this._unconsciousCounter = value;
   }
 }

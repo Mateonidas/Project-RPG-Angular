@@ -48,9 +48,76 @@ export class ConditionService {
           this.checkDeafened(condition);
           break;
         }
+        case ConditionsList.poisoned: {
+          this.checkPoisoned(character, condition);
+          break;
+        }
+        case ConditionsList.stunned: {
+          this.checkStunned(character, condition);
+          break;
+        }
+        case ConditionsList.surprised: {
+          this.checkSurprised(character);
+          break;
+        }
       }
     }
+
+    this.checkCharacterConscious(character);
     this.clearConditionsWithZeroValue(character);
+  }
+
+  checkCharacterConscious(character: SkirmishCharacter) {
+    let isUnconscious = character.checkIfHasCondition(ConditionsList.unconscious)
+    let isPoisoned = character.checkIfHasCondition(ConditionsList.poisoned)
+
+    if (character.currentWounds > 0) {
+      character.resetUnconsciousCounter();
+      if (isUnconscious) {
+        character.removeCondition(ConditionsList.unconscious);
+        character.addCondition(ConditionsList.prone);
+        character.addCondition(ConditionsList.fatigued);
+      }
+    } else if (character.currentWounds <= 0) {
+      if (!character.isDead
+        && !isUnconscious
+      ) {
+        this.checkUnconsciousCounter(character, isPoisoned);
+      } else if (!character.isDead && isUnconscious) {
+        if (isPoisoned) {
+          if (character.unconsciousCounter > 0) {
+            character.unconsciousCounter -= 1;
+          } else if (character.unconsciousCounter == 0) {
+            this.createRollDialog(character.name + ': Śmierć z zatrucia (k100)', true)
+              .subscribe((value: { roll: number, modifier: number }) => {
+                character.roll = value.roll;
+                character.modifier = value.modifier;
+                this.checkDeathFromPoison(character);
+              })
+          }
+        }
+      }
+    }
+  }
+
+  private checkUnconsciousCounter(character: SkirmishCharacter, isPoisoned: boolean) {
+    if (character.unconsciousCounter > 0) {
+      character.unconsciousCounter -= 1;
+    } else {
+      character.addCondition(ConditionsList.unconscious);
+      if (isPoisoned) {
+        character.resetUnconsciousCounter();
+      }
+    }
+  }
+
+  private checkDeathFromPoison(character: SkirmishCharacter) {
+    let successfulTest = RollService.calculateSuccessLevel(character.characteristics.toughness.value, character) >= 0;
+    if (!successfulTest) {
+      character.isDead = true;
+    } else {
+      character.unconsciousCounter = -1;
+    }
   }
 
   clearConditionsWithZeroValue(character: SkirmishCharacter) {
@@ -60,13 +127,19 @@ export class ConditionService {
           case ConditionsList.bleeding: {
             character.removeCondition(condition.base);
             character.addCondition(ConditionsList.fatigued);
-            break
+            break;
           }
           default: {
             character.removeCondition(condition.base);
           }
         }
       }
+    }
+  }
+
+  private setConditionModifier(modifier: number) {
+    if (modifier > this.conditionModifier) {
+      this.conditionModifier = modifier;
     }
   }
 
@@ -81,7 +154,7 @@ export class ConditionService {
   }
 
   private calculateAblazeDamage(damage: number, character: SkirmishCharacter) {
-    let finalDamage = damage - this.rollService.calculateTraitBonus(character.characteristics.toughness.value) - character.getArmorFromLessArmoredLocalization();
+    let finalDamage = damage - RollService.calculateTraitBonus(character.characteristics.toughness.value) - character.getArmorFromLessArmoredLocalization();
 
     if (finalDamage <= 0) {
       finalDamage = 1;
@@ -91,12 +164,12 @@ export class ConditionService {
   }
 
   private checkBleeding(character: SkirmishCharacter, condition: Condition) {
-    if (character.checkIfHasCondition(ConditionsList.unconscious)) {
+    if (character.checkIfHasCondition(ConditionsList.unconscious) && !character.isDead) {
       this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k100)', false)
         .subscribe((value: { roll: number, modifier: number }) => {
           this.checkBleedingOut(condition, value, character);
         })
-    } else {
+    } else if (!character.isDead){
       character.currentWounds -= condition.value;
       if (character.currentWounds <= 0) {
         character.currentWounds = 0;
@@ -108,13 +181,11 @@ export class ConditionService {
   private checkBleedingOut(
     condition: Condition,
     value: { roll: number; modifier: number },
-    character: SkirmishCharacter)
-  {
+    character: SkirmishCharacter) {
     let deadBorder = condition.value * 10;
-    if(this.rollService.checkIfRollIsDouble(value.roll)){
+    if (this.rollService.checkIfRollIsDouble(value.roll)) {
       condition.value -= 1;
-    }
-    else if (value.roll <= deadBorder) {
+    } else if (value.roll <= deadBorder) {
       character.isDead = true;
     }
   }
@@ -135,7 +206,7 @@ export class ConditionService {
     if (skill === undefined) {
       skill = character.characteristics.willpower;
     }
-    let successLevel = this.rollService.calculateSuccessLevel(skill.value, character);
+    let successLevel = RollService.calculateSuccessLevel(skill.value, character);
     if (successLevel >= 0) {
       condition.value -= successLevel + 1;
       if (condition.value <= 0) {
@@ -153,10 +224,64 @@ export class ConditionService {
     condition.value -= 1;
   }
 
-  private setConditionModifier(modifier: number) {
-    if (modifier > this.conditionModifier) {
-      this.conditionModifier = modifier;
+  private checkPoisoned(character: SkirmishCharacter, condition: Condition) {
+    character.currentWounds -= condition.value;
+    if (character.currentWounds <= 0) {
+      character.currentWounds = 0;
+      character.addCondition(ConditionsList.unconscious);
+    } else {
+      this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k100)', true)
+        .subscribe((value: { roll: number, modifier: number }) => {
+          character.roll = value.roll;
+          character.modifier = value.modifier;
+          this.calculatePoisonedLevel(character, condition);
+        })
     }
+  }
+
+  private calculatePoisonedLevel(character: SkirmishCharacter, condition: Condition) {
+    let skill = character.getSkill(SkillsList.endurance);
+    if (skill === undefined) {
+      skill = character.characteristics.toughness;
+    }
+    let successLevel = RollService.calculateSuccessLevel(skill.value, character);
+    if (successLevel >= 0) {
+      condition.value -= successLevel + 1;
+      if (condition.value <= 0) {
+        character.removeCondition(ConditionsList.poisoned);
+        character.addCondition(ConditionsList.fatigued);
+      }
+    }
+  }
+
+  private checkStunned(character: SkirmishCharacter, condition: Condition) {
+    this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k100)', true)
+      .subscribe((value: { roll: number, modifier: number }) => {
+        character.roll = value.roll;
+        character.modifier = value.modifier;
+        this.calculateStunnedLevel(character, condition);
+      })
+  }
+
+  private calculateStunnedLevel(character: SkirmishCharacter, condition: Condition) {
+    let skill = character.getSkill(SkillsList.endurance);
+    if (skill === undefined) {
+      skill = character.characteristics.toughness;
+    }
+    let successLevel = RollService.calculateSuccessLevel(skill.value, character);
+    if (successLevel >= 0) {
+      condition.value -= successLevel + 1;
+      if (condition.value <= 0) {
+        character.removeCondition(ConditionsList.stunned);
+        if (!character.checkIfHasCondition(ConditionsList.fatigued)) {
+          character.addCondition(ConditionsList.fatigued);
+        }
+      }
+    }
+  }
+
+  private checkSurprised(character: SkirmishCharacter) {
+    character.removeCondition(ConditionsList.surprised);
   }
 
   fightCheckCondition(owner: SkirmishCharacter, opponent: SkirmishCharacter) {
@@ -182,6 +307,22 @@ export class ConditionService {
           this.checkFatiguedInFight(condition.value);
           break;
         }
+        case ConditionsList.poisoned: {
+          this.checkPoisonedInFight(condition.value);
+          break;
+        }
+        case ConditionsList.prone: {
+          this.checkProneInFight(opponent);
+          break;
+        }
+        case ConditionsList.stunned: {
+          this.checkStunnedInFight(opponent, condition.value);
+          break;
+        }
+        case ConditionsList.surprised: {
+          this.checkSurprisedInFight(owner, opponent);
+          break;
+        }
       }
     }
 
@@ -189,9 +330,9 @@ export class ConditionService {
   }
 
   private checkBlindedInFight(owner: SkirmishCharacter, opponent: SkirmishCharacter, conditionLevel: number) {
-    this.setConditionModifier(10 * conditionLevel);
+    this.setConditionModifier(10 * Math.ceil(conditionLevel));
     if (!owner.isAttacker) {
-      opponent.modifier += 10 * conditionLevel;
+      opponent.modifier += 10 * Math.ceil(conditionLevel);
     }
   }
 
@@ -211,5 +352,32 @@ export class ConditionService {
 
   private checkFatiguedInFight(conditionLevel: number) {
     this.setConditionModifier(10 * conditionLevel);
+  }
+
+  private checkPoisonedInFight(conditionLevel: number) {
+    this.setConditionModifier(10 * conditionLevel);
+  }
+
+  private checkProneInFight(opponent: SkirmishCharacter) {
+    this.setConditionModifier(20);
+    opponent.modifier += 20;
+  }
+
+  private checkStunnedInFight(opponent: SkirmishCharacter, conditionLevel: number) {
+    this.setConditionModifier(10*conditionLevel);
+    opponent.advantage += 1;
+  }
+
+  private checkSurprisedInFight(character: SkirmishCharacter, opponent: SkirmishCharacter) {
+    opponent.advantage += 1;
+    opponent.modifier += 20;
+    character.removeCondition(ConditionsList.surprised);
+  }
+
+  public checkProneAfterDamage(character: SkirmishCharacter) {
+    if (character.currentWounds <= 0) {
+      character.currentWounds = 0;
+      character.addCondition(ConditionsList.prone);
+    }
   }
 }
