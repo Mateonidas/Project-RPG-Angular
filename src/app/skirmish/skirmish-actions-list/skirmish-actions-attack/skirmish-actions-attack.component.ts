@@ -109,14 +109,14 @@ export class SkirmishActionsAttackComponent implements OnInit {
       this.checkFightTraits(this.attacker, defender);
       this.attackReportService.targetModifier = String(defender.modifier);
 
-      this.attacker.successLevel = RollService.calculateSuccessLevel(attackTrait.value, this.attacker);
+      this.attacker.successLevel = RollService.calculateSuccessLevel(attackTrait.value, this.attacker).successLevel;
       this.attackReportService.attackerSuccessLevel = String(this.attacker.successLevel);
 
       if(defender.checkIfHasCondition(ConditionsList.surprised)){
         defender.successLevel = 0;
       }
       else {
-        defender.successLevel = RollService.calculateSuccessLevel(defender.getFightTrait().value, defender);
+        defender.successLevel = RollService.calculateSuccessLevel(defender.getFightTrait().value, defender).successLevel;
       }
 
       this.attackReportService.targetSuccessLevel = String(defender.successLevel);

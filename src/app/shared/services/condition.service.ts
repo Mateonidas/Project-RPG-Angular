@@ -112,8 +112,8 @@ export class ConditionService {
   }
 
   private checkDeathFromPoison(character: SkirmishCharacter) {
-    let successfulTest = RollService.calculateSuccessLevel(character.characteristics.toughness.value, character) >= 0;
-    if (!successfulTest) {
+    let successfulTest = RollService.calculateSuccessLevel(character.characteristics.toughness.value, character);
+    if (!successfulTest.isSuccessful) {
       character.isDead = true;
     } else {
       character.unconsciousCounter = -1;
@@ -206,9 +206,9 @@ export class ConditionService {
     if (skill === undefined) {
       skill = character.characteristics.willpower;
     }
-    let successLevel = RollService.calculateSuccessLevel(skill.value, character);
-    if (successLevel >= 0) {
-      condition.value -= successLevel + 1;
+    let rollResult = RollService.calculateSuccessLevel(skill.value, character);
+    if (rollResult.isSuccessful) {
+      condition.value -= rollResult.successLevel + 1;
       if (condition.value <= 0) {
         character.removeCondition(ConditionsList.broken);
         character.addCondition(ConditionsList.fatigued);
@@ -244,9 +244,9 @@ export class ConditionService {
     if (skill === undefined) {
       skill = character.characteristics.toughness;
     }
-    let successLevel = RollService.calculateSuccessLevel(skill.value, character);
-    if (successLevel >= 0) {
-      condition.value -= successLevel + 1;
+    let rollResult = RollService.calculateSuccessLevel(skill.value, character);
+    if (rollResult.isSuccessful) {
+      condition.value -= rollResult.successLevel + 1;
       if (condition.value <= 0) {
         character.removeCondition(ConditionsList.poisoned);
         character.addCondition(ConditionsList.fatigued);
@@ -268,9 +268,9 @@ export class ConditionService {
     if (skill === undefined) {
       skill = character.characteristics.toughness;
     }
-    let successLevel = RollService.calculateSuccessLevel(skill.value, character);
-    if (successLevel >= 0) {
-      condition.value -= successLevel + 1;
+    let rollResult = RollService.calculateSuccessLevel(skill.value, character);
+    if (rollResult.isSuccessful) {
+      condition.value -= rollResult.successLevel + 1;
       if (condition.value <= 0) {
         character.removeCondition(ConditionsList.stunned);
         if (!character.checkIfHasCondition(ConditionsList.fatigued)) {
