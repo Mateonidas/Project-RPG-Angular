@@ -1,0 +1,5 @@
+.dead-character {
+  -webkit-filter: blur(1px);
+  -ms-filter: blur(1px);
+  filter: blur(1px);
+}

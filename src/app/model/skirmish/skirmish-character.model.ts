@@ -128,13 +128,15 @@ export class SkirmishCharacter extends Character {
       let found = false;
       for (let condition of this.conditions) {
         if (condition.base === newCondition) {
+          found = true;
           if (!(condition.base === ConditionsList.prone ||
             condition.base === ConditionsList.unconscious ||
-            condition.base === ConditionsList.surprised))
+            condition.base === ConditionsList.surprised)) {
             condition.value += 1;
+          }
         }
       }
-      if(!found) {
+      if (!found) {
         this.conditions.push(new Condition(newCondition, 1));
       }
     }

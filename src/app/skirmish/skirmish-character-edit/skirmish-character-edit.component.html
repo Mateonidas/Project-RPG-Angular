@@ -29,6 +29,19 @@
             </thead>
             <tbody>
             <tr>
+              <td>Żyje</td>
+              <td>
+                <select class="form-select table-input" formControlName="isDead">
+                  <option [ngValue]=false>
+                    Tak
+                  </option>
+                  <option [ngValue]=true>
+                    Nie
+                  </option>
+                </select>
+              </td>
+            </tr>
+            <tr>
               <td>Żywotność</td>
               <td>
                 <input type="text" class="form-control table-input" formControlName="currentWounds">

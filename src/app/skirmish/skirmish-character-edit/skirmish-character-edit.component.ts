@@ -6,7 +6,6 @@ import {SkirmishService} from "../skirmish-service/skirmish.service";
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {CharacterFormArraysWrapper} from "../../model/character/character-form-arrays-wrapper.model";
 import {EditFormComponent} from "../../edit-form/edit-form.component";
-import {Weapon} from "../../model/weapon/weapon.model";
 import {Condition} from "../../model/conditions/condition.model";
 import {ConditionsList} from "../../model/conditions/conditions-list.model";
 
@@ -33,12 +32,14 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
     let characteristics = SkirmishCharacterEditComponent.initEditCharacteristicsTable(character.characteristics);
     let conditions = this.prepareConditionsList(character.conditions);
     let formArrays = new CharacterFormArraysWrapper();
+    this.isDead = character.isDead;
 
     this.prepareEditData(character, formArrays);
 
     this.editCharacterForm = new FormGroup({
       'name': new FormControl(characterName),
       'description': new FormControl(characterDescription),
+      'isDead': new FormControl(this.isDead),
       'currentWounds': new FormControl(character.currentWounds),
       'skirmishInitiative': new FormControl(character.skirmishInitiative),
       'advantage': new FormControl(character.advantage),
@@ -86,6 +87,7 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
     skirmishCharacter.skirmishInitiative = this.editCharacterForm.value.skirmishInitiative;
     skirmishCharacter.advantage = this.editCharacterForm.value.advantage;
     skirmishCharacter.conditions = this.editCharacterForm.value.conditions;
+    skirmishCharacter.isDead = this.editCharacterForm.value.isDead;
 
     return skirmishCharacter;
   }

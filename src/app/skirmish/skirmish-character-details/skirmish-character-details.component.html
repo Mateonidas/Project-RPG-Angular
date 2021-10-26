@@ -35,6 +35,11 @@
       </thead>
       <tbody>
       <tr>
+        <td>Żyje</td>
+        <td *ngIf="skirmishCharacter.isDead">Nie</td>
+        <td *ngIf="!skirmishCharacter.isDead">Tak</td>
+      </tr>
+      <tr>
         <td>Żywotność</td>
         <td>{{skirmishCharacter.currentWounds}}/{{skirmishCharacter.characteristics.wounds.value}}</td>
       </tr>

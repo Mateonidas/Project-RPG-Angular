@@ -1,40 +1,47 @@
-<div class="dropdown">
-<a
-  style="cursor: pointer"
-  class="list-group-item clearfix rounded mb-2"  id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"
-  routerLinkActive="active">
-  <div class="row">
-    <div class="col-md-6">
-      <h4 class="list-group-item-heading">{{skirmishCharacter.name}}</h4>
-      <p class="list-group-item-text">{{skirmishCharacter.description}}</p>
-    </div>
-    <div class="col-md-3">
-      <h6 class="list-group-item-heading">Inicjatywa</h6>
-      <p class="list-group-item-text">{{skirmishCharacter.skirmishInitiative}}</p>
-    </div>
-    <div class="col-md-3">
-      <h6 class="list-group-item-heading">Żywotność</h6>
-      <p class="list-group-item-text">{{skirmishCharacter.currentWounds}}
-        /{{skirmishCharacter.characteristics.wounds.value}}</p>
-    </div>
-  </div><div class="row">
-  <div class="col-md-6">
-  </div>
-  <div class="col-md-3">
-    <h6 class="list-group-item-heading">Przewagi</h6>
-    <p class="list-group-item-text">{{skirmishCharacter.advantage}}</p>
-  </div>
-  <div class="col-md-3">
-    <h6 class="list-group-item-heading">Stany</h6>
-    <p *ngFor="let condition of skirmishCharacter.conditions" class="list-group-item-text">
-      - {{condition.base.nameTranslation}} {{condition.value}}
-    </p>
-  </div>
-</div>
-</a>
+<div>
+  <div [ngClass]="skirmishCharacter.isDead == true ? 'dropdown dead-character' : 'dropdown'">
+    <a
+      style="cursor: pointer"
+      class="list-group-item clearfix rounded mb-2" id="dropdownMenuLink" data-bs-toggle="dropdown"
+      aria-expanded="false"
+      routerLinkActive="active">
+      <div class="row">
+        <div class="col-md-6">
+          <h4 class="list-group-item-heading">{{skirmishCharacter.name}}</h4>
+          <p class="list-group-item-text">{{skirmishCharacter.description}}</p>
+        </div>
+        <div class="col-md-3" *ngIf="!skirmishCharacter.isDead">
+          <h6 class="list-group-item-heading">Inicjatywa</h6>
+          <p class="list-group-item-text">{{skirmishCharacter.skirmishInitiative}}</p>
+        </div>
+        <div class="col-md-3" *ngIf="!skirmishCharacter.isDead">
+          <h6 class="list-group-item-heading">Żywotność</h6>
+          <p class="list-group-item-text">{{skirmishCharacter.currentWounds}}
+            /{{skirmishCharacter.characteristics.wounds.value}}</p>
+        </div>
+        <div class="col-md-6" *ngIf="skirmishCharacter.isDead">
+          <h4 class="list-group-item-heading">Martwy</h4>
+        </div>
+      </div>
+      <div class="row" *ngIf="!skirmishCharacter.isDead">
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-3">
+          <h6 class="list-group-item-heading">Przewagi</h6>
+          <p class="list-group-item-text">{{skirmishCharacter.advantage}}</p>
+        </div>
+        <div class="col-md-3">
+          <h6 class="list-group-item-heading">Stany</h6>
+          <p *ngFor="let condition of skirmishCharacter.conditions" class="list-group-item-text">
+            - {{condition.base.nameTranslation}} {{condition.value}}
+          </p>
+        </div>
+      </div>
+    </a>
 
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <a class="dropdown-item" [routerLink]="[index]">Szczegóły</a>
-    <a class="dropdown-item" [routerLink]="[index] + '/actions'">Akcje</a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <a class="dropdown-item" [routerLink]="[index]">Szczegóły</a>
+      <a class="dropdown-item" [routerLink]="[index] + '/actions'">Akcje</a>
+    </div>
   </div>
 </div>

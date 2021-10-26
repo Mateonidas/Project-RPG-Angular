@@ -23,6 +23,7 @@ export class EditFormComponent implements OnInit {
   weaponsList = WeaponsList.list;
   armorsList = ArmorsList.list;
   isRightHanded = true;
+  isDead!: boolean;
   id!: number;
 
   constructor(protected router: Router,
