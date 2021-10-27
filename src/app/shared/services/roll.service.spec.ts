@@ -6,46 +6,40 @@ import {CharacterCharacteristics} from "../../model/characteristic/character-cha
 
 describe('RollService', () => {
 
-  let rollService: RollService;
   let character: SkirmishCharacter;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    rollService = TestBed.inject(RollService);
     character = prepareSkirmishCharacter();
   })
 
-  it('should be created', () => {
-    expect(rollService).toBeTruthy();
-  })
-
   it('should return true if roll is a double', () => {
-    expect(rollService["checkIfRollIsDouble"](22)).toEqual(true);
+    expect(RollService["checkIfRollIsDouble"](22)).toEqual(true);
   })
 
   it('should return false if roll is not a double', () => {
-    expect(rollService["checkIfRollIsDouble"](27)).toEqual(false);
+    expect(RollService["checkIfRollIsDouble"](27)).toEqual(false);
   })
 
   it('should return 2 success level', () => {
     character.roll = 20;
     character.modifier = 0;
 
-    expect(RollService.calculateSuccessLevel(40, character).successLevel).toEqual(2);
+    expect(RollService.calculateRollResult(40, character).successLevel).toEqual(2);
   })
 
   it('should return true if roll was a failure', () => {
     character.roll = 40;
     character.modifier = 0;
 
-    expect(RollService.calculateSuccessLevel(40, character).isSuccessful).toEqual(true);
+    expect(RollService.calculateRollResult(40, character).isSuccessful).toEqual(true);
   })
 
   it('should return false if roll was a failure', () => {
     character.roll = 46;
     character.modifier = 0;
 
-    expect(RollService.calculateSuccessLevel(40, character).isSuccessful).toEqual(false);
+    expect(RollService.calculateRollResult(40, character).isSuccessful).toEqual(false);
   })
 
   //----Prepare test data

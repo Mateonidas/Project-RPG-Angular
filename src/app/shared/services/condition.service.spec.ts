@@ -66,16 +66,16 @@ describe('ConditionService', () => {
   //----Ablaze condition
   it('should remove 2 wounds from ablaze ', () => {
     addAblazeCondition(2);
-    skirmishCharacter.roll = 30;
-    skirmishCharacter.modifier = 0;
+    skirmishCharacter.roll.value = 30;
+    skirmishCharacter.roll.modifier = 0;
 
     expect(conditionService['calculateAblazeDamage'](6, skirmishCharacter)).toEqual(2);
   });
 
   it('should remove 1 wound from ablaze when final damage is lower than 0', () => {
     addAblazeCondition(2);
-    skirmishCharacter.roll = 30;
-    skirmishCharacter.modifier = 0;
+    skirmishCharacter.roll.value = 30;
+    skirmishCharacter.roll.modifier = 0;
 
     expect(conditionService['calculateAblazeDamage'](2, skirmishCharacter)).toEqual(1);
   });
@@ -179,8 +179,8 @@ describe('ConditionService', () => {
   //----Broken condition
   it('should remove broken condition and add fatigue condition after roll with enough success level', () => {
     addBrokenCondition(2);
-    skirmishCharacter.roll = 30;
-    skirmishCharacter.modifier = 0;
+    skirmishCharacter.roll.value = 30;
+    skirmishCharacter.roll.modifier = 0;
 
     const conditions = [
       new Condition(ConditionsList.fatigued, 1)
@@ -194,8 +194,8 @@ describe('ConditionService', () => {
 
   it('should not remove broken condition and add fatigue condition after roll with not enough success level', () => {
     addBrokenCondition(2);
-    skirmishCharacter.roll = 40;
-    skirmishCharacter.modifier = 0;
+    skirmishCharacter.roll.value = 40;
+    skirmishCharacter.roll.modifier = 0;
 
     const conditions = [
       new Condition(ConditionsList.broken, 1)
@@ -209,8 +209,8 @@ describe('ConditionService', () => {
 
   it('should not remove broken condition after failure roll',() => {
     addBrokenCondition(2);
-    skirmishCharacter.roll = 50;
-    skirmishCharacter.modifier = 0;
+    skirmishCharacter.roll.value = 50;
+    skirmishCharacter.roll.modifier = 0;
 
     const conditions = [
       new Condition(ConditionsList.broken, 2)
@@ -328,8 +328,8 @@ describe('ConditionService', () => {
 
   it('character should die if is unconscious and poisoned and endurance test failed', () => {
     addPoisonedCondition(3);
-    skirmishCharacter.roll = 50;
-    skirmishCharacter.modifier = 0;
+    skirmishCharacter.roll.value = 50;
+    skirmishCharacter.roll.modifier = 0;
 
     conditionService['checkDeathFromPoison'](skirmishCharacter);
     expect(skirmishCharacter).toEqual(objectContaining({
@@ -339,8 +339,8 @@ describe('ConditionService', () => {
 
   it('character should not die if is unconscious and poisoned and endurance test was successful', () => {
     addPoisonedCondition(3);
-    skirmishCharacter.roll = 30;
-    skirmishCharacter.modifier = 0;
+    skirmishCharacter.roll.value = 30;
+    skirmishCharacter.roll.modifier = 0;
 
     conditionService['checkDeathFromPoison'](skirmishCharacter);
     expect(skirmishCharacter).toEqual(objectContaining({
@@ -350,7 +350,7 @@ describe('ConditionService', () => {
 
   it('should remove one level of poisoned condition after successful endurance test at the end of turn', () => {
     addPoisonedCondition(3);
-    skirmishCharacter.roll = 40;
+    skirmishCharacter.roll.value = 40;
 
     let conditions = [
       new Condition(ConditionsList.poisoned, 2)
@@ -364,7 +364,7 @@ describe('ConditionService', () => {
 
   it('should add fatigued condition after removing all levels of poisoned condition', () => {
     addPoisonedCondition(1);
-    skirmishCharacter.roll = 40;
+    skirmishCharacter.roll.value = 40;
 
     let conditions = [
       new Condition(ConditionsList.fatigued, 1)
@@ -405,7 +405,7 @@ describe('ConditionService', () => {
 
   it('should remove one level of stunned condition after successful endurance test at the end of turn', () => {
     addStunnedCondition(3);
-    skirmishCharacter.roll = 40;
+    skirmishCharacter.roll.value = 40;
 
     let conditions = [
       new Condition(ConditionsList.stunned, 2)
@@ -433,7 +433,7 @@ describe('ConditionService', () => {
 
   it('should add fatigued condition after removing all levels of stunned condition', () => {
     addStunnedCondition(1);
-    skirmishCharacter.roll = 40;
+    skirmishCharacter.roll.value = 40;
 
     let conditions = [
       new Condition(ConditionsList.fatigued, 1)
@@ -448,7 +448,7 @@ describe('ConditionService', () => {
   it('should not add fatigued condition after removing all levels of stunned condition if character already has fatigued condition', () => {
     addStunnedCondition(1);
     addFatiguedCondition(1)
-    skirmishCharacter.roll = 40;
+    skirmishCharacter.roll.value = 40;
 
     let conditions = [
       new Condition(ConditionsList.fatigued, 1)

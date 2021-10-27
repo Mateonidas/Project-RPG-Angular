@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
-import {RollResult} from "../../model/roll/roll-result.model";
 
 @Injectable({
   providedIn: 'root'
@@ -18,16 +17,25 @@ export class RollService {
     return Math.floor(traitValue / 10);
   }
 
-  static calculateSuccessLevel(skillValue: number, skirmishCharacter: SkirmishCharacter) {
-    let successLevel = (Math.floor((skillValue + skirmishCharacter.modifier) / 10)
-      - Math.floor(skirmishCharacter.roll / 10)
-      + skirmishCharacter.advantage);
-    let isSuccessful = skillValue + skirmishCharacter.modifier >= skirmishCharacter.roll;
-
-    return new RollResult(successLevel, isSuccessful);
+  static calculateRollResult(skillValue: number, skirmishCharacter: SkirmishCharacter) {
+    skirmishCharacter.roll.successLevel = this.calculateSuccessLevel(skillValue, skirmishCharacter);
+    skirmishCharacter.roll.isDouble = this.checkIfRollIsDouble(skirmishCharacter.roll.value)
+    skirmishCharacter.roll.isSuccessful = skillValue + skirmishCharacter.roll.modifier >= skirmishCharacter.roll.value;
   }
 
-  checkIfRollIsDouble(roll: number) {
+  static calculateFightRollResult(skillValue: number, skirmishCharacter: SkirmishCharacter) {
+    skirmishCharacter.roll.successLevel = this.calculateSuccessLevel(skillValue, skirmishCharacter);
+    skirmishCharacter.roll.isDouble = this.checkIfRollIsDouble(skirmishCharacter.roll.value)
+    skirmishCharacter.roll.isSuccessful = skillValue >= skirmishCharacter.roll.value;
+  }
+
+  private static calculateSuccessLevel(skillValue: number, skirmishCharacter: SkirmishCharacter) {
+    return Math.floor((skillValue + skirmishCharacter.roll.modifier) / 10)
+      - Math.floor(skirmishCharacter.roll.value / 10)
+      + skirmishCharacter.advantage;
+  }
+
+  static checkIfRollIsDouble(roll: number) {
     return roll.toLocaleString()[0] === roll.toLocaleString()[1];
   }
 }

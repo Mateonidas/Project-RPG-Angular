@@ -8,18 +8,17 @@ import {Model} from "../model";
 import {ConditionsList} from "../conditions/conditions-list.model";
 import {ArmorBodyLocalization} from "../armor/armor-body-localization.model";
 import {RollService} from "../../shared/services/roll.service";
+import {Roll} from "../roll/roll.model";
 
 export class SkirmishCharacter extends Character {
 
-  private _roll!: number;
-  private _modifier!: number;
+  private _roll!: Roll;
   private _usedWeapon!: Weapon;
   private _isAttacker!: boolean;
   private _isDodging!: boolean;
   private _currentWounds!: number;
   private _skirmishInitiative!: number;
   private _advantage!: number;
-  private _successLevel!: number;
   private _conditions!: Condition[];
   private _armorBodyLocalization!: ArmorBodyLocalization;
   private _isDead!: boolean;
@@ -32,8 +31,7 @@ export class SkirmishCharacter extends Character {
     this._currentWounds = character.characteristics.wounds.value;
     this._skirmishInitiative = character.characteristics.initiative.value;
     this._advantage = 0;
-    this.roll = 0;
-    this.modifier = 0;
+    this._roll = new Roll();
     this.conditions = [];
     this.fillLocalizationArmorPoints();
     this._isDead = false;
@@ -155,22 +153,6 @@ export class SkirmishCharacter extends Character {
     this._conditions = value;
   }
 
-  get roll(): number {
-    return this._roll;
-  }
-
-  set roll(value: number) {
-    this._roll = value;
-  }
-
-  get modifier(): number {
-    return this._modifier;
-  }
-
-  set modifier(value: number) {
-    this._modifier = value;
-  }
-
   get usedWeapon(): Weapon {
     return this._usedWeapon;
   }
@@ -219,14 +201,6 @@ export class SkirmishCharacter extends Character {
     this._advantage = value;
   }
 
-  get successLevel(): number {
-    return this._successLevel;
-  }
-
-  set successLevel(value: number) {
-    this._successLevel = value;
-  }
-
   get armorBodyLocalization(): ArmorBodyLocalization {
     return this._armorBodyLocalization;
   }
@@ -265,5 +239,13 @@ export class SkirmishCharacter extends Character {
 
   set unconsciousCounter(value: number) {
     this._unconsciousCounter = value;
+  }
+
+  get roll(): Roll {
+    return this._roll;
+  }
+
+  set roll(value: Roll) {
+    this._roll = value;
   }
 }

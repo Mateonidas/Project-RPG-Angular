@@ -16,10 +16,12 @@ export class SaveRollDialogWindowComponent implements OnInit {
   public saveForm!: FormGroup;
 
   constructor(public activeModal: NgbActiveModal,
-              private attackReportService: AttackReportService) {
+              public attackReportService: AttackReportService) {
   }
 
-  ngOnInit(): void {
+  ngOnInit()
+    :
+    void {
     this.initForm();
   }
 
@@ -33,14 +35,13 @@ export class SaveRollDialogWindowComponent implements OnInit {
     })
   }
 
-  onSave(): void {
-    this.target.roll = this.roll?.value;
-    this.attackReportService.targetRoll = String(this.target.roll);
+  onSave()
+    :
+    void {
+    this.target.roll.value = this.roll?.value;
     this.calculateDefendTrait();
-    this.target.modifier = this.modifier?.value;
-    this.attackReportService.targetModifier = String(this.target.modifier);
+    this.target.roll.modifier = this.modifier?.value;
     this.target.isFlanked = this.isFlanked?.value;
-
     this.emitter.emit();
     this.activeModal.close('Close click')
   }

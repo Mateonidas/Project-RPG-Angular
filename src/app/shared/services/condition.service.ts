@@ -3,26 +3,19 @@ import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {Condition} from "../../model/conditions/condition.model";
 import {ConditionsList} from "../../model/conditions/conditions-list.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {RollDialogWindowComponent} from "../../dialog-window/roll-dialog-window/roll-dialog-window.component";
 import {RollService} from "./roll.service";
 import {SkillsList} from "../../model/skill/skill.model";
+import {ServiceModel} from "./service.model";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ConditionService {
+export class ConditionService extends ServiceModel {
 
   private conditionModifier = 0;
 
-  constructor(private modalService: NgbModal,
-              private rollService: RollService) {
-  }
-
-  private createRollDialog(name: string, useModifier: boolean) {
-    const modalRef = this.modalService.open(RollDialogWindowComponent);
-    modalRef.componentInstance.name = name;
-    modalRef.componentInstance.useModifier = useModifier;
-    return modalRef.componentInstance.emitter;
+  constructor(modalService: NgbModal) {
+    super(modalService);
   }
 
   endTurnCheckConditions(character: SkirmishCharacter) {
@@ -90,8 +83,8 @@ export class ConditionService {
           } else if (character.unconsciousCounter == 0) {
             this.createRollDialog(character.name + ': Śmierć z zatrucia (k100)', true)
               .subscribe((value: { roll: number, modifier: number }) => {
-                character.roll = value.roll;
-                character.modifier = value.modifier;
+                character.roll.value = value.roll;
+                character.roll.modifier = value.modifier;
                 this.checkDeathFromPoison(character);
               })
           }
@@ -112,8 +105,8 @@ export class ConditionService {
   }
 
   private checkDeathFromPoison(character: SkirmishCharacter) {
-    let successfulTest = RollService.calculateSuccessLevel(character.characteristics.toughness.value, character);
-    if (!successfulTest.isSuccessful) {
+    RollService.calculateRollResult(character.characteristics.toughness.value, character);
+    if (character.roll.isSuccessful) {
       character.isDead = true;
     } else {
       character.unconsciousCounter = -1;
@@ -169,7 +162,7 @@ export class ConditionService {
         .subscribe((value: { roll: number, modifier: number }) => {
           this.checkBleedingOut(condition, value, character);
         })
-    } else if (!character.isDead){
+    } else if (!character.isDead) {
       character.currentWounds -= condition.value;
       if (character.currentWounds <= 0) {
         character.currentWounds = 0;
@@ -183,7 +176,7 @@ export class ConditionService {
     value: { roll: number; modifier: number },
     character: SkirmishCharacter) {
     let deadBorder = condition.value * 10;
-    if (this.rollService.checkIfRollIsDouble(value.roll)) {
+    if (RollService.checkIfRollIsDouble(value.roll)) {
       condition.value -= 1;
     } else if (value.roll <= deadBorder) {
       character.isDead = true;
@@ -194,8 +187,8 @@ export class ConditionService {
     if (!character.isEngaged) {
       this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k100)', true)
         .subscribe((value: { roll: number, modifier: number }) => {
-          character.roll = value.roll;
-          character.modifier = value.modifier;
+          character.roll.value = value.roll;
+          character.roll.modifier = value.modifier;
           this.calculateBrokenLevel(character, condition);
         })
     }
@@ -206,9 +199,9 @@ export class ConditionService {
     if (skill === undefined) {
       skill = character.characteristics.willpower;
     }
-    let rollResult = RollService.calculateSuccessLevel(skill.value, character);
-    if (rollResult.isSuccessful) {
-      condition.value -= rollResult.successLevel + 1;
+    RollService.calculateRollResult(skill.value, character);
+    if (character.roll.isSuccessful) {
+      condition.value -= character.roll.successLevel + 1;
       if (condition.value <= 0) {
         character.removeCondition(ConditionsList.broken);
         character.addCondition(ConditionsList.fatigued);
@@ -232,8 +225,8 @@ export class ConditionService {
     } else {
       this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k100)', true)
         .subscribe((value: { roll: number, modifier: number }) => {
-          character.roll = value.roll;
-          character.modifier = value.modifier;
+          character.roll.value = value.roll;
+          character.roll.modifier = value.modifier;
           this.calculatePoisonedLevel(character, condition);
         })
     }
@@ -244,9 +237,9 @@ export class ConditionService {
     if (skill === undefined) {
       skill = character.characteristics.toughness;
     }
-    let rollResult = RollService.calculateSuccessLevel(skill.value, character);
-    if (rollResult.isSuccessful) {
-      condition.value -= rollResult.successLevel + 1;
+    RollService.calculateRollResult(skill.value, character);
+    if (character.roll.isSuccessful) {
+      condition.value -= character.roll.successLevel + 1;
       if (condition.value <= 0) {
         character.removeCondition(ConditionsList.poisoned);
         character.addCondition(ConditionsList.fatigued);
@@ -257,8 +250,8 @@ export class ConditionService {
   private checkStunned(character: SkirmishCharacter, condition: Condition) {
     this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k100)', true)
       .subscribe((value: { roll: number, modifier: number }) => {
-        character.roll = value.roll;
-        character.modifier = value.modifier;
+        character.roll.value = value.roll;
+        character.roll.modifier = value.modifier;
         this.calculateStunnedLevel(character, condition);
       })
   }
@@ -268,9 +261,9 @@ export class ConditionService {
     if (skill === undefined) {
       skill = character.characteristics.toughness;
     }
-    let rollResult = RollService.calculateSuccessLevel(skill.value, character);
-    if (rollResult.isSuccessful) {
-      condition.value -= rollResult.successLevel + 1;
+    RollService.calculateRollResult(skill.value, character);
+    if (character.roll.isSuccessful) {
+      condition.value -= character.roll.successLevel + 1;
       if (condition.value <= 0) {
         character.removeCondition(ConditionsList.stunned);
         if (!character.checkIfHasCondition(ConditionsList.fatigued)) {
@@ -326,13 +319,13 @@ export class ConditionService {
       }
     }
 
-    owner.modifier -= this.conditionModifier;
+    owner.roll.modifier -= this.conditionModifier;
   }
 
   private checkBlindedInFight(owner: SkirmishCharacter, opponent: SkirmishCharacter, conditionLevel: number) {
     this.setConditionModifier(10 * Math.ceil(conditionLevel));
     if (!owner.isAttacker) {
-      opponent.modifier += 10 * Math.ceil(conditionLevel);
+      opponent.roll.modifier += 10 * Math.ceil(conditionLevel);
     }
   }
 
@@ -342,7 +335,7 @@ export class ConditionService {
 
   private checkDeafenedInFight(owner: SkirmishCharacter, opponent: SkirmishCharacter, conditionLevel: number) {
     if (opponent.isAttacker && owner.isFlanked) {
-      opponent.modifier += 10 * conditionLevel;
+      opponent.roll.modifier += 10 * conditionLevel;
     }
   }
 
@@ -360,17 +353,17 @@ export class ConditionService {
 
   private checkProneInFight(opponent: SkirmishCharacter) {
     this.setConditionModifier(20);
-    opponent.modifier += 20;
+    opponent.roll.modifier += 20;
   }
 
   private checkStunnedInFight(opponent: SkirmishCharacter, conditionLevel: number) {
-    this.setConditionModifier(10*conditionLevel);
+    this.setConditionModifier(10 * conditionLevel);
     opponent.advantage += 1;
   }
 
   private checkSurprisedInFight(character: SkirmishCharacter, opponent: SkirmishCharacter) {
     opponent.advantage += 1;
-    opponent.modifier += 20;
+    opponent.roll.modifier += 20;
     character.removeCondition(ConditionsList.surprised);
   }
 

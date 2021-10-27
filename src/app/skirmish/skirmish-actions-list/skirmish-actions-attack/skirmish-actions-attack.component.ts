@@ -15,6 +15,7 @@ import {WeaponTraitsList} from "../../../model/weapon/weaponTraits/weapon.advant
 import {ConditionsList} from "../../../model/conditions/conditions-list.model";
 import {RollService} from "../../../shared/services/roll.service";
 import {ConditionService} from "../../../shared/services/condition.service";
+import {FightService} from "../../../shared/services/fight.service";
 
 @Component({
   selector: 'app-skirmish-actions-attack',
@@ -37,7 +38,8 @@ export class SkirmishActionsAttackComponent implements OnInit {
               private modalService: NgbModal,
               private attackReportService: AttackReportService,
               private rollService: RollService,
-              private conditionService: ConditionService) {
+              private conditionService: ConditionService,
+              private fightService: FightService) {
   }
 
   ngOnInit(): void {
@@ -83,45 +85,26 @@ export class SkirmishActionsAttackComponent implements OnInit {
   attackRoll() {
     this.attacker.isAttacker = true;
     this.attacker.isDodging = false;
-    this.attackReportService.attackerName = this.attacker.name;
-
     this.attacker.usedWeapon = this.weapon?.value;
-    let attackTrait = this.attacker.getFightTrait();
+    this.attacker.roll.value = this.roll?.value;
+    this.attacker.roll.modifier = this.modifier?.value;
 
-    if (this.attacker.usedWeapon === undefined) {
-      this.attackReportService.attackerAttackTrait = 'Cecha: ' + attackTrait.base.nameTranslation;
-    } else {
-      this.attackReportService.attackerAttackTrait = 'Broń: ' + this.attacker.usedWeapon.nameTranslation;
-    }
-
-
-    this.attacker.roll = this.roll?.value;
-    this.attackReportService.attackerRoll = String(this.attacker.roll);
-
-    this.attacker.modifier = this.modifier?.value;
-    this.attackReportService.attackerModifier = String(this.attacker.modifier);
-
-    let defender = this.target?.value;
+    let defender: SkirmishCharacter = this.target?.value;
     defender.isAttacker = false;
-    this.attackReportService.targetName = defender.name;
 
     this.createSaveRollDialog(defender).subscribe(() => {
       this.checkFightTraits(this.attacker, defender);
-      this.attackReportService.targetModifier = String(defender.modifier);
+      RollService.calculateFightRollResult(this.attacker.getFightTrait().value, this.attacker);
 
-      this.attacker.successLevel = RollService.calculateSuccessLevel(attackTrait.value, this.attacker).successLevel;
-      this.attackReportService.attackerSuccessLevel = String(this.attacker.successLevel);
-
-      if(defender.checkIfHasCondition(ConditionsList.surprised)){
-        defender.successLevel = 0;
+      if (defender.checkIfHasCondition(ConditionsList.surprised)) {
+        defender.roll.successLevel = 0;
+      } else {
+        RollService.calculateFightRollResult(defender.getFightTrait().value, defender);
       }
-      else {
-        defender.successLevel = RollService.calculateSuccessLevel(defender.getFightTrait().value, defender).successLevel;
-      }
-
-      this.attackReportService.targetSuccessLevel = String(defender.successLevel);
-
       this.checkAttackResult(this.attacker, defender);
+
+
+      this.attackReportService.createReport(this.attacker, defender);
       this.createReportDialog();
     })
   }
@@ -153,15 +136,15 @@ export class SkirmishActionsAttackComponent implements OnInit {
   checkConditions(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
     this.conditionService.fightCheckCondition(attacker, defender);
     this.conditionService.fightCheckCondition(defender, attacker);
-    for(let condition of defender.conditions) {
-      if(condition.base === ConditionsList.prone) {
-        attacker.modifier += 20;
+    for (let condition of defender.conditions) {
+      if (condition.base === ConditionsList.prone) {
+        attacker.roll.modifier += 20;
       }
     }
   }
 
   checkAttackResult(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
-    if (attacker.successLevel > defender.successLevel) {
+    if (attacker.roll.successLevel > defender.roll.successLevel) {
       this.attackReportService.result = 'Cel został trafiony.'
       attacker.advantage += 1;
       defender.advantage = 0;
@@ -172,14 +155,17 @@ export class SkirmishActionsAttackComponent implements OnInit {
       this.attackReportService.result = 'Cel wychodzi bez szwanku.'
       this.attackReportService.damage = '0';
     }
+
+    this.fightService.checkDouble(attacker, defender);
+    this.fightService.checkDouble(defender, attacker);
   }
 
   calculateDamage(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
     let damage = this.calculateFinalDamage(
-      this.rollService.calculateSuccessLevelDifference(attacker.successLevel, defender.successLevel),
+      this.rollService.calculateSuccessLevelDifference(attacker.roll.successLevel, defender.roll.successLevel),
       this.calculateWeaponDamage(attacker),
       RollService.calculateTraitBonus(defender.characteristics.toughness.value),
-      this.getArmorPointsFromAttackLocalization(attacker.roll, defender));
+      this.getArmorPointsFromAttackLocalization(attacker.roll.value, defender));
 
     this.attackReportService.damage = String(damage);
     defender.currentWounds -= damage;
