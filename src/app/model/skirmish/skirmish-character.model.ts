@@ -1,14 +1,14 @@
 import {Character} from "../character/character.model";
-import {BodyLocalization, BodyLocalizationList} from "../armor/body-localization.model";
+import {BodyLocalization, BodyLocalizationList} from "../body-localization/body-localization.model";
 import {Weapon} from "../weapon/weapon.model";
 import {Skill, SkillsList} from "../skill/skill.model";
 import {Characteristics} from "../characteristic/characteristic.model";
 import {Condition} from "../conditions/condition.model";
 import {Model} from "../model";
 import {ConditionsList} from "../conditions/conditions-list.model";
-import {ArmorBodyLocalization} from "../armor/armor-body-localization.model";
 import {RollService} from "../../shared/services/roll.service";
 import {Roll} from "../roll/roll.model";
+import {CharacterBodyLocalizations} from "../body-localization/character-body-localizations.model";
 
 export class SkirmishCharacter extends Character {
 
@@ -20,7 +20,7 @@ export class SkirmishCharacter extends Character {
   private _skirmishInitiative!: number;
   private _advantage!: number;
   private _conditions!: Condition[];
-  private _armorBodyLocalization!: ArmorBodyLocalization;
+  private _bodyLocalizations!: CharacterBodyLocalizations;
   private _isDead!: boolean;
   private _isEngaged!: boolean;
   private _isFlanked!: boolean;
@@ -40,13 +40,13 @@ export class SkirmishCharacter extends Character {
   }
 
   private fillLocalizationArmorPoints() {
-    this._armorBodyLocalization = new ArmorBodyLocalization();
-    this._armorBodyLocalization.headArmor = this.getArmorForLocalization(BodyLocalizationList.head);
-    this._armorBodyLocalization.leftArmArmor = this.getArmorForLocalization(BodyLocalizationList.leftArm);
-    this._armorBodyLocalization.rightArmArmor = this.getArmorForLocalization(BodyLocalizationList.rightArm);
-    this._armorBodyLocalization.bodyArmor = this.getArmorForLocalization(BodyLocalizationList.body);
-    this._armorBodyLocalization.leftLegArmor = this.getArmorForLocalization(BodyLocalizationList.leftLeg);
-    this._armorBodyLocalization.rightLegArmor = this.getArmorForLocalization(BodyLocalizationList.rightLeg);
+    this.bodyLocalizations = new CharacterBodyLocalizations();
+    this._bodyLocalizations.head.armorPoints = this.getArmorForLocalization(BodyLocalizationList.head);
+    this._bodyLocalizations.leftArm.armorPoints = this.getArmorForLocalization(BodyLocalizationList.leftArm);
+    this._bodyLocalizations.rightArm.armorPoints = this.getArmorForLocalization(BodyLocalizationList.rightArm);
+    this._bodyLocalizations.body.armorPoints = this.getArmorForLocalization(BodyLocalizationList.body);
+    this._bodyLocalizations.leftLeg.armorPoints  = this.getArmorForLocalization(BodyLocalizationList.leftLeg);
+    this._bodyLocalizations.rightLeg.armorPoints  = this.getArmorForLocalization(BodyLocalizationList.rightLeg);
   }
 
   private getArmorForLocalization(localization: BodyLocalization) {
@@ -63,12 +63,12 @@ export class SkirmishCharacter extends Character {
 
   getArmorFromLessArmoredLocalization() {
     return Math.min(
-      this._armorBodyLocalization.headArmor,
-      this._armorBodyLocalization.leftArmArmor,
-      this._armorBodyLocalization.rightArmArmor,
-      this._armorBodyLocalization.bodyArmor,
-      this._armorBodyLocalization.leftLegArmor,
-      this._armorBodyLocalization.rightLegArmor
+      this._bodyLocalizations.head.armorPoints,
+      this._bodyLocalizations.leftArm.armorPoints,
+      this._bodyLocalizations.rightArm.armorPoints,
+      this._bodyLocalizations.body.armorPoints,
+      this._bodyLocalizations.leftLeg.armorPoints,
+      this._bodyLocalizations.rightLeg.armorPoints
     )
   }
 
@@ -201,14 +201,6 @@ export class SkirmishCharacter extends Character {
     this._advantage = value;
   }
 
-  get armorBodyLocalization(): ArmorBodyLocalization {
-    return this._armorBodyLocalization;
-  }
-
-  set armorBodyLocalization(value: ArmorBodyLocalization) {
-    this._armorBodyLocalization = value;
-  }
-
   get isDead(): boolean {
     return this._isDead;
   }
@@ -247,5 +239,13 @@ export class SkirmishCharacter extends Character {
 
   set roll(value: Roll) {
     this._roll = value;
+  }
+
+  get bodyLocalizations(): CharacterBodyLocalizations {
+    return this._bodyLocalizations;
+  }
+
+  set bodyLocalizations(value: CharacterBodyLocalizations) {
+    this._bodyLocalizations = value;
   }
 }

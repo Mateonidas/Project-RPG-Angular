@@ -102,8 +102,6 @@ export class SkirmishActionsAttackComponent implements OnInit {
         RollService.calculateFightRollResult(defender.getFightTrait().value, defender);
       }
       this.checkAttackResult(this.attacker, defender);
-
-
       this.attackReportService.createReport(this.attacker, defender);
       this.createReportDialog();
     })
@@ -156,6 +154,11 @@ export class SkirmishActionsAttackComponent implements OnInit {
       this.attackReportService.damage = '0';
     }
 
+    this.attackReportService.attackerModifier = String(attacker.roll.modifier);
+    this.attackReportService.targetModifier = String(defender.roll.modifier);
+    attacker.roll.modifier = 0;
+    defender.roll.modifier = 0;
+
     this.fightService.checkDouble(attacker, defender);
     this.fightService.checkDouble(defender, attacker);
   }
@@ -182,22 +185,10 @@ export class SkirmishActionsAttackComponent implements OnInit {
     return weaponDamage;
   }
 
-  private getArmorPointsFromAttackLocalization(attackerRoll: number, target: SkirmishCharacter): number {
-    if (attackerRoll >= 1 && attackerRoll <= 9) {
-      return target.armorBodyLocalization.headArmor;
-    } else if (attackerRoll >= 10 && attackerRoll <= 24) {
-      return target.armorBodyLocalization.leftArmArmor;
-    } else if (attackerRoll >= 25 && attackerRoll <= 44) {
-      return target.armorBodyLocalization.rightArmArmor;
-    } else if (attackerRoll >= 45 && attackerRoll <= 79) {
-      return target.armorBodyLocalization.bodyArmor;
-    } else if (attackerRoll >= 80 && attackerRoll <= 89) {
-      return target.armorBodyLocalization.leftLegArmor;
-    } else if (attackerRoll >= 90 && attackerRoll <= 100) {
-      return target.armorBodyLocalization.rightLegArmor;
-    } else {
-      return 0;
-    }
+  private getArmorPointsFromAttackLocalization(attackerRoll: number, target: SkirmishCharacter) {
+    let bodyLocalization = target.bodyLocalizations.getBodyLocalization(this.fightService.getAttackLocalization(attackerRoll));
+    this.attackReportService.attackLocalization = bodyLocalization!.bodyLocalization.nameTranslation;
+    return bodyLocalization!.armorPoints;
   }
 
   private calculateFinalDamage(successLevelsDifference: number, weaponDamage: number, targetToughnessBonus: number, armorPoints: number) {

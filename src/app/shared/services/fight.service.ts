@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ServiceModel} from "./service.model";
+import {BodyLocalizationList} from "../../model/body-localization/body-localization.model";
+import {InjuresList} from "../../model/injures/injures-list.model";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +25,10 @@ export class FightService extends ServiceModel{
           console.log('Fuks dla ' + owner.name);
         }
         else if(!owner.roll.isSuccessful) {
+          this.createRollDialog(owner.name + ': Pech (k100)', false)
+            .subscribe((rollResult: { roll: number, modifier: number }) => {
+              this.checkCriticalFailure(owner, rollResult.roll);
+            })
           console.log('Pech dla ' + owner.name);
         }
       }
@@ -34,26 +40,53 @@ export class FightService extends ServiceModel{
   }
 
   private checkCriticalHit(opponent: SkirmishCharacter, rollResult: {roll: number; modifier: number}) {
-
+    this.getAttackLocalization(opponent.roll.value);
   }
-  // private getAttackLocalization(attackerRoll: number, target: SkirmishCharacter): number {
-  //   let localizationNumber: number = +attackerRoll.toLocaleString()[1] + +attackerRoll.toLocaleString()[0];
-  //
-  //   if (attackerRoll >= 1 && attackerRoll <= 9) {
-  //     return target.armorBodyLocalization.headArmor;
-  //   } else if (attackerRoll >= 10 && attackerRoll <= 24) {
-  //     return target.armorBodyLocalization.leftArmArmor;
-  //   } else if (attackerRoll >= 25 && attackerRoll <= 44) {
-  //     return target.armorBodyLocalization.rightArmArmor;
-  //   } else if (attackerRoll >= 45 && attackerRoll <= 79) {
-  //     return target.armorBodyLocalization.bodyArmor;
-  //   } else if (attackerRoll >= 80 && attackerRoll <= 89) {
-  //     return target.armorBodyLocalization.leftLegArmor;
-  //   } else if (attackerRoll >= 90 && attackerRoll <= 100) {
-  //     return target.armorBodyLocalization.rightLegArmor;
-  //   } else {
-  //     return 0;
-  //   }
-  // }
+
+  public getAttackLocalization(attackerRoll: number) {
+    let localizationNumber: number = Number(attackerRoll.toLocaleString()[1] + attackerRoll.toLocaleString()[0]);
+
+    for(let localization of BodyLocalizationList.list) {
+      // @ts-ignore
+      if(localizationNumber >= localization.numericalInterval[0] && localizationNumber <= localization.numericalInterval[1]) {
+        return localization;
+      }
+    }
+
+    return null;
+  }
+
+  private checkCriticalFailure(owner: SkirmishCharacter, roll: number) {
+    if(roll >= 1 && roll <= 20) {
+      owner.currentWounds -= 1;
+    }
+    else if(roll >= 21 && roll <= 40) {
+      owner.usedWeapon.damage -= 1;
+      //TODO: Zaczyna rundę jako ostatni
+    }
+    else if(roll >= 41 && roll <= 60) {
+      owner.roll.modifier = -10;
+    }
+    else if(roll >= 61 && roll <= 70) {
+      //TODO: W następnej rundzie nie wykonuje ruchu
+    }
+    else if(roll >= 71 && roll <= 80) {
+      //TODO: W następnej rundzie nie wykonuje akcji
+    }
+    else if(roll >= 81 && roll <= 90) {
+      this.createRollDialog(owner.name + ': Skręcenie kostki: 1-50 - lewa noga, 51-100 - prawa noga (k100)', false)
+        .subscribe((rollResult: { roll: number, modifier: number }) => {
+          if(rollResult.roll <= 50) {
+            owner.bodyLocalizations.leftLeg.setInjure(InjuresList.minorTornMuscles);
+          }
+          else {
+            owner.bodyLocalizations.rightLeg.setInjure(InjuresList.minorTornMuscles);
+          }
+        })
+    }
+    else if(roll >= 91 && roll <= 100) {
+      //TODO: Atakuje sojusznika lub otrzymuje oszołomienie
+    }
+  }
 
 }

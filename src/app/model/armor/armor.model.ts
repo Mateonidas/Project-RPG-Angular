@@ -1,5 +1,5 @@
 import {Model} from "../model";
-import {BodyLocalization, BodyLocalizationList} from "./body-localization.model";
+import {BodyLocalization, BodyLocalizationList} from "../body-localization/body-localization.model";
 import {ListModel} from "../list-model";
 
 export class Armor extends Model{

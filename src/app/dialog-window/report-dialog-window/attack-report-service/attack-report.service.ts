@@ -20,11 +20,11 @@ export class AttackReportService {
 
   public result!: string;
   public damage!: string;
+  public attackLocalization!: string;
 
   createReport(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
     this.attackerName = attacker.name;
     this.attackerRoll = String(attacker.roll.value);
-    this.attackerModifier = String(attacker.roll.modifier);
     this.attackerSuccessLevel = String(attacker.roll.successLevel);
 
     let attackTrait = attacker.getFightTrait();
@@ -36,7 +36,6 @@ export class AttackReportService {
 
     this.targetName = defender.name;
     this.targetRoll = String(defender.roll.value);
-    this.targetModifier = String(defender.roll.modifier);
     this.targetSuccessLevel = String(defender.roll.successLevel);
   }
 }

@@ -31,13 +31,11 @@ export class SaveRollDialogWindowComponent implements OnInit {
       'checkDefendTrait': new FormControl(null, [Validators.required]),
       'isFlanked': new FormControl(false),
       'defendTrait': new FormControl(null),
-      'modifier': new FormControl(0, [Validators.required]),
+      'modifier': new FormControl(this.target.roll.modifier, [Validators.required]),
     })
   }
 
-  onSave()
-    :
-    void {
+  onSave() {
     this.target.roll.value = this.roll?.value;
     this.calculateDefendTrait();
     this.target.roll.modifier = this.modifier?.value;

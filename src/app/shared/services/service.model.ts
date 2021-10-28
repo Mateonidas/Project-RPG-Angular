@@ -3,7 +3,7 @@ import {RollDialogWindowComponent} from "../../dialog-window/roll-dialog-window/
 
 export class ServiceModel {
 
-  constructor(private modalService: NgbModal) {
+  constructor(protected modalService: NgbModal) {
   }
 
   protected createRollDialog(name: string, useModifier: boolean) {
