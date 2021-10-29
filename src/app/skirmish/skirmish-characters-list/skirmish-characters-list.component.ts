@@ -5,7 +5,8 @@ import {SkirmishService} from "../skirmish-service/skirmish.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {InitiativeDialogWindow} from "../../dialog-window/initiative-dialog-window/initiative-dialog-window.component";
-import {ConditionService} from "../../shared/services/condition.service";
+import {ConditionService} from "../../shared/services/condition-service/condition.service";
+import {RoundService} from "../../shared/services/round-service/round.service";
 
 @Component({
   selector: 'app-skirmish-characters-list',
@@ -15,13 +16,14 @@ import {ConditionService} from "../../shared/services/condition.service";
 export class SkirmishCharactersListComponent implements OnInit {
   skirmishCharacters!: SkirmishCharacter[];
   subscription!: Subscription;
-  roundNumber = 1;
+  roundNumber!: number;
 
   constructor(private skirmishService: SkirmishService,
               private router: Router,
               private route: ActivatedRoute,
               private modalService: NgbModal,
-              private conditionService: ConditionService) {
+              private conditionService: ConditionService,
+              private roundService: RoundService) {
   }
 
   ngOnInit(): void {
@@ -31,6 +33,7 @@ export class SkirmishCharactersListComponent implements OnInit {
       }
     )
     this.skirmishCharacters = this.skirmishService.getSkirmishCharacters();
+    this.roundNumber = this.roundService.roundNumber;
   }
 
   initiativeRolls() {
@@ -58,7 +61,8 @@ export class SkirmishCharactersListComponent implements OnInit {
   }
 
   endTurn() {
-    this.roundNumber += 1;
+    this.roundService.nextRound();
+    this.roundNumber = this.roundService.roundNumber;
     this.checkCharacterConditions();
   }
 

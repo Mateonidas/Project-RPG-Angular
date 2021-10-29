@@ -30,11 +30,11 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
     let characterDescription = character.description;
     let isRightHanded = character.isRightHanded;
     let characteristics = SkirmishCharacterEditComponent.initEditCharacteristicsTable(character.characteristics);
-    let conditions = this.prepareConditionsList(character.conditions);
     let formArrays = new CharacterFormArraysWrapper();
     this.isDead = character.isDead;
 
     this.prepareEditData(character, formArrays);
+    this.prepareSkirmishEditData(character, formArrays)
 
     this.editCharacterForm = new FormGroup({
       'name': new FormControl(characterName),
@@ -43,7 +43,8 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
       'currentWounds': new FormControl(character.currentWounds),
       'skirmishInitiative': new FormControl(character.skirmishInitiative),
       'advantage': new FormControl(character.advantage),
-      'conditions': conditions,
+      'notes': formArrays.notes,
+      'conditions': formArrays.conditions,
       'characteristics': characteristics,
       'skills': formArrays.skills,
       'talents': formArrays.talents,
@@ -51,6 +52,33 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
       'weapons': formArrays.weapons,
       'armors': formArrays.armors
     });
+  }
+
+  prepareSkirmishEditData(character: SkirmishCharacter, formArrays: CharacterFormArraysWrapper) {
+    if (character.conditions) {
+      this.prepareConditionsList(formArrays.conditions, character.conditions);
+    }
+    if (character.notes) {
+      this.prepareNotesList(formArrays.notes, character.notes)
+    }
+  }
+
+  prepareNotesList(notes: FormArray, notesList: string[]) {
+    for (let note of notesList) {
+      notes.push(
+        new FormControl(note))
+    }
+  }
+
+  prepareConditionsList(conditions: FormArray, conditionsList: Condition[]) {
+    for (let condition of conditionsList) {
+      conditions.push(
+        new FormGroup({
+          'base': new FormControl(condition.base),
+          'value': new FormControl(condition.value),
+        })
+      )
+    }
   }
 
   onSubmit() {
@@ -86,23 +114,11 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
     skirmishCharacter.currentWounds = this.editCharacterForm.value.currentWounds;
     skirmishCharacter.skirmishInitiative = this.editCharacterForm.value.skirmishInitiative;
     skirmishCharacter.advantage = this.editCharacterForm.value.advantage;
+    skirmishCharacter.notes = this.editCharacterForm.value.notes;
     skirmishCharacter.conditions = this.editCharacterForm.value.conditions;
     skirmishCharacter.isDead = this.editCharacterForm.value.isDead;
 
     return skirmishCharacter;
-  }
-
-  prepareConditionsList(conditionsList:Condition[]) {
-    let conditions = new FormArray([]);
-    for (let condition of conditionsList) {
-      conditions.push(
-        new FormGroup({
-          'base': new FormControl(condition.base),
-          'value': new FormControl(condition.value),
-        })
-      )
-    }
-    return conditions;
   }
 
   get conditions() {
@@ -120,5 +136,19 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
 
   onDeleteCondition(index: number) {
     (<FormArray>this.editCharacterForm.get('conditions')).removeAt(index);
+  }
+
+  get notes() {
+    return (<FormArray>this.editCharacterForm.get('notes')).controls;
+  }
+
+  onAddNote() {
+    (<FormArray>this.editCharacterForm.get('notes')).push(
+      new FormControl(null),
+    )
+  }
+
+  onDeleteNote(index: number) {
+    (<FormArray>this.editCharacterForm.get('notes')).removeAt(index);
   }
 }

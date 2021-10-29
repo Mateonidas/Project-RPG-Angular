@@ -1,8 +1,8 @@
 import {TestBed} from "@angular/core/testing";
 import {RollService} from "./roll.service";
-import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
-import {Character} from "../../model/character/character.model";
-import {CharacterCharacteristics} from "../../model/characteristic/character-characteristic.model";
+import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.model";
+import {Character} from "../../../model/character/character.model";
+import {CharacterCharacteristics} from "../../../model/characteristic/character-characteristic.model";
 
 describe('RollService', () => {
 

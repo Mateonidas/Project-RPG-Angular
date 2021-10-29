@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
-import {Condition} from "../../model/conditions/condition.model";
-import {ConditionsList} from "../../model/conditions/conditions-list.model";
+import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.model";
+import {Condition} from "../../../model/conditions/condition.model";
+import {ConditionsList} from "../../../model/conditions/conditions-list.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {RollService} from "./roll.service";
-import {SkillsList} from "../../model/skill/skill.model";
-import {ServiceModel} from "./service.model";
+import {RollService} from "../roll-service/roll.service";
+import {SkillsList} from "../../../model/skill/skill.model";
+import {ServiceModel} from "../service.model";
 
 @Injectable({
   providedIn: 'root'

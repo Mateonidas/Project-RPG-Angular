@@ -6,7 +6,7 @@ import {Characteristics} from "../characteristic/characteristic.model";
 import {Condition} from "../conditions/condition.model";
 import {Model} from "../model";
 import {ConditionsList} from "../conditions/conditions-list.model";
-import {RollService} from "../../shared/services/roll.service";
+import {RollService} from "../../shared/services/roll-service/roll.service";
 import {Roll} from "../roll/roll.model";
 import {CharacterBodyLocalizations} from "../body-localization/character-body-localizations.model";
 
@@ -25,6 +25,7 @@ export class SkirmishCharacter extends Character {
   private _isEngaged!: boolean;
   private _isFlanked!: boolean;
   private _unconsciousCounter!: number;
+  private _notes!: string[];
 
   constructor(character: Character) {
     super(character.name, character.description, character.characteristics, character.skills, character.talents, character.isRightHanded, character.weapons, character.armor);
@@ -37,6 +38,7 @@ export class SkirmishCharacter extends Character {
     this._isDead = false;
     this._isEngaged = false;
     this.resetUnconsciousCounter();
+    this._notes = [];
   }
 
   private fillLocalizationArmorPoints() {
@@ -145,6 +147,18 @@ export class SkirmishCharacter extends Character {
     this.conditions.splice(index, 1);
   }
 
+  addNote(note: string) {
+    this._notes.push(note);
+  }
+
+  get notes(): string[] {
+    return this._notes;
+  }
+
+  set notes(value: string[]) {
+    this._notes = value;
+  }
+
   get conditions(): Condition[] {
     return this._conditions;
   }
@@ -248,4 +262,5 @@ export class SkirmishCharacter extends Character {
   set bodyLocalizations(value: CharacterBodyLocalizations) {
     this._bodyLocalizations = value;
   }
+
 }

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
+import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.model";
 
 @Injectable({
   providedIn: 'root'

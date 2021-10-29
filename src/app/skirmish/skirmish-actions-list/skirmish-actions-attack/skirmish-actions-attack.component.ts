@@ -13,9 +13,9 @@ import {AttackReportService} from "../../../dialog-window/report-dialog-window/a
 import {AttackReportDialogWindowComponent} from "../../../dialog-window/report-dialog-window/attack-report-dialog-window.component";
 import {WeaponTraitsList} from "../../../model/weapon/weaponTraits/weapon.advantages.model";
 import {ConditionsList} from "../../../model/conditions/conditions-list.model";
-import {RollService} from "../../../shared/services/roll.service";
-import {ConditionService} from "../../../shared/services/condition.service";
-import {FightService} from "../../../shared/services/fight.service";
+import {RollService} from "../../../shared/services/roll-service/roll.service";
+import {ConditionService} from "../../../shared/services/condition-service/condition.service";
+import {FightService} from "../../../shared/services/fight-service/fight.service";
 
 @Component({
   selector: 'app-skirmish-actions-attack',

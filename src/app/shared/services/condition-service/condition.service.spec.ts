@@ -1,10 +1,10 @@
 import {TestBed} from '@angular/core/testing';
 import {ConditionService} from "./condition.service";
-import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
-import {Character} from "../../model/character/character.model";
-import {CharacterCharacteristics} from "../../model/characteristic/character-characteristic.model";
-import {ConditionsList} from "../../model/conditions/conditions-list.model";
-import {Condition} from "../../model/conditions/condition.model";
+import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.model";
+import {Character} from "../../../model/character/character.model";
+import {CharacterCharacteristics} from "../../../model/characteristic/character-characteristic.model";
+import {ConditionsList} from "../../../model/conditions/conditions-list.model";
+import {Condition} from "../../../model/conditions/condition.model";
 import objectContaining = jasmine.objectContaining;
 
 describe('ConditionService', () => {

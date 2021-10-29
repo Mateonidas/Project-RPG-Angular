@@ -37,6 +37,14 @@
           </p>
         </div>
       </div>
+      <div class="row" *ngIf="skirmishCharacter.notes.length > 0">
+        <div class="col-md-12">
+          <h6 class="list-group-item-heading">Notatki</h6>
+          <p *ngFor="let note of skirmishCharacter.notes" class="list-group-item-text">
+            - {{note}}
+          </p>
+        </div>
+      </div>
     </a>
 
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
