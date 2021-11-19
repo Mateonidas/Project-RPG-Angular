@@ -1,13 +1,26 @@
 import {Model} from "../model";
 
-export class Talent extends Model{
+export class Talent extends Model {
   public level: number;
   public maxLevel: string;
 
-  constructor(name: string, nameTranslation: string, level: number, maxLevel: string) {
+  constructor(name?: string, nameTranslation?: string, level?: number, maxLevel?: string) {
     super(name, nameTranslation)
-    this.level = level;
-    this.maxLevel = maxLevel;
+    this.level = <number>level;
+    this.maxLevel = <string>maxLevel;
+  }
+
+  static fromJSON(object: Object): Talent {
+    return Object.assign(new Talent(), object);
+  }
+
+  static arrayFromJSON(objectsArray: Object[]): Talent[] {
+    let talents = [];
+    for (let object of objectsArray) {
+      let talent = Talent.fromJSON(object);
+      talents.push(talent);
+    }
+    return talents;
   }
 }
 

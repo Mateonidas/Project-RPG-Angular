@@ -4,6 +4,18 @@ import {SkirmishCharacter} from "../../skirmish/skirmish-character.model";
 
 export class WeaponTrait extends Model {
 
+  static fromJSON(object: Object): WeaponTrait {
+    return Object.assign(new WeaponTrait(), object);
+  }
+
+  static arrayFromJSON(objectsArray: Object[]): WeaponTrait[] {
+    let weaponsTraits = [];
+    for (let object of objectsArray) {
+      let weaponTrait = WeaponTrait.fromJSON(object);
+      weaponsTraits.push(weaponTrait);
+    }
+    return weaponsTraits;
+  }
 }
 
 export class WeaponTraitsList extends ListModel {

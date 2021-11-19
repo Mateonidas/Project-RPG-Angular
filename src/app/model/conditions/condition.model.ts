@@ -1,27 +1,26 @@
 import {Model} from "../model";
 
 export class Condition {
-  private _base: Model;
-  private _value: number;
+  base: Model;
+  value: number;
 
-  constructor(model: Model, value: number) {
-    this._base = model
-    this._value = value;
+  constructor(model?: Model, value?: number) {
+    this.base = <Model>model
+    this.value = <number>value;
   }
 
-  get value(): number {
-    return this._value;
+  static fromJSON(object: Object): Condition {
+    let condition = Object.assign(new Condition(), object);
+    condition.base = Model.fromJSON(condition['base']);
+    return condition;
   }
 
-  set value(value: number) {
-    this._value = value;
-  }
-
-  get base(): Model {
-    return this._base;
-  }
-
-  set base(value: Model) {
-    this._base = value;
+  static arrayFromJSON(objectsArray: Object[]): Condition[] {
+    let conditions = [];
+    for (let object of objectsArray) {
+      let condition = Condition.fromJSON(object);
+      conditions.push(condition);
+    }
+    return conditions;
   }
 }

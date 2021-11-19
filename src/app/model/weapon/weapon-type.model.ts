@@ -1,13 +1,20 @@
 import {ListModel} from "../list-model";
 import {Skill, SkillsList} from "../skill/skill.model";
 import {Model} from "../model";
+import {Characteristic} from "../characteristic/characteristic.model";
 
 export class WeaponGroup extends Model {
   public usedSkill: Skill;
 
-  constructor(name: string, nameTranslation: string, usedSkill: Skill) {
+  constructor(name?: string, nameTranslation?: string, usedSkill?: Skill) {
     super(name, nameTranslation);
-    this.usedSkill = usedSkill;
+    this.usedSkill = <Skill>usedSkill;
+  }
+
+  static fromJSON(object: Object): WeaponGroup {
+    let weaponGroup = Object.assign(new WeaponGroup(), object);
+    weaponGroup.usedSkill = Characteristic.fromJSON(weaponGroup['usedSkill']);
+    return weaponGroup;
   }
 }
 

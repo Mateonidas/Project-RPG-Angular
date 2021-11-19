@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {Subscription} from "rxjs";
-import {SkirmishService} from "../skirmish-service/skirmish.service";
+import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {InitiativeDialogWindow} from "../../dialog-window/initiative-dialog-window/initiative-dialog-window.component";
@@ -18,7 +18,7 @@ export class SkirmishCharactersListComponent implements OnInit {
   subscription!: Subscription;
   roundNumber!: number;
 
-  constructor(private skirmishService: SkirmishService,
+  constructor(private skirmishService: SkirmishCharacterService,
               private router: Router,
               private route: ActivatedRoute,
               private modalService: NgbModal,

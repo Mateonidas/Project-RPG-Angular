@@ -13,15 +13,32 @@ export class Weapon extends Model {
   public advantages: WeaponTrait[];
   public disadvantages: string[];
 
-  constructor(name: string, nameTranslation: string, type: AttackCategory, category: WeaponGroup, range: string, damage: number, isUsingStrength: boolean, advantages: WeaponTrait[], disadvantages: string[]) {
+  constructor(name?: string, nameTranslation?: string, type?: AttackCategory, category?: WeaponGroup, range?: string, damage?: number, isUsingStrength?: boolean, advantages?: WeaponTrait[], disadvantages?: string[]) {
     super(name, nameTranslation)
-    this.attackType = type;
-    this.weaponGroup = category;
-    this.range = range;
-    this.damage = damage;
-    this.isUsingStrength = isUsingStrength;
-    this.advantages = advantages;
-    this.disadvantages = disadvantages;
+    this.attackType = <AttackCategory>type;
+    this.weaponGroup = <WeaponGroup>category;
+    this.range = <string>range;
+    this.damage = <number>damage;
+    this.isUsingStrength = <boolean>isUsingStrength;
+    this.advantages = <WeaponTrait[]>advantages;
+    this.disadvantages = <string[]>disadvantages;
+  }
+
+  static fromJSON(object: Object): Weapon {
+    let weapon = Object.assign(new Weapon(), object);
+    weapon.attackType = AttackCategory.fromJSON(weapon['attackType']);
+    weapon.weaponGroup = WeaponGroup.fromJSON(weapon['weaponGroup']);
+    weapon.advantages = WeaponTrait.arrayFromJSON(weapon['advantages']);
+    return weapon;
+  }
+
+  static arrayFromJSON(objectsArray: Object[]): Weapon[] {
+    let weapons = [];
+    for (let object of objectsArray) {
+      let weapon = Weapon.fromJSON(object);
+      weapons.push(weapon);
+    }
+    return weapons;
   }
 }
 

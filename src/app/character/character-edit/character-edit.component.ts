@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
-import {CharacterService} from "../character-service/character.service";
+import {CharacterService} from "../../shared/services/character-service/character.service";
 import {Character} from "../../model/character/character.model";
 import {EditFormComponent} from "../../edit-form/edit-form.component";
 import {CharacterFormArraysWrapper} from "../../model/character/character-form-arrays-wrapper.model";

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Character} from "../../model/character/character.model";
-import {CharacterService} from "../character-service/character.service";
+import {CharacterService} from "../../shared/services/character-service/character.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 

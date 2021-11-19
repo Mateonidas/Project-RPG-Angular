@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {AttacksCategoryList} from "../../../model/attack/attack-category.model";
 import {AttacksTypeList} from "../../../model/attack/attacks-type-list.model";
-import {SkirmishService} from "../../skirmish-service/skirmish.service";
+import {SkirmishCharacterService} from "../../../shared/services/skirmish-character-service/skirmish-character.service";
 import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.model";
 import {Weapon} from "../../../model/weapon/weapon.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
@@ -34,7 +34,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
 
   constructor(protected router: Router,
               protected route: ActivatedRoute,
-              protected skirmishService: SkirmishService,
+              protected skirmishService: SkirmishCharacterService,
               private modalService: NgbModal,
               private attackReportService: AttackReportService,
               private rollService: RollService,

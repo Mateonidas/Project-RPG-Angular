@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {Character} from "../../model/character/character.model";
-import {SkirmishService} from "../skirmish-service/skirmish.service";
+import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {CharacterFormArraysWrapper} from "../../model/character/character-form-arrays-wrapper.model";
 import {EditFormComponent} from "../../edit-form/edit-form.component";
@@ -20,7 +20,7 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
 
   constructor(router: Router,
               route: ActivatedRoute,
-              private skirmishService: SkirmishService) {
+              private skirmishService: SkirmishCharacterService) {
     super(router, route);
   }
 

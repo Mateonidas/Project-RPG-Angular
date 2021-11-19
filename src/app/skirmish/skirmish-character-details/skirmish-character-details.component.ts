@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SkirmishService} from "../skirmish-service/skirmish.service";
+import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 
@@ -13,7 +13,7 @@ export class SkirmishCharacterDetailsComponent implements OnInit {
   skirmishCharacter!: SkirmishCharacter;
   private id!: number;
 
-  constructor(private skirmishService: SkirmishService,
+  constructor(private skirmishService: SkirmishCharacterService,
               private route: ActivatedRoute,
               private router: Router) { }
 

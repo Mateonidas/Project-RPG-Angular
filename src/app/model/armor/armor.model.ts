@@ -1,6 +1,9 @@
 import {Model} from "../model";
 import {BodyLocalization, BodyLocalizationList} from "../body-localization/body-localization.model";
 import {ListModel} from "../list-model";
+import {AttackCategory} from "../attack/attack-category.model";
+import {WeaponGroup} from "../weapon/weapon-type.model";
+import {WeaponTrait} from "../weapon/weaponTraits/weapon.advantages.model";
 
 export class Armor extends Model{
   public category: string;
@@ -11,14 +14,29 @@ export class Armor extends Model{
   public disadvantages: string[];
 
 
-  constructor(name: string, nameTranslation: string, category: string, penalty: string, localization: BodyLocalization[], armorPoints: number, advantages: string[], disadvantages: string[]) {
+  constructor(name?: string, nameTranslation?: string, category?: string, penalty?: string, localization?: BodyLocalization[], armorPoints?: number, advantages?: string[], disadvantages?: string[]) {
     super(name, nameTranslation);
-    this.category = category;
-    this.penalty = penalty;
-    this.localization = localization;
-    this.armorPoints = armorPoints;
-    this.advantages = advantages;
-    this.disadvantages = disadvantages;
+    this.category = <string>category;
+    this.penalty = <string>penalty;
+    this.localization = <BodyLocalization[]>localization;
+    this.armorPoints = <number>armorPoints;
+    this.advantages = <string[]>advantages;
+    this.disadvantages = <string[]>disadvantages;
+  }
+
+  static fromJSON(object: Object): Armor {
+    let armor = Object.assign(new Armor(), object);
+    armor.localization = BodyLocalization.arrayFromJSON(armor['localization']);
+    return armor;
+  }
+
+  static arrayFromJSON(objectsArray: Object[]): Armor[] {
+    let armors = [];
+    for (let object of objectsArray) {
+      let armor = Armor.fromJSON(object);
+      armors.push(armor);
+    }
+    return armors;
   }
 }
 

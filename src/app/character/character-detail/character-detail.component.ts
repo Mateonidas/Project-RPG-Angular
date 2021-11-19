@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Character} from "../../model/character/character.model";
-import {CharacterService} from "../character-service/character.service";
+import {CharacterService} from "../../shared/services/character-service/character.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {SkirmishService} from "../../skirmish/skirmish-service/skirmish.service";
+import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
 
 @Component({
   selector: 'app-character-detail',
@@ -14,7 +14,7 @@ export class CharacterDetailComponent implements OnInit {
   private id!: number;
 
   constructor(private characterService: CharacterService,
-              private skirmishService: SkirmishService,
+              private skirmishService: SkirmishCharacterService,
               private route: ActivatedRoute,
               private router: Router) {
   }

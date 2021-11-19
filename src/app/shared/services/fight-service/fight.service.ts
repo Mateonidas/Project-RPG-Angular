@@ -82,10 +82,10 @@ export class FightService extends ServiceModel{
       this.createRollDialog(owner.name + ': Skręcenie kostki: 1-50 - lewa noga, 51-100 - prawa noga (k100)', false)
         .subscribe((rollResult: { roll: number, modifier: number }) => {
           if(rollResult.roll <= 50) {
-            owner.bodyLocalizations.leftLeg.setInjure(InjuresList.minorTornMuscles);
+            owner.bodyLocalizations.leftLeg.addInjure(InjuresList.minorTornMuscles);
           }
           else {
-            owner.bodyLocalizations.rightLeg.setInjure(InjuresList.minorTornMuscles);
+            owner.bodyLocalizations.rightLeg.addInjure(InjuresList.minorTornMuscles);
           }
         })
     }

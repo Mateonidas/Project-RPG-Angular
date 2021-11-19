@@ -1,8 +1,13 @@
 import {Model} from "../model";
 import {ListModel} from "../list-model";
+import {CharacterCharacteristic} from "../characteristic/character-characteristic.model";
+import {AttackCategory} from "../attack/attack-category.model";
 
 export class Skill extends Model {
 
+  static fromJSON(object: Object): Skill {
+    return Object.assign(new Skill(), object);
+  }
 }
 
 export class SkillsList extends ListModel {
@@ -50,8 +55,23 @@ export class CharacterSkill {
   public base: Skill;
   public value: number;
 
-  constructor(skill: Skill, value: number) {
-    this.base = skill;
-    this.value = value;
+  constructor(skill?: Skill, value?: number) {
+    this.base = <Skill>skill;
+    this.value = <number>value;
+  }
+
+  static fromJSON(object: Object): CharacterSkill {
+    let characterSkill = Object.assign(new CharacterSkill(), object);
+    characterSkill.base = Skill.fromJSON(characterSkill['base']);
+    return characterSkill;
+  }
+
+  static arrayFromJSON(objectsArray: Object[]): CharacterSkill[] {
+    let characterSkills = [];
+    for (let object of objectsArray) {
+      let characterSkill = CharacterSkill.fromJSON(object);
+      characterSkills.push(characterSkill);
+    }
+    return characterSkills;
   }
 }

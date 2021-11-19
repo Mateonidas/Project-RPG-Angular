@@ -4,9 +4,22 @@ import {ListModel} from "../list-model";
 export class BodyLocalization extends Model {
   public numericalInterval?: number[];
 
-  constructor(name: string, nameTranslation: string, numericalInterval: number[]) {
+  constructor(name?: string, nameTranslation?: string, numericalInterval?: number[]) {
     super(name, nameTranslation);
     this.numericalInterval = numericalInterval;
+  }
+
+  static fromJSON(object: Object): BodyLocalization {
+    return Object.assign(new BodyLocalization(), object);
+  }
+
+  static arrayFromJSON(objectsArray: Object[]): BodyLocalization[] {
+    let bodyLocalizations = [];
+    for (let object of objectsArray) {
+      let bodyLocalization = BodyLocalization.fromJSON(object);
+      bodyLocalizations.push(bodyLocalization);
+    }
+    return bodyLocalizations;
   }
 }
 

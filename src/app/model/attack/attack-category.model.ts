@@ -5,9 +5,15 @@ import {ListModel} from "../list-model";
 export class AttackCategory extends Model {
   public usedCharacteristic: Characteristic;
 
-  constructor(name: string, nameTranslation: string, usedCharacteristic: Characteristic) {
+  constructor(name?: string, nameTranslation?: string, usedCharacteristic?: Characteristic) {
     super(name, nameTranslation);
-    this.usedCharacteristic = usedCharacteristic;
+    this.usedCharacteristic = <Characteristic>usedCharacteristic;
+  }
+
+  static fromJSON(object: Object): AttackCategory {
+    let attackCategory = Object.assign(new AttackCategory(), object);
+    attackCategory.usedCharacteristic = Characteristic.fromJSON(attackCategory['usedCharacteristic']);
+    return attackCategory;
   }
 }
 

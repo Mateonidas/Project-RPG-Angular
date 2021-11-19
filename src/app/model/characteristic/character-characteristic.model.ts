@@ -1,104 +1,118 @@
 import {Characteristic, Characteristics} from "./characteristic.model";
 
 export class CharacterCharacteristic {
-    public base: Characteristic;
-    public value: number;
+  public base: Characteristic;
+  public value: number;
 
-    constructor(characteristic: Characteristic, value: number) {
-        this.base = characteristic;
-        this.value = value;
+  constructor(characteristic?: Characteristic, value?: number) {
+    this.base = <Characteristic>characteristic;
+    this.value = <number>value;
+  }
+
+  static fromJSON(object: Object): CharacterCharacteristic {
+    return Object.assign(new CharacterCharacteristic(), object);
+  }
+
+  static arrayFromJSON(objectsArray: Object[]): CharacterCharacteristic[] {
+    let characteristics = [];
+    for (let object of objectsArray) {
+      let characteristic = CharacterCharacteristic.fromJSON(object);
+      characteristics.push(characteristic);
     }
+    return characteristics;
+  }
 }
 
 export class CharacterCharacteristics {
-    private _characteristics = [
-        new CharacterCharacteristic(Characteristics.movement, 0),
-        new CharacterCharacteristic(Characteristics.weaponSkill, 0),
-        new CharacterCharacteristic(Characteristics.ballisticSkill, 0),
-        new CharacterCharacteristic(Characteristics.strength, 0),
-        new CharacterCharacteristic(Characteristics.toughness, 0),
-        new CharacterCharacteristic(Characteristics.initiative, 0),
-        new CharacterCharacteristic(Characteristics.agility, 0),
-        new CharacterCharacteristic(Characteristics.dexterity, 0),
-        new CharacterCharacteristic(Characteristics.intelligence, 0),
-        new CharacterCharacteristic(Characteristics.willpower, 0),
-        new CharacterCharacteristic(Characteristics.fellowship, 0),
-        new CharacterCharacteristic(Characteristics.wounds, 0),
-    ]
+  characteristics : CharacterCharacteristic[] = [
+    new CharacterCharacteristic(Characteristics.movement, 0),
+    new CharacterCharacteristic(Characteristics.weaponSkill, 0),
+    new CharacterCharacteristic(Characteristics.ballisticSkill, 0),
+    new CharacterCharacteristic(Characteristics.strength, 0),
+    new CharacterCharacteristic(Characteristics.toughness, 0),
+    new CharacterCharacteristic(Characteristics.initiative, 0),
+    new CharacterCharacteristic(Characteristics.agility, 0),
+    new CharacterCharacteristic(Characteristics.dexterity, 0),
+    new CharacterCharacteristic(Characteristics.intelligence, 0),
+    new CharacterCharacteristic(Characteristics.willpower, 0),
+    new CharacterCharacteristic(Characteristics.fellowship, 0),
+    new CharacterCharacteristic(Characteristics.wounds, 0),
+  ]
 
-    constructor(movement: number, weaponSkill: number, ballisticSkill: number, strength: number, toughness: number, initiative: number, agility: number, dexterity: number, intelligence: number, willpower: number, fellowship: number, wounds: number) {
-        this.movement.value = movement;
-        this.weaponSkill.value = weaponSkill;
-        this.ballisticSkill.value = ballisticSkill;
-        this.strength.value = strength;
-        this.toughness.value = toughness;
-        this.initiative.value = initiative;
-        this.agility.value = agility;
-        this.dexterity.value = dexterity;
-        this.intelligence.value = intelligence;
-        this.willpower.value = willpower;
-        this.fellowship.value = fellowship;
-        this.wounds.value = wounds;
-    }
+  constructor(movement?: number, weaponSkill?: number, ballisticSkill?: number, strength?: number, toughness?: number, initiative?: number, agility?: number, dexterity?: number, intelligence?: number, willpower?: number, fellowship?: number, wounds?: number) {
+    this.movement.value = <number>movement;
+    this.weaponSkill.value = <number>weaponSkill;
+    this.ballisticSkill.value = <number>ballisticSkill;
+    this.strength.value = <number>strength;
+    this.toughness.value = <number>toughness;
+    this.initiative.value = <number>initiative;
+    this.agility.value = <number>agility;
+    this.dexterity.value = <number>dexterity;
+    this.intelligence.value = <number>intelligence;
+    this.willpower.value = <number>willpower;
+    this.fellowship.value = <number>fellowship;
+    this.wounds.value = <number>wounds;
+  }
 
-    private getCharacteristicByName(name: string): CharacterCharacteristic {
-        return <CharacterCharacteristic>this._characteristics.find(x => x.base.name == name);
-    }
+  private getCharacteristicByName(name: string): CharacterCharacteristic {
+    return <CharacterCharacteristic>this.characteristics.find(x => x.base.name == name);
+  }
 
-    public getCharacteristic(characteristic: Characteristic) {
-      return <CharacterCharacteristic>this._characteristics.find(x => x.base == characteristic);
-    }
+  public getCharacteristic(characteristic: Characteristic) {
+    return <CharacterCharacteristic>this.characteristics.find(x => x.base == characteristic);
+  }
 
-    get characteristics(): CharacterCharacteristic[] {
-        return this._characteristics;
-    }
+  get movement(): CharacterCharacteristic {
+    return this.getCharacteristicByName('Movement');
+  }
 
-    get movement(): CharacterCharacteristic {
-        return this.getCharacteristicByName('Movement');
-    }
+  get weaponSkill(): CharacterCharacteristic {
+    return this.getCharacteristicByName('WeaponSkill');
+  }
 
-    get weaponSkill(): CharacterCharacteristic {
-        return this.getCharacteristicByName('WeaponSkill');
-    }
+  get ballisticSkill(): CharacterCharacteristic {
+    return this.getCharacteristicByName('BallisticSkill');
+  }
 
-    get ballisticSkill(): CharacterCharacteristic {
-        return this.getCharacteristicByName('BallisticSkill');
-    }
+  get strength(): CharacterCharacteristic {
+    return this.getCharacteristicByName('Strength');
+  }
 
-    get strength(): CharacterCharacteristic {
-        return this.getCharacteristicByName('Strength');
-    }
+  get toughness(): CharacterCharacteristic {
+    return this.getCharacteristicByName('Toughness');
+  }
 
-    get toughness(): CharacterCharacteristic {
-        return this.getCharacteristicByName('Toughness');
-    }
+  get initiative(): CharacterCharacteristic {
+    return this.getCharacteristicByName('Initiative');
+  }
 
+  get agility(): CharacterCharacteristic {
+    return this.getCharacteristicByName('Agility');
+  }
 
-    get initiative(): CharacterCharacteristic {
-        return this.getCharacteristicByName('Initiative');
-    }
+  get dexterity(): CharacterCharacteristic {
+    return this.getCharacteristicByName('Dexterity');
+  }
 
-    get agility(): CharacterCharacteristic {
-        return this.getCharacteristicByName('Agility');
-    }
+  get intelligence(): CharacterCharacteristic {
+    return this.getCharacteristicByName('Intelligence');
+  }
 
-    get dexterity(): CharacterCharacteristic {
-        return this.getCharacteristicByName('Dexterity');
-    }
+  get willpower(): CharacterCharacteristic {
+    return this.getCharacteristicByName('Willpower');
+  }
 
-    get intelligence(): CharacterCharacteristic {
-        return this.getCharacteristicByName('Intelligence');
-    }
+  get fellowship(): CharacterCharacteristic {
+    return this.getCharacteristicByName('Fellowship');
+  }
 
-    get willpower(): CharacterCharacteristic {
-        return this.getCharacteristicByName('Willpower');
-    }
+  get wounds(): CharacterCharacteristic {
+    return this.getCharacteristicByName('Wounds');
+  }
 
-    get fellowship(): CharacterCharacteristic {
-        return this.getCharacteristicByName('Fellowship');
-    }
-
-    get wounds(): CharacterCharacteristic {
-        return this.getCharacteristicByName('Wounds');
-    }
+  static fromJSON(object: Object): CharacterCharacteristics {
+    let characterCharacteristics = Object.assign(new CharacterCharacteristics(), object);
+    characterCharacteristics.characteristics = CharacterCharacteristic.arrayFromJSON(characterCharacteristics['characteristics']);
+    return characterCharacteristics;
+  }
 }
