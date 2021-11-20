@@ -34,6 +34,7 @@ export class SkirmishCharactersListComponent implements OnInit {
     )
     this.skirmishCharacters = this.skirmishCharacterService.getSkirmishCharacters();
     this.roundNumber = this.roundService.roundNumber;
+    this.sortByInitiative();
   }
 
   initiativeRolls() {
