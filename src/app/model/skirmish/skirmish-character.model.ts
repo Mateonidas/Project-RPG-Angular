@@ -94,7 +94,7 @@ export class SkirmishCharacter extends Character {
   }
 
   private getTraitForWeapon() {
-    let trait = this.skills.find(characterSkill => characterSkill.base == this.usedWeapon.weaponGroup.usedSkill);
+    let trait = this.skills.find(characterSkill => characterSkill.base.nameTranslation == this.usedWeapon.weaponGroup.usedSkill.nameTranslation);
     if (trait === undefined) {
       trait = this.characteristics.getCharacteristic(this.usedWeapon.attackType.usedCharacteristic);
     }
@@ -103,7 +103,7 @@ export class SkirmishCharacter extends Character {
   }
 
   private getTraitForDodging() {
-    let trait = this.skills.find(characterSkill => characterSkill.base == SkillsList.dodge)
+    let trait = this.skills.find(characterSkill => characterSkill.base.nameTranslation == SkillsList.dodge.nameTranslation)
     if (trait === undefined) {
       trait = this.characteristics.getCharacteristic(Characteristics.agility)
     }
@@ -116,12 +116,12 @@ export class SkirmishCharacter extends Character {
   }
 
   checkIfWeaponAdvantagesAreIgnored() {
-    let skill = this.skills.find(characterSkill => characterSkill.base == this.usedWeapon.weaponGroup.usedSkill);
+    let skill = this.skills.find(characterSkill => characterSkill.base.nameTranslation == this.usedWeapon.weaponGroup.usedSkill.nameTranslation);
     return skill === undefined;
   }
 
   checkIfHasCondition(condition: Model) {
-    return this.conditions.filter(e => e.base === condition).length > 0;
+    return this.conditions.filter(e => e.base.nameTranslation === condition.nameTranslation).length > 0;
   }
 
   resetUnconsciousCounter() {
@@ -150,7 +150,7 @@ export class SkirmishCharacter extends Character {
   }
 
   removeCondition(condition: Model) {
-    let index = this.conditions.findIndex(c => c.base === condition);
+    let index = this.conditions.findIndex(c => c.base.nameTranslation === condition.nameTranslation);
     this.conditions.splice(index, 1);
   }
 
