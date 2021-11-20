@@ -18,7 +18,7 @@ export class SkirmishCharactersListComponent implements OnInit {
   subscription!: Subscription;
   roundNumber!: number;
 
-  constructor(private skirmishService: SkirmishCharacterService,
+  constructor(private skirmishCharacterService: SkirmishCharacterService,
               private router: Router,
               private route: ActivatedRoute,
               private modalService: NgbModal,
@@ -27,12 +27,12 @@ export class SkirmishCharactersListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subscription = this.skirmishService.skirmishCharactersChanged.subscribe(
+    this.subscription = this.skirmishCharacterService.skirmishCharactersChanged.subscribe(
       (skirmishCharacters: SkirmishCharacter[]) => {
         this.skirmishCharacters = skirmishCharacters;
       }
     )
-    this.skirmishCharacters = this.skirmishService.getSkirmishCharacters();
+    this.skirmishCharacters = this.skirmishCharacterService.getSkirmishCharacters();
     this.roundNumber = this.roundService.roundNumber;
   }
 
@@ -42,6 +42,7 @@ export class SkirmishCharactersListComponent implements OnInit {
       modalRef.componentInstance.name = skirmishCharacter.name;
       modalRef.componentInstance.rollEntry.subscribe((rollValue: number) => {
         skirmishCharacter.skirmishInitiative += rollValue;
+        this.skirmishCharacterService.updateSkirmishCharacter(skirmishCharacter);
       })
     }
   }
