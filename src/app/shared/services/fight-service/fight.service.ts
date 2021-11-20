@@ -46,7 +46,14 @@ export class FightService extends ServiceModel{
   }
 
   public getAttackLocalization(attackerRoll: number) {
-    let localizationNumber: number = Number(attackerRoll.toLocaleString()[1] + attackerRoll.toLocaleString()[0]);
+    let firstDigit = attackerRoll.toLocaleString()[0];
+    let secondDigit = attackerRoll.toLocaleString()[1];
+    if(secondDigit === undefined) {
+      secondDigit = firstDigit;
+      firstDigit = '0';
+    }
+
+    let localizationNumber: number = Number(secondDigit + firstDigit);
 
     for(let localization of BodyLocalizationList.list) {
       // @ts-ignore

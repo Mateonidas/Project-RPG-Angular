@@ -34,7 +34,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
 
   constructor(protected router: Router,
               protected route: ActivatedRoute,
-              protected skirmishService: SkirmishCharacterService,
+              protected skirmishCharacterService: SkirmishCharacterService,
               private modalService: NgbModal,
               private attackReportService: AttackReportService,
               private rollService: RollService,
@@ -52,8 +52,8 @@ export class SkirmishActionsAttackComponent implements OnInit {
   }
 
   private initForm() {
-    this.attacker = this.skirmishService.getSkirmishCharacter(this.id);
-    this.skirmishCharactersList = this.skirmishService.getSkirmishCharacters();
+    this.attacker = this.skirmishCharacterService.getSkirmishCharacter(this.id);
+    this.skirmishCharactersList = this.skirmishCharacterService.getSkirmishCharacters();
     this.skirmishCharactersList.splice(this.id, 1);
 
     this.attacksTypeList = AttacksTypeList.attacksTypeList.filter(x => x.category.name === 'MeleeAttack');
@@ -104,6 +104,17 @@ export class SkirmishActionsAttackComponent implements OnInit {
       this.checkAttackResult(this.attacker, defender);
       this.attackReportService.createReport(this.attacker, defender);
       this.createReportDialog();
+
+      this.attacker.roll.clearRoll();
+      defender.roll.clearRoll();
+
+      this.skirmishCharacterService.updateSkirmishCharacter(
+        this.attacker
+      );
+
+      this.skirmishCharacterService.updateSkirmishCharacter(
+        defender
+      );
     })
   }
 

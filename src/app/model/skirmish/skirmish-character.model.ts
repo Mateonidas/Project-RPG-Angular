@@ -15,6 +15,7 @@ import {Armor} from "../armor/armor.model";
 
 export class SkirmishCharacter extends Character {
 
+  id!: number;
   roll!: Roll;
   usedWeapon!: Weapon;
   isAttacker!: boolean;
@@ -30,9 +31,10 @@ export class SkirmishCharacter extends Character {
   unconsciousCounter!: number;
   notes!: string[];
 
-  constructor(character?: Character) {
+  constructor(character?: Character, id?: number) {
     super(character?.name, character?.description, character?.characteristics, character?.skills, character?.talents, character?.isRightHanded, character?.weapons, character?.armor);
     if (character != undefined) {
+      this.id = <number>id;
       this.currentWounds = <number>character?.characteristics.wounds.value;
       this.skirmishInitiative = <number>character?.characteristics.initiative.value;
       this.advantage = 0;

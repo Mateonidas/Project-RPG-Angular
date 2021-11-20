@@ -82,7 +82,7 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
   }
 
   onSubmit() {
-    this.skirmishService.updateSkirmishCharacter(this.id, this.createCharacter());
+    this.skirmishService.updateSkirmishCharacter(this.createCharacter());
     this.onCancel()
   }
 
@@ -102,15 +102,16 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
     const armors = this.editCharacterForm.value.armors;
 
     let skirmishCharacter = new SkirmishCharacter(new Character(
-      name,
-      description,
-      characteristics,
-      skills,
-      talents,
-      isRightHanded,
-      weapons,
-      armors
-    ));
+        name,
+        description,
+        characteristics,
+        skills,
+        talents,
+        isRightHanded,
+        weapons,
+        armors
+      ),
+      this.id);
     skirmishCharacter.currentWounds = this.editCharacterForm.value.currentWounds;
     skirmishCharacter.skirmishInitiative = this.editCharacterForm.value.skirmishInitiative;
     skirmishCharacter.advantage = this.editCharacterForm.value.advantage;

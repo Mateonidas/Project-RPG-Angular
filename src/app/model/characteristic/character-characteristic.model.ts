@@ -10,7 +10,10 @@ export class CharacterCharacteristic {
   }
 
   static fromJSON(object: Object): CharacterCharacteristic {
-    return Object.assign(new CharacterCharacteristic(), object);
+    let characterCharacteristics =  Object.assign(new CharacterCharacteristic(), object);
+    characterCharacteristics.base = Characteristic.fromJSON(characterCharacteristics['base']);
+
+    return characterCharacteristics;
   }
 
   static arrayFromJSON(objectsArray: Object[]): CharacterCharacteristic[] {
@@ -59,7 +62,7 @@ export class CharacterCharacteristics {
   }
 
   public getCharacteristic(characteristic: Characteristic) {
-    return <CharacterCharacteristic>this.characteristics.find(x => x.base == characteristic);
+    return <CharacterCharacteristic>this.characteristics.find(x => x.base.name == characteristic.name);
   }
 
   get movement(): CharacterCharacteristic {

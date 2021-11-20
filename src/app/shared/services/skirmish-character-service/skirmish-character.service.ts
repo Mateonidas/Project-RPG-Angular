@@ -17,11 +17,10 @@ export class SkirmishCharacterService {
   skirmishCharacters: SkirmishCharacter[];
 
   constructor() {
-    if(JSON.parse(<string>localStorage.getItem('skirmishCharacters')) == null) {
+    if (JSON.parse(<string>localStorage.getItem('skirmishCharacters')) == null) {
       this.skirmishCharacters = this.prepareTestSkirmishCharacters();
       localStorage.setItem('skirmishCharacters', JSON.stringify(this.skirmishCharacters));
-    }
-    else {
+    } else {
       this.skirmishCharacters = this.getSkirmishCharacters();
     }
   }
@@ -37,15 +36,21 @@ export class SkirmishCharacterService {
   }
 
   addNewSkirmishCharacter(character: Character) {
-    this.skirmishCharacters.push(new SkirmishCharacter(character));
+    let skirmishCharacter = new SkirmishCharacter(character, this.skirmishCharacters.length);
+    this.skirmishCharacters.push(skirmishCharacter);
     this.skirmishCharactersChanged.next(this.skirmishCharacters.slice())
     localStorage.setItem('skirmishCharacters', JSON.stringify(this.skirmishCharacters));
   }
 
-  updateSkirmishCharacter(id: number, skirmishCharacter: SkirmishCharacter) {
-    this.skirmishCharacters[id] = skirmishCharacter;
+  updateSkirmishCharacter(skirmishCharacter: SkirmishCharacter) {
+    this.skirmishCharacters[this.getCharacterIndexById(skirmishCharacter.id)] = skirmishCharacter;
     this.skirmishCharactersChanged.next(this.skirmishCharacters.slice());
     localStorage.setItem('skirmishCharacters', JSON.stringify(this.skirmishCharacters));
+  }
+
+  getCharacterIndexById(id: number) {
+    let characterInArray = this.skirmishCharacters.find(skirmishCharacter => skirmishCharacter.id == id);
+    return this.skirmishCharacters.indexOf(<SkirmishCharacter>characterInArray);
   }
 
   prepareTestSkirmishCharacters() {
@@ -58,7 +63,9 @@ export class SkirmishCharacterService {
           new CharacterCharacteristics(
             4, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 15
           ),
-          [],
+          [
+            new CharacterSkill(SkillsList.meleeFencing, 50)
+          ],
           [
             new Talent('Ambidextrous', 'Oburęczność', 1, '2')
           ],
@@ -70,7 +77,8 @@ export class SkirmishCharacterService {
             ArmorsList.leatherJack,
             ArmorsList.leatherLeggings,
           ]
-        )
+        ),
+        0
       ),
       new SkirmishCharacter(
         new Character(
@@ -95,7 +103,8 @@ export class SkirmishCharacterService {
             ArmorsList.leatherJack,
             ArmorsList.leatherLeggings,
           ]
-        )
+        ),
+        1
       )
     ]
   }
