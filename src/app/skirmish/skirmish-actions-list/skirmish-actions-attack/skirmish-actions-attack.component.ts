@@ -11,8 +11,6 @@ import {SaveRollDialogWindowComponent} from "../../../dialog-window/save-roll-di
 import {AttackType} from 'src/app/model/attack/attack-type.model';
 import {AttackReportService} from "../../../dialog-window/report-dialog-window/attack-report-service/attack-report.service";
 import {AttackReportDialogWindowComponent} from "../../../dialog-window/report-dialog-window/attack-report-dialog-window.component";
-import {WeaponTraitsList} from "../../../model/weapon/weaponTraits/weapon.advantages.model";
-import {ConditionsList} from "../../../model/conditions/conditions-list.model";
 import {RollService} from "../../../shared/services/roll-service/roll.service";
 import {ConditionService} from "../../../shared/services/condition-service/condition.service";
 import {FightService} from "../../../shared/services/fight-service/fight.service";
@@ -93,28 +91,8 @@ export class SkirmishActionsAttackComponent implements OnInit {
     defender.isAttacker = false;
 
     this.createSaveRollDialog(defender).subscribe(() => {
-      this.checkFightTraits(this.attacker, defender);
-      RollService.calculateFightRollResult(this.attacker.getFightTrait().value, this.attacker);
-
-      if (defender.checkIfHasCondition(ConditionsList.surprised)) {
-        defender.roll.successLevel = 0;
-      } else {
-        RollService.calculateFightRollResult(defender.getFightTrait().value, defender);
-      }
-      this.checkAttackResult(this.attacker, defender);
-      this.attackReportService.createReport(this.attacker, defender);
+      this.fightService.fightCalculation(this.attacker, defender);
       this.createReportDialog();
-
-      this.attacker.roll.clearRoll();
-      defender.roll.clearRoll();
-
-      this.skirmishCharacterService.updateSkirmishCharacter(
-        this.attacker
-      );
-
-      this.skirmishCharacterService.updateSkirmishCharacter(
-        defender
-      );
     })
   }
 
@@ -126,90 +104,6 @@ export class SkirmishActionsAttackComponent implements OnInit {
 
   createReportDialog() {
     this.modalService.open(AttackReportDialogWindowComponent);
-  }
-
-  checkFightTraits(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
-    this.checkConditions(attacker, defender);
-    this.checkWeaponTraits(attacker, defender);
-    this.checkWeaponTraits(defender, attacker);
-  }
-
-  checkWeaponTraits(owner: SkirmishCharacter, opponent: SkirmishCharacter) {
-    if (owner.usedWeapon !== undefined) {
-      if (!owner.checkIfWeaponAdvantagesAreIgnored()) {
-        WeaponTraitsList.checkFast(owner, opponent);
-      }
-    }
-  }
-
-  checkConditions(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
-    this.conditionService.fightCheckCondition(attacker, defender);
-    this.conditionService.fightCheckCondition(defender, attacker);
-    for (let condition of defender.conditions) {
-      if (condition.base === ConditionsList.prone) {
-        attacker.roll.modifier += 20;
-      }
-    }
-  }
-
-  checkAttackResult(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
-    if (attacker.roll.successLevel > defender.roll.successLevel) {
-      this.attackReportService.result = 'Cel został trafiony.'
-      attacker.advantage += 1;
-      defender.advantage = 0;
-      this.calculateDamage(attacker, defender);
-    } else {
-      defender.advantage += 1;
-      attacker.advantage = 0;
-      this.attackReportService.result = 'Cel wychodzi bez szwanku.'
-      this.attackReportService.damage = '0';
-    }
-
-    this.attackReportService.attackerModifier = String(attacker.roll.modifier);
-    this.attackReportService.targetModifier = String(defender.roll.modifier);
-    attacker.roll.modifier = 0;
-    defender.roll.modifier = 0;
-
-    this.fightService.checkDouble(attacker, defender);
-    this.fightService.checkDouble(defender, attacker);
-  }
-
-  calculateDamage(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
-    let damage = this.calculateFinalDamage(
-      this.rollService.calculateSuccessLevelDifference(attacker.roll.successLevel, defender.roll.successLevel),
-      this.calculateWeaponDamage(attacker),
-      RollService.calculateTraitBonus(defender.characteristics.toughness.value),
-      this.getArmorPointsFromAttackLocalization(attacker.roll.value, defender));
-
-    this.attackReportService.damage = String(damage);
-    defender.currentWounds -= damage;
-    this.conditionService.checkProneAfterDamage(defender);
-  }
-
-  private calculateWeaponDamage(character: SkirmishCharacter) {
-    let weapon = character.usedWeapon;
-    let weaponDamage = weapon.damage;
-    if (weapon.isUsingStrength) {
-      weaponDamage += Math.floor(character.characteristics.strength.value / 10);
-    }
-
-    return weaponDamage;
-  }
-
-  private getArmorPointsFromAttackLocalization(attackerRoll: number, target: SkirmishCharacter) {
-    let bodyLocalization = target.bodyLocalizations.getBodyLocalization(this.fightService.getAttackLocalization(attackerRoll));
-    this.attackReportService.attackLocalization = bodyLocalization!.bodyLocalization.nameTranslation;
-    return bodyLocalization!.armorPoints;
-  }
-
-  private calculateFinalDamage(successLevelsDifference: number, weaponDamage: number, targetToughnessBonus: number, armorPoints: number) {
-    let damage = successLevelsDifference + weaponDamage - targetToughnessBonus - armorPoints;
-
-    if (damage < 1) {
-      damage = 1;
-    }
-
-    return damage;
   }
 
   get attackCategory() {
