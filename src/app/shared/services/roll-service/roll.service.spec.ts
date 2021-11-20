@@ -22,24 +22,30 @@ describe('RollService', () => {
   })
 
   it('should return 2 success level', () => {
-    character.roll = 20;
-    character.modifier = 0;
+    character.roll.value = 20;
+    character.roll.modifier = 0;
 
-    expect(RollService.calculateRollResult(40, character).successLevel).toEqual(2);
+    RollService.calculateRollResult(40, character);
+
+    expect(character.roll.successLevel).toEqual(2);
   })
 
   it('should return true if roll was a failure', () => {
-    character.roll = 40;
-    character.modifier = 0;
+    character.roll.value = 40;
+    character.roll.modifier = 0;
 
-    expect(RollService.calculateRollResult(40, character).isSuccessful).toEqual(true);
+    RollService.calculateRollResult(40, character);
+
+    expect(character.roll.isSuccessful).toEqual(true);
   })
 
   it('should return false if roll was a failure', () => {
-    character.roll = 46;
-    character.modifier = 0;
+    character.roll.value = 46;
+    character.roll.modifier = 0;
 
-    expect(RollService.calculateRollResult(40, character).isSuccessful).toEqual(false);
+    RollService.calculateRollResult(40, character);
+
+    expect(character.roll.isSuccessful).toEqual(false);
   })
 
   //----Prepare test data

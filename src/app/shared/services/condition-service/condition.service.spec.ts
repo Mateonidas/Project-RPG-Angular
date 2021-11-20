@@ -26,10 +26,10 @@ describe('ConditionService', () => {
     let opponent  = prepareSkirmishCharacter();
 
     conditionService['fightCheckCondition'](skirmishCharacter, opponent);
-    expect(skirmishCharacter).toEqual(objectContaining({
+    expect(skirmishCharacter.roll).toEqual(objectContaining({
       modifier: 0
     }));
-    expect(opponent).toEqual(objectContaining({
+    expect(opponent.roll).toEqual(objectContaining({
       modifier: 0
     }));
   });
@@ -44,7 +44,7 @@ describe('ConditionService', () => {
     skirmishCharacter.isFlanked = true;
 
     conditionService.fightCheckCondition(skirmishCharacter, opponent);
-    expect(skirmishCharacter).toEqual(objectContaining({
+    expect(skirmishCharacter.roll).toEqual(objectContaining({
       modifier: -50
     }));
   });
@@ -155,10 +155,10 @@ describe('ConditionService', () => {
     addBlindedCondition(1.5);
 
     conditionService['fightCheckCondition'](skirmishCharacter, opponent);
-    expect(skirmishCharacter).toEqual(objectContaining({
+    expect(skirmishCharacter.roll).toEqual(objectContaining({
       modifier: -20
     }));
-    expect(opponent).toEqual(objectContaining({
+    expect(opponent.roll).toEqual(objectContaining({
       modifier: 20
     }));
   });
@@ -227,7 +227,7 @@ describe('ConditionService', () => {
     addBrokenCondition(2);
 
     conditionService['fightCheckCondition'](skirmishCharacter, opponent);
-    expect(skirmishCharacter).toEqual(objectContaining({
+    expect(skirmishCharacter.roll).toEqual(objectContaining({
       modifier: -20
     }));
   });
@@ -241,7 +241,7 @@ describe('ConditionService', () => {
     opponent.isAttacker = true;
 
     conditionService['fightCheckCondition'](skirmishCharacter, opponent);
-    expect(opponent).toEqual(objectContaining({
+    expect(opponent.roll).toEqual(objectContaining({
       modifier: 20
     }));
   });
@@ -254,7 +254,7 @@ describe('ConditionService', () => {
     opponent.isAttacker = true;
 
     conditionService['fightCheckCondition'](skirmishCharacter, opponent);
-    expect(opponent).toEqual(objectContaining({
+    expect(opponent.roll).toEqual(objectContaining({
       modifier: 0
     }));
   });
@@ -288,7 +288,7 @@ describe('ConditionService', () => {
     let opponent = prepareSkirmishCharacter();
 
     conditionService.fightCheckCondition(skirmishCharacter, opponent);
-    expect(skirmishCharacter).toEqual(objectContaining({
+    expect(skirmishCharacter.roll).toEqual(objectContaining({
       modifier: -20
     }))
   })
@@ -300,7 +300,7 @@ describe('ConditionService', () => {
     let opponent = prepareSkirmishCharacter();
 
     conditionService.fightCheckCondition(skirmishCharacter, opponent);
-    expect(skirmishCharacter).toEqual(objectContaining({
+    expect(skirmishCharacter.roll).toEqual(objectContaining({
       modifier: -20
     }))
   })
@@ -321,7 +321,7 @@ describe('ConditionService', () => {
     let opponent = prepareSkirmishCharacter();
 
     conditionService.fightCheckCondition(skirmishCharacter, opponent);
-    expect(skirmishCharacter).toEqual(objectContaining({
+    expect(skirmishCharacter.roll).toEqual(objectContaining({
       modifier: -30
     }))
   })
@@ -395,10 +395,10 @@ describe('ConditionService', () => {
     let opponent = prepareSkirmishCharacter();
 
     conditionService.fightCheckCondition(skirmishCharacter, opponent);
-    expect(skirmishCharacter).toEqual(objectContaining({
+    expect(skirmishCharacter.roll).toEqual(objectContaining({
       modifier: -20
     }))
-    expect(opponent).toEqual(objectContaining({
+    expect(opponent.roll).toEqual(objectContaining({
       modifier: 20
     }))
   })
@@ -423,7 +423,7 @@ describe('ConditionService', () => {
     let opponent = prepareSkirmishCharacter();
 
     conditionService.fightCheckCondition(skirmishCharacter, opponent);
-    expect(skirmishCharacter).toEqual(objectContaining({
+    expect(skirmishCharacter.roll).toEqual(objectContaining({
       modifier: -20
     }))
     expect(opponent).toEqual(objectContaining({
@@ -466,8 +466,10 @@ describe('ConditionService', () => {
     let opponent = prepareSkirmishCharacter()
 
     conditionService.fightCheckCondition(skirmishCharacter, opponent);
+    expect(opponent.roll).toEqual(objectContaining({
+      modifier: 20
+    }));
     expect(opponent).toEqual(objectContaining({
-      modifier: 20,
       advantage: 1
     }));
     expect(skirmishCharacter).toEqual(objectContaining({

@@ -106,7 +106,7 @@ export class ConditionService extends ServiceModel {
 
   private checkDeathFromPoison(character: SkirmishCharacter) {
     RollService.calculateRollResult(character.characteristics.toughness.value, character);
-    if (character.roll.isSuccessful) {
+    if (!character.roll.isSuccessful) {
       character.isDead = true;
     } else {
       character.unconsciousCounter = -1;
