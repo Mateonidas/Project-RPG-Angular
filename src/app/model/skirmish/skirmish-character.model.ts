@@ -147,6 +147,7 @@ export class SkirmishCharacter extends Character {
         this.conditions.push(new Condition(newCondition, 1));
       }
     }
+    this.advantage = 0;
   }
 
   removeCondition(condition: Model) {

@@ -19,9 +19,7 @@ export class SaveRollDialogWindowComponent implements OnInit {
               public attackReportService: AttackReportService) {
   }
 
-  ngOnInit()
-    :
-    void {
+  ngOnInit() {
     this.initForm();
   }
 

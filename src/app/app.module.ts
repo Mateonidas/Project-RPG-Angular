@@ -27,6 +27,7 @@ import { SaveRollDialogWindowComponent } from './dialog-window/save-roll-dialog-
 import { ValidationAlertComponent } from './validation/validation-alert/validation-alert.component';
 import { AttackReportDialogWindowComponent } from './dialog-window/report-dialog-window/attack-report-dialog-window.component';
 import { RollDialogWindowComponent } from './dialog-window/roll-dialog-window/roll-dialog-window.component';
+import { AttackAllyFumbleDialogWindowComponent } from './dialog-window/attack-ally-fumble-dialog-window/attack-ally-fumble-dialog-window.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { RollDialogWindowComponent } from './dialog-window/roll-dialog-window/ro
     SaveRollDialogWindowComponent,
     ValidationAlertComponent,
     AttackReportDialogWindowComponent,
-    RollDialogWindowComponent
+    RollDialogWindowComponent,
+    AttackAllyFumbleDialogWindowComponent
   ],
     imports: [
         BrowserModule,

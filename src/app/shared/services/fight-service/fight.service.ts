@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ServiceModel} from "../service.model";
@@ -11,6 +11,8 @@ import {SkirmishCharacterService} from "../skirmish-character-service/skirmish-c
 import {WeaponTraitsList} from "../../../model/weapon/weaponTraits/weapon.advantages.model";
 import {ConditionService} from "../condition-service/condition.service";
 import {AttackReportService} from "../../../dialog-window/report-dialog-window/attack-report-service/attack-report.service";
+import {RollDialogWindowComponent} from "../../../dialog-window/roll-dialog-window/roll-dialog-window.component";
+import {AttackAllyFumbleDialogWindowComponent} from "../../../dialog-window/attack-ally-fumble-dialog-window/attack-ally-fumble-dialog-window.component";
 
 @Injectable({
   providedIn: 'root'
@@ -30,13 +32,14 @@ export class FightService extends ServiceModel {
     this.checkFightTraits(attacker, defender);
     RollService.calculateFightRollResult(attacker.getFightTrait().value, attacker);
     this.calculateDefenderSuccessLevel(defender);
-    this.checkAttackResult(attacker, defender);
-    this.attackReportService.createReport(attacker, defender);
+    this.checkAttackResult(attacker, defender).subscribe(() => {
+      this.attackReportService.createReport(attacker, defender);
 
-    attacker.roll.clearRoll();
-    defender.roll.clearRoll();
-    this.skirmishCharacterService.updateSkirmishCharacter(attacker);
-    this.skirmishCharacterService.updateSkirmishCharacter(defender);
+      attacker.roll.clearRoll();
+      defender.roll.clearRoll();
+      this.skirmishCharacterService.updateSkirmishCharacter(attacker);
+      this.skirmishCharacterService.updateSkirmishCharacter(defender);
+    });
   }
 
   private calculateDefenderSuccessLevel(defender: SkirmishCharacter) {
@@ -72,6 +75,7 @@ export class FightService extends ServiceModel {
   }
 
   private checkAttackResult(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
+    let emitter = new EventEmitter<{}>();
     if (attacker.roll.successLevel > defender.roll.successLevel) {
       this.attackReportService.result = 'Cel został trafiony.'
       attacker.advantage += 1;
@@ -91,6 +95,7 @@ export class FightService extends ServiceModel {
 
     this.checkDouble(attacker, defender);
     this.checkDouble(defender, attacker);
+    return emitter;
   }
 
   private calculateDamage(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
@@ -105,7 +110,7 @@ export class FightService extends ServiceModel {
     this.conditionService.checkProneAfterDamage(defender);
   }
 
-  private calculateWeaponDamage(character: SkirmishCharacter) {
+  public calculateWeaponDamage(character: SkirmishCharacter) {
     let weapon = character.usedWeapon;
     let weaponDamage = weapon.damage;
     if (weapon.isUsingStrength) {
@@ -115,13 +120,13 @@ export class FightService extends ServiceModel {
     return weaponDamage;
   }
 
-  private getArmorPointsFromAttackLocalization(attackerRoll: number, target: SkirmishCharacter) {
+  public getArmorPointsFromAttackLocalization(attackerRoll: number, target: SkirmishCharacter) {
     let bodyLocalization = target.bodyLocalizations.getBodyLocalization(this.getAttackLocalization(attackerRoll));
     this.attackReportService.attackLocalization = bodyLocalization!.bodyLocalization.nameTranslation;
     return bodyLocalization!.armorPoints;
   }
 
-  private calculateFinalDamage(successLevelsDifference: number, weaponDamage: number, targetToughnessBonus: number, armorPoints: number) {
+  public calculateFinalDamage(successLevelsDifference: number, weaponDamage: number, targetToughnessBonus: number, armorPoints: number) {
     let damage = successLevelsDifference + weaponDamage - targetToughnessBonus - armorPoints;
 
     if (damage < 1) {
@@ -204,8 +209,15 @@ export class FightService extends ServiceModel {
           }
         })
     } else if (roll >= 91 && roll <= 100) {
+      this.createAttackAllyFumbleDialog(owner, roll);
       //TODO: Atakuje sojusznika lub otrzymuje oszołomienie
     }
   }
 
+  protected createAttackAllyFumbleDialog(character: SkirmishCharacter, fumbleRoll: number) {
+    const modalRef = this.modalService.open(AttackAllyFumbleDialogWindowComponent);
+    modalRef.componentInstance.character = character;
+    modalRef.componentInstance.fumbleRoll = fumbleRoll;
+    return modalRef.componentInstance.emitter;
+  }
 }
