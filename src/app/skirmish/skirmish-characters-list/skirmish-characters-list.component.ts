@@ -73,4 +73,9 @@ export class SkirmishCharactersListComponent implements OnInit {
       this.conditionService.endTurnCheckConditions(character)
     }
   }
+
+  clearData() {
+    localStorage.clear();
+    window.location.reload();
+  }
 }

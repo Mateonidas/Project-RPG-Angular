@@ -9,7 +9,7 @@
       <button class="btn btn-danger me-2" type="button" (click)="endTurn()">
         Koniec rundy
       </button>
-      <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <button class="btn btn-primary dropdown-toggle me-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         Inicjatywa
         <span class="caret"></span>
       </button>
@@ -17,6 +17,9 @@
         <li><a class="dropdown-item" style="cursor:pointer;" (click)="initiativeRolls()">Rzut na inicjatywę</a></li>
         <li><a class="dropdown-item" style="cursor: pointer" (click)="sortByInitiative()">Sortuj według inicjatywy</a></li>
       </ul>
+      <button class="btn btn-danger me-2" type="button" (click)="clearData()">
+        Wyczyść dane
+      </button>
     </div>
   </div>
 </div>
