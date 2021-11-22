@@ -90,8 +90,8 @@ export class SkirmishActionsAttackComponent implements OnInit {
     let defender: SkirmishCharacter = this.target?.value;
     defender.isAttacker = false;
 
-    this.createSaveRollDialog(defender).subscribe(() => {
-      this.fightService.fightCalculation(this.attacker, defender);
+    this.createSaveRollDialog(defender).subscribe(async () => {
+      await this.fightService.fightCalculation(this.attacker, defender);
       this.createReportDialog();
     })
   }

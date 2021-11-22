@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ServiceModel} from "../service.model";
@@ -11,7 +11,6 @@ import {SkirmishCharacterService} from "../skirmish-character-service/skirmish-c
 import {WeaponTraitsList} from "../../../model/weapon/weaponTraits/weapon.advantages.model";
 import {ConditionService} from "../condition-service/condition.service";
 import {AttackReportService} from "../../../dialog-window/report-dialog-window/attack-report-service/attack-report.service";
-import {RollDialogWindowComponent} from "../../../dialog-window/roll-dialog-window/roll-dialog-window.component";
 import {AttackAllyFumbleDialogWindowComponent} from "../../../dialog-window/attack-ally-fumble-dialog-window/attack-ally-fumble-dialog-window.component";
 
 @Injectable({
@@ -20,26 +19,24 @@ import {AttackAllyFumbleDialogWindowComponent} from "../../../dialog-window/atta
 export class FightService extends ServiceModel {
 
   constructor(modalService: NgbModal,
-              private roundService: RoundService,
-              private skirmishCharacterService: SkirmishCharacterService,
-              private conditionService: ConditionService,
-              private attackReportService: AttackReportService,
-              private rollService: RollService) {
+              public roundService: RoundService,
+              public skirmishCharacterService: SkirmishCharacterService,
+              public conditionService: ConditionService,
+              public attackReportService: AttackReportService,
+              public rollService: RollService) {
     super(modalService);
   }
 
-  fightCalculation(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
+  async fightCalculation(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
     this.checkFightTraits(attacker, defender);
     RollService.calculateFightRollResult(attacker.getFightTrait().value, attacker);
     this.calculateDefenderSuccessLevel(defender);
-    this.checkAttackResult(attacker, defender).subscribe(() => {
-      this.attackReportService.createReport(attacker, defender);
-
-      attacker.roll.clearRoll();
-      defender.roll.clearRoll();
-      this.skirmishCharacterService.updateSkirmishCharacter(attacker);
-      this.skirmishCharacterService.updateSkirmishCharacter(defender);
-    });
+    await this.checkAttackResult(attacker, defender);
+    this.attackReportService.createReport(attacker, defender);
+    attacker.roll.clearRoll();
+    defender.roll.clearRoll();
+    this.skirmishCharacterService.updateSkirmishCharacter(attacker);
+    this.skirmishCharacterService.updateSkirmishCharacter(defender);
   }
 
   private calculateDefenderSuccessLevel(defender: SkirmishCharacter) {
@@ -74,8 +71,7 @@ export class FightService extends ServiceModel {
     }
   }
 
-  private checkAttackResult(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
-    let emitter = new EventEmitter<{}>();
+  private async checkAttackResult(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
     if (attacker.roll.successLevel > defender.roll.successLevel) {
       this.attackReportService.result = 'Cel został trafiony.'
       attacker.advantage += 1;
@@ -93,9 +89,8 @@ export class FightService extends ServiceModel {
     attacker.roll.modifier = 0;
     defender.roll.modifier = 0;
 
-    this.checkDouble(attacker, defender);
-    this.checkDouble(defender, attacker);
-    return emitter;
+    await this.checkDouble(attacker, defender);
+    await this.checkDouble(defender, attacker);
   }
 
   private calculateDamage(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
@@ -136,20 +131,16 @@ export class FightService extends ServiceModel {
     return damage;
   }
 
-  checkDouble(owner: SkirmishCharacter, opponent: SkirmishCharacter) {
+  async checkDouble(owner: SkirmishCharacter, opponent: SkirmishCharacter) {
     if (this.checkIfCharacterUseFightSkill(owner)) {
       if (owner.roll.isDouble) {
         if (owner.roll.isSuccessful) {
-          this.createRollDialog(owner.name + ': Trafienie krytyczne (k100)', false)
-            .subscribe((rollResult: { roll: number, modifier: number }) => {
-              this.checkCriticalHit(opponent, rollResult);
-            })
+          let rollResult = await this.createRollDialogAsync(owner.name + ': Trafienie krytyczne (k100)', false);
+          await this.checkCriticalHit(opponent, rollResult);
           console.log('Fuks dla ' + owner.name);
         } else if (!owner.roll.isSuccessful) {
-          this.createRollDialog(owner.name + ': Pech (k100)', false)
-            .subscribe((rollResult: { roll: number, modifier: number }) => {
-              this.checkCriticalFailure(owner, rollResult.roll);
-            })
+          let rollResult = await this.createRollDialogAsync(owner.name + ': Pech (k100)', false);
+          await this.checkCriticalFailure(owner, rollResult.roll);
           console.log('Pech dla ' + owner.name);
         }
       }
@@ -184,7 +175,7 @@ export class FightService extends ServiceModel {
     return null;
   }
 
-  private checkCriticalFailure(owner: SkirmishCharacter, roll: number) {
+  private async checkCriticalFailure(owner: SkirmishCharacter, roll: number) {
     if (roll >= 1 && roll <= 20) {
       owner.currentWounds -= 1;
     } else if (roll >= 21 && roll <= 40) {
@@ -209,15 +200,19 @@ export class FightService extends ServiceModel {
           }
         })
     } else if (roll >= 91 && roll <= 100) {
-      this.createAttackAllyFumbleDialog(owner, roll);
-      //TODO: Atakuje sojusznika lub otrzymuje oszołomienie
+      await this.createAttackAllyFumbleDialog(owner, roll);
     }
   }
 
-  protected createAttackAllyFumbleDialog(character: SkirmishCharacter, fumbleRoll: number) {
+  protected async createAttackAllyFumbleDialog(character: SkirmishCharacter, fumbleRoll: number) {
     const modalRef = this.modalService.open(AttackAllyFumbleDialogWindowComponent);
     modalRef.componentInstance.character = character;
     modalRef.componentInstance.fumbleRoll = fumbleRoll;
-    return modalRef.componentInstance.emitter;
+
+    return modalRef.closed
+      .toPromise()
+      .then((resolve) => {
+        return Promise.resolve(resolve);
+      })
   }
 }

@@ -12,6 +12,8 @@ export class RollDialogWindowComponent implements OnInit {
   @Input() name!: string;
   @Input() useModifier!: boolean;
   @Output() emitter = new EventEmitter<{roll: number, modifier: number}>();
+  @Output() rollValue!: number;
+  @Output() modifierValue!: number;
   public rollForm!: FormGroup;
 
   constructor(public activeModal: NgbActiveModal) { }
@@ -29,6 +31,8 @@ export class RollDialogWindowComponent implements OnInit {
 
   onSave() {
     this.emitter.emit({roll: this.roll?.value, modifier: this.modifier?.value});
+    this.rollValue = this.roll?.value;
+    this.modifierValue = this.modifier?.value;
     this.activeModal.close('Close click');
   }
 
