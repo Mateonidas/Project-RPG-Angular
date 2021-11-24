@@ -135,8 +135,9 @@ export class FightService extends ServiceModel {
     if (this.checkIfCharacterUseFightSkill(owner)) {
       if (owner.roll.isDouble) {
         if (owner.roll.isSuccessful) {
-          let rollResult = await this.createRollDialogAsync(owner.name + ': Trafienie krytyczne (k100)', false);
-          await this.checkCriticalHit(opponent, rollResult);
+          let criticalHitLocalizationRoll = await this.createRollDialogAsync(owner.name + ': Lokalizacja trafienia krytycznego (k100)', false);
+          let criticalHitRoll = await this.createRollDialogAsync(owner.name + ': Trafienie krytyczne (k100)', false);
+          this.checkCriticalHit(opponent, criticalHitLocalizationRoll.roll, criticalHitRoll.roll);
           console.log('Fuks dla ' + owner.name);
         } else if (!owner.roll.isSuccessful) {
           let rollResult = await this.createRollDialogAsync(owner.name + ': Pech (k100)', false);
@@ -151,8 +152,84 @@ export class FightService extends ServiceModel {
     return character.usedWeapon != undefined;
   }
 
-  private checkCriticalHit(opponent: SkirmishCharacter, rollResult: { roll: number; modifier: number }) {
-    this.getAttackLocalization(opponent.roll.value);
+  private checkCriticalHit(opponent: SkirmishCharacter, criticalHitLocalizationRoll: number, criticalHitRoll: number) {
+    const bodyLocalization = this.getCriticalHitLocalization(criticalHitLocalizationRoll);
+    switch (bodyLocalization) {
+      case BodyLocalizationList.head: {
+        this.setHeadCriticalWounds(opponent, criticalHitRoll);
+        break;
+      }
+    }
+  }
+
+  public getCriticalHitLocalization(attackerRoll: number) {
+    for (let localization of BodyLocalizationList.list) {
+      // @ts-ignore
+      if (attackerRoll >= localization.numericalInterval[0] && attackerRoll <= localization.numericalInterval[1]) {
+        return localization;
+      }
+    }
+
+    return null;
+  }
+
+  private async setHeadCriticalWounds(opponent: SkirmishCharacter, roll: number) {
+    if (roll >= 1 && roll <= 10) {
+      opponent.currentWounds -= 1;
+      opponent.addCondition(ConditionsList.bleeding);
+      opponent.addNote('Rana krytyczna głowy: Zawadiacka rana - usuń 1 ranę i 1 Krwawienie');
+    } else if (roll >= 11 && roll <= 20) {
+      opponent.currentWounds -= 1;
+      opponent.addCondition(ConditionsList.bleeding);
+      opponent.addNote('Rana krytyczna głowy: Płytkie cięcie - usuń 1 ranę i 1 Krwawienie');
+    } else if (roll >= 21 && roll <= 25) {
+      opponent.currentWounds -= 1;
+      opponent.addCondition(ConditionsList.blinded);
+      opponent.addNote('Rana krytyczna głowy: Spuchnięte oko - usuń 1 Oślepienie');
+    } else if (roll >= 26 && roll <= 30) {
+      opponent.currentWounds -= 1;
+      opponent.addCondition(ConditionsList.deafened);
+      opponent.addNote('Rana krytyczna głowy: Prosto w ucho - usuń 1 Ogłuszenie');
+    } else if (roll >= 31 && roll <= 35) {
+      opponent.currentWounds -= 2;
+      opponent.addCondition(ConditionsList.stunned);
+      opponent.addNote('Rana krytyczna głowy: Bolesne uderzenie - usuń 1 Ogłuszenie');
+    } else if (roll >= 36 && roll <= 40) {
+      opponent.currentWounds -= 2;
+      opponent.addCondition(ConditionsList.blinded, 2);
+      opponent.addNote('Rana krytyczna głowy: Podbite oko - usuń 2 Oślepienia');
+    } else if (roll >= 41 && roll <= 45) {
+      opponent.currentWounds -= 2;
+      opponent.addCondition(ConditionsList.stunned, 2);
+      opponent.addCondition(ConditionsList.bleeding);
+      opponent.addNote('Rana krytyczna głowy: Rozcięte ucho - usuń 2 Ogłuszenia i 1 Krwawienie');
+    } else if (roll >= 46 && roll <= 50) {
+      opponent.currentWounds -= 2;
+      opponent.addCondition(ConditionsList.bleeding, 2);
+      opponent.addCondition(ConditionsList.blinded);
+      opponent.addNote('Rana krytyczna głowy: Uderzenie w czoło - usuń 2 Krwawienia i 1 Oślepienie, które nie może zostać usunięte do momentu usunięcia Krwawienia');
+    } else if (roll >= 51 && roll <= 55) {
+      opponent.currentWounds -= 3;
+      opponent.addCondition(ConditionsList.stunned, 2);
+      opponent.bodyLocalizations.head.addInjure(InjuresList.minorBrokenBone);
+      opponent.addNote('Rana krytyczna głowy: Złamana szczęka - usuń 2 Ogłuszenia i Złamanie (pomniejsze)')
+    } else if (roll >= 56 && roll <= 60) {
+      opponent.currentWounds -= 3;
+      opponent.addCondition(ConditionsList.bleeding);
+      opponent.addCondition(ConditionsList.blinded);
+      //TODO: Oślepienie może zostać usunięte tylko przez pomoc medyczną, nie znika z czasem
+      opponent.addNote('Rana krytyczna głowy: Poważna rana oka - usuń Krawawienie, Oślepienie może zostać tylko przez Pomoc Medyczną')
+    } else if (roll >= 61 && roll <= 65) {
+      opponent.currentWounds -= 3;
+      //TODO: Modyfikator może wpływać na postać gdy ta jest flankowana
+      opponent.addNote('Rana krytyczna głowy: Poważna rana ucha - wszystkie testy związane otrzymują karę -20')
+    } else if (roll >= 66 && roll <= 70) {
+      opponent.currentWounds -= 3;
+      opponent.addCondition(ConditionsList.blinded, 2);
+      //TODO: Test odporności
+      let rollResult = await this.createRollDialogAsync(opponent.name + ': Test Odporności (k100)', false);
+      opponent.addNote('Rana krytyczna głowy: Złamany nos - usuń 2 Ogłuszenia i Złamanie (pomniejsze)')
+    }
   }
 
   public getAttackLocalization(attackerRoll: number) {
@@ -185,11 +262,11 @@ export class FightService extends ServiceModel {
     } else if (roll >= 41 && roll <= 60) {
       owner.roll.modifier = -10;
     } else if (roll >= 61 && roll <= 70) {
-      let roundNumber = this.roundService.roundNumber + 1;
-      owner.addNote('W rundzie ' + roundNumber + ' nie wykonuje ruchu.')
+      let nextRoundNumber = this.roundService.roundNumber + 1;
+      owner.addNote('W rundzie ' + nextRoundNumber + ' nie wykonuje ruchu.')
     } else if (roll >= 71 && roll <= 80) {
-      let roundNumber = this.roundService.roundNumber + 1;
-      owner.addNote('W rundzie ' + roundNumber + ' nie wykonuje akcji.')
+      let nextRoundNumber = this.roundService.roundNumber + 1;
+      owner.addNote('W rundzie ' + nextRoundNumber + ' nie wykonuje akcji.')
     } else if (roll >= 81 && roll <= 90) {
       this.createRollDialog(owner.name + ': Skręcenie kostki: 1-50 - lewa noga, 51-100 - prawa noga (k100)', false)
         .subscribe((rollResult: { roll: number, modifier: number }) => {

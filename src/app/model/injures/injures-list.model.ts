@@ -20,7 +20,63 @@ export class InjuresList extends ListModel {
     new Model('AmputatedTongue', 'Amputowany język'),
   ]
 
+  static get minorBrokenBone() {
+    return this.getListItemByName('MinorBrokenBone');
+  }
+
+  static get majorBrokenBone() {
+    return this.getListItemByName('MajorBrokenBone');
+  }
+
   static get minorTornMuscles() {
     return this.getListItemByName('MinorTornMuscles');
+  }
+
+  static get majorTornMuscles() {
+    return this.getListItemByName('MajorTornMuscles');
+  }
+
+  static get amputatedArm() {
+    return this.getListItemByName('AmputatedArm');
+  }
+
+  static get amputatedEar() {
+    return this.getListItemByName('AmputatedEar');
+  }
+
+  static get amputatedEye() {
+    return this.getListItemByName('AmputatedEye');
+  }
+
+  static get amputatedFinger() {
+    return this.getListItemByName('AmputatedFinger');
+  }
+
+  static get amputatedFoot() {
+    return this.getListItemByName('AmputatedFoot');
+  }
+
+  static get amputatedHand() {
+    return this.getListItemByName('AmputatedHand');
+  }
+
+  static get amputatedLeg() {
+    return this.getListItemByName('AmputatedLeg');
+  }
+
+  static get amputatedNose() {
+    return this.getListItemByName('AmputatedNose');
+  }
+
+  static get amputatedTeeth() {
+    return this.getListItemByName('AmputatedTeeth');
+  }
+
+  static get amputatedToes() {
+    return this.getListItemByName('AmputatedToes');
+  }
+
+  static get amputatedTongue() {
+    return this.getListItemByName('AmputatedTongue');
   }
 }

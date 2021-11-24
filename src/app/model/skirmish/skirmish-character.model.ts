@@ -128,7 +128,7 @@ export class SkirmishCharacter extends Character {
     this.unconsciousCounter = RollService.calculateTraitBonus(this.characteristics.toughness.value);
   }
 
-  addCondition(newCondition: Model) {
+  addCondition(newCondition: Model, level?: number) {
     if (this.conditions.length === 0) {
       this.conditions.push(new Condition(newCondition, 1));
     } else {
@@ -139,12 +139,20 @@ export class SkirmishCharacter extends Character {
           if (!(condition.base === ConditionsList.prone ||
             condition.base === ConditionsList.unconscious ||
             condition.base === ConditionsList.surprised)) {
-            condition.value += 1;
+            if (level != undefined) {
+              condition.value += level;
+            } else {
+              condition.value += 1;
+            }
           }
         }
       }
       if (!found) {
-        this.conditions.push(new Condition(newCondition, 1));
+        if (level != undefined) {
+          this.conditions.push(new Condition(newCondition, level));
+        } else {
+          this.conditions.push(new Condition(newCondition, 1));
+        }
       }
     }
     this.advantage = 0;
