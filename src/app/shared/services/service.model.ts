@@ -18,15 +18,15 @@ export class ServiceModel {
     modalRef.componentInstance.name = name;
     modalRef.componentInstance.useModifier = useModifier;
 
-    let roll: { roll: number; modifier: number; };
+    let rollValue: { roll: number; modifier: number; };
     modalRef.componentInstance.emitter.subscribe((rollResult: { roll: number, modifier: number }) => {
-      roll = rollResult;
+      rollValue = rollResult;
     });
 
     return modalRef.closed
       .toPromise()
       .then(() => {
-        return Promise.resolve({roll: roll.roll, modifier: roll.modifier});
+        return Promise.resolve({roll: rollValue.roll, modifier: rollValue.modifier});
       })
   }
 }

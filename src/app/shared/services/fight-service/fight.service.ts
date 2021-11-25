@@ -12,6 +12,7 @@ import {WeaponTraitsList} from "../../../model/weapon/weaponTraits/weapon.advant
 import {ConditionService} from "../condition-service/condition.service";
 import {AttackReportService} from "../../../dialog-window/report-dialog-window/attack-report-service/attack-report.service";
 import {AttackAllyFumbleDialogWindowComponent} from "../../../dialog-window/attack-ally-fumble-dialog-window/attack-ally-fumble-dialog-window.component";
+import {SkillTestService} from "../skill-test-service/skill-test.service";
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class FightService extends ServiceModel {
               public skirmishCharacterService: SkirmishCharacterService,
               public conditionService: ConditionService,
               public attackReportService: AttackReportService,
-              public rollService: RollService) {
+              public rollService: RollService,
+              public skillTestService: SkillTestService) {
     super(modalService);
   }
 
@@ -226,9 +228,16 @@ export class FightService extends ServiceModel {
     } else if (roll >= 66 && roll <= 70) {
       opponent.currentWounds -= 3;
       opponent.addCondition(ConditionsList.blinded, 2);
-      //TODO: Test odporności
+
+      opponent.roll.clearRoll();
       let rollResult = await this.createRollDialogAsync(opponent.name + ': Test Odporności (k100)', false);
-      opponent.addNote('Rana krytyczna głowy: Złamany nos - usuń 2 Ogłuszenia i Złamanie (pomniejsze)')
+      opponent.roll.value = rollResult.roll;
+      opponent.roll.modifier = rollResult.modifier;
+      this.skillTestService.enduranceTest(opponent);
+      if(!opponent.roll.isSuccessful){
+        opponent.addCondition(ConditionsList.stunned);
+      }
+      opponent.addNote('Rana krytyczna głowy: Złamany nos - usuń 2 Krwawienia')
     }
   }
 

@@ -6,6 +6,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {RollService} from "../roll-service/roll.service";
 import {SkillsList} from "../../../model/skill/skill.model";
 import {ServiceModel} from "../service.model";
+import {Model} from "../../../model/model";
 
 @Injectable({
   providedIn: 'root'
@@ -22,35 +23,35 @@ export class ConditionService extends ServiceModel {
     for (let condition of character.conditions) {
       switch (condition.base) {
         case ConditionsList.ablaze: {
-          this.checkAblaze(character, condition);
+          this.setAblaze(character, condition);
           break;
         }
         case ConditionsList.bleeding: {
-          this.checkBleeding(character, condition);
+          this.setBleeding(character, condition);
           break;
         }
         case ConditionsList.blinded: {
-          this.checkBlinded(condition);
+          this.setBlinded(condition);
           break;
         }
         case ConditionsList.broken: {
-          this.checkBroken(character, condition);
+          this.setBroken(character, condition);
           break;
         }
         case ConditionsList.deafened: {
-          this.checkDeafened(condition);
+          this.setDeafened(condition);
           break;
         }
         case ConditionsList.poisoned: {
-          this.checkPoisoned(character, condition);
+          this.setPoisoned(character, condition);
           break;
         }
         case ConditionsList.stunned: {
-          this.checkStunned(character, condition);
+          this.setStunned(character, condition);
           break;
         }
         case ConditionsList.surprised: {
-          this.checkSurprised(character);
+          this.setSurprised(character);
           break;
         }
       }
@@ -75,7 +76,7 @@ export class ConditionService extends ServiceModel {
       if (!character.isDead
         && !isUnconscious
       ) {
-        this.checkUnconsciousCounter(character, isPoisoned);
+        this.setUnconsciousCounter(character, isPoisoned);
       } else if (!character.isDead && isUnconscious) {
         if (isPoisoned) {
           if (character.unconsciousCounter > 0) {
@@ -93,7 +94,7 @@ export class ConditionService extends ServiceModel {
     }
   }
 
-  private checkUnconsciousCounter(character: SkirmishCharacter, isPoisoned: boolean) {
+  private setUnconsciousCounter(character: SkirmishCharacter, isPoisoned: boolean) {
     if (character.unconsciousCounter > 0) {
       character.unconsciousCounter -= 1;
     } else {
@@ -136,14 +137,13 @@ export class ConditionService extends ServiceModel {
     }
   }
 
-  private checkAblaze(character: SkirmishCharacter, condition: Condition) {
-    if (condition.base === ConditionsList.ablaze) {
-      this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k10)', false)
-        .subscribe((value: { roll: number, modifier: number }) => {
-          let damage = value.roll + (condition.value - 1);
-          character.currentWounds -= this.calculateAblazeDamage(damage, character);
-        })
-    }
+  private setAblaze(character: SkirmishCharacter, condition: Condition) {
+    this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k10)', false)
+      .subscribe((value: { roll: number, modifier: number }) => {
+        let damage = value.roll + (condition.value - 1);
+        character.currentWounds -= this.calculateAblazeDamage(damage, character);
+      })
+
   }
 
   private calculateAblazeDamage(damage: number, character: SkirmishCharacter) {
@@ -156,7 +156,7 @@ export class ConditionService extends ServiceModel {
     return finalDamage;
   }
 
-  private checkBleeding(character: SkirmishCharacter, condition: Condition) {
+  private setBleeding(character: SkirmishCharacter, condition: Condition) {
     if (character.checkIfHasCondition(ConditionsList.unconscious) && !character.isDead) {
       this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k100)', false)
         .subscribe((value: { roll: number, modifier: number }) => {
@@ -183,7 +183,7 @@ export class ConditionService extends ServiceModel {
     }
   }
 
-  private checkBroken(character: SkirmishCharacter, condition: Condition) {
+  private setBroken(character: SkirmishCharacter, condition: Condition) {
     if (!character.isEngaged) {
       this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k100)', true)
         .subscribe((value: { roll: number, modifier: number }) => {
@@ -209,15 +209,15 @@ export class ConditionService extends ServiceModel {
     }
   }
 
-  private checkBlinded(condition: Condition) {
+  private setBlinded(condition: Condition) {
     condition.value -= 0.5;
   }
 
-  private checkDeafened(condition: Condition) {
+  private setDeafened(condition: Condition) {
     condition.value -= 1;
   }
 
-  private checkPoisoned(character: SkirmishCharacter, condition: Condition) {
+  private setPoisoned(character: SkirmishCharacter, condition: Condition) {
     character.currentWounds -= condition.value;
     if (character.currentWounds <= 0) {
       character.currentWounds = 0;
@@ -247,7 +247,7 @@ export class ConditionService extends ServiceModel {
     }
   }
 
-  private checkStunned(character: SkirmishCharacter, condition: Condition) {
+  private setStunned(character: SkirmishCharacter, condition: Condition) {
     this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k100)', true)
       .subscribe((value: { roll: number, modifier: number }) => {
         character.roll.value = value.roll;
@@ -273,7 +273,7 @@ export class ConditionService extends ServiceModel {
     }
   }
 
-  private checkSurprised(character: SkirmishCharacter) {
+  private setSurprised(character: SkirmishCharacter) {
     character.removeCondition(ConditionsList.surprised);
   }
 
@@ -281,87 +281,88 @@ export class ConditionService extends ServiceModel {
     for (let condition of owner.conditions) {
       switch (condition.base) {
         case ConditionsList.blinded: {
-          this.checkBlindedInFight(owner, opponent, condition.value);
+          this.setBlindedModifierInFight(owner, opponent, condition.value);
           break;
         }
         case ConditionsList.broken: {
-          this.checkBrokenInFight(condition.value);
+          this.setBrokenModifierInFight(condition.value);
           break;
         }
         case ConditionsList.deafened: {
-          this.checkDeafenedInFight(owner, opponent, condition.value);
+          this.setDeafenedModifierInFight(owner, opponent, condition.value);
           break;
         }
         case ConditionsList.entangled: {
-          this.checkEntangledInFight(condition.value);
+          this.setEntangledModifierInFight(condition.value);
           break;
         }
         case ConditionsList.fatigued: {
-          this.checkFatiguedInFight(condition.value);
+          this.setFatiguedModifierInFight(condition.value);
           break;
         }
         case ConditionsList.poisoned: {
-          this.checkPoisonedInFight(condition.value);
+          this.setPoisonedModifierInFight(condition.value);
           break;
         }
         case ConditionsList.prone: {
-          this.checkProneInFight(opponent);
+          this.setProneModifierInFight(opponent);
           break;
         }
         case ConditionsList.stunned: {
-          this.checkStunnedInFight(opponent, condition.value);
+          this.setStunnedModifierInFight(opponent, condition.value);
           break;
         }
         case ConditionsList.surprised: {
-          this.checkSurprisedInFight(owner, opponent);
+          this.setSurprisedModifierInFight(owner, opponent);
           break;
         }
       }
     }
 
     owner.roll.modifier -= this.conditionModifier;
+    this.conditionModifier = 0;
   }
 
-  private checkBlindedInFight(owner: SkirmishCharacter, opponent: SkirmishCharacter, conditionLevel: number) {
+  private setBlindedModifierInFight(owner: SkirmishCharacter, opponent: SkirmishCharacter, conditionLevel: number) {
     this.setConditionModifier(10 * Math.ceil(conditionLevel));
     if (!owner.isAttacker) {
       opponent.roll.modifier += 10 * Math.ceil(conditionLevel);
     }
   }
 
-  private checkBrokenInFight(conditionLevel: number) {
+  private setBrokenModifierInFight(conditionLevel: number) {
     this.setConditionModifier(10 * conditionLevel);
   }
 
-  private checkDeafenedInFight(owner: SkirmishCharacter, opponent: SkirmishCharacter, conditionLevel: number) {
+  private setDeafenedModifierInFight(owner: SkirmishCharacter, opponent: SkirmishCharacter, conditionLevel: number) {
     if (opponent.isAttacker && owner.isFlanked) {
       opponent.roll.modifier += 10 * conditionLevel;
     }
   }
 
-  private checkEntangledInFight(conditionLevel: number) {
+  private setEntangledModifierInFight(conditionLevel: number) {
     this.setConditionModifier(10 * conditionLevel);
   }
 
-  private checkFatiguedInFight(conditionLevel: number) {
+  private setFatiguedModifierInFight(conditionLevel: number) {
     this.setConditionModifier(10 * conditionLevel);
   }
 
-  private checkPoisonedInFight(conditionLevel: number) {
+  private setPoisonedModifierInFight(conditionLevel: number) {
     this.setConditionModifier(10 * conditionLevel);
   }
 
-  private checkProneInFight(opponent: SkirmishCharacter) {
+  private setProneModifierInFight(opponent: SkirmishCharacter) {
     this.setConditionModifier(20);
     opponent.roll.modifier += 20;
   }
 
-  private checkStunnedInFight(opponent: SkirmishCharacter, conditionLevel: number) {
+  private setStunnedModifierInFight(opponent: SkirmishCharacter, conditionLevel: number) {
     this.setConditionModifier(10 * conditionLevel);
     opponent.advantage += 1;
   }
 
-  private checkSurprisedInFight(character: SkirmishCharacter, opponent: SkirmishCharacter) {
+  private setSurprisedModifierInFight(character: SkirmishCharacter, opponent: SkirmishCharacter) {
     opponent.advantage += 1;
     opponent.roll.modifier += 20;
     character.removeCondition(ConditionsList.surprised);
@@ -372,5 +373,16 @@ export class ConditionService extends ServiceModel {
       character.currentWounds = 0;
       character.addCondition(ConditionsList.prone);
     }
+  }
+
+  public checkCharacterConditionForTest(character: SkirmishCharacter, ...conditions: Model[]) {
+    this.conditionModifier = 0;
+    for(let condition of conditions) {
+      if(character.checkIfHasCondition(condition)) {
+        this.setConditionModifier(character.getCondition(condition).value * 10);
+      }
+    }
+
+    character.roll.modifier -= this.conditionModifier;
   }
 }

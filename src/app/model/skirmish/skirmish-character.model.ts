@@ -124,6 +124,10 @@ export class SkirmishCharacter extends Character {
     return this.conditions.filter(e => e.base.nameTranslation === condition.nameTranslation).length > 0;
   }
 
+  getCondition(condition: Model) {
+    return this.conditions.filter(e => e.base.nameTranslation === condition.nameTranslation)[0];
+  }
+
   resetUnconsciousCounter() {
     this.unconsciousCounter = RollService.calculateTraitBonus(this.characteristics.toughness.value);
   }
