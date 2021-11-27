@@ -1,0 +1,78 @@
+{
+  "criticalRoll": {
+    "criticalWounds": [
+      {
+        "name": "DramaticInjury",
+        "nameTranslation": "Zawadiacka rana",
+        "note": "Rana krytyczna głowy: Zawadiacka rana - usuń 1 ranę i 1 Krwawienie",
+        "description": "Mocny cios przez czoło i policzek. Postać otrzymuje 1 poziom Krwawienia. Po wyleczeniu takiej rany pozostaje budząca szacunek blizna, która zapewnia premię +1 PS do odpowiednich Testów w kontaktach społecznych. Premię tę można otrzymać tylko raz."
+      },
+      {
+        "name": "MinorCut",
+        "nameTranslation": "Płytkie cięcie",
+        "note": "Rana krytyczna głowy: Płytkie cięcie - usuń 1 ranę i 1 Krwawienie",
+        "description": "Cios przecina policzek, rozbryzgując dookoła krew. Postać otrzymuje 1 poziom Krwawienia."
+      },
+      {
+        "name": "PokedEye",
+        "nameTranslation": "Spuchnięte oko",
+        "note": "Rana krytyczna głowy: Spuchnięte oko - usuń 1 Oślepienie",
+        "description": "Mocny cios trafia w oczodół. Postać otrzymuje 1 poziom Oślepienia."
+      },
+      {
+        "name": "EarBash",
+        "nameTranslation": "Prosto w ucho",
+        "note": "Rana krytyczna głowy: Prosto w ucho - usuń 1 Ogłuszenie",
+        "description": "Cios uderza w bok głowy z olbrzymią mocą, aż dzwoni w uchu. Postać otrzymuje 1 poziom Ogłuszenia."
+      },
+      {
+        "name": "RattlingBlow",
+        "nameTranslation": "Bolesne uderzenie",
+        "note": "Rana krytyczna głowy: Bolesne uderzenie - usuń 1 Ogłuszenie",
+        "description": "Cios jest na tyle mocny, że w polu widzenia pojawiają się plamki i gwiazdki. Postać otrzymuje 1 poziom Oszołomienia."
+      },
+      {
+        "name": "BlackEye",
+        "nameTranslation": "Podbite oko",
+        "note": "Rana krytyczna głowy: Podbite oko - usuń 2 Oślepienia",
+        "description": "Cios w oko jest na tyle mocny, że postać zaczyna łzawić z bólu. Postać otrzymuje 2 poziomy Oślepienia."
+      },
+      {
+        "name": "SlicedEar",
+        "nameTranslation": "Rozcięte ucho",
+        "note": "Rana krytyczna głowy: Rozcięte ucho - usuń 2 Ogłuszenia i 1 Krwawienie",
+        "description": "Cios w bok głowy jest na tyle mocny, że wrzyna się głęboko w ucho. Postać otrzymuje 2 poziomy Ogłuszenia i 1 poziom Krwawienia."
+      },
+      {
+        "name": "StruckForehead",
+        "nameTranslation": "Uderzenie w czoło",
+        "note": "Rana krytyczna głowy: Uderzenie w czoło - usuń 2 Krwawienia i 1 Oślepienie, które nie może zostać usunięte do momentu usunięcia Krwawienia",
+        "description": "Potężny cios trafia w sam środek czoła. Postać otrzymuje 2 poziomy Krwawienia oraz 1 poziom Oślepienia, który nie może zostać usunięty, dopóki Krwawienie nie zostanie wyleczone."
+      },
+      {
+        "name": "FracturedJaw",
+        "nameTranslation": "Złamana szczęka",
+        "note": "Rana krytyczna głowy: Złamana szczęka - usuń 2 Ogłuszenia i Złamanie (pomniejsze)",
+        "description": "Cios z obrzydliwym chrupnięciem łamie żuchwę i zalewa twarz falą ogromnego bólu. Postać otrzymuje 2 poziomy Oszołomienia. Ponadto otrzymuje Uraz Złamanie (pomniejsze)."
+      },
+      {
+        "name": "MajorEyeWound",
+        "nameTranslation": "Poważna rana oka",
+        "note": "Rana krytyczna głowy: Poważna rana oka - usuń Krawawienie, Oślepienie może zostać tylko przez Pomoc Medyczną",
+        "description": "Cios łamie oczodół. Postać otrzymuje 1 poziom Krwawienia. Ponadto otrzymuje również 1 poziom Oślepienia, który nie może zostać usunięty, dopóki postać nie otrzyma Pomocy Medycznej."
+      },
+      {
+        "name": "MajorEarWound",
+        "nameTranslation": "Poważna rana ucha",
+        "note": "Rana krytyczna głowy: Poważna rana ucha - wszystkie testy związane otrzymują karę -20",
+        "description": "Cios niszczy małżowinę uszną, co skutkuje trwałym uszkodzeniem słuchu. Wszystkie Testy związane ze słuchem otrzymują karę -20. Jeśli postać otrzyma taką ranę ponownie, cios zadawany jest w drugie ucho, co skutkuje głuchotą. Wtedy pomoże już tylko magia."
+      },
+      {
+        "name": "BrokenNose",
+        "nameTranslation": "Złamany nos",
+        "note": "Rana krytyczna głowy: Złamany nos - usuń 2 Krwawienia",
+        "description": "Silny cios trafia w sam środek twarzy, a postać zalewa się krwią. Postać otrzymuje 2 poziomy Krwawienia. Musi także zdać Wymagający (+0) Test Odporności, w przeciwnym wypadku otrzyma również 1 poziom Oszołomienia. Po wyleczeniu tej rany postać uzyskuje premię +1 lub karę -1 do Testów w kontaktach społecznych (w zależności od kontekstu), chyba że podjęto Test Chirurgii, by nastawić i wyprostować nos."
+      }
+    ]
+  }
+}

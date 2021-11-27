@@ -22,6 +22,10 @@ export class AttackReportService {
   public damage!: string;
   public attackLocalization!: string;
 
+  public criticalRollTarget!: string;
+  public criticalRollName!: string;
+  public criticalRollDescription!: string;
+
   createReport(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
     this.attackerName = attacker.name;
     this.attackerRoll = String(attacker.roll.value);

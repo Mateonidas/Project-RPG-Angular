@@ -27,5 +27,12 @@
     <p>Zadane obrażenia: {{logService.damage}}</p>
     <p>Lokalizacja trafienia: {{logService.attackLocalization}}</p>
   </div>
+
+  <hr>
+  <div class="mt-2" *ngIf="logService.criticalRollName != undefined">
+    <h5>Trafienie krytyczne: {{logService.criticalRollTarget}}</h5>
+    <p>{{logService.criticalRollName}}</p>
+    <p>{{logService.criticalRollDescription}}</p>
+  </div>
 </div>
 

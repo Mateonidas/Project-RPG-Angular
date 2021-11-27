@@ -138,11 +138,11 @@ export class SkirmishCharacter extends Character {
     } else {
       let found = false;
       for (let condition of this.conditions) {
-        if (condition.base === newCondition) {
+        if (condition.base.nameTranslation === newCondition.nameTranslation) {
           found = true;
-          if (!(condition.base === ConditionsList.prone ||
-            condition.base === ConditionsList.unconscious ||
-            condition.base === ConditionsList.surprised)) {
+          if (!(condition.base.nameTranslation === ConditionsList.prone.nameTranslation ||
+            condition.base.nameTranslation === ConditionsList.unconscious.nameTranslation ||
+            condition.base.nameTranslation === ConditionsList.surprised.nameTranslation)) {
             if (level != undefined) {
               condition.value += level;
             } else {

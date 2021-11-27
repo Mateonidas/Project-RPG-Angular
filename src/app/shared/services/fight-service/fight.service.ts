@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ServiceModel} from "../service.model";
-import {BodyLocalizationList} from "../../../model/body-localization/body-localization.model";
+import {BodyLocalization, BodyLocalizationList} from "../../../model/body-localization/body-localization.model";
 import {InjuresList} from "../../../model/injures/injures-list.model";
 import {RoundService} from "../round-service/round.service";
 import {RollService} from "../roll-service/roll.service";
@@ -13,6 +13,10 @@ import {ConditionService} from "../condition-service/condition.service";
 import {AttackReportService} from "../../../dialog-window/report-dialog-window/attack-report-service/attack-report.service";
 import {AttackAllyFumbleDialogWindowComponent} from "../../../dialog-window/attack-ally-fumble-dialog-window/attack-ally-fumble-dialog-window.component";
 import {SkillTestService} from "../skill-test-service/skill-test.service";
+import {TextResourceService} from "../text-resource-service/text-resource.service";
+import {Model} from "../../../model/model";
+import {CriticalCondition, CriticalWound} from 'src/app/model/critical-wounds/critical-wounds.model';
+import {Condition} from "../../../model/conditions/condition.model";
 
 @Injectable({
   providedIn: 'root'
@@ -177,13 +181,21 @@ export class FightService extends ServiceModel {
 
   private async setHeadCriticalWounds(opponent: SkirmishCharacter, roll: number) {
     if (roll >= 1 && roll <= 10) {
-      opponent.currentWounds -= 1;
-      opponent.addCondition(ConditionsList.bleeding);
-      opponent.addNote('Rana krytyczna głowy: Zawadiacka rana - usuń 1 ranę i 1 Krwawienie');
+      this.setCriticalWound(
+        opponent,
+        BodyLocalizationList.head,
+        1,
+        'DramaticInjury',
+        [new CriticalCondition(new Condition(ConditionsList.bleeding, 1), true)]
+      );
     } else if (roll >= 11 && roll <= 20) {
-      opponent.currentWounds -= 1;
-      opponent.addCondition(ConditionsList.bleeding);
-      opponent.addNote('Rana krytyczna głowy: Płytkie cięcie - usuń 1 ranę i 1 Krwawienie');
+      this.setCriticalWound(
+        opponent,
+        BodyLocalizationList.head,
+        1,
+        'MinorCut',
+        [new CriticalCondition(new Condition(ConditionsList.bleeding, 1), true)]
+      );
     } else if (roll >= 21 && roll <= 25) {
       opponent.currentWounds -= 1;
       opponent.addCondition(ConditionsList.blinded);
@@ -239,6 +251,18 @@ export class FightService extends ServiceModel {
       }
       opponent.addNote('Rana krytyczna głowy: Złamany nos - usuń 2 Krwawienia')
     }
+  }
+
+  private setCriticalWound(opponent: SkirmishCharacter, bodyLocalization: BodyLocalization, wounds: number, criticalWoundName: string, criticalConditions: CriticalCondition[]) {
+    opponent.currentWounds -= wounds;
+    let criticalWound = new CriticalWound(criticalWoundName, criticalConditions);
+    opponent.bodyLocalizations.getBodyLocalization(bodyLocalization)?.addCriticalWound(criticalWound);
+
+    let criticalWoundText = TextResourceService.getCriticalWoundText(criticalWoundName);
+    opponent.addNote(criticalWoundText.note);
+    this.attackReportService.criticalRollTarget = opponent.name;
+    this.attackReportService.criticalRollName = criticalWoundText.nameTranslation;
+    this.attackReportService.criticalRollDescription = criticalWoundText.description;
   }
 
   public getAttackLocalization(attackerRoll: number) {
