@@ -1,17 +1,27 @@
 import {Condition} from "../conditions/condition.model";
+import {Injury} from "../injures/injures-list.model";
+import {Model} from "../model";
 
 export class CriticalWound {
   name!: string;
   criticalConditions!: CriticalCondition[];
+  criticalInjury!: Injury[];
 
-  constructor(name?: string, criticalConditions?: CriticalCondition[]) {
+  constructor(name?: string, criticalConditions?: CriticalCondition[], criticalInjury?: Injury[]) {
     this.name = <string>name;
     this.criticalConditions = <CriticalCondition[]>criticalConditions;
+    this.criticalInjury = <Injury[]>criticalInjury;
+  }
+
+  removeCondition(condition: Model) {
+    let index = this.criticalConditions.findIndex(c => c.base.base.name === condition.nameTranslation);
+    this.criticalConditions.splice(index, 1);
   }
 
   static fromJSON(object: Object): CriticalWound {
     let criticalWound = Object.assign(new CriticalWound(), object);
     criticalWound.criticalConditions = CriticalCondition.arrayFromJSON(criticalWound['criticalConditions']);
+    criticalWound.criticalInjury = Injury.arrayFromJSON(criticalWound['criticalInjury']);
     return criticalWound;
   }
 
@@ -28,7 +38,6 @@ export class CriticalWound {
 export class CriticalCondition {
   base!: Condition;
   isCurable!: boolean;
-
 
   constructor(base?: Condition, isCurable?: boolean) {
     this.base = <Condition>base;

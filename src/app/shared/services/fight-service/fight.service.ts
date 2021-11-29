@@ -3,7 +3,7 @@ import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.mode
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ServiceModel} from "../service.model";
 import {BodyLocalization, BodyLocalizationList} from "../../../model/body-localization/body-localization.model";
-import {InjuresList} from "../../../model/injures/injures-list.model";
+import {InjuresList, Injury} from "../../../model/injures/injures-list.model";
 import {RoundService} from "../round-service/round.service";
 import {RollService} from "../roll-service/roll.service";
 import {ConditionsList} from "../../../model/conditions/conditions-list.model";
@@ -14,7 +14,6 @@ import {AttackReportService} from "../../../dialog-window/report-dialog-window/a
 import {AttackAllyFumbleDialogWindowComponent} from "../../../dialog-window/attack-ally-fumble-dialog-window/attack-ally-fumble-dialog-window.component";
 import {SkillTestService} from "../skill-test-service/skill-test.service";
 import {TextResourceService} from "../text-resource-service/text-resource.service";
-import {Model} from "../../../model/model";
 import {CriticalCondition, CriticalWound} from 'src/app/model/critical-wounds/critical-wounds.model';
 import {Condition} from "../../../model/conditions/condition.model";
 
@@ -97,6 +96,8 @@ export class FightService extends ServiceModel {
 
     await this.checkDouble(attacker, defender);
     await this.checkDouble(defender, attacker);
+    this.conditionService.checkProneAfterDamage(defender);
+    this.conditionService.checkProneAfterDamage(attacker);
   }
 
   private calculateDamage(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
@@ -143,7 +144,7 @@ export class FightService extends ServiceModel {
         if (owner.roll.isSuccessful) {
           let criticalHitLocalizationRoll = await this.createRollDialogAsync(owner.name + ': Lokalizacja trafienia krytycznego (k100)', false);
           let criticalHitRoll = await this.createRollDialogAsync(owner.name + ': Trafienie krytyczne (k100)', false);
-          this.checkCriticalHit(opponent, criticalHitLocalizationRoll.roll, criticalHitRoll.roll);
+          await this.checkCriticalHit(opponent, criticalHitLocalizationRoll.roll, criticalHitRoll.roll);
           console.log('Fuks dla ' + owner.name);
         } else if (!owner.roll.isSuccessful) {
           let rollResult = await this.createRollDialogAsync(owner.name + ': Pech (k100)', false);
@@ -158,11 +159,11 @@ export class FightService extends ServiceModel {
     return character.usedWeapon != undefined;
   }
 
-  private checkCriticalHit(opponent: SkirmishCharacter, criticalHitLocalizationRoll: number, criticalHitRoll: number) {
+  private async checkCriticalHit(opponent: SkirmishCharacter, criticalHitLocalizationRoll: number, criticalHitRoll: number) {
     const bodyLocalization = this.getCriticalHitLocalization(criticalHitLocalizationRoll);
     switch (bodyLocalization) {
       case BodyLocalizationList.head: {
-        this.setHeadCriticalWounds(opponent, criticalHitRoll);
+        await this.setHeadCriticalWounds(opponent, criticalHitRoll);
         break;
       }
     }
@@ -181,88 +182,191 @@ export class FightService extends ServiceModel {
 
   private async setHeadCriticalWounds(opponent: SkirmishCharacter, roll: number) {
     if (roll >= 1 && roll <= 10) {
+      opponent.currentWounds -= 1;
       this.setCriticalWound(
         opponent,
         BodyLocalizationList.head,
-        1,
         'DramaticInjury',
-        [new CriticalCondition(new Condition(ConditionsList.bleeding, 1), true)]
+        [
+          new CriticalCondition(new Condition(ConditionsList.bleeding, 1), true)
+        ],
+        []
       );
     } else if (roll >= 11 && roll <= 20) {
+      opponent.currentWounds -= 1;
       this.setCriticalWound(
         opponent,
         BodyLocalizationList.head,
-        1,
         'MinorCut',
-        [new CriticalCondition(new Condition(ConditionsList.bleeding, 1), true)]
+        [
+          new CriticalCondition(new Condition(ConditionsList.bleeding, 1), true)
+        ],
+        []
       );
     } else if (roll >= 21 && roll <= 25) {
       opponent.currentWounds -= 1;
-      opponent.addCondition(ConditionsList.blinded);
-      opponent.addNote('Rana krytyczna głowy: Spuchnięte oko - usuń 1 Oślepienie');
+      this.setCriticalWound(
+        opponent,
+        BodyLocalizationList.head,
+        'PokedEye',
+        [
+          new CriticalCondition(new Condition(ConditionsList.blinded, 1), true)
+        ],
+        []
+      );
     } else if (roll >= 26 && roll <= 30) {
       opponent.currentWounds -= 1;
-      opponent.addCondition(ConditionsList.deafened);
-      opponent.addNote('Rana krytyczna głowy: Prosto w ucho - usuń 1 Ogłuszenie');
+      this.setCriticalWound(
+        opponent,
+        BodyLocalizationList.head,
+        'EarBash',
+        [
+          new CriticalCondition(new Condition(ConditionsList.deafened, 1), true)
+        ],
+        []
+      );
     } else if (roll >= 31 && roll <= 35) {
       opponent.currentWounds -= 2;
-      opponent.addCondition(ConditionsList.stunned);
-      opponent.addNote('Rana krytyczna głowy: Bolesne uderzenie - usuń 1 Ogłuszenie');
+      this.setCriticalWound(
+        opponent,
+        BodyLocalizationList.head,
+        'RattlingBlow',
+        [
+          new CriticalCondition(new Condition(ConditionsList.stunned, 1), true)
+        ],
+        []
+      );
     } else if (roll >= 36 && roll <= 40) {
       opponent.currentWounds -= 2;
-      opponent.addCondition(ConditionsList.blinded, 2);
-      opponent.addNote('Rana krytyczna głowy: Podbite oko - usuń 2 Oślepienia');
+      this.setCriticalWound(
+        opponent,
+        BodyLocalizationList.head,
+        'BlackEye',
+        [
+          new CriticalCondition(new Condition(ConditionsList.blinded, 2), true)
+        ],
+        []
+      );
     } else if (roll >= 41 && roll <= 45) {
       opponent.currentWounds -= 2;
-      opponent.addCondition(ConditionsList.stunned, 2);
-      opponent.addCondition(ConditionsList.bleeding);
-      opponent.addNote('Rana krytyczna głowy: Rozcięte ucho - usuń 2 Ogłuszenia i 1 Krwawienie');
+      this.setCriticalWound(
+        opponent,
+        BodyLocalizationList.head,
+        'SlicedEar',
+        [
+          new CriticalCondition(new Condition(ConditionsList.stunned, 2), true),
+          new CriticalCondition(new Condition(ConditionsList.bleeding, 1), true)
+        ],
+        []
+      );
     } else if (roll >= 46 && roll <= 50) {
       opponent.currentWounds -= 2;
-      opponent.addCondition(ConditionsList.bleeding, 2);
-      opponent.addCondition(ConditionsList.blinded);
-      opponent.addNote('Rana krytyczna głowy: Uderzenie w czoło - usuń 2 Krwawienia i 1 Oślepienie, które nie może zostać usunięte do momentu usunięcia Krwawienia');
+      this.setCriticalWound(
+        opponent,
+        BodyLocalizationList.head,
+        'StruckForehead',
+        [
+          new CriticalCondition(new Condition(ConditionsList.bleeding, 2), true),
+          new CriticalCondition(new Condition(ConditionsList.blinded, 1), false)
+        ],
+        []
+      );
     } else if (roll >= 51 && roll <= 55) {
       opponent.currentWounds -= 3;
-      opponent.addCondition(ConditionsList.stunned, 2);
+      this.setCriticalWound(
+        opponent,
+        BodyLocalizationList.head,
+        'FracturedJaw',
+        [
+          new CriticalCondition(new Condition(ConditionsList.stunned, 2), true)
+        ],
+        []
+      );
       opponent.bodyLocalizations.head.addInjure(InjuresList.minorBrokenBone);
-      opponent.addNote('Rana krytyczna głowy: Złamana szczęka - usuń 2 Ogłuszenia i Złamanie (pomniejsze)')
     } else if (roll >= 56 && roll <= 60) {
       opponent.currentWounds -= 3;
-      opponent.addCondition(ConditionsList.bleeding);
-      opponent.addCondition(ConditionsList.blinded);
+      this.setCriticalWound(
+        opponent,
+        BodyLocalizationList.head,
+        'MajorEyeWound',
+        [
+          new CriticalCondition(new Condition(ConditionsList.bleeding, 1), true),
+          new CriticalCondition(new Condition(ConditionsList.blinded, 1), false)
+        ],
+        []
+      );
       //TODO: Oślepienie może zostać usunięte tylko przez pomoc medyczną, nie znika z czasem
-      opponent.addNote('Rana krytyczna głowy: Poważna rana oka - usuń Krawawienie, Oślepienie może zostać tylko przez Pomoc Medyczną')
     } else if (roll >= 61 && roll <= 65) {
+      //TODO: Modyfikator może wpływać na postać gdy ta jest flankowana, według zasada to trafienie krytyczne jest traktowane
+      //TODO: automatycznie jako wyleczone, uszkodzenie ucha jest permamentne
       opponent.currentWounds -= 3;
-      //TODO: Modyfikator może wpływać na postać gdy ta jest flankowana
       opponent.addNote('Rana krytyczna głowy: Poważna rana ucha - wszystkie testy związane otrzymują karę -20')
     } else if (roll >= 66 && roll <= 70) {
       opponent.currentWounds -= 3;
-      opponent.addCondition(ConditionsList.blinded, 2);
-
-      opponent.roll.clearRoll();
-      let rollResult = await this.createRollDialogAsync(opponent.name + ': Test Odporności (k100)', false);
-      opponent.roll.value = rollResult.roll;
-      opponent.roll.modifier = rollResult.modifier;
-      this.skillTestService.enduranceTest(opponent);
-      if(!opponent.roll.isSuccessful){
-        opponent.addCondition(ConditionsList.stunned);
+      await this.skillTestService.enduranceTest(opponent);
+      if (!opponent.roll.isSuccessful) {
+        this.setCriticalWound(
+          opponent,
+          BodyLocalizationList.head,
+          'BrokenNoseWithStunned',
+          [
+            new CriticalCondition(new Condition(ConditionsList.blinded, 2), true),
+            new CriticalCondition(new Condition(ConditionsList.stunned, 1), true)
+          ],
+          []
+        );
+      } else {
+        this.setCriticalWound(
+          opponent,
+          BodyLocalizationList.head,
+          'BrokenNose',
+          [
+            new CriticalCondition(new Condition(ConditionsList.blinded, 2), true),
+          ],
+          []
+        );
       }
-      opponent.addNote('Rana krytyczna głowy: Złamany nos - usuń 2 Krwawienia')
+    } else if (roll >= 71 && roll <= 75) {
+      opponent.currentWounds -= 4;
+      await this.skillTestService.enduranceTest(opponent);
+      opponent.currentWounds -= 3;
+      if (!opponent.roll.isSuccessful) {
+        this.setCriticalWound(
+          opponent,
+          BodyLocalizationList.head,
+          'BrokenJawWithDeafened',
+          [
+            new CriticalCondition(new Condition(ConditionsList.stunned, 3), true),
+            new CriticalCondition(new Condition(ConditionsList.deafened, 1), true)
+          ],
+          []
+        );
+      } else {
+        this.setCriticalWound(
+          opponent,
+          BodyLocalizationList.head,
+          'BrokenJaw',
+          [
+            new CriticalCondition(new Condition(ConditionsList.stunned, 3), true)
+          ],
+          []
+        );
+      }
+      opponent.bodyLocalizations.head.addInjure(InjuresList.majorBrokenBone);
     }
   }
 
-  private setCriticalWound(opponent: SkirmishCharacter, bodyLocalization: BodyLocalization, wounds: number, criticalWoundName: string, criticalConditions: CriticalCondition[]) {
-    opponent.currentWounds -= wounds;
-    let criticalWound = new CriticalWound(criticalWoundName, criticalConditions);
-    opponent.bodyLocalizations.getBodyLocalization(bodyLocalization)?.addCriticalWound(criticalWound);
-
+  private setCriticalWound(opponent: SkirmishCharacter, bodyLocalization: BodyLocalization, criticalWoundName: string, criticalConditions: CriticalCondition[], criticalInjuries: Injury[]) {
     let criticalWoundText = TextResourceService.getCriticalWoundText(criticalWoundName);
-    opponent.addNote(criticalWoundText.note);
+    let criticalWound = new CriticalWound(criticalWoundText.nameTranslation, criticalConditions, criticalInjuries);
+    opponent.bodyLocalizations.getBodyLocalization(bodyLocalization)?.addCriticalWound(criticalWound);
     this.attackReportService.criticalRollTarget = opponent.name;
     this.attackReportService.criticalRollName = criticalWoundText.nameTranslation;
     this.attackReportService.criticalRollDescription = criticalWoundText.description;
+
+    for(let condition of criticalConditions) {
+      opponent.addCriticalCondition(condition);
+    }
   }
 
   public getAttackLocalization(attackerRoll: number) {

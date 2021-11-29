@@ -35,6 +35,10 @@ export class CharacterBodyLocalizations {
     }
   }
 
+  getBodyLocalizationsInArray() {
+    return [this.head, this.leftArm, this.rightArm, this.body, this.leftLeg, this.rightLeg];
+  }
+
   static fromJSON(object: Object): CharacterBodyLocalizations {
     let characterBodyLocalizations = Object.assign(new CharacterBodyLocalizations(), object);
     characterBodyLocalizations.head = CharacterBodyLocalization.fromJSON(characterBodyLocalizations['head']);

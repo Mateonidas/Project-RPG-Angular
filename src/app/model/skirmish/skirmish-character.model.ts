@@ -12,6 +12,7 @@ import {CharacterBodyLocalizations} from "../body-localization/character-body-lo
 import {CharacterCharacteristics} from "../characteristic/character-characteristic.model";
 import {Talent} from "../talent/talent.model";
 import {Armor} from "../armor/armor.model";
+import {CriticalCondition, CriticalWound} from "../critical-wounds/critical-wounds.model";
 
 export class SkirmishCharacter extends Character {
 
@@ -162,13 +163,79 @@ export class SkirmishCharacter extends Character {
     this.advantage = 0;
   }
 
+  addCriticalCondition(criticalCondition: CriticalCondition) {
+    if (this.conditions.length === 0) {
+      if (criticalCondition.isCurable) {
+        this.conditions.push(new Condition(criticalCondition.base.base, criticalCondition.base.value));
+      } else {
+        this.conditions.push(new Condition(criticalCondition.base.base, criticalCondition.base.value, criticalCondition.base.value));
+      }
+    } else {
+      let found = false;
+      for (let condition of this.conditions) {
+        if (condition.base.nameTranslation === criticalCondition.base.base.nameTranslation) {
+          found = true;
+          if (!(condition.base.nameTranslation === ConditionsList.prone.nameTranslation ||
+            condition.base.nameTranslation === ConditionsList.unconscious.nameTranslation ||
+            condition.base.nameTranslation === ConditionsList.surprised.nameTranslation)) {
+            if (criticalCondition.base.value != undefined) {
+              condition.value += criticalCondition.base.value;
+            } else {
+              condition.value += 1;
+            }
+            if (!criticalCondition.isCurable) {
+              condition.incurableValue += 1;
+            }
+          }
+        }
+      }
+      if (!found) {
+        if (criticalCondition.base.value != undefined) {
+          if (!criticalCondition.isCurable) {
+            this.conditions.push(new Condition(criticalCondition.base.base, criticalCondition.base.value, criticalCondition.base.value));
+          } else {
+            this.conditions.push(new Condition(criticalCondition.base.base, criticalCondition.base.value));
+          }
+        } else {
+          if (!criticalCondition.isCurable) {
+            this.conditions.push(new Condition(criticalCondition.base.base, 1, 1));
+          } else {
+            this.conditions.push(new Condition(criticalCondition.base.base, 1));
+          }
+        }
+      }
+    }
+    this.advantage = 0;
+  }
+
   removeCondition(condition: Model) {
-    let index = this.conditions.findIndex(c => c.base.nameTranslation === condition.nameTranslation);
+    let index = this.conditions.findIndex(c => c.base.name === condition.name);
     this.conditions.splice(index, 1);
   }
 
   addNote(note: string) {
     this.notes.push(note);
+  }
+
+  getCriticalWounds() {
+    let criticalWounds = [];
+    for(let bodyLocalization of this.bodyLocalizations.getBodyLocalizationsInArray()){
+      for(let criticalWound of bodyLocalization.criticalWounds) {
+        criticalWounds.push(criticalWound);
+      }
+    }
+
+    return criticalWounds;
+  }
+
+  removeCriticalWound(criticalWound: CriticalWound) {
+    for(let bodyLocalization of this.bodyLocalizations.getBodyLocalizationsInArray()){
+      for(let wound of bodyLocalization.criticalWounds) {
+        if(wound.name === criticalWound.name) {
+          bodyLocalization.removeCriticalWound(criticalWound);
+        }
+      }
+    }
   }
 
   static fromJSON(object: Object): SkirmishCharacter {

@@ -4,43 +4,43 @@
       {
         "name": "DramaticInjury",
         "nameTranslation": "Zawadiacka rana",
-        "note": "Rana krytyczna głowy: Zawadiacka rana - usuń 1 ranę i 1 Krwawienie",
+        "note": "Rana krytyczna głowy: Zawadiacka rana - usuń 1 Krwawienie.",
         "description": "Mocny cios przez czoło i policzek. Postać otrzymuje 1 poziom Krwawienia. Po wyleczeniu takiej rany pozostaje budząca szacunek blizna, która zapewnia premię +1 PS do odpowiednich Testów w kontaktach społecznych. Premię tę można otrzymać tylko raz."
       },
       {
         "name": "MinorCut",
         "nameTranslation": "Płytkie cięcie",
-        "note": "Rana krytyczna głowy: Płytkie cięcie - usuń 1 ranę i 1 Krwawienie",
+        "note": "Rana krytyczna głowy: Płytkie cięcie - usuń 1 Krwawienie.",
         "description": "Cios przecina policzek, rozbryzgując dookoła krew. Postać otrzymuje 1 poziom Krwawienia."
       },
       {
         "name": "PokedEye",
         "nameTranslation": "Spuchnięte oko",
-        "note": "Rana krytyczna głowy: Spuchnięte oko - usuń 1 Oślepienie",
+        "note": "Rana krytyczna głowy: Spuchnięte oko - usuń 1 Oślepienie.",
         "description": "Mocny cios trafia w oczodół. Postać otrzymuje 1 poziom Oślepienia."
       },
       {
         "name": "EarBash",
         "nameTranslation": "Prosto w ucho",
-        "note": "Rana krytyczna głowy: Prosto w ucho - usuń 1 Ogłuszenie",
+        "note": "Rana krytyczna głowy: Prosto w ucho - usuń 1 Ogłuszenie.",
         "description": "Cios uderza w bok głowy z olbrzymią mocą, aż dzwoni w uchu. Postać otrzymuje 1 poziom Ogłuszenia."
       },
       {
         "name": "RattlingBlow",
         "nameTranslation": "Bolesne uderzenie",
-        "note": "Rana krytyczna głowy: Bolesne uderzenie - usuń 1 Ogłuszenie",
+        "note": "Rana krytyczna głowy: Bolesne uderzenie - usuń 1 Oszołomienie.",
         "description": "Cios jest na tyle mocny, że w polu widzenia pojawiają się plamki i gwiazdki. Postać otrzymuje 1 poziom Oszołomienia."
       },
       {
         "name": "BlackEye",
         "nameTranslation": "Podbite oko",
-        "note": "Rana krytyczna głowy: Podbite oko - usuń 2 Oślepienia",
+        "note": "Rana krytyczna głowy: Podbite oko - usuń 2 Oślepienia.",
         "description": "Cios w oko jest na tyle mocny, że postać zaczyna łzawić z bólu. Postać otrzymuje 2 poziomy Oślepienia."
       },
       {
         "name": "SlicedEar",
         "nameTranslation": "Rozcięte ucho",
-        "note": "Rana krytyczna głowy: Rozcięte ucho - usuń 2 Ogłuszenia i 1 Krwawienie",
+        "note": "Rana krytyczna głowy: Rozcięte ucho - usuń 2 Ogłuszenia i 1 Krwawienie.",
         "description": "Cios w bok głowy jest na tyle mocny, że wrzyna się głęboko w ucho. Postać otrzymuje 2 poziomy Ogłuszenia i 1 poziom Krwawienia."
       },
       {
@@ -52,26 +52,98 @@
       {
         "name": "FracturedJaw",
         "nameTranslation": "Złamana szczęka",
-        "note": "Rana krytyczna głowy: Złamana szczęka - usuń 2 Ogłuszenia i Złamanie (pomniejsze)",
+        "note": "Rana krytyczna głowy: Złamana szczęka - usuń 2 Ogłuszenia i Złamanie (pomniejsze).",
         "description": "Cios z obrzydliwym chrupnięciem łamie żuchwę i zalewa twarz falą ogromnego bólu. Postać otrzymuje 2 poziomy Oszołomienia. Ponadto otrzymuje Uraz Złamanie (pomniejsze)."
       },
       {
         "name": "MajorEyeWound",
         "nameTranslation": "Poważna rana oka",
-        "note": "Rana krytyczna głowy: Poważna rana oka - usuń Krawawienie, Oślepienie może zostać tylko przez Pomoc Medyczną",
+        "note": "Rana krytyczna głowy: Poważna rana oka - usuń Krawawienie, Oślepienie może zostać tylko przez Pomoc Medyczną.",
         "description": "Cios łamie oczodół. Postać otrzymuje 1 poziom Krwawienia. Ponadto otrzymuje również 1 poziom Oślepienia, który nie może zostać usunięty, dopóki postać nie otrzyma Pomocy Medycznej."
       },
       {
         "name": "MajorEarWound",
         "nameTranslation": "Poważna rana ucha",
-        "note": "Rana krytyczna głowy: Poważna rana ucha - wszystkie testy związane otrzymują karę -20",
+        "note": "Rana krytyczna głowy: Poważna rana ucha - wszystkie testy związane otrzymują karę -20.",
         "description": "Cios niszczy małżowinę uszną, co skutkuje trwałym uszkodzeniem słuchu. Wszystkie Testy związane ze słuchem otrzymują karę -20. Jeśli postać otrzyma taką ranę ponownie, cios zadawany jest w drugie ucho, co skutkuje głuchotą. Wtedy pomoże już tylko magia."
       },
       {
         "name": "BrokenNose",
         "nameTranslation": "Złamany nos",
-        "note": "Rana krytyczna głowy: Złamany nos - usuń 2 Krwawienia",
+        "note": "Rana krytyczna głowy: Złamany nos - usuń 2 Krwawienia.",
         "description": "Silny cios trafia w sam środek twarzy, a postać zalewa się krwią. Postać otrzymuje 2 poziomy Krwawienia. Musi także zdać Wymagający (+0) Test Odporności, w przeciwnym wypadku otrzyma również 1 poziom Oszołomienia. Po wyleczeniu tej rany postać uzyskuje premię +1 lub karę -1 do Testów w kontaktach społecznych (w zależności od kontekstu), chyba że podjęto Test Chirurgii, by nastawić i wyprostować nos."
+      },
+      {
+        "name": "BrokenNoseWithStunned",
+        "nameTranslation": "Złamany nos",
+        "note": "Rana krytyczna głowy: Złamany nos - usuń 2 Krwawienia i 1 Oszołomienie.",
+        "description": "Silny cios trafia w sam środek twarzy, a postać zalewa się krwią. Postać otrzymuje 2 poziomy Krwawienia. Musi także zdać Wymagający (+0) Test Odporności, w przeciwnym wypadku otrzyma również 1 poziom Oszołomienia. Po wyleczeniu tej rany postać uzyskuje premię +1 lub karę -1 do Testów w kontaktach społecznych (w zależności od kontekstu), chyba że podjęto Test Chirurgii, by nastawić i wyprostować nos."
+      },
+      {
+        "name": "BrokenJaw",
+        "nameTranslation": "Zmiażdżona żuchwa",
+        "note": "Rana krytyczna głowy: Zmiażdżona żuchwa - usuń 3 Oszołomienia i Złamanie (poważne).",
+        "description": "Następuje obrzydliwy trzask, a cios trafia w żuchwę od spodu, miażdżąc ją. Postać otrzymuje 3 poziomy Oszołomienia. Musi także zdać Wymagający (+0) Test Odporności, w przeciwnym wypadku otrzyma również 1 poziom Ogłuszenia. Ponadto otrzymuje Uraz Złamanie (poważne)."
+      },
+      {
+        "name": "BrokenJawWithDeafened",
+        "nameTranslation": "Zmiażdżona żuchwa",
+        "note": "Rana krytyczna głowy: Zmiażdżona żuchwa - usuń 3 Oszołomienia, 1 Ogłuszenie i Złamanie (poważne).",
+        "description": "Następuje obrzydliwy trzask, a cios trafia w żuchwę od spodu, miażdżąc ją. Postać otrzymuje 3 poziomy Oszołomienia. Musi także zdać Wymagający (+0) Test Odporności, w przeciwnym wypadku otrzyma również 1 poziom Ogłuszenia. Ponadto otrzymuje Uraz Złamanie (poważne)."
+      },
+      {
+        "name": "ConcussiveBlow",
+        "nameTranslation": "Wstrząśnienie mózgu",
+        "note": "Rana krytyczna głowy: Wstrząśnienie mózgu - usuń 1 Oszołomienie, 2 Krwawienia, wszystkie wywołane stany Oszołomienia i Zmęczenie.",
+        "description": "Mózg obija się wewnątrz czaszki, a krew wypływa z nosa i uszu. Postać otrzymuje 1 poziom Ogłuszenia, 2 poziomy Krwawienia oraz 1k10 poziomów Oszołomienia. Ponadto na 1k10 dni uznaje się ją również za Zmęczoną. Jeśli postać otrzyma kolejną Ranę Krytyczną w głowę, będąc jeszcze Zmęczoną po ostatnim wstrząśnieniu mózgu, musi wykonać Przeciętny (+20) Test Odporności. Jeśli ten się nie powiedzie, następuje Utrata Przytomności."
+      },
+      {
+        "name": "SmashedMouth",
+        "nameTranslation": "Rozkwaszone usta",
+        "note": "Rana krytyczna głowy: Rozkwaszone usta - usuń 2 Krwawienia oraz wylecz Amputację (łatwą).",
+        "description": "Cios jest na tyle mocny, że usta wypełniają się wybitymi zębami i mnóstwem krwi. Postać otrzymuje 2 poziomy Krwawienia. Ponadto traci 1k10 zębów – to Amputacja (łatwa)."
+      },
+      {
+        "name": "SmashedMouth",
+        "nameTranslation": "Rozkwaszone usta",
+        "note": "Rana krytyczna głowy: Rozkwaszone usta - usuń 2 Krwawienia oraz wylecz Amputację (łatwą).",
+        "description": "Cios jest na tyle mocny, że usta wypełniają się wybitymi zębami i mnóstwem krwi. Postać otrzymuje 2 poziomy Krwawienia. Ponadto traci 1k10 zębów – to Amputacja (łatwa)."
+      },
+      {
+        "name": "MangledEar",
+        "nameTranslation": "Zgruchotane ucho",
+        "note": "Rana krytyczna głowy: Zgruchotane ucho - usuń 3 Ogłuszenia i 2 Krwawienia oraz wylecz Amputację (przeciętną).",
+        "description": "Po uchu zostaje niewiele, a cios odrywa je od ciała. Postać otrzymuje 3 poziomy Ogłuszenia i 2 poziomy Krwawienia. Ponadto traci ucho – Amputacja (przeciętna)."
+      },
+      {
+        "name": "DevastatedEye",
+        "nameTranslation": "Wybite oko",
+        "note": "Rana krytyczna głowy: Wybite oko - usuń 3 Oślepienia, 2 Krwawienia i 1 Oszołomienie oraz wylecz Amputację (wymagającą).",
+        "description": "Cios zupełnie niszczy gałkę oczną, wywołując niezwykle silny ból. Postać otrzymuje 3 poziomy Oślepienia, 2 poziomy Krwawienia i 1 poziom Oszołomienia. Ponadto traci oko – Amputacja (wymagająca)."
+      },
+      {
+        "name": "DisfiguringBlow",
+        "nameTranslation": "Oszpecający cios",
+        "note": "Rana krytyczna głowy: Oszpecający cios - usuń 3 Oślepienia, 3 Krwawienia i 2 Oszołomienie oraz wylecz Amputację (trudną).",
+        "description": "Uderzenie roztrzaskuje całą twarz, niszcząc oko i nos w fontannie krwi. Postać otrzymuje 3 poziomy Oślepienia, 3 poziomy Krwawienia i 2 poziomy Oszołomienia. Następuje utrata oka i nosa – Amputacja (trudna)."
+      },
+      {
+        "name": "MangledJaw",
+        "nameTranslation": "Zgruchotana szczęka",
+        "note": "Rana krytyczna głowy: Zgruchotana szczęka - usuń 4 Krwawienia i 3 Oszołomienie oraz wylecz Złamanie (poważne) i Amputację (trudną).",
+        "description": "Cios prawie odrywa żuchwę od ciała, niszcząc język, i rozrzuca dookoła połamane zęby w chmurze krwi. Postać otrzymuje 4 poziomy Krwawienia oraz 3 poziomy Oszołomienia. Musi także zdać Bardzo Trudny (-30) Test Odporności, w przeciwnym wypadku otrzyma również 1 poziom Ogłuszenia. Ponadto otrzymuje Uraz Złamanie (poważne) i traci język oraz 1k10 zębów – Amputacja (trudna)."
+      },
+      {
+        "name": "MangledJawWithStunned",
+        "nameTranslation": "Zgruchotana szczęka",
+        "note": "Rana krytyczna głowy: Zgruchotana szczęka - usuń 4 Krwawienia, 3 Oszołomienie i 1 Ogłuszenie oraz wylecz Złamanie (poważne) i Amputację (trudną).",
+        "description": "Cios prawie odrywa żuchwę od ciała, niszcząc język, i rozrzuca dookoła połamane zęby w chmurze krwi. Postać otrzymuje 4 poziomy Krwawienia oraz 3 poziomy Oszołomienia. Musi także zdać Bardzo Trudny (-30) Test Odporności, w przeciwnym wypadku otrzyma również 1 poziom Ogłuszenia. Ponadto otrzymuje Uraz Złamanie (poważne) i traci język oraz 1k10 zębów – Amputacja (trudna)."
+      },
+      {
+        "name": "Decapitated",
+        "nameTranslation": "Śmierć",
+        "note": "Rana krytyczna głowy: Śmierć przez dekapitację.",
+        "description": "Cios gładko odcina głowę, która leci w powietrze, lądując 1k5 metrów w dowolnym kierunku (patrz Rozrzut). Martwe, bezgłowe ciało pada na ziemię."
       }
     ]
   }

@@ -3,10 +3,16 @@ import {Model} from "../model";
 export class Condition {
   base: Model;
   value: number;
+  incurableValue: number;
 
-  constructor(model?: Model, value?: number) {
+  constructor(model?: Model, value?: number, incurableValue?: number) {
     this.base = <Model>model
     this.value = <number>value;
+    if(incurableValue != undefined) {
+      this.incurableValue = <number>incurableValue;
+    } else {
+      this.incurableValue = 0;
+    }
   }
 
   static fromJSON(object: Object): Condition {

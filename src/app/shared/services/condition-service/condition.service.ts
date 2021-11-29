@@ -7,6 +7,9 @@ import {RollService} from "../roll-service/roll.service";
 import {SkillsList} from "../../../model/skill/skill.model";
 import {ServiceModel} from "../service.model";
 import {Model} from "../../../model/model";
+import {SkirmishCharacterService} from "../skirmish-character-service/skirmish-character.service";
+import {CriticalWoundsService} from "../critical-wounds-service/critical-wounds.service";
+import {SkillTestService} from "../skill-test-service/skill-test.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,42 +18,45 @@ export class ConditionService extends ServiceModel {
 
   private conditionModifier = 0;
 
-  constructor(modalService: NgbModal) {
+  constructor(public modalService: NgbModal,
+              public skirmishCharacterService: SkirmishCharacterService,
+              public skillTestService: SkillTestService,
+              public criticalWoundService: CriticalWoundsService) {
     super(modalService);
   }
 
-  endTurnCheckConditions(character: SkirmishCharacter) {
+  async endTurnCheckConditions(character: SkirmishCharacter) {
     for (let condition of character.conditions) {
-      switch (condition.base) {
-        case ConditionsList.ablaze: {
-          this.setAblaze(character, condition);
+      switch (condition.base.name) {
+        case ConditionsList.ablaze.name: {
+          await this.setAblaze(character, condition);
           break;
         }
-        case ConditionsList.bleeding: {
-          this.setBleeding(character, condition);
+        case ConditionsList.bleeding.name: {
+          await this.setBleeding(character, condition);
           break;
         }
-        case ConditionsList.blinded: {
-          this.setBlinded(condition);
+        case ConditionsList.blinded.name: {
+          this.setBlinded(character, condition);
           break;
         }
-        case ConditionsList.broken: {
-          this.setBroken(character, condition);
+        case ConditionsList.broken.name: {
+          await this.setBroken(character, condition);
           break;
         }
-        case ConditionsList.deafened: {
-          this.setDeafened(condition);
+        case ConditionsList.deafened.name: {
+          this.setDeafened(character, condition);
           break;
         }
-        case ConditionsList.poisoned: {
-          this.setPoisoned(character, condition);
+        case ConditionsList.poisoned.name: {
+          await this.setPoisoned(character, condition);
           break;
         }
-        case ConditionsList.stunned: {
-          this.setStunned(character, condition);
+        case ConditionsList.stunned.name: {
+          await this.setStunned(character, condition);
           break;
         }
-        case ConditionsList.surprised: {
+        case ConditionsList.surprised.name: {
           this.setSurprised(character);
           break;
         }
@@ -59,6 +65,7 @@ export class ConditionService extends ServiceModel {
 
     this.checkCharacterConscious(character);
     this.clearConditionsWithZeroValue(character);
+    this.skirmishCharacterService.updateSkirmishCharacter(character);
   }
 
   checkCharacterConscious(character: SkirmishCharacter) {
@@ -137,13 +144,10 @@ export class ConditionService extends ServiceModel {
     }
   }
 
-  private setAblaze(character: SkirmishCharacter, condition: Condition) {
-    this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k10)', false)
-      .subscribe((value: { roll: number, modifier: number }) => {
-        let damage = value.roll + (condition.value - 1);
-        character.currentWounds -= this.calculateAblazeDamage(damage, character);
-      })
-
+  private async setAblaze(character: SkirmishCharacter, condition: Condition) {
+    let value = await this.createRollDialogAsync(character.name + ': ' + condition.base.nameTranslation + '(k10)', false);
+    let damage = value.roll + (condition.value - 1);
+    character.currentWounds -= this.calculateAblazeDamage(damage, character);
   }
 
   private calculateAblazeDamage(damage: number, character: SkirmishCharacter) {
@@ -156,12 +160,10 @@ export class ConditionService extends ServiceModel {
     return finalDamage;
   }
 
-  private setBleeding(character: SkirmishCharacter, condition: Condition) {
+  private async setBleeding(character: SkirmishCharacter, condition: Condition) {
     if (character.checkIfHasCondition(ConditionsList.unconscious) && !character.isDead) {
-      this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k100)', false)
-        .subscribe((value: { roll: number, modifier: number }) => {
-          this.checkBleedingOut(condition, value, character);
-        })
+      let value = await this.createRollDialogAsync(character.name + ': ' + condition.base.nameTranslation + '(k100)', false)
+      this.checkBleedingOut(condition, value, character);
     } else if (!character.isDead) {
       character.currentWounds -= condition.value;
       if (character.currentWounds <= 0) {
@@ -183,14 +185,12 @@ export class ConditionService extends ServiceModel {
     }
   }
 
-  private setBroken(character: SkirmishCharacter, condition: Condition) {
+  private async setBroken(character: SkirmishCharacter, condition: Condition) {
     if (!character.isEngaged) {
-      this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k100)', true)
-        .subscribe((value: { roll: number, modifier: number }) => {
-          character.roll.value = value.roll;
-          character.roll.modifier = value.modifier;
-          this.calculateBrokenLevel(character, condition);
-        })
+      let value = await this.createRollDialogAsync(character.name + ': ' + condition.base.nameTranslation + '(k100)', true);
+      character.roll.value = value.roll;
+      character.roll.modifier = value.modifier;
+      this.calculateBrokenLevel(character, condition);
     }
   }
 
@@ -209,26 +209,34 @@ export class ConditionService extends ServiceModel {
     }
   }
 
-  private setBlinded(condition: Condition) {
-    condition.value -= 0.5;
+  private setBlinded(character: SkirmishCharacter, condition: Condition) {
+    if (condition.incurableValue > 0) {
+      let removedValue = condition.value - 0.5;
+      if (removedValue >= condition.incurableValue) {
+        condition.value = removedValue;
+        this.criticalWoundService.removeConditionFromCriticalWound(character, condition, 0.5);
+      }
+    } else {
+      condition.value -= 0.5;
+      this.criticalWoundService.removeConditionFromCriticalWound(character, condition, 0.5);
+    }
   }
 
-  private setDeafened(condition: Condition) {
+  private setDeafened(character: SkirmishCharacter, condition: Condition) {
     condition.value -= 1;
+    this.criticalWoundService.removeConditionFromCriticalWound(character, condition, 1);
   }
 
-  private setPoisoned(character: SkirmishCharacter, condition: Condition) {
+  private async setPoisoned(character: SkirmishCharacter, condition: Condition) {
     character.currentWounds -= condition.value;
     if (character.currentWounds <= 0) {
       character.currentWounds = 0;
       character.addCondition(ConditionsList.unconscious);
     } else {
-      this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k100)', true)
-        .subscribe((value: { roll: number, modifier: number }) => {
-          character.roll.value = value.roll;
-          character.roll.modifier = value.modifier;
-          this.calculatePoisonedLevel(character, condition);
-        })
+      let value = await this.createRollDialogAsync(character.name + ': ' + condition.base.nameTranslation + '(k100)', true);
+      character.roll.value = value.roll;
+      character.roll.modifier = value.modifier;
+      this.calculatePoisonedLevel(character, condition);
     }
   }
 
@@ -247,21 +255,12 @@ export class ConditionService extends ServiceModel {
     }
   }
 
-  private setStunned(character: SkirmishCharacter, condition: Condition) {
-    this.createRollDialog(character.name + ': ' + condition.base.nameTranslation + '(k100)', true)
-      .subscribe((value: { roll: number, modifier: number }) => {
-        character.roll.value = value.roll;
-        character.roll.modifier = value.modifier;
-        this.calculateStunnedLevel(character, condition);
-      })
+  private async setStunned(character: SkirmishCharacter, condition: Condition) {
+    await this.skillTestService.enduranceTest(character);
+    this.calculateStunnedLevel(character, condition);
   }
 
   private calculateStunnedLevel(character: SkirmishCharacter, condition: Condition) {
-    let skill = character.getSkill(SkillsList.endurance);
-    if (skill === undefined) {
-      skill = character.characteristics.toughness;
-    }
-    RollService.calculateRollResult(skill.value, character);
     if (character.roll.isSuccessful) {
       condition.value -= character.roll.successLevel + 1;
       if (condition.value <= 0) {
@@ -270,6 +269,7 @@ export class ConditionService extends ServiceModel {
           character.addCondition(ConditionsList.fatigued);
         }
       }
+      this.criticalWoundService.removeConditionFromCriticalWound(character, condition, character.roll.successLevel + 1);
     }
   }
 
@@ -377,8 +377,8 @@ export class ConditionService extends ServiceModel {
 
   public checkCharacterConditionForTest(character: SkirmishCharacter, ...conditions: Model[]) {
     this.conditionModifier = 0;
-    for(let condition of conditions) {
-      if(character.checkIfHasCondition(condition)) {
+    for (let condition of conditions) {
+      if (character.checkIfHasCondition(condition)) {
         this.setConditionModifier(character.getCondition(condition).value * 10);
       }
     }

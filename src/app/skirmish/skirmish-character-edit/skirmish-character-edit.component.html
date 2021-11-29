@@ -93,7 +93,7 @@
         <div class="col-md-12" formArrayName="conditions">
           <h4>Stany</h4>
           <div class="row mb-2" *ngFor="let conditionControl of conditions; let i = index" [formGroupName]="i">
-            <div class="col-md-8">
+            <div class="col-md-6">
               <select class="form-select" formControlName="base" [compareWith]="compareModels">
                 <option [ngValue]="condition" *ngFor="let condition of conditionList">
                   {{condition.nameTranslation}}
@@ -105,6 +105,12 @@
                 type="text"
                 class="form-control"
                 formControlName="value">
+            </div>
+            <div class="col-md-2">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="incurableValue">
             </div>
             <div class="col-md-2">
               <button

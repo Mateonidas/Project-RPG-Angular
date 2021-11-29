@@ -74,9 +74,53 @@
     <h4>Stany</h4>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let condition of skirmishCharacter.conditions">
-        {{condition.base.nameTranslation}} {{condition.value}}
+        <ng-container *ngIf="condition.incurableValue > 0">
+          {{condition.base.nameTranslation}} {{condition.value}} (nieuleczalne: {{condition.incurableValue}})
+        </ng-container>
+        <ng-container *ngIf="condition.incurableValue <= 0">
+          {{condition.base.nameTranslation}} {{condition.value}}
+        </ng-container>
       </li>
     </ul>
+  </div>
+</div>
+
+<hr>
+<div class="row">
+  <div class="col-md-12">
+    <h4>Rany krytyczne</h4>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Lokalizacja</th>
+        <th scope="col">Nazwa</th>
+        <th scope="col">Stany</th>
+        <th scope="col">Urazy</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let bodyLocalization of skirmishCharacter.bodyLocalizations.getBodyLocalizationsInArray()">
+        <tr *ngFor="let criticalWound of bodyLocalization.criticalWounds">
+          <td>{{bodyLocalization.bodyLocalization.nameTranslation}}</td>
+          <td>{{criticalWound.name}}</td>
+          <td>
+            <ul>
+              <li *ngFor="let condition of criticalWound.criticalConditions">
+                {{condition.base.base.nameTranslation}} {{condition.base.value}}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let injury of criticalWound.criticalInjury">
+                {{injury.nameTranslation}}
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
   </div>
 </div>
 

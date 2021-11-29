@@ -76,6 +76,7 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
         new FormGroup({
           'base': new FormControl(condition.base),
           'value': new FormControl(condition.value),
+          'incurableValue': new FormControl(condition.incurableValue),
         })
       )
     }
@@ -131,6 +132,7 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
       new FormGroup({
         'base': new FormControl(null),
         'value': new FormControl(null),
+        'incurableValue': new FormControl(null),
       })
     )
   }
