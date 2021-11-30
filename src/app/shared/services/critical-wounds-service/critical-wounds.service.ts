@@ -11,7 +11,6 @@ export class CriticalWoundsService {
   constructor() { }
 
   public removeConditionFromCriticalWound(character: SkirmishCharacter, condition: Condition, removeValue: number) {
-    //TODO poprawić usuwanie w przypadku wielu ran krytycznych z tym samym stanem
     for (let criticalWound of character.getCriticalWounds()) {
       for (let criticalCondition of criticalWound.criticalConditions) {
         if (criticalCondition.base.base.name == condition.base.name) {
@@ -23,7 +22,7 @@ export class CriticalWoundsService {
           } else {
             this.removeCriticalWoundIfHealed(criticalCondition, criticalWound, character);
           }
-          break;
+          return;
         }
       }
     }
