@@ -2,12 +2,12 @@ import {CharacterBodyLocalization} from "./character-body-localization.model";
 import {BodyLocalization, BodyLocalizationList} from "./body-localization.model";
 
 export class CharacterBodyLocalizations {
-  head = new CharacterBodyLocalization(BodyLocalizationList.head, 0, [], []);
-  leftArm = new CharacterBodyLocalization(BodyLocalizationList.leftArm, 0, [], []);
-  rightArm = new CharacterBodyLocalization(BodyLocalizationList.rightArm, 0, [], []);
-  body = new CharacterBodyLocalization(BodyLocalizationList.body, 0, [], []);
-  leftLeg = new CharacterBodyLocalization(BodyLocalizationList.leftLeg, 0, [], []);
-  rightLeg = new CharacterBodyLocalization(BodyLocalizationList.rightLeg, 0, [], []);
+  head = new CharacterBodyLocalization(BodyLocalizationList.head, 0);
+  leftArm = new CharacterBodyLocalization(BodyLocalizationList.leftArm, 0);
+  rightArm = new CharacterBodyLocalization(BodyLocalizationList.rightArm, 0);
+  body = new CharacterBodyLocalization(BodyLocalizationList.body, 0);
+  leftLeg = new CharacterBodyLocalization(BodyLocalizationList.leftLeg, 0);
+  rightLeg = new CharacterBodyLocalization(BodyLocalizationList.rightLeg, 0);
 
   getBodyLocalization(localization: BodyLocalization | null) {
     switch (localization) {

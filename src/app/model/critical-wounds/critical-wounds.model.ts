@@ -1,27 +1,31 @@
 import {Condition} from "../conditions/condition.model";
 import {Injury} from "../injures/injures-list.model";
 import {Model} from "../model";
+import {BodyLocalization} from "../body-localization/body-localization.model";
 
 export class CriticalWound {
-  name!: string;
-  criticalConditions!: CriticalCondition[];
-  criticalInjury!: Injury[];
+  name: string;
+  bodyLocalization: BodyLocalization;
+  criticalConditions: Condition[];
+  criticalInjuries: Injury[];
 
-  constructor(name?: string, criticalConditions?: CriticalCondition[], criticalInjury?: Injury[]) {
+  constructor(name?: string, bodyLocalization?: BodyLocalization, criticalConditions?: Condition[], criticalInjury?: Injury[]) {
     this.name = <string>name;
-    this.criticalConditions = <CriticalCondition[]>criticalConditions;
-    this.criticalInjury = <Injury[]>criticalInjury;
+    this.bodyLocalization = <BodyLocalization>bodyLocalization;
+    this.criticalConditions = <Condition[]>criticalConditions;
+    this.criticalInjuries = <Injury[]>criticalInjury;
   }
 
   removeCondition(condition: Model) {
-    let index = this.criticalConditions.findIndex(c => c.base.base.name === condition.nameTranslation);
+    let index = this.criticalConditions.findIndex(c => c.base.name === condition.name);
     this.criticalConditions.splice(index, 1);
   }
 
   static fromJSON(object: Object): CriticalWound {
     let criticalWound = Object.assign(new CriticalWound(), object);
-    criticalWound.criticalConditions = CriticalCondition.arrayFromJSON(criticalWound['criticalConditions']);
-    criticalWound.criticalInjury = Injury.arrayFromJSON(criticalWound['criticalInjury']);
+    criticalWound.bodyLocalization = BodyLocalization.fromJSON(criticalWound['bodyLocalization']);
+    criticalWound.criticalConditions = Condition.arrayFromJSON(criticalWound['criticalConditions']);
+    criticalWound.criticalInjuries = Injury.arrayFromJSON(criticalWound['criticalInjuries']);
     return criticalWound;
   }
 
@@ -32,30 +36,5 @@ export class CriticalWound {
       criticalWounds.push(criticalWound);
     }
     return criticalWounds;
-  }
-}
-
-export class CriticalCondition {
-  base!: Condition;
-  isCurable!: boolean;
-
-  constructor(base?: Condition, isCurable?: boolean) {
-    this.base = <Condition>base;
-    this.isCurable = <boolean>isCurable;
-  }
-
-  static fromJSON(object: Object): CriticalCondition {
-    let criticalCondition = Object.assign(new CriticalCondition(), object);
-    criticalCondition.base = Condition.fromJSON(criticalCondition['base']);
-    return criticalCondition;
-  }
-
-  static arrayFromJSON(objectsArray: Object[]): CriticalCondition[] {
-    let criticalConditions = [];
-    for (let object of objectsArray) {
-      let criticalCondition = CriticalCondition.fromJSON(object);
-      criticalConditions.push(criticalCondition);
-    }
-    return criticalConditions;
   }
 }

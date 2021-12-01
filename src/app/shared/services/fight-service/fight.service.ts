@@ -14,7 +14,7 @@ import {AttackReportService} from "../../../dialog-window/report-dialog-window/a
 import {AttackAllyFumbleDialogWindowComponent} from "../../../dialog-window/attack-ally-fumble-dialog-window/attack-ally-fumble-dialog-window.component";
 import {SkillTestService} from "../skill-test-service/skill-test.service";
 import {TextResourceService} from "../text-resource-service/text-resource.service";
-import {CriticalCondition, CriticalWound} from 'src/app/model/critical-wounds/critical-wounds.model';
+import {CriticalWound} from 'src/app/model/critical-wounds/critical-wounds.model';
 import {Condition} from "../../../model/conditions/condition.model";
 
 @Injectable({
@@ -188,7 +188,7 @@ export class FightService extends ServiceModel {
         BodyLocalizationList.head,
         'DramaticInjury',
         [
-          new CriticalCondition(new Condition(ConditionsList.bleeding, 1), true)
+          new Condition(ConditionsList.bleeding, 1),
         ],
         []
       );
@@ -199,7 +199,7 @@ export class FightService extends ServiceModel {
         BodyLocalizationList.head,
         'MinorCut',
         [
-          new CriticalCondition(new Condition(ConditionsList.bleeding, 1), true)
+          new Condition(ConditionsList.bleeding, 1),
         ],
         []
       );
@@ -210,7 +210,7 @@ export class FightService extends ServiceModel {
         BodyLocalizationList.head,
         'PokedEye',
         [
-          new CriticalCondition(new Condition(ConditionsList.blinded, 1), true)
+          new Condition(ConditionsList.blinded, 1),
         ],
         []
       );
@@ -221,7 +221,7 @@ export class FightService extends ServiceModel {
         BodyLocalizationList.head,
         'EarBash',
         [
-          new CriticalCondition(new Condition(ConditionsList.deafened, 1), true)
+          new Condition(ConditionsList.deafened, 1),
         ],
         []
       );
@@ -232,7 +232,7 @@ export class FightService extends ServiceModel {
         BodyLocalizationList.head,
         'RattlingBlow',
         [
-          new CriticalCondition(new Condition(ConditionsList.stunned, 1), true)
+          new Condition(ConditionsList.stunned, 1),
         ],
         []
       );
@@ -243,7 +243,7 @@ export class FightService extends ServiceModel {
         BodyLocalizationList.head,
         'BlackEye',
         [
-          new CriticalCondition(new Condition(ConditionsList.blinded, 2), true)
+          new Condition(ConditionsList.blinded, 2),
         ],
         []
       );
@@ -254,8 +254,8 @@ export class FightService extends ServiceModel {
         BodyLocalizationList.head,
         'SlicedEar',
         [
-          new CriticalCondition(new Condition(ConditionsList.stunned, 2), true),
-          new CriticalCondition(new Condition(ConditionsList.bleeding, 1), true)
+          new Condition(ConditionsList.stunned, 2),
+          new Condition(ConditionsList.bleeding, 1),
         ],
         []
       );
@@ -266,8 +266,8 @@ export class FightService extends ServiceModel {
         BodyLocalizationList.head,
         'StruckForehead',
         [
-          new CriticalCondition(new Condition(ConditionsList.bleeding, 2), true),
-          new CriticalCondition(new Condition(ConditionsList.blinded, 1), false)
+          new Condition(ConditionsList.bleeding, 2),
+          new Condition(ConditionsList.blinded, 1, 1),
         ],
         []
       );
@@ -278,11 +278,12 @@ export class FightService extends ServiceModel {
         BodyLocalizationList.head,
         'FracturedJaw',
         [
-          new CriticalCondition(new Condition(ConditionsList.stunned, 2), true)
+          new Condition(ConditionsList.stunned, 2),
         ],
-        []
+        [
+          new Injury(InjuresList.minorBrokenBone, BodyLocalizationList.head)
+        ]
       );
-      opponent.bodyLocalizations.head.addInjure(InjuresList.minorBrokenBone);
     } else if (roll >= 56 && roll <= 60) {
       opponent.currentWounds -= 3;
       this.setCriticalWound(
@@ -290,8 +291,8 @@ export class FightService extends ServiceModel {
         BodyLocalizationList.head,
         'MajorEyeWound',
         [
-          new CriticalCondition(new Condition(ConditionsList.bleeding, 1), true),
-          new CriticalCondition(new Condition(ConditionsList.blinded, 1), false)
+          new Condition(ConditionsList.bleeding, 1),
+          new Condition(ConditionsList.blinded, 1, 1),
         ],
         []
       );
@@ -310,8 +311,8 @@ export class FightService extends ServiceModel {
           BodyLocalizationList.head,
           'BrokenNoseWithStunned',
           [
-            new CriticalCondition(new Condition(ConditionsList.blinded, 2), true),
-            new CriticalCondition(new Condition(ConditionsList.stunned, 1), true)
+            new Condition(ConditionsList.blinded, 2),
+            new Condition(ConditionsList.stunned, 1),
           ],
           []
         );
@@ -321,7 +322,7 @@ export class FightService extends ServiceModel {
           BodyLocalizationList.head,
           'BrokenNose',
           [
-            new CriticalCondition(new Condition(ConditionsList.blinded, 2), true),
+            new Condition(ConditionsList.blinded, 2),
           ],
           []
         );
@@ -336,8 +337,8 @@ export class FightService extends ServiceModel {
           BodyLocalizationList.head,
           'BrokenJawWithDeafened',
           [
-            new CriticalCondition(new Condition(ConditionsList.stunned, 3), true),
-            new CriticalCondition(new Condition(ConditionsList.deafened, 1), true)
+            new Condition(ConditionsList.stunned, 3),
+            new Condition(ConditionsList.deafened, 1),
           ],
           []
         );
@@ -347,25 +348,28 @@ export class FightService extends ServiceModel {
           BodyLocalizationList.head,
           'BrokenJaw',
           [
-            new CriticalCondition(new Condition(ConditionsList.stunned, 3), true)
+            new Condition(ConditionsList.stunned, 3),
           ],
           []
         );
       }
-      opponent.bodyLocalizations.head.addInjure(InjuresList.majorBrokenBone);
     }
   }
 
-  private setCriticalWound(opponent: SkirmishCharacter, bodyLocalization: BodyLocalization, criticalWoundName: string, criticalConditions: CriticalCondition[], criticalInjuries: Injury[]) {
+  private setCriticalWound(opponent: SkirmishCharacter, bodyLocalization: BodyLocalization, criticalWoundName: string, conditions: Condition[], criticalInjuries: Injury[]) {
     let criticalWoundText = TextResourceService.getCriticalWoundText(criticalWoundName);
-    let criticalWound = new CriticalWound(criticalWoundText.nameTranslation, criticalConditions, criticalInjuries);
-    opponent.bodyLocalizations.getBodyLocalization(bodyLocalization)?.addCriticalWound(criticalWound);
+    let criticalWound = new CriticalWound(criticalWoundText.nameTranslation, bodyLocalization, conditions, criticalInjuries);
+    opponent?.addCriticalWound(criticalWound);
     this.attackReportService.criticalRollTarget = opponent.name;
     this.attackReportService.criticalRollName = criticalWoundText.nameTranslation;
     this.attackReportService.criticalRollDescription = criticalWoundText.description;
 
-    for(let condition of criticalConditions) {
-      opponent.addCriticalCondition(condition);
+    for(let condition of conditions) {
+      opponent.addCondition(condition.base, condition.value, condition.incurableValue);
+    }
+
+    for(let injury of criticalInjuries) {
+      opponent.addInjure(injury);
     }
   }
 
@@ -408,9 +412,9 @@ export class FightService extends ServiceModel {
       this.createRollDialog(owner.name + ': Skręcenie kostki: 1-50 - lewa noga, 51-100 - prawa noga (k100)', false)
         .subscribe((rollResult: { roll: number, modifier: number }) => {
           if (rollResult.roll <= 50) {
-            owner.bodyLocalizations.leftLeg.addInjure(InjuresList.minorTornMuscles);
+            owner.addInjure(new Injury(InjuresList.minorTornMuscles, BodyLocalizationList.leftLeg));
           } else {
-            owner.bodyLocalizations.rightLeg.addInjure(InjuresList.minorTornMuscles);
+            owner.addInjure(new Injury(InjuresList.minorTornMuscles, BodyLocalizationList.rightLeg));
           }
         })
     } else if (roll >= 91 && roll <= 100) {

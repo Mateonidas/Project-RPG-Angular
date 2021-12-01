@@ -7,7 +7,13 @@ export class Condition {
 
   constructor(model?: Model, value?: number, incurableValue?: number) {
     this.base = <Model>model
-    this.value = <number>value;
+
+    if(value != undefined) {
+      this.value = <number>value;
+    } else {
+      this.value = 1;
+    }
+
     if(incurableValue != undefined) {
       this.incurableValue = <number>incurableValue;
     } else {

@@ -1,9 +1,22 @@
 import {ListModel} from "../list-model";
 import {Model} from "../model";
+import {BodyLocalization} from "../body-localization/body-localization.model";
 
-export class Injury extends Model {
+export class Injury {
+
+  base: Model;
+  bodyLocalization: BodyLocalization;
+
+  constructor(model?: Model, bodyLocalization?: BodyLocalization) {
+    this.base = <Model>model;
+    this.bodyLocalization = <BodyLocalization>bodyLocalization;
+  }
+
   static fromJSON(object: Object): Injury {
-    return Object.assign(new Injury(), object);
+    let injury = Object.assign(new Injury(), object);
+    injury.base = Model.fromJSON(injury['base']);
+    injury.bodyLocalization = BodyLocalization.fromJSON(injury['bodyLocalization']);
+    return injury;
   }
 
   static arrayFromJSON(objectsArray: Object[]): Injury[] {
@@ -18,22 +31,22 @@ export class Injury extends Model {
 
 export class InjuresList extends ListModel {
   public static list = [
-    new Injury('MinorBrokenBone', 'Pomniejsze złamanie'),
-    new Injury('MajorBrokenBone', 'Poważne złamanie'),
-    new Injury('MinorTornMuscles', 'Pomniejsze zerwanie mięśni'),
-    new Injury('MajorTornMuscles', 'Poważne zerwanie mięśni'),
-    new Injury('Amputation', 'Amputacja'),
-    new Injury('AmputatedArm', 'Amputowane ramię'),
-    new Injury('AmputatedEar', 'Amputowane ucho'),
-    new Injury('AmputatedEye', 'Amputowane oko'),
-    new Injury('AmputatedFinger', 'Amputowany palec'),
-    new Injury('AmputatedFoot', 'Amputowana stopa'),
-    new Injury('AmputatedHand', 'Amputowana dłoń'),
-    new Injury('AmputatedLeg', 'Amputowane noga'),
-    new Injury('AmputatedNose', 'Amputowany nos'),
-    new Injury('AmputatedTeeth', 'Wyrwany ząb'),
-    new Injury('AmputatedToes', 'Amputowany palec u stopy'),
-    new Injury('AmputatedTongue', 'Amputowany język'),
+    new Model('MinorBrokenBone', 'Pomniejsze złamanie'),
+    new Model('MajorBrokenBone', 'Poważne złamanie'),
+    new Model('MinorTornMuscles', 'Pomniejsze zerwanie mięśni'),
+    new Model('MajorTornMuscles', 'Poważne zerwanie mięśni'),
+    new Model('Amputation', 'Amputacja'),
+    new Model('AmputatedArm', 'Amputowane ramię'),
+    new Model('AmputatedEar', 'Amputowane ucho'),
+    new Model('AmputatedEye', 'Amputowane oko'),
+    new Model('AmputatedFinger', 'Amputowany palec'),
+    new Model('AmputatedFoot', 'Amputowana stopa'),
+    new Model('AmputatedHand', 'Amputowana dłoń'),
+    new Model('AmputatedLeg', 'Amputowane noga'),
+    new Model('AmputatedNose', 'Amputowany nos'),
+    new Model('AmputatedTeeth', 'Wyrwany ząb'),
+    new Model('AmputatedToes', 'Amputowany palec u stopy'),
+    new Model('AmputatedTongue', 'Amputowany język'),
   ]
 
   static get minorBrokenBone() {

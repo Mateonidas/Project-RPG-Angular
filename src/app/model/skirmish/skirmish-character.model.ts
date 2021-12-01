@@ -12,7 +12,8 @@ import {CharacterBodyLocalizations} from "../body-localization/character-body-lo
 import {CharacterCharacteristics} from "../characteristic/character-characteristic.model";
 import {Talent} from "../talent/talent.model";
 import {Armor} from "../armor/armor.model";
-import {CriticalCondition, CriticalWound} from "../critical-wounds/critical-wounds.model";
+import {CriticalWound} from "../critical-wounds/critical-wounds.model";
+import {Injury} from "../injures/injures-list.model";
 
 export class SkirmishCharacter extends Character {
 
@@ -25,6 +26,8 @@ export class SkirmishCharacter extends Character {
   skirmishInitiative!: number;
   advantage!: number;
   conditions!: Condition[];
+  injuries!: Injury[];
+  criticalWounds!: CriticalWound[];
   bodyLocalizations!: CharacterBodyLocalizations;
   isDead!: boolean;
   isEngaged!: boolean;
@@ -41,6 +44,8 @@ export class SkirmishCharacter extends Character {
       this.advantage = 0;
       this.roll = new Roll();
       this.conditions = [];
+      this.injuries = [];
+      this.criticalWounds = [];
       this.fillLocalizationArmorPoints();
       this.isDead = false;
       this.isEngaged = false;
@@ -133,9 +138,9 @@ export class SkirmishCharacter extends Character {
     this.unconsciousCounter = RollService.calculateTraitBonus(this.characteristics.toughness.value);
   }
 
-  addCondition(newCondition: Model, level?: number) {
+  addCondition(newCondition: Model, level?: number, incurableValue?: number) {
     if (this.conditions.length === 0) {
-      this.conditions.push(new Condition(newCondition, 1));
+      this.conditions.push(new Condition(newCondition, level, incurableValue));
     } else {
       let found = false;
       for (let condition of this.conditions) {
@@ -149,60 +154,14 @@ export class SkirmishCharacter extends Character {
             } else {
               condition.value += 1;
             }
-          }
-        }
-      }
-      if (!found) {
-        if (level != undefined) {
-          this.conditions.push(new Condition(newCondition, level));
-        } else {
-          this.conditions.push(new Condition(newCondition, 1));
-        }
-      }
-    }
-    this.advantage = 0;
-  }
-
-  addCriticalCondition(criticalCondition: CriticalCondition) {
-    if (this.conditions.length === 0) {
-      if (criticalCondition.isCurable) {
-        this.conditions.push(new Condition(criticalCondition.base.base, criticalCondition.base.value));
-      } else {
-        this.conditions.push(new Condition(criticalCondition.base.base, criticalCondition.base.value, criticalCondition.base.value));
-      }
-    } else {
-      let found = false;
-      for (let condition of this.conditions) {
-        if (condition.base.nameTranslation === criticalCondition.base.base.nameTranslation) {
-          found = true;
-          if (!(condition.base.nameTranslation === ConditionsList.prone.nameTranslation ||
-            condition.base.nameTranslation === ConditionsList.unconscious.nameTranslation ||
-            condition.base.nameTranslation === ConditionsList.surprised.nameTranslation)) {
-            if (criticalCondition.base.value != undefined) {
-              condition.value += criticalCondition.base.value;
-            } else {
-              condition.value += 1;
-            }
-            if (!criticalCondition.isCurable) {
-              condition.incurableValue += 1;
+            if (incurableValue != undefined) {
+              condition.incurableValue += incurableValue;
             }
           }
         }
       }
       if (!found) {
-        if (criticalCondition.base.value != undefined) {
-          if (!criticalCondition.isCurable) {
-            this.conditions.push(new Condition(criticalCondition.base.base, criticalCondition.base.value, criticalCondition.base.value));
-          } else {
-            this.conditions.push(new Condition(criticalCondition.base.base, criticalCondition.base.value));
-          }
-        } else {
-          if (!criticalCondition.isCurable) {
-            this.conditions.push(new Condition(criticalCondition.base.base, 1, 1));
-          } else {
-            this.conditions.push(new Condition(criticalCondition.base.base, 1));
-          }
-        }
+        this.conditions.push(new Condition(newCondition, level));
       }
     }
     this.advantage = 0;
@@ -217,25 +176,22 @@ export class SkirmishCharacter extends Character {
     this.notes.push(note);
   }
 
-  getCriticalWounds() {
-    let criticalWounds = [];
-    for(let bodyLocalization of this.bodyLocalizations.getBodyLocalizationsInArray()){
-      for(let criticalWound of bodyLocalization.criticalWounds) {
-        criticalWounds.push(criticalWound);
-      }
-    }
+  addInjure(injure: Injury) {
+    this.injuries.push(injure);
+  }
 
-    return criticalWounds;
+  removeInjure(injure: Injury) {
+    let index = this.injuries.indexOf(injure);
+    this.injuries.splice(index, 1);
+  }
+
+  addCriticalWound(criticalWound: CriticalWound) {
+    this.criticalWounds.push(criticalWound);
   }
 
   removeCriticalWound(criticalWound: CriticalWound) {
-    for(let bodyLocalization of this.bodyLocalizations.getBodyLocalizationsInArray()){
-      for(let wound of bodyLocalization.criticalWounds) {
-        if(wound.name === criticalWound.name) {
-          bodyLocalization.removeCriticalWound(criticalWound);
-        }
-      }
-    }
+    let index = this.criticalWounds.indexOf(criticalWound);
+    this.criticalWounds.splice(index, 1);
   }
 
   static fromJSON(object: Object): SkirmishCharacter {
@@ -247,6 +203,8 @@ export class SkirmishCharacter extends Character {
     character.weapons = Weapon.arrayFromJSON(character['weapons']);
     character.armor = Armor.arrayFromJSON(character['armor']);
     character.conditions = Condition.arrayFromJSON(character['conditions'])
+    character.injuries = Injury.arrayFromJSON(character['injuries'])
+    character.criticalWounds = CriticalWound.arrayFromJSON(character['criticalWounds']);
     character.bodyLocalizations = CharacterBodyLocalizations.fromJSON(character['bodyLocalizations']);
     return character;
   }

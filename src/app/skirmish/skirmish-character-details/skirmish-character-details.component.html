@@ -56,18 +56,21 @@
   </div>
 </div>
 
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <h4>Notatki</h4>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let note of skirmishCharacter.notes">
-        {{note}}
-      </li>
-    </ul>
+<ng-container *ngIf="skirmishCharacter.notes.length > 0">
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Notatki</h4>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let note of skirmishCharacter.notes">
+          {{note}}
+        </li>
+      </ul>
+    </div>
   </div>
-</div>
+</ng-container>
 
+<ng-container *ngIf="skirmishCharacter.conditions.length > 0">
 <hr>
 <div class="row">
   <div class="col-md-12">
@@ -84,7 +87,23 @@
     </ul>
   </div>
 </div>
+</ng-container>
 
+<ng-container *ngIf="skirmishCharacter.injuries.length > 0">
+<hr>
+<div class="row">
+  <div class="col-md-12">
+    <h4>Urazy</h4>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let injury of skirmishCharacter.injuries">
+        {{injury.bodyLocalization.nameTranslation}}: {{injury.base.nameTranslation}}
+      </li>
+    </ul>
+  </div>
+</div>
+</ng-container>
+
+<ng-container *ngIf="skirmishCharacter.criticalWounds.length > 0">
 <hr>
 <div class="row">
   <div class="col-md-12">
@@ -99,30 +118,29 @@
       </tr>
       </thead>
       <tbody>
-      <ng-container *ngFor="let bodyLocalization of skirmishCharacter.bodyLocalizations.getBodyLocalizationsInArray()">
-        <tr *ngFor="let criticalWound of bodyLocalization.criticalWounds">
-          <td>{{bodyLocalization.bodyLocalization.nameTranslation}}</td>
+        <tr *ngFor="let criticalWound of skirmishCharacter.criticalWounds">
+          <td>{{criticalWound.bodyLocalization.nameTranslation}}</td>
           <td>{{criticalWound.name}}</td>
           <td>
             <ul>
               <li *ngFor="let condition of criticalWound.criticalConditions">
-                {{condition.base.base.nameTranslation}} {{condition.base.value}}
+                {{condition.base.nameTranslation}} {{condition.value}}
               </li>
             </ul>
           </td>
           <td>
             <ul>
-              <li *ngFor="let injury of criticalWound.criticalInjury">
-                {{injury.nameTranslation}}
+              <li *ngFor="let injury of criticalWound.criticalInjuries">
+                {{injury.base.nameTranslation}}
               </li>
             </ul>
           </td>
         </tr>
-      </ng-container>
       </tbody>
     </table>
   </div>
 </div>
+</ng-container>
 
 <hr>
 <div class="row">
