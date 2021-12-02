@@ -2,7 +2,7 @@
   <div class="col-md-14">
     <form [formGroup]="editCharacterForm" (ngSubmit)="onSubmit()">
       <div class="row">
-        <div class="col-md-12 form-group">
+        <div class="col-md-6 form-group">
           <h4>Nazwa</h4>
           <input type="text" class="form-control" formControlName="name">
         </div>
@@ -10,7 +10,7 @@
 
       <hr>
       <div class="row">
-        <div class="col-md-12 form-group">
+        <div class="col-md-6 form-group">
           <h4>Opis</h4>
           <input type="text" class="form-control" formControlName="description">
         </div>
@@ -18,7 +18,7 @@
 
       <hr>
       <div class="row">
-        <div class="col-md-12 form-group">
+        <div class="col-md-6 form-group">
           <h4>Parametry tymczasowe</h4>
           <table class="table table-bordered h-25">
             <thead class="thead-dark">
@@ -90,7 +90,7 @@
 
       <hr>
       <div class="row">
-        <div class="col-md-12" formArrayName="conditions">
+        <div class="col-md-8" formArrayName="conditions">
           <h4>Stany</h4>
           <div class="row mb-2" *ngFor="let conditionControl of conditions; let i = index" [formGroupName]="i">
             <div class="col-md-6">
@@ -130,7 +130,7 @@
 
       <hr>
       <div class="row">
-        <div class="col-md-12" formArrayName="injuries">
+        <div class="col-md-8" formArrayName="injuries">
           <h4>Urazy</h4>
           <div class="row mb-2" *ngFor="let injuresControl of injuries; let i = index" [formGroupName]="i">
             <div class="col-md-4">
@@ -163,7 +163,7 @@
         </div>
       </div>
 
-      <!--      TODO: dokończyć edycje ran krytycznych-->
+      <!--TODO: dokończyć wyświetlanie ran krytycznych-->
       <hr>
       <div class="row">
         <div class="col-md-14" formArrayName="criticalWounds">
@@ -193,73 +193,65 @@
                   formControlName="name">
               </td>
               <td>
-                <ul>
-                  <div formArrayName="criticalConditions">
-                    <li *ngFor="let condition of getCriticalConditions(criticalWoundControl); let j = index"
-                        [formGroupName]="j">
-                      <div class="row">
-                        <div class="col-md-4 ms-1 p-0">
-                          <select class="form-select" formControlName="base" [compareWith]="compareModels">
-                            <option [ngValue]="condition" *ngFor="let condition of conditionList">
-                              {{condition.nameTranslation}}
-                            </option>
-                          </select>
-                        </div>
-                        <div class="col-md-1 p-0">
-                          <input
-                            type="text"
-                            class="form-control"
-                            formControlName="value">
-                        </div>
-                        <div class="col-md-1 p-0">
-                          <input
-                            type="text"
-                            class="form-control"
-                            formControlName="incurableValue">
-                        </div>
-                        <div class="col-md-2">
-                          <button
-                            type="button"
-                            class="btn btn-danger"
-                            (click)="onDeleteCriticalCondition(criticalWoundControl, i)">X
-                          </button>
-                        </div>
-                      </div>
-                    </li>
+                <div formArrayName="criticalConditions">
+                  <div *ngFor="let condition of getCriticalConditions(criticalWoundControl); let j = index"
+                       [formGroupName]="j" class="row gx-0">
+                    <div class="col-6">
+                      <select class="form-select" formControlName="base" [compareWith]="compareModels">
+                        <option [ngValue]="condition" *ngFor="let condition of conditionList">
+                          {{condition.nameTranslation}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="value">
+                    </div>
+                    <div class="col-1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="incurableValue">
+                    </div>
+                    <div class="col-1">
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        (click)="onDeleteCriticalCondition(criticalWoundControl, i)">X
+                      </button>
+                    </div>
                   </div>
-                </ul>
+                </div>
               </td>
               <td>
-                <ul>
-                  <div formArrayName="criticalInjuries">
-                    <li *ngFor="let injury of getCriticalInjuries(criticalWoundControl); let j = index"
-                        [formGroupName]="j">
-                      <div class="row">
-                        <div class="col-md-4 ms-1 p-0">
-                          <select class="form-select" formControlName="bodyLocalization" [compareWith]="compareModels">
-                            <option [ngValue]="bodyLocalization" *ngFor="let bodyLocalization of bodyLocalizationsList">
-                              {{bodyLocalization.nameTranslation}}
-                            </option>
-                          </select>
-                        </div>
-                        <div class="col-md-4 ms-1 p-0">
-                          <select class="form-select" formControlName="base" [compareWith]="compareModels">
-                            <option [ngValue]="injury" *ngFor="let injury of injuriesList">
-                              {{injury.nameTranslation}}
-                            </option>
-                          </select>
-                        </div>
-                        <div class="col-md-2">
-                          <button
-                            type="button"
-                            class="btn btn-danger"
-                            (click)="onDeleteCriticalInjury(criticalWoundControl, i)">X
-                          </button>
-                        </div>
-                      </div>
-                    </li>
+                <div formArrayName="criticalInjuries">
+                  <div *ngFor="let injury of getCriticalInjuries(criticalWoundControl); let j = index"
+                       [formGroupName]="j" class="row row-cols-2 gx-0">
+                    <div hidden>
+                      <select class="form-select" formControlName="bodyLocalization" [compareWith]="compareModels">
+                        <option [ngValue]="bodyLocalization" *ngFor="let bodyLocalization of bodyLocalizationsList">
+                          {{bodyLocalization.nameTranslation}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-6">
+                      <select class="form-select" formControlName="base" [compareWith]="compareModels">
+                        <option [ngValue]="injury" *ngFor="let injury of injuriesList">
+                          {{injury.nameTranslation}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-1">
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        (click)="onDeleteCriticalInjury(criticalWoundControl, i)">X
+                      </button>
+                    </div>
                   </div>
-                </ul>
+                </div>
               </td>
               <td>
             </tr>
