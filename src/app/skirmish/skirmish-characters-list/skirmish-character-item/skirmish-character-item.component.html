@@ -10,11 +10,11 @@
           <h4 class="list-group-item-heading">{{skirmishCharacter.name}}</h4>
           <p class="list-group-item-text">{{skirmishCharacter.description}}</p>
         </div>
-        <div class="col-md-3" *ngIf="!skirmishCharacter.isDead">
+        <div class="col-md-2" *ngIf="!skirmishCharacter.isDead">
           <h6 class="list-group-item-heading">Inicjatywa</h6>
           <p class="list-group-item-text">{{skirmishCharacter.skirmishInitiative}}</p>
         </div>
-        <div class="col-md-3" *ngIf="!skirmishCharacter.isDead">
+        <div class="col-md-4" *ngIf="!skirmishCharacter.isDead">
           <h6 class="list-group-item-heading">Żywotność</h6>
           <p class="list-group-item-text">{{skirmishCharacter.currentWounds}}
             /{{skirmishCharacter.characteristics.wounds.value}}</p>
@@ -26,11 +26,11 @@
       <div class="row" *ngIf="!skirmishCharacter.isDead">
         <div class="col-md-6">
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
           <h6 class="list-group-item-heading">Przewagi</h6>
           <p class="list-group-item-text">{{skirmishCharacter.advantage}}</p>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <h6 class="list-group-item-heading">Stany</h6>
           <p *ngFor="let condition of skirmishCharacter.conditions" class="list-group-item-text">
             - {{condition.base.nameTranslation}} {{condition.value}}
