@@ -120,7 +120,7 @@
       <tbody>
         <tr *ngFor="let criticalWound of skirmishCharacter.criticalWounds">
           <td>{{criticalWound.bodyLocalization.nameTranslation}}</td>
-          <td>{{criticalWound.name}}</td>
+          <td>{{criticalWound.nameTranslation}}</td>
           <td>
             <ul>
               <li *ngFor="let condition of criticalWound.criticalConditions">

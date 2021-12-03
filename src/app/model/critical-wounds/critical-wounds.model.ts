@@ -3,14 +3,13 @@ import {Injury} from "../injures/injures-list.model";
 import {Model} from "../model";
 import {BodyLocalization} from "../body-localization/body-localization.model";
 
-export class CriticalWound {
-  name: string;
+export class CriticalWound extends Model{
   bodyLocalization: BodyLocalization;
   criticalConditions: Condition[];
   criticalInjuries: Injury[];
 
-  constructor(name?: string, bodyLocalization?: BodyLocalization, criticalConditions?: Condition[], criticalInjury?: Injury[]) {
-    this.name = <string>name;
+  constructor(name?: string, nameTranslation?: string, bodyLocalization?: BodyLocalization, criticalConditions?: Condition[], criticalInjury?: Injury[]) {
+    super(name, nameTranslation);
     this.bodyLocalization = <BodyLocalization>bodyLocalization;
     this.criticalConditions = <Condition[]>criticalConditions;
     this.criticalInjuries = <Injury[]>criticalInjury;

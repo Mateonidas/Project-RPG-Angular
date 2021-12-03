@@ -185,6 +185,10 @@ export class SkirmishCharacter extends Character {
     this.injuries.splice(index, 1);
   }
 
+  getCriticalWound(criticalWound: CriticalWound) {
+    return this.criticalWounds.filter(w => w.name === criticalWound.name)[0];
+  }
+
   addCriticalWound(criticalWound: CriticalWound) {
     this.criticalWounds.push(criticalWound);
   }

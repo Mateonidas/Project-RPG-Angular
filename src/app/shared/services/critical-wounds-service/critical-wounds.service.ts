@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.model";
 import {Condition} from "../../../model/conditions/condition.model";
 import {CriticalWound} from "../../../model/critical-wounds/critical-wounds.model";
+import {CriticalWoundsList} from "../../../model/critical-wounds/critical-wounds-list.model";
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,7 @@ export class CriticalWoundsService {
             CriticalWoundsService.removeCriticalWoundIfHealed(criticalWound, character);
             this.removeConditionFromCriticalWound(character, condition, removeValue);
           } else {
+            criticalWound.removeCondition(criticalCondition.base);
             CriticalWoundsService.removeCriticalWoundIfHealed(criticalWound, character);
           }
           return;
@@ -31,15 +33,17 @@ export class CriticalWoundsService {
   }
 
   private static removeCriticalWoundIfHealed(criticalWound: CriticalWound, character: SkirmishCharacter) {
-    if (criticalWound.criticalConditions.length == 0) {
-      if (criticalWound.criticalInjuries.length == 0) {
-        character.removeCriticalWound(criticalWound);
+    if (criticalWound.name != CriticalWoundsList.majorEarWound.name) {
+      if (criticalWound.criticalConditions.length == 0) {
+        if (criticalWound.criticalInjuries.length == 0) {
+          character.removeCriticalWound(criticalWound);
+        }
       }
     }
   }
 
   public static removeCriticalWoundsIfHealed(character: SkirmishCharacter) {
-    for(let criticalWound of character.criticalWounds){
+    for (let criticalWound of character.criticalWounds) {
       CriticalWoundsService.removeCriticalWoundIfHealed(criticalWound, character);
     }
   }

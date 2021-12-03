@@ -64,7 +64,7 @@
       {
         "name": "MajorEarWound",
         "nameTranslation": "Poważna rana ucha",
-        "note": "Rana krytyczna głowy: Poważna rana ucha - wszystkie testy związane otrzymują karę -20.",
+        "note": "Rana krytyczna głowy: Poważna rana ucha - wszystkie testy związane ze słuchem otrzymują karę -20.",
         "description": "Cios niszczy małżowinę uszną, co skutkuje trwałym uszkodzeniem słuchu. Wszystkie Testy związane ze słuchem otrzymują karę -20. Jeśli postać otrzyma taką ranę ponownie, cios zadawany jest w drugie ucho, co skutkuje głuchotą. Wtedy pomoże już tylko magia."
       },
       {
@@ -74,21 +74,9 @@
         "description": "Silny cios trafia w sam środek twarzy, a postać zalewa się krwią. Postać otrzymuje 2 poziomy Krwawienia. Musi także zdać Wymagający (+0) Test Odporności, w przeciwnym wypadku otrzyma również 1 poziom Oszołomienia. Po wyleczeniu tej rany postać uzyskuje premię +1 lub karę -1 do Testów w kontaktach społecznych (w zależności od kontekstu), chyba że podjęto Test Chirurgii, by nastawić i wyprostować nos."
       },
       {
-        "name": "BrokenNoseWithStunned",
-        "nameTranslation": "Złamany nos",
-        "note": "Rana krytyczna głowy: Złamany nos - usuń 2 Krwawienia i 1 Oszołomienie.",
-        "description": "Silny cios trafia w sam środek twarzy, a postać zalewa się krwią. Postać otrzymuje 2 poziomy Krwawienia. Musi także zdać Wymagający (+0) Test Odporności, w przeciwnym wypadku otrzyma również 1 poziom Oszołomienia. Po wyleczeniu tej rany postać uzyskuje premię +1 lub karę -1 do Testów w kontaktach społecznych (w zależności od kontekstu), chyba że podjęto Test Chirurgii, by nastawić i wyprostować nos."
-      },
-      {
         "name": "BrokenJaw",
         "nameTranslation": "Zmiażdżona żuchwa",
         "note": "Rana krytyczna głowy: Zmiażdżona żuchwa - usuń 3 Oszołomienia i Złamanie (poważne).",
-        "description": "Następuje obrzydliwy trzask, a cios trafia w żuchwę od spodu, miażdżąc ją. Postać otrzymuje 3 poziomy Oszołomienia. Musi także zdać Wymagający (+0) Test Odporności, w przeciwnym wypadku otrzyma również 1 poziom Ogłuszenia. Ponadto otrzymuje Uraz Złamanie (poważne)."
-      },
-      {
-        "name": "BrokenJawWithDeafened",
-        "nameTranslation": "Zmiażdżona żuchwa",
-        "note": "Rana krytyczna głowy: Zmiażdżona żuchwa - usuń 3 Oszołomienia, 1 Ogłuszenie i Złamanie (poważne).",
         "description": "Następuje obrzydliwy trzask, a cios trafia w żuchwę od spodu, miażdżąc ją. Postać otrzymuje 3 poziomy Oszołomienia. Musi także zdać Wymagający (+0) Test Odporności, w przeciwnym wypadku otrzyma również 1 poziom Ogłuszenia. Ponadto otrzymuje Uraz Złamanie (poważne)."
       },
       {
