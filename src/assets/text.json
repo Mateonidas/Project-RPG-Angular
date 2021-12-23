@@ -1,4 +1,30 @@
 {
+  "bodyLocalization": [
+    {
+      "name": "HEAD",
+      "nameTranslation": "Głowa"
+    },
+    {
+      "name": "RIGHT_ARM",
+      "nameTranslation": "Prawe ramię"
+    },
+    {
+      "name": "LEFT_ARM",
+      "nameTranslation": "Lewe ramię"
+    },
+    {
+      "name": "BODY",
+      "nameTranslation": "Korpus"
+    },
+    {
+      "name": "RIGHT_LEG",
+      "nameTranslation": "Prawa noga"
+    },
+    {
+      "name": "LEFT_LEG",
+      "nameTranslation": "Lewa noga"
+    }
+  ],
   "criticalRoll": {
     "criticalWounds": [
       {

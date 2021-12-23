@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {AbstractControl, FormArray, FormControl, FormGroup} from "@angular/forms";
 import {Character} from "../../model/character/character.model";
 import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
@@ -12,6 +12,7 @@ import {CriticalWound} from "../../model/critical-wounds/critical-wounds.model";
 import {InjuresList, Injury} from "../../model/injures/injures-list.model";
 import {BodyLocalizationList} from "../../model/body-localization/body-localization.model";
 import {CriticalWoundsService} from "../../shared/services/critical-wounds-service/critical-wounds.service";
+import {ArmorService} from "../../shared/services/armor-service/armor.service";
 
 @Component({
   selector: 'app-skirmish-character-edit',
@@ -26,8 +27,19 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
 
   constructor(router: Router,
               route: ActivatedRoute,
-              private skirmishService: SkirmishCharacterService) {
-    super(router, route);
+              private skirmishService: SkirmishCharacterService,
+              armorService: ArmorService) {
+    super(router, route, armorService);
+  }
+
+  ngOnInit(): void {
+    this.armorsList = this.armorService.armorsList;
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = +params['id'];
+        this.initForm();
+      }
+    )
   }
 
   initForm() {

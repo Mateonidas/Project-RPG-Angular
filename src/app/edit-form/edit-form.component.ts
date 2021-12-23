@@ -9,38 +9,40 @@ import {CharacterFormArraysWrapper} from "../model/character/character-form-arra
 import {Model} from "../model/model";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {CharacterCharacteristics} from "../model/characteristic/character-characteristic.model";
+import {ArmorService} from "../shared/services/armor-service/armor.service";
 
 @Component({
   selector: 'app-edit-form',
   templateUrl: './edit-form.component.html',
   styleUrls: ['./edit-form.component.css']
 })
-export class EditFormComponent implements OnInit {
+export class EditFormComponent {
 
   editCharacterForm!: FormGroup;
   skillsList = SkillsList.list;
   talentsList = new TalentsList();
   weaponsList = WeaponsList.list;
-  armorsList = ArmorsList.list;
+  armorsList: Armor[] = [];
   isRightHanded = true;
   isDead!: boolean;
   id!: number;
 
   constructor(protected router: Router,
-              protected route: ActivatedRoute) {
+              protected route: ActivatedRoute,
+              protected armorService: ArmorService) {
   }
 
-  ngOnInit(): void {
-    this.route.params.subscribe(
-      (params: Params) => {
-        this.id = +params['id'];
-        this.initForm();
-      }
-    )
-  }
-
-  protected initForm() {
-  }
+  // ngOnInit(): void {
+  //   this.route.params.subscribe(
+  //     (params: Params) => {
+  //       this.id = +params['id'];
+  //       this.initForm();
+  //     }
+  //   )
+  // }
+  //
+  // protected initForm() {
+  // }
 
   protected prepareEditData(character: Character, formArrays: CharacterFormArraysWrapper) {
     if (character.skills) {
@@ -69,7 +71,7 @@ export class EditFormComponent implements OnInit {
   }
 
   prepareTalentsList(talents: FormArray, talentsList: Talent[]) {
-    for (let talent of talentsList) {
+    for (let talent of  talentsList) {
       talents.push(
         new FormGroup({
           'talent': new FormControl(talent),
@@ -92,18 +94,17 @@ export class EditFormComponent implements OnInit {
     }
   }
 
-  prepareArmorList(armors: FormArray, armorsList: Armor[]) {
-    for (let armor of armorsList) {
-      armors.push(
+  prepareArmorList(armorsForms: FormArray, characterArmors: Armor[]) {
+    for (let armor of characterArmors) {
+      armorsForms.push(
         new FormGroup({
           'armor': new FormControl(armor),
           'name': new FormControl(armor.name),
           'category': new FormControl(null),
-          'penalty': new FormControl(null),
+          'penalties': new FormControl(null),
           'localization': new FormControl(null),
           'armorPoints': new FormControl(null),
-          'advantages': new FormControl(null),
-          'disadvantages': new FormControl(null),
+          'qualities': new FormControl(null)
         })
       )
     }
@@ -211,15 +212,14 @@ export class EditFormComponent implements OnInit {
   onAddArmor() {
     (<FormArray>this.editCharacterForm.get('armors')).push(
       new FormGroup({
-        'armor': new FormControl(new Armor('', '', '', '', [], 0, [], [])),
+        'armor': new FormControl(new Armor('', '', '', [], [], 0, [])),
         'name': new FormControl(null),
         'nameTranslation': new FormControl(null),
         'category': new FormControl(null),
-        'penalty': new FormControl(null),
+        'penalties': new FormControl(null),
         'localization': new FormControl(null),
         'armorPoints': new FormControl(null),
-        'advantages': new FormControl(null),
-        'disadvantages': new FormControl(null),
+        'qualities': new FormControl(null)
       })
     )
   }
@@ -270,7 +270,6 @@ export class EditFormComponent implements OnInit {
       weapon.value.damage = weapon.value.weapon.damage;
       weapon.value.isUsingStrength = weapon.value.weapon.isUsingStrength;
       weapon.value.advantages = weapon.value.weapon.advantages;
-      weapon.value.disadvantages = weapon.value.weapon.disadvantages;
     })
   }
 
@@ -279,11 +278,10 @@ export class EditFormComponent implements OnInit {
       armor.value.name = armor.value.armor.name;
       armor.value.nameTranslation = armor.value.armor.nameTranslation;
       armor.value.category = armor.value.armor.category;
-      armor.value.penalty = armor.value.armor.penalty;
+      armor.value.penalties = armor.value.armor.penalties;
       armor.value.localization = armor.value.armor.localization;
       armor.value.armorPoints = armor.value.armor.armorPoints;
-      armor.value.advantages = armor.value.armor.advantages;
-      armor.value.disadvantages = armor.value.armor.disadvantages;
+      armor.value.qualities = armor.value.armor.qualities
     })
   }
 

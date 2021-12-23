@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ArmorService} from "../shared/services/armor-service/armor.service";
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   collapsed = true;
 
-  constructor() { }
+  constructor(public armorService: ArmorService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.armorService.fetchArmors().subscribe();
   }
 
 }
