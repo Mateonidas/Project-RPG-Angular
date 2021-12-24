@@ -25,6 +25,24 @@
       "nameTranslation": "Lewa noga"
     }
   ],
+  "armorCategory": [
+    {
+      "name": "SOFT_LEATHER",
+      "nameTranslation": "Miękka skóra"
+    },
+    {
+      "name": "BOILED_LEATHER",
+      "nameTranslation": "Skóra hartowana"
+    },
+    {
+      "name": "MAIL",
+      "nameTranslation": "Kolczugi"
+    },
+    {
+      "name": "PLATE",
+      "nameTranslation": "Płytowe"
+    }
+  ],
   "criticalRoll": {
     "criticalWounds": [
       {

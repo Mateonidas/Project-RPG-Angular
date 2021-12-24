@@ -25,7 +25,7 @@ export class ArmorService {
               this.armorsList.push(new Armor(
                 armor.name,
                 armor.nameTranslation,
-                armor.armorCategory,
+                TextResourceService.getArmorCategoryNameTranslation(armor.armorCategory).nameTranslation,
                 armor.penalties,
                 this.prepareBodyLocalizations(armor),
                 armor.armorPoints,

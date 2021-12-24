@@ -25,6 +25,17 @@ export class TextResourceService {
     })
   }
 
+  public static getArmorCategoryNameTranslation(name: string) {
+    let armorCategory: Model[] = textResource.armorCategory;
+    return <Model>armorCategory.find(armorCategory => {
+      if(armorCategory.name == name) {
+        return armorCategory;
+      } else {
+        return null;
+      }
+    })
+  }
+
   public static getCriticalWoundText(name: string) {
     let criticalRoll: CriticalRoll = textResource.criticalRoll;
     return <CriticalWound>criticalRoll.criticalWounds.find(criticalWound => {
