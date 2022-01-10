@@ -31,15 +31,15 @@ export class WeaponTraitsList extends ListModel {
     return array.some(({}) => advantage);
   }
 
-  static checkFast(owner: SkirmishCharacter, opponent: SkirmishCharacter) {
-    if(this.checkIfExist(owner.usedWeapon.advantages, this.fast)) {
-      if (owner.isAttacker) {
-        if (opponent.isDodging) {
-          opponent.roll.modifier -= 10;
-        } else if (!this.checkIfExist(opponent.usedWeapon.advantages, this.fast)) {
-          opponent.roll.modifier -= 10;
-        }
-      }
-    }
-  }
+  // static checkFast(owner: SkirmishCharacter, opponent: SkirmishCharacter) {
+  //   if(this.checkIfExist(owner.usedWeapon.advantages, this.fast)) {
+  //     if (owner.isAttacker) {
+  //       if (opponent.isDodging) {
+  //         opponent.roll.modifier -= 10;
+  //       } else if (!this.checkIfExist(opponent.usedWeapon.advantages, this.fast)) {
+  //         opponent.roll.modifier -= 10;
+  //       }
+  //     }
+  //   }
+  // }
 }

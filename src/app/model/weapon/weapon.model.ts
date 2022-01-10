@@ -1,35 +1,34 @@
 import {Model} from "../model";
-import {AttackCategory, AttacksCategoryList} from "../attack/attack-category.model";
-import {WeaponGroup, WeaponGroupsList} from "./weapon-type.model";
+import {AttacksCategoryList} from "../attack/attack-category.model";
+import {WeaponGroupsList} from "./weapon-type.model";
 import {ListModel} from "../list-model";
 import {WeaponTrait, WeaponTraitsList} from "./weaponTraits/weapon.advantages.model";
 
 export class Weapon extends Model {
-  public attackType: AttackCategory;
-  public weaponGroup: WeaponGroup;
-  public range: string;
-  public damage: number;
+  public weaponType: string;
+  public weaponGroupType: string;
+  public weaponRange: string;
   public isUsingStrength: boolean;
-  public advantages: WeaponTrait[];
-  public disadvantages: string[];
+  public damage: number;
+  public qualities: string[];
+  // public advantages: WeaponTrait[];
+  // public disadvantages: string[];
 
-  constructor(name?: string, nameTranslation?: string, type?: AttackCategory, category?: WeaponGroup, range?: string, damage?: number, isUsingStrength?: boolean, advantages?: WeaponTrait[], disadvantages?: string[]) {
+  constructor(name?: string, nameTranslation?: string, weaponType?: string, weaponGroupType?: string, range?: string, isUsingStrength?: boolean, damage?: number, qualities?: string[]) {
     super(name, nameTranslation)
-    this.attackType = <AttackCategory>type;
-    this.weaponGroup = <WeaponGroup>category;
-    this.range = <string>range;
+    this.weaponType = <string>weaponType;
+    this.weaponGroupType = <string>weaponGroupType;
+    this.weaponRange = <string>range;
     this.damage = <number>damage;
     this.isUsingStrength = <boolean>isUsingStrength;
-    this.advantages = <WeaponTrait[]>advantages;
-    this.disadvantages = <string[]>disadvantages;
+    this.qualities = <string[]>qualities;
   }
 
   static fromJSON(object: Object): Weapon {
-    let weapon = Object.assign(new Weapon(), object);
-    weapon.attackType = AttackCategory.fromJSON(weapon['attackType']);
-    weapon.weaponGroup = WeaponGroup.fromJSON(weapon['weaponGroup']);
-    weapon.advantages = WeaponTrait.arrayFromJSON(weapon['advantages']);
-    return weapon;
+    // weapon.weaponType = WeaponType.fromJSON(weapon['weaponType']);
+    // weapon.weaponGroupType = WeaponGroupType.fromJSON(weapon['weaponGroupType']);
+    // weapon.advantages = WeaponTrait.arrayFromJSON(weapon['advantages']);
+    return Object.assign(new Weapon(), object);
   }
 
   static arrayFromJSON(objectsArray: Object[]): Weapon[] {
@@ -44,9 +43,9 @@ export class Weapon extends Model {
 
 export class WeaponsList extends ListModel {
   public static list = [
-    new Weapon('HandWeapon', 'Broń ręczna', AttacksCategoryList.meleeAttack, WeaponGroupsList.basic, 'Średnia', 4, true, [], []),
-    new Weapon('Rapier', 'Rapier', AttacksCategoryList.meleeAttack, WeaponGroupsList.fencing, 'Długa', 4, true, [WeaponTraitsList.fast], []),
-    new Weapon('Crossbow', 'Kusza', AttacksCategoryList.rangedAttack, WeaponGroupsList.crossbow, '60', 9, false, [], [])
+    new Weapon('HandWeapon', 'Broń ręczna', 'Broń biała', 'Podstawowa', 'Średnia', true, 4, []),
+    new Weapon('Rapier', 'Rapier', 'Broń biała', 'Szermiercza', 'Długa',true, 4,  ['Szubka']),
+    new Weapon('Crossbow', 'Kusza', 'Broń zasięgowa', 'Kusze', '60',false, 9, [])
   ]
 
   static get handWeapon() {

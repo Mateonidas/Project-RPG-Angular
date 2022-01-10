@@ -224,14 +224,14 @@
       <tbody>
       <tr *ngFor="let weapon of skirmishCharacter.weapons">
         <td>{{weapon.nameTranslation}}</td>
-        <td>{{weapon.weaponGroup.nameTranslation}}</td>
-        <td>{{weapon.range}}</td>
+        <td>{{weapon.weaponGroupType}}</td>
+        <td>{{weapon.weaponRange}}</td>
         <td>
           <span *ngIf="weapon.isUsingStrength; else elseBlock">+BS+{{weapon.damage}}</span>
           <ng-template #elseBlock>+{{weapon.damage}}</ng-template>
         </td>
         <td>
-          <span *ngFor="let advantage of weapon.advantages"> {{advantage.nameTranslation}}</span>
+          <span *ngFor="let quality of weapon.qualities"> {{quality}}</span>
           <!--          <span *ngFor="let disadvantage of weapon.disadvantages"> {{disadvantage.nameTranslation}}</span>-->
         </td>
       </tr>

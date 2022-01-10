@@ -203,8 +203,7 @@ export class EditFormComponent {
         'range': new FormControl(null),
         'damage': new FormControl(null),
         'isUsingStrength': new FormControl(null),
-        'advantages': new FormControl(null),
-        'disadvantages': new FormControl(null),
+        'qualities': new FormControl(null)
       })
     )
   }
@@ -269,7 +268,7 @@ export class EditFormComponent {
       weapon.value.range = weapon.value.weapon.range;
       weapon.value.damage = weapon.value.weapon.damage;
       weapon.value.isUsingStrength = weapon.value.weapon.isUsingStrength;
-      weapon.value.advantages = weapon.value.weapon.advantages;
+      weapon.value.qualities = weapon.value.weapon.qualities;
     })
   }
 

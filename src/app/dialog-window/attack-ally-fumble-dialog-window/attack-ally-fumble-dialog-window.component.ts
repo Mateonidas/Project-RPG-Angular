@@ -4,7 +4,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {ConditionsList} from "../../model/conditions/conditions-list.model";
-import {FightService} from "../../shared/services/fight-service/fight.service";
+// import {FightService} from "../../shared/services/fight-service/fight.service";
 import {RollService} from "../../shared/services/roll-service/roll.service";
 
 @Component({
@@ -22,7 +22,8 @@ export class AttackAllyFumbleDialogWindowComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal,
               private skirmishCharacterService: SkirmishCharacterService,
-              private fightService: FightService) {
+              // private fightService: FightService
+  ) {
   }
 
   ngOnInit(): void {
@@ -45,21 +46,21 @@ export class AttackAllyFumbleDialogWindowComponent implements OnInit {
   }
 
   calculateResult() {
-    if(this.chooseConditionOrAllyAttack === 'condition') {
-      this.character.addCondition(ConditionsList.stunned);
-      this.skirmishCharacterService.updateSkirmishCharacter(this.character);
-    }
-    else if(this.chooseConditionOrAllyAttack === 'allyAttack') {
-      let target: SkirmishCharacter = this.target;
-      let damage = this.fightService.calculateFinalDamage(
-        Number(this.fumbleRoll.toLocaleString()[1]),
-        this.fightService.calculateWeaponDamage(this.character),
-        RollService.calculateTraitBonus(target.characteristics.toughness.value),
-        this.fightService.getArmorPointsFromAttackLocalization(this.character.roll.value, target)
-      );
-      target.currentWounds -= damage;
-      this.skirmishCharacterService.updateSkirmishCharacter(target);
-    }
+    // if(this.chooseConditionOrAllyAttack === 'condition') {
+    //   this.character.addCondition(ConditionsList.stunned);
+    //   this.skirmishCharacterService.updateSkirmishCharacter(this.character);
+    // }
+    // else if(this.chooseConditionOrAllyAttack === 'allyAttack') {
+    //   let target: SkirmishCharacter = this.target;
+    //   let damage = this.fightService.calculateFinalDamage(
+    //     Number(this.fumbleRoll.toLocaleString()[1]),
+    //     this.fightService.calculateWeaponDamage(this.character),
+    //     RollService.calculateTraitBonus(target.characteristics.toughness.value),
+    //     this.fightService.getArmorPointsFromAttackLocalization(this.character.roll.value, target)
+    //   );
+    //   target.currentWounds -= damage;
+    //   this.skirmishCharacterService.updateSkirmishCharacter(target);
+    // }
   }
 
   get chooseConditionOrAllyAttack() {

@@ -26,10 +26,43 @@ export class TextResourceService {
   }
 
   public static getArmorCategoryNameTranslation(name: string) {
-    let armorCategory: Model[] = textResource.armorCategory;
-    return <Model>armorCategory.find(armorCategory => {
+    let armorCategories: Model[] = textResource.armorCategory;
+    return <Model>armorCategories.find(armorCategory => {
       if(armorCategory.name == name) {
         return armorCategory;
+      } else {
+        return null;
+      }
+    })
+  }
+
+  public static getWeaponTypeNameTranslation(name: string) {
+    let weaponTypes: Model[] = textResource.weaponType;
+    return <Model>weaponTypes.find(weaponType => {
+      if(weaponType.name == name) {
+        return weaponType;
+      } else {
+        return null;
+      }
+    })
+  }
+
+  public static getWeaponGroupTypeNameTranslation(name: string) {
+    let weaponGroupTypes: Model[] = textResource.weaponGroupType;
+    return <Model>weaponGroupTypes.find(weaponGroupType => {
+      if(weaponGroupType.name == name) {
+        return weaponGroupType;
+      } else {
+        return null;
+      }
+    })
+  }
+
+  public static getWeaponRangeNameTranslation(name: string) {
+    let weaponRanges: Model[] = textResource.weaponRange;
+    return <Model>weaponRanges.find(weaponRange => {
+      if(weaponRange.name == name) {
+        return weaponRange;
       } else {
         return null;
       }

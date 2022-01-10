@@ -1,10 +1,10 @@
 import {Model} from "../model";
-import {AttackCategory} from "./attack-category.model";
+import {WeaponType} from "./attack-category.model";
 
 export class AttackType extends Model {
-  public category!: AttackCategory;
+  public category!: WeaponType;
 
-  constructor(name: string, nameTranslation: string, category: AttackCategory) {
+  constructor(name: string, nameTranslation: string, category: WeaponType) {
     super(name, nameTranslation);
     this.category = category;
   }

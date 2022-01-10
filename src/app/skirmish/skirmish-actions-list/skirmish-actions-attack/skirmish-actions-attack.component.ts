@@ -13,7 +13,7 @@ import {AttackReportService} from "../../../dialog-window/report-dialog-window/a
 import {AttackReportDialogWindowComponent} from "../../../dialog-window/report-dialog-window/attack-report-dialog-window.component";
 import {RollService} from "../../../shared/services/roll-service/roll.service";
 import {ConditionService} from "../../../shared/services/condition-service/condition.service";
-import {FightService} from "../../../shared/services/fight-service/fight.service";
+// import {FightService} from "../../../shared/services/fight-service/fight.service";
 
 @Component({
   selector: 'app-skirmish-actions-attack',
@@ -37,7 +37,8 @@ export class SkirmishActionsAttackComponent implements OnInit {
               private attackReportService: AttackReportService,
               private rollService: RollService,
               private conditionService: ConditionService,
-              private fightService: FightService) {
+              // private fightService: FightService
+  ) {
   }
 
   ngOnInit(): void {
@@ -54,8 +55,8 @@ export class SkirmishActionsAttackComponent implements OnInit {
     this.skirmishCharactersList = this.skirmishCharacterService.getSkirmishCharacters();
     this.skirmishCharactersList.splice(this.id, 1);
 
-    this.attacksTypeList = AttacksTypeList.attacksTypeList.filter(x => x.category.name === 'MeleeAttack');
-    this.characterWeapons = this.attacker.weapons.filter(x => x.attackType.name === 'MeleeAttack');
+    this.attacksTypeList = AttacksTypeList.attacksTypeList.filter(x => x.category.name === 'MELEE');
+    this.characterWeapons = this.attacker.weapons.filter(x => x.weaponType === 'MELEE');
 
     this.attackForm = new FormGroup({
       'attackCategory': new FormControl(AttacksCategoryList.meleeAttack, [Validators.required]),
@@ -70,7 +71,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
   onCategoryChange() {
     let category = this.attackCategory?.value.name;
     this.attacksTypeList = AttacksTypeList.attacksTypeList.filter(x => x.category.name === category);
-    this.characterWeapons = this.attacker.weapons.filter(x => x.attackType.name === category);
+    this.characterWeapons = this.attacker.weapons.filter(x => x.weaponType === category);
 
     this.attackType?.setValue(this.attacksTypeList[0]);
     this.weapon?.setValue(this.characterWeapons[0]);
@@ -81,19 +82,19 @@ export class SkirmishActionsAttackComponent implements OnInit {
   }
 
   attackRoll() {
-    this.attacker.isAttacker = true;
-    this.attacker.isDodging = false;
-    this.attacker.usedWeapon = this.weapon?.value;
-    this.attacker.roll.value = this.roll?.value;
-    this.attacker.roll.modifier = this.modifier?.value;
-
-    let defender: SkirmishCharacter = this.target?.value;
-    defender.isAttacker = false;
-
-    this.createSaveRollDialog(defender).subscribe(async () => {
-      await this.fightService.fightCalculation(this.attacker, defender);
-      this.createReportDialog();
-    })
+    // this.attacker.isAttacker = true;
+    // this.attacker.isDodging = false;
+    // this.attacker.usedWeapon = this.weapon?.value;
+    // this.attacker.roll.value = this.roll?.value;
+    // this.attacker.roll.modifier = this.modifier?.value;
+    //
+    // let defender: SkirmishCharacter = this.target?.value;
+    // defender.isAttacker = false;
+    //
+    // this.createSaveRollDialog(defender).subscribe(async () => {
+    //   await this.fightService.fightCalculation(this.attacker, defender);
+    //   this.createReportDialog();
+    // })
   }
 
   createSaveRollDialog(defender: SkirmishCharacter) {

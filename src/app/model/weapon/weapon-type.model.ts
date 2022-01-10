@@ -3,7 +3,7 @@ import {Skill, SkillsList} from "../skill/skill.model";
 import {Model} from "../model";
 import {Characteristic} from "../characteristic/characteristic.model";
 
-export class WeaponGroup extends Model {
+export class WeaponGroupType extends Model {
   public usedSkill: Skill;
 
   constructor(name?: string, nameTranslation?: string, usedSkill?: Skill) {
@@ -11,8 +11,8 @@ export class WeaponGroup extends Model {
     this.usedSkill = <Skill>usedSkill;
   }
 
-  static fromJSON(object: Object): WeaponGroup {
-    let weaponGroup = Object.assign(new WeaponGroup(), object);
+  static fromJSON(object: Object): WeaponGroupType {
+    let weaponGroup = Object.assign(new WeaponGroupType(), object);
     weaponGroup.usedSkill = Characteristic.fromJSON(weaponGroup['usedSkill']);
     return weaponGroup;
   }
@@ -20,20 +20,20 @@ export class WeaponGroup extends Model {
 
 export class WeaponGroupsList extends ListModel {
   public static list = [
-    new WeaponGroup('Basic', 'Podstawowa', SkillsList.meleeBasic),
-    new WeaponGroup('Fencing', 'Szermiercza', SkillsList.meleeFencing),
-    new WeaponGroup('Crossbow', 'Kusze', SkillsList.rangedCrossbow),
+    new WeaponGroupType('Basic', 'Podstawowa', SkillsList.meleeBasic),
+    new WeaponGroupType('Fencing', 'Szermiercza', SkillsList.meleeFencing),
+    new WeaponGroupType('Crossbow', 'Kusze', SkillsList.rangedCrossbow),
   ]
 
   static get basic() {
-    return <WeaponGroup>this.getListItemByName('Basic');
+    return <WeaponGroupType>this.getListItemByName('Basic');
   }
 
   static get fencing() {
-    return <WeaponGroup>this.getListItemByName('Fencing');
+    return <WeaponGroupType>this.getListItemByName('Fencing');
   }
 
   static get crossbow() {
-    return <WeaponGroup>this.getListItemByName('Crossbow');
+    return <WeaponGroupType>this.getListItemByName('Crossbow');
   }
 }

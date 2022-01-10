@@ -46,10 +46,10 @@ export class SaveRollDialogWindowComponent implements OnInit {
     if (this.checkDefendTrait === 'weapon') {
       this.target.usedWeapon = this.defendTrait?.value;
       this.target.isDodging = false;
-      this.attackReportService.targetDefenceTrait = 'Broń: ' + this.target.usedWeapon.nameTranslation;
+      // this.attackReportService.targetDefenceTrait = 'Broń: ' + this.target.usedWeapon.nameTranslation;
     } else {
       this.target.isDodging = true;
-      this.attackReportService.targetDefenceTrait = 'Unik';
+      // this.attackReportService.targetDefenceTrait = 'Unik';
     }
   }
 

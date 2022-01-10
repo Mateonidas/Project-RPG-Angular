@@ -43,6 +43,115 @@
       "nameTranslation": "Płytowe"
     }
   ],
+  "weaponType": [
+    {
+      "name": "MELEE",
+      "nameTranslation": "Broń biała"
+    },
+    {
+      "name": "RANGED",
+      "nameTranslation": "Broń zasięgowa"
+    }
+  ],
+  "weaponGroupType": [
+    {
+      "name": "BASIC",
+      "nameTranslation": "Broń biała"
+    },
+    {
+      "name": "CAVALRY",
+      "nameTranslation": "Kawaleryjska"
+    },
+    {
+      "name": "FENCING",
+      "nameTranslation": "Szermiercza"
+    },
+    {
+      "name": "BRAWLING",
+      "nameTranslation": "Bijatyka"
+    },
+    {
+      "name": "FLAIL",
+      "nameTranslation": "Korbacze"
+    },
+    {
+      "name": "PARRY",
+      "nameTranslation": "Parująca"
+    },
+    {
+      "name": "POLEARM",
+      "nameTranslation": "Drzewcowa"
+    },
+    {
+      "name": "TWO_HANDED",
+      "nameTranslation": "Dwuręczna"
+    },
+    {
+      "name": "BLACKPOWDER",
+      "nameTranslation": "Prochowa"
+    },
+    {
+      "name": "BOW",
+      "nameTranslation": "Łuki"
+    },
+    {
+      "name": "CROSSBOW",
+      "nameTranslation": "Kusze"
+    },
+    {
+      "name": "ENGINEERING",
+      "nameTranslation": "Eksperymentalna"
+    },
+    {
+      "name": "ENTANGLING",
+      "nameTranslation": "Oplątująca"
+    },
+    {
+      "name": "EXPLOSIVES",
+      "nameTranslation": "Materiały wybuchowe"
+    },
+    {
+      "name": "SLING",
+      "nameTranslation": "Proce"
+    },{
+      "name": "THROWING",
+      "nameTranslation": "Miotane"
+    }
+  ],
+  "weaponRange": [
+    {
+      "name": "AVERAGE",
+      "nameTranslation": "Średni"
+    },
+    {
+      "name": "LONG",
+      "nameTranslation": "Długi"
+    },
+    {
+      "name": "MASSIVE",
+      "nameTranslation": "Ogromny"
+    },
+    {
+      "name": "PERSONAL",
+      "nameTranslation": "Kontaktowy"
+    },
+    {
+      "name": "SHORT",
+      "nameTranslation": "Krótki"
+    },
+    {
+      "name": "VARIES",
+      "nameTranslation": "Różny"
+    },
+    {
+      "name": "VERY_LONG",
+      "nameTranslation": "Bardzo długi"
+    },
+    {
+      "name": "VERY_SHORT",
+      "nameTranslation": "Bardzo krótki"
+    }
+  ],
   "criticalRoll": {
     "criticalWounds": [
       {

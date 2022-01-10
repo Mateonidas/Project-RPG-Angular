@@ -87,44 +87,44 @@ export class SkirmishCharacter extends Character {
     )
   }
 
-  getFightTrait() {
-    if (this.isAttacker) {
-      return this.getTraitForWeapon();
-    } else {
-      if (this.isDodging) {
-        return this.getTraitForDodging();
-      } else {
-        return this.getTraitForWeapon();
-      }
-    }
-  }
+  // getFightTrait() {
+  //   if (this.isAttacker) {
+  //     return this.getTraitForWeapon();
+  //   } else {
+  //     if (this.isDodging) {
+  //       return this.getTraitForDodging();
+  //     } else {
+  //       return this.getTraitForWeapon();
+  //     }
+  //   }
+  // }
 
-  private getTraitForWeapon() {
-    let trait = this.skills.find(characterSkill => characterSkill.base.nameTranslation == this.usedWeapon.weaponGroup.usedSkill.nameTranslation);
-    if (trait === undefined) {
-      trait = this.characteristics.getCharacteristic(this.usedWeapon.attackType.usedCharacteristic);
-    }
+  // private getTraitForWeapon() {
+  //   let trait = this.skills.find(characterSkill => characterSkill.base.nameTranslation == this.usedWeapon.weaponGroupType.usedSkill.nameTranslation);
+  //   if (trait === undefined) {
+  //     trait = this.characteristics.getCharacteristic(this.usedWeapon.weaponType.usedCharacteristic);
+  //   }
+  //
+  //   return trait;
+  // }
 
-    return trait;
-  }
-
-  private getTraitForDodging() {
-    let trait = this.skills.find(characterSkill => characterSkill.base.nameTranslation == SkillsList.dodge.nameTranslation)
-    if (trait === undefined) {
-      trait = this.characteristics.getCharacteristic(Characteristics.agility)
-    }
-
-    return trait;
-  }
+  // private getTraitForDodging() {
+  //   let trait = this.skills.find(characterSkill => characterSkill.base.nameTranslation == SkillsList.dodge.nameTranslation)
+  //   if (trait === undefined) {
+  //     trait = this.characteristics.getCharacteristic(Characteristics.agility)
+  //   }
+  //
+  //   return trait;
+  // }
 
   getSkill(skill: Skill) {
     return this.skills.filter(s => s.base === skill)[0];
   }
 
-  checkIfWeaponAdvantagesAreIgnored() {
-    let skill = this.skills.find(characterSkill => characterSkill.base.nameTranslation == this.usedWeapon.weaponGroup.usedSkill.nameTranslation);
-    return skill === undefined;
-  }
+  // checkIfWeaponAdvantagesAreIgnored() {
+  //   let skill = this.skills.find(characterSkill => characterSkill.base.nameTranslation == this.usedWeapon.weaponGroupType.usedSkill.nameTranslation);
+  //   return skill === undefined;
+  // }
 
   checkIfHasCondition(condition: Model) {
     return this.conditions.filter(e => e.base.nameTranslation === condition.nameTranslation).length > 0;

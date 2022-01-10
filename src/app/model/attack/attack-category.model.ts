@@ -2,7 +2,7 @@ import {Model} from "../model";
 import {Characteristic, Characteristics} from "../characteristic/characteristic.model";
 import {ListModel} from "../list-model";
 
-export class AttackCategory extends Model {
+export class WeaponType extends Model {
   public usedCharacteristic: Characteristic;
 
   constructor(name?: string, nameTranslation?: string, usedCharacteristic?: Characteristic) {
@@ -10,8 +10,8 @@ export class AttackCategory extends Model {
     this.usedCharacteristic = <Characteristic>usedCharacteristic;
   }
 
-  static fromJSON(object: Object): AttackCategory {
-    let attackCategory = Object.assign(new AttackCategory(), object);
+  static fromJSON(object: Object): WeaponType {
+    let attackCategory = Object.assign(new WeaponType(), object);
     attackCategory.usedCharacteristic = Characteristic.fromJSON(attackCategory['usedCharacteristic']);
     return attackCategory;
   }
@@ -19,15 +19,15 @@ export class AttackCategory extends Model {
 
 export class AttacksCategoryList extends ListModel{
   public static list = [
-    new AttackCategory('RangedAttack', 'Atak dystansowy', Characteristics.ballisticSkill),
-    new AttackCategory('MeleeAttack', 'Atak w zwarciu', Characteristics.weaponSkill),
+    new WeaponType('RANGED', 'Atak dystansowy', Characteristics.ballisticSkill),
+    new WeaponType('MELEE', 'Atak w zwarciu', Characteristics.weaponSkill),
   ]
 
   static get rangedAttack() {
-    return <AttackCategory>this.getListItemByName('RangedAttack');
+    return <WeaponType>this.getListItemByName('RANGED');
   }
 
   static get meleeAttack() {
-    return <AttackCategory>this.getListItemByName('MeleeAttack');
+    return <WeaponType>this.getListItemByName('MELEE');
   }
 }
