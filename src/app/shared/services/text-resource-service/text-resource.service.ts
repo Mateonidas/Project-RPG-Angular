@@ -69,6 +69,17 @@ export class TextResourceService {
     })
   }
 
+  public static getWeaponQualityNameTranslation(name: string) {
+    let weaponQualities: Model[] = textResource.weaponQualities;
+    return <Model>weaponQualities.find(weaponQuality => {
+      if(weaponQuality.name == name) {
+        return weaponQuality;
+      } else {
+        return null;
+      }
+    })
+  }
+
   public static getCriticalWoundText(name: string) {
     let criticalRoll: CriticalRoll = textResource.criticalRoll;
     return <CriticalWound>criticalRoll.criticalWounds.find(criticalWound => {

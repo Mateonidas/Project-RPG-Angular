@@ -113,7 +113,8 @@
     {
       "name": "SLING",
       "nameTranslation": "Proce"
-    },{
+    },
+    {
       "name": "THROWING",
       "nameTranslation": "Miotane"
     }
@@ -150,6 +151,148 @@
     {
       "name": "VERY_SHORT",
       "nameTranslation": "Bardzo krótki"
+    }
+  ],
+  "weaponQualities": [
+    {
+      "name": "ACCURATE",
+      "nameTranslation": "Celna"
+    },
+    {
+      "name": "BLACKPOWDER",
+      "nameTranslation": "Prochowa"
+    },
+    {
+      "name": "BLAST",
+      "nameTranslation": "Odłamkowa"
+    },
+    {
+      "name": "DAMAGING",
+      "nameTranslation": "Przebijająca"
+    },
+    {
+      "name": "DEFENSIVE",
+      "nameTranslation": "Parująca"
+    },
+    {
+      "name": "DISTRACT",
+      "nameTranslation": "Dekoncentrująca"
+    },
+    {
+      "name": "ENTANGLE",
+      "nameTranslation": "Unieruchamiająca"
+    },
+    {
+      "name": "FAST",
+      "nameTranslation": "Szybka"
+    },
+    {
+      "name": "HACK",
+      "nameTranslation": "Robiąca"
+    },
+    {
+      "name": "IMPACT",
+      "nameTranslation": "Druzgocząca"
+    },
+    {
+      "name": "IMPALE",
+      "nameTranslation": "Nadziewająca"
+    },
+    {
+      "name": "PENETRATING",
+      "nameTranslation": "Przekłuwająca"
+    },
+    {
+      "name": "PISTOL",
+      "nameTranslation": "Pistolet"
+    },
+    {
+      "name": "PRECISE",
+      "nameTranslation": "Precyzyjna"
+    },
+    {
+      "name": "PUMMEL",
+      "nameTranslation": "Ogłuszająca"
+    },
+    {
+      "name": "REPEATER",
+      "nameTranslation": "Wielostrzał"
+    },
+    {
+      "name": "SHIELD",
+      "nameTranslation": "Tarcza"
+    },
+    {
+      "name": "TRAP_BLADE",
+      "nameTranslation": "Łamacz mieczy"
+    },
+    {
+      "name": "TWO_HANDED",
+      "nameTranslation": "Dwuręczna"
+    },
+    {
+      "name": "UNBREAKABLE",
+      "nameTranslation": "Niełamliwa"
+    },
+    {
+      "name": "WRAP",
+      "nameTranslation": "Plącząca"
+    },
+    {
+      "name": "DANGEROUS",
+      "nameTranslation": "Niebezpieczna"
+    },
+    {
+      "name": "IMPRECISE",
+      "nameTranslation": "Nieprecyzyjna"
+    },
+    {
+      "name": "RELOAD",
+      "nameTranslation": "Przeładowanie"
+    },
+    {
+      "name": "SLOW",
+      "nameTranslation": "Powolna"
+    },
+    {
+      "name": "TIRING",
+      "nameTranslation": "Męcząca"
+    },
+    {
+      "name": "UNDAMAGING",
+      "nameTranslation": "Tępa"
+    },
+    {
+      "name": "DURABLE",
+      "nameTranslation": "Wytrzymała"
+    },
+    {
+      "name": "FINE",
+      "nameTranslation": "Wyśmienita"
+    },
+    {
+      "name": "LIGHTWEIGHT",
+      "nameTranslation": "Poręczna"
+    },
+    {
+      "name": "PRACTICAL",
+      "nameTranslation": "Praktyczna"
+    },
+    {
+      "name": "UGLY",
+      "nameTranslation": "Brzydka"
+    },
+    {
+      "name": "SHODDY",
+      "nameTranslation": "Tandetna"
+    },
+    {
+      "name": "UNRELIABLE",
+      "nameTranslation": "Zawodna"
+    },
+    {
+      "name": "BULKY",
+      "nameTranslation": "Nieporęczna"
     }
   ],
   "criticalRoll": {
