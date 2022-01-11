@@ -1,3 +1,5 @@
+import {WeaponQualityRest} from "./weapon-quality-rest.model";
+
 export interface WeaponRest {
   id: number;
   name: string;
@@ -7,5 +9,5 @@ export interface WeaponRest {
   weaponRange: string;
   isUsingStrength: boolean;
   damage: number;
-  weaponQualities: string[];
+  weaponQualities: WeaponQualityRest[];
 }

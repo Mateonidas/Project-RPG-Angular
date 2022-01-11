@@ -6,6 +6,7 @@ import {Character} from "../../model/character/character.model";
 import {EditFormComponent} from "../../edit-form/edit-form.component";
 import {CharacterFormArraysWrapper} from "../../model/character/character-form-arrays-wrapper.model";
 import {ArmorService} from "../../shared/services/armor-service/armor.service";
+import {WeaponService} from "../../shared/services/weapon-service/weapon.service";
 
 @Component({
   selector: 'app-character-edit',
@@ -19,12 +20,14 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
   constructor(router: Router,
               route: ActivatedRoute,
               private characterService: CharacterService,
-              armorService: ArmorService) {
-    super(router, route, armorService);
+              armorService: ArmorService,
+              weaponService: WeaponService) {
+    super(router, route, armorService, weaponService);
   }
 
   ngOnInit(): void {
     this.armorsList = this.armorService.armorsList;
+    this.weaponsList = this.weaponService.weaponsList;
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];

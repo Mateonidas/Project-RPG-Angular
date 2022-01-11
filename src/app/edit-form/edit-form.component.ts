@@ -10,6 +10,7 @@ import {Model} from "../model/model";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {CharacterCharacteristics} from "../model/characteristic/character-characteristic.model";
 import {ArmorService} from "../shared/services/armor-service/armor.service";
+import {WeaponService} from "../shared/services/weapon-service/weapon.service";
 
 @Component({
   selector: 'app-edit-form',
@@ -21,7 +22,7 @@ export class EditFormComponent {
   editCharacterForm!: FormGroup;
   skillsList = SkillsList.list;
   talentsList = new TalentsList();
-  weaponsList = WeaponsList.list;
+  weaponsList: Weapon[] = [];
   armorsList: Armor[] = [];
   isRightHanded = true;
   isDead!: boolean;
@@ -29,7 +30,8 @@ export class EditFormComponent {
 
   constructor(protected router: Router,
               protected route: ActivatedRoute,
-              protected armorService: ArmorService) {
+              protected armorService: ArmorService,
+              protected weaponService: WeaponService) {
   }
 
   // ngOnInit(): void {

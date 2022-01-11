@@ -5,6 +5,8 @@ import {tap} from "rxjs/operators";
 import {Subject} from "rxjs";
 import {Weapon} from "../../../model/weapon/weapon.model";
 import {TextResourceService} from "../text-resource-service/text-resource.service";
+import {WeaponQuality} from "../../../model/weapon/weaponTraits/weapon-quality.model";
+import {WeaponQualityRest} from "../../../rest-model/weapon-quality-rest.model";
 
 @Injectable({
   providedIn: 'root'
@@ -20,24 +22,33 @@ export class WeaponService {
       .pipe(
         tap(data => {
           for (let weapon of data) {
-
             this.weaponsList.push(new Weapon(
               weapon.name,
               weapon.nameTranslation,
               TextResourceService.getWeaponTypeNameTranslation(weapon.weaponType).nameTranslation,
               TextResourceService.getWeaponGroupTypeNameTranslation(weapon.weaponGroupType).nameTranslation,
-              'RANGE',
+              TextResourceService.getWeaponRangeNameTranslation(weapon.weaponRange).nameTranslation,
               weapon.isUsingStrength,
               weapon.damage,
-              weapon.weaponQualities
+              this.prepareWeaponQualities(<WeaponQualityRest[]>weapon.weaponQualities)
             ))
           }
         })
       )
   }
 
-  //TODO prepare weapon qualities translations in text.json
-  private prepareWeaponQualities(qualities: string[]) {
-    let weaponQualities: string[] = [];
+  private prepareWeaponQualities(qualities: WeaponQualityRest[]) {
+    let weaponQualities: WeaponQuality[] = [];
+    for(let quality of qualities) {
+      weaponQualities.push(
+        new WeaponQuality(
+          quality.weaponQualityType,
+          TextResourceService.getWeaponQualityNameTranslation(quality.weaponQualityType).nameTranslation,
+          quality.value
+        )
+      )
+    }
+
+    return weaponQualities;
   }
 }

@@ -13,6 +13,7 @@ import {InjuresList, Injury} from "../../model/injures/injures-list.model";
 import {BodyLocalizationList} from "../../model/body-localization/body-localization.model";
 import {CriticalWoundsService} from "../../shared/services/critical-wounds-service/critical-wounds.service";
 import {ArmorService} from "../../shared/services/armor-service/armor.service";
+import {WeaponService} from "../../shared/services/weapon-service/weapon.service";
 
 @Component({
   selector: 'app-skirmish-character-edit',
@@ -28,8 +29,9 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
   constructor(router: Router,
               route: ActivatedRoute,
               private skirmishService: SkirmishCharacterService,
-              armorService: ArmorService) {
-    super(router, route, armorService);
+              armorService: ArmorService,
+              weaponService: WeaponService) {
+    super(router, route, armorService, weaponService);
   }
 
   ngOnInit(): void {

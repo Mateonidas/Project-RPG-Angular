@@ -2,16 +2,23 @@ import {Model} from "../../model";
 import {ListModel} from "../../list-model";
 import {SkirmishCharacter} from "../../skirmish/skirmish-character.model";
 
-export class WeaponTrait extends Model {
+export class WeaponQuality extends Model {
 
-  static fromJSON(object: Object): WeaponTrait {
-    return Object.assign(new WeaponTrait(), object);
+  value: number;
+
+  constructor(name?: string, nameTranslation?: string, value?: number) {
+    super(name, nameTranslation);
+    this.value = <number>value;
   }
 
-  static arrayFromJSON(objectsArray: Object[]): WeaponTrait[] {
+  static fromJSON(object: Object): WeaponQuality {
+    return Object.assign(new WeaponQuality(), object);
+  }
+
+  static arrayFromJSON(objectsArray: Object[]): WeaponQuality[] {
     let weaponsTraits = [];
     for (let object of objectsArray) {
-      let weaponTrait = WeaponTrait.fromJSON(object);
+      let weaponTrait = WeaponQuality.fromJSON(object);
       weaponsTraits.push(weaponTrait);
     }
     return weaponsTraits;
@@ -20,14 +27,14 @@ export class WeaponTrait extends Model {
 
 export class WeaponTraitsList extends ListModel {
   public static list = [
-    new WeaponTrait('Fast', 'Szybka'),
+    new WeaponQuality('Fast', 'Szybka'),
   ]
 
   static get fast() {
-    return <WeaponTrait>this.getListItemByName('Fast');
+    return <WeaponQuality>this.getListItemByName('Fast');
   }
 
-  static checkIfExist(array: WeaponTrait[], advantage: WeaponTrait) {
+  static checkIfExist(array: WeaponQuality[], advantage: WeaponQuality) {
     return array.some(({}) => advantage);
   }
 
