@@ -6,7 +6,8 @@ export interface WeaponRest {
   nameTranslation: string;
   weaponType: string;
   weaponGroupType: string;
-  weaponRange: string;
+  weaponReach: string;
+  weaponRange: number;
   isUsingStrength: boolean;
   damage: number;
   weaponQualities: WeaponQualityRest[];

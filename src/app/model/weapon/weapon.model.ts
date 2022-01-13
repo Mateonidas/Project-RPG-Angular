@@ -1,24 +1,22 @@
 import {Model} from "../model";
-import {AttacksCategoryList} from "../attack/attack-category.model";
-import {WeaponGroupsList} from "./weapon-type.model";
 import {ListModel} from "../list-model";
-import {WeaponQuality, WeaponTraitsList} from "./weaponTraits/weapon-quality.model";
+import {WeaponQuality} from "./weaponTraits/weapon-quality.model";
 
 export class Weapon extends Model {
   public weaponType: string;
   public weaponGroupType: string;
-  public weaponRange: string;
+  public weaponReach: string
+  public weaponRange: number;
   public isUsingStrength: boolean;
   public damage: number;
   public qualities: WeaponQuality[];
-  // public advantages: WeaponTrait[];
-  // public disadvantages: string[];
 
-  constructor(name?: string, nameTranslation?: string, weaponType?: string, weaponGroupType?: string, range?: string, isUsingStrength?: boolean, damage?: number, qualities?: WeaponQuality[]) {
+  constructor(name?: string, nameTranslation?: string, weaponType?: string, weaponGroupType?: string, reach?: string, range?: number, isUsingStrength?: boolean, damage?: number, qualities?: WeaponQuality[]) {
     super(name, nameTranslation)
     this.weaponType = <string>weaponType;
     this.weaponGroupType = <string>weaponGroupType;
-    this.weaponRange = <string>range;
+    this.weaponReach = <string>reach;
+    this.weaponRange = <number>range;
     this.damage = <number>damage;
     this.isUsingStrength = <boolean>isUsingStrength;
     this.qualities = <WeaponQuality[]>qualities;
@@ -43,9 +41,9 @@ export class Weapon extends Model {
 
 export class WeaponsList extends ListModel {
   public static list = [
-    new Weapon('HandWeapon', 'Broń ręczna', 'Broń biała', 'Podstawowa', 'Średnia', true, 4, []),
-    new Weapon('Rapier', 'Rapier', 'Broń biała', 'Szermiercza', 'Długa',true, 4,  []),
-    new Weapon('Crossbow', 'Kusza', 'Broń zasięgowa', 'Kusze', '60',false, 9, [])
+    new Weapon('HandWeapon', 'Broń ręczna', 'Broń biała', 'Podstawowa', 'Średnia', undefined, true, 4, []),
+    new Weapon('Rapier', 'Rapier', 'Broń biała', 'Szermiercza', 'Długa', undefined, true, 4, []),
+    new Weapon('Crossbow', 'Kusza', 'Broń zasięgowa', 'Kusze', undefined, 60, false, 9, [])
   ]
 
   static get handWeapon() {

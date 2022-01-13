@@ -58,11 +58,11 @@ export class TextResourceService {
     })
   }
 
-  public static getWeaponRangeNameTranslation(name: string) {
-    let weaponRanges: Model[] = textResource.weaponRange;
-    return <Model>weaponRanges.find(weaponRange => {
-      if(weaponRange.name == name) {
-        return weaponRange;
+  public static getWeaponReachNameTranslation(name: string) {
+    let weaponReaches: Model[] = textResource.weaponReach;
+    return <Model>weaponReaches.find(weaponReach => {
+      if(weaponReach.name == name) {
+        return weaponReach;
       } else {
         return null;
       }

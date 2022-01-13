@@ -27,12 +27,14 @@ export class WeaponService {
               weapon.nameTranslation,
               TextResourceService.getWeaponTypeNameTranslation(weapon.weaponType).nameTranslation,
               TextResourceService.getWeaponGroupTypeNameTranslation(weapon.weaponGroupType).nameTranslation,
-              TextResourceService.getWeaponRangeNameTranslation(weapon.weaponRange).nameTranslation,
+              TextResourceService.getWeaponReachNameTranslation(weapon.weaponReach).nameTranslation,
+              weapon.weaponRange,
               weapon.isUsingStrength,
               weapon.damage,
               this.prepareWeaponQualities(<WeaponQualityRest[]>weapon.weaponQualities)
             ))
           }
+          this.weaponListChanged.next(this.weaponsList.slice());
         })
       )
   }

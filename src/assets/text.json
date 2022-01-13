@@ -119,7 +119,7 @@
       "nameTranslation": "Miotane"
     }
   ],
-  "weaponRange": [
+  "weaponReach": [
     {
       "name": "AVERAGE",
       "nameTranslation": "Średni"
