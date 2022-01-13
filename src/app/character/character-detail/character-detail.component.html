@@ -122,8 +122,7 @@
           <ng-template #elseBlock>+{{weapon.damage}}</ng-template>
         </td>
         <td>
-          <span *ngFor="let quality of weapon.qualities"> {{quality}}</span>
-<!--          <span *ngFor="let disadvantage of weapon.disadvantages"> {{disadvantage.nameTranslation}}</span>-->
+          <span *ngFor="let quality of weapon.qualities"> {{quality.nameTranslation}}</span>
         </td>
       </tr>
       </tbody>
