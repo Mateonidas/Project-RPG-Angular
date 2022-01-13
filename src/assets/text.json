@@ -137,6 +137,10 @@
       "nameTranslation": "Kontaktowy"
     },
     {
+      "name": "RANGED",
+      "nameTranslation": "Zasięgowa"
+    },
+    {
       "name": "SHORT",
       "nameTranslation": "Krótki"
     },

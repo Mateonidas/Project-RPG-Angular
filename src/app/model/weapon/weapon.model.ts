@@ -41,9 +41,9 @@ export class Weapon extends Model {
 
 export class WeaponsList extends ListModel {
   public static list = [
-    new Weapon('HandWeapon', 'Broń ręczna', 'Broń biała', 'Podstawowa', 'Średnia', undefined, true, 4, []),
-    new Weapon('Rapier', 'Rapier', 'Broń biała', 'Szermiercza', 'Długa', undefined, true, 4, []),
-    new Weapon('Crossbow', 'Kusza', 'Broń zasięgowa', 'Kusze', undefined, 60, false, 9, [])
+    new Weapon('HandWeapon', 'Broń ręczna', 'Broń biała', 'Podstawowa', 'Średnia', 0, true, 4, []),
+    new Weapon('Rapier', 'Rapier', 'Broń biała', 'Szermiercza', 'Długa', 0, true, 4, []),
+    new Weapon('Crossbow', 'Kusza', 'Broń zasięgowa', 'Kusze', 'Zasięgowa', 60, false, 9, [])
   ]
 
   static get handWeapon() {
