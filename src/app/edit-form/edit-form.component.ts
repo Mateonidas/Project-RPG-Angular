@@ -11,6 +11,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {CharacterCharacteristics} from "../model/characteristic/character-characteristic.model";
 import {ArmorService} from "../shared/services/armor-service/armor.service";
 import {WeaponService} from "../shared/services/weapon-service/weapon.service";
+import {SkillService} from "../shared/services/skill-service/skill.service";
 
 @Component({
   selector: 'app-edit-form',
@@ -31,7 +32,8 @@ export class EditFormComponent {
   constructor(protected router: Router,
               protected route: ActivatedRoute,
               protected armorService: ArmorService,
-              protected weaponService: WeaponService) {
+              protected weaponService: WeaponService,
+              protected skillService: SkillService) {
   }
 
   // ngOnInit(): void {

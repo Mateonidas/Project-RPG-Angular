@@ -14,6 +14,7 @@ import {BodyLocalizationList} from "../../model/body-localization/body-localizat
 import {CriticalWoundsService} from "../../shared/services/critical-wounds-service/critical-wounds.service";
 import {ArmorService} from "../../shared/services/armor-service/armor.service";
 import {WeaponService} from "../../shared/services/weapon-service/weapon.service";
+import {SkillService} from "../../shared/services/skill-service/skill.service";
 
 @Component({
   selector: 'app-skirmish-character-edit',
@@ -30,12 +31,15 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
               route: ActivatedRoute,
               private skirmishService: SkirmishCharacterService,
               armorService: ArmorService,
-              weaponService: WeaponService) {
-    super(router, route, armorService, weaponService);
+              weaponService: WeaponService,
+              skillService: SkillService) {
+    super(router, route, armorService, weaponService, skillService);
   }
 
   ngOnInit(): void {
     this.armorsList = this.armorService.armorsList;
+    this.weaponsList = this.weaponService.weaponsList;
+    this.skillsList = this.skillService.skillList;
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];

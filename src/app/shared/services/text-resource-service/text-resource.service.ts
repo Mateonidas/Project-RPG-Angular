@@ -15,8 +15,8 @@ export class TextResourceService {
   }
 
   public static getBodyLocalizationNameTranslation(name: string) {
-    let bodyLocalization: Model[] = textResource.bodyLocalization;
-    return <BodyLocalization>bodyLocalization.find(bodyLocalization => {
+    let bodyLocalizations: Model[] = textResource.bodyLocalizations;
+    return <BodyLocalization>bodyLocalizations.find(bodyLocalization => {
       if(bodyLocalization.name == name) {
         return bodyLocalization;
       } else {
@@ -74,6 +74,17 @@ export class TextResourceService {
     return <Model>weaponQualities.find(weaponQuality => {
       if(weaponQuality.name == name) {
         return weaponQuality;
+      } else {
+        return null;
+      }
+    })
+  }
+
+  public static getSkillNameTranslation(name: string) {
+    let skills: Model[] = textResource.skills;
+    return <Model>skills.find(skill => {
+      if(skill.name == name) {
+        return skill;
       } else {
         return null;
       }

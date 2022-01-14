@@ -1,5 +1,515 @@
 {
-  "bodyLocalization": [
+  "skills": [
+    {
+      "name": "ART_CARTOGRAPHY",
+      "nameTranslation": "Sztuka (Kartografia)"
+    },
+    {
+      "name": "ART_ENGRAVING",
+      "nameTranslation": "Sztuka (Grawerstwo)"
+    },
+    {
+      "name": "ART_MOSAICS",
+      "nameTranslation": "Sztuka (Układanie Mozaiki)"
+    },
+    {
+      "name": "ART_PAINTING",
+      "nameTranslation": "Sztuka (Malarstwo)"
+    },
+    {
+      "name": "ART_SCULPTURE",
+      "nameTranslation": "Sztuka (Rzeźbiarstwo)"
+    },
+    {
+      "name": "ART_TATTOO",
+      "nameTranslation": "Sztuka (Tatuowanie)"
+    },
+    {
+      "name": "ART_WEAVING",
+      "nameTranslation": "Sztuka (Tkactwo)"
+    },
+    {
+      "name": "ATHLETICS",
+      "nameTranslation": "Atletyka"
+    },
+    {
+      "name": "BRIBERY",
+      "nameTranslation": "Przekupstwo"
+    },
+    {
+      "name": "CHARM",
+      "nameTranslation": "Charyzma"
+    },
+    {
+      "name": "CHARM_ANIMAL",
+      "nameTranslation": "Oswajanie"
+    },
+    {
+      "name": "CLIMB",
+      "nameTranslation": "Wspinaczka"
+    },
+    {
+      "name": "COOL",
+      "nameTranslation": "Opanowanie"
+    },
+    {
+      "name": "CONSUME_ALCOHOL",
+      "nameTranslation": "Mocna głowa"
+    },
+    {
+      "name": "DODGE",
+      "nameTranslation": "Unik"
+    },
+    {
+      "name": "DRIVE",
+      "nameTranslation": "Powożenie"
+    },
+    {
+      "name": "ENDURANCE",
+      "nameTranslation": "Wytrzymałość"
+    },
+    {
+      "name": "ENTERTAIN_ACTING",
+      "nameTranslation": "Występy (Aktorstwo)"
+    },
+    {
+      "name": "ENTERTAIN_COMEDY",
+      "nameTranslation": "Występy (Komedianctwo)"
+    },
+    {
+      "name": "ENTERTAIN_SINGING",
+      "nameTranslation": "Występy (Śpiewanie)"
+    },
+    {
+      "name": "ENTERTAIN_STORYTELLING",
+      "nameTranslation": "Występy (Gawędziarstwo)"
+    },
+    {
+      "name": "GAMBLE",
+      "nameTranslation": "Hazard"
+    },
+    {
+      "name": "GOSSIP",
+      "nameTranslation": "Plotkowanie"
+    },
+    {
+      "name": "HAGGLE",
+      "nameTranslation": "Targowanie"
+    },
+    {
+      "name": "INTIMIDATE",
+      "nameTranslation": "Zastraszanie"
+    },
+    {
+      "name": "INTUITION",
+      "nameTranslation": "Intuicja"
+    },
+    {
+      "name": "LEADERSHIP",
+      "nameTranslation": "Dowodzenie"
+    },
+    {
+      "name": "MELEE_BASIC",
+      "nameTranslation": "Broń Biała (Podstawowa)"
+    },
+    {
+      "name": "MELEE_BRAWLING",
+      "nameTranslation": "Broń Biała (Bijatyka)"
+    },
+    {
+      "name": "MELEE_CAVALRY",
+      "nameTranslation": "Broń Biała (Kawaleryjska)"
+    },
+    {
+      "name": "MELEE_FENCING",
+      "nameTranslation": "Broń Biała (Szermiercza)"
+    },
+    {
+      "name": "MELEE_FLAIL",
+      "nameTranslation": "Broń Biała (Korbacze)"
+    },
+    {
+      "name": "MELEE_PARRY",
+      "nameTranslation": "Broń Biała (Parująca)"
+    },
+    {
+      "name": "MELEE_POLEARM",
+      "nameTranslation": "Broń Biała (Drzewcowa)"
+    },
+    {
+      "name": "MELEE_TWO_HANDED",
+      "nameTranslation": "Broń Biała (Dwuręczna)"
+    },
+    {
+      "name": "NAVIGATION",
+      "nameTranslation": "Nawigacja"
+    },
+    {
+      "name": "OUTDOOR_SURVIVAL",
+      "nameTranslation": "Sztuka Przetrwania"
+    },
+    {
+      "name": "PERCEPTION",
+      "nameTranslation": "Percepcja"
+    },
+    {
+      "name": "RIDE_DEMIGRYPH",
+      "nameTranslation": "Jeździectwo (Półgryfy)"
+    },
+    {
+      "name": "RIDE_GREAT_WOLF",
+      "nameTranslation": "Jeździectwo (Wielkie Wilki)"
+    },
+    {
+      "name": "RIDE_GRIFFON",
+      "nameTranslation": "Jeździectwo (Gryfy)"
+    },
+    {
+      "name": "RIDE_HORSE",
+      "nameTranslation": "Jeździectwo (Konie)"
+    },
+    {
+      "name": "RIDE_PEGASUS",
+      "nameTranslation": "Jeździectwo (Pegazy)"
+    },
+    {
+      "name": "ROW",
+      "nameTranslation": "Wioślarstwo"
+    },
+    {
+      "name": "STEALTH_RURAL",
+      "nameTranslation": "Skradanie (Wieś)"
+    },
+    {
+      "name": "STEALTH_UNDERGROUND",
+      "nameTranslation": "Skradanie (Podziemia)"
+    },
+    {
+      "name": "STEALTH_URBAN",
+      "nameTranslation": "Skradanie (Miasto)"
+    },
+    {
+      "name": "ANIMAL_CARE",
+      "nameTranslation": "Opieka nad Zwierzętami"
+    },
+    {
+      "name": "ANIMAL_TRAINING_DEMIGRYPH",
+      "nameTranslation": "Tresura (Półgryfy)"
+    },
+    {
+      "name": "ANIMAL_TRAINING_DOG",
+      "nameTranslation": "Tresura (Psy)"
+    },
+    {
+      "name": "ANIMAL_TRAINING_HORSE",
+      "nameTranslation": "Tresura (Konie)"
+    },
+    {
+      "name": "ANIMAL_TRAINING_PEGASUS",
+      "nameTranslation": "Tresura (Pegazy)"
+    },
+    {
+      "name": "ANIMAL_TRAINING_PIGEON",
+      "nameTranslation": "Tresura (Gołębie)"
+    },
+    {
+      "name": "CHANNELLING_AQSHY",
+      "nameTranslation": "Splatanie Magii (Aqshy)"
+    },
+    {
+      "name": "CHANNELLING_AZYR",
+      "nameTranslation": "Splatanie Magii (Azyr)"
+    },
+    {
+      "name": "CHANNELLING_CHAMON",
+      "nameTranslation": "Splatanie Magii (Chamon)"
+    },
+    {
+      "name": "CHANNELLING_DHAR",
+      "nameTranslation": "Splatanie Magii (Dhar)"
+    },
+    {
+      "name": "CHANNELLING_GHUR",
+      "nameTranslation": "Splatanie Magii (Ghur)"
+    },
+    {
+      "name": "CHANNELLING_GHYRAN",
+      "nameTranslation": "Splatanie Magii (Ghyran)"
+    },
+    {
+      "name": "CHANNELLING_HYSH",
+      "nameTranslation": "Splatanie Magii (Hysh)"
+    },
+    {
+      "name": "CHANNELLING_SHYISH",
+      "nameTranslation": "Splatanie Magii (Shyish)"
+    },
+    {
+      "name": "CHANNELLING_ULGU",
+      "nameTranslation": "Splatanie Magii (Ulgu)"
+    },
+    {
+      "name": "EVALUATE",
+      "nameTranslation": "Wycena"
+    },
+    {
+      "name": "HEAL",
+      "nameTranslation": "Leczenie"
+    },
+    {
+      "name": "LANGUAGE_BATTLE_TONGUE",
+      "nameTranslation": "Język (Język Bitewny)"
+    },
+    {
+      "name": "LANGUAGE_BRETONNIAN",
+      "nameTranslation": "Język (Bretoński)"
+    },
+    {
+      "name": "LANGUAGE_CLASSICAL",
+      "nameTranslation": "Język (Klasyczny)"
+    },
+    {
+      "name": "LANGUAGE_GUILDER",
+      "nameTranslation": "Język (Gildii)"
+    },
+    {
+      "name": "LANGUAGE_KHAZALID",
+      "nameTranslation": "Język (Khazalid)"
+    },
+    {
+      "name": "LANGUAGE_MAGICK",
+      "nameTranslation": "Język (Magiczny)"
+    },
+    {
+      "name": "LANGUAGE_THIEF",
+      "nameTranslation": "Język (Złodziei)"
+    },
+    {
+      "name": "LANGUAGE_TILEAN",
+      "nameTranslation": "Język (Tileański)"
+    },
+    {
+      "name": "LORE_ENGINEERING",
+      "nameTranslation": "Wiedza (Inżynieria)"
+    },
+    {
+      "name": "LORE_GEOLOGY",
+      "nameTranslation": "Wiedza (Geologia)"
+    },
+    {
+      "name": "LORE_HERALDRY",
+      "nameTranslation": "Wiedza (Heraldyka)"
+    },
+    {
+      "name": "LORE_HISTORY",
+      "nameTranslation": "Wiedza (Historia)"
+    },
+    {
+      "name": "LORE_LAW",
+      "nameTranslation": "Wiedza (Prawo)"
+    },
+    {
+      "name": "LORE_MAGICK",
+      "nameTranslation": "Wiedza (Magia)"
+    },
+    {
+      "name": "LORE_METALLURGY",
+      "nameTranslation": "Wiedza (Metalurgia)"
+    },
+    {
+      "name": "LORE_SCIENCE",
+      "nameTranslation": "Wiedza (Nauka)"
+    },
+    {
+      "name": "LORE_THEOLOGY",
+      "nameTranslation": "Wiedza (Teologia)"
+    },
+    {
+      "name": "PERFORM_ACROBATICS",
+      "nameTranslation": "Kuglarstwo (Akrobatyka)"
+    },
+    {
+      "name": "PERFORM_CLOWNING",
+      "nameTranslation": "Kuglarstwo (Komedianctwo)"
+    },
+    {
+      "name": "PERFORM_DANCING",
+      "nameTranslation": "Kuglarstwo (Taniec)"
+    },
+    {
+      "name": "PERFORM_FIREBREATHING",
+      "nameTranslation": "Kuglarstwo (Połykanie Ognia)"
+    },
+    {
+      "name": "PERFORM_JUGGLING",
+      "nameTranslation": "Kuglarstwo (Żonglowanie)"
+    },
+    {
+      "name": "PERFORM_MIMING",
+      "nameTranslation": "Kuglarstwo (Mimika)"
+    },
+    {
+      "name": "PERFORM_ROPE_WALKING",
+      "nameTranslation": "Kuglarstwo (Chodzenie po Linie)"
+    },
+    {
+      "name": "PICK_LOCK",
+      "nameTranslation": "Otwieranie Zamków"
+    },
+    {
+      "name": "PLAY_BAGPIPE",
+      "nameTranslation": "Muzyka (Dudy)"
+    },
+    {
+      "name": "PLAY_LUTE",
+      "nameTranslation": "Muzyka (Lutnia)"
+    },
+    {
+      "name": "PLAY_HARP",
+      "nameTranslation": "Muzyka (Harfa)"
+    },
+    {
+      "name": "PLAY_HORN",
+      "nameTranslation": "Muzyka (Obój)"
+    },
+    {
+      "name": "PLAY_VIOLIN",
+      "nameTranslation": "Muzyka (Skrzypce)"
+    },
+    {
+      "name": "PRAY",
+      "nameTranslation": "Modlitwa"
+    },
+    {
+      "name": "RANGED_BLACKPOWDER",
+      "nameTranslation": "Broń Zasięgowa (Prochowa)"
+    },
+    {
+      "name": "RANGED_BOW",
+      "nameTranslation": "Broń Zasięgowa (Łuki)"
+    },
+    {
+      "name": "RANGED_CROSSBOW",
+      "nameTranslation": "Broń Zasięgowa (Kusze)"
+    },
+    {
+      "name": "RANGED_ENGINEERING",
+      "nameTranslation": "Broń Zasięgowa (Eksperymentalna)"
+    },
+    {
+      "name": "RANGED_ENTANGLING",
+      "nameTranslation": "Broń Zasięgowa (Oplątująca)"
+    },
+    {
+      "name": "RANGED_EXPLOSIVES",
+      "nameTranslation": "Broń Zasięgowa (Wybuchowa)"
+    },
+    {
+      "name": "RANGED_SLING",
+      "nameTranslation": "Broń Zasięgowa (Proce)"
+    },
+    {
+      "name": "RANGED_THROWING",
+      "nameTranslation": "Broń Zasięgowa (Miotana)"
+    },
+    {
+      "name": "RESEARCH",
+      "nameTranslation": "Badania Naukowe"
+    },
+    {
+      "name": "SAIL_BARGE",
+      "nameTranslation": "Żeglarstwo (Barki)"
+    },
+    {
+      "name": "SAIL_CARAVEL",
+      "nameTranslation": "Żeglarstwo (Karawele)"
+    },
+    {
+      "name": "SAIL_COG",
+      "nameTranslation": "Żeglarstwo (Kogi)"
+    },
+    {
+      "name": "SAIL_FRIGATE",
+      "nameTranslation": "Żeglarstwo (Fregaty)"
+    },
+    {
+      "name": "SAIL_WOLFSHIP",
+      "nameTranslation": "Żeglarstwo (Wilcze Statki)"
+    },
+    {
+      "name": "SECRET_SIGNS_GREY_ORDER",
+      "nameTranslation": "Sekretne Znaki (Kolegium Cienia)"
+    },
+    {
+      "name": "SECRET_SIGNS_GUILD",
+      "nameTranslation": "Sekretne Znaki (Gildii)"
+    },
+    {
+      "name": "SECRET_SIGNS_RANGER",
+      "nameTranslation": "Sekretne Znaki (Łowców)"
+    },
+    {
+      "name": "SECRET_SIGNS_SCOUT",
+      "nameTranslation": "Sekretne Znaki (Zwiadowców)"
+    },
+    {
+      "name": "SECRET_SIGNS_THIEF",
+      "nameTranslation": "Sekretne Znaki (Złodziei)"
+    },
+    {
+      "name": "SECRET_SIGNS_VAGABOND",
+      "nameTranslation": "Sekretne Znaki (Włóczęgów)"
+    },
+    {
+      "name": "SET_TRAP",
+      "nameTranslation": "Zastawianie Pułapek"
+    },
+    {
+      "name": "SLEIGHT_OF_HAND",
+      "nameTranslation": "Zwinne Palce"
+    },
+    {
+      "name": "SWIM",
+      "nameTranslation": "Pływanie"
+    },
+    {
+      "name": "TRACK",
+      "nameTranslation": "Tropienie"
+    },
+    {
+      "name": "TRADE_APOTHECARY",
+      "nameTranslation": "Rzemiosło (Aptekarstwo)"
+    },
+    {
+      "name": "TRADE_CALLIGRAPHER",
+      "nameTranslation": "Rzemiosło (Kaligrafia)"
+    },
+    {
+      "name": "TRADE_CHANDLER",
+      "nameTranslation": "Rzemiosło (Świecarstwo)"
+    },
+    {
+      "name": "TRADE_CARPENTER",
+      "nameTranslation": "Rzemiosło (Cieśla)"
+    },
+    {
+      "name": "TRADE_COOK",
+      "nameTranslation": "Rzemiosło (Gotowanie)"
+    },
+    {
+      "name": "TRADE_EMBALMER",
+      "nameTranslation": "Rzemiosło (Balsamowanie)"
+    },
+    {
+      "name": "TRADE_SMITH",
+      "nameTranslation": "Rzemiosło (Kowalstwo)"
+    },
+    {
+      "name": "TRADE_TANNER",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    }
+  ],
+  "bodyLocalizations": [
     {
       "name": "HEAD",
       "nameTranslation": "Głowa"

@@ -1,7 +1,5 @@
 import {Model} from "../model";
 import {ListModel} from "../list-model";
-import {CharacterCharacteristic} from "../characteristic/character-characteristic.model";
-import {WeaponType} from "../attack/attack-category.model";
 
 export class Skill extends Model {
 
