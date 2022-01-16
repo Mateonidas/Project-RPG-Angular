@@ -1,8 +1,8 @@
-import {CharacterSkill} from "../skill/skill.model";
 import {Talent} from "../talent/talent.model";
 import {Weapon} from "../weapon/weapon.model";
 import {Armor} from "../armor/armor.model";
 import {CharacterCharacteristics} from "../characteristic/character-characteristic.model";
+import {CharacterSkill} from "../skill/character-skill.model";
 
 export class Character {
   name!: string;

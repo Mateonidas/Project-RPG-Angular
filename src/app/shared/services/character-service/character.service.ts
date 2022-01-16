@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Character} from "../../../model/character/character.model";
 import {Subject} from "rxjs";
-import {CharacterSkill, SkillsList} from "../../../model/skill/skill.model";
+import {SkillsList} from "../../../model/skill/skill.model";
 import {Talent} from "../../../model/talent/talent.model";
 import {WeaponsList} from "../../../model/weapon/weapon.model";
 import {ArmorsList} from "../../../model/armor/armor.model";
 import {CharacterCharacteristics} from "../../../model/characteristic/character-characteristic.model";
+import {CharacterSkill} from "../../../model/skill/character-skill.model";
 
 @Injectable({
   providedIn: 'root'

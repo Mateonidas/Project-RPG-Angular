@@ -1,7 +1,7 @@
 import {Character} from "../character/character.model";
 import {BodyLocalization, BodyLocalizationList} from "../body-localization/body-localization.model";
 import {Weapon} from "../weapon/weapon.model";
-import {CharacterSkill, Skill, SkillsList} from "../skill/skill.model";
+import {Skill, SkillsList} from "../skill/skill.model";
 import {Characteristics} from "../characteristic/characteristic.model";
 import {Condition} from "../conditions/condition.model";
 import {Model} from "../model";
@@ -14,6 +14,7 @@ import {Talent} from "../talent/talent.model";
 import {Armor} from "../armor/armor.model";
 import {CriticalWound} from "../critical-wounds/critical-wounds.model";
 import {Injury} from "../injures/injures-list.model";
+import {CharacterSkill} from "../skill/character-skill.model";
 
 export class SkirmishCharacter extends Character {
 

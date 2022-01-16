@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Character} from "../model/character/character.model";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
-import {CharacterSkill, SkillsList} from "../model/skill/skill.model";
+import {SkillsList} from "../model/skill/skill.model";
 import {Talent, TalentsList} from "../model/talent/talent.model";
 import {Weapon, WeaponsList} from "../model/weapon/weapon.model";
 import {Armor, ArmorsList} from "../model/armor/armor.model";
@@ -12,6 +12,7 @@ import {CharacterCharacteristics} from "../model/characteristic/character-charac
 import {ArmorService} from "../shared/services/armor-service/armor.service";
 import {WeaponService} from "../shared/services/weapon-service/weapon.service";
 import {SkillService} from "../shared/services/skill-service/skill.service";
+import {CharacterSkill} from "../model/skill/character-skill.model";
 
 @Component({
   selector: 'app-edit-form',
