@@ -1,4 +1,4 @@
-import {Talent} from "../talent/talent.model";
+import {CharacterTalent} from "../talent/character-talent.model";
 import {Weapon} from "../weapon/weapon.model";
 import {Armor} from "../armor/armor.model";
 import {CharacterCharacteristics} from "../characteristic/character-characteristic.model";
@@ -9,17 +9,17 @@ export class Character {
   description!: string;
   characteristics!: CharacterCharacteristics;
   skills!: CharacterSkill[];
-  talents!: Talent[];
+  talents!: CharacterTalent[];
   isRightHanded!: boolean;
   weapons!: Weapon[];
   armor!: Armor[];
 
-  constructor(name?: string, description?: string, characteristics?: CharacterCharacteristics, skills?: CharacterSkill[], talents?: Talent[], rightHanded?: boolean, weapons?: Weapon[], armor?: Armor[]) {
+  constructor(name?: string, description?: string, characteristics?: CharacterCharacteristics, skills?: CharacterSkill[], talents?: CharacterTalent[], rightHanded?: boolean, weapons?: Weapon[], armor?: Armor[]) {
     this.name = <string>name;
     this.description = <string>description;
     this.characteristics = <CharacterCharacteristics>characteristics;
     this.skills = <CharacterSkill[]>skills;
-    this.talents = <Talent[]>talents;
+    this.talents = <CharacterTalent[]>talents;
     this.isRightHanded = <boolean>rightHanded;
     this.weapons = <Weapon[]>weapons;
     this.armor = <Armor[]>armor;
@@ -29,7 +29,7 @@ export class Character {
     let character = Object.assign(new Character(), object);
     character.characteristics = CharacterCharacteristics.fromJSON(character['characteristics']);
     character.skills = CharacterSkill.arrayFromJSON(character["skills"]);
-    character.talents = Talent.arrayFromJSON(character["talents"]);
+    character.talents = CharacterTalent.arrayFromJSON(character["talents"]);
     character.weapons = Weapon.arrayFromJSON(character['weapons']);
     character.armor = Armor.arrayFromJSON(character['armor']);
     return character;

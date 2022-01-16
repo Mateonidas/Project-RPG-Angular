@@ -10,7 +10,7 @@ import {RollService} from "../../shared/services/roll-service/roll.service";
 import {Roll} from "../roll/roll.model";
 import {CharacterBodyLocalizations} from "../body-localization/character-body-localizations.model";
 import {CharacterCharacteristics} from "../characteristic/character-characteristic.model";
-import {Talent} from "../talent/talent.model";
+import {CharacterTalent} from "../talent/character-talent.model";
 import {Armor} from "../armor/armor.model";
 import {CriticalWound} from "../critical-wounds/critical-wounds.model";
 import {Injury} from "../injures/injures-list.model";
@@ -204,7 +204,7 @@ export class SkirmishCharacter extends Character {
     character.roll = Roll.fromJSON(character['roll']);
     character.characteristics = CharacterCharacteristics.fromJSON(character['characteristics']);
     character.skills = CharacterSkill.arrayFromJSON(character["skills"]);
-    character.talents = Talent.arrayFromJSON(character["talents"]);
+    character.talents = CharacterTalent.arrayFromJSON(character["talents"]);
     character.weapons = Weapon.arrayFromJSON(character['weapons']);
     character.armor = Armor.arrayFromJSON(character['armor']);
     character.conditions = Condition.arrayFromJSON(character['conditions'])

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Character} from "../model/character/character.model";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {SkillsList} from "../model/skill/skill.model";
-import {Talent, TalentsList} from "../model/talent/talent.model";
+import {CharacterTalent, TalentsList} from "../model/talent/character-talent.model";
 import {Weapon, WeaponsList} from "../model/weapon/weapon.model";
 import {Armor, ArmorsList} from "../model/armor/armor.model";
 import {CharacterFormArraysWrapper} from "../model/character/character-form-arrays-wrapper.model";
@@ -75,7 +75,7 @@ export class EditFormComponent {
     }
   }
 
-  prepareTalentsList(talents: FormArray, talentsList: Talent[]) {
+  prepareTalentsList(talents: FormArray, talentsList: CharacterTalent[]) {
     for (let talent of  talentsList) {
       talents.push(
         new FormGroup({
@@ -188,7 +188,7 @@ export class EditFormComponent {
   onAddTalent() {
     (<FormArray>this.editCharacterForm.get('talents')).push(
       new FormGroup({
-        'talent': new FormControl(new Talent('', '', 0, '')),
+        'talent': new FormControl(new CharacterTalent('', '', '', 0)),
         'name': new FormControl(null),
         'nameTranslation': new FormControl(null),
         'level': new FormControl(null),

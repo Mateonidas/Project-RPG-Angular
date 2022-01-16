@@ -3,7 +3,7 @@ import {Subject} from "rxjs";
 import {Character} from "../../../model/character/character.model";
 import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.model";
 import {SkillsList} from "../../../model/skill/skill.model";
-import {Talent} from "../../../model/talent/talent.model";
+import {CharacterTalent} from "../../../model/talent/character-talent.model";
 import {WeaponsList} from "../../../model/weapon/weapon.model";
 import {ArmorsList} from "../../../model/armor/armor.model";
 import {CharacterCharacteristics} from "../../../model/characteristic/character-characteristic.model";
@@ -68,7 +68,7 @@ export class SkirmishCharacterService {
             new CharacterSkill(SkillsList.meleeFencing, 50)
           ],
           [
-            new Talent('Ambidextrous', 'Oburęczność', 1, '2')
+            new CharacterTalent('Ambidextrous', 'Oburęczność', '2', 1)
           ],
           true,
           [
@@ -93,7 +93,7 @@ export class SkirmishCharacterService {
             new CharacterSkill(SkillsList.meleeBasic, 50)
           ],
           [
-            new Talent('Ambidextrous', 'Oburęczność', 1, '2')
+            new CharacterTalent('Ambidextrous', 'Oburęczność', '2', 1)
           ],
           true,
           [

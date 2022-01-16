@@ -1,12 +1,11 @@
 import {Model} from "../model";
 
 export class Talent extends Model {
-  public level: number;
   public maxLevel: string;
 
-  constructor(name?: string, nameTranslation?: string, level?: number, maxLevel?: string) {
-    super(name, nameTranslation)
-    this.level = <number>level;
+
+  constructor(name?: string, nameTranslation?: string, maxLevel?: string) {
+    super(name, nameTranslation);
     this.maxLevel = <string>maxLevel;
   }
 
@@ -22,11 +21,4 @@ export class Talent extends Model {
     }
     return talents;
   }
-}
-
-export class TalentsList {
-  public talentsList = [
-    new Talent('Ambidextrous', 'Oburęczność', 0, '2'),
-    new Talent('Battle Rage', 'Szał Bitewny', 0, 'BSw')
-  ];
 }
