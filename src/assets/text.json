@@ -509,6 +509,868 @@
       "nameTranslation": "Rzemiosło (Garbarstwo)"
     }
   ],
+  "talents": [
+    {
+      "name": "ACCURATE_SHOT",
+      "nameTranslation": "Celny Strzał"
+    },
+    {
+      "name": "ACUTE_SENSE_SIGHT",
+      "nameTranslation": "Wyczulony Zmysł (Wzrok)"
+    },
+    {
+      "name": "ACUTE_SENSE_SMELL",
+      "nameTranslation": "Wyczulony Zmysł (Węch)"
+    },
+    {
+      "name": "ACUTE_SENSE_HEARING",
+      "nameTranslation": "Wyczulony Zmysł (Słuch)"
+    },
+    {
+      "name": "ACUTE_SENSE_FEEL",
+      "nameTranslation": "Wyczulony Zmysł (Dotyk)"
+    },
+    {
+      "name": "ACUTE_SENSE_TASTE",
+      "nameTranslation": "Wyczulony Zmysł (Smak)"
+    },
+    {
+      "name": "AETHYRIC_ATTUNEMENT",
+      "nameTranslation": "Zmysł Magii"
+    },
+    {
+      "name": "ALLEY_CAT",
+      "nameTranslation": "Ulicznik"
+    },
+    {
+      "name": "AMBIDEXTROUS",
+      "nameTranslation": "Oburęczność"
+    },
+    {
+      "name": "ANIMAL_AFFINITY",
+      "nameTranslation": "Posłuch u Zwierząt"
+    },
+    {
+      "name": "ARCANE_MAGIC_BEASTS",
+      "nameTranslation": "Magia Tajemna (Zwierząt)"
+    },
+    {
+      "name": "ARCANE_MAGIC_DEATH",
+      "nameTranslation": "Magia Tajemna (Śmierci)"
+    },
+    {
+      "name": "ARCANE_MAGIC_FIRE",
+      "nameTranslation": "Magia Tajemna (Ognia)"
+    },
+    {
+      "name": "ARCANE_MAGIC_HEAVENS",
+      "nameTranslation": "Magia Tajemna (Niebios)"
+    },
+    {
+      "name": "ARCANE_MAGIC_METAL",
+      "nameTranslation": "Magia Tajemna (Metalu)"
+    },
+    {
+      "name": "ARCANE_MAGIC_SHADOW",
+      "nameTranslation": "Magia Tajemna (Cienia)"
+    },
+    {
+      "name": "ARCANE_MAGIC_LIGHT",
+      "nameTranslation": "Magia Tajemna (Światła)"
+    },
+    {
+      "name": "ARCANE_MAGIC_LIFE",
+      "nameTranslation": "Magia Tajemna (Życia)"
+    },
+    {
+      "name": "ARCANE_MAGIC_HEDGECRAFT",
+      "nameTranslation": "Magia Tajemna (Guślarstwo)"
+    },
+    {
+      "name": "ARCANE_MAGIC_NECROMANCY",
+      "nameTranslation": "Magia Tajemna (Nekromancja)"
+    },
+    {
+      "name": "ARGUMENTATIVE",
+      "nameTranslation": "Przekonujący"
+    },
+    {
+      "name": "ARTISTIC",
+      "nameTranslation": "Talent Artystyczny"
+    },
+    {
+      "name": "ATTRACTIVE",
+      "nameTranslation": "Atrakcyjny"
+    },
+    {
+      "name": "BATTLE_RAGE",
+      "nameTranslation": "Bitewna Furia"
+    },
+    {
+      "name": "BEAT_BLADE",
+      "nameTranslation": "Zbicie Broni"
+    },
+    {
+      "name": "BENEATH_NOTICE",
+      "nameTranslation": "Niegodny Uwagi"
+    },
+    {
+      "name": "BERSERK_CHARGE",
+      "nameTranslation": "Berserkerska Szarża"
+    },
+    {
+      "name": "BLATHER",
+      "nameTranslation": "Gadanina"
+    },
+    {
+      "name": "BLESS_MANANN",
+      "nameTranslation": "Błogosławieństwo (Manann)"
+    },
+    {
+      "name": "BLESS_MORR",
+      "nameTranslation": "Błogosławieństwo (Morr)"
+    },
+    {
+      "name": "BLESS_MYRMIDIA",
+      "nameTranslation": "Błogosławieństwo (Myrmidia)"
+    },
+    {
+      "name": "BLESS_RANALD",
+      "nameTranslation": "Błogosławieństwo (Ranald)"
+    },
+    {
+      "name": "BLESS_RHYA",
+      "nameTranslation": "Błogosławieństwo (Rhya)"
+    },
+    {
+      "name": "BLESS_SHALLYA",
+      "nameTranslation": "Błogosławieństwo (Shallya)"
+    },
+    {
+      "name": "BLESS_SIGMAR",
+      "nameTranslation": "Błogosławieństwo (Sigmar)"
+    },
+    {
+      "name": "BLESS_TAAL",
+      "nameTranslation": "Błogosławieństwo (Taal)"
+    },
+    {
+      "name": "BLESS_ULRIC",
+      "nameTranslation": "Błogosławieństwo (Ulric)"
+    },
+    {
+      "name": "BLESS_VERENA",
+      "nameTranslation": "Błogosławieństwo (Verena)"
+    },
+    {
+      "name": "BOOKISH",
+      "nameTranslation": "Mól książkowy"
+    },
+    {
+      "name": "BREAK_AND_ENTER",
+      "nameTranslation": "Wtargnięcie z Włamaniem"
+    },
+    {
+      "name": "BRIBER",
+      "nameTranslation": "Łapówkarz"
+    },
+    {
+      "name": "CARDSHARP",
+      "nameTranslation": "Szuler"
+    },
+    {
+      "name": "CAREFUL_STRIKE",
+      "nameTranslation": "Cios Mierzony"
+    },
+    {
+      "name": "CAROUSER",
+      "nameTranslation": "Hulaka"
+    },
+    {
+      "name": "CATFALL",
+      "nameTranslation": "Na Cztery Łapy"
+    },
+    {
+      "name": "CAT_TONGUED",
+      "nameTranslation": "Gładkie Słówka"
+    },
+    {
+      "name": "CHAOS_MAGIC_NURGLE",
+      "nameTranslation": "Magia Chaosu (Nurgle)"
+    },
+    {
+      "name": "CHAOS_MAGIC_SLAANESH",
+      "nameTranslation": "Magia Chaosu (Slaanesh)"
+    },
+    {
+      "name": "CHAOS_MAGIC_TZEENTCH",
+      "nameTranslation": "Magia Chaosu (Tzeentch)"
+    },
+    {
+      "name": "COMBAT_AWARE",
+      "nameTranslation": "Zmysł Bitewny"
+    },
+    {
+      "name": "COMBAT_MASTER",
+      "nameTranslation": "Mistrz Walki"
+    },
+    {
+      "name": "COMBAT_REFLEXES",
+      "nameTranslation": "Bitewny Refleks"
+    },
+    {
+      "name": "COMMANDING_PRESENCE",
+      "nameTranslation": "Władcza Postura"
+    },
+    {
+      "name": "CONCOCT",
+      "nameTranslation": "Przyrządzanie Mikstur"
+    },
+    {
+      "name": "CONTORTIONIST",
+      "nameTranslation": "Człowiek Guma"
+    },
+    {
+      "name": "COOLHEADED",
+      "nameTranslation": "Zimna Krew"
+    },
+    {
+      "name": "CRACK_THE_WHIP",
+      "nameTranslation": "Z Bata"
+    },
+    {
+      "name": "CRAFTSMAN",
+      "nameTranslation": "Wytwórca"
+    },
+    {
+      "name": "CRIMINAL",
+      "nameTranslation": "Przestępca"
+    },
+    {
+      "name": "DEADEYE_SHOT",
+      "nameTranslation": "Prosto między oczy"
+    },
+    {
+      "name": "DEALMAKER",
+      "nameTranslation": "Żyłka Handlowa"
+    },
+    {
+      "name": "DETECT_ARTEFACT",
+      "nameTranslation": "Rozpoznanie Artefaktu"
+    },
+    {
+      "name": "DICEMAN",
+      "nameTranslation": "Szuler Kościany"
+    },
+    {
+      "name": "DIRTY_FIGHTING",
+      "nameTranslation": "Cios Poniżej Pasa"
+    },
+    {
+      "name": "DISARM",
+      "nameTranslation": "Rozbrojenie"
+    },
+    {
+      "name": "DISTRACT",
+      "nameTranslation": "Rozproszenie Uwagi"
+    },
+    {
+      "name": "DOOMED",
+      "nameTranslation": "Wróżba Losu"
+    },
+    {
+      "name": "DRILLED",
+      "nameTranslation": "Musztra"
+    },
+    {
+      "name": "DUAL_WIELDER",
+      "nameTranslation": "Dwie Bronie"
+    },
+    {
+      "name": "EMBEZZLE",
+      "nameTranslation": ""
+    },
+    {
+      "name": "ENCLOSED_FIGHTER",
+      "nameTranslation": "Defraudant"
+    },
+    {
+      "name": "ETIQUETTE",
+      "nameTranslation": "Etykieta"
+    },
+    {
+      "name": "FAST_HANDS",
+      "nameTranslation": "Ruchliwe Dłonie"
+    },
+    {
+      "name": "FAST_SHOT",
+      "nameTranslation": "Błyskawiczny Strzał"
+    },
+    {
+      "name": "FEARLESS_BEASTMEN",
+      "nameTranslation": "Nieustraszony (Zwierzoludzie)"
+    },
+    {
+      "name": "FEARLESS_GREENSKINS",
+      "nameTranslation": "Nieustraszony (Zielonoskórzy)"
+    },
+    {
+      "name": "FEARLESS_OUTLAWS",
+      "nameTranslation": "Nieustraszony (Bandyci)"
+    },
+    {
+      "name": "FEARLESS_VAMPIRES",
+      "nameTranslation": "Nieustraszony (Wampiry)"
+    },
+    {
+      "name": "FEARLESS_WATCHMEN",
+      "nameTranslation": "Nieustraszony (Strażnicy)"
+    },
+    {
+      "name": "FEARLESS_WITCHES",
+      "nameTranslation": "Nieustraszony (Wiedźmy)"
+    },
+    {
+      "name": "FEINT",
+      "nameTranslation": "Finta"
+    },
+    {
+      "name": "FIELD_DRESSING",
+      "nameTranslation": "Pierwsza Pomoc"
+    },
+    {
+      "name": "FISHERMAN",
+      "nameTranslation": "Rybak"
+    },
+    {
+      "name": "FLAGELLANT",
+      "nameTranslation": "Biczownik"
+    },
+    {
+      "name": "FLEE",
+      "nameTranslation": "Chodu"
+    },
+    {
+      "name": "FLEET_FOOTED",
+      "nameTranslation": "Bardzo Szybki"
+    },
+    {
+      "name": "FRENZY",
+      "nameTranslation": "Szał Bitewny"
+    },
+    {
+      "name": "FRIGHTENING",
+      "nameTranslation": "Straszny"
+    },
+    {
+      "name": "FURIOUS_ASSAULT",
+      "nameTranslation": "Wściekły Atak"
+    },
+    {
+      "name": "GREGARIOUS",
+      "nameTranslation": "Towarzyski"
+    },
+    {
+      "name": "GUNNER",
+      "nameTranslation": "Artylerzysta"
+    },
+    {
+      "name": "HARDY",
+      "nameTranslation": "Twardziel"
+    },
+    {
+      "name": "HATRED_BEASTMEN",
+      "nameTranslation": "Nienawiść (Zwierzoludzie)"
+    },
+    {
+      "name": "HATRED_GRENSKINS",
+      "nameTranslation": "Nienawiść (Zielonoskórzy)"
+    },
+    {
+      "name": "HATRED_MONSTERS",
+      "nameTranslation": "Nienawiść (Potwory)"
+    },
+    {
+      "name": "HATRED_OUTLAWS",
+      "nameTranslation": "Nienawiść (Bandyci)"
+    },
+    {
+      "name": "HATRED_SIGMARITES",
+      "nameTranslation": "Nienawiść (Sigmaryci)"
+    },
+    {
+      "name": "HATRED_UNDEAD",
+      "nameTranslation": "Nienawiść (Ożywieńcy)"
+    },
+    {
+      "name": "HATRED_WITCHES",
+      "nameTranslation": "Nienawiść (Wiedźmy)"
+    },
+    {
+      "name": "HOLY_HATRED",
+      "nameTranslation": "Święta Nienawiść"
+    },
+    {
+      "name": "HOLY_VISIONS",
+      "nameTranslation": "Święte Wizje"
+    },
+    {
+      "name": "HUNTERS_EYE",
+      "nameTranslation": "Oko Łowcy"
+    },
+    {
+      "name": "IMPASSIONED_ZEAL",
+      "nameTranslation": "Porywająca gorliwość"
+    },
+    {
+      "name": "IMPLACABLE",
+      "nameTranslation": "Nieubłagany"
+    },
+    {
+      "name": "IN_FIGHTER",
+      "nameTranslation": "Skrócenie dystansu"
+    },
+    {
+      "name": "INSPIRING",
+      "nameTranslation": "Inspirujący"
+    },
+    {
+      "name": "INSTINCTIVE_DICTION",
+      "nameTranslation": "Precyzyjne Inkantowanie"
+    },
+    {
+      "name": "INVOKE_MANANN",
+      "nameTranslation": "Błogosławieństwo (Manann)"
+    },
+    {
+      "name": "INVOKE_MORR",
+      "nameTranslation": "Błogosławieństwo (Morr)"
+    },
+    {
+      "name": "INVOKE_MYRMIDIA",
+      "nameTranslation": "Błogosławieństwo (Myrmidia)"
+    },
+    {
+      "name": "INVOKE_RANALD",
+      "nameTranslation": "Błogosławieństwo (Ranald)"
+    },
+    {
+      "name": "INVOKE_RHYA",
+      "nameTranslation": "Błogosławieństwo (Rhya)"
+    },
+    {
+      "name": "INVOKE_SHALLYA",
+      "nameTranslation": "Błogosławieństwo (Shallya)"
+    },
+    {
+      "name": "INVOKE_SIGMAR",
+      "nameTranslation": "Błogosławieństwo (Sigmar)"
+    },
+    {
+      "name": "INVOKE_TAAL",
+      "nameTranslation": "Błogosławieństwo (Taal)"
+    },
+    {
+      "name": "INVOKE_ULRIC",
+      "nameTranslation": "Błogosławieństwo (Ulric)"
+    },
+    {
+      "name": "INVOKE_VERENA",
+      "nameTranslation": "Błogosławieństwo (Verena)"
+    },
+    {
+      "name": "IRON_JAW",
+      "nameTranslation": "Żelazna Szczęka"
+    },
+    {
+      "name": "IRON_WILL",
+      "nameTranslation": "Żelazna Wola"
+    },
+    {
+      "name": "JUMP_UP",
+      "nameTranslation": "Sprężynka"
+    },
+    {
+      "name": "KINGPIN",
+      "nameTranslation": "Szycha"
+    },
+    {
+      "name": "LIGHTNING_REFLEXES",
+      "nameTranslation": "Szybki Relfeks"
+    },
+    {
+      "name": "LINGUISTICS",
+      "nameTranslation": "Lingwista"
+    },
+    {
+      "name": "LIP_READING",
+      "nameTranslation": "Czytanie z Ruchu Warg"
+    },
+    {
+      "name": "LUCK",
+      "nameTranslation": "Szczęście"
+    },
+    {
+      "name": "MAGICAL_SENSE",
+      "nameTranslation": "Wykrywanie Magii"
+    },
+    {
+      "name": "MAGIC_RESISTANCE",
+      "nameTranslation": "Odporność na Magię"
+    },
+    {
+      "name": "MAGNUM_OPUS",
+      "nameTranslation": "Arcydzieło"
+    },
+    {
+      "name": "MARKSMAN",
+      "nameTranslation": "Strzelec Wyborowy"
+    },
+    {
+      "name": "MASTER_OF_DISGUISE",
+      "nameTranslation": "Mistrz Charakteryzacji"
+    },
+    {
+      "name": "MASTER_ORATOR",
+      "nameTranslation": "Krasomóstwo"
+    },
+    {
+      "name": "MASTER_TRADESMAN",
+      "nameTranslation": "Mistrz Rzemiosła"
+    },
+    {
+      "name": "MENACING",
+      "nameTranslation": "Groźny"
+    },
+    {
+      "name": "MIMIC",
+      "nameTranslation": "Naśladowca"
+    },
+    {
+      "name": "NIGHT_VISION",
+      "nameTranslation": "Widzenie w Ciemności"
+    },
+    {
+      "name": "NIMBLE_FINGERED",
+      "nameTranslation": "Zręczny"
+    },
+    {
+      "name": "NOBLE_BLOOD",
+      "nameTranslation": "Błękitna Krew"
+    },
+    {
+      "name": "NOSE_FOR_TROUBLE",
+      "nameTranslation": "Nos do Kłopotów"
+    },
+    {
+      "name": "NUMISMATICS",
+      "nameTranslation": "Numizmatyka"
+    },
+    {
+      "name": "OLD_SALT",
+      "nameTranslation": "Wilk Morski"
+    },
+    {
+      "name": "ORIENTATION",
+      "nameTranslation": "Wyczucie Kierunku"
+    },
+    {
+      "name": "PANHANDLE",
+      "nameTranslation": "Naciągacz"
+    },
+    {
+      "name": "PERFECT_PITCH",
+      "nameTranslation": "Słuch Absolutny"
+    },
+    {
+      "name": "PETTY_MAGIC",
+      "nameTranslation": "Magia Prosta"
+    },
+    {
+      "name": "PHARMACIST",
+      "nameTranslation": "Aptekarz"
+    },
+    {
+      "name": "PILOT",
+      "nameTranslation": "Pilot"
+    },
+    {
+      "name": "PUBLIC_SPEAKER",
+      "nameTranslation": "Mówca"
+    },
+    {
+      "name": "PURE_SOUL",
+      "nameTranslation": "Czysta Dusza"
+    },
+    {
+      "name": "RAPID_RELOAD",
+      "nameTranslation": "Szybkie Przeładowanie"
+    },
+    {
+      "name": "REACTION_STRIKE",
+      "nameTranslation": "Atak Wyprzedzający"
+    },
+    {
+      "name": "READ_WRITE",
+      "nameTranslation": "Czytanie/Pisanie"
+    },
+    {
+      "name": "RELENTLESS",
+      "nameTranslation": "Nieustępliwy"
+    },
+    {
+      "name": "RESISTANCE",
+      "nameTranslation": "Odporność"
+    },
+    {
+      "name": "RESOLUTE",
+      "nameTranslation": "Nieugięty"
+    },
+    {
+      "name": "REVERSAL",
+      "nameTranslation": "Odwrócenie Szans"
+    },
+    {
+      "name": "RIPOSTE",
+      "nameTranslation": "Riposta"
+    },
+    {
+      "name": "RIVER_GUIDE",
+      "nameTranslation": "Pilot Rzeczny"
+    },
+    {
+      "name": "ROBUST",
+      "nameTranslation": "Krzepki"
+    },
+    {
+      "name": "ROUGHRIDER",
+      "nameTranslation": "Urodzony w Siodle"
+    },
+    {
+      "name": "ROVER",
+      "nameTranslation": "Włóczykij"
+    },
+    {
+      "name": "SAVANT",
+      "nameTranslation": "Znawca"
+    },
+    {
+      "name": "SAVVY",
+      "nameTranslation": "Błyskotliwy"
+    },
+    {
+      "name": "SCALE_SHEER_SURFACE",
+      "nameTranslation": "Wyborny Wspinacz"
+    },
+    {
+      "name": "SCHEMER",
+      "nameTranslation": "Intrygant"
+    },
+    {
+      "name": "SEA_LEGS",
+      "nameTranslation": "Urodzony Żeglarz"
+    },
+    {
+      "name": "SECOND_SIGHT",
+      "nameTranslation": "Percepcja Magiczna"
+    },
+    {
+      "name": "SECRET_IDENTITY",
+      "nameTranslation": "Sekretna Tożsamość"
+    },
+    {
+      "name": "SHADOW",
+      "nameTranslation": "Cień"
+    },
+    {
+      "name": "SHARP",
+      "nameTranslation": "Czujny"
+    },
+    {
+      "name": "SHARPSHOOTER",
+      "nameTranslation": "Strzał w Dziesiątkę"
+    },
+    {
+      "name": "SHIELDSMAN",
+      "nameTranslation": "Tarczownik"
+    },
+    {
+      "name": "SIXTH_SENSE",
+      "nameTranslation": "Szósty Zmysł"
+    },
+    {
+      "name": "SLAYER",
+      "nameTranslation": "Zabójca"
+    },
+    {
+      "name": "SMALL",
+      "nameTranslation": "Mały"
+    },
+    {
+      "name": "SNIPER",
+      "nameTranslation": "Snajper"
+    },
+    {
+      "name": "SPEEDREADER",
+      "nameTranslation": "Szybkie Czytanie"
+    },
+    {
+      "name": "SPRINTER",
+      "nameTranslation": "Szybkobiegacz"
+    },
+    {
+      "name": "STEP_ASIDE",
+      "nameTranslation": "Zejście z Linii"
+    },
+    {
+      "name": "STONE_SOUP",
+      "nameTranslation": "Wstrzemięźliwy"
+    },
+    {
+      "name": "STOUT_HEARTED",
+      "nameTranslation": "Waleczne Serce"
+    },
+    {
+      "name": "STRIDER_COASTAL",
+      "nameTranslation": "Doświadczony Wędrowiec (Wybrzeża)"
+    },
+    {
+      "name": "STRIDER_DESERTS",
+      "nameTranslation": "Doświadczony Wędrowiec (Pustynie)"
+    },
+    {
+      "name": "STRIDER_MARSHES",
+      "nameTranslation": "Doświadczony Wędrowiec (Moczary)"
+    },
+    {
+      "name": "STRIDER_ROCKY",
+      "nameTranslation": "Doświadczony Wędrowiec (Teren Kamienisty)"
+    },
+    {
+      "name": "STRIDER_TUNDRA",
+      "nameTranslation": "Doświadczony Wędrowiec (Tundra)"
+    },
+    {
+      "name": "STRIDER_WOODLANDS",
+      "nameTranslation": "Doświadczony Wędrowiec (Lasy)"
+    },
+    {
+      "name": "STRIKE_MIGHTY_BLOW",
+      "nameTranslation": "Silny Cios"
+    },
+    {
+      "name": "STRIKE_TO_INJURE",
+      "nameTranslation": "Morderczy Atak"
+    },
+    {
+      "name": "STRIKE_TO_STUN",
+      "nameTranslation": "Ogłuszenie"
+    },
+    {
+      "name": "STRONG_BACK",
+      "nameTranslation": "Mocne Plecy"
+    },
+    {
+      "name": "STRONG_LEGS",
+      "nameTranslation": "Silne Nogi"
+    },
+    {
+      "name": "STRING_MINDED",
+      "nameTranslation": ""
+    },
+    {
+      "name": "STRONG_SWIMMER",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "STURDY",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "SUAVE",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "SUPER_NUMERATE",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "SUPPORTIVE",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "SURE_SHOT",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "SURGERY",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "TENACIOUS",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "TINKER",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "TOWER_OF_MEMORIES",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "TRAPPER",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "TRICK_RIDING",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "TUNNEL_RAT",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "UNSHAKABLE",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "VERY_RESILIENT",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "VERY_STRONG",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "WAR_LEADER",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "WAR_WIZARD",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "WARRIOR_BORN",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "WATERMAN",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "WEALTHY",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "WELL_PREPARED",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    },
+    {
+      "name": "WITCH",
+      "nameTranslation": "Rzemiosło (Garbarstwo)"
+    }
+  ],
   "bodyLocalizations": [
     {
       "name": "HEAD",
