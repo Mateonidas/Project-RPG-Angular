@@ -8,6 +8,7 @@ import {CharacterFormArraysWrapper} from "../../model/character/character-form-a
 import {ArmorService} from "../../shared/services/armor-service/armor.service";
 import {WeaponService} from "../../shared/services/weapon-service/weapon.service";
 import {SkillService} from "../../shared/services/skill-service/skill.service";
+import {TalentService} from "../../shared/services/talent-service/talent.service";
 
 @Component({
   selector: 'app-character-edit',
@@ -23,14 +24,16 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
               private characterService: CharacterService,
               armorService: ArmorService,
               weaponService: WeaponService,
-              skillService: SkillService) {
-    super(router, route, armorService, weaponService, skillService);
+              skillService: SkillService,
+              talentService: TalentService) {
+    super(router, route, armorService, weaponService, skillService, talentService);
   }
 
   ngOnInit(): void {
     this.armorsList = this.armorService.armorsList;
     this.weaponsList = this.weaponService.weaponsList;
     this.skillsList = this.skillService.skillList;
+    this.talentsList = this.talentService.talentList;
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];

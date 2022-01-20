@@ -13,6 +13,8 @@ import {ArmorService} from "../shared/services/armor-service/armor.service";
 import {WeaponService} from "../shared/services/weapon-service/weapon.service";
 import {SkillService} from "../shared/services/skill-service/skill.service";
 import {CharacterSkill} from "../model/skill/character-skill.model";
+import {Talent} from "../model/talent/talent.model";
+import {TalentService} from "../shared/services/talent-service/talent.service";
 
 @Component({
   selector: 'app-edit-form',
@@ -23,7 +25,8 @@ export class EditFormComponent {
 
   editCharacterForm!: FormGroup;
   skillsList = SkillsList.list;
-  talentsList = new TalentsList();
+  // talentsList = new TalentsList();
+  talentsList: Talent[] = [];
   weaponsList: Weapon[] = [];
   armorsList: Armor[] = [];
   isRightHanded = true;
@@ -34,7 +37,8 @@ export class EditFormComponent {
               protected route: ActivatedRoute,
               protected armorService: ArmorService,
               protected weaponService: WeaponService,
-              protected skillService: SkillService) {
+              protected skillService: SkillService,
+              protected talentService: TalentService) {
   }
 
   // ngOnInit(): void {

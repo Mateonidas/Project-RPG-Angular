@@ -97,7 +97,7 @@
           <div class="row mb-2" *ngFor="let talentControl of talents; let i = index" [formGroupName]="i">
             <div class="col-md-8">
               <select class="form-select" formControlName="talent" [compareWith]="compareModels">
-                <option *ngFor="let talent of talentsList.talentsList" [ngValue]="talent">
+                <option *ngFor="let talent of talentsList" [ngValue]="talent">
                   {{talent.nameTranslation}}
                 </option>
               </select>

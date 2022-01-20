@@ -10,7 +10,7 @@ import {TextResourceService} from "../text-resource-service/text-resource.servic
   providedIn: 'root'
 })
 export class SkillService {
-  skillListChanged = new Subject<Skill[]>()
+  skillListChanged = new Subject<Skill[]>();
   skillList: Skill[] = [];
 
   constructor(private http: HttpClient) { }

@@ -91,6 +91,17 @@ export class TextResourceService {
     })
   }
 
+  public static getTalentNameTranslation(name: string) {
+    let talents: Model[] = textResource.talents;
+    return <Model>talents.find(talent => {
+      if(talent.name == name) {
+        return talent;
+      } else {
+        return null;
+      }
+    })
+  }
+
   public static getCriticalWoundText(name: string) {
     let criticalRoll: CriticalRoll = textResource.criticalRoll;
     return <CriticalWound>criticalRoll.criticalWounds.find(criticalWound => {
