@@ -32,6 +32,9 @@ export class ArmorService {
                 armor.qualities
               ))
             }
+            this.armorsList.sort(
+              (a,b) => (a.category > b.category) ? 1 : ((b.category > a.category) ? -1 : 0)
+            )
             this.armorsListChanged.next(this.armorsList.slice());
           }
         ));

@@ -34,6 +34,9 @@ export class WeaponService {
               this.prepareWeaponQualities(<WeaponQualityRest[]>weapon.weaponQualities)
             ))
           }
+          this.weaponsList.sort(
+            (a,b) => (a.weaponGroupType > b.weaponGroupType) ? 1 : ((b.weaponGroupType > a.weaponGroupType) ? -1 : 0)
+          )
           this.weaponListChanged.next(this.weaponsList.slice());
         })
       )
