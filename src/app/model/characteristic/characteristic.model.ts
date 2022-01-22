@@ -8,21 +8,21 @@ export class Characteristic extends Model {
 
 export class Characteristics {
   private static _characteristics = [
-    new Characteristic('Movement', 'Szybkość'),
-    new Characteristic('WeaponSkill', 'Walka Wręcz'),
-    new Characteristic('BallisticSkill', 'Umiejętności Strzeleckie'),
-    new Characteristic('Strength', 'Siła'),
-    new Characteristic('Toughness', 'Wytrzymałość'),
-    new Characteristic('Initiative', 'Intuicja'),
-    new Characteristic('Agility', 'Zwinność'),
-    new Characteristic('Dexterity', 'Zręczność'),
-    new Characteristic('Intelligence', 'Inteligencja'),
-    new Characteristic('Willpower', 'Siła Woli'),
-    new Characteristic('Fellowship', 'Ogłada'),
-    new Characteristic('Wounds', 'Żywotność'),
+    new Characteristic('MOVEMENT', 'Szybkość'),
+    new Characteristic('WEAPON_SKILL', 'Walka Wręcz'),
+    new Characteristic('BALLISTIC_SKILL', 'Umiejętności Strzeleckie'),
+    new Characteristic('STRENGTH', 'Siła'),
+    new Characteristic('TOUGHNESS', 'Wytrzymałość'),
+    new Characteristic('INITIATIVE', 'Intuicja'),
+    new Characteristic('AGILITY', 'Zwinność'),
+    new Characteristic('DEXTERITY', 'Zręczność'),
+    new Characteristic('INTELLIGENCE', 'Inteligencja'),
+    new Characteristic('WILLPOWER', 'Siła Woli'),
+    new Characteristic('FELLOWSHIP', 'Ogłada'),
+    new Characteristic('WOUNDS', 'Żywotność'),
   ]
 
-  private static getCharacteristicByName(name: string): Characteristic {
+  public static getCharacteristicByName(name: string): Characteristic {
     return <Characteristic>this._characteristics.find(x => x.name == name);
   }
 
@@ -31,52 +31,52 @@ export class Characteristics {
   }
 
   static get movement(): Characteristic {
-    return this.getCharacteristicByName('Movement');
+    return this.getCharacteristicByName('MOVEMENT');
   }
 
   static get weaponSkill(): Characteristic {
-    return this.getCharacteristicByName('WeaponSkill');
+    return this.getCharacteristicByName('WEAPON_SKILL');
   }
 
   static get ballisticSkill(): Characteristic {
-    return this.getCharacteristicByName('BallisticSkill');
+    return this.getCharacteristicByName('BALLISTIC_SKILL');
   }
 
   static get strength(): Characteristic {
-    return this.getCharacteristicByName('Strength');
+    return this.getCharacteristicByName('STRENGTH');
   }
 
   static get toughness(): Characteristic {
-    return this.getCharacteristicByName('Toughness');
+    return this.getCharacteristicByName('TOUGHNESS');
   }
 
 
   static get initiative(): Characteristic {
-    return this.getCharacteristicByName('Initiative');
+    return this.getCharacteristicByName('INITIATIVE');
   }
 
   static get agility(): Characteristic {
-    return this.getCharacteristicByName('Agility');
+    return this.getCharacteristicByName('AGILITY');
   }
 
   static get dexterity(): Characteristic {
-    return this.getCharacteristicByName('Dexterity');
+    return this.getCharacteristicByName('DEXTERITY');
   }
 
   static get intelligence(): Characteristic {
-    return this.getCharacteristicByName('Intelligence');
+    return this.getCharacteristicByName('INTELLIGENCE');
   }
 
   static get willpower(): Characteristic {
-    return this.getCharacteristicByName('Willpower');
+    return this.getCharacteristicByName('WILLPOWER');
   }
 
   static get fellowship(): Characteristic {
-    return this.getCharacteristicByName('Fellowship');
+    return this.getCharacteristicByName('FELLOWSHIP');
   }
 
   static get wounds(): Characteristic {
-    return this.getCharacteristicByName('Wounds');
+    return this.getCharacteristicByName('WOUNDS');
   }
 }
 

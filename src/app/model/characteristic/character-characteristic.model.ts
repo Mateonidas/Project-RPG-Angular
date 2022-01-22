@@ -1,4 +1,5 @@
 import {Characteristic, Characteristics} from "./characteristic.model";
+import {CharacterCharacteristicRest} from "../../rest-model/character-characteristic-rest.model";
 
 export class CharacterCharacteristic {
   public base: Characteristic;
@@ -7,6 +8,19 @@ export class CharacterCharacteristic {
   constructor(characteristic?: Characteristic, value?: number) {
     this.base = <Characteristic>characteristic;
     this.value = <number>value;
+  }
+
+  public static prepareCharacteristicsTable(characteristicsRest: CharacterCharacteristicRest[]) {
+    let characteristics = [];
+    for(let characteristicRest of characteristicsRest) {
+      let characterCharacteristic = new CharacterCharacteristic(
+        Characteristics.getCharacteristicByName(characteristicRest.characteristic),
+        characteristicRest.value
+      )
+      characteristics.push(characterCharacteristic);
+    }
+
+    return characteristics;
   }
 
   static fromJSON(object: Object): CharacterCharacteristic {
@@ -57,6 +71,12 @@ export class CharacterCharacteristics {
     this.wounds.value = <number>wounds;
   }
 
+  public prepareCharacteristicsTable(characteristicsRest: CharacterCharacteristicRest[]) {
+    for(let characteristicRest of characteristicsRest) {
+        this.getCharacteristicByName(characteristicRest.characteristic).value = characteristicRest.value;
+    }
+  }
+
   private getCharacteristicByName(name: string): CharacterCharacteristic {
     return <CharacterCharacteristic>this.characteristics.find(x => x.base.name == name);
   }
@@ -66,51 +86,51 @@ export class CharacterCharacteristics {
   }
 
   get movement(): CharacterCharacteristic {
-    return this.getCharacteristicByName('Movement');
+    return this.getCharacteristicByName('MOVEMENT');
   }
 
   get weaponSkill(): CharacterCharacteristic {
-    return this.getCharacteristicByName('WeaponSkill');
+    return this.getCharacteristicByName('WEAPON_SKILL');
   }
 
   get ballisticSkill(): CharacterCharacteristic {
-    return this.getCharacteristicByName('BallisticSkill');
+    return this.getCharacteristicByName('BALLISTIC_SKILL');
   }
 
   get strength(): CharacterCharacteristic {
-    return this.getCharacteristicByName('Strength');
+    return this.getCharacteristicByName('STRENGTH');
   }
 
   get toughness(): CharacterCharacteristic {
-    return this.getCharacteristicByName('Toughness');
+    return this.getCharacteristicByName('TOUGHNESS');
   }
 
   get initiative(): CharacterCharacteristic {
-    return this.getCharacteristicByName('Initiative');
+    return this.getCharacteristicByName('INITIATIVE');
   }
 
   get agility(): CharacterCharacteristic {
-    return this.getCharacteristicByName('Agility');
+    return this.getCharacteristicByName('AGILITY');
   }
 
   get dexterity(): CharacterCharacteristic {
-    return this.getCharacteristicByName('Dexterity');
+    return this.getCharacteristicByName('DEXTERITY');
   }
 
   get intelligence(): CharacterCharacteristic {
-    return this.getCharacteristicByName('Intelligence');
+    return this.getCharacteristicByName('INTELLIGENCE');
   }
 
   get willpower(): CharacterCharacteristic {
-    return this.getCharacteristicByName('Willpower');
+    return this.getCharacteristicByName('WILLPOWER');
   }
 
   get fellowship(): CharacterCharacteristic {
-    return this.getCharacteristicByName('Fellowship');
+    return this.getCharacteristicByName('FELLOWSHIP');
   }
 
   get wounds(): CharacterCharacteristic {
-    return this.getCharacteristicByName('Wounds');
+    return this.getCharacteristicByName('WOUNDS');
   }
 
   static fromJSON(object: Object): CharacterCharacteristics {

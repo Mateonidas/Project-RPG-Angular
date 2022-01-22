@@ -21,23 +21,30 @@ export class ArmorService {
     return this.http.get<ArmorRest[]>('http://localhost:8080/armor')
       .pipe(
         tap(data => {
-            for (let armor of data) {
-              this.armorsList.push(new Armor(
-                armor.name,
-                armor.nameTranslation,
-                TextResourceService.getArmorCategoryNameTranslation(armor.armorCategory).nameTranslation,
-                armor.penalties,
-                this.prepareBodyLocalizations(armor),
-                armor.armorPoints,
-                armor.qualities
-              ))
-            }
-            this.armorsList.sort(
-              (a,b) => (a.category > b.category) ? 1 : ((b.category > a.category) ? -1 : 0)
-            )
+            this.armorsList = this.prepareArmorsList(data);
             this.armorsListChanged.next(this.armorsList.slice());
           }
         ));
+  }
+
+  public prepareArmorsList(armorsRest: ArmorRest[]) {
+    let armorsList: Armor[] = [];
+    for (let armor of armorsRest) {
+      armorsList.push(new Armor(
+        armor.name,
+        armor.nameTranslation,
+        TextResourceService.getArmorCategoryNameTranslation(armor.armorCategory).nameTranslation,
+        armor.penalties,
+        this.prepareBodyLocalizations(armor),
+        armor.armorPoints,
+        armor.qualities
+      ))
+    }
+    armorsList.sort(
+      (a, b) => (a.category > b.category) ? 1 : ((b.category > a.category) ? -1 : 0)
+    )
+
+    return armorsList;
   }
 
   private prepareBodyLocalizations(armor: ArmorRest) {
