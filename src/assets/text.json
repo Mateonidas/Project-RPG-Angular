@@ -1419,6 +1419,70 @@
       "nameTranslation": "Płytowe"
     }
   ],
+  "armorPenalty": [
+    {
+      "name": "MINUS_TEN_PERCEPTION",
+      "nameTranslation": "Płytowe"
+    },
+    {
+      "name": "MINUS_TEN_STEALTH",
+      "nameTranslation": "Płytowe"
+    },
+    {
+      "name": "MINUS_TWENTY_PERCEPTION",
+      "nameTranslation": "Płytowe"
+    }
+  ],
+  "armorQuality": [
+    {
+      "name": "FLEXIBLE",
+      "nameTranslation": "Giętki"
+    },
+    {
+      "name": "IMPENETRABLE",
+      "nameTranslation": "Nieprzebijalny"
+    },
+    {
+      "name": "PARTIAL",
+      "nameTranslation": "Częściowy"
+    },
+    {
+      "name": "WEAKPOINTS",
+      "nameTranslation": "Wrażliwe Punkty"
+    },
+    {
+      "name": "DURABLE",
+      "nameTranslation": "Wytrzymała"
+    },
+    {
+      "name": "FINE",
+      "nameTranslation": "Wyśmienita"
+    },
+    {
+      "name": "LIGHTWEIGHT",
+      "nameTranslation": "Poręczny"
+    },
+    {
+      "name": "PRACTICAL",
+      "nameTranslation": "Praktyczny"
+    },
+    {
+      "name": "UGLY",
+      "nameTranslation": "Brzydki"
+    },
+    {
+      "name": "SHODDY",
+      "nameTranslation": "Tandetny"
+    },
+    {
+      "name": "UNRELIABLE",
+      "nameTranslation": "Zawodny"
+    },
+    {
+      "name": "BULKY",
+      "nameTranslation": "Nieporęczny"
+    }
+  ],
   "weaponType": [
     {
       "name": "MELEE",

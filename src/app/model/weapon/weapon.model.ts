@@ -1,25 +1,25 @@
 import {Model} from "../model";
 import {ListModel} from "../list-model";
-import {WeaponQuality} from "./weaponTraits/weapon-quality.model";
+import {WeaponQuality} from "./weapon-quality.model";
 
 export class Weapon extends Model {
-  public weaponType: string;
-  public weaponGroupType: string;
-  public weaponReach: string
+  public weaponType: Model;
+  public weaponGroupType: Model;
+  public weaponReach: Model;
   public weaponRange: number;
   public isUsingStrength: boolean;
   public damage: number;
-  public qualities: WeaponQuality[];
+  public weaponQualities: WeaponQuality[];
 
-  constructor(name?: string, nameTranslation?: string, weaponType?: string, weaponGroupType?: string, reach?: string, range?: number, isUsingStrength?: boolean, damage?: number, qualities?: WeaponQuality[]) {
+  constructor(name?: string, nameTranslation?: string, weaponType?: Model, weaponGroupType?: Model, reach?: Model, range?: number, isUsingStrength?: boolean, damage?: number, qualities?: WeaponQuality[]) {
     super(name, nameTranslation)
-    this.weaponType = <string>weaponType;
-    this.weaponGroupType = <string>weaponGroupType;
-    this.weaponReach = <string>reach;
+    this.weaponType = <Model>weaponType;
+    this.weaponGroupType = <Model>weaponGroupType;
+    this.weaponReach = <Model>reach;
     this.weaponRange = <number>range;
     this.damage = <number>damage;
     this.isUsingStrength = <boolean>isUsingStrength;
-    this.qualities = <WeaponQuality[]>qualities;
+    this.weaponQualities = <WeaponQuality[]>qualities;
   }
 
   static fromJSON(object: Object): Weapon {
@@ -39,22 +39,22 @@ export class Weapon extends Model {
   }
 }
 
-export class WeaponsList extends ListModel {
-  public static list = [
-    new Weapon('HandWeapon', 'Broń ręczna', 'Broń biała', 'Podstawowa', 'Średnia', 0, true, 4, []),
-    new Weapon('Rapier', 'Rapier', 'Broń biała', 'Szermiercza', 'Długa', 0, true, 4, []),
-    new Weapon('Crossbow', 'Kusza', 'Broń zasięgowa', 'Kusze', 'Zasięgowa', 60, false, 9, [])
-  ]
-
-  static get handWeapon() {
-    return <Weapon>this.getListItemByName('HandWeapon');
-  }
-
-  static get rapier() {
-    return <Weapon>this.getListItemByName('Rapier');
-  }
-
-  static get crossbow() {
-    return <Weapon>this.getListItemByName('Crossbow');
-  }
-}
+// export class WeaponsList extends ListModel {
+//   public static list = [
+//     new Weapon('HandWeapon', 'Broń ręczna', 'Broń biała', 'Podstawowa', 'Średnia', 0, true, 4, []),
+//     new Weapon('Rapier', 'Rapier', 'Broń biała', 'Szermiercza', 'Długa', 0, true, 4, []),
+//     new Weapon('Crossbow', 'Kusza', 'Broń zasięgowa', 'Kusze', 'Zasięgowa', 60, false, 9, [])
+//   ]
+//
+//   static get handWeapon() {
+//     return <Weapon>this.getListItemByName('HandWeapon');
+//   }
+//
+//   static get rapier() {
+//     return <Weapon>this.getListItemByName('Rapier');
+//   }
+//
+//   static get crossbow() {
+//     return <Weapon>this.getListItemByName('Crossbow');
+//   }
+// }

@@ -1,17 +1,17 @@
 import {Skill} from "./skill.model";
 
 export class CharacterSkill {
-    public base: Skill;
+    public skill: Skill;
     public value: number;
 
     constructor(skill?: Skill, value?: number) {
-        this.base = <Skill>skill;
+        this.skill = <Skill>skill;
         this.value = <number>value;
     }
 
     static fromJSON(object: Object): CharacterSkill {
         let characterSkill = Object.assign(new CharacterSkill(), object);
-        characterSkill.base = Skill.fromJSON(characterSkill['base']);
+        characterSkill.skill = Skill.fromJSON(characterSkill['skill']);
         return characterSkill;
     }
 

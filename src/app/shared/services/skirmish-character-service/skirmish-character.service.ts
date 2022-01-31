@@ -2,12 +2,6 @@ import {Injectable} from '@angular/core';
 import {Subject} from "rxjs";
 import {Character} from "../../../model/character/character.model";
 import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.model";
-import {SkillsList} from "../../../model/skill/skill.model";
-import {CharacterTalent} from "../../../model/talent/character-talent.model";
-import {WeaponsList} from "../../../model/weapon/weapon.model";
-import {ArmorsList} from "../../../model/armor/armor.model";
-import {CharacterCharacteristics} from "../../../model/characteristic/character-characteristic.model";
-import {CharacterSkill} from "../../../model/skill/character-skill.model";
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +13,10 @@ export class SkirmishCharacterService {
 
   constructor() {
     if (JSON.parse(<string>localStorage.getItem('skirmishCharacters')) == null) {
-      this.skirmishCharacters = this.prepareTestSkirmishCharacters();
+      this.skirmishCharacters = [];
       localStorage.setItem('skirmishCharacters', JSON.stringify(this.skirmishCharacters));
     } else {
-      this.skirmishCharacters = this.getSkirmishCharacters();
+    this.skirmishCharacters = this.getSkirmishCharacters();
     }
   }
 
@@ -54,59 +48,59 @@ export class SkirmishCharacterService {
     return this.skirmishCharacters.indexOf(<SkirmishCharacter>characterInArray);
   }
 
-  prepareTestSkirmishCharacters() {
-    return [
-      new SkirmishCharacter(
-        new Character(
-          'Markus',
-          'Mieszkaniec Ubersreiku.',
-
-          new CharacterCharacteristics(
-            4, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 15
-          ),
-          [
-            new CharacterSkill(SkillsList.meleeFencing, 50)
-          ],
-          [
-            new CharacterTalent('Ambidextrous', 'Oburęczność', '2', 1)
-          ],
-          true,
-          [
-            WeaponsList.rapier
-          ],
-          [
-            ArmorsList.leatherJack,
-            ArmorsList.leatherLeggings,
-          ]
-        ),
-        0
-      ),
-      new SkirmishCharacter(
-        new Character(
-          'Zygfryd',
-          'Mieszkaniec Altdorfu.',
-
-          new CharacterCharacteristics(
-            4, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 15
-          ),
-          [
-            new CharacterSkill(SkillsList.meleeBasic, 50)
-          ],
-          [
-            new CharacterTalent('Ambidextrous', 'Oburęczność', '2', 1)
-          ],
-          true,
-          [
-            WeaponsList.handWeapon,
-            WeaponsList.crossbow
-          ],
-          [
-            ArmorsList.leatherJack,
-            ArmorsList.leatherLeggings,
-          ]
-        ),
-        1
-      )
-    ]
-  }
+  // prepareTestSkirmishCharacters() {
+  //   return [
+  //     new SkirmishCharacter(
+  //       new Character(
+  //         'Markus',
+  //         'Mieszkaniec Ubersreiku.',
+  //
+  //         new CharacterCharacteristics(
+  //           4, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 15
+  //         ),
+  //         [
+  //           new CharacterSkill(SkillsList.meleeFencing, 50)
+  //         ],
+  //         [
+  //           new CharacterTalent('Ambidextrous', 'Oburęczność', '2', 1)
+  //         ],
+  //         true,
+  //         [
+  //           WeaponsList.rapier
+  //         ],
+  //         [
+  //           ArmorsList.leatherJack,
+  //           ArmorsList.leatherLeggings,
+  //         ]
+  //       ),
+  //       0
+  //     ),
+  //     new SkirmishCharacter(
+  //       new Character(
+  //         'Zygfryd',
+  //         'Mieszkaniec Altdorfu.',
+  //
+  //         new CharacterCharacteristics(
+  //           4, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 15
+  //         ),
+  //         [
+  //           new CharacterSkill(SkillsList.meleeBasic, 50)
+  //         ],
+  //         [
+  //           new CharacterTalent('Ambidextrous', 'Oburęczność', '2', 1)
+  //         ],
+  //         true,
+  //         [
+  //           WeaponsList.handWeapon,
+  //           WeaponsList.crossbow
+  //         ],
+  //         [
+  //           ArmorsList.leatherJack,
+  //           ArmorsList.leatherLeggings,
+  //         ]
+  //       ),
+  //       1
+  //     )
+  //   ]
+  // }
 }

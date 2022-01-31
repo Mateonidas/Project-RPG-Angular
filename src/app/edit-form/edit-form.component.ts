@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Character} from "../model/character/character.model";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {SkillsList} from "../model/skill/skill.model";
-import {CharacterTalent, TalentsList} from "../model/talent/character-talent.model";
-import {Weapon, WeaponsList} from "../model/weapon/weapon.model";
-import {Armor, ArmorsList} from "../model/armor/armor.model";
+import {CharacterTalent} from "../model/talent/character-talent.model";
+import {Weapon} from "../model/weapon/weapon.model";
+import {Armor} from "../model/armor/armor.model";
 import {CharacterFormArraysWrapper} from "../model/character/character-form-arrays-wrapper.model";
 import {Model} from "../model/model";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CharacterCharacteristics} from "../model/characteristic/character-characteristic.model";
 import {ArmorService} from "../shared/services/armor-service/armor.service";
 import {WeaponService} from "../shared/services/weapon-service/weapon.service";
@@ -63,8 +63,8 @@ export class EditFormComponent {
     if (character.weapons) {
       this.prepareWeaponsList(formArrays.weapons, character.weapons);
     }
-    if (character.armor) {
-      this.prepareArmorList(formArrays.armors, character.armor);
+    if (character.armors) {
+      this.prepareArmorList(formArrays.armors, character.armors);
     }
   }
 
@@ -72,7 +72,7 @@ export class EditFormComponent {
     for (let characterSkill of skillsList) {
       skills.push(
         new FormGroup({
-          'base': new FormControl(characterSkill.base),
+          'base': new FormControl(characterSkill.skill),
           'value': new FormControl(characterSkill.value),
         })
       )
@@ -80,7 +80,7 @@ export class EditFormComponent {
   }
 
   prepareTalentsList(talents: FormArray, talentsList: CharacterTalent[]) {
-    for (let talent of  talentsList) {
+    for (let talent of talentsList) {
       talents.push(
         new FormGroup({
           'talent': new FormControl(talent),
@@ -220,7 +220,7 @@ export class EditFormComponent {
   onAddArmor() {
     (<FormArray>this.editCharacterForm.get('armors')).push(
       new FormGroup({
-        'armor': new FormControl(new Armor('', '', '', [], [], 0, [])),
+        'armor': new FormControl(new Armor('', '', new Model(), [], [], 0, [])),
         'name': new FormControl(null),
         'nameTranslation': new FormControl(null),
         'category': new FormControl(null),

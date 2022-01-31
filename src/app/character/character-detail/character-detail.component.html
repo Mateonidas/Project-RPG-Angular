@@ -83,7 +83,7 @@
     <h4>Umiejętności</h4>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let characterSkill of character.skills">
-        {{characterSkill.base.nameTranslation}} - {{characterSkill.value}}
+        {{characterSkill.skill.nameTranslation}} - {{characterSkill.value}}
       </li>
     </ul>
   </div>
@@ -115,14 +115,17 @@
       <tbody>
       <tr *ngFor="let weapon of character.weapons">
         <td>{{weapon.nameTranslation}}</td>
-        <td>{{weapon.weaponGroupType}}</td>
-        <td>{{weapon.weaponRange}}</td>
+        <td>{{weapon.weaponGroupType.nameTranslation}}</td>
+        <td>
+          <span *ngIf="weapon.weaponRange == 0; else weaponRange">{{weapon.weaponReach.nameTranslation}}</span>
+          <ng-template #weaponRange>{{weapon.weaponRange}}</ng-template>
+        </td>
         <td>
           <span *ngIf="weapon.isUsingStrength; else elseBlock">+BS+{{weapon.damage}}</span>
           <ng-template #elseBlock>+{{weapon.damage}}</ng-template>
         </td>
         <td>
-          <span *ngFor="let quality of weapon.qualities"> {{quality.nameTranslation}}</span>
+          <span *ngFor="let quality of weapon.weaponQualities"> {{quality.nameTranslation}}</span>
         </td>
       </tr>
       </tbody>
@@ -144,13 +147,13 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let armor of character.armor">
+      <tr *ngFor="let armor of character.armors">
         <td>{{armor.nameTranslation}}</td>
-        <td>{{armor.category}}</td>
+        <td>{{armor.armorCategory.nameTranslation}}</td>
         <td>{{armor.penalties}}</td>
         <td>
           <ul>
-            <li *ngFor="let localization of armor.localization">
+            <li *ngFor="let localization of armor.bodyLocalization">
               {{localization.nameTranslation}}
             </li>
           </ul>

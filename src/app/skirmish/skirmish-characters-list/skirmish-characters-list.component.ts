@@ -5,7 +5,7 @@ import {SkirmishCharacterService} from "../../shared/services/skirmish-character
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {InitiativeDialogWindow} from "../../dialog-window/initiative-dialog-window/initiative-dialog-window.component";
-import {ConditionService} from "../../shared/services/condition-service/condition.service";
+// import {ConditionService} from "../../shared/services/condition-service/condition.service";
 import {RoundService} from "../../shared/services/round-service/round.service";
 
 @Component({
@@ -22,7 +22,7 @@ export class SkirmishCharactersListComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private modalService: NgbModal,
-              private conditionService: ConditionService,
+              // private conditionService: ConditionService,
               private roundService: RoundService) {
   }
 
@@ -70,7 +70,7 @@ export class SkirmishCharactersListComponent implements OnInit {
 
   private async checkCharacterConditions() {
     for (let character of this.skirmishCharacters) {
-      await this.conditionService.endTurnCheckConditions(character)
+      // await this.conditionService.endTurnCheckConditions(character)
     }
   }
 

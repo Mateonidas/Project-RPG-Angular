@@ -13,8 +13,8 @@ export class CharacterDetailComponent implements OnInit {
   character!: Character;
   private id!: number;
 
-  constructor(private characterService: CharacterService,
-              private skirmishService: SkirmishCharacterService,
+  constructor(public characterService: CharacterService,
+              public skirmishService: SkirmishCharacterService,
               private route: ActivatedRoute,
               private router: Router) {
   }

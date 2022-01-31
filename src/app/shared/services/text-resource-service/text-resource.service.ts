@@ -36,6 +36,28 @@ export class TextResourceService {
     })
   }
 
+  public static getArmorPenaltyNameTranslation(name: string) {
+    let armorPenalties: Model[] = textResource.armorPenalty;
+    return <Model>armorPenalties.find(armorPenalty => {
+      if(armorPenalty.name == name) {
+        return armorPenalty;
+      } else {
+        return null;
+      }
+    })
+  }
+
+  public static getArmorQualitiesNameTranslation(name: string) {
+    let armorQualities: Model[] = textResource.armorQuality;
+    return <Model>armorQualities.find(armorQuality => {
+      if(armorQuality.name == name) {
+        return armorQuality;
+      } else {
+        return null;
+      }
+    })
+  }
+
   public static getWeaponTypeNameTranslation(name: string) {
     let weaponTypes: Model[] = textResource.weaponType;
     return <Model>weaponTypes.find(weaponType => {

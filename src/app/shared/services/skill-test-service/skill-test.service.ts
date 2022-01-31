@@ -24,7 +24,7 @@ export class SkillTestService extends ServiceModel {
     character.roll.value = rollResult.roll;
     character.roll.modifier = rollResult.modifier;
 
-    let trait = character.skills.find(skill => skill.base.nameTranslation == SkillsList.endurance.nameTranslation);
+    let trait = character.skills.find(skill => skill.skill.nameTranslation == SkillsList.endurance.nameTranslation);
     if (trait === undefined) {
       trait = character.characteristics.getCharacteristic(Characteristics.toughness);
     }

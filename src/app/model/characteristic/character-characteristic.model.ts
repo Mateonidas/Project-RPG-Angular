@@ -2,22 +2,21 @@ import {Characteristic, Characteristics} from "./characteristic.model";
 import {CharacterCharacteristicRest} from "../../rest-model/character-characteristic-rest.model";
 
 export class CharacterCharacteristic {
-  public base: Characteristic;
+  public characteristic: Characteristic;
   public value: number;
 
   constructor(characteristic?: Characteristic, value?: number) {
-    this.base = <Characteristic>characteristic;
+    this.characteristic = <Characteristic>characteristic;
     this.value = <number>value;
   }
 
-  public static prepareCharacteristicsTable(characteristicsRest: CharacterCharacteristicRest[]) {
-    let characteristics = [];
-    for(let characteristicRest of characteristicsRest) {
-      let characterCharacteristic = new CharacterCharacteristic(
-        Characteristics.getCharacteristicByName(characteristicRest.characteristic),
-        characteristicRest.value
-      )
-      characteristics.push(characterCharacteristic);
+  public static prepareCharacteristicsTable(characteristics: CharacterCharacteristic[]) {
+    for(let characteristic of characteristics) {
+      // let characterCharacteristic = new CharacterCharacteristic(
+      //   Characteristics.getCharacteristicByName(characteristicRest.characteristic),
+      //   characteristicRest.value
+      // )
+      characteristics.push(characteristic);
     }
 
     return characteristics;
@@ -25,7 +24,7 @@ export class CharacterCharacteristic {
 
   static fromJSON(object: Object): CharacterCharacteristic {
     let characterCharacteristics =  Object.assign(new CharacterCharacteristic(), object);
-    characterCharacteristics.base = Characteristic.fromJSON(characterCharacteristics['base']);
+    characterCharacteristics.characteristic = Characteristic.fromJSON(characterCharacteristics['characteristic']);
 
     return characterCharacteristics;
   }
@@ -71,18 +70,18 @@ export class CharacterCharacteristics {
     this.wounds.value = <number>wounds;
   }
 
-  public prepareCharacteristicsTable(characteristicsRest: CharacterCharacteristicRest[]) {
-    for(let characteristicRest of characteristicsRest) {
-        this.getCharacteristicByName(characteristicRest.characteristic).value = characteristicRest.value;
+  public prepareCharacteristicsTable(characteristics: CharacterCharacteristic[]) {
+    for(let characteristic of characteristics) {
+        this.getCharacteristicByName(characteristic.characteristic.name).value = characteristic.value;
     }
   }
 
   private getCharacteristicByName(name: string): CharacterCharacteristic {
-    return <CharacterCharacteristic>this.characteristics.find(x => x.base.name == name);
+    return <CharacterCharacteristic>this.characteristics.find(x => x.characteristic.name == name);
   }
 
   public getCharacteristic(characteristic: Characteristic) {
-    return <CharacterCharacteristic>this.characteristics.find(x => x.base.name == characteristic.name);
+    return <CharacterCharacteristic>this.characteristics.find(x => x.characteristic.name == characteristic.name);
   }
 
   get movement(): CharacterCharacteristic {

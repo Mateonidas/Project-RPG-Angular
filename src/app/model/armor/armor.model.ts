@@ -1,26 +1,28 @@
 import {Model} from "../model";
-import {BodyLocalization, BodyLocalizationList} from "../body-localization/body-localization.model";
-import {ListModel} from "../list-model";
+import {BodyLocalization} from "../body-localization/body-localization.model";
 
 export class Armor extends Model {
-  public category: string;
-  public penalties: string[];
-  public localization: BodyLocalization[];
+  public armorCategory: Model;
+  public bodyLocalization: BodyLocalization[];
   public armorPoints: number;
-  public qualities: string[];
+  public penalties: Model[];
+  public qualities: Model[];
 
-  constructor(name?: string, nameTranslation?: string, category?: string, penalties?: string[], localization?: BodyLocalization[], armorPoints?: number, qualities?: string[]) {
+  constructor(name?: string, nameTranslation?: string, category?: Model, penalties?: Model[], localization?: BodyLocalization[], armorPoints?: number, qualities?: Model[]) {
     super(name, nameTranslation);
-    this.category = <string>category;
-    this.penalties = <string[]>penalties;
-    this.localization = <BodyLocalization[]>localization;
+    this.armorCategory = <Model>category;
+    this.penalties = <Model[]>penalties;
+    this.bodyLocalization = <BodyLocalization[]>localization;
     this.armorPoints = <number>armorPoints;
-    this.qualities = <string[]>qualities;
+    this.qualities = <Model[]>qualities;
   }
 
   static fromJSON(object: Object): Armor {
     let armor = Object.assign(new Armor(), object);
-    armor.localization = BodyLocalization.arrayFromJSON(armor['localization']);
+    armor.armorCategory = Model.fromJSON(armor['armorCategory']);
+    armor.penalties = Model.arrayFromJSON(armor['penalties']);
+    armor.qualities = Model.arrayFromJSON(armor['qualities']);
+    armor.bodyLocalization = BodyLocalization.arrayFromJSON(armor['bodyLocalization']);
     return armor;
   }
 
@@ -34,17 +36,17 @@ export class Armor extends Model {
   }
 }
 
-export class ArmorsList extends ListModel {
-  public static list = [
-    new Armor('LEATHER_JACK', 'Skórzana kurta', 'Miękka Skóra', [], [BodyLocalizationList.leftArm, BodyLocalizationList.rightArm, BodyLocalizationList.body], 1, []),
-    new Armor('LEATHER_LEGGINGS', 'Skórzane nogawice', 'Miękka Skóra', [], [BodyLocalizationList.leftLeg, BodyLocalizationList.rightLeg], 1, [])
-  ]
-
-  static get leatherJack() {
-    return <Armor>ArmorsList.getListItemByName('LEATHER_JACK');
-  }
-
-  static get leatherLeggings() {
-    return <Armor>ArmorsList.getListItemByName('LEATHER_LEGGINGS');
-  }
-}
+// export class ArmorsList extends ListModel {
+//   public static list = [
+//     new Armor('LEATHER_JACK', 'Skórzana kurta', 'Miękka Skóra', [], [BodyLocalizationList.leftArm, BodyLocalizationList.rightArm, BodyLocalizationList.body], 1, []),
+//     new Armor('LEATHER_LEGGINGS', 'Skórzane nogawice', 'Miękka Skóra', [], [BodyLocalizationList.leftLeg, BodyLocalizationList.rightLeg], 1, [])
+//   ]
+//
+//   static get leatherJack() {
+//     return <Armor>ArmorsList.getListItemByName('LEATHER_JACK');
+//   }
+//
+//   static get leatherLeggings() {
+//     return <Armor>ArmorsList.getListItemByName('LEATHER_LEGGINGS');
+//   }
+// }

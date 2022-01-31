@@ -2,11 +2,9 @@ import {Model} from "../model";
 import {ListModel} from "../list-model";
 
 export class BodyLocalization extends Model {
-  public numericalInterval?: number[];
 
-  constructor(name?: string, nameTranslation?: string, numericalInterval?: number[]) {
+  constructor(name?: string, nameTranslation?: string) {
     super(name, nameTranslation);
-    this.numericalInterval = numericalInterval;
   }
 
   static fromJSON(object: Object): BodyLocalization {
@@ -26,12 +24,12 @@ export class BodyLocalization extends Model {
 export class BodyLocalizationList extends ListModel {
 
   public static list: BodyLocalization[] = [
-    new BodyLocalization('head', 'Głowa', [1, 9]),
-    new BodyLocalization('leftArm', 'Lewa ręka', [10, 24]),
-    new BodyLocalization('rightArm', 'Prawa ręka', [25, 44]),
-    new BodyLocalization('body', 'Korpus', [45, 79]),
-    new BodyLocalization('leftLeg', 'Lewa noga', [80, 89]),
-    new BodyLocalization('rightLeg', 'Prawa noga', [90, 100]),
+    new BodyLocalization('head', 'Głowa'),
+    new BodyLocalization('leftArm', 'Lewa ręka'),
+    new BodyLocalization('rightArm', 'Prawa ręka'),
+    new BodyLocalization('body', 'Korpus'),
+    new BodyLocalization('leftLeg', 'Lewa noga'),
+    new BodyLocalization('rightLeg', 'Prawa noga'),
   ];
 
   static get head(){

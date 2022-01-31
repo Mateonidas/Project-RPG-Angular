@@ -12,7 +12,7 @@ export class Character {
   talents!: CharacterTalent[];
   isRightHanded!: boolean;
   weapons!: Weapon[];
-  armor!: Armor[];
+  armors!: Armor[];
 
   constructor(name?: string, description?: string, characteristics?: CharacterCharacteristics, skills?: CharacterSkill[], talents?: CharacterTalent[], rightHanded?: boolean, weapons?: Weapon[], armor?: Armor[]) {
     this.name = <string>name;
@@ -22,7 +22,7 @@ export class Character {
     this.talents = <CharacterTalent[]>talents;
     this.isRightHanded = <boolean>rightHanded;
     this.weapons = <Weapon[]>weapons;
-    this.armor = <Armor[]>armor;
+    this.armors = <Armor[]>armor;
   }
 
   static fromJSON(object: Object): Character {
@@ -31,7 +31,7 @@ export class Character {
     character.skills = CharacterSkill.arrayFromJSON(character["skills"]);
     character.talents = CharacterTalent.arrayFromJSON(character["talents"]);
     character.weapons = Weapon.arrayFromJSON(character['weapons']);
-    character.armor = Armor.arrayFromJSON(character['armor']);
+    character.armors = Armor.arrayFromJSON(character['armors']);
     return character;
   }
 

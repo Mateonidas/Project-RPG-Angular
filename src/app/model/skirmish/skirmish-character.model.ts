@@ -37,7 +37,7 @@ export class SkirmishCharacter extends Character {
   notes!: string[];
 
   constructor(character?: Character, id?: number) {
-    super(character?.name, character?.description, character?.characteristics, character?.skills, character?.talents, character?.isRightHanded, character?.weapons, character?.armor);
+    super(character?.name, character?.description, character?.characteristics, character?.skills, character?.talents, character?.isRightHanded, character?.weapons, character?.armors);
     if (character != undefined) {
       this.id = <number>id;
       this.currentWounds = <number>character?.characteristics.wounds.value;
@@ -66,7 +66,7 @@ export class SkirmishCharacter extends Character {
   }
 
   private getArmorForLocalization(localization: BodyLocalization) {
-    let armorForLocation = this.armor.filter(armor => armor.localization.includes(localization));
+    let armorForLocation = this.armors.filter(armor => armor.bodyLocalization.includes(localization));
 
     let armorPoints = 0;
 
@@ -77,16 +77,16 @@ export class SkirmishCharacter extends Character {
     return armorPoints;
   }
 
-  getArmorFromLessArmoredLocalization() {
-    return Math.min(
-      this.bodyLocalizations.head.armorPoints,
-      this.bodyLocalizations.leftArm.armorPoints,
-      this.bodyLocalizations.rightArm.armorPoints,
-      this.bodyLocalizations.body.armorPoints,
-      this.bodyLocalizations.leftLeg.armorPoints,
-      this.bodyLocalizations.rightLeg.armorPoints
-    )
-  }
+  // getArmorFromLessArmoredLocalization() {
+  //   return Math.min(
+  //     this.bodyLocalizations.head.armorPoints,
+  //     this.bodyLocalizations.leftArm.armorPoints,
+  //     this.bodyLocalizations.rightArm.armorPoints,
+  //     this.bodyLocalizations.body.armorPoints,
+  //     this.bodyLocalizations.leftLeg.armorPoints,
+  //     this.bodyLocalizations.rightLeg.armorPoints
+  //   )
+  // }
 
   // getFightTrait() {
   //   if (this.isAttacker) {
@@ -119,7 +119,7 @@ export class SkirmishCharacter extends Character {
   // }
 
   getSkill(skill: Skill) {
-    return this.skills.filter(s => s.base === skill)[0];
+    return this.skills.filter(s => s.skill === skill)[0];
   }
 
   // checkIfWeaponAdvantagesAreIgnored() {
@@ -127,72 +127,72 @@ export class SkirmishCharacter extends Character {
   //   return skill === undefined;
   // }
 
-  checkIfHasCondition(condition: Model) {
-    return this.conditions.filter(e => e.base.nameTranslation === condition.nameTranslation).length > 0;
-  }
-
-  getCondition(condition: Model) {
-    return this.conditions.filter(e => e.base.nameTranslation === condition.nameTranslation)[0];
-  }
+  // checkIfHasCondition(condition: Model) {
+  //   return this.conditions.filter(e => e.base.nameTranslation === condition.nameTranslation).length > 0;
+  // }
+  //
+  // getCondition(condition: Model) {
+  //   return this.conditions.filter(e => e.base.nameTranslation === condition.nameTranslation)[0];
+  // }
 
   resetUnconsciousCounter() {
     this.unconsciousCounter = RollService.calculateTraitBonus(this.characteristics.toughness.value);
   }
 
-  addCondition(newCondition: Model, level?: number, incurableValue?: number) {
-    if (this.conditions.length === 0) {
-      this.conditions.push(new Condition(newCondition, level, incurableValue));
-    } else {
-      let found = false;
-      for (let condition of this.conditions) {
-        if (condition.base.nameTranslation === newCondition.nameTranslation) {
-          found = true;
-          if (!(condition.base.nameTranslation === ConditionsList.prone.nameTranslation ||
-            condition.base.nameTranslation === ConditionsList.unconscious.nameTranslation ||
-            condition.base.nameTranslation === ConditionsList.surprised.nameTranslation)) {
-            if (level != undefined) {
-              condition.value += level;
-            } else {
-              condition.value += 1;
-            }
-            if (incurableValue != undefined) {
-              condition.incurableValue += incurableValue;
-            }
-          }
-        }
-      }
-      if (!found) {
-        this.conditions.push(new Condition(newCondition, level));
-      }
-    }
-    this.advantage = 0;
-  }
-
-  removeCondition(condition: Model) {
-    let index = this.conditions.findIndex(c => c.base.name === condition.name);
-    this.conditions.splice(index, 1);
-  }
+  // addCondition(newCondition: Model, level?: number, incurableValue?: number) {
+  //   if (this.conditions.length === 0) {
+  //     this.conditions.push(new Condition(newCondition, level, incurableValue));
+  //   } else {
+  //     let found = false;
+  //     for (let condition of this.conditions) {
+  //       if (condition.base.nameTranslation === newCondition.nameTranslation) {
+  //         found = true;
+  //         if (!(condition.base.nameTranslation === ConditionsList.prone.nameTranslation ||
+  //           condition.base.nameTranslation === ConditionsList.unconscious.nameTranslation ||
+  //           condition.base.nameTranslation === ConditionsList.surprised.nameTranslation)) {
+  //           if (level != undefined) {
+  //             condition.value += level;
+  //           } else {
+  //             condition.value += 1;
+  //           }
+  //           if (incurableValue != undefined) {
+  //             condition.incurableValue += incurableValue;
+  //           }
+  //         }
+  //       }
+  //     }
+  //     if (!found) {
+  //       this.conditions.push(new Condition(newCondition, level));
+  //     }
+  //   }
+  //   this.advantage = 0;
+  // }
+  //
+  // removeCondition(condition: Model) {
+  //   let index = this.conditions.findIndex(c => c.base.name === condition.name);
+  //   this.conditions.splice(index, 1);
+  // }
 
   addNote(note: string) {
     this.notes.push(note);
   }
 
-  addInjure(injure: Injury) {
-    this.injuries.push(injure);
-  }
-
-  removeInjure(injure: Injury) {
-    let index = this.injuries.indexOf(injure);
-    this.injuries.splice(index, 1);
-  }
-
-  getCriticalWound(criticalWound: CriticalWound) {
-    return this.criticalWounds.filter(w => w.name === criticalWound.name)[0];
-  }
-
-  addCriticalWound(criticalWound: CriticalWound) {
-    this.criticalWounds.push(criticalWound);
-  }
+  // addInjure(injure: Injury) {
+  //   this.injuries.push(injure);
+  // }
+  //
+  // removeInjure(injure: Injury) {
+  //   let index = this.injuries.indexOf(injure);
+  //   this.injuries.splice(index, 1);
+  // }
+  //
+  // getCriticalWound(criticalWound: CriticalWound) {
+  //   return this.criticalWounds.filter(w => w.name === criticalWound.name)[0];
+  // }
+  //
+  // addCriticalWound(criticalWound: CriticalWound) {
+  //   this.criticalWounds.push(criticalWound);
+  // }
 
   removeCriticalWound(criticalWound: CriticalWound) {
     let index = this.criticalWounds.indexOf(criticalWound);
@@ -206,7 +206,7 @@ export class SkirmishCharacter extends Character {
     character.skills = CharacterSkill.arrayFromJSON(character["skills"]);
     character.talents = CharacterTalent.arrayFromJSON(character["talents"]);
     character.weapons = Weapon.arrayFromJSON(character['weapons']);
-    character.armor = Armor.arrayFromJSON(character['armor']);
+    character.armors = Armor.arrayFromJSON(character['armors']);
     character.conditions = Condition.arrayFromJSON(character['conditions'])
     character.injuries = Injury.arrayFromJSON(character['injuries'])
     character.criticalWounds = CriticalWound.arrayFromJSON(character['criticalWounds']);

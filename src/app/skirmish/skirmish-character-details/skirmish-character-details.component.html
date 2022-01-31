@@ -189,7 +189,7 @@
     <h4>Umiejętności</h4>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let characterSkill of skirmishCharacter.skills">
-        {{characterSkill.base.nameTranslation}} - {{characterSkill.value}}
+        {{characterSkill.skill.nameTranslation}} - {{characterSkill.value}}
       </li>
     </ul>
   </div>
@@ -231,7 +231,7 @@
           <ng-template #elseBlock>+{{weapon.damage}}</ng-template>
         </td>
         <td>
-          <span *ngFor="let quality of weapon.qualities"> {{quality.nameTranslation}}</span>
+          <span *ngFor="let quality of weapon.weaponQualities"> {{quality.nameTranslation}}</span>
         </td>
       </tr>
       </tbody>
@@ -254,13 +254,13 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let armor of skirmishCharacter.armor">
+      <tr *ngFor="let armor of skirmishCharacter.armors">
         <td>{{armor.nameTranslation}}</td>
-        <td>{{armor.category}}</td>
+        <td>{{armor.armorCategory}}</td>
         <td>{{armor.penalties}}</td>
         <td>
           <ul>
-            <li *ngFor="let localization of armor.localization">
+            <li *ngFor="let localization of armor.bodyLocalization">
               {{localization.nameTranslation}}
             </li>
           </ul>

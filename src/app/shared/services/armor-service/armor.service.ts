@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {ArmorRest} from "../../../rest-model/armor-rest.model";
 import {Armor} from "../../../model/armor/armor.model";
-import {BodyLocalization} from "../../../model/body-localization/body-localization.model";
 import {TextResourceService} from "../text-resource-service/text-resource.service";
 import {tap} from "rxjs/operators";
 import {Subject} from "rxjs";
@@ -18,45 +16,38 @@ export class ArmorService {
   }
 
   fetchArmors() {
-    return this.http.get<ArmorRest[]>('http://localhost:8080/armor')
+    return this.http.get<Armor[]>('http://localhost:8080/armor')
       .pipe(
         tap(data => {
-            this.armorsList = this.prepareArmorsList(data);
+            this.prepareArmorsList(data);
+            this.armorsList = data;
             this.armorsListChanged.next(this.armorsList.slice());
           }
         ));
   }
 
-  public prepareArmorsList(armorsRest: ArmorRest[]) {
-    let armorsList: Armor[] = [];
-    for (let armor of armorsRest) {
-      armorsList.push(new Armor(
-        armor.name,
-        armor.nameTranslation,
-        TextResourceService.getArmorCategoryNameTranslation(armor.armorCategory).nameTranslation,
-        armor.penalties,
-        this.prepareBodyLocalizations(armor),
-        armor.armorPoints,
-        armor.qualities
-      ))
+  public prepareArmorsList(armors: Armor[]) {
+    for (let armor of armors) {
+      this.prepareArmorTranslation(armor);
     }
-    armorsList.sort(
-      (a, b) => (a.category > b.category) ? 1 : ((b.category > a.category) ? -1 : 0)
+    armors.sort(
+      (a, b) => (a.armorCategory > b.armorCategory) ? 1 : ((b.armorCategory > a.armorCategory) ? -1 : 0)
     )
-
-    return armorsList;
   }
 
-  private prepareBodyLocalizations(armor: ArmorRest) {
-    let bodyLocalizations: BodyLocalization[] = [];
-    for (let bodyLocalization of armor.bodyLocalization) {
-      bodyLocalizations.push(
-        new BodyLocalization(
-          bodyLocalization,
-          TextResourceService.getBodyLocalizationNameTranslation(bodyLocalization).nameTranslation,
-          [1, 10])
-      );
+  private prepareArmorTranslation(armor: Armor) {
+    armor.armorCategory.nameTranslation = TextResourceService.getArmorCategoryNameTranslation(armor.armorCategory.name).nameTranslation;
+
+    for (let penalty of armor.penalties) {
+      penalty.nameTranslation = TextResourceService.getArmorPenaltyNameTranslation(penalty.name).nameTranslation;
     }
-    return bodyLocalizations;
+
+    for (let bodyLocalization of armor.bodyLocalization) {
+      bodyLocalization.nameTranslation = TextResourceService.getBodyLocalizationNameTranslation(bodyLocalization.name).nameTranslation;
+    }
+
+    for (let quality of armor.qualities) {
+      quality.nameTranslation = TextResourceService.getArmorQualitiesNameTranslation(quality.name).nameTranslation;
+    }
   }
 }
