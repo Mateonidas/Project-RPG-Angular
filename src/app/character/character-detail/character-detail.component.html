@@ -150,7 +150,13 @@
       <tr *ngFor="let armor of character.armors">
         <td>{{armor.nameTranslation}}</td>
         <td>{{armor.armorCategory.nameTranslation}}</td>
-        <td>{{armor.penalties}}</td>
+        <td>
+          <ul>
+            <li *ngFor="let penalty of armor.penalties">
+              {{penalty.nameTranslation}}
+            </li>
+          </ul>
+        </td>
         <td>
           <ul>
             <li *ngFor="let localization of armor.bodyLocalization">

@@ -1422,15 +1422,15 @@
   "armorPenalty": [
     {
       "name": "MINUS_TEN_PERCEPTION",
-      "nameTranslation": "Płytowe"
+      "nameTranslation": "-10 do Percepcji"
     },
     {
       "name": "MINUS_TEN_STEALTH",
-      "nameTranslation": "Płytowe"
+      "nameTranslation": "-10 do Skradania"
     },
     {
       "name": "MINUS_TWENTY_PERCEPTION",
-      "nameTranslation": "Płytowe"
+      "nameTranslation": "-20 do Percepcji"
     }
   ],
   "armorQuality": [
