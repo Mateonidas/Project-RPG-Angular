@@ -11,7 +11,6 @@ import {HttpClient} from "@angular/common/http";
 import {CharacterRest} from "../../../rest-model/character-rest.model";
 import {tap} from "rxjs/operators";
 import {TextResourceService} from "../text-resource-service/text-resource.service";
-import {CharacterTalentRest} from "../../../rest-model/character-talent-rest.model";
 import {WeaponService} from "../weapon-service/weapon.service";
 import {ArmorService} from "../armor-service/armor.service";
 
@@ -40,6 +39,7 @@ export class CharacterService {
           for (let character of data) {
             if (!this.charactersList.find(x => x.name == character.name)) {
               this.prepareSkills(character.skills);
+              this.prepareTalents(character.talents);
               this.weaponService.prepareWeaponsList(character.weapons);
               this.armorService.prepareArmorsList(character.armors);
               this.charactersList.push(new Character(
@@ -47,7 +47,7 @@ export class CharacterService {
                 character.description,
                 this.prepareCharacteristics(character.characteristics),
                 character.skills,
-                this.prepareTalents(character.talents),
+                character.talents,
                 character.isRightHanded,
                 character.weapons,
                 character.armors
@@ -72,17 +72,9 @@ export class CharacterService {
     }
   }
 
-  private prepareTalents(talentsRest: CharacterTalentRest[]) {
-    let talents: CharacterTalent[] = [];
-    for (let talentRest of talentsRest) {
-      talents.push(
-        new CharacterTalent(
-          talentRest.talent.name,
-          TextResourceService.getTalentNameTranslation(talentRest.talent.name).nameTranslation,
-          talentRest.talent.maxLevel,
-          talentRest.value
-        )
-      )
+  private prepareTalents(talents: CharacterTalent[]) {
+    for (let talent of talents) {
+      talent.talent.nameTranslation = TextResourceService.getTalentNameTranslation(talent.talent.name).nameTranslation;
     }
 
     return talents;

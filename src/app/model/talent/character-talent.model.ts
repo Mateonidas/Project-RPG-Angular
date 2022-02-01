@@ -1,11 +1,12 @@
 import {Talent} from "./talent.model";
 
-export class CharacterTalent extends Talent {
-  public level: number;
+export class CharacterTalent {
+  public talent: Talent;
+  public value: number;
 
-  constructor(name?: string, nameTranslation?: string, maxLevel?: string, level?: number) {
-    super(name, nameTranslation, maxLevel)
-    this.level = <number>level;
+  constructor(talent?: Talent, level?: number) {
+    this.talent = <Talent>talent;
+    this.value = <number>level;
   }
 
   static fromJSON(object: Object): CharacterTalent {
@@ -20,11 +21,4 @@ export class CharacterTalent extends Talent {
     }
     return talents;
   }
-}
-
-export class TalentsList {
-  public talentsList = [
-    new CharacterTalent('Ambidextrous', 'Oburęczność',  '2', 0),
-    new CharacterTalent('Battle Rage', 'Szał Bitewny',  'BSw', 0)
-  ];
 }

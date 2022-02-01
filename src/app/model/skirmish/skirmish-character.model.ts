@@ -1,11 +1,8 @@
 import {Character} from "../character/character.model";
 import {BodyLocalization, BodyLocalizationList} from "../body-localization/body-localization.model";
 import {Weapon} from "../weapon/weapon.model";
-import {Skill, SkillsList} from "../skill/skill.model";
-import {Characteristics} from "../characteristic/characteristic.model";
+import {Skill} from "../skill/skill.model";
 import {Condition} from "../conditions/condition.model";
-import {Model} from "../model";
-import {ConditionsList} from "../conditions/conditions-list.model";
 import {RollService} from "../../shared/services/roll-service/roll.service";
 import {Roll} from "../roll/roll.model";
 import {CharacterBodyLocalizations} from "../body-localization/character-body-localizations.model";

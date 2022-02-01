@@ -1,8 +1,8 @@
-import {CharacterTalentRest} from "./character-talent-rest.model";
 import {Weapon} from "../model/weapon/weapon.model";
 import {Armor} from "../model/armor/armor.model";
 import {CharacterCharacteristic} from "../model/characteristic/character-characteristic.model";
 import {CharacterSkill} from "../model/skill/character-skill.model";
+import {CharacterTalent} from "../model/talent/character-talent.model";
 
 export interface CharacterRest {
   id: number;
@@ -11,7 +11,7 @@ export interface CharacterRest {
   isRightHanded: boolean;
   characteristics: CharacterCharacteristic[];
   skills: CharacterSkill[];
-  talents: CharacterTalentRest[];
+  talents: CharacterTalent[];
   weapons: Weapon[];
   armors: Armor[];
 }

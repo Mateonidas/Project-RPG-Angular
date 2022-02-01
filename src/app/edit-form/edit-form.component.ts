@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Character} from "../model/character/character.model";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
-import {SkillsList} from "../model/skill/skill.model";
+import {Skill} from "../model/skill/skill.model";
 import {CharacterTalent} from "../model/talent/character-talent.model";
 import {Weapon} from "../model/weapon/weapon.model";
 import {Armor} from "../model/armor/armor.model";
@@ -24,8 +24,7 @@ import {TalentService} from "../shared/services/talent-service/talent.service";
 export class EditFormComponent {
 
   editCharacterForm!: FormGroup;
-  skillsList = SkillsList.list;
-  // talentsList = new TalentsList();
+  skillsList: Skill[] = [];
   talentsList: Talent[] = [];
   weaponsList: Weapon[] = [];
   armorsList: Armor[] = [];
@@ -40,18 +39,6 @@ export class EditFormComponent {
               protected skillService: SkillService,
               protected talentService: TalentService) {
   }
-
-  // ngOnInit(): void {
-  //   this.route.params.subscribe(
-  //     (params: Params) => {
-  //       this.id = +params['id'];
-  //       this.initForm();
-  //     }
-  //   )
-  // }
-  //
-  // protected initForm() {
-  // }
 
   protected prepareEditData(character: Character, formArrays: CharacterFormArraysWrapper) {
     if (character.skills) {
@@ -83,11 +70,8 @@ export class EditFormComponent {
     for (let talent of talentsList) {
       talents.push(
         new FormGroup({
-          'talent': new FormControl(talent),
-          'name': new FormControl(talent.name),
-          'nameTranslation': new FormControl(talent.nameTranslation),
-          'level': new FormControl(talent.level),
-          'maxLevel': new FormControl(talent.maxLevel),
+          'talent': new FormControl(talent.talent),
+          'level': new FormControl(talent.value),
         })
       )
     }
@@ -192,11 +176,8 @@ export class EditFormComponent {
   onAddTalent() {
     (<FormArray>this.editCharacterForm.get('talents')).push(
       new FormGroup({
-        'talent': new FormControl(new CharacterTalent('', '', '', 0)),
-        'name': new FormControl(null),
-        'nameTranslation': new FormControl(null),
-        'level': new FormControl(null),
-        'maxLevel': new FormControl(null),
+        'talent': new FormControl(null),
+        'value': new FormControl(null),
       })
     )
   }

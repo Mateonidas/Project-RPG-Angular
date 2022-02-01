@@ -187,7 +187,7 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
     skirmishCharacter.criticalWounds = this.editCharacterForm.value.criticalWounds;
     skirmishCharacter.isDead = this.editCharacterForm.value.isDead;
 
-    CriticalWoundsService.removeCriticalWoundsIfHealed(skirmishCharacter);
+    // CriticalWoundsService.removeCriticalWoundsIfHealed(skirmishCharacter);
 
     return skirmishCharacter;
   }

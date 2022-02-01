@@ -1,5 +1,4 @@
 import {Characteristic, Characteristics} from "./characteristic.model";
-import {CharacterCharacteristicRest} from "../../rest-model/character-characteristic-rest.model";
 
 export class CharacterCharacteristic {
   public characteristic: Characteristic;
@@ -11,11 +10,7 @@ export class CharacterCharacteristic {
   }
 
   public static prepareCharacteristicsTable(characteristics: CharacterCharacteristic[]) {
-    for(let characteristic of characteristics) {
-      // let characterCharacteristic = new CharacterCharacteristic(
-      //   Characteristics.getCharacteristicByName(characteristicRest.characteristic),
-      //   characteristicRest.value
-      // )
+    for (let characteristic of characteristics) {
       characteristics.push(characteristic);
     }
 
@@ -23,7 +18,7 @@ export class CharacterCharacteristic {
   }
 
   static fromJSON(object: Object): CharacterCharacteristic {
-    let characterCharacteristics =  Object.assign(new CharacterCharacteristic(), object);
+    let characterCharacteristics = Object.assign(new CharacterCharacteristic(), object);
     characterCharacteristics.characteristic = Characteristic.fromJSON(characterCharacteristics['characteristic']);
 
     return characterCharacteristics;
@@ -40,7 +35,7 @@ export class CharacterCharacteristic {
 }
 
 export class CharacterCharacteristics {
-  characteristics : CharacterCharacteristic[] = [
+  characteristics: CharacterCharacteristic[] = [
     new CharacterCharacteristic(Characteristics.movement, 0),
     new CharacterCharacteristic(Characteristics.weaponSkill, 0),
     new CharacterCharacteristic(Characteristics.ballisticSkill, 0),
@@ -71,8 +66,8 @@ export class CharacterCharacteristics {
   }
 
   public prepareCharacteristicsTable(characteristics: CharacterCharacteristic[]) {
-    for(let characteristic of characteristics) {
-        this.getCharacteristicByName(characteristic.characteristic.name).value = characteristic.value;
+    for (let characteristic of characteristics) {
+      this.getCharacteristicByName(characteristic.characteristic.name).value = characteristic.value;
     }
   }
 
