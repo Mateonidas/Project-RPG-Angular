@@ -3,10 +3,9 @@ import {BodyLocalization, BodyLocalizationList} from "../body-localization/body-
 import {Weapon} from "../weapon/weapon.model";
 import {Skill} from "../skill/skill.model";
 import {Condition} from "../conditions/condition.model";
-import {RollService} from "../../shared/services/roll-service/roll.service";
 import {Roll} from "../roll/roll.model";
 import {CharacterBodyLocalizations} from "../body-localization/character-body-localizations.model";
-import {CharacterCharacteristics} from "../characteristic/character-characteristic.model";
+import {CharacterCharacteristic} from "../characteristic/character-characteristic.model";
 import {CharacterTalent} from "../talent/character-talent.model";
 import {Armor} from "../armor/armor.model";
 import {CriticalWound} from "../critical-wounds/critical-wounds.model";
@@ -37,8 +36,8 @@ export class SkirmishCharacter extends Character {
     super(character?.name, character?.description, character?.characteristics, character?.skills, character?.talents, character?.isRightHanded, character?.weapons, character?.armors);
     if (character != undefined) {
       this.id = <number>id;
-      this.currentWounds = <number>character?.characteristics.wounds.value;
-      this.skirmishInitiative = <number>character?.characteristics.initiative.value;
+      this.currentWounds = <number>character?.wounds.value;
+      this.skirmishInitiative = <number>character?.initiative.value;
       this.advantage = 0;
       this.roll = new Roll();
       this.conditions = [];
@@ -133,7 +132,7 @@ export class SkirmishCharacter extends Character {
   // }
 
   resetUnconsciousCounter() {
-    this.unconsciousCounter = RollService.calculateTraitBonus(this.characteristics.toughness.value);
+    // this.unconsciousCounter = RollService.calculateTraitBonus(this.characteristics.toughness.value);
   }
 
   // addCondition(newCondition: Model, level?: number, incurableValue?: number) {
@@ -199,7 +198,7 @@ export class SkirmishCharacter extends Character {
   static fromJSON(object: Object): SkirmishCharacter {
     let character = Object.assign(new SkirmishCharacter(), object);
     character.roll = Roll.fromJSON(character['roll']);
-    character.characteristics = CharacterCharacteristics.fromJSON(character['characteristics']);
+    character.characteristics = CharacterCharacteristic.arrayFromJSON(character['characteristics']);
     character.skills = CharacterSkill.arrayFromJSON(character["skills"]);
     character.talents = CharacterTalent.arrayFromJSON(character["talents"]);
     character.weapons = Weapon.arrayFromJSON(character['weapons']);

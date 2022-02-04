@@ -56,7 +56,7 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
     let characterName = character.name;
     let characterDescription = character.description;
     let isRightHanded = character.isRightHanded;
-    let characteristics = SkirmishCharacterEditComponent.initEditCharacteristicsTable(character.characteristics);
+    let characteristics = SkirmishCharacterEditComponent.initEditCharacteristicsTable(character);
     let formArrays = new CharacterFormArraysWrapper();
     this.isDead = character.isDead;
 
@@ -160,7 +160,7 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
   createCharacterModel() {
     const name = this.editCharacterForm.value.name;
     const description = this.editCharacterForm.value.description;
-    const characteristics = this.configureCharacteristics();
+    const characteristics = this.editCharacterForm.value.characteristics;
     const skills = this.editCharacterForm.value.skills;
     const talents = this.editCharacterForm.value.talents;
     const isRightHanded = this.editCharacterForm.value.isRightHanded;

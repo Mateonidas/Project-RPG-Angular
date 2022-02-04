@@ -8,7 +8,6 @@ import {Armor} from "../model/armor/armor.model";
 import {CharacterFormArraysWrapper} from "../model/character/character-form-arrays-wrapper.model";
 import {Model} from "../model/model";
 import {ActivatedRoute, Router} from "@angular/router";
-import {CharacterCharacteristics} from "../model/characteristic/character-characteristic.model";
 import {ArmorService} from "../shared/services/armor-service/armor.service";
 import {WeaponService} from "../shared/services/weapon-service/weapon.service";
 import {SkillService} from "../shared/services/skill-service/skill.service";
@@ -103,55 +102,55 @@ export class EditFormComponent {
     }
   }
 
-  protected static initEditCharacteristicsTable(characteristics: CharacterCharacteristics) {
+  protected static initEditCharacteristicsTable(character: Character) {
     return new FormArray([
       new FormGroup({
         'name': new FormControl('Sz'),
-        'value': new FormControl(characteristics.movement.value)
+        'value': new FormControl(character.movement.value)
       }),
       new FormGroup({
         'name': new FormControl('WW'),
-        'value': new FormControl(characteristics.weaponSkill.value)
+        'value': new FormControl(character.weaponSkill.value)
       }),
       new FormGroup({
         'name': new FormControl('US'),
-        'value': new FormControl(characteristics.ballisticSkill.value)
+        'value': new FormControl(character.ballisticSkill.value)
       }),
       new FormGroup({
         'name': new FormControl('S'),
-        'value': new FormControl(characteristics.strength.value)
+        'value': new FormControl(character.strength.value)
       }),
       new FormGroup({
         'name': new FormControl('Wt'),
-        'value': new FormControl(characteristics.toughness.value)
+        'value': new FormControl(character.toughness.value)
       }),
       new FormGroup({
         'name': new FormControl('I'),
-        'value': new FormControl(characteristics.initiative.value)
+        'value': new FormControl(character.initiative.value)
       }),
       new FormGroup({
         'name': new FormControl('Zw'),
-        'value': new FormControl(characteristics.agility.value)
+        'value': new FormControl(character.agility.value)
       }),
       new FormGroup({
         'name': new FormControl('Zr'),
-        'value': new FormControl(characteristics.dexterity.value)
+        'value': new FormControl(character.dexterity.value)
       }),
       new FormGroup({
         'name': new FormControl('Int'),
-        'value': new FormControl(characteristics.intelligence.value)
+        'value': new FormControl(character.intelligence.value)
       }),
       new FormGroup({
         'name': new FormControl('SW'),
-        'value': new FormControl(characteristics.willpower.value)
+        'value': new FormControl(character.willpower.value)
       }),
       new FormGroup({
         'name': new FormControl('Ogd'),
-        'value': new FormControl(characteristics.fellowship.value)
+        'value': new FormControl(character.fellowship.value)
       }),
       new FormGroup({
         'name': new FormControl('Żyw'),
-        'value': new FormControl(characteristics.wounds.value)
+        'value': new FormControl(character.wounds.value)
       }),
     ]);
   }
@@ -215,24 +214,6 @@ export class EditFormComponent {
 
   onSetTalentLevel(event: any, i: number) {
     this.talents[i].value.level = event.target.value;
-  }
-
-  configureCharacteristics() {
-    const characteristicsValues = this.editCharacterForm.value.characteristics;
-    return new CharacterCharacteristics(
-      characteristicsValues[0].value,
-      characteristicsValues[1].value,
-      characteristicsValues[2].value,
-      characteristicsValues[3].value,
-      characteristicsValues[4].value,
-      characteristicsValues[5].value,
-      characteristicsValues[6].value,
-      characteristicsValues[7].value,
-      characteristicsValues[8].value,
-      characteristicsValues[9].value,
-      characteristicsValues[10].value,
-      characteristicsValues[11].value
-    )
   }
 
   configureFields() {

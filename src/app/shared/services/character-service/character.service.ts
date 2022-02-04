@@ -2,13 +2,8 @@ import {Injectable} from '@angular/core';
 import {Character} from "../../../model/character/character.model";
 import {Subject} from "rxjs";
 import {CharacterTalent} from "../../../model/talent/character-talent.model";
-import {
-  CharacterCharacteristic,
-  CharacterCharacteristics
-} from "../../../model/characteristic/character-characteristic.model";
 import {CharacterSkill} from "../../../model/skill/character-skill.model";
 import {HttpClient} from "@angular/common/http";
-import {CharacterRest} from "../../../rest-model/character-rest.model";
 import {tap} from "rxjs/operators";
 import {TextResourceService} from "../text-resource-service/text-resource.service";
 import {WeaponService} from "../weapon-service/weapon.service";
@@ -33,7 +28,7 @@ export class CharacterService {
   }
 
   fetchCharacters() {
-    return this.http.get<CharacterRest[]>('http://localhost:8080/character')
+    return this.http.get<Character[]>('http://localhost:8080/character')
       .pipe(
         tap(data => {
           for (let character of data) {
@@ -42,28 +37,13 @@ export class CharacterService {
               this.prepareTalents(character.talents);
               this.weaponService.prepareWeaponsList(character.weapons);
               this.armorService.prepareArmorsList(character.armors);
-              this.charactersList.push(new Character(
-                character.name,
-                character.description,
-                this.prepareCharacteristics(character.characteristics),
-                character.skills,
-                character.talents,
-                character.isRightHanded,
-                character.weapons,
-                character.armors
-              ))
+              this.charactersList.push(character);
             }
             localStorage.setItem('characters', JSON.stringify(this.charactersList));
             this.charactersChanged.next(this.charactersList.slice());
           }
         })
       )
-  }
-
-  private prepareCharacteristics(characteristicsRest: CharacterCharacteristic[]) {
-    let characterCharacteristics = new CharacterCharacteristics();
-    characterCharacteristics.prepareCharacteristicsTable(characteristicsRest);
-    return characterCharacteristics;
   }
 
   private prepareSkills(skills: CharacterSkill[]) {

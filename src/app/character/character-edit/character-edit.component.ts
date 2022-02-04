@@ -53,7 +53,7 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
       const character = this.characterService.getCharacter(this.id);
       characterName = character.name;
       characterDescription = character.description;
-      characteristics = CharacterEditComponent.initEditCharacteristicsTable(character.characteristics);
+      characteristics = CharacterEditComponent.initEditCharacteristicsTable(character);
       this.isRightHanded = character.isRightHanded;
       this.prepareEditData(character, formArrays)
     } else {
@@ -142,7 +142,7 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
   createCharacterModel() {
     const name = this.editCharacterForm.value.name;
     const description = this.editCharacterForm.value.description;
-    const characteristics = this.configureCharacteristics();
+    const characteristics = this.editCharacterForm.value.characteristics;
     const skills = this.editCharacterForm.value.skills;
     const talents = this.editCharacterForm.value.talents;
     const isRightHanded = this.editCharacterForm.value.isRightHanded;
