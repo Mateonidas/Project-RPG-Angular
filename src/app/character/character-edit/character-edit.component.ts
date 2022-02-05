@@ -21,11 +21,11 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
 
   constructor(router: Router,
               route: ActivatedRoute,
-              private characterService: CharacterService,
-              armorService: ArmorService,
-              weaponService: WeaponService,
-              skillService: SkillService,
-              talentService: TalentService) {
+              public characterService: CharacterService,
+              public armorService: ArmorService,
+              public weaponService: WeaponService,
+              public skillService: SkillService,
+              public talentService: TalentService) {
     super(router, route, armorService, weaponService, skillService, talentService);
   }
 

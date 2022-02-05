@@ -70,7 +70,7 @@ export class EditFormComponent {
       talents.push(
         new FormGroup({
           'talent': new FormControl(talent.talent),
-          'level': new FormControl(talent.value),
+          'value': new FormControl(talent.value),
         })
       )
     }
