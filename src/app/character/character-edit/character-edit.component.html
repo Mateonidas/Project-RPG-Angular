@@ -62,7 +62,7 @@
           <h4>Umiejętności</h4>
           <div class="row mb-2" *ngFor="let skillControl of skills; let i = index" [formGroupName]="i">
             <div class="col-md-8">
-              <select class="form-select" formControlName="base" [compareWith]="compareModels">
+              <select class="form-select" formControlName="skill" [compareWith]="compareModels">
                 <option *ngFor="let skill of skillsList" [ngValue]="skill">
                   {{skill.nameTranslation}}
                 </option>

@@ -9,6 +9,12 @@ import {ArmorService} from "../../shared/services/armor-service/armor.service";
 import {WeaponService} from "../../shared/services/weapon-service/weapon.service";
 import {SkillService} from "../../shared/services/skill-service/skill.service";
 import {TalentService} from "../../shared/services/talent-service/talent.service";
+import {CharacterCharacteristic} from "../../model/characteristic/character-characteristic.model";
+import {CharacterSkill} from "../../model/skill/character-skill.model";
+import {CharacterTalent} from "../../model/talent/character-talent.model";
+import {Weapon} from "../../model/weapon/weapon.model";
+import {Armor} from "../../model/armor/armor.model";
+import {Characteristic} from "../../model/characteristic/characteristic.model";
 
 @Component({
   selector: 'app-character-edit',
@@ -83,6 +89,7 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
 
   private static initCharacteristicsTable() {
     return new FormArray([
+      //TODO podmienić name na characteristic i utworzyć odpowiedni obiekt wraz z nowymi tłumaczeniami
       new FormGroup({
         'name': new FormControl('Sz'),
         'value': new FormControl('')
@@ -135,19 +142,19 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
   }
 
   createCharacter() {
-    this.configureFields();
+    // this.configureFields();
     return this.createCharacterModel();
   }
 
   createCharacterModel() {
     const name = this.editCharacterForm.value.name;
     const description = this.editCharacterForm.value.description;
-    const characteristics = this.editCharacterForm.value.characteristics;
-    const skills = this.editCharacterForm.value.skills;
-    const talents = this.editCharacterForm.value.talents;
+    const characteristics = <CharacterCharacteristic[]>this.editCharacterForm.value.characteristics;
+    const skills = <CharacterSkill[]>this.editCharacterForm.value.skills;
+    const talents = <CharacterTalent[]>this.editCharacterForm.value.talents;
     const isRightHanded = this.editCharacterForm.value.isRightHanded;
-    const weapons = this.editCharacterForm.value.weapons;
-    const armors = this.editCharacterForm.value.armors;
+    const weapons = <Weapon[]>this.editCharacterForm.value.weapons;
+    const armors = <Armor[]>this.editCharacterForm.value.armors;
 
     return new Character(
       name,

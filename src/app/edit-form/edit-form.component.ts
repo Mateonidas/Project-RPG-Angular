@@ -58,7 +58,7 @@ export class EditFormComponent {
     for (let characterSkill of skillsList) {
       skills.push(
         new FormGroup({
-          'base': new FormControl(characterSkill.skill),
+          'skill': new FormControl(characterSkill.skill),
           'value': new FormControl(characterSkill.value),
         })
       )
@@ -166,7 +166,7 @@ export class EditFormComponent {
   onAddSkill() {
     (<FormArray>this.editCharacterForm.get('skills')).push(
       new FormGroup({
-        'base': new FormControl(null),
+        'skill': new FormControl(null),
         'value': new FormControl(null),
       })
     )
@@ -213,7 +213,7 @@ export class EditFormComponent {
   }
 
   onSetTalentLevel(event: any, i: number) {
-    this.talents[i].value.level = event.target.value;
+    this.talents[i].value.value = event.target.value;
   }
 
   configureFields() {
