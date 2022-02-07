@@ -132,7 +132,7 @@
           <h4>Broń</h4>
           <div class="row mb-2" *ngFor="let weaponControl of weapons; let i = index" [formGroupName]="i">
             <div class="col-md-10">
-              <select class="form-select" formControlName="weapon" [compareWith]="compareModels">
+              <select class="form-select" [formControl]="weapons[i]" [compareWith]="compareModels">
                 <option *ngFor="let weapon of weaponsList" [ngValue]="weapon">
                   {{weapon.nameTranslation}}
                 </option>
@@ -160,7 +160,7 @@
           <h4>Pancerz</h4>
           <div class="row mb-2" *ngFor="let armorControl of armors; let i = index" [formGroupName]="i">
             <div class="col-md-10">
-              <select class="form-select" formControlName="armor" [compareWith]="compareModels">
+              <select class="form-select" [formControl]="armors[i]" [compareWith]="compareModels">
                 <option *ngFor="let armor of armorsList" [ngValue]="armor">
                   {{armor.nameTranslation}}
                 </option>

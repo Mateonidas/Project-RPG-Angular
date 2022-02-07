@@ -14,7 +14,6 @@ import {CharacterSkill} from "../../model/skill/character-skill.model";
 import {CharacterTalent} from "../../model/talent/character-talent.model";
 import {Weapon} from "../../model/weapon/weapon.model";
 import {Armor} from "../../model/armor/armor.model";
-import {Characteristic} from "../../model/characteristic/characteristic.model";
 
 @Component({
   selector: 'app-character-edit',
@@ -89,64 +88,58 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
 
   private static initCharacteristicsTable() {
     return new FormArray([
-      //TODO podmienić name na characteristic i utworzyć odpowiedni obiekt wraz z nowymi tłumaczeniami
       new FormGroup({
-        'name': new FormControl('Sz'),
+        'characteristic': new FormControl(this.prepareCharacteristic("MOVEMENT")),
         'value': new FormControl('')
       }),
       new FormGroup({
-        'name': new FormControl('WW'),
+        'characteristic': new FormControl(this.prepareCharacteristic("WEAPON_SKILL")),
         'value': new FormControl('')
       }),
       new FormGroup({
-        'name': new FormControl('US'),
+        'characteristic': new FormControl(this.prepareCharacteristic("BALLISTIC_SKILL")),
         'value': new FormControl('')
       }),
       new FormGroup({
-        'name': new FormControl('S'),
+        'characteristic': new FormControl(this.prepareCharacteristic("STRENGTH")),
         'value': new FormControl('')
       }),
       new FormGroup({
-        'name': new FormControl('Wt'),
+        'characteristic': new FormControl(this.prepareCharacteristic("TOUGHNESS")),
         'value': new FormControl('')
       }),
       new FormGroup({
-        'name': new FormControl('I'),
+        'characteristic': new FormControl(this.prepareCharacteristic("INITIATIVE")),
         'value': new FormControl('')
       }),
       new FormGroup({
-        'name': new FormControl('Zw'),
+        'characteristic': new FormControl(this.prepareCharacteristic("AGILITY")),
         'value': new FormControl('')
       }),
       new FormGroup({
-        'name': new FormControl('Zr'),
+        'characteristic': new FormControl(this.prepareCharacteristic("DEXTERITY")),
         'value': new FormControl('')
       }),
       new FormGroup({
-        'name': new FormControl('Int'),
+        'characteristic': new FormControl(this.prepareCharacteristic("INTELLIGENCE")),
         'value': new FormControl('')
       }),
       new FormGroup({
-        'name': new FormControl('SW'),
+        'characteristic': new FormControl(this.prepareCharacteristic("WILLPOWER")),
         'value': new FormControl('')
       }),
       new FormGroup({
-        'name': new FormControl('Ogd'),
+        'characteristic': new FormControl(this.prepareCharacteristic("FELLOWSHIP")),
         'value': new FormControl('')
       }),
       new FormGroup({
-        'name': new FormControl('Żyw'),
+        'characteristic': new FormControl(this.prepareCharacteristic("WOUNDS")),
         'value': new FormControl('')
       }),
     ]);
   }
 
   createCharacter() {
-    // this.configureFields();
-    return this.createCharacterModel();
-  }
-
-  createCharacterModel() {
     const name = this.editCharacterForm.value.name;
     const description = this.editCharacterForm.value.description;
     const characteristics = <CharacterCharacteristic[]>this.editCharacterForm.value.characteristics;

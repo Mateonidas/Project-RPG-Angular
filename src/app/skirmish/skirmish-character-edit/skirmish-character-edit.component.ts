@@ -11,7 +11,6 @@ import {ConditionsList} from "../../model/conditions/conditions-list.model";
 import {CriticalWound} from "../../model/critical-wounds/critical-wounds.model";
 import {InjuresList, Injury} from "../../model/injures/injures-list.model";
 import {BodyLocalizationList} from "../../model/body-localization/body-localization.model";
-import {CriticalWoundsService} from "../../shared/services/critical-wounds-service/critical-wounds.service";
 import {ArmorService} from "../../shared/services/armor-service/armor.service";
 import {WeaponService} from "../../shared/services/weapon-service/weapon.service";
 import {SkillService} from "../../shared/services/skill-service/skill.service";
@@ -153,11 +152,6 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
   }
 
   createCharacter() {
-    this.configureFields();
-    return this.createCharacterModel();
-  }
-
-  createCharacterModel() {
     const name = this.editCharacterForm.value.name;
     const description = this.editCharacterForm.value.description;
     const characteristics = this.editCharacterForm.value.characteristics;
@@ -186,8 +180,6 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
     skirmishCharacter.injuries = this.editCharacterForm.value.injuries;
     skirmishCharacter.criticalWounds = this.editCharacterForm.value.criticalWounds;
     skirmishCharacter.isDead = this.editCharacterForm.value.isDead;
-
-    // CriticalWoundsService.removeCriticalWoundsIfHealed(skirmishCharacter);
 
     return skirmishCharacter;
   }

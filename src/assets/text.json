@@ -1,4 +1,54 @@
 {
+  "characteristics": [
+    {
+      "name": "MOVEMENT",
+      "nameTranslation": "Sz"
+    },
+    {
+      "name": "WEAPON_SKILL",
+      "nameTranslation": "WW"
+    },
+    {
+      "name": "BALLISTIC_SKILL",
+      "nameTranslation": "US"
+    },
+    {
+      "name": "STRENGTH",
+      "nameTranslation": "S"
+    },
+    {
+      "name": "TOUGHNESS",
+      "nameTranslation": "Wt"
+    },
+    {
+      "name": "INITIATIVE",
+      "nameTranslation": "I"
+    },
+    {
+      "name": "AGILITY",
+      "nameTranslation": "Zw"
+    },
+    {
+      "name": "DEXTERITY",
+      "nameTranslation": "Zr"
+    },
+    {
+      "name": "INTELLIGENCE",
+      "nameTranslation": "Int"
+    },
+    {
+      "name": "WILLPOWER",
+      "nameTranslation": "SW"
+    },
+    {
+      "name": "FELLOWSHIP",
+      "nameTranslation": "Ogd"
+    },
+    {
+      "name": "WOUNDS",
+      "nameTranslation": "Żyw"
+    }
+  ],
   "skills": [
     {
       "name": "ART_CARTOGRAPHY",

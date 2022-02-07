@@ -14,6 +14,8 @@ import {SkillService} from "../shared/services/skill-service/skill.service";
 import {CharacterSkill} from "../model/skill/character-skill.model";
 import {Talent} from "../model/talent/talent.model";
 import {TalentService} from "../shared/services/talent-service/talent.service";
+import {Characteristic} from "../model/characteristic/characteristic.model";
+import {TextResourceService} from "../shared/services/text-resource-service/text-resource.service";
 
 @Component({
   selector: 'app-edit-form',
@@ -79,9 +81,7 @@ export class EditFormComponent {
   prepareWeaponsList(weapons: FormArray, weaponsList: Weapon[]) {
     for (let weapon of weaponsList) {
       weapons.push(
-        new FormGroup({
-          'weapon': new FormControl(weapon),
-        })
+        new FormControl(weapon)
       )
     }
   }
@@ -89,15 +89,7 @@ export class EditFormComponent {
   prepareArmorList(armorsForms: FormArray, characterArmors: Armor[]) {
     for (let armor of characterArmors) {
       armorsForms.push(
-        new FormGroup({
-          'armor': new FormControl(armor),
-          'name': new FormControl(armor.name),
-          'category': new FormControl(null),
-          'penalties': new FormControl(null),
-          'localization': new FormControl(null),
-          'armorPoints': new FormControl(null),
-          'qualities': new FormControl(null)
-        })
+        new FormControl(armor)
       )
     }
   }
@@ -105,54 +97,58 @@ export class EditFormComponent {
   protected static initEditCharacteristicsTable(character: Character) {
     return new FormArray([
       new FormGroup({
-        'name': new FormControl('Sz'),
+        'characteristic': new FormControl(this.prepareCharacteristic("MOVEMENT")),
         'value': new FormControl(character.movement.value)
       }),
       new FormGroup({
-        'name': new FormControl('WW'),
+        'characteristic': new FormControl(this.prepareCharacteristic("WEAPON_SKILL")),
         'value': new FormControl(character.weaponSkill.value)
       }),
       new FormGroup({
-        'name': new FormControl('US'),
+        'characteristic': new FormControl(this.prepareCharacteristic("BALLISTIC_SKILL")),
         'value': new FormControl(character.ballisticSkill.value)
       }),
       new FormGroup({
-        'name': new FormControl('S'),
+        'characteristic': new FormControl(this.prepareCharacteristic("STRENGTH")),
         'value': new FormControl(character.strength.value)
       }),
       new FormGroup({
-        'name': new FormControl('Wt'),
+        'characteristic': new FormControl(this.prepareCharacteristic("TOUGHNESS")),
         'value': new FormControl(character.toughness.value)
       }),
       new FormGroup({
-        'name': new FormControl('I'),
+        'characteristic': new FormControl(this.prepareCharacteristic("INITIATIVE")),
         'value': new FormControl(character.initiative.value)
       }),
       new FormGroup({
-        'name': new FormControl('Zw'),
+        'characteristic': new FormControl(this.prepareCharacteristic("AGILITY")),
         'value': new FormControl(character.agility.value)
       }),
       new FormGroup({
-        'name': new FormControl('Zr'),
+        'characteristic': new FormControl(this.prepareCharacteristic("DEXTERITY")),
         'value': new FormControl(character.dexterity.value)
       }),
       new FormGroup({
-        'name': new FormControl('Int'),
+        'characteristic': new FormControl(this.prepareCharacteristic("INTELLIGENCE")),
         'value': new FormControl(character.intelligence.value)
       }),
       new FormGroup({
-        'name': new FormControl('SW'),
+        'characteristic': new FormControl(this.prepareCharacteristic("WILLPOWER")),
         'value': new FormControl(character.willpower.value)
       }),
       new FormGroup({
-        'name': new FormControl('Ogd'),
+        'characteristic': new FormControl(this.prepareCharacteristic("FELLOWSHIP")),
         'value': new FormControl(character.fellowship.value)
       }),
       new FormGroup({
-        'name': new FormControl('Żyw'),
+        'characteristic': new FormControl(this.prepareCharacteristic("WOUNDS")),
         'value': new FormControl(character.wounds.value)
       }),
     ]);
+  }
+
+  protected static prepareCharacteristic(name: string) {
+    return new Characteristic(name, TextResourceService.getCharacteristicNameTranslation(name).nameTranslation);
   }
 
   onCancel() {
@@ -183,76 +179,18 @@ export class EditFormComponent {
 
   onAddWeapon() {
     (<FormArray>this.editCharacterForm.get('weapons')).push(
-      new FormGroup({
-        'weapon': new FormControl(null),
-        'name': new FormControl(null),
-        'nameTranslation': new FormControl(null),
-        'attackType': new FormControl(null),
-        'weaponGroup': new FormControl(null),
-        'range': new FormControl(null),
-        'damage': new FormControl(null),
-        'isUsingStrength': new FormControl(null),
-        'qualities': new FormControl(null)
-      })
+      new FormControl(null)
     )
   }
 
   onAddArmor() {
     (<FormArray>this.editCharacterForm.get('armors')).push(
-      new FormGroup({
-        'armor': new FormControl(new Armor('', '', new Model(), [], [], 0, [])),
-        'name': new FormControl(null),
-        'nameTranslation': new FormControl(null),
-        'category': new FormControl(null),
-        'penalties': new FormControl(null),
-        'localization': new FormControl(null),
-        'armorPoints': new FormControl(null),
-        'qualities': new FormControl(null)
-      })
+      new FormControl(null),
     )
   }
 
   onSetTalentLevel(event: any, i: number) {
     this.talents[i].value.value = event.target.value;
-  }
-
-  configureFields() {
-    this.configureTalents();
-    this.configureWeapons();
-    this.configureArmors();
-  }
-
-  configureTalents() {
-    this.talents.forEach(talent => {
-      talent.value.nameTranslation = talent.value.talent.nameTranslation;
-      talent.value.name = talent.value.talent.name;
-      talent.value.maxLevel = talent.value.talent.maxLevel;
-    })
-  }
-
-  configureWeapons() {
-    this.weapons.forEach(weapon => {
-      weapon.value.name = weapon.value.weapon.name;
-      weapon.value.nameTranslation = weapon.value.weapon.nameTranslation;
-      weapon.value.attackType = weapon.value.weapon.attackType;
-      weapon.value.weaponGroup = weapon.value.weapon.weaponGroup;
-      weapon.value.range = weapon.value.weapon.range;
-      weapon.value.damage = weapon.value.weapon.damage;
-      weapon.value.isUsingStrength = weapon.value.weapon.isUsingStrength;
-      weapon.value.qualities = weapon.value.weapon.qualities;
-    })
-  }
-
-  configureArmors() {
-    this.armors.forEach(armor => {
-      armor.value.name = armor.value.armor.name;
-      armor.value.nameTranslation = armor.value.armor.nameTranslation;
-      armor.value.category = armor.value.armor.category;
-      armor.value.penalties = armor.value.armor.penalties;
-      armor.value.localization = armor.value.armor.localization;
-      armor.value.armorPoints = armor.value.armor.armorPoints;
-      armor.value.qualities = armor.value.armor.qualities
-    })
   }
 
   get characteristics() {
@@ -268,11 +206,11 @@ export class EditFormComponent {
   }
 
   get weapons() {
-    return (<FormArray>this.editCharacterForm.get('weapons')).controls;
+    return <FormControl[]>(<FormArray>this.editCharacterForm.get('weapons')).controls;
   }
 
   get armors() {
-    return (<FormArray>this.editCharacterForm.get('armors')).controls;
+    return <FormControl[]>(<FormArray>this.editCharacterForm.get('armors')).controls;
   }
 
   onDeleteSkill(index: number) {
