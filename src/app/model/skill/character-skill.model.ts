@@ -4,23 +4,23 @@ export class CharacterSkill {
     public skill: Skill;
     public value: number;
 
-    constructor(skill?: Skill, value?: number) {
-        this.skill = <Skill>skill;
-        this.value = <number>value;
-    }
+  constructor(skill?: Skill, value?: number) {
+    this.skill = <Skill>skill;
+    this.value = <number>value;
+  }
 
-    static fromJSON(object: Object): CharacterSkill {
-        let characterSkill = Object.assign(new CharacterSkill(), object);
-        characterSkill.skill = Skill.fromJSON(characterSkill['skill']);
-        return characterSkill;
-    }
+  static fromJSON(object: Object): CharacterSkill {
+    let characterSkill = Object.assign(new CharacterSkill(), object);
+    characterSkill.skill = Skill.fromJSON(characterSkill['skill']);
+    return characterSkill;
+  }
 
-    static arrayFromJSON(objectsArray: Object[]): CharacterSkill[] {
-        let characterSkills = [];
-        for (let object of objectsArray) {
-            let characterSkill = CharacterSkill.fromJSON(object);
-            characterSkills.push(characterSkill);
-        }
-        return characterSkills;
+  static arrayFromJSON(objectsArray: Object[]): CharacterSkill[] {
+    let characterSkills = [];
+    for (let object of objectsArray) {
+      let characterSkill = CharacterSkill.fromJSON(object);
+      characterSkills.push(characterSkill);
     }
+    return characterSkills;
+  }
 }

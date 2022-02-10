@@ -22,7 +22,7 @@ export class CharacterDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
         this.id = +params['id'];
-        this.character = this.characterService.getCharacter(this.id);
+        this.character = <Character>this.characterService.getCharacter(this.id);
       }
     )
   }

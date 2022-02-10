@@ -5,6 +5,7 @@ import {CharacterCharacteristic} from "../characteristic/character-characteristi
 import {CharacterSkill} from "../skill/character-skill.model";
 
 export class Character {
+  id!: number;
   name!: string;
   description!: string;
   characteristics!: CharacterCharacteristic[];

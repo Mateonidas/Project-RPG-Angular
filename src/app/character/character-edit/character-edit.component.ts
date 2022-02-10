@@ -55,7 +55,7 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
     let formArrays = new CharacterFormArraysWrapper();
 
     if (this.editMode) {
-      const character = this.characterService.getCharacter(this.id);
+      const character = <Character>this.characterService.getCharacter(this.id);
       characterName = character.name;
       characterDescription = character.description;
       characteristics = CharacterEditComponent.initEditCharacteristicsTable(character);
@@ -78,11 +78,11 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
   }
 
   onSubmit() {
+    let character = this.createCharacter();
     if (this.editMode) {
-      this.characterService.updateCharacter(this.id, this.createCharacter());
-    } else {
-      this.characterService.addNewCharacter(this.createCharacter());
+      character.id = this.id;
     }
+    this.characterService.storeCharacter(character);
     this.onCancel()
   }
 
