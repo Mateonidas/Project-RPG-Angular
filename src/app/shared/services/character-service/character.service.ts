@@ -4,7 +4,6 @@ import {Subject} from "rxjs";
 import {CharacterTalent} from "../../../model/talent/character-talent.model";
 import {CharacterSkill} from "../../../model/skill/character-skill.model";
 import {HttpClient} from "@angular/common/http";
-import {tap} from "rxjs/operators";
 import {TextResourceService} from "../text-resource-service/text-resource.service";
 import {WeaponService} from "../weapon-service/weapon.service";
 import {ArmorService} from "../armor-service/armor.service";
@@ -28,29 +27,25 @@ export class CharacterService {
   }
 
   fetchCharacters() {
-    return this.http.get<Character[]>('http://localhost:8080/character')
-      .pipe(
-        tap(data => {
-          this.charactersList = [];
-          for (let character of data) {
-            this.prepareSkills(character.skills);
-            this.prepareTalents(character.talents);
-            this.weaponService.prepareWeaponsList(character.weapons);
-            this.armorService.prepareArmorsList(character.armors);
-            this.charactersList.push(character);
-          }
-          localStorage.setItem('characters', JSON.stringify(this.charactersList));
-          this.charactersChanged.next(this.charactersList.slice());
-        })
-      )
+    return this.http.get<Character[]>('http://localhost:8080/character').toPromise()
+      .then(data => {
+        this.charactersList = [];
+        for (let character of data) {
+          this.prepareSkills(character.skills);
+          this.prepareTalents(character.talents);
+          this.weaponService.prepareWeaponsList(character.weapons);
+          this.armorService.prepareArmorsList(character.armors);
+          this.charactersList.push(character);
+        }
+        localStorage.setItem('characters', JSON.stringify(this.charactersList));
+        this.charactersChanged.next(this.charactersList.slice());
+      })
   }
 
   putCharacter(character: Character) {
     return this.http
       .put('http://localhost:8080/character', character)
-      .subscribe(response => {
-        console.log(response);
-      })
+      .toPromise()
   }
 
   private prepareSkills(skills: CharacterSkill[]) {
@@ -77,8 +72,11 @@ export class CharacterService {
     return this.charactersList.find(value => value.id == id);
   }
 
-  storeCharacter(character: Character) {
-    this.putCharacter(character);
-    this.fetchCharacters();
+  async storeCharacter(character: Character) {
+    await this.putCharacter(character).then(
+      async () => {
+        await this.fetchCharacters().then()
+      }
+    );
   }
 }

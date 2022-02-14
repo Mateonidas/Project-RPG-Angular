@@ -16,9 +16,8 @@ export class TalentService {
   }
 
   fetchTalent() {
-    return this.http.get<Talent[]>('http://localhost:8080/talent')
-      .pipe(
-        tap(data => {
+    return this.http.get<Talent[]>('http://localhost:8080/talent').toPromise()
+      .then(data => {
           for (let talent of data) {
             talent.nameTranslation = TextResourceService.getTalentNameTranslation(talent.name).nameTranslation;
             this.talentList.push(talent);
@@ -27,7 +26,6 @@ export class TalentService {
             (a, b) => (a.nameTranslation > b.nameTranslation) ? 1 : ((b.nameTranslation > a.nameTranslation) ? -1 : 0)
           );
           this.talentListChanged.next(this.talentList.slice());
-        })
-      )
+        });
   }
 }

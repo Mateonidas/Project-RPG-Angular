@@ -16,14 +16,13 @@ export class ArmorService {
   }
 
   fetchArmors() {
-    return this.http.get<Armor[]>('http://localhost:8080/armor')
-      .pipe(
-        tap(data => {
+    return this.http.get<Armor[]>('http://localhost:8080/armor').toPromise()
+      .then(data => {
             this.prepareArmorsList(data);
             this.armorsList = data;
             this.armorsListChanged.next(this.armorsList.slice());
           }
-        ));
+        );
   }
 
   public prepareArmorsList(armors: Armor[]) {

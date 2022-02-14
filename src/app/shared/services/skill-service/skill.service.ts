@@ -16,9 +16,8 @@ export class SkillService {
   }
 
   fetchSkills() {
-    return this.http.get<Skill[]>('http://localhost:8080/skill')
-      .pipe(
-        tap(data => {
+    return this.http.get<Skill[]>('http://localhost:8080/skill').toPromise()
+      .then(data => {
           for (let skill of data) {
             skill.nameTranslation = TextResourceService.getSkillNameTranslation(skill.name).nameTranslation;
             this.skillList.push(skill);
@@ -27,7 +26,6 @@ export class SkillService {
             (a, b) => (a.nameTranslation > b.nameTranslation) ? 1 : ((b.nameTranslation > a.nameTranslation) ? -1 : 0)
           );
           this.skillListChanged.next(this.skillList.slice());
-        })
-      )
+        });
   }
 }

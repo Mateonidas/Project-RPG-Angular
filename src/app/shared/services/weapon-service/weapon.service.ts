@@ -16,14 +16,12 @@ export class WeaponService {
   }
 
   fetchWeapons() {
-    return this.http.get<Weapon[]>('http://localhost:8080/weapon')
-      .pipe(
-        tap(data => {
+    return this.http.get<Weapon[]>('http://localhost:8080/weapon').toPromise()
+      .then(data => {
           this.prepareWeaponsList(data);
           this.weaponsList = data;
           this.weaponListChanged.next(this.weaponsList.slice());
-        })
-      )
+        });
   }
 
   public prepareWeaponsList(weapons: Weapon[]) {

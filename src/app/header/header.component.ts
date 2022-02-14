@@ -10,21 +10,6 @@ import {CharacterService} from "../shared/services/character-service/character.s
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   collapsed = true;
-
-  constructor(public armorService: ArmorService,
-              public weaponService: WeaponService,
-              public skillService: SkillService,
-              public talentService: TalentService,
-              public characterService: CharacterService) { }
-
-  ngOnInit() {
-    this.armorService.fetchArmors().subscribe();
-    this.weaponService.fetchWeapons().subscribe();
-    this.skillService.fetchSkills().subscribe();
-    this.talentService.fetchTalent().subscribe();
-    this.characterService.fetchCharacters().subscribe();
-  }
-
 }

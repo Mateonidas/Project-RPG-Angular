@@ -82,8 +82,9 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
     if (this.editMode) {
       character.id = this.id;
     }
-    this.characterService.storeCharacter(character);
-    this.onCancel()
+    this.characterService.storeCharacter(character).then(r => {
+      this.onCancel()
+    });
   }
 
   private static initCharacteristicsTable() {
