@@ -1607,6 +1607,22 @@
     {
       "name": "THROWING",
       "nameTranslation": "Miotane"
+    },
+    {
+      "name": "BLACKPOWDER_AMMUNITION",
+      "nameTranslation": "Amunicja prochowa"
+    },
+    {
+      "name": "BOW_AMMUNITION",
+      "nameTranslation": "Strzały"
+    },
+    {
+      "name": "CROSSBOW_AMMUNITION",
+      "nameTranslation": "Bełty"
+    },
+    {
+      "name": "SLING_AMMUNITION",
+      "nameTranslation": "Pociski do procy"
     }
   ],
   "weaponReach": [

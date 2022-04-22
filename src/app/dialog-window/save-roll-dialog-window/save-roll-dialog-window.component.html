@@ -18,9 +18,9 @@
       <input type="radio" formControlName="checkDefendTrait" value="dodge"> Unik
 
       <select *ngIf="checkDefendTrait == 'weapon'" class="form-select" formControlName="defendTrait">
-        <option [ngValue]="weapon"
-                *ngFor="let weapon of characterWeapon; let i = index">
-          {{weapon.nameTranslation}}
+        <option [ngValue]="characterWeapon"
+                *ngFor="let characterWeapon of characterWeapon; let i = index">
+          {{characterWeapon.weapon.nameTranslation}}
         </option>
       </select>
     </div>

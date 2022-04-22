@@ -16,6 +16,7 @@ import {Talent} from "../model/talent/talent.model";
 import {TalentService} from "../shared/services/talent-service/talent.service";
 import {Characteristic} from "../model/characteristic/characteristic.model";
 import {TextResourceService} from "../shared/services/text-resource-service/text-resource.service";
+import {CharacterWeapon} from "../model/weapon/character-weapon.model";
 
 @Component({
   selector: 'app-edit-form',
@@ -78,10 +79,13 @@ export class EditFormComponent {
     }
   }
 
-  prepareWeaponsList(weapons: FormArray, weaponsList: Weapon[]) {
+  prepareWeaponsList(weapons: FormArray, weaponsList: CharacterWeapon[]) {
     for (let weapon of weaponsList) {
       weapons.push(
-        new FormControl(weapon)
+        new FormGroup({
+          'weapon': new FormControl(weapon.weapon),
+          'value': new FormControl(weapon.value)
+        })
       )
     }
   }
@@ -179,7 +183,10 @@ export class EditFormComponent {
 
   onAddWeapon() {
     (<FormArray>this.editCharacterForm.get('weapons')).push(
-      new FormControl(null)
+      new FormGroup({
+        'weapon': new FormControl(null),
+        'value': new FormControl(null),
+      })
     )
   }
 

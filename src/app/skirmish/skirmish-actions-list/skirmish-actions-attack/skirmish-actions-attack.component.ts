@@ -12,6 +12,7 @@ import {AttackType} from 'src/app/model/attack/attack-type.model';
 import {AttackReportService} from "../../../dialog-window/report-dialog-window/attack-report-service/attack-report.service";
 import {AttackReportDialogWindowComponent} from "../../../dialog-window/report-dialog-window/attack-report-dialog-window.component";
 import {RollService} from "../../../shared/services/roll-service/roll.service";
+import {CharacterWeapon} from "../../../model/weapon/character-weapon.model";
 // import {ConditionService} from "../../../shared/services/condition-service/condition.service";
 // import {FightService} from "../../../shared/services/fight-service/fight.service";
 
@@ -27,7 +28,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
   attacksTypeList!: AttackType[];
   attacksCategoryList = AttacksCategoryList.list;
   skirmishCharactersList!: SkirmishCharacter[];
-  characterWeapons!: Weapon[];
+  characterWeapons!: CharacterWeapon[];
   id!: number;
 
   constructor(protected router: Router,
@@ -56,7 +57,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
     this.skirmishCharactersList.splice(this.id, 1);
 
     this.attacksTypeList = AttacksTypeList.attacksTypeList.filter(x => x.category.name === 'MELEE');
-    this.characterWeapons = this.attacker.weapons.filter(x => x.weaponType.name === 'MELEE');
+    this.characterWeapons = this.attacker.weapons.filter(x => x.weapon.weaponType.name === 'MELEE');
 
     this.attackForm = new FormGroup({
       'attackCategory': new FormControl(AttacksCategoryList.meleeAttack, [Validators.required]),
@@ -71,7 +72,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
   onCategoryChange() {
     let category = this.attackCategory?.value.name;
     this.attacksTypeList = AttacksTypeList.attacksTypeList.filter(x => x.category.name === category);
-    this.characterWeapons = this.attacker.weapons.filter(x => x.weaponType === category);
+    this.characterWeapons = this.attacker.weapons.filter(x => x.weapon.weaponType === category);
 
     this.attackType?.setValue(this.attacksTypeList[0]);
     this.weapon?.setValue(this.characterWeapons[0]);

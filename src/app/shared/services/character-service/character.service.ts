@@ -7,6 +7,7 @@ import {HttpClient} from "@angular/common/http";
 import {TextResourceService} from "../text-resource-service/text-resource.service";
 import {WeaponService} from "../weapon-service/weapon.service";
 import {ArmorService} from "../armor-service/armor.service";
+import {CharacterWeapon} from "../../../model/weapon/character-weapon.model";
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,7 @@ export class CharacterService {
         for (let character of data) {
           this.prepareSkills(character.skills);
           this.prepareTalents(character.talents);
-          this.weaponService.prepareWeaponsList(character.weapons);
+          this.prepareWeapons(character.weapons);
           this.armorService.prepareArmorsList(character.armors);
           this.charactersList.push(character);
         }
@@ -61,6 +62,13 @@ export class CharacterService {
 
     return talents;
   }
+
+  private prepareWeapons(weapons: CharacterWeapon[]) {
+    for (let weapon of weapons) {
+      this.weaponService.prepareWeaponTranslation(weapon.weapon);
+    }
+  }
+
 
   getCharacters() {
     this.charactersList = Character.arrayFromJSON(JSON.parse(<string>localStorage.getItem('characters')));

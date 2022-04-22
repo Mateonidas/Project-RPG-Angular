@@ -3,6 +3,7 @@ import {Weapon} from "../weapon/weapon.model";
 import {Armor} from "../armor/armor.model";
 import {CharacterCharacteristic} from "../characteristic/character-characteristic.model";
 import {CharacterSkill} from "../skill/character-skill.model";
+import {CharacterWeapon} from "../weapon/character-weapon.model";
 
 export class Character {
   id!: number;
@@ -12,17 +13,17 @@ export class Character {
   skills!: CharacterSkill[];
   talents!: CharacterTalent[];
   isRightHanded!: boolean;
-  weapons!: Weapon[];
+  weapons!: CharacterWeapon[];
   armors!: Armor[];
 
-  constructor(name?: string, description?: string, characteristics?: CharacterCharacteristic[], skills?: CharacterSkill[], talents?: CharacterTalent[], rightHanded?: boolean, weapons?: Weapon[], armor?: Armor[]) {
+  constructor(name?: string, description?: string, characteristics?: CharacterCharacteristic[], skills?: CharacterSkill[], talents?: CharacterTalent[], rightHanded?: boolean, weapons?: CharacterWeapon[], armor?: Armor[]) {
     this.name = <string>name;
     this.description = <string>description;
     this.characteristics = <CharacterCharacteristic[]>characteristics;
     this.skills = <CharacterSkill[]>skills;
     this.talents = <CharacterTalent[]>talents;
     this.isRightHanded = <boolean>rightHanded;
-    this.weapons = <Weapon[]>weapons;
+    this.weapons = <CharacterWeapon[]>weapons;
     this.armors = <Armor[]>armor;
   }
 
@@ -79,7 +80,7 @@ export class Character {
     character.characteristics = CharacterCharacteristic.arrayFromJSON(character['characteristics']);
     character.skills = CharacterSkill.arrayFromJSON(character["skills"]);
     character.talents = CharacterTalent.arrayFromJSON(character["talents"]);
-    character.weapons = Weapon.arrayFromJSON(character['weapons']);
+    character.weapons = CharacterWeapon.arrayFromJSON(character['weapons']);
     character.armors = Armor.arrayFromJSON(character['armors']);
     return character;
   }

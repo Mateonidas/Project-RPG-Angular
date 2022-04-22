@@ -14,6 +14,7 @@ import {CharacterSkill} from "../../model/skill/character-skill.model";
 import {CharacterTalent} from "../../model/talent/character-talent.model";
 import {Weapon} from "../../model/weapon/weapon.model";
 import {Armor} from "../../model/armor/armor.model";
+import {CharacterWeapon} from "../../model/weapon/character-weapon.model";
 
 @Component({
   selector: 'app-character-edit',
@@ -147,7 +148,7 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
     const skills = <CharacterSkill[]>this.editCharacterForm.value.skills;
     const talents = <CharacterTalent[]>this.editCharacterForm.value.talents;
     const isRightHanded = this.editCharacterForm.value.isRightHanded;
-    const weapons = <Weapon[]>this.editCharacterForm.value.weapons;
+    const weapons = <CharacterWeapon[]>this.editCharacterForm.value.weapons;
     const armors = <Armor[]>this.editCharacterForm.value.armors;
 
     return new Character(

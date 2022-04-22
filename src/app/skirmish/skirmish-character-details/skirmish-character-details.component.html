@@ -222,22 +222,23 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let weapon of skirmishCharacter.weapons">
-        <td>{{weapon.nameTranslation}}</td>
-        <td>{{weapon.weaponGroupType}}</td>
-        <td>{{weapon.weaponRange}}</td>
+      <tr *ngFor="let characterWeapon of skirmishCharacter.weapons">
+        <td>{{characterWeapon.weapon.nameTranslation}}</td>
+        <td>{{characterWeapon.weapon.weaponGroupType}}</td>
+        <td>{{characterWeapon.weapon.weaponRange}}</td>
         <td>
-          <span *ngIf="weapon.isUsingStrength; else elseBlock">+BS+{{weapon.damage}}</span>
-          <ng-template #elseBlock>+{{weapon.damage}}</ng-template>
+          <span *ngIf="characterWeapon.weapon.isUsingStrength; else elseBlock">+BS+{{characterWeapon.weapon.damage}}</span>
+          <ng-template #elseBlock>+{{characterWeapon.weapon.damage}}</ng-template>
         </td>
         <td>
-          <span *ngFor="let quality of weapon.weaponQualities"> {{quality.nameTranslation}}</span>
+          <span *ngFor="let quality of characterWeapon.weapon.weaponQualities"> {{quality.nameTranslation}}</span>
         </td>
       </tr>
       </tbody>
     </table>
   </div>
 </div>
+
 
 <hr>
 <div class="row">

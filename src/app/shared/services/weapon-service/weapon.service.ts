@@ -33,7 +33,7 @@ export class WeaponService {
     )
   }
 
-  private prepareWeaponTranslation(weapon: Weapon) {
+  public prepareWeaponTranslation(weapon: Weapon) {
     weapon.weaponType.nameTranslation = TextResourceService.getWeaponTypeNameTranslation(weapon.weaponType.name).nameTranslation;
     weapon.weaponGroupType.nameTranslation = TextResourceService.getWeaponGroupTypeNameTranslation(weapon.weaponGroupType.name).nameTranslation;
     weapon.weaponReach.nameTranslation = TextResourceService.getWeaponReachNameTranslation(weapon.weaponReach.name).nameTranslation;

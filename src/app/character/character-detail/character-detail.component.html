@@ -113,19 +113,19 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let weapon of character.weapons">
-        <td>{{weapon.nameTranslation}}</td>
-        <td>{{weapon.weaponGroupType.nameTranslation}}</td>
+      <tr *ngFor="let characterWeapon of character.weapons">
+        <td>{{characterWeapon.weapon.nameTranslation}}</td>
+        <td>{{characterWeapon.weapon.weaponGroupType.nameTranslation}}</td>
         <td>
-          <span *ngIf="weapon.weaponRange == 0; else weaponRange">{{weapon.weaponReach.nameTranslation}}</span>
-          <ng-template #weaponRange>{{weapon.weaponRange}}</ng-template>
+          <span *ngIf="characterWeapon.weapon.weaponRange == 0; else weaponRange">{{characterWeapon.weapon.weaponReach.nameTranslation}}</span>
+          <ng-template #weaponRange>{{characterWeapon.weapon.weaponRange}}</ng-template>
         </td>
         <td>
-          <span *ngIf="weapon.isUsingStrength; else elseBlock">+BS+{{weapon.damage}}</span>
-          <ng-template #elseBlock>+{{weapon.damage}}</ng-template>
+          <span *ngIf="characterWeapon.weapon.isUsingStrength; else elseBlock">+BS+{{characterWeapon.weapon.damage}}</span>
+          <ng-template #elseBlock>+{{characterWeapon.weapon.damage}}</ng-template>
         </td>
         <td>
-          <span *ngFor="let quality of weapon.weaponQualities"> {{quality.nameTranslation}}</span>
+          <span *ngFor="let quality of characterWeapon.weapon.weaponQualities"> {{quality.nameTranslation}}</span>
         </td>
       </tr>
       </tbody>

@@ -42,8 +42,8 @@
         <div class="col-md-8">
           <select class="form-select" formControlName="weapon">
             <option [ngValue]="weapon"
-                    *ngFor="let weapon of characterWeapons; let i = index">
-              {{weapon.nameTranslation}}
+                    *ngFor="let characterWeapon of characterWeapons; let i = index">
+              {{characterWeapon.weapon.nameTranslation}}
             </option>
           </select>
           <app-validation-alert

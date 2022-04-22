@@ -11,6 +11,7 @@ import {Armor} from "../armor/armor.model";
 import {CriticalWound} from "../critical-wounds/critical-wounds.model";
 import {Injury} from "../injures/injures-list.model";
 import {CharacterSkill} from "../skill/character-skill.model";
+import {CharacterWeapon} from "../weapon/character-weapon.model";
 
 export class SkirmishCharacter extends Character {
 
@@ -199,9 +200,9 @@ export class SkirmishCharacter extends Character {
     let character = Object.assign(new SkirmishCharacter(), object);
     character.roll = Roll.fromJSON(character['roll']);
     character.characteristics = CharacterCharacteristic.arrayFromJSON(character['characteristics']);
-    character.skills = CharacterSkill.arrayFromJSON(character["skills"]);
-    character.talents = CharacterTalent.arrayFromJSON(character["talents"]);
-    character.weapons = Weapon.arrayFromJSON(character['weapons']);
+    character.skills = CharacterSkill.arrayFromJSON(character['skills']);
+    character.talents = CharacterTalent.arrayFromJSON(character['talents']);
+    character.weapons = CharacterWeapon.arrayFromJSON(character['weapons']);
     character.armors = Armor.arrayFromJSON(character['armors']);
     character.conditions = Condition.arrayFromJSON(character['conditions'])
     character.injuries = Injury.arrayFromJSON(character['injuries'])
