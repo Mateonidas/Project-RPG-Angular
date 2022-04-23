@@ -175,10 +175,19 @@
           <div class="row mb-2" *ngFor="let armorControl of armors; let i = index" [formGroupName]="i">
             <div class="col-md-10">
               <select class="form-select" [formControl]="armors[i]" [compareWith]="compareModels">
-                <option *ngFor="let armor of armorsList" [ngValue]="armor">
-                  {{armor.nameTranslation}}
+                <option disabled="disabled">
+                  ---- {{armorsList[0].armorCategory.nameTranslation}} ----
                 </option>
+                <ng-container *ngFor="let armor of armorsList; let i = index">
+                  <option *ngIf="i > 0 && armor.armorCategory.name !== armorsList[i-1].armorCategory.name" disabled="disabled">
+                    ---- {{armor.armorCategory.nameTranslation}} ----
+                  </option>
+                  <option [ngValue]="armor">
+                    {{armor.nameTranslation}}
+                  </option>
+                </ng-container>
               </select>
+
             </div>
             <div class="col-md-2">
               <button
