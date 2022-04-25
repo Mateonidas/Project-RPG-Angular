@@ -12,6 +12,7 @@ import {CriticalWound} from "../critical-wounds/critical-wounds.model";
 import {Injury} from "../injures/injures-list.model";
 import {CharacterSkill} from "../skill/character-skill.model";
 import {CharacterWeapon} from "../weapon/character-weapon.model";
+import {CharacterBodyLocalization} from "../body-localization/character-body-localization.model";
 
 export class SkirmishCharacter extends Character {
 
@@ -26,7 +27,8 @@ export class SkirmishCharacter extends Character {
   conditions!: Condition[];
   injuries!: Injury[];
   criticalWounds!: CriticalWound[];
-  bodyLocalizations!: CharacterBodyLocalizations;
+  bodyLocalizations!: CharacterBodyLocalization[];
+  skirmishBodyLocalizations!: CharacterBodyLocalizations;
   isDead!: boolean;
   isEngaged!: boolean;
   isFlanked!: boolean;
@@ -53,13 +55,13 @@ export class SkirmishCharacter extends Character {
   }
 
   private fillLocalizationArmorPoints() {
-    this.bodyLocalizations = new CharacterBodyLocalizations();
-    this.bodyLocalizations.head.armorPoints = this.getArmorForLocalization(BodyLocalizationList.head);
-    this.bodyLocalizations.leftArm.armorPoints = this.getArmorForLocalization(BodyLocalizationList.leftArm);
-    this.bodyLocalizations.rightArm.armorPoints = this.getArmorForLocalization(BodyLocalizationList.rightArm);
-    this.bodyLocalizations.body.armorPoints = this.getArmorForLocalization(BodyLocalizationList.body);
-    this.bodyLocalizations.leftLeg.armorPoints = this.getArmorForLocalization(BodyLocalizationList.leftLeg);
-    this.bodyLocalizations.rightLeg.armorPoints = this.getArmorForLocalization(BodyLocalizationList.rightLeg);
+    this.skirmishBodyLocalizations = new CharacterBodyLocalizations();
+    this.skirmishBodyLocalizations.head.armorPoints = this.getArmorForLocalization(BodyLocalizationList.head);
+    this.skirmishBodyLocalizations.leftArm.armorPoints = this.getArmorForLocalization(BodyLocalizationList.leftArm);
+    this.skirmishBodyLocalizations.rightArm.armorPoints = this.getArmorForLocalization(BodyLocalizationList.rightArm);
+    this.skirmishBodyLocalizations.body.armorPoints = this.getArmorForLocalization(BodyLocalizationList.body);
+    this.skirmishBodyLocalizations.leftLeg.armorPoints = this.getArmorForLocalization(BodyLocalizationList.leftLeg);
+    this.skirmishBodyLocalizations.rightLeg.armorPoints = this.getArmorForLocalization(BodyLocalizationList.rightLeg);
   }
 
   private getArmorForLocalization(localization: BodyLocalization) {
@@ -207,7 +209,7 @@ export class SkirmishCharacter extends Character {
     character.conditions = Condition.arrayFromJSON(character['conditions'])
     character.injuries = Injury.arrayFromJSON(character['injuries'])
     character.criticalWounds = CriticalWound.arrayFromJSON(character['criticalWounds']);
-    character.bodyLocalizations = CharacterBodyLocalizations.fromJSON(character['bodyLocalizations']);
+    character.skirmishBodyLocalizations = CharacterBodyLocalizations.fromJSON(character['bodyLocalizations']);
     return character;
   }
 

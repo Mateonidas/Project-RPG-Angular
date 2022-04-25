@@ -1,9 +1,9 @@
 import {CharacterTalent} from "../talent/character-talent.model";
-import {Weapon} from "../weapon/weapon.model";
 import {Armor} from "../armor/armor.model";
 import {CharacterCharacteristic} from "../characteristic/character-characteristic.model";
 import {CharacterSkill} from "../skill/character-skill.model";
 import {CharacterWeapon} from "../weapon/character-weapon.model";
+import {CharacterBodyLocalization} from "../body-localization/character-body-localization.model";
 
 export class Character {
   id!: number;
@@ -15,8 +15,9 @@ export class Character {
   isRightHanded!: boolean;
   weapons!: CharacterWeapon[];
   armors!: Armor[];
+  bodyLocalizations!: CharacterBodyLocalization[];
 
-  constructor(name?: string, description?: string, characteristics?: CharacterCharacteristic[], skills?: CharacterSkill[], talents?: CharacterTalent[], rightHanded?: boolean, weapons?: CharacterWeapon[], armor?: Armor[]) {
+  constructor(name?: string, description?: string, characteristics?: CharacterCharacteristic[], skills?: CharacterSkill[], talents?: CharacterTalent[], rightHanded?: boolean, weapons?: CharacterWeapon[], armor?: Armor[], bodyLocalizations?: CharacterBodyLocalization[]) {
     this.name = <string>name;
     this.description = <string>description;
     this.characteristics = <CharacterCharacteristic[]>characteristics;
@@ -25,6 +26,7 @@ export class Character {
     this.isRightHanded = <boolean>rightHanded;
     this.weapons = <CharacterWeapon[]>weapons;
     this.armors = <Armor[]>armor;
+    this.bodyLocalizations = <CharacterBodyLocalization[]>bodyLocalizations;
   }
 
   get movement(): CharacterCharacteristic {
@@ -82,6 +84,7 @@ export class Character {
     character.talents = CharacterTalent.arrayFromJSON(character["talents"]);
     character.weapons = CharacterWeapon.arrayFromJSON(character['weapons']);
     character.armors = Armor.arrayFromJSON(character['armors']);
+    character.bodyLocalizations = CharacterBodyLocalization.arrayFromJSON(character['bodyLocalizations']);
     return character;
   }
 

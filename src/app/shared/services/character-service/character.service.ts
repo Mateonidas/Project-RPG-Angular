@@ -8,6 +8,7 @@ import {TextResourceService} from "../text-resource-service/text-resource.servic
 import {WeaponService} from "../weapon-service/weapon.service";
 import {ArmorService} from "../armor-service/armor.service";
 import {CharacterWeapon} from "../../../model/weapon/character-weapon.model";
+import {CharacterBodyLocalization} from "../../../model/body-localization/character-body-localization.model";
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,7 @@ export class CharacterService {
           this.prepareTalents(character.talents);
           this.prepareWeapons(character.weapons);
           this.armorService.prepareArmorsList(character.armors);
+          this.prepareBodyLocalizations(character.bodyLocalizations);
           this.charactersList.push(character);
         }
         localStorage.setItem('characters', JSON.stringify(this.charactersList));
@@ -59,8 +61,6 @@ export class CharacterService {
     for (let talent of talents) {
       talent.talent.nameTranslation = TextResourceService.getTalentNameTranslation(talent.talent.name).nameTranslation;
     }
-
-    return talents;
   }
 
   private prepareWeapons(weapons: CharacterWeapon[]) {
@@ -69,6 +69,11 @@ export class CharacterService {
     }
   }
 
+  private prepareBodyLocalizations(bodyLocalizations: CharacterBodyLocalization[]) {
+    for (let characterBodyLocalization of bodyLocalizations) {
+      characterBodyLocalization.bodyLocalization.nameTranslation = TextResourceService.getBodyLocalizationNameTranslation(characterBodyLocalization.bodyLocalization.name).nameTranslation;
+    }
+  }
 
   getCharacters() {
     this.charactersList = Character.arrayFromJSON(JSON.parse(<string>localStorage.getItem('characters')));
