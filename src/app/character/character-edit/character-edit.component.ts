@@ -12,7 +12,6 @@ import {TalentService} from "../../shared/services/talent-service/talent.service
 import {CharacterCharacteristic} from "../../model/characteristic/character-characteristic.model";
 import {CharacterSkill} from "../../model/skill/character-skill.model";
 import {CharacterTalent} from "../../model/talent/character-talent.model";
-import {Weapon} from "../../model/weapon/weapon.model";
 import {Armor} from "../../model/armor/armor.model";
 import {CharacterWeapon} from "../../model/weapon/character-weapon.model";
 import {CharacterBodyLocalization} from "../../model/body-localization/character-body-localization.model";
@@ -64,6 +63,7 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
       characteristics = CharacterEditComponent.initEditCharacteristicsTable(character);
       this.isRightHanded = character.isRightHanded;
       this.prepareEditData(character, formArrays)
+      this.characterBodyLocalizations = character.bodyLocalizations;
     } else {
       characteristics = CharacterEditComponent.initCharacteristicsTable();
     }
@@ -170,37 +170,33 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
   }
 
   private prepareCharacterBodyLocalizations(character: Character) {
-    const head = new CharacterBodyLocalization(BodyLocalizationList.head, 0, 0);
-    const rightArm = new CharacterBodyLocalization(BodyLocalizationList.rightArm, 0, 0);
-    const leftArm = new CharacterBodyLocalization(BodyLocalizationList.leftArm, 0, 0);
-    const body = new CharacterBodyLocalization(BodyLocalizationList.body, 0, 0);
-    const rightLeg = new CharacterBodyLocalization(BodyLocalizationList.rightLeg, 0, 0);
-    const leftLeg = new CharacterBodyLocalization(BodyLocalizationList.leftLeg, 0, 0);
 
-    for(let armor of character.armors) {
-      for(let bodyLocalization of armor.bodyLocalization) {
-        if(bodyLocalization.name === BodyLocalizationList.head.name) {
-          head.armorPoints += armor.armorPoints;
-        }
-        if(bodyLocalization.name === BodyLocalizationList.rightArm.name) {
-          rightArm.armorPoints += armor.armorPoints;
-        }
-        if(bodyLocalization.name === BodyLocalizationList.leftArm.name) {
-          leftArm.armorPoints += armor.armorPoints;
-        }
-        if(bodyLocalization.name === BodyLocalizationList.body.name) {
-          body.armorPoints += armor.armorPoints;
-        }
-        if(bodyLocalization.name === BodyLocalizationList.rightLeg.name) {
-          rightLeg.armorPoints += armor.armorPoints;
-        }
-        if(bodyLocalization.name === BodyLocalizationList.leftLeg.name) {
-          leftLeg.armorPoints += armor.armorPoints;
-        }
+    if (this.characterBodyLocalizations == null || this.characterBodyLocalizations.length == 0) {
+      const head = new CharacterBodyLocalization(BodyLocalizationList.head, 0, 0);
+      const rightArm = new CharacterBodyLocalization(BodyLocalizationList.rightArm, 0, 0);
+      const leftArm = new CharacterBodyLocalization(BodyLocalizationList.leftArm, 0, 0);
+      const body = new CharacterBodyLocalization(BodyLocalizationList.body, 0, 0);
+      const rightLeg = new CharacterBodyLocalization(BodyLocalizationList.rightLeg, 0, 0);
+      const leftLeg = new CharacterBodyLocalization(BodyLocalizationList.leftLeg, 0, 0);
+      character.bodyLocalizations = [];
+      character.bodyLocalizations.push(head, rightArm, leftArm, body, rightLeg, leftLeg);
+    } else {
+      character.bodyLocalizations = this.characterBodyLocalizations;
+      for (let bodyLocalization of character.bodyLocalizations) {
+        bodyLocalization.armorPoints = 0;
       }
     }
 
-    character.bodyLocalizations = [];
-    character.bodyLocalizations.push(head, rightArm, leftArm, body, rightLeg, leftLeg);
+    for (let armor of character.armors) {
+      for (let bodyLocalization of armor.bodyLocalization) {
+        for(let characterBodyLocalization of character.bodyLocalizations) {
+          if(bodyLocalization.name === characterBodyLocalization.bodyLocalization.name) {
+            characterBodyLocalization.armorPoints += armor.armorPoints;
+            characterBodyLocalization.armorPoints -= characterBodyLocalization.brokenArmorPoints;
+            break;
+          }
+        }
+      }
+    }
   }
 }

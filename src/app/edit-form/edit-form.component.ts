@@ -17,6 +17,7 @@ import {TalentService} from "../shared/services/talent-service/talent.service";
 import {Characteristic} from "../model/characteristic/characteristic.model";
 import {TextResourceService} from "../shared/services/text-resource-service/text-resource.service";
 import {CharacterWeapon} from "../model/weapon/character-weapon.model";
+import {CharacterBodyLocalization} from "../model/body-localization/character-body-localization.model";
 
 @Component({
   selector: 'app-edit-form',
@@ -33,6 +34,7 @@ export class EditFormComponent {
   isRightHanded = true;
   isDead!: boolean;
   id!: number;
+  characterBodyLocalizations!: CharacterBodyLocalization[];
 
   constructor(protected router: Router,
               protected route: ActivatedRoute,
