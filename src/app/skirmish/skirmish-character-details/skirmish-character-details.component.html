@@ -261,8 +261,8 @@
         <td>{{armor.penalties}}</td>
         <td>
           <ul>
-            <li *ngFor="let localization of armor.bodyLocalization">
-              {{localization.nameTranslation}}
+            <li *ngFor="let armorBodyLocalization of armor.armorBodyLocalizations">
+              {{armorBodyLocalization.bodyLocalization.nameTranslation}}
             </li>
           </ul>
         </td>

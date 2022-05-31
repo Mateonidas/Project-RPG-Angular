@@ -65,12 +65,12 @@ export class SkirmishCharacter extends Character {
   }
 
   private getArmorForLocalization(localization: BodyLocalization) {
-    let armorForLocation = this.armors.filter(armor => armor.bodyLocalization.includes(localization));
+    let characterBodyLocalizations = this.bodyLocalizations.filter(bodyLocalization => bodyLocalization.bodyLocalization.name === localization.name);
 
     let armorPoints = 0;
 
-    for (let armor of armorForLocation) {
-      armorPoints += armor.armorPoints;
+    for (let characterBodyLocalization of characterBodyLocalizations) {
+      armorPoints += characterBodyLocalization.armorPoints;
     }
 
     return armorPoints;

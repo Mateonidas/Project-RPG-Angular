@@ -37,16 +37,20 @@ export class ArmorService {
   private prepareArmorTranslation(armor: Armor) {
     armor.armorCategory.nameTranslation = TextResourceService.getArmorCategoryNameTranslation(armor.armorCategory.name).nameTranslation;
 
-    for (let penalty of armor.penalties) {
-      penalty.nameTranslation = TextResourceService.getArmorPenaltyNameTranslation(penalty.name).nameTranslation;
+    for (let armorBodyLocalization of armor.armorBodyLocalizations) {
+      armorBodyLocalization.bodyLocalization.nameTranslation = TextResourceService.getBodyLocalizationNameTranslation(armorBodyLocalization.bodyLocalization.name).nameTranslation;
     }
 
-    for (let bodyLocalization of armor.bodyLocalization) {
-      bodyLocalization.nameTranslation = TextResourceService.getBodyLocalizationNameTranslation(bodyLocalization.name).nameTranslation;
+    if(armor.penalties != undefined) {
+      for (let penalty of armor.penalties) {
+        penalty.nameTranslation = TextResourceService.getArmorPenaltyNameTranslation(penalty.name).nameTranslation;
+      }
     }
 
-    for (let quality of armor.qualities) {
-      quality.nameTranslation = TextResourceService.getArmorQualitiesNameTranslation(quality.name).nameTranslation;
+    if(armor.qualities != undefined) {
+      for (let quality of armor.qualities) {
+        quality.nameTranslation = TextResourceService.getArmorQualitiesNameTranslation(quality.name).nameTranslation;
+      }
     }
   }
 }

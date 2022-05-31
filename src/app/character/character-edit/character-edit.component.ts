@@ -188,11 +188,11 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
     }
 
     for (let armor of character.armors) {
-      for (let bodyLocalization of armor.bodyLocalization) {
+      for (let armorBodyLocalization of armor.armorBodyLocalizations) {
         for(let characterBodyLocalization of character.bodyLocalizations) {
-          if(bodyLocalization.name === characterBodyLocalization.bodyLocalization.name) {
-            characterBodyLocalization.armorPoints += armor.armorPoints;
-            characterBodyLocalization.armorPoints -= characterBodyLocalization.brokenArmorPoints;
+          if(armorBodyLocalization.bodyLocalization.name === characterBodyLocalization.bodyLocalization.name) {
+            characterBodyLocalization.armorPoints += armorBodyLocalization.armorPoints;
+            characterBodyLocalization.armorPoints -= armorBodyLocalization.brokenArmorPoints;
             break;
           }
         }

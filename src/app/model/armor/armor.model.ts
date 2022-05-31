@@ -1,18 +1,18 @@
 import {Model} from "../model";
-import {BodyLocalization} from "../body-localization/body-localization.model";
+import {ArmorBodyLocalization} from "../body-localization/armor-body-localization.model";
 
 export class Armor extends Model {
   public armorCategory: Model;
-  public bodyLocalization: BodyLocalization[];
+  public armorBodyLocalizations: ArmorBodyLocalization[]
   public armorPoints: number;
   public penalties: Model[];
   public qualities: Model[];
 
-  constructor(name?: string, nameTranslation?: string, category?: Model, penalties?: Model[], localization?: BodyLocalization[], armorPoints?: number, qualities?: Model[]) {
+  constructor(name?: string, nameTranslation?: string, category?: Model, penalties?: Model[], armorBodyLocalizations?: ArmorBodyLocalization[], armorPoints?: number, qualities?: Model[]) {
     super(name, nameTranslation);
     this.armorCategory = <Model>category;
     this.penalties = <Model[]>penalties;
-    this.bodyLocalization = <BodyLocalization[]>localization;
+    this.armorBodyLocalizations = <ArmorBodyLocalization[]>armorBodyLocalizations;
     this.armorPoints = <number>armorPoints;
     this.qualities = <Model[]>qualities;
   }
@@ -20,9 +20,9 @@ export class Armor extends Model {
   static fromJSON(object: Object): Armor {
     let armor = Object.assign(new Armor(), object);
     armor.armorCategory = Model.fromJSON(armor['armorCategory']);
-    armor.penalties = Model.arrayFromJSON(armor['penalties']);
-    armor.qualities = Model.arrayFromJSON(armor['qualities']);
-    armor.bodyLocalization = BodyLocalization.arrayFromJSON(armor['bodyLocalization']);
+    armor.penalties = armor['penalties'] != undefined ? Model.arrayFromJSON(armor['penalties']) : [];
+    armor.qualities = armor['qualities'] != undefined ?  Model.arrayFromJSON(armor['qualities']) : [];
+    armor.armorBodyLocalizations = ArmorBodyLocalization.arrayFromJSON(armor['armorBodyLocalizations']);
     return armor;
   }
 
