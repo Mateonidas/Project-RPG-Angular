@@ -178,7 +178,14 @@
             </li>
           </ul>
         </td>
-        <td>{{armor.armorPoints}}</td>
+        <td>
+          {{armor.armorPoints}}
+          <ul>
+            <li *ngFor="let localization of armor.armorBodyLocalizations">
+              {{localization.armorPoints}}
+            </li>
+          </ul>
+        </td>
       </tr>
       </tbody>
     </table>
