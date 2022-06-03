@@ -7,13 +7,13 @@
   <div class="col-md-12">
     <div class="dropdown">
       <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Zarządzaj Postacią
+        {{text.getText().manageCharacterButton}}
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" style="cursor:pointer;" (click)="onAddToFight()">Dodaj do walki</a></li>
-        <li><a class="dropdown-item" style="cursor: pointer" (click)="onEditCharacter()">Edytuj Postać</a></li>
-        <li><a class="dropdown-item" style="cursor: pointer" (click)="onDeleteCharacter()">Usuń Postać</a></li>
+        <li><a class="dropdown-item" style="cursor:pointer;" (click)="onAddToFight()">{{text.getText().addToFightButton}}</a></li>
+        <li><a class="dropdown-item" style="cursor: pointer" (click)="onEditCharacter()">{{text.getText().editCharacterButton}}</a></li>
+        <li><a class="dropdown-item" style="cursor: pointer" (click)="onDeleteCharacter()">{{text.getText().deleteCharacterButton}}</a></li>
       </ul>
     </div>
   </div>
@@ -21,7 +21,7 @@
 <div class="row">
   <div class="col-xs-12">
     <br>
-    <h4>Opis</h4>
+    <h4>{{text.getText().descriptionLabel}}</h4>
     {{character.description}}
     <br>
     <br>
@@ -30,22 +30,22 @@
 <hr>
 <div class="row">
   <div class="col-md-12">
-    <h4>Cechy</h4>
+    <h4>{{text.getText().characteristicsLabel}}</h4>
     <table class="table table-bordered">
       <thead class="thead-dark">
       <tr>
-        <th scope="col">Sz</th>
-        <th scope="col">WW</th>
-        <th scope="col">US</th>
-        <th scope="col">S</th>
-        <th scope="col">Wt</th>
-        <th scope="col">I</th>
-        <th scope="col">Zw</th>
-        <th scope="col">Zr</th>
-        <th scope="col">Int</th>
-        <th scope="col">SW</th>
-        <th scope="col">Ogd</th>
-        <th scope="col">Żyw</th>
+        <th scope="col">{{text.getCharacteristicNameTranslation("MOVEMENT").nameTranslation}}</th>
+        <th scope="col">{{text.getCharacteristicNameTranslation("WEAPON_SKILL").nameTranslation}}</th>
+        <th scope="col">{{text.getCharacteristicNameTranslation("BALLISTIC_SKILL").nameTranslation}}</th>
+        <th scope="col">{{text.getCharacteristicNameTranslation("STRENGTH").nameTranslation}}</th>
+        <th scope="col">{{text.getCharacteristicNameTranslation("TOUGHNESS").nameTranslation}}</th>
+        <th scope="col">{{text.getCharacteristicNameTranslation("INITIATIVE").nameTranslation}}</th>
+        <th scope="col">{{text.getCharacteristicNameTranslation("AGILITY").nameTranslation}}</th>
+        <th scope="col">{{text.getCharacteristicNameTranslation("DEXTERITY").nameTranslation}}</th>
+        <th scope="col">{{text.getCharacteristicNameTranslation("INTELLIGENCE").nameTranslation}}</th>
+        <th scope="col">{{text.getCharacteristicNameTranslation("WILLPOWER").nameTranslation}}</th>
+        <th scope="col">{{text.getCharacteristicNameTranslation("FELLOWSHIP").nameTranslation}}</th>
+        <th scope="col">{{text.getCharacteristicNameTranslation("WOUNDS").nameTranslation}}</th>
       </tr>
       </thead>
       <tbody>
@@ -71,22 +71,22 @@
 <hr>
 <div class="row">
   <div class="col-md-12">
-    <h4>Wiodąca ręka</h4>
-    <h5 *ngIf="character.isRightHanded">- Prawa</h5>
-    <h5 *ngIf="!character.isRightHanded">- Lewa</h5>
+    <h4>{{text.getText().primaryHandLabel}}</h4>
+    <h5 *ngIf="character.isRightHanded">- {{text.getText().rightHandLabel}}</h5>
+    <h5 *ngIf="!character.isRightHanded">- {{text.getText().leftHandLabel}}</h5>
   </div>
 </div>
 
 <hr>
 <div class="row">
   <div class="col-md-12">
-    <h4>Ciało</h4>
+    <h4>{{text.getText().bodyLabel}}</h4>
     <table class="table table-bordered">
       <thead class="thead-dark">
       <tr>
-        <th scope="col">Nazwa</th>
-        <th scope="col">Punkty Pancerza</th>
-        <th scope="col">Urazy</th>
+        <th scope="col">{{text.getText().nameLabel}}</th>
+        <th scope="col">{{text.getText().armorPointsLabel}}</th>
+        <th scope="col">{{text.getText().injuriesLabel}}</th>
       </tr>
       </thead>
       <tbody>
@@ -103,7 +103,7 @@
 <hr>
 <div class="row">
   <div class="col-md-12">
-    <h4>Umiejętności</h4>
+    <h4>{{text.getText().skillsLabel}}</h4>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let characterSkill of character.skills">
         {{characterSkill.skill.nameTranslation}} - {{characterSkill.value}}
@@ -114,7 +114,7 @@
 <hr>
 <div class="row">
   <div class="col-md-12">
-    <h4>Talenty</h4>
+    <h4>{{text.getText().talentsLabel}}</h4>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let talent of character.talents">
         {{talent.talent.nameTranslation}} - {{talent.value}}
@@ -124,15 +124,15 @@
 </div><hr>
 <div class="row">
   <div class="col-md-12">
-    <h4>Broń</h4>
+    <h4>{{text.getText().weaponLabel}}</h4>
     <table class="table table-bordered">
       <thead class="thead-dark">
       <tr>
-        <th scope="col">Nazwa</th>
-        <th scope="col">Kategoria</th>
-        <th scope="col">Zasięg</th>
-        <th scope="col">Obrażenia</th>
-        <th scope="col">Zalety i Wady</th>
+        <th scope="col">{{text.getText().nameLabel}}</th>
+        <th scope="col">{{text.getText().categoryLabel}}</th>
+        <th scope="col">{{text.getText().reachLabel}}</th>
+        <th scope="col">{{text.getText().damageLabel}}</th>
+        <th scope="col">{{text.getText().advantagesAndDisadvantagesLabel}}</th>
       </tr>
       </thead>
       <tbody>
@@ -144,8 +144,8 @@
           <span *ngIf="characterWeapon.weapon.weaponRange == 0; else weaponRange">{{characterWeapon.weapon.weaponReach.nameTranslation}}</span>
           <ng-template #weaponRange>
             <span *ngIf="characterWeapon.weapon.weaponGroupType.name.includes('AMMUNITION'); else fullWeaponRange">
-              <span *ngIf="characterWeapon.weapon.weaponRange == 0.5">Połowa zasięgu broni</span>
-              <span *ngIf="characterWeapon.weapon.weaponRange == 1">Jak broń</span>
+              <span *ngIf="characterWeapon.weapon.weaponRange == 0.5">{{text.getText().halfWeaponRangeLabel}}</span>
+              <span *ngIf="characterWeapon.weapon.weaponRange == 1">{{text.getText().rangeAsWeaponLabel}}</span>
               <span *ngIf="characterWeapon.weapon.weaponRange > 1">+{{characterWeapon.weapon.weaponRange}}</span>
             </span>
             <ng-template #fullWeaponRange>
@@ -154,7 +154,7 @@
           </ng-template>
         </td>
         <td>
-          <span *ngIf="characterWeapon.weapon.isUsingStrength; else elseBlock">+BS+{{characterWeapon.weapon.damage}}</span>
+          <span *ngIf="characterWeapon.weapon.isUsingStrength; else elseBlock">+{{text.getText().strengthBonusLabel}}+{{characterWeapon.weapon.damage}}</span>
           <ng-template #elseBlock>+{{characterWeapon.weapon.damage}}</ng-template>
         </td>
         <td>
@@ -172,15 +172,15 @@
 <hr>
 <div class="row">
   <div class="col-md-12">
-    <h4>Pancerz</h4>
+    <h4>{{text.getText().armorLabel}}</h4>
     <table class="table table-bordered">
       <thead class="thead-dark">
       <tr>
-        <th scope="col">Nazwa</th>
-        <th scope="col">Kategoria</th>
-        <th scope="col">Kara</th>
-        <th scope="col">Lokalizacja</th>
-        <th scope="col">Punkty Pancerza</th>
+        <th scope="col">{{text.getText().nameLabel}}</th>
+        <th scope="col">{{text.getText().categoryLabel}}</th>
+        <th scope="col">{{text.getText().penaltiesLabel}}</th>
+        <th scope="col">{{text.getText().localizationLabel}}</th>
+        <th scope="col">{{text.getText().armorPointsLabel}}</th>
       </tr>
       </thead>
       <tbody>

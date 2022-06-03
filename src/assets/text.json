@@ -1,4 +1,32 @@
 {
+  "descriptionLabel": "Opis",
+  "characteristicsLabel": "Cechy",
+  "primaryHandLabel": "Wiodąca ręka",
+  "leftHandLabel": "Lewa",
+  "rightHandLabel": "Prawa",
+  "bodyLabel": "Ciało",
+  "nameLabel": "Nazwa",
+  "armorPointsLabel": "Punkty Pancerza",
+  "injuriesLabel": "Urazy",
+  "skillsLabel": "Umiejętności",
+  "talentsLabel": "Talenty",
+  "weaponLabel": "Broń",
+  "armorLabel": "Pancerz",
+  "categoryLabel": "Kategoria",
+  "reachLabel": "Zasięg",
+  "damageLabel": "Obrażenia",
+  "advantagesAndDisadvantagesLabel": "Zalety i Wady",
+  "halfWeaponRangeLabel": "Połowa zasięgu broni",
+  "rangeAsWeaponLabel": "Jak broń",
+  "strengthBonusLabel": "BS",
+  "penaltiesLabel": "Kara",
+  "localizationLabel": "Lokalizacja",
+
+  "manageCharacterButton": "Zarządzaj Postacią",
+  "addToFightButton": "Dodaj do walki",
+  "editCharacterButton": "Edytuj Postać",
+  "deleteCharacterButton": "Usuń Postać",
+
   "characteristics": [
     {
       "name": "MOVEMENT",
