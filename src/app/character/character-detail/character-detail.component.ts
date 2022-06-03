@@ -38,6 +38,6 @@ export class CharacterDetailComponent implements OnInit {
   }
 
   onDeleteCharacter() {
-
+    this.characterService.removeCharacter(this.id);
   }
 }

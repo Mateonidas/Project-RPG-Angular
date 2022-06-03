@@ -48,7 +48,13 @@ export class CharacterService {
   putCharacter(character: Character) {
     return this.http
       .put('http://localhost:8080/character', character)
-      .toPromise()
+      .toPromise();
+  }
+
+  deleteCharacter(id: number) {
+    return this.http
+      .delete(`http://localhost:8080/character/${id}`)
+      .toPromise();
   }
 
   private prepareSkills(skills: CharacterSkill[]) {
@@ -88,7 +94,15 @@ export class CharacterService {
   async storeCharacter(character: Character) {
     await this.putCharacter(character).then(
       async () => {
-        await this.fetchCharacters().then()
+        await this.fetchCharacters().then();
+      }
+    );
+  }
+
+  async removeCharacter(id: number) {
+    await this.deleteCharacter(id).then(
+      async () => {
+        await this.fetchCharacters().then();
       }
     );
   }
