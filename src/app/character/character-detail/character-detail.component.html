@@ -178,22 +178,16 @@
       <tr>
         <th scope="col">{{text.getText().nameLabel}}</th>
         <th scope="col">{{text.getText().categoryLabel}}</th>
-        <th scope="col">{{text.getText().penaltiesLabel}}</th>
         <th scope="col">{{text.getText().localizationLabel}}</th>
         <th scope="col">{{text.getText().armorPointsLabel}}</th>
+        <th scope="col">{{text.getText().penaltiesLabel}}</th>
+        <th scope="col">{{text.getText().qualitiesLabel}}</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let armor of character.armors">
         <td>{{armor.nameTranslation}}</td>
         <td>{{armor.armorCategory.nameTranslation}}</td>
-        <td>
-          <ul>
-            <li *ngFor="let penalty of armor.penalties">
-              {{penalty.nameTranslation}}
-            </li>
-          </ul>
-        </td>
         <td>
           <ul>
             <li *ngFor="let localization of armor.armorBodyLocalizations">
@@ -206,6 +200,20 @@
           <ul>
             <li *ngFor="let localization of armor.armorBodyLocalizations">
               {{localization.armorPoints}}
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li *ngFor="let penalty of armor.armorPenalties">
+              {{penalty.nameTranslation}}
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li *ngFor="let quality of armor.armorQualities">
+              {{quality.nameTranslation}}
             </li>
           </ul>
         </td>

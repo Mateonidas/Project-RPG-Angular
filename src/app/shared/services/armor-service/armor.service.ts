@@ -41,14 +41,14 @@ export class ArmorService {
       armorBodyLocalization.bodyLocalization.nameTranslation = TextResourceService.getBodyLocalizationNameTranslation(armorBodyLocalization.bodyLocalization.name).nameTranslation;
     }
 
-    if(armor.penalties != undefined) {
-      for (let penalty of armor.penalties) {
+    if(armor.armorPenalties != undefined) {
+      for (let penalty of armor.armorPenalties) {
         penalty.nameTranslation = TextResourceService.getArmorPenaltyNameTranslation(penalty.name).nameTranslation;
       }
     }
 
-    if(armor.qualities != undefined) {
-      for (let quality of armor.qualities) {
+    if(armor.armorQualities != undefined) {
+      for (let quality of armor.armorQualities) {
         quality.nameTranslation = TextResourceService.getArmorQualitiesNameTranslation(quality.name).nameTranslation;
       }
     }
