@@ -39,5 +39,6 @@ export class CharacterDetailComponent implements OnInit {
 
   onDeleteCharacter() {
     this.characterService.removeCharacter(this.id);
+    this.router.navigate(['characters']);
   }
 }
