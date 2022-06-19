@@ -4,16 +4,14 @@ import {ArmorBodyLocalization} from "../body-localization/armor-body-localizatio
 export class Armor extends Model {
   public armorCategory: Model;
   public armorBodyLocalizations: ArmorBodyLocalization[]
-  public armorPoints: number;
   public armorPenalties: Model[];
   public armorQualities: Model[];
 
-  constructor(name?: string, nameTranslation?: string, category?: Model, penalties?: Model[], armorBodyLocalizations?: ArmorBodyLocalization[], armorPoints?: number, qualities?: Model[]) {
+  constructor(name?: string, nameTranslation?: string, category?: Model, penalties?: Model[], armorBodyLocalizations?: ArmorBodyLocalization[], qualities?: Model[]) {
     super(name, nameTranslation);
     this.armorCategory = <Model>category;
     this.armorPenalties = <Model[]>penalties;
     this.armorBodyLocalizations = <ArmorBodyLocalization[]>armorBodyLocalizations;
-    this.armorPoints = <number>armorPoints;
     this.armorQualities = <Model[]>qualities;
   }
 

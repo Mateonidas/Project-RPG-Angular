@@ -15,6 +15,9 @@ import {ArmorService} from "../../shared/services/armor-service/armor.service";
 import {WeaponService} from "../../shared/services/weapon-service/weapon.service";
 import {SkillService} from "../../shared/services/skill-service/skill.service";
 import {TalentService} from "../../shared/services/talent-service/talent.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {BodyLocalizationService} from "../../shared/services/body-localization-service/body-localization.service";
+import {CharacterService} from "../../shared/services/character-service/character.service";
 
 @Component({
   selector: 'app-skirmish-character-edit',
@@ -33,11 +36,14 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
               armorService: ArmorService,
               weaponService: WeaponService,
               skillService: SkillService,
-              talentService: TalentService) {
-    super(router, route, armorService, weaponService, skillService, talentService);
+              talentService: TalentService,
+              bodyLocalizationService: BodyLocalizationService,
+              characterService: CharacterService,
+              modalService: NgbModal) {
+    super(router, route, armorService, weaponService, skillService, talentService, bodyLocalizationService, characterService, modalService);
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.armorsList = this.armorService.armorsList;
     this.weaponsList = this.weaponService.weaponsList;
     this.skillsList = this.skillService.skillList;

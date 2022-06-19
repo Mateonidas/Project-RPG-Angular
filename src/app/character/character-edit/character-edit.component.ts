@@ -16,6 +16,8 @@ import {Armor} from "../../model/armor/armor.model";
 import {CharacterWeapon} from "../../model/weapon/character-weapon.model";
 import {CharacterBodyLocalization} from "../../model/body-localization/character-body-localization.model";
 import {BodyLocalizationList} from "../../model/body-localization/body-localization.model";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {BodyLocalizationService} from "../../shared/services/body-localization-service/body-localization.service";
 
 @Component({
   selector: 'app-character-edit',
@@ -28,26 +30,31 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
 
   constructor(router: Router,
               route: ActivatedRoute,
-              public characterService: CharacterService,
               public armorService: ArmorService,
               public weaponService: WeaponService,
               public skillService: SkillService,
-              public talentService: TalentService) {
-    super(router, route, armorService, weaponService, skillService, talentService);
+              public talentService: TalentService,
+              public bodyLocalizationService: BodyLocalizationService,
+              public characterService: CharacterService,
+              public modalService: NgbModal) {
+    super(router, route, armorService, weaponService, skillService, talentService, bodyLocalizationService, characterService, modalService);
   }
 
   ngOnInit(): void {
-    this.armorsList = this.armorService.armorsList;
-    this.weaponsList = this.weaponService.weaponsList;
-    this.skillsList = this.skillService.skillList;
-    this.talentsList = this.talentService.talentList;
-    this.route.params.subscribe(
-      (params: Params) => {
-        this.id = +params['id'];
-        this.editMode = params['id'] != null;
-        this.initForm();
-      }
-    )
+    this.fetchData().then(() => {
+      this.armorsList = this.armorService.armorsList;
+      this.weaponsList = this.weaponService.weaponsList;
+      this.skillsList = this.skillService.skillList;
+      this.talentsList = this.talentService.talentList;
+      this.route.params.subscribe(
+        (params: Params) => {
+          this.id = +params['id'];
+          this.editMode = params['id'] != null;
+          this.initForm();
+        }
+      );
+      this.isDataAvailable = true;
+    });
   }
 
   initForm() {
@@ -85,7 +92,7 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
     if (this.editMode) {
       character.id = this.id;
     }
-    this.characterService.storeCharacter(character).then(r => {
+    this.characterService.storeCharacter(character).then(() => {
       this.onCancel()
     });
   }

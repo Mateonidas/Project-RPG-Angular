@@ -4,13 +4,20 @@ import {Armor} from "../../../model/armor/armor.model";
 import {TextResourceService} from "../text-resource-service/text-resource.service";
 import {tap} from "rxjs/operators";
 import {Subject} from "rxjs";
+import {Model} from "../../../model/model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArmorService {
-  armorsListChanged = new Subject<Armor[]>()
+  armorsListChanged = new Subject<Armor[]>();
   armorsList: Armor[] = [];
+  armorCategoriesListChanged = new Subject<Model[]>();
+  armorCategoriesList: Model[] = [];
+  armorPenaltiesListChanged = new Subject<Model[]>();
+  armorPenaltiesList: Model[] = [];
+  armorQualitiesListChanged = new Subject<Model[]>();
+  armorQualitiesList: Model[] = [];
 
   constructor(private http: HttpClient) {
   }
@@ -25,12 +32,26 @@ export class ArmorService {
         );
   }
 
+  async storeArmor(armor: Armor) {
+    await this.putArmor(armor).then(
+      async () => {
+        await this.fetchArmors().then();
+      }
+    )
+  }
+
+  putArmor(armor: Armor) {
+    return this.http
+      .put('http://localhost:8080/armor', armor)
+      .toPromise();
+  }
+
   public prepareArmorsList(armors: Armor[]) {
     for (let armor of armors) {
       this.prepareArmorTranslation(armor);
     }
     armors.sort(
-      (a, b) => (a.armorCategory > b.armorCategory) ? 1 : ((b.armorCategory > a.armorCategory) ? -1 : 0)
+      (a, b) => (a.armorCategory.name > b.armorCategory.name) ? 1 : ((b.armorCategory.name > a.armorCategory.name) ? -1 : 0)
     )
   }
 
@@ -51,6 +72,54 @@ export class ArmorService {
       for (let quality of armor.armorQualities) {
         quality.nameTranslation = TextResourceService.getArmorQualitiesNameTranslation(quality.name).nameTranslation;
       }
+    }
+  }
+
+  fetchArmorCategories() {
+    return this.http.get<Model[]>('http://localhost:8080/armorCategory').toPromise()
+      .then(data => {
+          this.prepareArmorCategoriesListTranslation(data);
+          this.armorCategoriesList = data;
+          this.armorCategoriesListChanged.next(this.armorCategoriesList.slice());
+        }
+      );
+  }
+
+  public prepareArmorCategoriesListTranslation(armorCategories: Model[]) {
+    for (let armorCategory of armorCategories) {
+      armorCategory.nameTranslation = TextResourceService.getArmorCategoryNameTranslation(armorCategory.name).nameTranslation;
+    }
+  }
+
+  fetchArmorPenalties() {
+    return this.http.get<Model[]>('http://localhost:8080/armorPenalty').toPromise()
+      .then(data => {
+          this.prepareArmorPenaltiesListTranslation(data);
+          this.armorPenaltiesList = data;
+          this.armorPenaltiesListChanged.next(this.armorPenaltiesList.slice());
+        }
+      );
+  }
+
+  public prepareArmorPenaltiesListTranslation(armorPenalties: Model[]) {
+    for (let armorPenalty of armorPenalties) {
+      armorPenalty.nameTranslation = TextResourceService.getArmorPenaltyNameTranslation(armorPenalty.name).nameTranslation;
+    }
+  }
+
+  fetchArmorQualities() {
+    return this.http.get<Model[]>('http://localhost:8080/armorQuality').toPromise()
+      .then(data => {
+          this.prepareArmorQualitiesListTranslation(data);
+          this.armorQualitiesList = data;
+          this.armorQualitiesListChanged.next(this.armorQualitiesList.slice());
+        }
+      );
+  }
+
+  public prepareArmorQualitiesListTranslation(armorQualities: Model[]) {
+    for (let armorQuality of armorQualities) {
+      armorQuality.nameTranslation = TextResourceService.getArmorQualitiesNameTranslation(armorQuality.name).nameTranslation;
     }
   }
 }

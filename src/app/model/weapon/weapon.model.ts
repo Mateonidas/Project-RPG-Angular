@@ -22,7 +22,12 @@ export class Weapon extends Model {
   }
 
   static fromJSON(object: Object): Weapon {
-    return Object.assign(new Weapon(), object);
+    let weapon = Object.assign(new Weapon(), object);
+    weapon.weaponType = Model.fromJSON(weapon['weaponType']);
+    weapon.weaponGroupType = Model.fromJSON(weapon['weaponGroupType']);
+    weapon.weaponReach = Model.fromJSON(weapon['weaponReach']);
+    weapon.weaponQualities = WeaponQuality.arrayFromJSON(weapon['weaponQualities']);
+    return weapon;
   }
 
   static arrayFromJSON(objectsArray: Object[]): Weapon[] {

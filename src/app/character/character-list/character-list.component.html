@@ -1,15 +1,17 @@
-<div class="row">
-  <div class="col-md-12">
-    <button class="btn btn-success" (click)="onAddCharacter()">Dodaj Postać</button>
+<div *ngIf="isDataAvailable">
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-success" (click)="onAddCharacter()">Dodaj Postać</button>
+    </div>
   </div>
-</div>
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <app-character-item
-      *ngFor="let character of characters"
-      [character]="character"
-      [index]="character.id">
-    </app-character-item>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <app-character-item
+        *ngFor="let character of characters"
+        [character]="character"
+        [index]="character.id">
+      </app-character-item>
+    </div>
   </div>
 </div>

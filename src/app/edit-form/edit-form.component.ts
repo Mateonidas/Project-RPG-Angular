@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Character} from "../model/character/character.model";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {Skill} from "../model/skill/skill.model";
@@ -18,6 +18,12 @@ import {Characteristic} from "../model/characteristic/characteristic.model";
 import {TextResourceService} from "../shared/services/text-resource-service/text-resource.service";
 import {CharacterWeapon} from "../model/weapon/character-weapon.model";
 import {CharacterBodyLocalization} from "../model/body-localization/character-body-localization.model";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {
+  EditArmorDialogWindowComponent
+} from "../dialog-window/edit-armor-dialog-window/edit-armor-dialog-window.component";
+import {BodyLocalizationService} from "../shared/services/body-localization-service/body-localization.service";
+import {CharacterService} from "../shared/services/character-service/character.service";
 
 @Component({
   selector: 'app-edit-form',
@@ -26,6 +32,7 @@ import {CharacterBodyLocalization} from "../model/body-localization/character-bo
 })
 export class EditFormComponent {
 
+  isDataAvailable: boolean = false;
   editCharacterForm!: FormGroup;
   skillsList: Skill[] = [];
   talentsList: Talent[] = [];
@@ -41,7 +48,22 @@ export class EditFormComponent {
               protected armorService: ArmorService,
               protected weaponService: WeaponService,
               protected skillService: SkillService,
-              protected talentService: TalentService) {
+              protected talentService: TalentService,
+              public bodyLocalizationService: BodyLocalizationService,
+              public characterService: CharacterService,
+              protected modalService: NgbModal) {
+  }
+
+  protected async fetchData() {
+    await this.armorService.fetchArmors();
+    await this.armorService.fetchArmorCategories();
+    await this.armorService.fetchArmorPenalties();
+    await this.armorService.fetchArmorQualities();
+    await this.bodyLocalizationService.fetchBodyLocalizations();
+    await this.weaponService.fetchWeapons();
+    await this.skillService.fetchSkills();
+    await this.talentService.fetchTalent();
+    await this.characterService.fetchCharacters();
   }
 
   protected prepareEditData(character: Character, formArrays: CharacterFormArraysWrapper) {
@@ -236,5 +258,30 @@ export class EditFormComponent {
 
   onDeleteArmor(index: number) {
     (<FormArray>this.editCharacterForm.get('armors')).removeAt(index);
+  }
+
+  async onEditArmor(index: number) {
+    await this.createEditArmorDialogWindow(index);
+    this.armorsList = this.armorService.armorsList;
+  }
+
+  createEditArmorDialogWindow(index: number) {
+    const modalRef = this.modalService.open(EditArmorDialogWindowComponent);
+    modalRef.componentInstance.armor = (<FormControl>this.armors[index]).value;
+
+    let armor: Armor;
+    modalRef.componentInstance.emitter.subscribe((result: { armor: Armor, isNewArmor: boolean }) => {
+      armor = result.armor;
+    })
+
+    return modalRef.closed
+      .toPromise()
+      .then(() => {
+        if (armor != null) {
+          return Promise.resolve({armor: armor});
+        } else {
+          return Promise.resolve({armor: (<FormControl>this.armors[index]).value});
+        }
+      })
   }
 }

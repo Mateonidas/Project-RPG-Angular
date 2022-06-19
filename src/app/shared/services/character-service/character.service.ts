@@ -45,10 +45,26 @@ export class CharacterService {
       })
   }
 
+  async storeCharacter(character: Character) {
+    await this.putCharacter(character).then(
+      async () => {
+        await this.fetchCharacters().then();
+      }
+    );
+  }
+
   putCharacter(character: Character) {
     return this.http
       .put('http://localhost:8080/character', character)
       .toPromise();
+  }
+
+  async removeCharacter(id: number) {
+    await this.deleteCharacter(id).then(
+      async () => {
+        await this.fetchCharacters().then();
+      }
+    );
   }
 
   deleteCharacter(id: number) {
@@ -89,21 +105,5 @@ export class CharacterService {
   getCharacter(id: number) {
     this.charactersList = Character.arrayFromJSON(JSON.parse(<string>localStorage.getItem('characters')));
     return this.charactersList.find(value => value.id == id);
-  }
-
-  async storeCharacter(character: Character) {
-    await this.putCharacter(character).then(
-      async () => {
-        await this.fetchCharacters().then();
-      }
-    );
-  }
-
-  async removeCharacter(id: number) {
-    await this.deleteCharacter(id).then(
-      async () => {
-        await this.fetchCharacters().then();
-      }
-    );
   }
 }

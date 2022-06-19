@@ -1,8 +1,10 @@
 export class Model {
   public name: string;
   public nameTranslation: string;
+  public id?: number;
 
-  constructor(name?: string, nameTranslation?: string) {
+  constructor(name?: string, nameTranslation?: string, id?: number) {
+    this.id = <number>id;
     this.name = <string>name;
     this.nameTranslation = <string>nameTranslation;
   }
