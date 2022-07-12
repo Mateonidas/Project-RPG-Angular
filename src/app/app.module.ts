@@ -40,6 +40,7 @@ import {
 } from './dialog-window/attack-ally-fumble-dialog-window/attack-ally-fumble-dialog-window.component';
 import {HttpClientModule} from '@angular/common/http';
 import { EditArmorDialogWindowComponent } from './dialog-window/edit-armor-dialog-window/edit-armor-dialog-window.component';
+import { EditWeaponDialogWindowComponent } from './dialog-window/edit-weapon-dialog-window/edit-weapon-dialog-window.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { EditArmorDialogWindowComponent } from './dialog-window/edit-armor-dialo
     AttackReportDialogWindowComponent,
     RollDialogWindowComponent,
     AttackAllyFumbleDialogWindowComponent,
-    EditArmorDialogWindowComponent
+    EditArmorDialogWindowComponent,
+    EditWeaponDialogWindowComponent
   ],
   imports: [
     BrowserModule,

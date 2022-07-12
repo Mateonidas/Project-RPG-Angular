@@ -7,10 +7,11 @@ export class Weapon extends Model {
   public weaponReach: Model;
   public weaponRange: number;
   public isUsingStrength: boolean;
+  public isUsingStrengthInRange: boolean;
   public damage: number;
   public weaponQualities: WeaponQuality[];
 
-  constructor(name?: string, nameTranslation?: string, weaponType?: Model, weaponGroupType?: Model, reach?: Model, range?: number, isUsingStrength?: boolean, damage?: number, qualities?: WeaponQuality[]) {
+  constructor(name?: string, nameTranslation?: string, weaponType?: Model, weaponGroupType?: Model, reach?: Model, range?: number, isUsingStrength?: boolean, isUsingStrengthInRange?: boolean, damage?: number, qualities?: WeaponQuality[]) {
     super(name, nameTranslation)
     this.weaponType = <Model>weaponType;
     this.weaponGroupType = <Model>weaponGroupType;
@@ -18,6 +19,7 @@ export class Weapon extends Model {
     this.weaponRange = <number>range;
     this.damage = <number>damage;
     this.isUsingStrength = <boolean>isUsingStrength;
+    this.isUsingStrengthInRange = <boolean>isUsingStrengthInRange;
     this.weaponQualities = <WeaponQuality[]>qualities;
   }
 

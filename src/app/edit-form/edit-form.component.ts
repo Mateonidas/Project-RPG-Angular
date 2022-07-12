@@ -24,6 +24,9 @@ import {
 } from "../dialog-window/edit-armor-dialog-window/edit-armor-dialog-window.component";
 import {BodyLocalizationService} from "../shared/services/body-localization-service/body-localization.service";
 import {CharacterService} from "../shared/services/character-service/character.service";
+import {
+  EditWeaponDialogWindowComponent
+} from "../dialog-window/edit-weapon-dialog-window/edit-weapon-dialog-window.component";
 
 @Component({
   selector: 'app-edit-form',
@@ -61,6 +64,10 @@ export class EditFormComponent {
     await this.armorService.fetchArmorQualities();
     await this.bodyLocalizationService.fetchBodyLocalizations();
     await this.weaponService.fetchWeapons();
+    await this.weaponService.fetchWeaponTypes();
+    await this.weaponService.fetchWeaponGroups();
+    await this.weaponService.fetchWeaponReaches();
+    await this.weaponService.fetchWeaponQualities();
     await this.skillService.fetchSkills();
     await this.talentService.fetchTalent();
     await this.characterService.fetchCharacters();
@@ -270,7 +277,7 @@ export class EditFormComponent {
     modalRef.componentInstance.armor = (<FormControl>this.armors[index]).value;
 
     let armor: Armor;
-    modalRef.componentInstance.emitter.subscribe((result: { armor: Armor, isNewArmor: boolean }) => {
+    modalRef.componentInstance.emitter.subscribe((result: { armor: Armor}) => {
       armor = result.armor;
     })
 
@@ -281,6 +288,31 @@ export class EditFormComponent {
           return Promise.resolve({armor: armor});
         } else {
           return Promise.resolve({armor: (<FormControl>this.armors[index]).value});
+        }
+      })
+  }
+
+  async onEditWeapon(index: number) {
+    await this.createEditWeaponDialogWindow(index);
+    this.weaponsList = this.weaponService.weaponsList;
+  }
+
+  createEditWeaponDialogWindow(index: number) {
+    const modalRef = this.modalService.open(EditWeaponDialogWindowComponent);
+    modalRef.componentInstance.weapon = (<FormControl>this.weapons[index]).value.weapon;
+
+    let weapon: Weapon;
+    modalRef.componentInstance.emitter.subscribe((result: { weapon: Weapon }) => {
+      weapon = result.weapon;
+    })
+
+    return modalRef.closed
+      .toPromise()
+      .then(() => {
+        if (weapon != null) {
+          return Promise.resolve({weapon: weapon});
+        } else {
+          return Promise.resolve({weapon: (<FormControl>this.weapons[index]).value});
         }
       })
   }

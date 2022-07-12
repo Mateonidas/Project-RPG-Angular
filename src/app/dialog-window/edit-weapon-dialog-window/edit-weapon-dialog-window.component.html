@@ -1,0 +1,126 @@
+<form [formGroup]="form" (ngSubmit)="onSave()">
+  <div class="modal-header">
+    <h4 class="modal-title">Modyfikacja: {{weapon.nameTranslation}}</h4>
+  </div>
+
+  <div class="modal-body">
+    <div class="mt-2">
+
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <h4>Nazwa</h4>
+          <input type="text" class="form-control" formControlName="name">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <h4>Tłumaczenie</h4>
+          <input type="text" class="form-control" formControlName="nameTranslation">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <h4>Typ Broni</h4>
+          <select class="form-select" formControlName="weaponType" [compareWith]="compareModels">
+            <option *ngFor="let weaponType of weaponService.weaponTypesList" [ngValue]="weaponType">
+              {{weaponType.nameTranslation}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <h4>Grupa Broni</h4>
+          <select class="form-select" formControlName="weaponGroup" [compareWith]="compareModels">
+            <option *ngFor="let weaponGroup of weaponService.weaponGroupsList" [ngValue]="weaponGroup">
+              {{weaponGroup.nameTranslation}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <h4>Długość Broni</h4>
+          <select class="form-select" formControlName="weaponReach" [compareWith]="compareModels">
+            <option *ngFor="let weaponReach of weaponService.weaponReachesList" [ngValue]="weaponReach">
+              {{weaponReach.nameTranslation}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <h4>Zasięg</h4>
+          <input type="number" class="form-control" formControlName="weaponRange">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <h4>Używa BS do obliczenia zasięgu</h4>
+          <input type="radio" formControlName="isUsingStrengthInRange" [value]="true" [checked]="modifiedWeapon.isUsingStrengthInRange"> Tak
+          <input type="radio" formControlName="isUsingStrengthInRange" [value]="false" [checked]="!modifiedWeapon.isUsingStrengthInRange"> Nie
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <h4>Obrażenia</h4>
+          <input type="number" class="form-control" formControlName="damage">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <h4>Używa BS do obliczenia obrażeń</h4>
+          <input type="radio" formControlName="isUsingStrength" [value]="true" [checked]="modifiedWeapon.isUsingStrength"> Tak
+          <input type="radio" formControlName="isUsingStrength" [value]="false" [checked]="!modifiedWeapon.isUsingStrength"> Nie
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 form-group" formArrayName="weaponQualities">
+          <h4>Cechy</h4>
+          <div class="row mb-2" *ngFor="let weaponQuality of weaponQualities; let i = index" [formGroupName]="i">
+            <div class="col-md-8">
+              <select class="form-select" formControlName="quality" [compareWith]="compareModels">
+                <option *ngFor="let quality of weaponService.weaponQualitiesList" [ngValue]="quality">
+                  {{quality.nameTranslation}}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <input
+                type="number"
+                class="form-control"
+                formControlName="value"
+              >
+            </div>
+            <div class="col-md-2">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDeleteWeaponQuality(i)">X
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-success" (click)="onAddWeaponQuality()">Dodaj Cechę</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-dark">Zapisz</button>
+  </div>
+</form>
