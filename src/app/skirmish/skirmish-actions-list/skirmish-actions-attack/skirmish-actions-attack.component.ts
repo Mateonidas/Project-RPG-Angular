@@ -5,12 +5,12 @@ import {AttacksCategoryList} from "../../../model/attack/attack-category.model";
 import {AttacksTypeList} from "../../../model/attack/attacks-type-list.model";
 import {SkirmishCharacterService} from "../../../shared/services/skirmish-character-service/skirmish-character.service";
 import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.model";
-import {Weapon} from "../../../model/weapon/weapon.model";
+// import {Weapon} from "../../../model/weapon/weapon.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {SaveRollDialogWindowComponent} from "../../../dialog-window/save-roll-dialog-window/save-roll-dialog-window.component";
+// import {SaveRollDialogWindowComponent} from "../../../dialog-window/save-roll-dialog-window/save-roll-dialog-window.component";
 import {AttackType} from 'src/app/model/attack/attack-type.model';
-import {AttackReportService} from "../../../dialog-window/report-dialog-window/attack-report-service/attack-report.service";
-import {AttackReportDialogWindowComponent} from "../../../dialog-window/report-dialog-window/attack-report-dialog-window.component";
+// import {AttackReportService} from "../../../dialog-window/report-dialog-window/attack-report-service/attack-report.service";
+// import {AttackReportDialogWindowComponent} from "../../../dialog-window/report-dialog-window/attack-report-dialog-window.component";
 import {RollService} from "../../../shared/services/roll-service/roll.service";
 import {CharacterWeapon} from "../../../model/weapon/character-weapon.model";
 // import {ConditionService} from "../../../shared/services/condition-service/condition.service";
@@ -35,7 +35,7 @@ export class SkirmishActionsAttackComponent implements OnInit {
               protected route: ActivatedRoute,
               protected skirmishCharacterService: SkirmishCharacterService,
               private modalService: NgbModal,
-              private attackReportService: AttackReportService,
+              // private attackReportService: AttackReportService,
               private rollService: RollService,
               // private conditionService: ConditionService,
               // private fightService: FightService
@@ -98,15 +98,15 @@ export class SkirmishActionsAttackComponent implements OnInit {
     // })
   }
 
-  createSaveRollDialog(defender: SkirmishCharacter) {
-    const modalRef = this.modalService.open(SaveRollDialogWindowComponent);
-    modalRef.componentInstance.target = defender;
-    return modalRef.componentInstance.emitter;
-  }
+  // createSaveRollDialog(defender: SkirmishCharacter) {
+  //   const modalRef = this.modalService.open(SaveRollDialogWindowComponent);
+  //   modalRef.componentInstance.target = defender;
+  //   return modalRef.componentInstance.emitter;
+  // }
 
-  createReportDialog() {
-    this.modalService.open(AttackReportDialogWindowComponent);
-  }
+  // createReportDialog() {
+  //   this.modalService.open(AttackReportDialogWindowComponent);
+  // }
 
   get attackCategory() {
     return this.attackForm.get('attackCategory');

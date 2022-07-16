@@ -1,23 +1,23 @@
-<form [formGroup]="rollForm" (ngSubmit)="onSave()">
-  <div class="modal-header">
-    <h4 class="modal-title">{{name}}</h4>
-  </div>
+<!--<form [formGroup]="rollForm" (ngSubmit)="onSave()">-->
+<!--  <div class="modal-header">-->
+<!--    <h4 class="modal-title">{{name}}</h4>-->
+<!--  </div>-->
 
-  <div class="modal-body">
-    <div class="mt-2">
-      <p>Rzut</p>
-      <input type="number" class="form-control" formControlName="roll">
-      <app-validation-alert
-        [control]="roll">
-      </app-validation-alert>
-    </div>
-    <div class="mt-2" *ngIf="useModifier">
-      <p>Modifikator</p>
-      <input type="number" class="form-control" formControlName="modifier">
-    </div>
-  </div>
+<!--  <div class="modal-body">-->
+<!--    <div class="mt-2">-->
+<!--      <p>Rzut</p>-->
+<!--      <input type="number" class="form-control" formControlName="roll">-->
+<!--      <app-validation-alert-->
+<!--        [control]="roll">-->
+<!--      </app-validation-alert>-->
+<!--    </div>-->
+<!--    <div class="mt-2" *ngIf="useModifier">-->
+<!--      <p>Modifikator</p>-->
+<!--      <input type="number" class="form-control" formControlName="modifier">-->
+<!--    </div>-->
+<!--  </div>-->
 
-  <div class="modal-footer">
-    <button type="submit" class="btn btn-outline-dark" [disabled]="!rollForm.valid">Zapisz</button>
-  </div>
-</form>
+<!--  <div class="modal-footer">-->
+<!--    <button type="submit" class="btn btn-outline-dark" [disabled]="!rollForm.valid">Zapisz</button>-->
+<!--  </div>-->
+<!--</form>-->

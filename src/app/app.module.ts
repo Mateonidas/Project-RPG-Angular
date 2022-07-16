@@ -29,15 +29,15 @@ import {SkirmishActionsListComponent} from './skirmish/skirmish-actions-list/ski
 import {
   SkirmishActionsAttackComponent
 } from './skirmish/skirmish-actions-list/skirmish-actions-attack/skirmish-actions-attack.component';
-import {SaveRollDialogWindowComponent} from './dialog-window/save-roll-dialog-window/save-roll-dialog-window.component';
+// import {SaveRollDialogWindowComponent} from './dialog-window/save-roll-dialog-window/save-roll-dialog-window.component';
 import {ValidationAlertComponent} from './validation/validation-alert/validation-alert.component';
-import {
-  AttackReportDialogWindowComponent
-} from './dialog-window/report-dialog-window/attack-report-dialog-window.component';
-import {RollDialogWindowComponent} from './dialog-window/roll-dialog-window/roll-dialog-window.component';
-import {
-  AttackAllyFumbleDialogWindowComponent
-} from './dialog-window/attack-ally-fumble-dialog-window/attack-ally-fumble-dialog-window.component';
+// import {
+//   AttackReportDialogWindowComponent
+// } from './dialog-window/report-dialog-window/attack-report-dialog-window.component';
+// import {RollDialogWindowComponent} from './dialog-window/roll-dialog-window/roll-dialog-window.component';
+// import {
+//   AttackAllyFumbleDialogWindowComponent
+// } from './dialog-window/attack-ally-fumble-dialog-window/attack-ally-fumble-dialog-window.component';
 import {HttpClientModule} from '@angular/common/http';
 import { EditArmorDialogWindowComponent } from './dialog-window/edit-armor-dialog-window/edit-armor-dialog-window.component';
 import { EditWeaponDialogWindowComponent } from './dialog-window/edit-weapon-dialog-window/edit-weapon-dialog-window.component';
@@ -63,11 +63,11 @@ import { EditWeaponDialogWindowComponent } from './dialog-window/edit-weapon-dia
     InitiativeDialogWindow,
     SkirmishActionsListComponent,
     SkirmishActionsAttackComponent,
-    SaveRollDialogWindowComponent,
+    // SaveRollDialogWindowComponent,
     ValidationAlertComponent,
-    AttackReportDialogWindowComponent,
-    RollDialogWindowComponent,
-    AttackAllyFumbleDialogWindowComponent,
+    // AttackReportDialogWindowComponent,
+    // RollDialogWindowComponent,
+    // AttackAllyFumbleDialogWindowComponent,
     EditArmorDialogWindowComponent,
     EditWeaponDialogWindowComponent
   ],
