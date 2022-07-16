@@ -4,6 +4,7 @@ import {CharacterCharacteristic} from "../characteristic/character-characteristi
 import {CharacterSkill} from "../skill/character-skill.model";
 import {CharacterWeapon} from "../weapon/character-weapon.model";
 import {CharacterBodyLocalization} from "../body-localization/character-body-localization.model";
+import {CharacterCondition} from "../condition/condition.model";
 
 export class Character {
   id!: number;
@@ -16,8 +17,9 @@ export class Character {
   weapons!: CharacterWeapon[];
   armors!: Armor[];
   bodyLocalizations!: CharacterBodyLocalization[];
+  conditions!: CharacterCondition[];
 
-  constructor(name?: string, description?: string, characteristics?: CharacterCharacteristic[], skills?: CharacterSkill[], talents?: CharacterTalent[], rightHanded?: boolean, weapons?: CharacterWeapon[], armor?: Armor[], bodyLocalizations?: CharacterBodyLocalization[]) {
+  constructor(name?: string, description?: string, characteristics?: CharacterCharacteristic[], skills?: CharacterSkill[], talents?: CharacterTalent[], rightHanded?: boolean, weapons?: CharacterWeapon[], armor?: Armor[], conditions?: CharacterCondition[], bodyLocalizations?: CharacterBodyLocalization[]) {
     this.name = <string>name;
     this.description = <string>description;
     this.characteristics = <CharacterCharacteristic[]>characteristics;
@@ -27,6 +29,7 @@ export class Character {
     this.weapons = <CharacterWeapon[]>weapons;
     this.armors = <Armor[]>armor;
     this.bodyLocalizations = <CharacterBodyLocalization[]>bodyLocalizations;
+    this.conditions = <CharacterCondition[]>conditions;
   }
 
   get movement(): CharacterCharacteristic {
@@ -85,6 +88,7 @@ export class Character {
     character.weapons = CharacterWeapon.arrayFromJSON(character['weapons']);
     character.armors = Armor.arrayFromJSON(character['armors']);
     character.bodyLocalizations = CharacterBodyLocalization.arrayFromJSON(character['bodyLocalizations']);
+    character.conditions = CharacterCondition.arrayFromJSON(character['conditions']);
     return character;
   }
 

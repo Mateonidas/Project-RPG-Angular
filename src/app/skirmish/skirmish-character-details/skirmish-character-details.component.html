@@ -1,274 +1,275 @@
-<div class="row">
-  <div class="col-md-12">
-    <h1>{{skirmishCharacter.name}}</h1>
-  </div>
-</div>
+Test
+<!--<div class="row">-->
+<!--  <div class="col-md-12">-->
+<!--    <h1>{{skirmishCharacter.name}}</h1>-->
+<!--  </div>-->
+<!--</div>-->
 
-<div class="row">
-  <div class="col-md-12">
-    <div class="dropdown">
-      <button class="btn btn-success" (click)="onEditCharacter()">Tryb Edycji</button>
-    </div>
-  </div>
-</div>
+<!--<div class="row">-->
+<!--  <div class="col-md-12">-->
+<!--    <div class="dropdown">-->
+<!--      <button class="btn btn-success" (click)="onEditCharacter()">Tryb Edycji</button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 
-<div class="row">
-  <div class="col-xs-12">
-    <br>
-    <h4>Opis</h4>
-    {{skirmishCharacter.description}}
-    <br>
-    <br>
-  </div>
-</div>
+<!--<div class="row">-->
+<!--  <div class="col-xs-12">-->
+<!--    <br>-->
+<!--    <h4>Opis</h4>-->
+<!--    {{skirmishCharacter.description}}-->
+<!--    <br>-->
+<!--    <br>-->
+<!--  </div>-->
+<!--</div>-->
 
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <h4>Parametry tymczasowe</h4>
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">Nazwa</th>
-        <th scope="col">Wartość</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>Żyje</td>
-        <td *ngIf="skirmishCharacter.isDead">Nie</td>
-        <td *ngIf="!skirmishCharacter.isDead">Tak</td>
-      </tr>
-      <tr>
-        <td>Żywotność</td>
-        <td>{{skirmishCharacter.currentWounds}}/{{skirmishCharacter.wounds.value}}</td>
-      </tr>
-      <tr>
-        <td>Inicjatywa</td>
-        <td>{{skirmishCharacter.skirmishInitiative}}</td>
-      </tr>
-      <tr>
-        <td>Przewagi</td>
-        <td>{{skirmishCharacter.advantage}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<!--<hr>-->
+<!--<div class="row">-->
+<!--  <div class="col-md-12">-->
+<!--    <h4>Parametry tymczasowe</h4>-->
+<!--    <table class="table table-bordered">-->
+<!--      <thead class="thead-dark">-->
+<!--      <tr>-->
+<!--        <th scope="col">Nazwa</th>-->
+<!--        <th scope="col">Wartość</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--      <tr>-->
+<!--        <td>Żyje</td>-->
+<!--        <td *ngIf="skirmishCharacter.isDead">Nie</td>-->
+<!--        <td *ngIf="!skirmishCharacter.isDead">Tak</td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td>Żywotność</td>-->
+<!--        <td>{{skirmishCharacter.currentWounds}}/{{skirmishCharacter.wounds.value}}</td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td>Inicjatywa</td>-->
+<!--        <td>{{skirmishCharacter.skirmishInitiative}}</td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td>Przewagi</td>-->
+<!--        <td>{{skirmishCharacter.advantage}}</td>-->
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+<!--  </div>-->
+<!--</div>-->
 
-<ng-container *ngIf="skirmishCharacter.notes.length > 0">
-  <hr>
-  <div class="row">
-    <div class="col-md-12">
-      <h4>Notatki</h4>
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let note of skirmishCharacter.notes">
-          {{note}}
-        </li>
-      </ul>
-    </div>
-  </div>
-</ng-container>
+<!--<ng-container *ngIf="skirmishCharacter.notes.length > 0">-->
+<!--  <hr>-->
+<!--  <div class="row">-->
+<!--    <div class="col-md-12">-->
+<!--      <h4>Notatki</h4>-->
+<!--      <ul class="list-group">-->
+<!--        <li class="list-group-item" *ngFor="let note of skirmishCharacter.notes">-->
+<!--          {{note}}-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</ng-container>-->
 
-<ng-container *ngIf="skirmishCharacter.conditions.length > 0">
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <h4>Stany</h4>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let condition of skirmishCharacter.conditions">
-        <ng-container *ngIf="condition.incurableValue > 0">
-          {{condition.base.nameTranslation}} {{condition.value}} (nieuleczalne: {{condition.incurableValue}})
-        </ng-container>
-        <ng-container *ngIf="condition.incurableValue <= 0">
-          {{condition.base.nameTranslation}} {{condition.value}}
-        </ng-container>
-      </li>
-    </ul>
-  </div>
-</div>
-</ng-container>
+<!--<ng-container *ngIf="skirmishCharacter.conditions.length > 0">-->
+<!--<hr>-->
+<!--<div class="row">-->
+<!--  <div class="col-md-12">-->
+<!--    <h4>Stany</h4>-->
+<!--    <ul class="list-group">-->
+<!--      <li class="list-group-item" *ngFor="let condition of skirmishCharacter.conditions">-->
+<!--        <ng-container *ngIf="condition.incurableValue > 0">-->
+<!--          {{condition.base.nameTranslation}} {{condition.value}} (nieuleczalne: {{condition.incurableValue}})-->
+<!--        </ng-container>-->
+<!--        <ng-container *ngIf="condition.incurableValue <= 0">-->
+<!--          {{condition.base.nameTranslation}} {{condition.value}}-->
+<!--        </ng-container>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--</div>-->
+<!--</ng-container>-->
 
-<ng-container *ngIf="skirmishCharacter.injuries.length > 0">
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <h4>Urazy</h4>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let injury of skirmishCharacter.injuries">
-        {{injury.bodyLocalization.nameTranslation}}: {{injury.base.nameTranslation}}
-      </li>
-    </ul>
-  </div>
-</div>
-</ng-container>
+<!--<ng-container *ngIf="skirmishCharacter.injuries.length > 0">-->
+<!--<hr>-->
+<!--<div class="row">-->
+<!--  <div class="col-md-12">-->
+<!--    <h4>Urazy</h4>-->
+<!--    <ul class="list-group">-->
+<!--      <li class="list-group-item" *ngFor="let injury of skirmishCharacter.injuries">-->
+<!--        {{injury.bodyLocalization.nameTranslation}}: {{injury.base.nameTranslation}}-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--</div>-->
+<!--</ng-container>-->
 
-<ng-container *ngIf="skirmishCharacter.criticalWounds.length > 0">
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <h4>Rany krytyczne</h4>
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">Lokalizacja</th>
-        <th scope="col">Nazwa</th>
-        <th scope="col">Stany</th>
-        <th scope="col">Urazy</th>
-      </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let criticalWound of skirmishCharacter.criticalWounds">
-          <td>{{criticalWound.bodyLocalization.nameTranslation}}</td>
-          <td>{{criticalWound.nameTranslation}}</td>
-          <td>
-            <ul>
-              <li *ngFor="let condition of criticalWound.criticalConditions">
-                {{condition.base.nameTranslation}} {{condition.value}}
-              </li>
-            </ul>
-          </td>
-          <td>
-            <ul>
-              <li *ngFor="let injury of criticalWound.criticalInjuries">
-                {{injury.base.nameTranslation}}
-              </li>
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-</ng-container>
+<!--<ng-container *ngIf="skirmishCharacter.criticalWounds.length > 0">-->
+<!--<hr>-->
+<!--<div class="row">-->
+<!--  <div class="col-md-12">-->
+<!--    <h4>Rany krytyczne</h4>-->
+<!--    <table class="table table-bordered">-->
+<!--      <thead class="thead-dark">-->
+<!--      <tr>-->
+<!--        <th scope="col">Lokalizacja</th>-->
+<!--        <th scope="col">Nazwa</th>-->
+<!--        <th scope="col">Stany</th>-->
+<!--        <th scope="col">Urazy</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--        <tr *ngFor="let criticalWound of skirmishCharacter.criticalWounds">-->
+<!--          <td>{{criticalWound.bodyLocalization.nameTranslation}}</td>-->
+<!--          <td>{{criticalWound.nameTranslation}}</td>-->
+<!--          <td>-->
+<!--            <ul>-->
+<!--              <li *ngFor="let condition of criticalWound.criticalConditions">-->
+<!--                {{condition.base.nameTranslation}} {{condition.value}}-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </td>-->
+<!--          <td>-->
+<!--            <ul>-->
+<!--              <li *ngFor="let injury of criticalWound.criticalInjuries">-->
+<!--                {{injury.base.nameTranslation}}-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+<!--  </div>-->
+<!--</div>-->
+<!--</ng-container>-->
 
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <h4>Cechy</h4>
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">Sz</th>
-        <th scope="col">WW</th>
-        <th scope="col">US</th>
-        <th scope="col">S</th>
-        <th scope="col">Wt</th>
-        <th scope="col">I</th>
-        <th scope="col">Zw</th>
-        <th scope="col">Zr</th>
-        <th scope="col">Int</th>
-        <th scope="col">SW</th>
-        <th scope="col">Ogd</th>
-        <th scope="col">Żyw</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>{{skirmishCharacter.movement.value}}</td>
-        <td>{{skirmishCharacter.weaponSkill.value}}</td>
-        <td>{{skirmishCharacter.ballisticSkill.value}}</td>
-        <td>{{skirmishCharacter.strength.value}}</td>
-        <td>{{skirmishCharacter.toughness.value}}</td>
-        <td>{{skirmishCharacter.initiative.value}}</td>
-        <td>{{skirmishCharacter.agility.value}}</td>
-        <td>{{skirmishCharacter.dexterity.value}}</td>
-        <td>{{skirmishCharacter.intelligence.value}}</td>
-        <td>{{skirmishCharacter.willpower.value}}</td>
-        <td>{{skirmishCharacter.fellowship.value}}</td>
-        <td>{{skirmishCharacter.wounds.value}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<!--<hr>-->
+<!--<div class="row">-->
+<!--  <div class="col-md-12">-->
+<!--    <h4>Cechy</h4>-->
+<!--    <table class="table table-bordered">-->
+<!--      <thead class="thead-dark">-->
+<!--      <tr>-->
+<!--        <th scope="col">Sz</th>-->
+<!--        <th scope="col">WW</th>-->
+<!--        <th scope="col">US</th>-->
+<!--        <th scope="col">S</th>-->
+<!--        <th scope="col">Wt</th>-->
+<!--        <th scope="col">I</th>-->
+<!--        <th scope="col">Zw</th>-->
+<!--        <th scope="col">Zr</th>-->
+<!--        <th scope="col">Int</th>-->
+<!--        <th scope="col">SW</th>-->
+<!--        <th scope="col">Ogd</th>-->
+<!--        <th scope="col">Żyw</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--      <tr>-->
+<!--        <td>{{skirmishCharacter.movement.value}}</td>-->
+<!--        <td>{{skirmishCharacter.weaponSkill.value}}</td>-->
+<!--        <td>{{skirmishCharacter.ballisticSkill.value}}</td>-->
+<!--        <td>{{skirmishCharacter.strength.value}}</td>-->
+<!--        <td>{{skirmishCharacter.toughness.value}}</td>-->
+<!--        <td>{{skirmishCharacter.initiative.value}}</td>-->
+<!--        <td>{{skirmishCharacter.agility.value}}</td>-->
+<!--        <td>{{skirmishCharacter.dexterity.value}}</td>-->
+<!--        <td>{{skirmishCharacter.intelligence.value}}</td>-->
+<!--        <td>{{skirmishCharacter.willpower.value}}</td>-->
+<!--        <td>{{skirmishCharacter.fellowship.value}}</td>-->
+<!--        <td>{{skirmishCharacter.wounds.value}}</td>-->
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+<!--  </div>-->
+<!--</div>-->
 
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <h4>Umiejętności</h4>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let characterSkill of skirmishCharacter.skills">
-        {{characterSkill.skill.nameTranslation}} - {{characterSkill.value}}
-      </li>
-    </ul>
-  </div>
-</div>
+<!--<hr>-->
+<!--<div class="row">-->
+<!--  <div class="col-md-12">-->
+<!--    <h4>Umiejętności</h4>-->
+<!--    <ul class="list-group">-->
+<!--      <li class="list-group-item" *ngFor="let characterSkill of skirmishCharacter.skills">-->
+<!--        {{characterSkill.skill.nameTranslation}} - {{characterSkill.value}}-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--</div>-->
 
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <h4>Talenty</h4>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let talent of skirmishCharacter.talents">
-        {{talent.talent.nameTranslation}} - {{talent.value}}
-      </li>
-    </ul>
-  </div>
-</div>
+<!--<hr>-->
+<!--<div class="row">-->
+<!--  <div class="col-md-12">-->
+<!--    <h4>Talenty</h4>-->
+<!--    <ul class="list-group">-->
+<!--      <li class="list-group-item" *ngFor="let talent of skirmishCharacter.talents">-->
+<!--        {{talent.talent.nameTranslation}} - {{talent.value}}-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--</div>-->
 
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <h4>Broń</h4>
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">Nazwa</th>
-        <th scope="col">Kategoria</th>
-        <th scope="col">Zasięg</th>
-        <th scope="col">Obrażenia</th>
-        <th scope="col">Zalety i Wady</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let characterWeapon of skirmishCharacter.weapons">
-        <td>{{characterWeapon.weapon.nameTranslation}}</td>
-        <td>{{characterWeapon.weapon.weaponGroupType}}</td>
-        <td>{{characterWeapon.weapon.weaponRange}}</td>
-        <td>
-          <span *ngIf="characterWeapon.weapon.isUsingStrength; else elseBlock">+BS+{{characterWeapon.weapon.damage}}</span>
-          <ng-template #elseBlock>+{{characterWeapon.weapon.damage}}</ng-template>
-        </td>
-        <td>
-          <span *ngFor="let quality of characterWeapon.weapon.weaponQualities"> {{quality.nameTranslation}}</span>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<!--<hr>-->
+<!--<div class="row">-->
+<!--  <div class="col-md-12">-->
+<!--    <h4>Broń</h4>-->
+<!--    <table class="table table-bordered">-->
+<!--      <thead class="thead-dark">-->
+<!--      <tr>-->
+<!--        <th scope="col">Nazwa</th>-->
+<!--        <th scope="col">Kategoria</th>-->
+<!--        <th scope="col">Zasięg</th>-->
+<!--        <th scope="col">Obrażenia</th>-->
+<!--        <th scope="col">Zalety i Wady</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--      <tr *ngFor="let characterWeapon of skirmishCharacter.weapons">-->
+<!--        <td>{{characterWeapon.weapon.nameTranslation}}</td>-->
+<!--        <td>{{characterWeapon.weapon.weaponGroupType}}</td>-->
+<!--        <td>{{characterWeapon.weapon.weaponRange}}</td>-->
+<!--        <td>-->
+<!--          <span *ngIf="characterWeapon.weapon.isUsingStrength; else elseBlock">+BS+{{characterWeapon.weapon.damage}}</span>-->
+<!--          <ng-template #elseBlock>+{{characterWeapon.weapon.damage}}</ng-template>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--          <span *ngFor="let quality of characterWeapon.weapon.weaponQualities"> {{quality.nameTranslation}}</span>-->
+<!--        </td>-->
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+<!--  </div>-->
+<!--</div>-->
 
 
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <h4>Pancerz</h4>
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">Nazwa</th>
-        <th scope="col">Kategoria</th>
-        <th scope="col">Kara</th>
-        <th scope="col">Lokalizacja</th>
-        <th scope="col">Punkty Pancerza</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let armor of skirmishCharacter.armors">
-        <td>{{armor.nameTranslation}}</td>
-        <td>{{armor.armorCategory}}</td>
-        <td>{{armor.armorPenalties}}</td>
-        <td>
-          <ul>
-            <li *ngFor="let armorBodyLocalization of armor.armorBodyLocalizations">
-              {{armorBodyLocalization.bodyLocalization.nameTranslation}}
-            </li>
-          </ul>
-        </td>
-        <td>Poprawic</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<!--<hr>-->
+<!--<div class="row">-->
+<!--  <div class="col-md-12">-->
+<!--    <h4>Pancerz</h4>-->
+<!--    <table class="table table-bordered">-->
+<!--      <thead class="thead-dark">-->
+<!--      <tr>-->
+<!--        <th scope="col">Nazwa</th>-->
+<!--        <th scope="col">Kategoria</th>-->
+<!--        <th scope="col">Kara</th>-->
+<!--        <th scope="col">Lokalizacja</th>-->
+<!--        <th scope="col">Punkty Pancerza</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--      <tr *ngFor="let armor of skirmishCharacter.armors">-->
+<!--        <td>{{armor.nameTranslation}}</td>-->
+<!--        <td>{{armor.armorCategory}}</td>-->
+<!--        <td>{{armor.armorPenalties}}</td>-->
+<!--        <td>-->
+<!--          <ul>-->
+<!--            <li *ngFor="let armorBodyLocalization of armor.armorBodyLocalizations">-->
+<!--              {{armorBodyLocalization.bodyLocalization.nameTranslation}}-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </td>-->
+<!--        <td>Poprawic</td>-->
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+<!--  </div>-->
+<!--</div>-->

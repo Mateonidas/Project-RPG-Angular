@@ -258,6 +258,40 @@
 
       <hr>
       <div class="row">
+        <div class="col-md-12" formArrayName="conditions">
+          <h4>Stany</h4>
+          <div class="row mb-2" *ngFor="let conditionControl of conditions; let i = index" [formGroupName]="i">
+            <div class="col-md-8">
+              <select class="form-select" formControlName="condition" [compareWith]="compareModels">
+                <option *ngFor="let condition of conditionService.conditionsList" [ngValue]="condition">
+                  {{condition.nameTranslation}}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="value">
+            </div>
+            <div class="col-md-2">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDeleteCondition(i)">X
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-success" (click)="onAddCondition()">Dodaj Stan</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
         <div class="col-md-12">
           <button class="btn btn-primary me-2" type="submit">{{ editMode ? 'Edytuj' : 'Dodaj' }}</button>
           <button type="submit" class="btn btn-danger" (click)="onCancel()">Powrót</button>

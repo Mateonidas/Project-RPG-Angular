@@ -9,6 +9,7 @@ import {WeaponService} from "../weapon-service/weapon.service";
 import {ArmorService} from "../armor-service/armor.service";
 import {CharacterWeapon} from "../../../model/weapon/character-weapon.model";
 import {CharacterBodyLocalization} from "../../../model/body-localization/character-body-localization.model";
+import {CharacterCondition} from "../../../model/condition/condition.model";
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,7 @@ export class CharacterService {
           this.prepareWeapons(character.weapons);
           this.armorService.prepareArmorsList(character.armors);
           this.prepareBodyLocalizations(character.bodyLocalizations);
+          this.prepareConditions(character.conditions);
           this.charactersList.push(character);
         }
         localStorage.setItem('characters', JSON.stringify(this.charactersList));
@@ -97,6 +99,12 @@ export class CharacterService {
       for (let characterInjury of characterBodyLocalization.injuries) {
         characterInjury.injury.nameTranslation = TextResourceService.getInjuryNameTranslation(characterInjury.injury.name).nameTranslation;
       }
+    }
+  }
+
+  private prepareConditions(conditions: CharacterCondition[]) {
+    for (let characterCondition of conditions) {
+      characterCondition.condition.nameTranslation = TextResourceService.getConditionNameTranslation(characterCondition.condition.name).nameTranslation
     }
   }
 

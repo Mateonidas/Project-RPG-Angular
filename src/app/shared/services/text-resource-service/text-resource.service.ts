@@ -48,6 +48,17 @@ export class TextResourceService {
     })
   }
 
+  public static getConditionNameTranslation(name: string) {
+    let conditions: Model[] = textResource.condition;
+    return <Model>conditions.find(condition => {
+      if(condition.name == name) {
+        return condition;
+      } else {
+        return null;
+      }
+    })
+  }
+
   public static getArmorCategoryNameTranslation(name: string) {
     let armorCategories: Model[] = textResource.armorCategory;
     return <Model>armorCategories.find(armorCategory => {

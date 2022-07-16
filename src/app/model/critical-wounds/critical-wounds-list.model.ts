@@ -2,9 +2,9 @@
 // import {CriticalWound} from "./critical-wounds.model";
 // import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
 // import {BodyLocalizationList} from "../body-localization/body-localization.model";
-// import {Condition} from "../conditions/condition.model";
-// import {ConditionsList} from "../conditions/conditions-list.model";
-// import {InjuresList, Injury} from "../injures/injures-list.model";
+// import {Condition} from "../conditionsOld/condition.model";
+// import {ConditionsList} from "../conditionsOld/conditionsOld-list.model";
+// import {InjuresList, Injury} from "../injuresOld/injuresOld-list.model";
 //
 // export class CriticalWoundsList extends ListModel {
 //

@@ -27,7 +27,9 @@ import {CharacterService} from "../shared/services/character-service/character.s
 import {
   EditWeaponDialogWindowComponent
 } from "../dialog-window/edit-weapon-dialog-window/edit-weapon-dialog-window.component";
-import {InjuriesService} from "../shared/services/injuries-service/injuries.service";
+import {InjuryService} from "../shared/services/injuries-service/injury.service";
+import {ConditionService} from "../shared/services/condition-service/condition.service";
+import {CharacterCondition} from "../model/condition/condition.model";
 
 @Component({
   selector: 'app-edit-form',
@@ -55,7 +57,8 @@ export class EditFormComponent {
               protected talentService: TalentService,
               protected bodyLocalizationService: BodyLocalizationService,
               protected characterService: CharacterService,
-              protected injuryService: InjuriesService,
+              protected injuryService: InjuryService,
+              protected conditionService: ConditionService,
               protected modalService: NgbModal) {
   }
 
@@ -66,6 +69,7 @@ export class EditFormComponent {
     await this.armorService.fetchArmorQualities();
     await this.bodyLocalizationService.fetchBodyLocalizations();
     await this.injuryService.fetchInjuries();
+    await this.conditionService.fetchConditions();
     await this.weaponService.fetchWeapons();
     await this.weaponService.fetchWeaponTypes();
     await this.weaponService.fetchWeaponGroups();
@@ -89,7 +93,8 @@ export class EditFormComponent {
     if (character.armors) {
       this.prepareArmorList(formArrays.armors, character.armors);
     }
-    this.prepareInjuryList(formArrays.injuries, character.bodyLocalizations);
+    this.prepareInjuriesList(formArrays.injuries, character.bodyLocalizations);
+    this.prepareConditionsList(formArrays.conditions, character.conditions);
   }
 
   prepareSkillsList(skills: FormArray, skillsList: CharacterSkill[]) {
@@ -133,7 +138,7 @@ export class EditFormComponent {
     }
   }
 
-  prepareInjuryList(injuries: FormArray, bodyLocalizations: CharacterBodyLocalization[]) {
+  prepareInjuriesList(injuries: FormArray, bodyLocalizations: CharacterBodyLocalization[]) {
     for (let bodyLocalization of bodyLocalizations) {
       for (let injury of bodyLocalization.injuries) {
         injuries.push(
@@ -144,6 +149,17 @@ export class EditFormComponent {
           })
         )
       }
+    }
+  }
+
+  prepareConditionsList(conditions: FormArray, conditionsList: CharacterCondition[]) {
+    for (let characterCondition of conditionsList) {
+      conditions.push(
+        new FormGroup({
+          'condition': new FormControl(characterCondition.condition),
+          'value': new FormControl(characterCondition.value)
+        })
+      )
     }
   }
 
@@ -255,6 +271,15 @@ export class EditFormComponent {
     )
   }
 
+  onAddCondition() {
+    (<FormArray>this.editCharacterForm.get('conditions')).push(
+      new FormGroup({
+        'condition': new FormControl(null),
+        'value': new FormControl(null),
+      })
+    )
+  }
+
   onSetTalentLevel(event: any, i: number) {
     this.talents[i].value.value = event.target.value;
   }
@@ -283,6 +308,10 @@ export class EditFormComponent {
     return <FormControl[]>(<FormArray>this.editCharacterForm.get('injuries')).controls;
   }
 
+  get conditions() {
+    return <FormControl[]>(<FormArray>this.editCharacterForm.get('conditions')).controls;
+  }
+
   onDeleteSkill(index: number) {
     (<FormArray>this.editCharacterForm.get('skills')).removeAt(index);
   }
@@ -301,6 +330,10 @@ export class EditFormComponent {
 
   onDeleteInjury(index: number) {
     (<FormArray>this.editCharacterForm.get('injuries')).removeAt(index);
+  }
+
+  onDeleteCondition(index: number) {
+    (<FormArray>this.editCharacterForm.get('conditions')).removeAt(index);
   }
 
   async onEditArmor(index: number) {

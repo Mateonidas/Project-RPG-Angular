@@ -2,17 +2,18 @@ import {Character} from "../character/character.model";
 import {BodyLocalization, BodyLocalizationList} from "../body-localization/body-localization.model";
 import {Weapon} from "../weapon/weapon.model";
 import {Skill} from "../skill/skill.model";
-import {Condition} from "../conditions/condition.model";
+import {ConditionOld} from "../conditionsOld/condition.model";
 import {Roll} from "../roll/roll.model";
 import {CharacterBodyLocalizations} from "../body-localization/character-body-localizations.model";
 import {CharacterCharacteristic} from "../characteristic/character-characteristic.model";
 import {CharacterTalent} from "../talent/character-talent.model";
 import {Armor} from "../armor/armor.model";
 import {CriticalWound} from "../critical-wounds/critical-wounds.model";
-import {InjuryOld} from "../injures/injures-list.model";
+import {InjuryOld} from "../injuresOld/injures-list.model";
 import {CharacterSkill} from "../skill/character-skill.model";
 import {CharacterWeapon} from "../weapon/character-weapon.model";
 import {CharacterBodyLocalization} from "../body-localization/character-body-localization.model";
+import {CharacterCondition} from "../condition/condition.model";
 
 export class SkirmishCharacter extends Character {
 
@@ -24,7 +25,7 @@ export class SkirmishCharacter extends Character {
   currentWounds!: number;
   skirmishInitiative!: number;
   advantage!: number;
-  conditions!: Condition[];
+  conditionsOld!: ConditionOld[];
   injuries!: InjuryOld[];
   criticalWounds!: CriticalWound[];
   bodyLocalizations!: CharacterBodyLocalization[];
@@ -43,7 +44,7 @@ export class SkirmishCharacter extends Character {
       this.skirmishInitiative = <number>character?.initiative.value;
       this.advantage = 0;
       this.roll = new Roll();
-      this.conditions = [];
+      this.conditionsOld = [];
       this.injuries = [];
       this.criticalWounds = [];
       this.fillLocalizationArmorPoints();
@@ -127,11 +128,11 @@ export class SkirmishCharacter extends Character {
   // }
 
   // checkIfHasCondition(condition: Model) {
-  //   return this.conditions.filter(e => e.base.nameTranslation === condition.nameTranslation).length > 0;
+  //   return this.conditionsOldOld.filter(e => e.base.nameTranslation === condition.nameTranslation).length > 0;
   // }
   //
   // getCondition(condition: Model) {
-  //   return this.conditions.filter(e => e.base.nameTranslation === condition.nameTranslation)[0];
+  //   return this.conditionsOldOld.filter(e => e.base.nameTranslation === condition.nameTranslation)[0];
   // }
 
   resetUnconsciousCounter() {
@@ -139,11 +140,11 @@ export class SkirmishCharacter extends Character {
   }
 
   // addCondition(newCondition: Model, level?: number, incurableValue?: number) {
-  //   if (this.conditions.length === 0) {
-  //     this.conditions.push(new Condition(newCondition, level, incurableValue));
+  //   if (this.conditionsOldOld.length === 0) {
+  //     this.conditionsOld.push(new Condition(newCondition, level, incurableValue));
   //   } else {
   //     let found = false;
-  //     for (let condition of this.conditions) {
+  //     for (let condition of this.conditionsOld) {
   //       if (condition.base.nameTranslation === newCondition.nameTranslation) {
   //         found = true;
   //         if (!(condition.base.nameTranslation === ConditionsList.prone.nameTranslation ||
@@ -161,15 +162,15 @@ export class SkirmishCharacter extends Character {
   //       }
   //     }
   //     if (!found) {
-  //       this.conditions.push(new Condition(newCondition, level));
+  //       this.conditionsOld.push(new Condition(newCondition, level));
   //     }
   //   }
   //   this.advantage = 0;
   // }
   //
   // removeCondition(condition: Model) {
-  //   let index = this.conditions.findIndex(c => c.base.name === condition.name);
-  //   this.conditions.splice(index, 1);
+  //   let index = this.conditionsOld.findIndex(c => c.base.name === condition.name);
+  //   this.conditionsOld.splice(index, 1);
   // }
 
   addNote(note: string) {
@@ -206,7 +207,7 @@ export class SkirmishCharacter extends Character {
     character.talents = CharacterTalent.arrayFromJSON(character['talents']);
     character.weapons = CharacterWeapon.arrayFromJSON(character['weapons']);
     character.armors = Armor.arrayFromJSON(character['armors']);
-    character.conditions = Condition.arrayFromJSON(character['conditions'])
+    character.conditionsOld = ConditionOld.arrayFromJSON(character['conditions'])
     character.injuries = InjuryOld.arrayFromJSON(character['injuries'])
     character.criticalWounds = CriticalWound.arrayFromJSON(character['criticalWounds']);
     character.skirmishBodyLocalizations = CharacterBodyLocalizations.fromJSON(character['bodyLocalizations']);

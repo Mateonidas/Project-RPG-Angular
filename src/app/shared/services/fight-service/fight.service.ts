@@ -3,10 +3,10 @@
 // import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 // import {ServiceModel} from "../service.model";
 // import {BodyLocalizationList} from "../../../model/body-localization/body-localization.model";
-// import {InjuresList, Injury} from "../../../model/injures/injures-list.model";
+// import {InjuresList, Injury} from "../../../model/injuresOld/injuresOld-list.model";
 // import {RoundService} from "../round-service/round.service";
 // import {RollService} from "../roll-service/roll.service";
-// import {ConditionsList} from "../../../model/conditions/conditions-list.model";
+// import {ConditionsList} from "../../../model/conditionsOld/conditionsOld-list.model";
 // import {SkirmishCharacterService} from "../skirmish-character-service/skirmish-character.service";
 // import {WeaponTraitsList} from "../../../model/weapon/weaponTraits/weapon.advantages.model";
 // import {ConditionService} from "../condition-service/condition.service";
@@ -69,7 +69,7 @@
 //   private checkConditions(attacker: SkirmishCharacter, defender: SkirmishCharacter) {
 //     this.conditionService.fightCheckCondition(attacker, defender);
 //     this.conditionService.fightCheckCondition(defender, attacker);
-//     for (let condition of defender.conditions) {
+//     for (let condition of defender.conditionsOld) {
 //       if (condition.base === ConditionsList.prone) {
 //         attacker.roll.modifier += 20;
 //       }

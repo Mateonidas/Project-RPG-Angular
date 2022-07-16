@@ -3,7 +3,7 @@ import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {ConditionsList} from "../../model/conditions/conditions-list.model";
+import {ConditionsList} from "../../model/conditionsOld/conditions-list.model";
 // import {FightService} from "../../shared/services/fight-service/fight.service";
 import {RollService} from "../../shared/services/roll-service/roll.service";
 

@@ -18,8 +18,10 @@ import {CharacterBodyLocalization} from "../../model/body-localization/character
 import {BodyLocalizationList} from "../../model/body-localization/body-localization.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {BodyLocalizationService} from "../../shared/services/body-localization-service/body-localization.service";
-import {InjuriesService} from "../../shared/services/injuries-service/injuries.service";
-import {CharacterBodyLocalizationInjury} from "../../model/injury/injury.model";
+import {InjuryService} from "../../shared/services/injuries-service/injury.service";
+import {CharacterInjury} from "../../model/injury/character-injury.model";
+import {ConditionService} from "../../shared/services/condition-service/condition.service";
+import {CharacterCondition} from "../../model/condition/condition.model";
 
 @Component({
   selector: 'app-character-edit',
@@ -38,9 +40,10 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
               public talentService: TalentService,
               public bodyLocalizationService: BodyLocalizationService,
               public characterService: CharacterService,
-              public injuryService: InjuriesService,
+              public injuryService: InjuryService,
+              public conditionService: ConditionService,
               public modalService: NgbModal) {
-    super(router, route, armorService, weaponService, skillService, talentService, bodyLocalizationService, characterService, injuryService, modalService);
+    super(router, route, armorService, weaponService, skillService, talentService, bodyLocalizationService, characterService, injuryService, conditionService, modalService);
   }
 
   ngOnInit(): void {
@@ -87,7 +90,8 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
       'isRightHanded': new FormControl(this.isRightHanded),
       'weapons': formArrays.weapons,
       'armors': formArrays.armors,
-      'injuries': formArrays.injuries
+      'injuries': formArrays.injuries,
+      'conditions': formArrays.conditions
     });
   }
 
@@ -163,6 +167,7 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
     const isRightHanded = this.editCharacterForm.value.isRightHanded;
     const weapons = <CharacterWeapon[]>this.editCharacterForm.value.weapons;
     const armors = <Armor[]>this.editCharacterForm.value.armors;
+    const conditions = <CharacterCondition[]>this.editCharacterForm.value.conditions;
 
     const character = new Character(
       name,
@@ -172,7 +177,8 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
       talents,
       isRightHanded,
       weapons,
-      armors
+      armors,
+      conditions
     );
 
     this.prepareCharacterBodyLocalizations(character);
@@ -213,7 +219,7 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
     for (let injury of this.injuries) {
       for (let characterBodyLocalization of character.bodyLocalizations) {
         if (injury.value.bodyLocalization.name === characterBodyLocalization.bodyLocalization.name) {
-          let characterInjury = new CharacterBodyLocalizationInjury();
+          let characterInjury = new CharacterInjury();
           characterInjury.value = injury.value.value;
           characterInjury.injury = injury.value.injury;
 

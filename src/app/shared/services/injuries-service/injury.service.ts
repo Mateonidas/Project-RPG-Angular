@@ -7,7 +7,7 @@ import {TextResourceService} from "../text-resource-service/text-resource.servic
 @Injectable({
   providedIn: 'root'
 })
-export class InjuriesService {
+export class InjuryService {
 
   injuriesChanged = new Subject<Model[]>()
   injuriesList: Model[] = [];

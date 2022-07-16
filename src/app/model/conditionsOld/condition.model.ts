@@ -1,6 +1,6 @@
 import {Model} from "../model";
 
-export class Condition {
+export class ConditionOld {
   base: Model;
   value: number;
   incurableValue: number;
@@ -21,16 +21,16 @@ export class Condition {
     }
   }
 
-  static fromJSON(object: Object): Condition {
-    let condition = Object.assign(new Condition(), object);
+  static fromJSON(object: Object): ConditionOld {
+    let condition = Object.assign(new ConditionOld(), object);
     condition.base = Model.fromJSON(condition['base']);
     return condition;
   }
 
-  static arrayFromJSON(objectsArray: Object[]): Condition[] {
+  static arrayFromJSON(objectsArray: Object[]): ConditionOld[] {
     let conditions = [];
     for (let object of objectsArray) {
-      let condition = Condition.fromJSON(object);
+      let condition = ConditionOld.fromJSON(object);
       conditions.push(condition);
     }
     return conditions;

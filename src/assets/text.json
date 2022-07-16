@@ -8,6 +8,7 @@
   "nameLabel": "Nazwa",
   "armorPointsLabel": "Punkty Pancerza",
   "injuriesLabel": "Urazy",
+  "conditionsLabel": "Stany",
   "skillsLabel": "Umiejętności",
   "talentsLabel": "Talenty",
   "weaponLabel": "Broń",
@@ -1540,6 +1541,56 @@
     {
       "name": "AMPUTATED_TONGUE",
       "nameTranslation": "Amputowany język"
+    }
+  ],
+  "condition": [
+    {
+      "name": "ABLAZE",
+      "nameTranslation": "Podpalenie"
+    },
+    {
+      "name": "BLEEDING",
+      "nameTranslation": "Krwawienie"
+    },
+    {
+      "name": "BLINDED",
+      "nameTranslation": "Oślepienie"
+    },
+    {
+      "name": "BROKEN",
+      "nameTranslation": "Panika"
+    },
+    {
+      "name": "DEAFENED",
+      "nameTranslation": "Ogłuszenie"
+    },
+    {
+      "name": "ENTANGLED",
+      "nameTranslation": "Pochwycenie"
+    },
+    {
+      "name": "FATIGUED",
+      "nameTranslation": "Zmęczenie"
+    },
+    {
+      "name": "POISON",
+      "nameTranslation": "Zatrucie"
+    },
+    {
+      "name": "PRONE",
+      "nameTranslation": "Powalenie"
+    },
+    {
+      "name": "STUNNED",
+      "nameTranslation": "Oszołomienie"
+    },
+    {
+      "name": "SURPRISED",
+      "nameTranslation": "Zaskoczenie"
+    },
+    {
+      "name": "UNCONSCIOUS",
+      "nameTranslation": "Utrata Przytomności"
     }
   ],
   "armorCategory": [
