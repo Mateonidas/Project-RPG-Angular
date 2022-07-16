@@ -37,6 +37,17 @@ export class TextResourceService {
     })
   }
 
+  public static getInjuryNameTranslation(name: string) {
+    let injuries: Model[] = textResource.injury;
+    return <Model>injuries.find(injury => {
+      if(injury.name == name) {
+        return injury;
+      } else {
+        return null;
+      }
+    })
+  }
+
   public static getArmorCategoryNameTranslation(name: string) {
     let armorCategories: Model[] = textResource.armorCategory;
     return <Model>armorCategories.find(armorCategory => {

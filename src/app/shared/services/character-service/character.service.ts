@@ -94,6 +94,9 @@ export class CharacterService {
   private prepareBodyLocalizations(bodyLocalizations: CharacterBodyLocalization[]) {
     for (let characterBodyLocalization of bodyLocalizations) {
       characterBodyLocalization.bodyLocalization.nameTranslation = TextResourceService.getBodyLocalizationNameTranslation(characterBodyLocalization.bodyLocalization.name).nameTranslation;
+      for (let characterInjury of characterBodyLocalization.injuries) {
+        characterInjury.injury.nameTranslation = TextResourceService.getInjuryNameTranslation(characterInjury.injury.name).nameTranslation;
+      }
     }
   }
 

@@ -18,6 +18,8 @@ import {CharacterBodyLocalization} from "../../model/body-localization/character
 import {BodyLocalizationList} from "../../model/body-localization/body-localization.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {BodyLocalizationService} from "../../shared/services/body-localization-service/body-localization.service";
+import {InjuriesService} from "../../shared/services/injuries-service/injuries.service";
+import {CharacterBodyLocalizationInjury} from "../../model/injury/injury.model";
 
 @Component({
   selector: 'app-character-edit',
@@ -36,8 +38,9 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
               public talentService: TalentService,
               public bodyLocalizationService: BodyLocalizationService,
               public characterService: CharacterService,
+              public injuryService: InjuriesService,
               public modalService: NgbModal) {
-    super(router, route, armorService, weaponService, skillService, talentService, bodyLocalizationService, characterService, modalService);
+    super(router, route, armorService, weaponService, skillService, talentService, bodyLocalizationService, characterService, injuryService, modalService);
   }
 
   ngOnInit(): void {
@@ -83,7 +86,8 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
       'talents': formArrays.talents,
       'isRightHanded': new FormControl(this.isRightHanded),
       'weapons': formArrays.weapons,
-      'armors': formArrays.armors
+      'armors': formArrays.armors,
+      'injuries': formArrays.injuries
     });
   }
 
@@ -179,12 +183,12 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
   private prepareCharacterBodyLocalizations(character: Character) {
 
     if (this.characterBodyLocalizations == null || this.characterBodyLocalizations.length == 0) {
-      const head = new CharacterBodyLocalization(BodyLocalizationList.head, 0, 0);
-      const rightArm = new CharacterBodyLocalization(BodyLocalizationList.rightArm, 0, 0);
-      const leftArm = new CharacterBodyLocalization(BodyLocalizationList.leftArm, 0, 0);
-      const body = new CharacterBodyLocalization(BodyLocalizationList.body, 0, 0);
-      const rightLeg = new CharacterBodyLocalization(BodyLocalizationList.rightLeg, 0, 0);
-      const leftLeg = new CharacterBodyLocalization(BodyLocalizationList.leftLeg, 0, 0);
+      const head = new CharacterBodyLocalization(BodyLocalizationList.head, 0, 0, []);
+      const rightArm = new CharacterBodyLocalization(BodyLocalizationList.rightArm, 0, 0, []);
+      const leftArm = new CharacterBodyLocalization(BodyLocalizationList.leftArm, 0, 0, []);
+      const body = new CharacterBodyLocalization(BodyLocalizationList.body, 0, 0, []);
+      const rightLeg = new CharacterBodyLocalization(BodyLocalizationList.rightLeg, 0, 0, []);
+      const leftLeg = new CharacterBodyLocalization(BodyLocalizationList.leftLeg, 0, 0, []);
       character.bodyLocalizations = [];
       character.bodyLocalizations.push(head, rightArm, leftArm, body, rightLeg, leftLeg);
     } else {
@@ -196,12 +200,25 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
 
     for (let armor of character.armors) {
       for (let armorBodyLocalization of armor.armorBodyLocalizations) {
-        for(let characterBodyLocalization of character.bodyLocalizations) {
-          if(armorBodyLocalization.bodyLocalization.name === characterBodyLocalization.bodyLocalization.name) {
+        for (let characterBodyLocalization of character.bodyLocalizations) {
+          if (armorBodyLocalization.bodyLocalization.name === characterBodyLocalization.bodyLocalization.name) {
             characterBodyLocalization.armorPoints += armorBodyLocalization.armorPoints;
             characterBodyLocalization.armorPoints -= armorBodyLocalization.brokenArmorPoints;
             break;
           }
+        }
+      }
+    }
+
+    for (let injury of this.injuries) {
+      for (let characterBodyLocalization of character.bodyLocalizations) {
+        if (injury.value.bodyLocalization.name === characterBodyLocalization.bodyLocalization.name) {
+          let characterInjury = new CharacterBodyLocalizationInjury();
+          characterInjury.value = injury.value.value;
+          characterInjury.injury = injury.value.injury;
+
+          characterBodyLocalization.injuries = [];
+          characterBodyLocalization.injuries.push(characterInjury);
         }
       }
     }

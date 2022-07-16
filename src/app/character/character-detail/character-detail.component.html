@@ -93,7 +93,14 @@
       <tr *ngFor="let bodylocalization of character.bodyLocalizations">
         <td>{{bodylocalization.bodyLocalization.nameTranslation}}</td>
         <td>{{bodylocalization.armorPoints}}</td>
-        <td></td>
+        <td>
+          <ul>
+            <li *ngFor="let characterInjury of bodylocalization.injuries">
+              <span *ngIf="characterInjury.value == 1">{{characterInjury.injury.nameTranslation}}</span>
+              <span *ngIf="characterInjury.value > 1">{{characterInjury.injury.nameTranslation}} {{characterInjury.value}}</span>
+            </li>
+          </ul>
+        </td>
       </tr>
       </tbody>
     </table>

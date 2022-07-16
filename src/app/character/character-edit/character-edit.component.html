@@ -217,6 +217,47 @@
 
       <hr>
       <div class="row">
+        <div class="col-md-12" formArrayName="injuries">
+          <h4>Urazy</h4>
+          <div class="row mb-2" *ngFor="let injuryControl of injuries; let i = index" [formGroupName]="i">
+            <div class="col-md-8">
+              <select class="form-select" formControlName="injury" [compareWith]="compareModels">
+                <option *ngFor="let injury of injuryService.injuriesList" [ngValue]="injury">
+                  {{injury.nameTranslation}}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-8">
+              <select class="form-select" formControlName="bodyLocalization" [compareWith]="compareModels">
+                <option *ngFor="let bodyLocalization of characterBodyLocalizations" [ngValue]="bodyLocalization.bodyLocalization">
+                  {{bodyLocalization.bodyLocalization.nameTranslation}}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="value">
+            </div>
+            <div class="col-md-2">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDeleteInjury(i)">X
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-success" (click)="onAddInjury()">Dodaj Uraz</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
         <div class="col-md-12">
           <button class="btn btn-primary me-2" type="submit">{{ editMode ? 'Edytuj' : 'Dodaj' }}</button>
           <button type="submit" class="btn btn-danger" (click)="onCancel()">Powrót</button>

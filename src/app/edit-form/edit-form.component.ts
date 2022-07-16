@@ -27,6 +27,7 @@ import {CharacterService} from "../shared/services/character-service/character.s
 import {
   EditWeaponDialogWindowComponent
 } from "../dialog-window/edit-weapon-dialog-window/edit-weapon-dialog-window.component";
+import {InjuriesService} from "../shared/services/injuries-service/injuries.service";
 
 @Component({
   selector: 'app-edit-form',
@@ -52,8 +53,9 @@ export class EditFormComponent {
               protected weaponService: WeaponService,
               protected skillService: SkillService,
               protected talentService: TalentService,
-              public bodyLocalizationService: BodyLocalizationService,
-              public characterService: CharacterService,
+              protected bodyLocalizationService: BodyLocalizationService,
+              protected characterService: CharacterService,
+              protected injuryService: InjuriesService,
               protected modalService: NgbModal) {
   }
 
@@ -63,6 +65,7 @@ export class EditFormComponent {
     await this.armorService.fetchArmorPenalties();
     await this.armorService.fetchArmorQualities();
     await this.bodyLocalizationService.fetchBodyLocalizations();
+    await this.injuryService.fetchInjuries();
     await this.weaponService.fetchWeapons();
     await this.weaponService.fetchWeaponTypes();
     await this.weaponService.fetchWeaponGroups();
@@ -86,6 +89,7 @@ export class EditFormComponent {
     if (character.armors) {
       this.prepareArmorList(formArrays.armors, character.armors);
     }
+    this.prepareInjuryList(formArrays.injuries, character.bodyLocalizations);
   }
 
   prepareSkillsList(skills: FormArray, skillsList: CharacterSkill[]) {
@@ -126,6 +130,20 @@ export class EditFormComponent {
       armorsForms.push(
         new FormControl(armor)
       )
+    }
+  }
+
+  prepareInjuryList(injuries: FormArray, bodyLocalizations: CharacterBodyLocalization[]) {
+    for (let bodyLocalization of bodyLocalizations) {
+      for (let injury of bodyLocalization.injuries) {
+        injuries.push(
+          new FormGroup({
+            'injury': new FormControl(injury.injury),
+            'bodyLocalization': new FormControl(bodyLocalization.bodyLocalization),
+            'value': new FormControl(injury.value)
+          })
+        )
+      }
     }
   }
 
@@ -227,6 +245,16 @@ export class EditFormComponent {
     )
   }
 
+  onAddInjury() {
+    (<FormArray>this.editCharacterForm.get('injuries')).push(
+      new FormGroup({
+        'injury': new FormControl(null),
+        'bodyLocalization': new FormControl(null),
+        'value': new FormControl(null),
+      })
+    )
+  }
+
   onSetTalentLevel(event: any, i: number) {
     this.talents[i].value.value = event.target.value;
   }
@@ -251,6 +279,10 @@ export class EditFormComponent {
     return <FormControl[]>(<FormArray>this.editCharacterForm.get('armors')).controls;
   }
 
+  get injuries() {
+    return <FormControl[]>(<FormArray>this.editCharacterForm.get('injuries')).controls;
+  }
+
   onDeleteSkill(index: number) {
     (<FormArray>this.editCharacterForm.get('skills')).removeAt(index);
   }
@@ -265,6 +297,10 @@ export class EditFormComponent {
 
   onDeleteArmor(index: number) {
     (<FormArray>this.editCharacterForm.get('armors')).removeAt(index);
+  }
+
+  onDeleteInjury(index: number) {
+    (<FormArray>this.editCharacterForm.get('injuries')).removeAt(index);
   }
 
   async onEditArmor(index: number) {

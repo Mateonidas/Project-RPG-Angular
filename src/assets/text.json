@@ -1480,6 +1480,68 @@
       "nameTranslation": "Lewa noga"
     }
   ],
+  "injury": [
+    {
+      "name": "MINOR_TORN_MUSCLE",
+      "nameTranslation": "Pomniejsze zerwanie mięśni"
+    },
+    {
+      "name": "MAJOR_TORN_MUSCLE",
+      "nameTranslation": "Poważne zerwanie mięśni"
+    },
+    {
+      "name": "MINOR_BROKEN_BONE",
+      "nameTranslation": "Pomniejsze złamanie"
+    },
+    {
+      "name": "MAJOR_BROKEN_BONE",
+      "nameTranslation": "Poważne złamanie"
+    },
+    {
+      "name": "AMPUTATED_ARM",
+      "nameTranslation": "Amputowane ramię"
+    },
+    {
+      "name": "AMPUTATED_EAR",
+      "nameTranslation": "Amputowane ucho"
+    },
+    {
+      "name": "AMPUTATED_EYE",
+      "nameTranslation": "Amputowane oko"
+    },
+    {
+      "name": "AMPUTATED_FINGERS",
+      "nameTranslation": "Amputowane palce"
+    },
+    {
+      "name": "AMPUTATED_FOOT",
+      "nameTranslation": "Amputowana stopa"
+    },
+    {
+      "name": "AMPUTATED_HAND",
+      "nameTranslation": "Amputowana dłoń"
+    },
+    {
+      "name": "AMPUTATED_LEG",
+      "nameTranslation": "Amputowana noga"
+    },
+    {
+      "name": "AMPUTATED_NOSE",
+      "nameTranslation": "Amputowany nos"
+    },
+    {
+      "name": "AMPUTATED_TEETH",
+      "nameTranslation": "Wyrwane zęby"
+    },
+    {
+      "name": "AMPUTATED_TOES",
+      "nameTranslation": "Amputowane palce u stopy"
+    },
+    {
+      "name": "AMPUTATED_TONGUE",
+      "nameTranslation": "Amputowany język"
+    }
+  ],
   "armorCategory": [
     {
       "name": "SOFT_LEATHER",

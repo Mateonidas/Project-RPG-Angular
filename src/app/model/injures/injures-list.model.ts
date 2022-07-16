@@ -2,7 +2,7 @@ import {ListModel} from "../list-model";
 import {Model} from "../model";
 import {BodyLocalization} from "../body-localization/body-localization.model";
 
-export class Injury {
+export class InjuryOld {
 
   base: Model;
   bodyLocalization: BodyLocalization;
@@ -12,17 +12,17 @@ export class Injury {
     this.bodyLocalization = <BodyLocalization>bodyLocalization;
   }
 
-  static fromJSON(object: Object): Injury {
-    let injury = Object.assign(new Injury(), object);
+  static fromJSON(object: Object): InjuryOld {
+    let injury = Object.assign(new InjuryOld(), object);
     injury.base = Model.fromJSON(injury['base']);
     injury.bodyLocalization = BodyLocalization.fromJSON(injury['bodyLocalization']);
     return injury;
   }
 
-  static arrayFromJSON(objectsArray: Object[]): Injury[] {
+  static arrayFromJSON(objectsArray: Object[]): InjuryOld[] {
     let injuries = [];
     for (let object of objectsArray) {
-      let injury = Injury.fromJSON(object);
+      let injury = InjuryOld.fromJSON(object);
       injuries.push(injury);
     }
     return injuries;

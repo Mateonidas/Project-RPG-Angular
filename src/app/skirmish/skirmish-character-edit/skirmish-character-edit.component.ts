@@ -9,7 +9,7 @@ import {EditFormComponent} from "../../edit-form/edit-form.component";
 import {Condition} from "../../model/conditions/condition.model";
 import {ConditionsList} from "../../model/conditions/conditions-list.model";
 import {CriticalWound} from "../../model/critical-wounds/critical-wounds.model";
-import {InjuresList, Injury} from "../../model/injures/injures-list.model";
+import {InjuresList, InjuryOld} from "../../model/injures/injures-list.model";
 import {BodyLocalizationList} from "../../model/body-localization/body-localization.model";
 import {ArmorService} from "../../shared/services/armor-service/armor.service";
 import {WeaponService} from "../../shared/services/weapon-service/weapon.service";
@@ -18,6 +18,7 @@ import {TalentService} from "../../shared/services/talent-service/talent.service
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {BodyLocalizationService} from "../../shared/services/body-localization-service/body-localization.service";
 import {CharacterService} from "../../shared/services/character-service/character.service";
+import {InjuriesService} from "../../shared/services/injuries-service/injuries.service";
 
 @Component({
   selector: 'app-skirmish-character-edit',
@@ -39,8 +40,9 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
               talentService: TalentService,
               bodyLocalizationService: BodyLocalizationService,
               characterService: CharacterService,
+              injuryService: InjuriesService,
               modalService: NgbModal) {
-    super(router, route, armorService, weaponService, skillService, talentService, bodyLocalizationService, characterService, modalService);
+    super(router, route, armorService, weaponService, skillService, talentService, bodyLocalizationService, characterService, injuryService, modalService);
   }
 
   async ngOnInit() {
@@ -121,7 +123,7 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
     }
   }
 
-  prepareInjuriesList(injuries: FormArray, injuriesList: Injury[]) {
+  prepareInjuriesList(injuries: FormArray, injuriesList: InjuryOld[]) {
     for (let injury of injuriesList) {
       injuries.push(
         new FormGroup({
@@ -222,9 +224,9 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
     (<FormArray>this.editCharacterForm.get('notes')).removeAt(index);
   }
 
-  get injuries() {
-    return (<FormArray>this.editCharacterForm.get('injuries')).controls;
-  }
+  // get injuries() {
+  //   return (<FormArray>this.editCharacterForm.get('injuries')).controls;
+  // }
 
   onAddInjury() {
     (<FormArray>this.editCharacterForm.get('injuries')).push(

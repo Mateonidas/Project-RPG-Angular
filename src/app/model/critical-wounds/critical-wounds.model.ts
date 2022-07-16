@@ -1,18 +1,18 @@
 import {Condition} from "../conditions/condition.model";
-import {Injury} from "../injures/injures-list.model";
+import {InjuryOld} from "../injures/injures-list.model";
 import {Model} from "../model";
 import {BodyLocalization} from "../body-localization/body-localization.model";
 
 export class CriticalWound extends Model{
   bodyLocalization: BodyLocalization;
   criticalConditions: Condition[];
-  criticalInjuries: Injury[];
+  criticalInjuries: InjuryOld[];
 
-  constructor(name?: string, nameTranslation?: string, bodyLocalization?: BodyLocalization, criticalConditions?: Condition[], criticalInjury?: Injury[]) {
+  constructor(name?: string, nameTranslation?: string, bodyLocalization?: BodyLocalization, criticalConditions?: Condition[], criticalInjury?: InjuryOld[]) {
     super(name, nameTranslation);
     this.bodyLocalization = <BodyLocalization>bodyLocalization;
     this.criticalConditions = <Condition[]>criticalConditions;
-    this.criticalInjuries = <Injury[]>criticalInjury;
+    this.criticalInjuries = <InjuryOld[]>criticalInjury;
   }
 
   removeCondition(condition: Model) {
@@ -24,7 +24,7 @@ export class CriticalWound extends Model{
     let criticalWound = Object.assign(new CriticalWound(), object);
     criticalWound.bodyLocalization = BodyLocalization.fromJSON(criticalWound['bodyLocalization']);
     criticalWound.criticalConditions = Condition.arrayFromJSON(criticalWound['criticalConditions']);
-    criticalWound.criticalInjuries = Injury.arrayFromJSON(criticalWound['criticalInjuries']);
+    criticalWound.criticalInjuries = InjuryOld.arrayFromJSON(criticalWound['criticalInjuries']);
     return criticalWound;
   }
 

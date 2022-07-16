@@ -9,7 +9,7 @@ import {CharacterCharacteristic} from "../characteristic/character-characteristi
 import {CharacterTalent} from "../talent/character-talent.model";
 import {Armor} from "../armor/armor.model";
 import {CriticalWound} from "../critical-wounds/critical-wounds.model";
-import {Injury} from "../injures/injures-list.model";
+import {InjuryOld} from "../injures/injures-list.model";
 import {CharacterSkill} from "../skill/character-skill.model";
 import {CharacterWeapon} from "../weapon/character-weapon.model";
 import {CharacterBodyLocalization} from "../body-localization/character-body-localization.model";
@@ -25,7 +25,7 @@ export class SkirmishCharacter extends Character {
   skirmishInitiative!: number;
   advantage!: number;
   conditions!: Condition[];
-  injuries!: Injury[];
+  injuries!: InjuryOld[];
   criticalWounds!: CriticalWound[];
   bodyLocalizations!: CharacterBodyLocalization[];
   skirmishBodyLocalizations!: CharacterBodyLocalizations;
@@ -207,7 +207,7 @@ export class SkirmishCharacter extends Character {
     character.weapons = CharacterWeapon.arrayFromJSON(character['weapons']);
     character.armors = Armor.arrayFromJSON(character['armors']);
     character.conditions = Condition.arrayFromJSON(character['conditions'])
-    character.injuries = Injury.arrayFromJSON(character['injuries'])
+    character.injuries = InjuryOld.arrayFromJSON(character['injuries'])
     character.criticalWounds = CriticalWound.arrayFromJSON(character['criticalWounds']);
     character.skirmishBodyLocalizations = CharacterBodyLocalizations.fromJSON(character['bodyLocalizations']);
     return character;
