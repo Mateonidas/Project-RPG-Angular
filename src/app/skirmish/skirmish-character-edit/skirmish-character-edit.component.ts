@@ -20,90 +20,70 @@ import {BodyLocalizationService} from "../../shared/services/body-localization-s
 import {CharacterService} from "../../shared/services/character-service/character.service";
 import {InjuryService} from "../../shared/services/injuries-service/injury.service";
 import {ConditionService} from "../../shared/services/condition-service/condition.service";
+import {CharacterCharacteristic} from "../../model/characteristic/character-characteristic.model";
+import {CharacterSkill} from "../../model/skill/character-skill.model";
+import {CharacterTalent} from "../../model/talent/character-talent.model";
+import {CharacterWeapon} from "../../model/weapon/character-weapon.model";
+import {Armor} from "../../model/armor/armor.model";
+import {CharacterCondition} from "../../model/condition/condition.model";
+import {CharacterBodyLocalization} from "../../model/body-localization/character-body-localization.model";
+import {CharacterInjury} from "../../model/injury/character-injury.model";
+import {CharacterEditComponent} from "../../character/character-edit/character-edit.component";
+import {SkirmishComponent} from "../skirmish.component";
 
 @Component({
   selector: 'app-skirmish-character-edit',
   templateUrl: './skirmish-character-edit.component.html',
   styleUrls: ['./skirmish-character-edit.component.css']
 })
-export class SkirmishCharacterEditComponent extends EditFormComponent implements OnInit {
+export class SkirmishCharacterEditComponent extends CharacterEditComponent implements OnInit {
 
-  conditionList = ConditionsList.list;
-  injuriesList = InjuresList.list;
-  bodyLocalizationsList = BodyLocalizationList.list;
+  editMode = false;
 
-  constructor(protected router: Router,
-              protected route: ActivatedRoute,
-              protected skirmishService: SkirmishCharacterService,
-              protected armorService: ArmorService,
-              protected weaponService: WeaponService,
-              protected skillService: SkillService,
-              protected talentService: TalentService,
-              protected bodyLocalizationService: BodyLocalizationService,
-              protected characterService: CharacterService,
-              protected injuryService: InjuryService,
-              protected conditionService: ConditionService,
-              protected modalService: NgbModal) {
+  constructor(router: Router,
+              route: ActivatedRoute,
+              public skirmishService: SkirmishCharacterService,
+              public armorService: ArmorService,
+              public weaponService: WeaponService,
+              public skillService: SkillService,
+              public talentService: TalentService,
+              public bodyLocalizationService: BodyLocalizationService,
+              public characterService: CharacterService,
+              public injuryService: InjuryService,
+              public conditionService: ConditionService,
+              public modalService: NgbModal) {
     super(router, route, armorService, weaponService, skillService, talentService, bodyLocalizationService, characterService, injuryService, conditionService, modalService);
   }
 
-  async ngOnInit() {
-    this.armorsList = this.armorService.armorsList;
-    this.weaponsList = this.weaponService.weaponsList;
-    this.skillsList = this.skillService.skillList;
-    this.talentsList = this.talentService.talentList;
-    this.route.params.subscribe(
-      (params: Params) => {
-        this.id = +params['id'];
-        this.initForm();
-      }
-    )
-  }
-
-  initForm() {
-    const character = this.skirmishService.getSkirmishCharacter(this.id);
-    let characterName = character.name;
-    let characterDescription = character.description;
-    let isRightHanded = character.isRightHanded;
-    let characteristics = SkirmishCharacterEditComponent.initEditCharacteristicsTable(character);
-    let formArrays = new CharacterFormArraysWrapper();
+  createEditCharacterForm(character: SkirmishCharacter, formArrays: CharacterFormArraysWrapper) {
     this.isDead = character.isDead;
-
-    this.prepareEditData(character, formArrays);
-    this.prepareSkirmishEditData(character, formArrays)
-
     this.editCharacterForm = new FormGroup({
-      'name': new FormControl(characterName),
-      'description': new FormControl(characterDescription),
-      'isDead': new FormControl(this.isDead),
+      'name': new FormControl(character.name),
+      'description': new FormControl(character.description),
+      'characteristics': formArrays.characteristics,
+      'skills': formArrays.skills,
+      'talents': formArrays.talents,
+      'isRightHanded': new FormControl(this.isRightHanded),
+      'weapons': formArrays.weapons,
+      'armors': formArrays.armors,
+      'injuries': formArrays.injuries,
+      'conditions': formArrays.conditions,
       'currentWounds': new FormControl(character.currentWounds),
       'skirmishInitiative': new FormControl(character.skirmishInitiative),
       'advantage': new FormControl(character.advantage),
       'notes': formArrays.notes,
-      'conditions': formArrays.conditions,
-      'injuries': formArrays.injuries,
-      'criticalWounds': formArrays.criticalWounds,
-      'characteristics': characteristics,
-      'skills': formArrays.skills,
-      'talents': formArrays.talents,
-      'isRightHanded': new FormControl(isRightHanded),
-      'weapons': formArrays.weapons,
-      'armors': formArrays.armors
+      'isDead': new FormControl(character.isDead),
     });
   }
 
-  prepareSkirmishEditData(character: SkirmishCharacter, formArrays: CharacterFormArraysWrapper) {
+  getCharacter() {
+    return this.skirmishService.getSkirmishCharacter(this.id);
+  }
+
+  protected prepareEditData(character: SkirmishCharacter, formArrays: CharacterFormArraysWrapper) {
+    super.prepareEditData(character, formArrays);
     if (character.notes) {
       this.prepareNotesList(formArrays.notes, character.notes)
-    }
-    if (character.conditions) {
-      this.prepareConditionsListOld(formArrays.conditions, character.conditionsOld);
-    }
-    if (character.injuries) {
-      this.prepareInjuriesListOld(formArrays.injuries, character.injuries);
-    }
-    if (character.criticalWounds) {
-      this.prepareCriticalWoundsList(formArrays.criticalWounds, character.criticalWounds);
     }
   }
 
@@ -113,103 +93,47 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
     }
   }
 
-  prepareConditionsListOld(conditions: FormArray, conditionsList: ConditionOld[]) {
-    for (let condition of conditionsList) {
-      conditions.push(
-        new FormGroup({
-          'base': new FormControl(condition.base),
-          'value': new FormControl(condition.value),
-          'incurableValue': new FormControl(condition.incurableValue),
-        })
-      )
-    }
-  }
-
-  prepareInjuriesListOld(injuries: FormArray, injuriesList: InjuryOld[]) {
-    for (let injury of injuriesList) {
-      injuries.push(
-        new FormGroup({
-          'base': new FormControl(injury.base),
-          'bodyLocalization': new FormControl(injury.bodyLocalization),
-        })
-      )
-    }
-  }
-
-  prepareCriticalWoundsList(criticalWounds: FormArray, criticalWoundsList: CriticalWound[]) {
-    for (let criticalWound of criticalWoundsList) {
-
-      let criticalConditionsList = new FormArray([]);
-      this.prepareConditionsListOld(criticalConditionsList, criticalWound.criticalConditions);
-
-      let criticalInjuriesList = new FormArray([]);
-      this.prepareInjuriesListOld(criticalInjuriesList, criticalWound.criticalInjuries);
-
-      criticalWounds.push(
-        new FormGroup({
-          'name': new FormControl(criticalWound.name),
-          'bodyLocalization': new FormControl(criticalWound.bodyLocalization),
-          'criticalConditions': criticalConditionsList,
-          'criticalInjuries': criticalInjuriesList,
-        })
-      )
-    }
-  }
-
   onSubmit() {
-    this.skirmishService.updateSkirmishCharacter(this.createCharacter());
+    let character = this.createCharacter();
+    if (this.editMode) {
+      character.id = this.id;
+    }
+    this.skirmishService.updateSkirmishCharacter(character);
     this.onCancel()
   }
 
   createCharacter() {
     const name = this.editCharacterForm.value.name;
     const description = this.editCharacterForm.value.description;
-    const characteristics = this.editCharacterForm.value.characteristics;
-    const skills = this.editCharacterForm.value.skills;
-    const talents = this.editCharacterForm.value.talents;
+    const characteristics = <CharacterCharacteristic[]>this.editCharacterForm.value.characteristics;
+    const skills = <CharacterSkill[]>this.editCharacterForm.value.skills;
+    const talents = <CharacterTalent[]>this.editCharacterForm.value.talents;
     const isRightHanded = this.editCharacterForm.value.isRightHanded;
-    const weapons = this.editCharacterForm.value.weapons;
-    const armors = this.editCharacterForm.value.armors;
+    const weapons = <CharacterWeapon[]>this.editCharacterForm.value.weapons;
+    const armors = <Armor[]>this.editCharacterForm.value.armors;
+    const conditions = <CharacterCondition[]>this.editCharacterForm.value.conditions;
 
-    let skirmishCharacter = new SkirmishCharacter(new Character(
-        name,
-        description,
-        characteristics,
-        skills,
-        talents,
-        isRightHanded,
-        weapons,
-        armors
-      ),
-      this.id);
-    skirmishCharacter.currentWounds = this.editCharacterForm.value.currentWounds;
-    skirmishCharacter.skirmishInitiative = this.editCharacterForm.value.skirmishInitiative;
-    skirmishCharacter.advantage = this.editCharacterForm.value.advantage;
-    skirmishCharacter.notes = this.editCharacterForm.value.notes;
-    skirmishCharacter.conditions = this.editCharacterForm.value.conditions;
-    skirmishCharacter.injuries = this.editCharacterForm.value.injuries;
-    skirmishCharacter.criticalWounds = this.editCharacterForm.value.criticalWounds;
-    skirmishCharacter.isDead = this.editCharacterForm.value.isDead;
+    const character = new SkirmishCharacter(
+      new Character(
+      name,
+      description,
+      characteristics,
+      skills,
+      talents,
+      isRightHanded,
+      weapons,
+      armors,
+      conditions
+    ));
 
-    return skirmishCharacter;
-  }
+    this.prepareCharacterBodyLocalizations(character);
+    character.advantage = this.editCharacterForm.value.advantage;
+    character.skirmishInitiative = this.editCharacterForm.value.skirmishInitiative;
+    character.currentWounds = this.editCharacterForm.value.currentWounds;
+    character.notes = this.editCharacterForm.value.notes;
+    character.isDead = this.editCharacterForm.value.isDead;
 
-  get conditionsOld() {
-    return (<FormArray>this.editCharacterForm.get('conditions')).controls;
-  }
-
-  onAddCondition() {
-    (<FormArray>this.editCharacterForm.get('conditions')).push(
-      new FormGroup({
-        'base': new FormControl(null),
-        'value': new FormControl(null),
-        'incurableValue': new FormControl(null),
-      })
-    )
-  }
-
-  onDeleteCondition(index: number) {
-    (<FormArray>this.editCharacterForm.get('conditions')).removeAt(index);
+    return character;
   }
 
   get notes() {
@@ -224,42 +148,5 @@ export class SkirmishCharacterEditComponent extends EditFormComponent implements
 
   onDeleteNote(index: number) {
     (<FormArray>this.editCharacterForm.get('notes')).removeAt(index);
-  }
-
-  // get injuries() {
-  //   return (<FormArray>this.editCharacterForm.get('injuries')).controls;
-  // }
-
-  onAddInjury() {
-    (<FormArray>this.editCharacterForm.get('injuries')).push(
-      new FormGroup({
-        'base': new FormControl(null),
-        'bodyLocalization': new FormControl(null),
-      })
-    )
-  }
-
-  onDeleteInjury(index: number) {
-    (<FormArray>this.editCharacterForm.get('injuries')).removeAt(index);
-  }
-
-  get criticalWounds() {
-    return (<FormArray>this.editCharacterForm.get('criticalWounds')).controls;
-  }
-
-  getCriticalConditions(criticalWound: AbstractControl) {
-    return (<FormArray>criticalWound.get('criticalConditions')).controls;
-  }
-
-  onDeleteCriticalCondition(criticalWound: AbstractControl, index: number) {
-    (<FormArray>criticalWound.get('criticalConditions')).removeAt(index);
-  }
-
-  getCriticalInjuries(criticalWound: AbstractControl) {
-    return (<FormArray>criticalWound.get('criticalInjuries')).controls;
-  }
-
-  onDeleteCriticalInjury(criticalWound: AbstractControl, index: number) {
-    (<FormArray>criticalWound.get('criticalInjuries')).removeAt(index);
   }
 }

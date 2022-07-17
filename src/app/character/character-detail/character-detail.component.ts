@@ -12,13 +12,13 @@ import {TextResourceService} from "../../shared/services/text-resource-service/t
 })
 export class CharacterDetailComponent implements OnInit {
   character!: Character;
-  private id!: number;
+  protected id!: number;
   text = TextResourceService;
 
   constructor(public characterService: CharacterService,
               public skirmishService: SkirmishCharacterService,
-              private route: ActivatedRoute,
-              private router: Router) {
+              protected route: ActivatedRoute,
+              protected router: Router) {
   }
 
   ngOnInit(): void {

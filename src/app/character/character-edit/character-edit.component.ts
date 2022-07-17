@@ -64,27 +64,29 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
   }
 
   initForm() {
-    let characterName = '';
-    let characterDescription = '';
-    let characteristics;
+    let character = new Character();
     let formArrays = new CharacterFormArraysWrapper();
 
     if (this.editMode) {
-      const character = <Character>this.characterService.getCharacter(this.id);
-      characterName = character.name;
-      characterDescription = character.description;
-      characteristics = CharacterEditComponent.initEditCharacteristicsTable(character);
+      character = this.getCharacter();
+      formArrays.characteristics = CharacterEditComponent.initEditCharacteristicsTable(character);
       this.isRightHanded = character.isRightHanded;
       this.prepareEditData(character, formArrays)
       this.characterBodyLocalizations = character.bodyLocalizations;
     } else {
-      characteristics = CharacterEditComponent.initCharacteristicsTable();
+      character.name = '';
+      character.description = '';
+      formArrays.characteristics = CharacterEditComponent.initCharacteristicsTable();
     }
 
+    this.createEditCharacterForm(character, formArrays);
+  }
+
+  createEditCharacterForm(character: Character, formArrays: CharacterFormArraysWrapper) {
     this.editCharacterForm = new FormGroup({
-      'name': new FormControl(characterName),
-      'description': new FormControl(characterDescription),
-      'characteristics': characteristics,
+      'name': new FormControl(character.name),
+      'description': new FormControl(character.description),
+      'characteristics': formArrays.characteristics,
       'skills': formArrays.skills,
       'talents': formArrays.talents,
       'isRightHanded': new FormControl(this.isRightHanded),
@@ -93,6 +95,10 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
       'injuries': formArrays.injuries,
       'conditions': formArrays.conditions
     });
+  }
+
+  getCharacter() {
+    return <Character>this.characterService.getCharacter(this.id);
   }
 
   onSubmit() {
@@ -186,7 +192,7 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
     return character;
   }
 
-  private prepareCharacterBodyLocalizations(character: Character) {
+  protected prepareCharacterBodyLocalizations(character: Character) {
 
     if (this.characterBodyLocalizations == null || this.characterBodyLocalizations.length == 0) {
       const head = new CharacterBodyLocalization(BodyLocalizationList.head, 0, 0, []);
@@ -216,14 +222,14 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
       }
     }
 
-    for (let injury of this.injuries) {
-      for (let characterBodyLocalization of character.bodyLocalizations) {
+
+    for (let characterBodyLocalization of character.bodyLocalizations) {
+      characterBodyLocalization.injuries = [];
+      for (let injury of this.injuries) {
         if (injury.value.bodyLocalization.name === characterBodyLocalization.bodyLocalization.name) {
           let characterInjury = new CharacterInjury();
           characterInjury.value = injury.value.value;
           characterInjury.injury = injury.value.injury;
-
-          characterBodyLocalization.injuries = [];
           characterBodyLocalization.injuries.push(characterInjury);
         }
       }

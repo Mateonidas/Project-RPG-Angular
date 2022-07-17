@@ -1,21 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
+import {CharacterDetailComponent} from "../../character/character-detail/character-detail.component";
+import {CharacterService} from "../../shared/services/character-service/character.service";
 
 @Component({
   selector: 'app-skirmish-character-details',
   templateUrl: './skirmish-character-details.component.html',
   styleUrls: ['./skirmish-character-details.component.css']
 })
-export class SkirmishCharacterDetailsComponent implements OnInit {
+export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent implements OnInit {
 
   skirmishCharacter!: SkirmishCharacter;
-  private id!: number;
 
-  constructor(private skirmishService: SkirmishCharacterService,
-              private route: ActivatedRoute,
-              private router: Router) { }
+  constructor(public characterService: CharacterService,
+              public skirmishService: SkirmishCharacterService,
+              protected route: ActivatedRoute,
+              protected router: Router) {
+    super(characterService, skirmishService, route, router);
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -23,9 +27,5 @@ export class SkirmishCharacterDetailsComponent implements OnInit {
         this.skirmishCharacter = this.skirmishService.getSkirmishCharacter(this.id);
       }
     )
-  }
-
-  onEditCharacter() {
-    this.router.navigate(['edit'], {relativeTo: this.route});
   }
 }

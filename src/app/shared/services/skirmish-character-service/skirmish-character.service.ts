@@ -27,11 +27,15 @@ export class SkirmishCharacterService {
 
   getSkirmishCharacter(id: number) {
     this.skirmishCharacters = SkirmishCharacter.arrayFromJSON(<SkirmishCharacter[]>JSON.parse(<string>localStorage.getItem('skirmishCharacters')));
-    return this.skirmishCharacters[id];
+    return <SkirmishCharacter>this.skirmishCharacters.find(skirmishCharacter => skirmishCharacter.id == id);
   }
 
   addNewSkirmishCharacter(character: Character) {
     let skirmishCharacter = new SkirmishCharacter(character, this.skirmishCharacters.length);
+    let numberOfSameCharacters = this.skirmishCharacters.filter(character => character.name.includes(skirmishCharacter.name)).length;
+    if(numberOfSameCharacters > 0) {
+      skirmishCharacter.name = skirmishCharacter.name + ' ' + (numberOfSameCharacters + 1);
+    }
     this.skirmishCharacters.push(skirmishCharacter);
     this.skirmishCharactersChanged.next(this.skirmishCharacters.slice())
     localStorage.setItem('skirmishCharacters', JSON.stringify(this.skirmishCharacters));
@@ -47,60 +51,4 @@ export class SkirmishCharacterService {
     let characterInArray = this.skirmishCharacters.find(skirmishCharacter => skirmishCharacter.id == id);
     return this.skirmishCharacters.indexOf(<SkirmishCharacter>characterInArray);
   }
-
-  // prepareTestSkirmishCharacters() {
-  //   return [
-  //     new SkirmishCharacter(
-  //       new Character(
-  //         'Markus',
-  //         'Mieszkaniec Ubersreiku.',
-  //
-  //         new CharacterCharacteristics(
-  //           4, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 15
-  //         ),
-  //         [
-  //           new CharacterSkill(SkillsList.meleeFencing, 50)
-  //         ],
-  //         [
-  //           new CharacterTalent('Ambidextrous', 'Oburęczność', '2', 1)
-  //         ],
-  //         true,
-  //         [
-  //           WeaponsList.rapier
-  //         ],
-  //         [
-  //           ArmorsList.leatherJack,
-  //           ArmorsList.leatherLeggings,
-  //         ]
-  //       ),
-  //       0
-  //     ),
-  //     new SkirmishCharacter(
-  //       new Character(
-  //         'Zygfryd',
-  //         'Mieszkaniec Altdorfu.',
-  //
-  //         new CharacterCharacteristics(
-  //           4, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 15
-  //         ),
-  //         [
-  //           new CharacterSkill(SkillsList.meleeBasic, 50)
-  //         ],
-  //         [
-  //           new CharacterTalent('Ambidextrous', 'Oburęczność', '2', 1)
-  //         ],
-  //         true,
-  //         [
-  //           WeaponsList.handWeapon,
-  //           WeaponsList.crossbow
-  //         ],
-  //         [
-  //           ArmorsList.leatherJack,
-  //           ArmorsList.leatherLeggings,
-  //         ]
-  //       ),
-  //       1
-  //     )
-  //   ]
-  // }
 }

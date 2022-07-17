@@ -5,7 +5,6 @@ import {SkirmishCharacterService} from "../../shared/services/skirmish-character
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {InitiativeDialogWindow} from "../../dialog-window/initiative-dialog-window/initiative-dialog-window.component";
-// import {ConditionService} from "../../shared/services/condition-service/condition.service";
 import {RoundService} from "../../shared/services/round-service/round.service";
 
 @Component({
@@ -22,7 +21,6 @@ export class SkirmishCharactersListComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private modalService: NgbModal,
-              // private conditionService: ConditionService,
               private roundService: RoundService) {
   }
 
@@ -53,11 +51,11 @@ export class SkirmishCharactersListComponent implements OnInit {
   }
 
   compareSkirmishCharactersInitiative(a: SkirmishCharacter, b: SkirmishCharacter) {
-    if (a.skirmishInitiative < b.skirmishInitiative) {
-      return 1;
-    }
-    if (a.skirmishInitiative > b.skirmishInitiative) {
+    if (b.isDead || a.skirmishInitiative > b.skirmishInitiative) {
       return -1;
+    }
+    if (a.isDead || a.skirmishInitiative < b.skirmishInitiative) {
+      return 1;
     }
     return 0;
   }
@@ -65,7 +63,7 @@ export class SkirmishCharactersListComponent implements OnInit {
   async endTurn() {
     this.roundService.nextRound();
     this.roundNumber = this.roundService.roundNumber;
-    await this.checkCharacterConditions();
+    // await this.checkCharacterConditions();
   }
 
   private async checkCharacterConditions() {

@@ -2,6 +2,7 @@ import {FormArray} from "@angular/forms";
 
 export class CharacterFormArraysWrapper {
   notes = new FormArray([]);
+  characteristics = new FormArray([]);
   conditions = new FormArray([]);
   injuries = new FormArray([]);
   criticalWounds = new FormArray([]);
