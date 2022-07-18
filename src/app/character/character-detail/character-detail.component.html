@@ -68,6 +68,20 @@
   </div>
 </div>
 
+<ng-container *ngIf="character.notes.length > 0">
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Notatki</h4>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let note of character.notes">
+          {{note}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-container>
+
 <hr>
 <div class="row">
   <div class="col-md-12">

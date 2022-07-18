@@ -18,8 +18,9 @@ export class Character {
   armors!: Armor[];
   bodyLocalizations!: CharacterBodyLocalization[];
   conditions!: CharacterCondition[];
+  notes!: string[];
 
-  constructor(name?: string, description?: string, characteristics?: CharacterCharacteristic[], skills?: CharacterSkill[], talents?: CharacterTalent[], rightHanded?: boolean, weapons?: CharacterWeapon[], armor?: Armor[], conditions?: CharacterCondition[], bodyLocalizations?: CharacterBodyLocalization[]) {
+  constructor(name?: string, description?: string, characteristics?: CharacterCharacteristic[], skills?: CharacterSkill[], talents?: CharacterTalent[], rightHanded?: boolean, weapons?: CharacterWeapon[], armor?: Armor[], conditions?: CharacterCondition[], notes?: string[], bodyLocalizations?: CharacterBodyLocalization[]) {
     this.name = <string>name;
     this.description = <string>description;
     this.characteristics = <CharacterCharacteristic[]>characteristics;
@@ -30,6 +31,7 @@ export class Character {
     this.armors = <Armor[]>armor;
     this.bodyLocalizations = <CharacterBodyLocalization[]>bodyLocalizations;
     this.conditions = <CharacterCondition[]>conditions;
+    this.notes = <string[]>notes;
   }
 
   get movement(): CharacterCharacteristic {

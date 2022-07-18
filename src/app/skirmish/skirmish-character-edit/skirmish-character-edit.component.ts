@@ -1,16 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params, Router} from "@angular/router";
-import {AbstractControl, FormArray, FormControl, FormGroup} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {FormControl, FormGroup} from "@angular/forms";
 import {Character} from "../../model/character/character.model";
 import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {CharacterFormArraysWrapper} from "../../model/character/character-form-arrays-wrapper.model";
-import {EditFormComponent} from "../../edit-form/edit-form.component";
-import {ConditionOld} from "../../model/conditionsOld/condition.model";
-import {ConditionsList} from "../../model/conditionsOld/conditions-list.model";
-import {CriticalWound} from "../../model/critical-wounds/critical-wounds.model";
-import {InjuresList, InjuryOld} from "../../model/injuresOld/injures-list.model";
-import {BodyLocalizationList} from "../../model/body-localization/body-localization.model";
 import {ArmorService} from "../../shared/services/armor-service/armor.service";
 import {WeaponService} from "../../shared/services/weapon-service/weapon.service";
 import {SkillService} from "../../shared/services/skill-service/skill.service";
@@ -26,10 +20,7 @@ import {CharacterTalent} from "../../model/talent/character-talent.model";
 import {CharacterWeapon} from "../../model/weapon/character-weapon.model";
 import {Armor} from "../../model/armor/armor.model";
 import {CharacterCondition} from "../../model/condition/condition.model";
-import {CharacterBodyLocalization} from "../../model/body-localization/character-body-localization.model";
-import {CharacterInjury} from "../../model/injury/character-injury.model";
 import {CharacterEditComponent} from "../../character/character-edit/character-edit.component";
-import {SkirmishComponent} from "../skirmish.component";
 
 @Component({
   selector: 'app-skirmish-character-edit',
@@ -80,19 +71,6 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
     return this.skirmishService.getSkirmishCharacter(this.id);
   }
 
-  protected prepareEditData(character: SkirmishCharacter, formArrays: CharacterFormArraysWrapper) {
-    super.prepareEditData(character, formArrays);
-    if (character.notes) {
-      this.prepareNotesList(formArrays.notes, character.notes)
-    }
-  }
-
-  prepareNotesList(notes: FormArray, notesList: string[]) {
-    for (let note of notesList) {
-      notes.push(new FormControl(note))
-    }
-  }
-
   onSubmit() {
     let character = this.createCharacter();
     if (this.editMode) {
@@ -112,41 +90,28 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
     const weapons = <CharacterWeapon[]>this.editCharacterForm.value.weapons;
     const armors = <Armor[]>this.editCharacterForm.value.armors;
     const conditions = <CharacterCondition[]>this.editCharacterForm.value.conditions;
+    const notes = <string[]>this.editCharacterForm.value.notes;
 
     const character = new SkirmishCharacter(
       new Character(
-      name,
-      description,
-      characteristics,
-      skills,
-      talents,
-      isRightHanded,
-      weapons,
-      armors,
-      conditions
-    ));
+        name,
+        description,
+        characteristics,
+        skills,
+        talents,
+        isRightHanded,
+        weapons,
+        armors,
+        conditions,
+        notes
+      ));
 
     this.prepareCharacterBodyLocalizations(character);
     character.advantage = this.editCharacterForm.value.advantage;
     character.skirmishInitiative = this.editCharacterForm.value.skirmishInitiative;
     character.currentWounds = this.editCharacterForm.value.currentWounds;
-    character.notes = this.editCharacterForm.value.notes;
     character.isDead = this.editCharacterForm.value.isDead;
 
     return character;
-  }
-
-  get notes() {
-    return (<FormArray>this.editCharacterForm.get('notes')).controls;
-  }
-
-  onAddNote() {
-    (<FormArray>this.editCharacterForm.get('notes')).push(
-      new FormControl(null),
-    )
-  }
-
-  onDeleteNote(index: number) {
-    (<FormArray>this.editCharacterForm.get('notes')).removeAt(index);
   }
 }

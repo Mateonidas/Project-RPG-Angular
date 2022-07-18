@@ -93,6 +93,7 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
       'weapons': formArrays.weapons,
       'armors': formArrays.armors,
       'injuries': formArrays.injuries,
+      'notes': formArrays.notes,
       'conditions': formArrays.conditions
     });
   }
@@ -174,6 +175,7 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
     const weapons = <CharacterWeapon[]>this.editCharacterForm.value.weapons;
     const armors = <Armor[]>this.editCharacterForm.value.armors;
     const conditions = <CharacterCondition[]>this.editCharacterForm.value.conditions;
+    const notes = <string[]>this.editCharacterForm.value.notes;
 
     const character = new Character(
       name,
@@ -184,7 +186,8 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
       isRightHanded,
       weapons,
       armors,
-      conditions
+      conditions,
+      notes
     );
 
     this.prepareCharacterBodyLocalizations(character);

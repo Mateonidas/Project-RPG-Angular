@@ -93,6 +93,9 @@ export class EditFormComponent {
     if (character.armors) {
       this.prepareArmorList(formArrays.armors, character.armors);
     }
+    if (character.notes) {
+      this.prepareNotesList(formArrays.notes, character.notes)
+    }
     this.prepareInjuriesList(formArrays.injuries, character.bodyLocalizations);
     this.prepareConditionsList(formArrays.conditions, character.conditions);
   }
@@ -135,6 +138,12 @@ export class EditFormComponent {
       armorsForms.push(
         new FormControl(armor)
       )
+    }
+  }
+
+  prepareNotesList(notes: FormArray, notesList: string[]) {
+    for (let note of notesList) {
+      notes.push(new FormControl(note))
     }
   }
 
@@ -334,6 +343,20 @@ export class EditFormComponent {
 
   onDeleteCondition(index: number) {
     (<FormArray>this.editCharacterForm.get('conditions')).removeAt(index);
+  }
+
+  get notes() {
+    return (<FormArray>this.editCharacterForm.get('notes')).controls;
+  }
+
+  onAddNote() {
+    (<FormArray>this.editCharacterForm.get('notes')).push(
+      new FormControl(null),
+    )
+  }
+
+  onDeleteNote(index: number) {
+    (<FormArray>this.editCharacterForm.get('notes')).removeAt(index);
   }
 
   async onEditArmor(index: number) {

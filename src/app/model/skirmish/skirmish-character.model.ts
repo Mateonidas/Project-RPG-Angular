@@ -20,17 +20,15 @@ export class SkirmishCharacter extends Character {
   currentWounds!: number;
   skirmishInitiative!: number;
   advantage!: number;
-  notes!: string[];
   isDead!: boolean;
 
   constructor(character?: Character, id?: number) {
-    super(character?.name, character?.description, character?.characteristics, character?.skills, character?.talents, character?.isRightHanded, character?.weapons, character?.armors, character?.conditions, character?.bodyLocalizations);
+    super(character?.name, character?.description, character?.characteristics, character?.skills, character?.talents, character?.isRightHanded, character?.weapons, character?.armors, character?.conditions, character?.notes, character?.bodyLocalizations);
     if (character != undefined) {
       this.id = <number>id;
       this.currentWounds = <number>character?.wounds.value;
       this.skirmishInitiative = <number>character?.initiative.value;
       this.advantage = 0;
-      this.notes = [];
       this.isDead = false;
     }
   }
