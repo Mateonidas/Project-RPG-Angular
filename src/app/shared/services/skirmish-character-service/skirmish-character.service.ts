@@ -51,4 +51,13 @@ export class SkirmishCharacterService {
     let characterInArray = this.skirmishCharacters.find(skirmishCharacter => skirmishCharacter.id == id);
     return this.skirmishCharacters.indexOf(<SkirmishCharacter>characterInArray);
   }
+
+  removeSkirmishCharacter(id: number) {
+    let index = this.getCharacterIndexById(id);
+    if(index > -1) {
+      this.skirmishCharacters.splice(index, 1);
+      this.skirmishCharactersChanged.next(this.skirmishCharacters.slice());
+      localStorage.setItem('skirmishCharacters', JSON.stringify(this.skirmishCharacters));
+    }
+  }
 }

@@ -28,4 +28,9 @@ export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent 
       }
     )
   }
+
+  onDeleteCharacter() {
+    this.skirmishService.removeSkirmishCharacter(this.id);
+    this.router.navigate(['skirmish']);
+  }
 }
