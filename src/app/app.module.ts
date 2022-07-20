@@ -13,7 +13,7 @@ import {CharacterDetailComponent} from './character/character-detail/character-d
 import {CharacterEditComponent} from './character/character-edit/character-edit.component';
 import {CharacterStartComponent} from './character/character-start/character-start.component';
 import {CharacterItemComponent} from './character/character-list/character-item/character-item.component';
-import {DropdownDirective} from './shared/dropdown.directive';
+import {DropdownDirective} from './shared/directives/dropdown.directive';
 import {SkirmishComponent} from './skirmish/skirmish.component';
 import {SkirmishCharactersListComponent} from './skirmish/skirmish-characters-list/skirmish-characters-list.component';
 import {
@@ -41,6 +41,7 @@ import {ValidationAlertComponent} from './validation/validation-alert/validation
 import {HttpClientModule} from '@angular/common/http';
 import { EditArmorDialogWindowComponent } from './dialog-window/edit-armor-dialog-window/edit-armor-dialog-window.component';
 import { EditWeaponDialogWindowComponent } from './dialog-window/edit-weapon-dialog-window/edit-weapon-dialog-window.component';
+import { AutoFocusDirective } from './shared/directives/auto-focus.directive';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { EditWeaponDialogWindowComponent } from './dialog-window/edit-weapon-dia
     // RollDialogWindowComponent,
     // AttackAllyFumbleDialogWindowComponent,
     EditArmorDialogWindowComponent,
-    EditWeaponDialogWindowComponent
+    EditWeaponDialogWindowComponent,
+    AutoFocusDirective
   ],
   imports: [
     BrowserModule,
