@@ -6,6 +6,7 @@
       style="cursor: pointer"
       class="list-group-item clearfix rounded mb-2" id="dropdownMenuLink" data-bs-toggle="dropdown"
       aria-expanded="false"
+      [routerLink]="[skirmishCharacter.id]"
       routerLinkActive="active">
       <div class="row">
         <div class="col-md-6">
@@ -49,9 +50,9 @@
       </div>
     </a>
 
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <a class="dropdown-item" [routerLink]="[skirmishCharacter.id]">Szczegóły</a>
-      <a class="dropdown-item" [routerLink]="[skirmishCharacter.id] + '/actions'">Akcje</a>
-    </div>
+<!--    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">-->
+<!--      <a class="dropdown-item" [routerLink]="[skirmishCharacter.id]">Szczegóły</a>-->
+<!--      <a class="dropdown-item" [routerLink]="[skirmishCharacter.id] + '/actions'">Akcje</a>-->
+<!--    </div>-->
   </div>
 </div>
