@@ -1,15 +1,7 @@
 import {Character} from "../character/character.model";
-import {BodyLocalization, BodyLocalizationList} from "../body-localization/body-localization.model";
-import {Weapon} from "../weapon/weapon.model";
-import {Skill} from "../skill/skill.model";
-import {ConditionOld} from "../conditionsOld/condition.model";
-import {Roll} from "../roll/roll.model";
-import {CharacterBodyLocalizations} from "../body-localization/character-body-localizations.model";
 import {CharacterCharacteristic} from "../characteristic/character-characteristic.model";
 import {CharacterTalent} from "../talent/character-talent.model";
 import {Armor} from "../armor/armor.model";
-import {CriticalWound} from "../critical-wounds/critical-wounds.model";
-import {InjuryOld} from "../injuresOld/injures-list.model";
 import {CharacterSkill} from "../skill/character-skill.model";
 import {CharacterWeapon} from "../weapon/character-weapon.model";
 import {CharacterBodyLocalization} from "../body-localization/character-body-localization.model";

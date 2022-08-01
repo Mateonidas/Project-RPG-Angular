@@ -47,14 +47,18 @@ export class SkirmishCharactersListComponent implements OnInit {
   }
 
   sortByInitiative() {
-    this.skirmishCharacters.sort(this.compareSkirmishCharactersInitiative);
+    this.skirmishCharacters = this.skirmishCharacters.sort(this.compareSkirmishCharactersInitiative);
   }
 
   compareSkirmishCharactersInitiative(a: SkirmishCharacter, b: SkirmishCharacter) {
-    if (b.isDead || a.skirmishInitiative > b.skirmishInitiative) {
+
+    if (a.isDead || b.isDead) {
+      return 0;
+    }
+    if (a.skirmishInitiative > b.skirmishInitiative) {
       return -1;
     }
-    if (a.isDead || a.skirmishInitiative < b.skirmishInitiative) {
+    if (a.skirmishInitiative < b.skirmishInitiative) {
       return 1;
     }
     return 0;
