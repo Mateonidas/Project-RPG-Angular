@@ -11,8 +11,10 @@
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" style="cursor: pointer" (click)="onEditCharacter()">{{text.getText().editCharacterButton}}</a></li>
-        <li><a class="dropdown-item" style="cursor: pointer" (click)="onDeleteCharacter()">{{text.getText().deleteCharacterButton}}</a></li>
+        <li><a class="dropdown-item" style="cursor: pointer"
+               (click)="onEditCharacter()">{{text.getText().editCharacterButton}}</a></li>
+        <li><a class="dropdown-item" style="cursor: pointer"
+               (click)="onDeleteCharacter()">{{text.getText().deleteCharacterButton}}</a></li>
       </ul>
     </div>
   </div>
@@ -116,14 +118,14 @@
   </div>
 </ng-container>
 
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <h4>{{text.getText().primaryHandLabel}}</h4>
-    <h5 *ngIf="skirmishCharacter.isRightHanded">- {{text.getText().rightHandLabel}}</h5>
-    <h5 *ngIf="!skirmishCharacter.isRightHanded">- {{text.getText().leftHandLabel}}</h5>
-  </div>
-</div>
+<!--<hr>-->
+<!--<div class="row">-->
+<!--  <div class="col-md-12">-->
+<!--    <h4>{{text.getText().primaryHandLabel}}</h4>-->
+<!--    <h5 *ngIf="skirmishCharacter.isRightHanded">- {{text.getText().rightHandLabel}}</h5>-->
+<!--    <h5 *ngIf="!skirmishCharacter.isRightHanded">- {{text.getText().leftHandLabel}}</h5>-->
+<!--  </div>-->
+<!--</div>-->
 
 <hr>
 <div class="row">
@@ -145,7 +147,8 @@
           <ul>
             <li *ngFor="let characterInjury of bodylocalization.injuries">
               <span *ngIf="characterInjury.value == 1">{{characterInjury.injury.nameTranslation}}</span>
-              <span *ngIf="characterInjury.value > 1">{{characterInjury.injury.nameTranslation}} {{characterInjury.value}}</span>
+              <span
+                *ngIf="characterInjury.value > 1">{{characterInjury.injury.nameTranslation}} {{characterInjury.value}}</span>
             </li>
           </ul>
         </td>
@@ -155,41 +158,43 @@
   </div>
 </div>
 
+<ng-container *ngIf="skirmishCharacter.conditions.length > 0">
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <h4>{{text.getText().conditionsLabel}}</h4>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let characterCondition of skirmishCharacter.conditions">
+          {{characterCondition.condition.nameTranslation}} - {{characterCondition.value}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-container>
+
 <hr>
 <div class="row">
-  <div class="col-md-12">
-    <h4>{{text.getText().conditionsLabel}}</h4>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let characterCondition of skirmishCharacter.conditions">
-        {{characterCondition.condition.nameTranslation}} - {{characterCondition.value}}
-      </li>
-    </ul>
+  <div class="row mb-2">
+    <div class="col-md-6">
+      <h4>{{text.getText().skillsLabel}}</h4>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let characterSkill of skirmishCharacter.skills">
+          {{characterSkill.skill.nameTranslation}} - {{characterSkill.value}}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <h4>{{text.getText().talentsLabel}}</h4>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let talent of skirmishCharacter.talents">
+          {{talent.talent.nameTranslation}} - {{talent.value}}
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
 
 <hr>
-<div class="row">
-  <div class="col-md-12">
-    <h4>{{text.getText().skillsLabel}}</h4>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let characterSkill of skirmishCharacter.skills">
-        {{characterSkill.skill.nameTranslation}} - {{characterSkill.value}}
-      </li>
-    </ul>
-  </div>
-</div>
-
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <h4>{{text.getText().talentsLabel}}</h4>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let talent of skirmishCharacter.talents">
-        {{talent.talent.nameTranslation}} - {{talent.value}}
-      </li>
-    </ul>
-  </div>
-</div><hr>
 <div class="row">
   <div class="col-md-12">
     <h4>{{text.getText().weaponLabel}}</h4>
@@ -205,11 +210,15 @@
       </thead>
       <tbody>
       <tr *ngFor="let characterWeapon of skirmishCharacter.weapons">
-        <td *ngIf="characterWeapon.value == 1; else characterWeaponValue">{{characterWeapon.weapon.nameTranslation}}</td>
-        <ng-template #characterWeaponValue><td>{{characterWeapon.weapon.nameTranslation}} ({{characterWeapon.value}})</td></ng-template>
+        <td
+          *ngIf="characterWeapon.value == 1; else characterWeaponValue">{{characterWeapon.weapon.nameTranslation}}</td>
+        <ng-template #characterWeaponValue>
+          <td>{{characterWeapon.weapon.nameTranslation}} ({{characterWeapon.value}})</td>
+        </ng-template>
         <td>{{characterWeapon.weapon.weaponGroupType.nameTranslation}}</td>
         <td>
-          <span *ngIf="characterWeapon.weapon.weaponRange == 0; else weaponRange">{{characterWeapon.weapon.weaponReach.nameTranslation}}</span>
+          <span
+            *ngIf="characterWeapon.weapon.weaponRange == 0; else weaponRange">{{characterWeapon.weapon.weaponReach.nameTranslation}}</span>
           <ng-template #weaponRange>
             <span *ngIf="characterWeapon.weapon.weaponGroupType.name.includes('AMMUNITION'); else fullWeaponRange">
               <span *ngIf="characterWeapon.weapon.weaponRange == 0.5">{{text.getText().halfWeaponRangeLabel}}</span>
@@ -222,7 +231,8 @@
           </ng-template>
         </td>
         <td>
-          <span *ngIf="characterWeapon.weapon.isUsingStrength; else elseBlock">+{{text.getText().strengthBonusLabel}}+{{characterWeapon.weapon.damage}}</span>
+          <span *ngIf="characterWeapon.weapon.isUsingStrength; else elseBlock">+{{text.getText().strengthBonusLabel}}
+            +{{characterWeapon.weapon.damage}}</span>
           <ng-template #elseBlock>+{{characterWeapon.weapon.damage}}</ng-template>
         </td>
         <td>
@@ -237,6 +247,7 @@
     </table>
   </div>
 </div>
+
 <hr>
 <div class="row">
   <div class="col-md-12">
