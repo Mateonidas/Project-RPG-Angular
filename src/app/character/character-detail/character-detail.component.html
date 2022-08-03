@@ -161,6 +161,7 @@
   </div>
 </div>
 
+<ng-container *ngIf="character.weapons.length > 0">
 <hr>
 <div class="row">
   <div class="col-md-12">
@@ -214,7 +215,9 @@
     </table>
   </div>
 </div>
+</ng-container>
 
+<ng-container *ngIf="character.armors.length > 0">
 <hr>
 <div class="row">
   <div class="col-md-12">
@@ -267,3 +270,4 @@
     </table>
   </div>
 </div>
+</ng-container>
