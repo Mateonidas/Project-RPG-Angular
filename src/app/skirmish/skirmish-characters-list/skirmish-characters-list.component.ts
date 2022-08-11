@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {InitiativeDialogWindow} from "../../dialog-window/initiative-dialog-window/initiative-dialog-window.component";
 import {RoundService} from "../../shared/services/round-service/round.service";
+import {SkirmishService} from "../../shared/services/skirmish-service/skirmish.service";
 
 @Component({
   selector: 'app-skirmish-characters-list',
@@ -21,7 +22,8 @@ export class SkirmishCharactersListComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private modalService: NgbModal,
-              private roundService: RoundService) {
+              private roundService: RoundService,
+              private skirmishService: SkirmishService) {
   }
 
   ngOnInit(): void {
@@ -47,7 +49,10 @@ export class SkirmishCharactersListComponent implements OnInit {
   }
 
   sortByInitiative() {
-    this.skirmishCharacters = this.skirmishCharacters.sort(this.compareSkirmishCharactersInitiative);
+    this.skirmishService.sortByInitiative(this.skirmishCharacters).then(() => {
+      this.skirmishCharacters = this.skirmishCharacterService.getSkirmishCharacters();
+    });
+    // this.skirmishCharacters = this.skirmishCharacters.sort(this.compareSkirmishCharactersInitiative);
   }
 
   compareSkirmishCharactersInitiative(a: SkirmishCharacter, b: SkirmishCharacter) {
