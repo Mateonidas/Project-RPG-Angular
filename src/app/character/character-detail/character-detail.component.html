@@ -139,8 +139,9 @@
   </div>
 </ng-container>
 
-<hr>
-<div class="row">
+<ng-container *ngIf="character.skills.length > 0 && character.talents.length > 0">
+  <hr>
+  <div class="row">
   <div class="row mb-2">
     <div class="col-md-6">
       <h4>{{text.getText().skillsLabel}}</h4>
@@ -160,6 +161,7 @@
     </div>
   </div>
 </div>
+</ng-container>
 
 <ng-container *ngIf="character.weapons.length > 0">
 <hr>

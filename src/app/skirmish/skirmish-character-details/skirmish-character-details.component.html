@@ -172,6 +172,7 @@
   </div>
 </ng-container>
 
+<ng-container *ngIf="skirmishCharacter.skills.length > 0 && skirmishCharacter.talents.length > 0">
 <hr>
 <div class="row">
   <div class="row mb-2">
@@ -193,6 +194,7 @@
     </div>
   </div>
 </div>
+</ng-container>
 
 <ng-container *ngIf="skirmishCharacter.weapons.length > 0">
 <hr>
