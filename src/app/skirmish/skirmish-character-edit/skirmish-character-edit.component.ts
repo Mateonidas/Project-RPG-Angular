@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Character} from "../../model/character/character.model";
@@ -113,5 +113,15 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
     character.isDead = this.editCharacterForm.value.isDead;
 
     return character;
+  }
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if(event.key == 'Enter') {
+      this.onSubmit();
+    }
+    if(event.key == 'Escape') {
+      this.onCancel();
+    }
   }
 }

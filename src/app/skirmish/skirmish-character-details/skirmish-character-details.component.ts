@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
@@ -32,5 +32,12 @@ export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent 
   onDeleteCharacter() {
     this.skirmishService.removeSkirmishCharacter(this.id);
     this.router.navigate(['skirmish']);
+  }
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if(event.key == 'Enter') {
+      this.onEditCharacter();
+    }
   }
 }
