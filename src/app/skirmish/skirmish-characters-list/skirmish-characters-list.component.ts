@@ -52,21 +52,6 @@ export class SkirmishCharactersListComponent implements OnInit {
     this.skirmishService.sortByInitiative(this.skirmishCharacters).then(() => {
       this.skirmishCharacters = this.skirmishCharacterService.getSkirmishCharacters();
     });
-    // this.skirmishCharacters = this.skirmishCharacters.sort(this.compareSkirmishCharactersInitiative);
-  }
-
-  compareSkirmishCharactersInitiative(a: SkirmishCharacter, b: SkirmishCharacter) {
-
-    if (a.isDead || b.isDead) {
-      return 0;
-    }
-    if (a.skirmishInitiative > b.skirmishInitiative) {
-      return -1;
-    }
-    if (a.skirmishInitiative < b.skirmishInitiative) {
-      return 1;
-    }
-    return 0;
   }
 
   async endTurn() {
