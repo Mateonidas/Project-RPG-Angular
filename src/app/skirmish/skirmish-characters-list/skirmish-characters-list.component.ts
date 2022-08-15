@@ -55,7 +55,7 @@ export class SkirmishCharactersListComponent implements OnInit {
   }
 
   async endTurn() {
-    this.roundService.nextRound();
+    await this.roundService.nextRound(this.skirmishCharacters);
     this.roundNumber = this.roundService.roundNumber;
     // await this.checkCharacterConditions();
   }
