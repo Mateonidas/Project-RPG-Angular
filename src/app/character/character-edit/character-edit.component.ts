@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {CharacterService} from "../../shared/services/character-service/character.service";
@@ -236,6 +236,16 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
           characterBodyLocalization.injuries.push(characterInjury);
         }
       }
+    }
+  }
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if(event.key == 'Enter') {
+      this.onSubmit();
+    }
+    if(event.key == 'Escape') {
+      this.onCancel();
     }
   }
 }

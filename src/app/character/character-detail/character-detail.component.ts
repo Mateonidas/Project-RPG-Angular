@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Character} from "../../model/character/character.model";
 import {CharacterService} from "../../shared/services/character-service/character.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
@@ -40,5 +40,12 @@ export class CharacterDetailComponent implements OnInit {
   onDeleteCharacter() {
     this.characterService.removeCharacter(this.id);
     this.router.navigate(['characters']);
+  }
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if(event.key == 'Enter') {
+      this.onEditCharacter();
+    }
   }
 }
