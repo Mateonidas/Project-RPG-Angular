@@ -235,8 +235,9 @@
           </ng-template>
         </td>
         <td>
-          <span *ngIf="characterWeapon.weapon.isUsingStrength; else elseBlock">+{{text.getText().strengthBonusLabel}}
-            +{{characterWeapon.weapon.damage}}</span>
+          <span *ngIf="characterWeapon.weapon.isUsingStrength; else elseBlock">
+            +{{+skirmishCharacter.strength.value.toString()[0]+characterWeapon.weapon.damage}}
+          </span>
           <ng-template #elseBlock>+{{characterWeapon.weapon.damage}}</ng-template>
         </td>
         <td>
