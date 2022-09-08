@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {Subject} from "rxjs";
 import {Character} from "../../../model/character/character.model";
 import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.model";
+import {HttpClient} from "@angular/common/http";
+import {TranslateService} from "../ translate-service/translate.service";
+import {ArmorService} from "../armor-service/armor.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,55 +12,108 @@ import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.mode
 export class SkirmishCharacterService {
 
   skirmishCharactersChanged = new Subject<SkirmishCharacter[]>();
-  skirmishCharacters: SkirmishCharacter[];
+  skirmishCharactersList: SkirmishCharacter[];
 
-  constructor() {
+  constructor(private http: HttpClient,
+              private translateService: TranslateService,
+              private armorService: ArmorService) {
     if (JSON.parse(<string>localStorage.getItem('skirmishCharacters')) == null) {
-      this.skirmishCharacters = [];
-      localStorage.setItem('skirmishCharacters', JSON.stringify(this.skirmishCharacters));
+      this.skirmishCharactersList = [];
+      localStorage.setItem('skirmishCharacters', JSON.stringify(this.skirmishCharactersList));
     } else {
-    this.skirmishCharacters = this.getSkirmishCharacters();
+      this.skirmishCharactersList = this.getSkirmishCharacters();
     }
   }
 
   getSkirmishCharacters() {
-    this.skirmishCharacters = SkirmishCharacter.arrayFromJSON(JSON.parse(<string>localStorage.getItem('skirmishCharacters')));
-    return this.skirmishCharacters.slice();
+    this.skirmishCharactersList = SkirmishCharacter.arrayFromJSON(JSON.parse(<string>localStorage.getItem('skirmishCharacters')));
+    return this.skirmishCharactersList.slice();
   }
 
   getSkirmishCharacter(id: number) {
-    this.skirmishCharacters = SkirmishCharacter.arrayFromJSON(<SkirmishCharacter[]>JSON.parse(<string>localStorage.getItem('skirmishCharacters')));
-    return <SkirmishCharacter>this.skirmishCharacters.find(skirmishCharacter => skirmishCharacter.id == id);
+    this.skirmishCharactersList = SkirmishCharacter.arrayFromJSON(<SkirmishCharacter[]>JSON.parse(<string>localStorage.getItem('skirmishCharacters')));
+    return <SkirmishCharacter>this.skirmishCharactersList.find(skirmishCharacter => skirmishCharacter.id == id);
   }
 
-  addNewSkirmishCharacter(character: Character) {
-    let skirmishCharacter = new SkirmishCharacter(character, this.skirmishCharacters.length);
-    let numberOfSameCharacters = this.skirmishCharacters.filter(character => character.name.includes(skirmishCharacter.name)).length;
-    if(numberOfSameCharacters > 0) {
+  fetchSkirmishCharacter() {
+    return this.http.get<SkirmishCharacter[]>('http://localhost:8080/skirmishCharacter').toPromise()
+      .then(data => {
+        this.skirmishCharactersList = [];
+        for (let character of data) {
+          this.translateService.prepareSkills(character.skills);
+          this.translateService.prepareTalents(character.talents);
+          this.translateService.prepareWeapons(character.weapons);
+          this.armorService.prepareArmorsList(character.armors);
+          this.translateService.prepareBodyLocalizations(character.bodyLocalizations);
+          this.translateService.prepareConditions(character.conditions);
+          let skirmishCharacter = new SkirmishCharacter();
+          Object.assign(skirmishCharacter, character);
+          this.skirmishCharactersList.push(skirmishCharacter);
+        }
+        localStorage.setItem('skirmishCharacters', JSON.stringify(this.skirmishCharactersList));
+        this.skirmishCharactersChanged.next(this.skirmishCharactersList.slice());
+      })
+  }
+
+  async storeSkirmishCharacter(character: Character) {
+    let skirmishCharacter = new SkirmishCharacter(character, this.skirmishCharactersList.length);
+    let numberOfSameCharacters = this.skirmishCharactersList.filter(character => character.name.includes(skirmishCharacter.name)).length;
+    if (numberOfSameCharacters > 0) {
       skirmishCharacter.name = skirmishCharacter.name + ' ' + (numberOfSameCharacters + 1);
     }
-    this.skirmishCharacters.push(skirmishCharacter);
-    this.skirmishCharactersChanged.next(this.skirmishCharacters.slice())
-    localStorage.setItem('skirmishCharacters', JSON.stringify(this.skirmishCharacters));
+    await this.putSkirmishCharacter(skirmishCharacter).then(
+      async () => {
+        await this.fetchSkirmishCharacter().then();
+      }
+    );
   }
 
-  updateSkirmishCharacter(skirmishCharacter: SkirmishCharacter) {
-    this.skirmishCharacters[this.getCharacterIndexById(skirmishCharacter.id)] = skirmishCharacter;
-    this.skirmishCharactersChanged.next(this.skirmishCharacters.slice());
-    localStorage.setItem('skirmishCharacters', JSON.stringify(this.skirmishCharacters));
+  private putSkirmishCharacter(skirmishCharacter: SkirmishCharacter) {
+    return this.http
+      .put('http://localhost:8080/skirmishCharacter', skirmishCharacter)
+      .toPromise();
   }
 
-  getCharacterIndexById(id: number) {
-    let characterInArray = this.skirmishCharacters.find(skirmishCharacter => skirmishCharacter.id == id);
-    return this.skirmishCharacters.indexOf(<SkirmishCharacter>characterInArray);
+  async updateSkirmishCharacter(skirmishCharacter: SkirmishCharacter) {
+    this.skirmishCharactersList[this.getCharacterIndexById(skirmishCharacter.id)] = skirmishCharacter;
+    this.skirmishCharactersChanged.next(this.skirmishCharactersList.slice());
+    await this.putSkirmishCharacter(skirmishCharacter).then(
+      async () => {
+        await this.fetchSkirmishCharacter().then();
+      }
+    );
   }
 
-  removeSkirmishCharacter(id: number) {
-    let index = this.getCharacterIndexById(id);
-    if(index > -1) {
-      this.skirmishCharacters.splice(index, 1);
-      this.skirmishCharactersChanged.next(this.skirmishCharacters.slice());
-      localStorage.setItem('skirmishCharacters', JSON.stringify(this.skirmishCharacters));
-    }
+  private getCharacterIndexById(id: number) {
+    let characterInArray = this.skirmishCharactersList.find(skirmishCharacter => skirmishCharacter.id == id);
+    return this.skirmishCharactersList.indexOf(<SkirmishCharacter>characterInArray);
+  }
+
+  async removeSkirmishCharacter(id: number) {
+    await this.deleteSkirmishCharacter(id).then(
+      async () => {
+        await this.fetchSkirmishCharacter().then();
+      }
+    );
+  }
+
+  private deleteSkirmishCharacter(id: number) {
+    return this.http
+      .delete(`http://localhost:8080/skirmishCharacter/${id}`)
+      .toPromise();
+  }
+
+  async removeAllSkirmishCharacters() {
+    await this.deleteAllSkirmishCharacters().then(
+      async () => {
+        await this.fetchSkirmishCharacter().then();
+      }
+    );
+  }
+
+  private deleteAllSkirmishCharacters() {
+    return this.http
+      .delete('http://localhost:8080/skirmishCharacter')
+      .toPromise();
   }
 }

@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Armor} from "../../../model/armor/armor.model";
 import {TextResourceService} from "../text-resource-service/text-resource.service";
-import {tap} from "rxjs/operators";
 import {Subject} from "rxjs";
 import {Model} from "../../../model/model";
+import {TranslateService} from "../ translate-service/translate.service";
 
 @Injectable({
   providedIn: 'root'
@@ -19,17 +19,18 @@ export class ArmorService {
   armorQualitiesListChanged = new Subject<Model[]>();
   armorQualitiesList: Model[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private translateService: TranslateService) {
   }
 
   fetchArmors() {
     return this.http.get<Armor[]>('http://localhost:8080/armor').toPromise()
       .then(data => {
-            this.prepareArmorsList(data);
-            this.armorsList = data;
-            this.armorsListChanged.next(this.armorsList.slice());
-          }
-        );
+          this.prepareArmorsList(data);
+          this.armorsList = data;
+          this.armorsListChanged.next(this.armorsList.slice());
+        }
+      );
   }
 
   async storeArmor(armor: Armor) {
@@ -48,32 +49,13 @@ export class ArmorService {
 
   public prepareArmorsList(armors: Armor[]) {
     for (let armor of armors) {
-      this.prepareArmorTranslation(armor);
+      this.translateService.prepareArmorTranslation(armor);
     }
     armors.sort(
       (a, b) => (a.armorCategory.name > b.armorCategory.name) ? 1 : ((b.armorCategory.name > a.armorCategory.name) ? -1 : 0)
     )
   }
 
-  private prepareArmorTranslation(armor: Armor) {
-    armor.armorCategory.nameTranslation = TextResourceService.getArmorCategoryNameTranslation(armor.armorCategory.name).nameTranslation;
-
-    for (let armorBodyLocalization of armor.armorBodyLocalizations) {
-      armorBodyLocalization.bodyLocalization.nameTranslation = TextResourceService.getBodyLocalizationNameTranslation(armorBodyLocalization.bodyLocalization.name).nameTranslation;
-    }
-
-    if(armor.armorPenalties != undefined) {
-      for (let penalty of armor.armorPenalties) {
-        penalty.nameTranslation = TextResourceService.getArmorPenaltyNameTranslation(penalty.name).nameTranslation;
-      }
-    }
-
-    if(armor.armorQualities != undefined) {
-      for (let quality of armor.armorQualities) {
-        quality.nameTranslation = TextResourceService.getArmorQualitiesNameTranslation(quality.name).nameTranslation;
-      }
-    }
-  }
 
   fetchArmorCategories() {
     return this.http.get<Model[]>('http://localhost:8080/armorCategory').toPromise()

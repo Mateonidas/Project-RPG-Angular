@@ -1,35 +1,39 @@
-<div class="row">
-  <div class="col-md-12">
-    <h3>Runda: {{roundNumber}}</h3>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="dropdown">
-      <button class="btn btn-danger me-2" type="button" (click)="endTurn()">
-        Koniec rundy
-      </button>
-      <button class="btn btn-primary dropdown-toggle me-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Inicjatywa
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" style="cursor:pointer;" (click)="initiativeRolls()">Rzut na inicjatywę</a></li>
-        <li><a class="dropdown-item" style="cursor: pointer" (click)="sortByInitiative()">Sortuj według inicjatywy</a></li>
-      </ul>
-      <button class="btn btn-danger me-2" type="button" (click)="clearData()">
-        Wyczyść dane
-      </button>
+<div *ngIf="isDataAvailable">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Runda: {{roundNumber}}</h3>
     </div>
   </div>
-</div>
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <app-skirmish-character-item
-      *ngFor="let skirmishCharacter of skirmishCharacters; let i = index"
-      [skirmishCharacter]="skirmishCharacter"
-      [index]="i">
-    </app-skirmish-character-item>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="dropdown">
+        <button class="btn btn-danger me-2" type="button" (click)="endTurn()">
+          Koniec rundy
+        </button>
+        <button class="btn btn-primary dropdown-toggle me-2" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+          Inicjatywa
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" style="cursor:pointer;" (click)="initiativeRolls()">Rzut na inicjatywę</a></li>
+          <li><a class="dropdown-item" style="cursor: pointer" (click)="sortByInitiative()">Sortuj według inicjatywy</a>
+          </li>
+        </ul>
+        <button class="btn btn-danger me-2" type="button" (click)="clearData()">
+          Wyczyść dane
+        </button>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <app-skirmish-character-item
+        *ngFor="let skirmishCharacter of skirmishCharacters; let i = index"
+        [skirmishCharacter]="skirmishCharacter"
+        [index]="i">
+      </app-skirmish-character-item>
+    </div>
   </div>
 </div>

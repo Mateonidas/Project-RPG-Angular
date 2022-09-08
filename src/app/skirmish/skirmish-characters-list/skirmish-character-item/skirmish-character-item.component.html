@@ -19,8 +19,7 @@
         </div>
         <div class="col-md-4" *ngIf="!skirmishCharacter.isDead">
           <h6 class="list-group-item-heading">Żywotność</h6>
-          <p class="list-group-item-text">{{skirmishCharacter.currentWounds}}
-            /{{skirmishCharacter.wounds.value}}</p>
+          <p class="list-group-item-text">{{skirmishCharacter.currentWounds}}/{{skirmishCharacter.wounds.value}}</p>
         </div>
         <div class="col-md-6" *ngIf="skirmishCharacter.isDead">
           <h4 class="list-group-item-heading">Martwy</h4>
@@ -50,9 +49,9 @@
       </div>
     </a>
 
-<!--    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">-->
-<!--      <a class="dropdown-item" [routerLink]="[skirmishCharacter.id]">Szczegóły</a>-->
-<!--      <a class="dropdown-item" [routerLink]="[skirmishCharacter.id] + '/actions'">Akcje</a>-->
-<!--    </div>-->
+    <!--    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">-->
+    <!--      <a class="dropdown-item" [routerLink]="[skirmishCharacter.id]">Szczegóły</a>-->
+    <!--      <a class="dropdown-item" [routerLink]="[skirmishCharacter.id] + '/actions'">Akcje</a>-->
+    <!--    </div>-->
   </div>
 </div>

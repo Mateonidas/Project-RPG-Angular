@@ -30,7 +30,7 @@ export class CharacterDetailComponent implements OnInit {
   }
 
   onAddToFight() {
-    this.skirmishService.addNewSkirmishCharacter(this.character);
+    this.skirmishService.storeSkirmishCharacter(this.character);
   }
 
   onEditCharacter() {
@@ -44,7 +44,7 @@ export class CharacterDetailComponent implements OnInit {
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    if(event.key == 'Enter') {
+    if (event.key == 'Enter') {
       this.onEditCharacter();
     }
   }

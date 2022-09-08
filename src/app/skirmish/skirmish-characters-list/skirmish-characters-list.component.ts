@@ -17,6 +17,7 @@ export class SkirmishCharactersListComponent implements OnInit {
   skirmishCharacters!: SkirmishCharacter[];
   subscription!: Subscription;
   roundNumber!: number;
+  isDataAvailable: boolean = false;
 
   constructor(private skirmishCharacterService: SkirmishCharacterService,
               private router: Router,
@@ -26,15 +27,18 @@ export class SkirmishCharactersListComponent implements OnInit {
               private skirmishService: SkirmishService) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.subscription = this.skirmishCharacterService.skirmishCharactersChanged.subscribe(
       (skirmishCharacters: SkirmishCharacter[]) => {
         this.skirmishCharacters = skirmishCharacters;
       }
     )
+    this.skirmishCharacterService.fetchSkirmishCharacter().then(() => {
+      this.isDataAvailable = true;
+      this.roundNumber = this.roundService.roundNumber;
+      this.sortByInitiative();
+    });
     this.skirmishCharacters = this.skirmishCharacterService.getSkirmishCharacters();
-    this.roundNumber = this.roundService.roundNumber;
-    this.sortByInitiative();
   }
 
   initiativeRolls() {
@@ -67,7 +71,8 @@ export class SkirmishCharactersListComponent implements OnInit {
   }
 
   clearData() {
-    localStorage.clear();
+    this.skirmishCharacterService.removeAllSkirmishCharacters();
+    // localStorage.clear();
     window.location.reload();
   }
 }

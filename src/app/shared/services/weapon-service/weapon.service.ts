@@ -4,6 +4,7 @@ import {Subject} from "rxjs";
 import {Weapon} from "../../../model/weapon/weapon.model";
 import {TextResourceService} from "../text-resource-service/text-resource.service";
 import {Model} from "../../../model/model";
+import {TranslateService} from "../ translate-service/translate.service";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class WeaponService {
   weaponQualitiesListChanged = new Subject<Model[]>();
   weaponQualitiesList: Model[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private translateService: TranslateService) {
   }
 
   fetchWeapons() {
@@ -34,21 +36,11 @@ export class WeaponService {
 
   public prepareWeaponsList(weapons: Weapon[]) {
     for (let weapon of weapons) {
-      this.prepareWeaponTranslation(weapon);
+      this.translateService.prepareWeaponTranslation(weapon);
     }
     weapons.sort(
       (a, b) => (a.weaponGroupType > b.weaponGroupType) ? 1 : ((b.weaponGroupType > a.weaponGroupType) ? -1 : 0)
     )
-  }
-
-  public prepareWeaponTranslation(weapon: Weapon) {
-    weapon.weaponType.nameTranslation = TextResourceService.getWeaponTypeNameTranslation(weapon.weaponType.name).nameTranslation;
-    weapon.weaponGroupType.nameTranslation = TextResourceService.getWeaponGroupTypeNameTranslation(weapon.weaponGroupType.name).nameTranslation;
-    weapon.weaponReach.nameTranslation = TextResourceService.getWeaponReachNameTranslation(weapon.weaponReach.name).nameTranslation;
-
-    for (let quality of weapon.weaponQualities) {
-      quality.nameTranslation = TextResourceService.getWeaponQualityNameTranslation(quality.name).nameTranslation;
-    }
   }
 
   async storeWeapon(weapon: Weapon) {

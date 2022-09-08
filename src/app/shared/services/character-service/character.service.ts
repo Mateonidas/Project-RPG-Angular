@@ -1,15 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Character} from "../../../model/character/character.model";
 import {Subject} from "rxjs";
-import {CharacterTalent} from "../../../model/talent/character-talent.model";
-import {CharacterSkill} from "../../../model/skill/character-skill.model";
 import {HttpClient} from "@angular/common/http";
-import {TextResourceService} from "../text-resource-service/text-resource.service";
-import {WeaponService} from "../weapon-service/weapon.service";
 import {ArmorService} from "../armor-service/armor.service";
-import {CharacterWeapon} from "../../../model/weapon/character-weapon.model";
-import {CharacterBodyLocalization} from "../../../model/body-localization/character-body-localization.model";
-import {CharacterCondition} from "../../../model/condition/condition.model";
+import {TranslateService} from "../ translate-service/translate.service";
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +13,8 @@ export class CharacterService {
   charactersList: Character[] = [];
 
   constructor(private http: HttpClient,
-              public weaponService: WeaponService,
-              public armorService: ArmorService) {
+              public armorService: ArmorService,
+              public translateService: TranslateService) {
     if (JSON.parse(<string>localStorage.getItem('characters')) == null) {
       this.charactersList = [];
       localStorage.setItem('characters', JSON.stringify(this.charactersList));
@@ -34,12 +28,12 @@ export class CharacterService {
       .then(data => {
         this.charactersList = [];
         for (let character of data) {
-          this.prepareSkills(character.skills);
-          this.prepareTalents(character.talents);
-          this.prepareWeapons(character.weapons);
+          this.translateService.prepareSkills(character.skills);
+          this.translateService.prepareTalents(character.talents);
+          this.translateService.prepareWeapons(character.weapons);
           this.armorService.prepareArmorsList(character.armors);
-          this.prepareBodyLocalizations(character.bodyLocalizations);
-          this.prepareConditions(character.conditions);
+          this.translateService.prepareBodyLocalizations(character.bodyLocalizations);
+          this.translateService.prepareConditions(character.conditions);
           this.charactersList.push(character);
         }
         localStorage.setItem('characters', JSON.stringify(this.charactersList));
@@ -55,7 +49,7 @@ export class CharacterService {
     );
   }
 
-  putCharacter(character: Character) {
+  private putCharacter(character: Character) {
     return this.http
       .put('http://localhost:8080/character', character)
       .toPromise();
@@ -69,43 +63,10 @@ export class CharacterService {
     );
   }
 
-  deleteCharacter(id: number) {
+  private deleteCharacter(id: number) {
     return this.http
       .delete(`http://localhost:8080/character/${id}`)
       .toPromise();
-  }
-
-  private prepareSkills(skills: CharacterSkill[]) {
-    for (let skill of skills) {
-      skill.skill.nameTranslation = TextResourceService.getSkillNameTranslation(skill.skill.name).nameTranslation
-    }
-  }
-
-  private prepareTalents(talents: CharacterTalent[]) {
-    for (let talent of talents) {
-      talent.talent.nameTranslation = TextResourceService.getTalentNameTranslation(talent.talent.name).nameTranslation;
-    }
-  }
-
-  private prepareWeapons(weapons: CharacterWeapon[]) {
-    for (let weapon of weapons) {
-      this.weaponService.prepareWeaponTranslation(weapon.weapon);
-    }
-  }
-
-  private prepareBodyLocalizations(bodyLocalizations: CharacterBodyLocalization[]) {
-    for (let characterBodyLocalization of bodyLocalizations) {
-      characterBodyLocalization.bodyLocalization.nameTranslation = TextResourceService.getBodyLocalizationNameTranslation(characterBodyLocalization.bodyLocalization.name).nameTranslation;
-      for (let characterInjury of characterBodyLocalization.injuries) {
-        characterInjury.injury.nameTranslation = TextResourceService.getInjuryNameTranslation(characterInjury.injury.name).nameTranslation;
-      }
-    }
-  }
-
-  private prepareConditions(conditions: CharacterCondition[]) {
-    for (let characterCondition of conditions) {
-      characterCondition.condition.nameTranslation = TextResourceService.getConditionNameTranslation(characterCondition.condition.name).nameTranslation
-    }
   }
 
   getCharacters() {
