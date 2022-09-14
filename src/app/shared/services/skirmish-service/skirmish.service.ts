@@ -9,14 +9,14 @@ export class SkirmishService {
 
   constructor(private http: HttpClient) { }
 
-  postSortByInitiative(skirmishCharacters: SkirmishCharacter[]) {
-    return this.http.post<SkirmishCharacter[]>('http://localhost:8080/initiativeSort', skirmishCharacters).toPromise()
+  getSortByInitiative() {
+    return this.http.get<SkirmishCharacter[]>('http://localhost:8080/initiativeSort').toPromise()
       .then(data => {
         localStorage.setItem('skirmishCharacters', JSON.stringify(<SkirmishCharacter[]>data));
       });
   }
 
-  async sortByInitiative(skirmishCharacters: SkirmishCharacter[]) {
-    await this.postSortByInitiative(skirmishCharacters).then();
+  async sortByInitiative() {
+    await this.getSortByInitiative().then();
   }
 }

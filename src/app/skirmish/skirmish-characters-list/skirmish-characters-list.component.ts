@@ -53,7 +53,7 @@ export class SkirmishCharactersListComponent implements OnInit {
   }
 
   sortByInitiative() {
-    this.skirmishService.sortByInitiative(this.skirmishCharacters).then(() => {
+    this.skirmishService.sortByInitiative().then(() => {
       this.skirmishCharacters = this.skirmishCharacterService.getSkirmishCharacters();
     });
   }
