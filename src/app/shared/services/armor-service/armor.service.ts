@@ -26,7 +26,7 @@ export class ArmorService {
   fetchArmors() {
     return this.http.get<Armor[]>('http://localhost:8080/armor').toPromise()
       .then(data => {
-          this.prepareArmorsList(data);
+          this.translateService.prepareArmorsList(data);
           this.armorsList = data;
           this.armorsListChanged.next(this.armorsList.slice());
         }
@@ -46,16 +46,6 @@ export class ArmorService {
       .put('http://localhost:8080/armor', armor)
       .toPromise();
   }
-
-  public prepareArmorsList(armors: Armor[]) {
-    for (let armor of armors) {
-      this.translateService.prepareArmorTranslation(armor);
-    }
-    armors.sort(
-      (a, b) => (a.armorCategory.name > b.armorCategory.name) ? 1 : ((b.armorCategory.name > a.armorCategory.name) ? -1 : 0)
-    )
-  }
-
 
   fetchArmorCategories() {
     return this.http.get<Model[]>('http://localhost:8080/armorCategory').toPromise()

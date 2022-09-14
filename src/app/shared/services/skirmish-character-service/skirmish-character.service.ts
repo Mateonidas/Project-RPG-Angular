@@ -15,8 +15,7 @@ export class SkirmishCharacterService {
   skirmishCharactersList: SkirmishCharacter[];
 
   constructor(private http: HttpClient,
-              private translateService: TranslateService,
-              private armorService: ArmorService) {
+              private translateService: TranslateService) {
     if (JSON.parse(<string>localStorage.getItem('skirmishCharacters')) == null) {
       this.skirmishCharactersList = [];
       localStorage.setItem('skirmishCharacters', JSON.stringify(this.skirmishCharactersList));
@@ -40,12 +39,7 @@ export class SkirmishCharacterService {
       .then(data => {
         this.skirmishCharactersList = [];
         for (let character of data) {
-          this.translateService.prepareSkills(character.skills);
-          this.translateService.prepareTalents(character.talents);
-          this.translateService.prepareWeapons(character.weapons);
-          this.armorService.prepareArmorsList(character.armors);
-          this.translateService.prepareBodyLocalizations(character.bodyLocalizations);
-          this.translateService.prepareConditions(character.conditions);
+          this.translateService.prepareCharacter(character);
           let skirmishCharacter = new SkirmishCharacter();
           Object.assign(skirmishCharacter, character);
           this.skirmishCharactersList.push(skirmishCharacter);

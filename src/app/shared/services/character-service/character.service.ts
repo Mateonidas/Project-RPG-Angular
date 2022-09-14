@@ -13,7 +13,6 @@ export class CharacterService {
   charactersList: Character[] = [];
 
   constructor(private http: HttpClient,
-              public armorService: ArmorService,
               public translateService: TranslateService) {
     if (JSON.parse(<string>localStorage.getItem('characters')) == null) {
       this.charactersList = [];
@@ -28,12 +27,7 @@ export class CharacterService {
       .then(data => {
         this.charactersList = [];
         for (let character of data) {
-          this.translateService.prepareSkills(character.skills);
-          this.translateService.prepareTalents(character.talents);
-          this.translateService.prepareWeapons(character.weapons);
-          this.armorService.prepareArmorsList(character.armors);
-          this.translateService.prepareBodyLocalizations(character.bodyLocalizations);
-          this.translateService.prepareConditions(character.conditions);
+          this.translateService.prepareCharacter(character);
           this.charactersList.push(character);
         }
         localStorage.setItem('characters', JSON.stringify(this.charactersList));
