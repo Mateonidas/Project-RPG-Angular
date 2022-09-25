@@ -24,6 +24,13 @@ export class RoundService {
     this.endTurnCheck = new EndTurnCheck(roundNumber);
   }
 
+  async nextRound() {
+    this.roundNumber += 1;
+    localStorage.setItem('roundNumber', JSON.stringify(this._roundNumber));
+    this.endTurnCheck.tests = [];
+    await this.postEndTurnCheck(this.endTurnCheck);
+  }
+
   postEndTurnCheck(endTurnCheck: EndTurnCheck) {
     return this.http.post<EndTurnCheck>('http://localhost:8080/endTurnCheck', endTurnCheck).toPromise()
       .then(async data => {
@@ -31,13 +38,8 @@ export class RoundService {
         Object.assign(endTurnCheck, data);
         if (endTurnCheck.tests.length > 0) {
           await this.testRolls(endTurnCheck);
-          console.log("Ready")
         }
       })
-  }
-
-  postEndTurnTestsCheck(endTurnCheck: EndTurnCheck) {
-    return this.http.post<EndTurnCheck>('http://localhost:8080/endTurnTestsCheck', endTurnCheck).toPromise();
   }
 
   async testRolls(endTurnCheck: EndTurnCheck) {
@@ -50,13 +52,17 @@ export class RoundService {
     const modalRef = this.modalService.open(RollDialogWindow);
     modalRef.componentInstance.endTurnCheck = endTurnCheck;
     modalRef.componentInstance.testType = "Testy Stanów"
-    await modalRef.result.then(() => {
+    await modalRef.result.then(async () => {
 
       for (const test of endTurnCheck.tests) {
         console.log(test);
       }
-      this.postEndTurnTestsCheck(endTurnCheck);
+      await this.postEndTurnTestsCheck(endTurnCheck);
     })
+  }
+
+  async postEndTurnTestsCheck(endTurnCheck: EndTurnCheck) {
+    return this.http.post<EndTurnCheck>('http://localhost:8080/endTurnTestsCheck', endTurnCheck).toPromise();
   }
 
   get roundNumber(): number {
@@ -65,13 +71,6 @@ export class RoundService {
 
   set roundNumber(value: number) {
     this._roundNumber = value;
-  }
-
-  async nextRound() {
-    this.roundNumber += 1;
-    localStorage.setItem('roundNumber', JSON.stringify(this._roundNumber));
-    this.endTurnCheck.tests = [];
-    await this.postEndTurnCheck(this.endTurnCheck);
   }
 
   clearData() {

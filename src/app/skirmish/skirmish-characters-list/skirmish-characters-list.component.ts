@@ -6,7 +6,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {InitiativeDialogWindow} from "../../dialog-window/initiative-dialog-window/initiative-dialog-window.component";
 import {RoundService} from "../../shared/services/round-service/round.service";
-import {SkirmishService} from "../../shared/services/skirmish-service/skirmish.service";
 
 @Component({
   selector: 'app-skirmish-characters-list',
@@ -23,8 +22,7 @@ export class SkirmishCharactersListComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private modalService: NgbModal,
-              private roundService: RoundService,
-              private skirmishService: SkirmishService) {
+              private roundService: RoundService) {
   }
 
   async ngOnInit() {
@@ -36,8 +34,12 @@ export class SkirmishCharactersListComponent implements OnInit {
     this.skirmishCharacterService.fetchSkirmishCharacter().then(() => {
       this.isDataAvailable = true;
       this.roundNumber = this.roundService.roundNumber;
-      this.sortByInitiative();
     });
+    this.skirmishCharacters = this.skirmishCharacterService.getSkirmishCharacters();
+  }
+
+  async reloadSkirmishCharacters() {
+    await this.skirmishCharacterService.fetchSkirmishCharacter();
     this.skirmishCharacters = this.skirmishCharacterService.getSkirmishCharacters();
   }
 
@@ -52,17 +54,11 @@ export class SkirmishCharactersListComponent implements OnInit {
     }
   }
 
-  sortByInitiative() {
-    this.skirmishService.sortByInitiative().then(() => {
-      this.skirmishCharacters = this.skirmishCharacterService.getSkirmishCharacters();
-    });
-  }
-
   async endTurn() {
     await this.roundService.nextRound();
     this.roundNumber = this.roundService.roundNumber;
-    await this.sortByInitiative();
-    // await this.checkCharacterConditions();
+
+    await this.reloadSkirmishCharacters();
   }
 
   private async checkCharacterConditions() {
