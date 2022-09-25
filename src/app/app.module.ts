@@ -42,6 +42,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { EditArmorDialogWindowComponent } from './dialog-window/edit-armor-dialog-window/edit-armor-dialog-window.component';
 import { EditWeaponDialogWindowComponent } from './dialog-window/edit-weapon-dialog-window/edit-weapon-dialog-window.component';
 import { AutoFocusDirective } from './shared/directives/auto-focus.directive';
+import {RollDialogWindow} from "./dialog-window/roll-dialog-window/roll-dialog-window.component";
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { AutoFocusDirective } from './shared/directives/auto-focus.directive';
     SkirmishCharacterEditComponent,
     EditFormComponent,
     InitiativeDialogWindow,
+    RollDialogWindow,
     SkirmishActionsListComponent,
     SkirmishActionsAttackComponent,
     // SaveRollDialogWindowComponent,
