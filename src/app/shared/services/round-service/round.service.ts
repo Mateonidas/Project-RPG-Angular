@@ -73,4 +73,9 @@ export class RoundService {
     this.endTurnCheck.tests = [];
     await this.postEndTurnCheck(this.endTurnCheck);
   }
+
+  clearData() {
+    this.roundNumber = 1;
+    localStorage.setItem('roundNumber', JSON.stringify(this._roundNumber));
+  }
 }
