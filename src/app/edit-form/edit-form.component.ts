@@ -166,7 +166,8 @@ export class EditFormComponent {
       conditions.push(
         new FormGroup({
           'condition': new FormControl(characterCondition.condition),
-          'value': new FormControl(characterCondition.value)
+          'value': new FormControl(characterCondition.value),
+          'counter': new FormControl(characterCondition.counter)
         })
       )
     }
@@ -285,6 +286,7 @@ export class EditFormComponent {
       new FormGroup({
         'condition': new FormControl(null),
         'value': new FormControl(null),
+        'counter': new FormControl(null)
       })
     )
   }
