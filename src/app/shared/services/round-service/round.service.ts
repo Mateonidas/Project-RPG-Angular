@@ -53,10 +53,6 @@ export class RoundService {
     modalRef.componentInstance.endTurnCheck = endTurnCheck;
     modalRef.componentInstance.testType = "Testy Stanów"
     await modalRef.result.then(async () => {
-
-      for (const test of endTurnCheck.tests) {
-        console.log(test);
-      }
       await this.postEndTurnTestsCheck(endTurnCheck);
     })
   }
