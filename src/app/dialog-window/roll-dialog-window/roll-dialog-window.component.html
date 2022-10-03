@@ -5,7 +5,25 @@
   <div class="modal-body">
     <div *ngFor="let test of endTurnCheck.tests">
       <p>Rzut dla: {{test.skirmishCharacter.name}}: {{test.conditionType}}</p>
-      <input type="number" class="form-control" [(ngModel)]="test.result" [ngModelOptions]="{standalone: true}">
+
+      <div class="row mb-1">
+        <div class="col-md-3">
+          <span>Rzut: </span>
+        </div>
+        <div class="col-md-2">
+          <input type="number" class="form-control" [(ngModel)]="test.result" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <span>Modyfikator: </span>
+        </div>
+        <div class="col-md-2">
+          <input type="number" class="form-control" [(ngModel)]="test.modifier" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+
       <hr>
     </div>
   </div>
