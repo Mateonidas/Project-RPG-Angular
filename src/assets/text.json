@@ -1546,51 +1546,63 @@
   "condition": [
     {
       "name": "ABLAZE",
-      "nameTranslation": "Podpalenie"
+      "nameTranslation": "Podpalenie",
+      "description": "Postać naprawdę igra z ogniem! Ten Stan zazwyczaj dotyczy łatwopalnych postaci, czyli np. takich, które mają na sobie ubranie mogące zająć się ogniem... ale niektóre zaklęcia czy boska wola mogą podpalić niemalże wszystko!\n\nPod koniec każdej Rundy postać otrzymuje 1k10 Ran pomniejszonych o Bonus z Wytrzymałości i Punkty Pancerza na najgorzej chronionym miejscu ciała, przy czym zawsze jest to co najmniej 1 Rana. Każdy dodatkowy poziom Podpalenia dodaje +1 do Obrażeń, więc Podpalenie na poziome 3 oznacza 1k10+2 Obrażeń.\n\nJeden poziom Podpalenia może zostać usunięty dzięki udanemu Testowi Atletyki, a każdy PS pozwala usunąć jeden dodatkowy poziom Podpalenia. Trudność tego Testu uzależniona jest od okoliczności i otoczenia. Cóż, o wiele łatwiej ugasić płonącą odzież, tarzając się w piasku, niż w środku zapuszczonej, tłustej kuchni."
     },
     {
       "name": "BLEEDING",
-      "nameTranslation": "Krwawienie"
+      "nameTranslation": "Krwawienie",
+      "description": "Bohater krwawi. I to mocno. Postać otrzymuje 1 Ranę pod koniec każdej Rundy niezależnie od innych modyfikatorów. Ponadto wszystkie Testy na odporność przeciwko Ropiejącym Ranom, Pomniejszym Infekcjom i Zatruciu Krwi (patrz Choroby i infekcje, strona 187) są obarczone karą -10. Jeśli Żywotność zmniejszy się do 0, postać przestaje otrzymywać dalsze Rany, ale zamiast tego, z powodu utraty krwi, pada nieprzytomna na ziemię (otrzymuje dodatkowy Stan: Utrata Przytomności). W takiej sytuacji postać na 10% szans na śmierć z wykrwawienia w każdej rundzie za każdy poziom Krwawienia (czyli przy 3 poziomach - umiera przy wyrzuceniu 0-30). Jeżeli w tym rzucie wypadnie dublet, rana się nieco zasklepia i postać traci jeden poziom Krwawienia. Nie może wtedy odzyskać przytomności, dopóki wszystkie poziomy Krwawienia nie zostaną usunięte. Więcej o tym przeczytasz w podrozdziale Urazy na stronie 172.\n\nJeden poziom Krwawienia może zostać usunięty dzięki udanemu Testowi Leczenia, a każdy PS pozwala usunąć jeden dodatkowy poziom Krwawienia. Ponadto każde zaklęcie lub modlitwa, które leczą Rany, usuwają także jeden poziom Krwawienia za każdą wyleczoną Ranę.\n\nPo wyleczeniu wszystkich poziomów Krwawienia postać otrzymuje jeden poziom Zmęczenia."
     },
     {
       "name": "BLINDED",
-      "nameTranslation": "Oślepienie"
+      "nameTranslation": "Oślepienie",
+      "description": "Czy to przez nagły rozbłysk światła, czy dlatego, że ktoś chlusnął bohaterowi czymś w twarz, nie jest on w stanie widzieć prawidłowo. Wszystkie Testy wykorzystujące wzrok obarczone są karą -10.  Ponadto wszyscy atakujący Oślepioną postać zyskują premię +10 do  trafienia.\n\nOślepienie mija samoistnie – jeden poziom na koniec co drugiej Rundy."
     },
     {
       "name": "BROKEN",
-      "nameTranslation": "Panika"
+      "nameTranslation": "Panika",
+      "description": "Przerażenie i panika ogarniają umysł postaci, czuje się ona pokonana i przekonana, że rychło zginie. W swojej Turze postać musi wykorzystać Ruch i Akcję, aby uciec jak najszybciej i jak najdalej, dopóki nie znajdzie dobrej kryjówki poza zasięgiem wzroku wroga, a nawet wtedy może korzystać z Ruchu i Akcji wyłącznie po to, by po prostu ukryć się lepiej. Ponadto postać otrzymuje karę -10 do wszystkich Testów, które nie wiążą się z ucieczką lub ukrywaniem.\n\nNie można wykonywać Testów, by otrząsnąć się z Paniki, jeśli postać jest Związana Walką z przeciwnikiem (patrz strona 159). Jeśli postać nie jest związana walką, to pod koniec każdej Rundy może podjąć Test Opanowania, by usunąć poziom Paniki, a każdy PS usuwa jeden dodatkowy poziom. Trudność Testu uzależniona jest od okoliczności – o wiele łatwiej jest się opanować, będąc ukrytym za beczkami w długim korytarzu i daleko od niebezpieczeństwa, niż stojąc trzy metry od śliniącego się demona, który łaknie krwi.\n\nPonadto spędzenie pełnej Rundy w ukryciu, poza zasięgiem wzroku wroga, usuwa jeden poziom Paniki.\n\nPo usunięciu wszystkich poziomów Paniki postać otrzymuje jeden poziom Zmęczenia."
     },
     {
       "name": "DEAFENED",
-      "nameTranslation": "Ogłuszenie"
+      "nameTranslation": "Ogłuszenie",
+      "description": "Głośny huk, cios w głowę... nieważne. Postać nie jest w stanie słyszeć. Wszystkie Testy wykorzystujące słuch obarczone są karą -10. Ponadto wszyscy atakujący Ogłuszoną postać z flanki lub od tyłu zyskują premię +10 do trafienia (premia ta nie zwiększa się wraz ze wzrostem poziomów Ogłuszenia). Ogłuszenie mija samoistnie – jeden poziom pod koniec każdej Rundy, ale często jeszcze długo szumi w uszach..."
     },
     {
       "name": "ENTANGLED",
-      "nameTranslation": "Pochwycenie"
+      "nameTranslation": "Pochwycenie",
+      "description": "Postać została opleciona czymś, co krępuje jej ruchy – linami, siecią pająka albo nabitymi bicepsami przeciwnika. W swojej Turze postać nie może wykonać Ruchu, a wszystkie Akcje, podczas których musi się poruszać, są obarczone karą -10 (w tym Zapasy; patrz strona 163).\n\nW ramach swojej Akcji postać może usunąć jeden poziom Pochwycenia, jeśli wygra Przeciwstawny Test Siły przeciwko źródłu Pochwycenia, a każdy PS pozwala usunąć jeden dodatkowy poziom."
     },
     {
       "name": "FATIGUED",
-      "nameTranslation": "Zmęczenie"
+      "nameTranslation": "Zmęczenie",
+      "description": "Postać jest zmęczona lub zestresowana. Zalecany jest odpoczynek. Wszystkie Testy otrzymują karę -10. Aby usunąć Zmęczenie, zazwyczaj potrzebny jest wypoczynek, zaklęcie lub boska interwencja, ale w niektórych sytuacjach, np. wtedy, gdy Zmęczenie spowodowane jest przeciążeniem (patrz Obciążenie, strona 293), zmiana warunków lub sytuacji (np. zmniejszenie ciężaru) może usunąć ten Stan."
     },
     {
       "name": "POISON",
-      "nameTranslation": "Zatrucie"
+      "nameTranslation": "Zatrucie",
+      "description": "Postać została otruta lub w ciało wstrzyknięto jej zabójczy jad. Trudność Testów mających na celu usunięcie Zatrucia zależy od rodzaju trucizny lub jadu. W wyniku Zatrucia postać otrzymuje 1 Ranę pod koniec każdej Rundy niezależnie od innych modyfikatorów. Ponadto otrzymuje karę -10 do wszystkich Testów.\n\nJeśli w takiej sytuacji Żywotność spadnie do 0, nie można wyleczyć Ran, dopóki Zatrucie nie zostanie usunięte. Jeśli postać w wyniku Zatrucia wejdzie w Stan Utrata Przytomności, po liczbie Rund równej Bonusowi z Wytrzymałości postaci należy wykonać Test Odporności. Jeśli się nie powiedzie, postać umiera. Więcej na ten temat przeczytasz na stronie 172.\n\nPod koniec każdej Rundy postać może wykonać Test Odporności. Jeśli ten się powiedzie, Zatrucie zmniejszy się o jeden poziom, a każdy PS zmniejsza je o dodatkowy poziom. Test Leczenia skutkuje tym samym. Po wyleczeniu wszystkich poziomów Zatrucia postać otrzymuje jeden poziom Zmęczenia."
     },
     {
       "name": "PRONE",
-      "nameTranslation": "Powalenie"
+      "nameTranslation": "Powalenie",
+      "description": "Postać pada na ziemię. Może jej Żywotność spadła do 0, a może potknęła się lub uderzyło ją coś naprawdę dużego. W swojej Turze może wykorzystać Ruch jedynie po to, by wstać na nogi albo by odczołgać się na tyle metrów, ile wynosi połowa jej Szybkości (Uwaga: jeśli Żywotność spadła do 0, postać może się tylko czołgać). Wszystkie Testy związane z poruszaniem się obarczone są karą -20, a każdy atakujący taką postać wręcz zyskuje premię +20 do trafienia.\n\nW przeciwieństwie do innych Stanów Powalenie nie ma poziomów. Bohater albo leży na ziemi, albo nie. Ten Stan można usunąć jedynie w jeden sposób – wstając na równe nogi."
     },
     {
       "name": "STUNNED",
-      "nameTranslation": "Oszołomienie"
+      "nameTranslation": "Oszołomienie",
+      "description": "Postać potężnie oberwała w głowę lub z jakiejś przyczyny jest zdezorientowana – w uszach dzwoni i szumi, a wszystko dookoła zdaje się nie mieć sensu.\n\nBohater nie jest w stanie podejmować żadnych Akcji, ale może przemieszczać się, jakby jego Szybkość była o połowę mniejsza niż normalnie. Wciąż może bronić się w Testach Przeciwstawnych, ale nie przy pomocy Języka (Magicznego)! We wszystkich Testach otrzymuje karę -10. Każdy atakujący Oszołomioną postać w walce wręcz zyskuje premię +1 do Przewagi przed wykonaniem rzutu.\n\nPod koniec każdej Rundy postać może wykonać Wymagający (+0) Test Odporności. Jeśli się powiedzie, Oszołomienie zmniejszy się o jeden poziom, a każdy PS zmniejsza je o dodatkowy poziom.\n\nPo usunięciu wszystkich poziomów Oszołomienia postać otrzymuje jeden poziom Zmęczenia, jeśli dotychczas nie miała żadnego."
     },
     {
       "name": "SURPRISED",
-      "nameTranslation": "Zaskoczenie"
+      "nameTranslation": "Zaskoczenie",
+      "description": "Postać została znienacka napadnięta lub była zupełnie nieprzygotowana do starcia. W swojej Turze nie może wykonać Akcji ani Ruchu. Ponadto nie może bronić się w Testach Przeciwstawnych. Każdy atakujący Zaskoczoną postać wręcz zyskuje premię +20 do trafienia.\n\nZaskoczenie nie ma poziomów, nie można być Zaskoczonym bardziej lub mniej, nawet jeśli technicznie rzecz biorąc, w trakcie jednej Rundy postać jest zaskakiwana przez kilka innych postaci.\n\nZaskoczenie mija pod koniec Rundy lub po pierwszym ataku wyprowadzonym w stronę postaci."
     },
     {
       "name": "UNCONSCIOUS",
-      "nameTranslation": "Utrata Przytomności"
+      "nameTranslation": "Utrata Przytomności",
+      "description": "Ten Stan obejmuje nokaut, sen, magię: wszelkie działania, w wyniku których postać traci przytomność. Nie może nic zrobić w swojej Turze i kompletnie nie zdaje sobie sprawy z tego, co się dzieje dookoła. Przy atakowaniu nieprzytomnego celu, postać może ustalić wynik rzutu tak, jakby wydała Punkt Bohatera na efekt Nie zawiodę, lub jeśli MG lubi grać brutalnie, każdy atak wręcz zabija taką postać. Ataki dystansowe działają podobnie, jeśli strzelec atakuje z bliska.\n\nW przeciwieństwie do innych Stanów Utrata Przytomności nie ma poziomów: postać albo jest świadoma, albo nie.\n\nOdzyskanie przytomności zależy od tego, w jaki sposób postać utraciła przytomność. Więcej o tym przeczytasz w podrozdziale Urazy na stronie 172. Zużycie Punktu Determinacji w celu usunięcia Stanu Utrata Przytomności skutkuje tym, że ustępuje on tylko do końca Rundy, o ile nie zniknęła przyczyna, która go wywołała. Po odzyskaniu przytomności postać automatycznie dostaje Stany Powalenie i Zmęczenie."
     }
   ],
   "armorCategory": [

@@ -1,4 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 .active {
   border-bottom: 4px solid black;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.custom-tooltip {
+  font-size: 16px;
+  max-width: 30% !important;
+  white-space: pre-line !important;
+  text-align: justify;
+  text-justify: inter-word;
 }

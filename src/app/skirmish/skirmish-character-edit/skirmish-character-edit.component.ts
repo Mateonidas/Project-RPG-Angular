@@ -19,7 +19,7 @@ import {CharacterSkill} from "../../model/skill/character-skill.model";
 import {CharacterTalent} from "../../model/talent/character-talent.model";
 import {CharacterWeapon} from "../../model/weapon/character-weapon.model";
 import {Armor} from "../../model/armor/armor.model";
-import {CharacterCondition} from "../../model/condition/condition.model";
+import {CharacterCondition} from "../../model/condition/character-condition.model";
 import {CharacterEditComponent} from "../../character/character-edit/character-edit.component";
 
 @Component({

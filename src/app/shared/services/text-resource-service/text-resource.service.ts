@@ -48,9 +48,9 @@ export class TextResourceService {
     })
   }
 
-  public static getConditionNameTranslation(name: string) {
-    let conditions: Model[] = textResource.condition;
-    return <Model>conditions.find(condition => {
+  public static getConditionTranslation(name: string) {
+    let conditions: ConditionTranslation[] = textResource.condition;
+    return <ConditionTranslation>conditions.find(condition => {
       if(condition.name == name) {
         return condition;
       } else {
@@ -184,5 +184,11 @@ export interface CriticalWound {
 export interface Model {
   name: string;
   nameTranslation: string;
+}
+
+export interface ConditionTranslation {
+  name: string;
+  nameTranslation: string;
+  description: string;
 }
 

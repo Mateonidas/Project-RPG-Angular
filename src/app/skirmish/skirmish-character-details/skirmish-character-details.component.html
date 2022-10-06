@@ -166,7 +166,12 @@
       <h4>{{text.getText().conditionsLabel}}</h4>
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let characterCondition of skirmishCharacter.conditions">
-          {{characterCondition.condition.nameTranslation}} - {{characterCondition.value}}
+          <span
+            [matTooltip]="characterCondition.condition.description"
+            matTooltipClass="custom-tooltip"
+          >
+            {{characterCondition.condition.nameTranslation}} - {{characterCondition.value}}
+          </span>
         </li>
       </ul>
     </div>
@@ -185,11 +190,12 @@
         </li>
       </ul>
     </div>
+
     <div class="col-md-6">
       <h4>{{text.getText().talentsLabel}}</h4>
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let talent of skirmishCharacter.talents">
-          {{talent.talent.nameTranslation}} - {{talent.value}}
+          <span>{{talent.talent.nameTranslation}} - {{talent.value}}</span>
         </li>
       </ul>
     </div>

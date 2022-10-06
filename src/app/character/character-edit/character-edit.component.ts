@@ -21,7 +21,7 @@ import {BodyLocalizationService} from "../../shared/services/body-localization-s
 import {InjuryService} from "../../shared/services/injuries-service/injury.service";
 import {CharacterInjury} from "../../model/injury/character-injury.model";
 import {ConditionService} from "../../shared/services/condition-service/condition.service";
-import {CharacterCondition} from "../../model/condition/condition.model";
+import {CharacterCondition} from "../../model/condition/character-condition.model";
 
 @Component({
   selector: 'app-character-edit',

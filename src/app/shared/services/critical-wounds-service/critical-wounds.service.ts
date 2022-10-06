@@ -8,7 +8,7 @@ export class CriticalWoundsService {
   constructor() {
   }
 
-  // public removeConditionFromCriticalWound(character: SkirmishCharacter, condition: Condition, removeValue: number) {
+  // public removeConditionFromCriticalWound(character: SkirmishCharacter, condition: condition.model.ts, removeValue: number) {
   //   for (let criticalWound of character.criticalWounds) {
   //     for (let criticalCondition of criticalWound.criticalConditions) {
   //       if (criticalCondition.base.name == condition.base.name) {

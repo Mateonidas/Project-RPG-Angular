@@ -4,7 +4,7 @@ import {CharacterCharacteristic} from "../characteristic/character-characteristi
 import {CharacterSkill} from "../skill/character-skill.model";
 import {CharacterWeapon} from "../weapon/character-weapon.model";
 import {CharacterBodyLocalization} from "../body-localization/character-body-localization.model";
-import {CharacterCondition} from "../condition/condition.model";
+import {CharacterCondition} from "../condition/character-condition.model";
 
 export class Character {
   id!: number;

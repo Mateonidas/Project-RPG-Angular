@@ -1,30 +1,23 @@
 import {Model} from "../model";
 
-export class CharacterCondition {
-  public id: number;
-  public condition: Model;
-  public value: number;
-  public counter: number;
+export class Condition extends Model {
+  public description: string;
 
-  constructor(id?: number, condition?: Model, value?: number, counter?: number) {
-    this.id = <number>id;
-    this.condition = <Model>condition;
-    this.value = <number>value;
-    this.counter = <number>counter;
+  constructor(name?: string, nameTranslation?: string, id?: number, description?: string) {
+    super(name, nameTranslation, id);
+    this.description = <string>description;
   }
 
-  static fromJSON(object: Object): CharacterCondition {
-    let characterInjury = Object.assign(new CharacterCondition(), object);
-    characterInjury.condition = Model.fromJSON(characterInjury['condition']);
-    return characterInjury;
+  static fromJSON(object: Object): Condition {
+    return Object.assign(new Condition(), object);
   }
 
-  static arrayFromJSON(objectsArray: Object[]): CharacterCondition[] {
-    let characterInjuries = [];
+  static arrayFromJSON(objectsArray: Object[]): Condition[] {
+    let conditions = [];
     for (let object of objectsArray) {
-      let injury = CharacterCondition.fromJSON(object);
-      characterInjuries.push(injury);
+      let condition = Condition.fromJSON(object);
+      conditions.push(condition);
     }
-    return characterInjuries;
+    return conditions;
   }
 }

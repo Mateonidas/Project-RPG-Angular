@@ -29,7 +29,7 @@ import {
 } from "../dialog-window/edit-weapon-dialog-window/edit-weapon-dialog-window.component";
 import {InjuryService} from "../shared/services/injuries-service/injury.service";
 import {ConditionService} from "../shared/services/condition-service/condition.service";
-import {CharacterCondition} from "../model/condition/condition.model";
+import {CharacterCondition} from "../model/condition/character-condition.model";
 
 @Component({
   selector: 'app-edit-form',

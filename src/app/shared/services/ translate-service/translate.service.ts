@@ -4,10 +4,11 @@ import {TextResourceService} from "../text-resource-service/text-resource.servic
 import {CharacterTalent} from "../../../model/talent/character-talent.model";
 import {CharacterWeapon} from "../../../model/weapon/character-weapon.model";
 import {CharacterBodyLocalization} from "../../../model/body-localization/character-body-localization.model";
-import {CharacterCondition} from "../../../model/condition/condition.model";
+import {CharacterCondition} from "../../../model/condition/character-condition.model";
 import {Weapon} from "../../../model/weapon/weapon.model";
 import {Armor} from "../../../model/armor/armor.model";
 import {Character} from "../../../model/character/character.model";
+import {Condition} from "../../../model/condition/condition.model";
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class TranslateService {
     this.prepareWeapons(character.weapons);
     this.prepareArmorsList(character.armors);
     this.prepareBodyLocalizations(character.bodyLocalizations);
-    this.prepareConditions(character.conditions);
+    this.prepareCharacterConditions(character.conditions);
   }
 
   private prepareSkills(skills: CharacterSkill[]) {
@@ -63,10 +64,16 @@ export class TranslateService {
     }
   }
 
-  private prepareConditions(conditions: CharacterCondition[]) {
+  public prepareCharacterConditions(conditions: CharacterCondition[]) {
     for (let characterCondition of conditions) {
-      characterCondition.condition.nameTranslation = TextResourceService.getConditionNameTranslation(characterCondition.condition.name).nameTranslation
+      this.prepareCondition(characterCondition.condition);
     }
+  }
+
+  public prepareCondition(condition: Condition) {
+    let conditionTranslation = TextResourceService.getConditionTranslation(condition.name);
+    condition.nameTranslation = conditionTranslation.nameTranslation
+    condition.description = conditionTranslation.description;
   }
 
   public prepareArmorsList(armors: Armor[]) {

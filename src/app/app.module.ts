@@ -43,6 +43,9 @@ import { EditArmorDialogWindowComponent } from './dialog-window/edit-armor-dialo
 import { EditWeaponDialogWindowComponent } from './dialog-window/edit-weapon-dialog-window/edit-weapon-dialog-window.component';
 import { AutoFocusDirective } from './shared/directives/auto-focus.directive';
 import {RollDialogWindow} from "./dialog-window/roll-dialog-window/roll-dialog-window.component";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -81,7 +84,10 @@ import {RollDialogWindow} from "./dialog-window/roll-dialog-window/roll-dialog-w
     RouterModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatTooltipModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
