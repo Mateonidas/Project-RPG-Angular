@@ -23,7 +23,7 @@
 <div class="row">
   <div class="col-xs-12">
     <br>
-    <h4>{{text.getText().descriptionLabel}}</h4>
+    <h2>{{text.getText().descriptionLabel}}</h2>
     {{skirmishCharacter.description}}
     <br>
     <br>
@@ -33,7 +33,7 @@
 <hr>
 <div class="row">
   <div class="col-md-12">
-    <h4>Parametry tymczasowe</h4>
+    <h2>Parametry tymczasowe</h2>
     <table class="table table-bordered">
       <thead class="thead-dark">
       <tr>
@@ -67,7 +67,7 @@
 <hr>
 <div class="row">
   <div class="col-md-12">
-    <h4>{{text.getText().characteristicsLabel}}</h4>
+    <h2>{{text.getText().characteristicsLabel}}</h2>
     <table class="table table-bordered">
       <thead class="thead-dark">
       <tr>
@@ -109,7 +109,7 @@
   <hr>
   <div class="row">
     <div class="col-md-12">
-      <h4>Notatki</h4>
+      <h2>Notatki</h2>
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let note of skirmishCharacter.notes">
           {{note}}
@@ -131,7 +131,7 @@
 <hr>
 <div class="row">
   <div class="col-md-12">
-    <h4>{{text.getText().bodyLabel}}</h4>
+    <h2>{{text.getText().bodyLabel}}</h2>
     <table class="table table-bordered">
       <thead class="thead-dark">
       <tr>
@@ -163,7 +163,7 @@
   <hr>
   <div class="row">
     <div class="col-md-12">
-      <h4>{{text.getText().conditionsLabel}}</h4>
+      <h2>{{text.getText().conditionsLabel}}</h2>
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let characterCondition of skirmishCharacter.conditions">
           <span
@@ -183,7 +183,7 @@
 <div class="row">
   <div class="row mb-2">
     <div class="col-md-6">
-      <h4>{{text.getText().skillsLabel}}</h4>
+      <h2>{{text.getText().skillsLabel}}</h2>
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let characterSkill of skirmishCharacter.skills">
           {{characterSkill.skill.nameTranslation}} - {{characterSkill.value}}
@@ -192,7 +192,7 @@
     </div>
 
     <div class="col-md-6">
-      <h4>{{text.getText().talentsLabel}}</h4>
+      <h2>{{text.getText().talentsLabel}}</h2>
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let talent of skirmishCharacter.talents">
           <span>{{talent.talent.nameTranslation}} - {{talent.value}}</span>
@@ -207,7 +207,7 @@
 <hr>
 <div class="row">
   <div class="col-md-12">
-    <h4>{{text.getText().weaponLabel}}</h4>
+    <h2>{{text.getText().weaponLabel}}</h2>
     <table class="table table-bordered">
       <thead class="thead-dark">
       <tr>
@@ -264,7 +264,7 @@
 <hr>
 <div class="row">
   <div class="col-md-12">
-    <h4>{{text.getText().armorLabel}}</h4>
+    <h2>{{text.getText().armorLabel}}</h2>
     <table class="table table-bordered">
       <thead class="thead-dark">
       <tr>

@@ -10,30 +10,30 @@
       routerLinkActive="active">
       <div class="row">
         <div class="col-md-6">
-          <h4 class="list-group-item-heading">{{skirmishCharacter.name}}</h4>
+          <h2 class="list-group-item-heading">{{skirmishCharacter.name}}</h2>
           <p class="list-group-item-text">{{skirmishCharacter.description}}</p>
         </div>
         <div class="col-md-2" *ngIf="!skirmishCharacter.isDead">
-          <h6 class="list-group-item-heading">Inicjatywa</h6>
+          <h4 class="list-group-item-heading">Inicjatywa</h4>
           <p class="list-group-item-text">{{skirmishCharacter.skirmishInitiative}}</p>
         </div>
         <div class="col-md-4" *ngIf="!skirmishCharacter.isDead">
-          <h6 class="list-group-item-heading">Żywotność</h6>
+          <h4 class="list-group-item-heading">Żywotność</h4>
           <p class="list-group-item-text">{{skirmishCharacter.currentWounds}}/{{skirmishCharacter.wounds.value}}</p>
         </div>
         <div class="col-md-6" *ngIf="skirmishCharacter.isDead">
-          <h4 class="list-group-item-heading">Martwy</h4>
+          <h2 class="list-group-item-heading">Martwy</h2>
         </div>
       </div>
       <div class="row" *ngIf="!skirmishCharacter.isDead">
         <div class="col-md-6">
         </div>
         <div class="col-md-2">
-          <h6 class="list-group-item-heading">Przewagi</h6>
+          <h4 class="list-group-item-heading">Przewagi</h4>
           <p class="list-group-item-text">{{skirmishCharacter.advantage}}</p>
         </div>
         <div class="col-md-4">
-          <h6 class="list-group-item-heading">Stany</h6>
+          <h4 class="list-group-item-heading">Stany</h4>
           <p *ngFor="let characterCondition of skirmishCharacter.conditions" class="list-group-item-text">
             - {{characterCondition.condition.nameTranslation}} {{characterCondition.value}}
           </p>
@@ -41,7 +41,7 @@
       </div>
       <div class="row" *ngIf="skirmishCharacter.notes.length > 0">
         <div class="col-md-12">
-          <h6 class="list-group-item-heading">Notatki</h6>
+          <h4 class="list-group-item-heading">Notatki</h4>
           <p *ngFor="let note of skirmishCharacter.notes" class="list-group-item-text">
             - {{note}}
           </p>

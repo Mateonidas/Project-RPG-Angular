@@ -3,7 +3,7 @@
     <form [formGroup]="editCharacterForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-md-12 form-group">
-          <h4>Nazwa</h4>
+          <h2>Nazwa</h2>
           <input type="text" class="form-control" formControlName="name">
         </div>
       </div>
@@ -11,14 +11,14 @@
       <hr>
       <div class="row">
         <div class="col-md-12 form-group">
-          <h4>Opis</h4>
+          <h2>Opis</h2>
           <input type="text" class="form-control" formControlName="description">
         </div>
       </div>
       <hr>
       <div class="row">
         <div class="col-md-12 form-group" formArrayName="characteristics">
-          <h4>Cechy</h4>
+          <h2>Cechy</h2>
           <table class="table table-bordered h-25">
             <thead>
             <tr>
@@ -50,7 +50,7 @@
       <hr>
       <div class="row">
         <div class="col-md-12" formArrayName="notes">
-          <h4>Notatki</h4>
+          <h2>Notatki</h2>
           <div class="row mb-2" *ngFor="let noteControl of notes; index as i">
             <div class="col-md-8">
               <input type="text" class="form-control table-input" [formControlName]="i">
@@ -74,7 +74,7 @@
       <hr>
       <div class="row">
         <div class="col-md-12">
-          <h4>Ręka wiodąca</h4>
+          <h2>Ręka wiodąca</h2>
           <input type="radio" formControlName="isRightHanded" [value] = true> Prawa
           <input type="radio" formControlName="isRightHanded" [value] = false> Lewa
         </div>
@@ -83,7 +83,7 @@
       <hr>
       <div class="row">
         <div class="col-md-12" formArrayName="skills">
-          <h4>Umiejętności</h4>
+          <h2>Umiejętności</h2>
           <div class="row mb-2" *ngFor="let skillControl of skills; let i = index" [formGroupName]="i">
             <div class="col-md-8">
               <select class="form-select" formControlName="skill" [compareWith]="compareModels">
@@ -117,7 +117,7 @@
       <hr>
       <div class="row">
         <div class="col-md-12" formArrayName="talents">
-          <h4>Talenty</h4>
+          <h2>Talenty</h2>
           <div class="row mb-2" *ngFor="let talentControl of talents; let i = index" [formGroupName]="i">
             <div class="col-md-8">
               <select class="form-select" formControlName="talent" [compareWith]="compareModels">
@@ -153,7 +153,7 @@
       <hr>
       <div class="row">
         <div class="col-md-12" formArrayName="weapons">
-          <h4>Broń</h4>
+          <h2>Broń</h2>
           <div class="row mb-2" *ngFor="let weaponControl of weapons; let i = index" [formGroupName]="i">
             <div class="col-md-8">
               <select class="form-select" formControlName="weapon" [compareWith]="compareModels">
@@ -200,7 +200,7 @@
       <hr>
       <div class="row">
         <div class="col-md-12" formArrayName="armors">
-          <h4>Pancerz</h4>
+          <h2>Pancerz</h2>
           <div class="row mb-2" *ngFor="let armorControl of armors; let i = index" [formGroupName]="i">
             <div class="col-md-10">
               <select class="form-select" [formControl]="armorControl" [compareWith]="compareModels">
@@ -242,7 +242,7 @@
       <hr>
       <div class="row">
         <div class="col-md-12" formArrayName="injuries">
-          <h4>Urazy</h4>
+          <h2>Urazy</h2>
           <div class="row mb-2" *ngFor="let injuryControl of injuries; let i = index" [formGroupName]="i">
             <div class="col-md-8">
               <select class="form-select" formControlName="injury" [compareWith]="compareModels">
@@ -283,7 +283,7 @@
       <hr>
       <div class="row">
         <div class="col-md-12" formArrayName="conditions">
-          <h4>Stany</h4>
+          <h2>Stany</h2>
           <div class="row mb-2" *ngFor="let conditionControl of conditions; let i = index" [formGroupName]="i">
             <div class="col-md-8">
               <select class="form-select" formControlName="condition" [compareWith]="compareModels">
