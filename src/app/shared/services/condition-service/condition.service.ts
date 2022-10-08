@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Subject} from "rxjs";
 import {Model} from "../../../model/model";
 import {HttpClient} from "@angular/common/http";
-import {TextResourceService} from "../text-resource-service/text-resource.service";
 import {TranslateService} from "../ translate-service/translate.service";
 import {Condition} from "../../../model/condition/condition.model";
 
@@ -18,7 +17,7 @@ export class ConditionService {
               private translateService: TranslateService) {
   }
 
-  fetchConditions(){
+  fetchConditions() {
     return this.http.get<Condition[]>('http://localhost:8080/condition').toPromise()
       .then(data => {
         data.forEach(value => {
