@@ -9,6 +9,7 @@ import {Weapon} from "../../../model/weapon/weapon.model";
 import {Armor} from "../../../model/armor/armor.model";
 import {Character} from "../../../model/character/character.model";
 import {Condition} from "../../../model/condition/condition.model";
+import {Talent} from "../../../model/talent/talent.model";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class TranslateService {
 
   public prepareCharacter(character: Character) {
     this.prepareSkills(character.skills);
-    this.prepareTalents(character.talents);
+    this.prepareCharacterTalents(character.talents);
     this.prepareWeapons(character.weapons);
     this.prepareArmorsList(character.armors);
     this.prepareBodyLocalizations(character.bodyLocalizations);
@@ -33,10 +34,16 @@ export class TranslateService {
     }
   }
 
-  private prepareTalents(talents: CharacterTalent[]) {
-    for (let talent of talents) {
-      talent.talent.nameTranslation = TextResourceService.getTalentNameTranslation(talent.talent.name).nameTranslation;
+  private prepareCharacterTalents(talents: CharacterTalent[]) {
+    for (let characterTalent of talents) {
+      this.prepareTalent(characterTalent.talent);
     }
+  }
+
+  public prepareTalent(talent: Talent) {
+    let talentTranslation = TextResourceService.getTalentNameTranslation(talent.name);
+    talent.nameTranslation = talentTranslation.nameTranslation;
+    talent.description = talentTranslation.description;
   }
 
   private prepareWeapons(weapons: CharacterWeapon[]) {

@@ -195,7 +195,12 @@
       <h2>{{text.getText().talentsLabel}}</h2>
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let talent of skirmishCharacter.talents">
-          <span>{{talent.talent.nameTranslation}} - {{talent.value}}</span>
+          <span
+            [matTooltip]="talent.talent.description"
+            matTooltipClass="custom-tooltip"
+          >
+            {{talent.talent.nameTranslation}} - {{talent.value}}
+          </span>
         </li>
       </ul>
     </div>

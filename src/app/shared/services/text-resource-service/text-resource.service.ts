@@ -49,8 +49,8 @@ export class TextResourceService {
   }
 
   public static getConditionTranslation(name: string) {
-    let conditions: ConditionTranslation[] = textResource.condition;
-    return <ConditionTranslation>conditions.find(condition => {
+    let conditions: ModelWithDescription[] = textResource.condition;
+    return <ModelWithDescription>conditions.find(condition => {
       if(condition.name == name) {
         return condition;
       } else {
@@ -148,8 +148,8 @@ export class TextResourceService {
   }
 
   public static getTalentNameTranslation(name: string) {
-    let talents: Model[] = textResource.talents;
-    return <Model>talents.find(talent => {
+    let talents: ModelWithDescription[] = textResource.talentsAndTraits;
+    return <ModelWithDescription>talents.find(talent => {
       if(talent.name == name) {
         return talent;
       } else {
@@ -186,7 +186,7 @@ export interface Model {
   nameTranslation: string;
 }
 
-export interface ConditionTranslation {
+export interface ModelWithDescription {
   name: string;
   nameTranslation: string;
   description: string;

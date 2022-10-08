@@ -21,18 +21,11 @@ export class ConditionService {
   fetchConditions(){
     return this.http.get<Condition[]>('http://localhost:8080/condition').toPromise()
       .then(data => {
-        this.prepareConditionNameTranslation(data);
         data.forEach(value => {
           this.translateService.prepareCondition(value);
         })
         this.conditionsList = data;
         this.conditionsChanged.next(this.conditionsList.slice());
       })
-  }
-
-  private prepareConditionNameTranslation(data: Model[]) {
-    for (let condition of data) {
-      condition.nameTranslation = TextResourceService.getConditionTranslation(condition.name).nameTranslation;
-    }
   }
 }

@@ -132,7 +132,12 @@
       <h2>{{text.getText().conditionsLabel}}</h2>
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let characterCondition of character.conditions">
+          <span
+            [matTooltip]="characterCondition.condition.description"
+            matTooltipClass="custom-tooltip"
+          >
           {{characterCondition.condition.nameTranslation}} - {{characterCondition.value}}
+          </span>
         </li>
       </ul>
     </div>
@@ -142,135 +147,140 @@
 <ng-container *ngIf="character.skills.length > 0 || character.talents.length > 0">
   <hr>
   <div class="row">
-  <div class="row mb-2">
-    <div class="col-md-6">
-      <h2>{{text.getText().skillsLabel}}</h2>
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let characterSkill of character.skills">
-          {{characterSkill.skill.nameTranslation}} - {{characterSkill.value}}
-        </li>
-      </ul>
-    </div>
-    <div class="col-md-6">
-      <h2>{{text.getText().talentsLabel}}</h2>
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let talent of character.talents">
-          {{talent.talent.nameTranslation}} - {{talent.value}}
-        </li>
-      </ul>
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <h2>{{text.getText().skillsLabel}}</h2>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let characterSkill of character.skills">
+            {{characterSkill.skill.nameTranslation}} - {{characterSkill.value}}
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h2>{{text.getText().talentsLabel}}</h2>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let characterTalent of character.talents">
+          <span
+            [matTooltip]="characterTalent.talent.description"
+            matTooltipClass="custom-tooltip"
+          >
+          {{characterTalent.talent.nameTranslation}} - {{characterTalent.value}}
+          </span>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
 </ng-container>
 
 <ng-container *ngIf="character.weapons.length > 0">
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <h2>{{text.getText().weaponLabel}}</h2>
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">{{text.getText().nameLabel}}</th>
-        <th scope="col">{{text.getText().categoryLabel}}</th>
-        <th scope="col">{{text.getText().reachLabel}}</th>
-        <th scope="col">{{text.getText().damageLabel}}</th>
-        <th scope="col">{{text.getText().advantagesAndDisadvantagesLabel}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let characterWeapon of character.weapons">
-        <td
-          *ngIf="characterWeapon.value == 1; else characterWeaponValue">{{characterWeapon.weapon.nameTranslation}}</td>
-        <ng-template #characterWeaponValue>
-          <td>{{characterWeapon.weapon.nameTranslation}} ({{characterWeapon.value}})</td>
-        </ng-template>
-        <td>{{characterWeapon.weapon.weaponGroupType.nameTranslation}}</td>
-        <td>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{text.getText().weaponLabel}}</h2>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">{{text.getText().nameLabel}}</th>
+          <th scope="col">{{text.getText().categoryLabel}}</th>
+          <th scope="col">{{text.getText().reachLabel}}</th>
+          <th scope="col">{{text.getText().damageLabel}}</th>
+          <th scope="col">{{text.getText().advantagesAndDisadvantagesLabel}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let characterWeapon of character.weapons">
+          <td
+            *ngIf="characterWeapon.value == 1; else characterWeaponValue">{{characterWeapon.weapon.nameTranslation}}</td>
+          <ng-template #characterWeaponValue>
+            <td>{{characterWeapon.weapon.nameTranslation}} ({{characterWeapon.value}})</td>
+          </ng-template>
+          <td>{{characterWeapon.weapon.weaponGroupType.nameTranslation}}</td>
+          <td>
           <span
             *ngIf="characterWeapon.weapon.weaponRange == 0; else weaponRange">{{characterWeapon.weapon.weaponReach.nameTranslation}}</span>
-          <ng-template #weaponRange>
+            <ng-template #weaponRange>
             <span *ngIf="characterWeapon.weapon.weaponGroupType.name.includes('AMMUNITION'); else fullWeaponRange">
               <span *ngIf="characterWeapon.weapon.weaponRange == 0.5">{{text.getText().halfWeaponRangeLabel}}</span>
               <span *ngIf="characterWeapon.weapon.weaponRange == 1">{{text.getText().rangeAsWeaponLabel}}</span>
               <span *ngIf="characterWeapon.weapon.weaponRange > 1">+{{characterWeapon.weapon.weaponRange}}</span>
             </span>
-            <ng-template #fullWeaponRange>
-              <span>{{characterWeapon.weapon.weaponRange}}</span>
+              <ng-template #fullWeaponRange>
+                <span>{{characterWeapon.weapon.weaponRange}}</span>
+              </ng-template>
             </ng-template>
-          </ng-template>
-        </td>
-        <td>
+          </td>
+          <td>
           <span *ngIf="characterWeapon.weapon.isUsingStrength; else elseBlock">
-            +{{+character.strength.value.toString()[0]+characterWeapon.weapon.damage}}
+            +{{+character.strength.value.toString()[0] + characterWeapon.weapon.damage}}
           </span>
-          <ng-template #elseBlock>+{{characterWeapon.weapon.damage}}</ng-template>
-        </td>
-        <td>
-          <ul>
-            <li *ngFor="let quality of characterWeapon.weapon.weaponQualities">
-              {{quality.nameTranslation}}
-            </li>
-          </ul>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+            <ng-template #elseBlock>+{{characterWeapon.weapon.damage}}</ng-template>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let quality of characterWeapon.weapon.weaponQualities">
+                {{quality.nameTranslation}}
+              </li>
+            </ul>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
 </ng-container>
 
 <ng-container *ngIf="character.armors.length > 0">
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <h2>{{text.getText().armorLabel}}</h2>
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">{{text.getText().nameLabel}}</th>
-        <th scope="col">{{text.getText().categoryLabel}}</th>
-        <th scope="col">{{text.getText().localizationLabel}}</th>
-        <th scope="col">{{text.getText().armorPointsLabel}}</th>
-        <th scope="col">{{text.getText().penaltiesLabel}}</th>
-        <th scope="col">{{text.getText().qualitiesLabel}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let armor of character.armors">
-        <td>{{armor.nameTranslation}}</td>
-        <td>{{armor.armorCategory.nameTranslation}}</td>
-        <td>
-          <ul>
-            <li *ngFor="let localization of armor.armorBodyLocalizations">
-              {{localization.bodyLocalization.nameTranslation}}
-            </li>
-          </ul>
-        </td>
-        <td>
-          <ul>
-            <li *ngFor="let localization of armor.armorBodyLocalizations">
-              {{localization.armorPoints}}
-            </li>
-          </ul>
-        </td>
-        <td>
-          <ul>
-            <li *ngFor="let penalty of armor.armorPenalties">
-              {{penalty.nameTranslation}}
-            </li>
-          </ul>
-        </td>
-        <td>
-          <ul>
-            <li *ngFor="let quality of armor.armorQualities">
-              {{quality.nameTranslation}}
-            </li>
-          </ul>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{text.getText().armorLabel}}</h2>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">{{text.getText().nameLabel}}</th>
+          <th scope="col">{{text.getText().categoryLabel}}</th>
+          <th scope="col">{{text.getText().localizationLabel}}</th>
+          <th scope="col">{{text.getText().armorPointsLabel}}</th>
+          <th scope="col">{{text.getText().penaltiesLabel}}</th>
+          <th scope="col">{{text.getText().qualitiesLabel}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let armor of character.armors">
+          <td>{{armor.nameTranslation}}</td>
+          <td>{{armor.armorCategory.nameTranslation}}</td>
+          <td>
+            <ul>
+              <li *ngFor="let localization of armor.armorBodyLocalizations">
+                {{localization.bodyLocalization.nameTranslation}}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let localization of armor.armorBodyLocalizations">
+                {{localization.armorPoints}}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let penalty of armor.armorPenalties">
+                {{penalty.nameTranslation}}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let quality of armor.armorQualities">
+                {{quality.nameTranslation}}
+              </li>
+            </ul>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
 </ng-container>
