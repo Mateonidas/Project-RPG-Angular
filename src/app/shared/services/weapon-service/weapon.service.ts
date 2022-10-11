@@ -5,6 +5,7 @@ import {Weapon} from "../../../model/weapon/weapon.model";
 import {TextResourceService} from "../text-resource-service/text-resource.service";
 import {Model} from "../../../model/model";
 import {TranslateService} from "../ translate-service/translate.service";
+import {WeaponQuality} from "../../../model/weapon/weapon-quality.model";
 
 @Injectable({
   providedIn: 'root'
@@ -103,7 +104,7 @@ export class WeaponService {
   }
 
   fetchWeaponQualities() {
-    return this.http.get<Model[]>('http://localhost:8080/weaponQuality').toPromise()
+    return this.http.get<WeaponQuality[]>('http://localhost:8080/weaponQuality').toPromise()
       .then(data => {
         this.prepareWeaponQualitiesListTranslation(data)
         this.weaponQualitiesList = data;
@@ -111,9 +112,9 @@ export class WeaponService {
       })
   }
 
-  private prepareWeaponQualitiesListTranslation(list: Model[]) {
-    for (let element of list) {
-      element.nameTranslation = TextResourceService.getWeaponQualityNameTranslation(element.name).nameTranslation;
+  private prepareWeaponQualitiesListTranslation(list: WeaponQuality[]) {
+    for (let quality of list) {
+      this.translateService.prepareWeaponQuality(quality);
     }
   }
 }

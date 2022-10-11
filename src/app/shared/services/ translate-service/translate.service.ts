@@ -8,8 +8,9 @@ import {CharacterCondition} from "../../../model/condition/character-condition.m
 import {Weapon} from "../../../model/weapon/weapon.model";
 import {Armor} from "../../../model/armor/armor.model";
 import {Character} from "../../../model/character/character.model";
-import {Condition} from "../../../model/condition/condition.model";
 import {Talent} from "../../../model/talent/talent.model";
+import {Model} from "../../../model/model";
+import {WeaponQuality} from "../../../model/weapon/weapon-quality.model";
 
 @Injectable({
   providedIn: 'root'
@@ -58,8 +59,14 @@ export class TranslateService {
     weapon.weaponReach.nameTranslation = TextResourceService.getWeaponReachNameTranslation(weapon.weaponReach.name).nameTranslation;
 
     for (let quality of weapon.weaponQualities) {
-      quality.nameTranslation = TextResourceService.getWeaponQualityNameTranslation(quality.name).nameTranslation;
+      this.prepareWeaponQuality(quality)
     }
+  }
+
+  public prepareWeaponQuality(quality: WeaponQuality) {
+    let weaponQualityTranslation = TextResourceService.getWeaponQualityNameTranslation(quality.name);
+    quality.nameTranslation = weaponQualityTranslation.nameTranslation;
+    quality.description = weaponQualityTranslation.description;
   }
 
   private prepareBodyLocalizations(bodyLocalizations: CharacterBodyLocalization[]) {
@@ -77,7 +84,7 @@ export class TranslateService {
     }
   }
 
-  public prepareCondition(condition: Condition) {
+  public prepareCondition(condition: Model) {
     let conditionTranslation = TextResourceService.getConditionTranslation(condition.name);
     condition.nameTranslation = conditionTranslation.nameTranslation
     condition.description = conditionTranslation.description;
@@ -107,8 +114,14 @@ export class TranslateService {
 
     if (armor.armorQualities != undefined) {
       for (let quality of armor.armorQualities) {
-        quality.nameTranslation = TextResourceService.getArmorQualitiesNameTranslation(quality.name).nameTranslation;
+        this.prepareArmorQuality(quality);
       }
     }
+  }
+
+  public prepareArmorQuality(quality: Model) {
+    let armorQualityTranslation = TextResourceService.getArmorQualityTranslation(quality.name);
+    quality.nameTranslation = armorQualityTranslation.nameTranslation;
+    quality.description = armorQualityTranslation.description;
   }
 }

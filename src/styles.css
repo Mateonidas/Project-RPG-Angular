@@ -13,5 +13,5 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   max-width: 30% !important;
   white-space: pre-line !important;
   text-align: justify;
-  text-justify: inter-word;
+  /*text-justify: inter-word;*/
 }

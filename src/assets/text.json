@@ -1868,51 +1868,63 @@
   "armorQuality": [
     {
       "name": "FLEXIBLE",
-      "nameTranslation": "Giętki"
+      "nameTranslation": "Giętki",
+      "description": "Giętki pancerz możesz nosić pod warstwą innego pancerza (nieposiadającego tej Zalety). W takim przypadku uzyskujesz korzyści obu pancerzy."
     },
     {
       "name": "IMPENETRABLE",
-      "nameTranslation": "Nieprzebijalny"
+      "nameTranslation": "Nieprzebijalny",
+      "description": "Taki pancerz jest wyjątkowo odporny, co sprawia, że większość ataków nie jest w stanie go przebić. Wszystkie Rany Krytyczne wynikłe na skutek nieparzystego wyniku rzutu na trafienie (na przykład 11 lub 33) są ignorowane."
     },
     {
       "name": "PARTIAL",
-      "nameTranslation": "Częściowy"
+      "nameTranslation": "Częściowy",
+      "description": "Pancerz nie okrywa całego Miejsca Trafienia. Przeciwnik, który uzyska parzysty wynik rzutu na trafienie albo wyrzuci Trafienie Krytyczne, ignoruje PP Częściowego pancerza."
     },
     {
       "name": "WEAKPOINTS",
-      "nameTranslation": "Wrażliwe Punkty"
+      "nameTranslation": "Wrażliwe Punkty",
+      "description": "Pancerz ma niewielkie miejsca, w które może wślizgnąć się ostrze, jeśli przeciwnik ma wystarczające umiejętności lub dość szczęścia. Jeśli wróg posługuje się bronią Nadziewającą i uzyska Trafienie Krytyczne, wszystkie PP tego pancerza są ignorowane."
     },
     {
       "name": "DURABLE",
-      "nameTranslation": "Wytrzymała"
-    },
-    {
-      "name": "FINE",
-      "nameTranslation": "Wyśmienita"
+      "nameTranslation": "Wytrzymały",
+      "description": "Taki przedmiot, pieczołowicie wykonany z użyciem mocnych materiałów, może przyjąć dodatkowo tyle Punktów Uszkodzeń, ile wynosi poziom Zalety Wytrzymały, zanim wystąpią normalne efekty negatywne (patrz Obrażenia od broni i Uszkodzenia pancerza na stronach 296 i 299), oraz zyskuje rzut obronny 9+ w rzucie 1k10 przeciwko natychmiastowemu złamaniu na skutek efektów takich jak np. użycie łamacza mieczy (patrz strona 298). Ta Zaleta może być wybierana kilkukrotnie. Za każdym razem, gdy jest wybrana, rzut obronny staje się łatwiejszy o 1 (np. z 9+ na 8+)."
     },
     {
       "name": "LIGHTWEIGHT",
-      "nameTranslation": "Poręczny"
+      "nameTranslation": "Poręczny",
+      "description": "Zmyślne wykonanie przedmiotu umożliwia jego łatwe przenoszenie. Redukuje to punkty Obciążenia o 1."
     },
     {
       "name": "PRACTICAL",
-      "nameTranslation": "Praktyczny"
+      "nameTranslation": "Praktyczny",
+      "description": "Przedmiot wykonany fachowo z myślą o użyteczności. Nieudany Test z użyciem tego przedmiotu otrzymuje +1 PS. Jeśli przedmiot jest elementem pancerza, wszelkie kary za jego noszenie zredukowane są o jeden poziom (na przykład z -30 do -20)."
+    },
+    {
+      "name": "FINE",
+      "nameTranslation": "Wyśmienity",
+      "description": "Przedmiot skrupulatnie wykonany, cieszący oko wyglądem. Ta Zaleta stanowi oznakę pozycji społecznej i może być wybierana kilkukrotnie. Im wyższa jakość, tym bardziej imponująco wygląda dany przedmiot."
     },
     {
       "name": "UGLY",
-      "nameTranslation": "Brzydki"
+      "nameTranslation": "Brzydki",
+      "description": "Przedmiot wykonany bez jakiejkolwiek dbałości o walory estetyczne. Brzydkie przedmioty postrzegane są negatywnie, a powiązane Testy Ogłady mogą być obciążone karą nawet w wysokości -10."
     },
     {
       "name": "SHODDY",
-      "nameTranslation": "Tandetny"
+      "nameTranslation": "Tandetny",
+      "description": "Przedmiot pośpiesznie wykonany przez amatora lub oszusta. Złamie się, gdy zostanie wykorzystany w dowolnym nieudanym Teście, w którym wypadł dubel. Podobnie, Tandetny pancerz pęka, jeśli chronione przez niego Miejsce Trafienia otrzyma dowolne Trafienie Krytyczne."
     },
     {
       "name": "UNRELIABLE",
-      "nameTranslation": "Zawodny"
+      "nameTranslation": "Zawodny",
+      "description": "Przedmiot wykonany po partacku, bez przykładania wagi do funkcjonalności. Nieudany Test z użyciem tego przedmiotu otrzymuje -1 PS. Co więcej, kary za noszenie Zawodnego pancerza są podwajane."
     },
     {
       "name": "BULKY",
-      "nameTranslation": "Nieporęczny"
+      "nameTranslation": "Nieporęczny",
+      "description": "Przedmiot niezdarnie wykonany i niewygodny w użyciu. Zwiększa Obciążenie o 1 (małe szpargały w normalnych warunkach nie mogą mieć tej Wady). Nieporęczne ubrania i pancerze mają Obciążenie 1, nawet gdy są noszone. W przypadku zbroi kary na skutek Zmęczenia są podwajane."
     }
   ],
   "weaponType": [
@@ -2048,147 +2060,183 @@
   "weaponQualities": [
     {
       "name": "ACCURATE",
-      "nameTranslation": "Celna"
+      "nameTranslation": "Celna",
+      "description": "Strzelając z tej broni, łatwo trafić w cel. W takiej sytuacji zyskujesz premię +10 do Testu trafienia."
     },
     {
       "name": "BLACKPOWDER",
-      "nameTranslation": "Prochowa"
+      "nameTranslation": "Prochowa",
+      "description": "Huk wystrzałów, po którym następują kłęby dymu i zamieszanie, może być przerażający. Jeśli jesteś celem broni prochowej, musisz wykonać udany Przeciętny (+20) Test Opanowania, inaczej otrzymujesz Stan Panika, nawet jeśli strzał spudłuje."
     },
     {
       "name": "BLAST",
-      "nameTranslation": "Odłamkowa"
+      "nameTranslation": "Odłamkowa",
+      "description": "Wszystkie postacie w promieniu tylu metrów, ile wynosi (wartość), od trafionego celu odnoszą obrażenia równe PS + Obrażenia danej broni Odłamkowej i otrzymują wszelkie Stany przez nią wywołane."
     },
     {
       "name": "DAMAGING",
-      "nameTranslation": "Przebijająca"
+      "nameTranslation": "Przebijająca",
+      "description": "Aby ustalić Obrażenia zadane na skutek trafienia bronią Przebijającą, można wykorzystać wynik rzutu kostką jedności albo PS, cokolwiek jest wyższe. Na przykład, jeśli wyrzucisz 34 w Teście ataku, a wynik celu wynosił 52, możesz użyć PS, który w tym przypadku jest równy 2, albo wyniku rzutu jedności, czyli 4. Broń Tępa nigdy nie może być także Przebijającą (cecha Tępa jest nadrzędna)."
     },
     {
       "name": "DEFENSIVE",
-      "nameTranslation": "Parująca"
+      "nameTranslation": "Parująca",
+      "description": "Broń Parująca przeznaczona jest do parowania ataków. Jeśli posługujesz się taką bronią, dostajesz premię +1 PS do każdego Testu Broni Białej, gdy parujesz atak."
     },
     {
       "name": "DISTRACT",
-      "nameTranslation": "Dekoncentrująca"
+      "nameTranslation": "Dekoncentrująca",
+      "description": "Ze względu na swoją niebezpieczną naturę broń Dekoncentrująca może zmuszać wroga do cofania się. Zwykle działa podobnie jak bicz. Zamiast zadawać Obrażenia, udany atak bronią Dekoncentrującą może zmusić przeciwnika do cofnięcia się o 1 metr na każdy PS, o który wygrywasz Test Przeciwstawny."
     },
     {
       "name": "ENTANGLE",
-      "nameTranslation": "Unieruchamiająca"
+      "nameTranslation": "Unieruchamiająca",
+      "description": "Twoja broń okręca się wokół przeciwników, unieruchamiając ich. Każdy przeciwnik trafiony taką bronią dostaje Stan Pochwycony z Siłą o wartości równej twojej Cesze Siła. Unieruchamiając przeciwnika, nie możesz używać tej broni, by próbować trafić go w inny sposób. Możesz zakończyć Unieruchomienie w dowolnym momencie."
     },
     {
       "name": "FAST",
-      "nameTranslation": "Szybka"
+      "nameTranslation": "Szybka",
+      "description": "Szybka broń uderza z taką prędkością, że parowanie ciosu w zasadzie nie wchodzi w grę. Przeciwnik zostaje przebity, zanim zdoła zareagować. Bohater posługujący się Szybką bronią może zdecydować się na atak poza normalną sekwencją Inicjatywy, atakując pierwszy, ostatni lub w innej, wybranej przez siebie kolejności.\n\nCo więcej, wszystkie Testy obrony Bronią Białą przeciwko Szybkiej broni obciążone są karą -10, jeśli przeciwnik korzysta z broni nieposiadającej Zalety Szybka. Inne Umiejętności wykorzystane w obronie działają normalnie. Para przeciwników z Szybką bronią walczy w kolejności Inicjatywy (względem siebie nawzajem), jak normalnie. Szybka broń nigdy nie może być także Powolną (cecha Powolna jest nadrzędna)."
     },
     {
       "name": "HACK",
-      "nameTranslation": "Rąbiąca"
+      "nameTranslation": "Rąbiąca",
+      "description": "Broń rąbiąca ma ciężkie ostrze, które z przerażającą łatwością przecina pancerze. Jeśli trafisz przeciwnika, uszkadzasz trafiony fragment pancerza lub tarczy za 1 punkt. Jednocześnie normalnie ranisz cel."
     },
     {
       "name": "IMPACT",
-      "nameTranslation": "Druzgocząca"
+      "nameTranslation": "Druzgocząca",
+      "description": "Pewne bronie są po prostu ogromne albo zadają straszliwe obrażenia ze względu na swoją masę lub formę. Po udanym trafieniu dodaj do wszelkich Obrażeń zadanych przez broń Druzgoczącą wynik na kostce jedności w rzucie na atak. Broń Tępa nigdy nie może być także Druzgoczącą (cecha Tępa jest nadrzędna)."
     },
     {
       "name": "IMPALE",
-      "nameTranslation": "Nadziewająca"
+      "nameTranslation": "Nadziewająca",
+      "description": "Broń Nadziewająca może zabić jednym czystym ciosem. Zadaje ona Trafienie Krytyczne przy dowolnej wartości rzutu podzielnej przez 10 (np. 10, 20, 30 itd.), a także przy dubletach (tj. 11, 22, 33), jeśli wynik rzutu był równy lub niższy od poziomu odpowiedniego Testu w walce.\n\nJeśli cecha Nadziewająca charakteryzuje użytą broń dystansową, oznacza to, że amunicja głęboko utkwiła w ciele trafionej ofiary. Usunięcie takich strzał lub bełtów wymaga udanego Wymagającego (+0) Testu Leczenia. Wyjęcie pocisków z broni prochowej wymaga już zabiegu chirurgicznego (patrz Talent Chirurgia w Rozdziale 4: Umiejętności i Zdolności). Postać nie może wyleczyć jednej ze swoich Ran za każdy pocisk (prochowy lub tradycyjny) pozostający w jej ciele."
     },
     {
       "name": "PENETRATING",
-      "nameTranslation": "Przekłuwająca"
+      "nameTranslation": "Przekłuwająca",
+      "description": "Ta broń niezwykle skutecznie przebija się przez pancerz. Punkty Pancerza z warstw niemetalowych są ignorowane. W przypadku wszystkich pozostałych pancerzy pomijany jest ich pierwszy PP."
     },
     {
       "name": "PISTOL",
-      "nameTranslation": "Pistolet"
+      "nameTranslation": "Pistolet",
+      "description": "Można używać tej broni do atakowania w walce w zwarciu."
     },
     {
       "name": "PRECISE",
-      "nameTranslation": "Precyzyjna"
+      "nameTranslation": "Precyzyjna",
+      "description": "Tą bronią łatwo trafić w cel. Zyskujesz premię +1 PS do każdego udanego Testu podczas ataku tą bronią."
     },
     {
       "name": "PUMMEL",
-      "nameTranslation": "Ogłuszająca"
+      "nameTranslation": "Ogłuszająca",
+      "description": "Broń Ogłuszająca szczególnie dobrze nadaje się do sprowadzania wrogów do parteru. Jeśli trafisz w głowę bronią Ogłuszającą, wykonaj Test Przeciwstawny Siły przeciw Odporności trafionego przeciwnika. Jeśli wygrasz Test, cel dostaje Stan Oszołomienie."
     },
     {
       "name": "REPEATER",
-      "nameTranslation": "Wielostrzał"
+      "nameTranslation": "Wielostrzał",
+      "description": "Broń może oddać tyle strzałów, ile wynosi (wartość), i automatycznie przeładowuje się po każdym z nich. Gdy zostaną one wszystkie wykorzystane lub skończą się pociski, musisz całkowicie przeładować broń, stosując zwykłe zasady."
     },
     {
       "name": "SHIELD",
-      "nameTranslation": "Tarcza"
+      "nameTranslation": "Tarcza",
+      "description": "Jeśli używasz tej broni do sparowania ataku, odpowiada to posiadaniu tylu Punktów Pancerza, ile wynosi (wartość) na wszystkich Miejscach Trafień na twoim ciele. Jeśli twoja broń ma Zaletę Tarcza o wartości 2 lub wyższej (czyli Tarcza 2 lub Tarcza 3), możesz także wykonać Test Przeciwstawny przeciwko nadlatującym pociskom w twoim polu widzenia."
     },
     {
       "name": "TRAP_BLADE",
-      "nameTranslation": "Łamacz mieczy"
+      "nameTranslation": "Łamacz mieczy",
+      "description": "Pewne rodzaje broni przeznaczone są do unieruchamiania innych, a czasem nawet są w stanie je złamać. Jeśli uzyskasz Trafienie Krytyczne, broniąc się przed atakiem broni siecznej, możesz ją unieruchomić, zamiast korzystać z efektów Trafienia Krytycznego.\n\nJeśli się na to zdecydujesz, wykonaj Test Przeciwstawny Siły, dodając swój PS z poprzedniego Testu Walki Wręcz. Jeśli Test się uda, twój przeciwnik upuszcza ostrze, które zostaje wyrwane mu z dłoni. Jeśli uzyskasz Zdumiewający Sukces, nie tylko rozbrajasz przeciwnika, ale siła twojego manewru powoduje także złamanie ostrza jego broni, o ile nie ma ona Zalety Niełamliwa. Jeśli Test się nie uda, twój przeciwnik uwalnia ostrze i może walczyć normalnie."
     },
     {
       "name": "TWO_HANDED",
-      "nameTranslation": "Dwuręczna"
+      "nameTranslation": "Dwuręczna",
+      "description": "Broń wymaga użycia obu rąk."
     },
     {
       "name": "UNBREAKABLE",
-      "nameTranslation": "Niełamliwa"
+      "nameTranslation": "Niełamliwa",
+      "description": "Broń jest wyjątkowo dobrze wykonana lub do jej konstrukcji użyto szczególnie mocnego materiału. W większości okoliczności ta broń nie złamie się, nie ulegnie korozji ani nie stępi się."
     },
     {
       "name": "WRAP",
-      "nameTranslation": "Plącząca"
+      "nameTranslation": "Plącząca",
+      "description": "Broń Plącząca ma zazwyczaj długie łańcuchy z obciążnikami na końcach, przez co bardzo trudno skutecznie bronić się przed nią parowaniem. Testy Broni Białej przeciwko atakowi broni Plączącej obciążone są karą -1 PS, ponieważ parowane ciosy owijają się wokół ostrzy lub górnych krawędzi tarcz."
     },
     {
       "name": "DANGEROUS",
-      "nameTranslation": "Niebezpieczna"
+      "nameTranslation": "Niebezpieczna",
+      "description": "Zdarza się broń, która niemal równie często może wyrządzić krzywdę posługującej się nią osobie, jak jej przeciwnikowi. Dowolny nieudany Test, w którym wypadła 9 na kości dziesiątek lub jedności, uznawany jest za Rzut Pechowy (więcej o Rzutach Pechowych w Rozdziale 5: Zasady)."
     },
     {
       "name": "IMPRECISE",
-      "nameTranslation": "Nieprecyzyjna"
+      "nameTranslation": "Nieprecyzyjna",
+      "description": "Opanowanie broni Nieprecyzyjnej nastręcza trudności z powodu jej nieporęczności lub trudnego celowania. Wykonując atak taką bronią, otrzymujesz karę -1 PS. Broń Nieprecyzyjna nigdy nie może być także Precyzyjną (cecha Nieprecyzyjna jest nadrzędna)."
     },
     {
       "name": "RELOAD",
-      "nameTranslation": "Przeładowanie"
+      "nameTranslation": "Przeładowanie",
+      "description": "Przeładowanie tej broni jest powolne. Przeładowanie broni obarczonej tą Wadą wymaga wykonania Wydłużonego Testu Broni Zasięgowej w odpowiedniej Kategorii broni i uzyskania tylu PS, ile wynosi (wartość). Jeśli coś zakłóci przeładowanie, trzeba je podjąć od początku."
     },
     {
       "name": "SLOW",
-      "nameTranslation": "Powolna"
+      "nameTranslation": "Powolna",
+      "description": "Powolna broń jest nieporęczna i ciężka, przez co trudno używać jej prawidłowo. Bohaterowie używający Powolnej broni zawsze atakują ostatni w Rundzie, niezależnie od kolejności Inicjatywy. Co więcej, przeciwnicy zyskują premię +1 PS do każdego Testu obrony przed takim atakiem."
     },
     {
       "name": "TIRING",
-      "nameTranslation": "Męcząca"
+      "nameTranslation": "Ciężka",
+      "description": "Używanie tej broni jest męczące lub trudno ją opanować. Możesz korzystać z Zalet broni Druzgocząca i Przebijająca tylko w Turze, w której wykonujesz Szarżę."
     },
     {
       "name": "UNDAMAGING",
-      "nameTranslation": "Tępa"
+      "nameTranslation": "Tępa",
+      "description": "Pewne rodzaje broni nie nadają się zbytnio do przebijania pancerzy. W przypadku obrony przed bronią Tępą wszystkie PP są podwajane. Co więcej, nie obowiązuje w jej przypadku zasada zadawania minimum 1 Rany po udanym trafieniu (obrażenia mogą być zredukowane do 0)."
     },
     {
       "name": "INCENDIARY",
-      "nameTranslation": "Ładunek zapalający"
+      "nameTranslation": "Ładunek zapalający",
+      "description": "Objęty działaniem ładunku zapalającego cel otrzymuje 1+PS Stanów Podpalenie."
     },
     {
       "name": "DURABLE",
-      "nameTranslation": "Wytrzymała"
-    },
-    {
-      "name": "FINE",
-      "nameTranslation": "Wyśmienita"
+      "nameTranslation": "Wytrzymały",
+      "description": "Taki przedmiot, pieczołowicie wykonany z użyciem mocnych materiałów, może przyjąć dodatkowo tyle Punktów Uszkodzeń, ile wynosi poziom Zalety Wytrzymały, zanim wystąpią normalne efekty negatywne (patrz Obrażenia od broni i Uszkodzenia pancerza na stronach 296 i 299), oraz zyskuje rzut obronny 9+ w rzucie 1k10 przeciwko natychmiastowemu złamaniu na skutek efektów takich jak np. użycie łamacza mieczy (patrz strona 298). Ta Zaleta może być wybierana kilkukrotnie. Za każdym razem, gdy jest wybrana, rzut obronny staje się łatwiejszy o 1 (np. z 9+ na 8+)."
     },
     {
       "name": "LIGHTWEIGHT",
-      "nameTranslation": "Poręczna"
+      "nameTranslation": "Poręczny",
+      "description": "Zmyślne wykonanie przedmiotu umożliwia jego łatwe przenoszenie. Redukuje to punkty Obciążenia o 1."
     },
     {
       "name": "PRACTICAL",
-      "nameTranslation": "Praktyczna"
+      "nameTranslation": "Praktyczny",
+      "description": "Przedmiot wykonany fachowo z myślą o użyteczności. Nieudany Test z użyciem tego przedmiotu otrzymuje +1 PS. Jeśli przedmiot jest elementem pancerza, wszelkie kary za jego noszenie zredukowane są o jeden poziom (na przykład z -30 do -20)."
+    },
+    {
+      "name": "FINE",
+      "nameTranslation": "Wyśmienity",
+      "description": "Przedmiot skrupulatnie wykonany, cieszący oko wyglądem. Ta Zaleta stanowi oznakę pozycji społecznej i może być wybierana kilkukrotnie. Im wyższa jakość, tym bardziej imponująco wygląda dany przedmiot."
     },
     {
       "name": "UGLY",
-      "nameTranslation": "Brzydka"
+      "nameTranslation": "Brzydki",
+      "description": "Przedmiot wykonany bez jakiejkolwiek dbałości o walory estetyczne. Brzydkie przedmioty postrzegane są negatywnie, a powiązane Testy Ogłady mogą być obciążone karą nawet w wysokości -10."
     },
     {
       "name": "SHODDY",
-      "nameTranslation": "Tandetna"
+      "nameTranslation": "Tandetny",
+      "description": "Przedmiot pośpiesznie wykonany przez amatora lub oszusta. Złamie się, gdy zostanie wykorzystany w dowolnym nieudanym Teście, w którym wypadł dubel. Podobnie, Tandetny pancerz pęka, jeśli chronione przez niego Miejsce Trafienia otrzyma dowolne Trafienie Krytyczne."
     },
     {
       "name": "UNRELIABLE",
-      "nameTranslation": "Zawodna"
+      "nameTranslation": "Zawodny",
+      "description": "Przedmiot wykonany po partacku, bez przykładania wagi do funkcjonalności. Nieudany Test z użyciem tego przedmiotu otrzymuje -1 PS. Co więcej, kary za noszenie Zawodnego pancerza są podwajane."
     },
     {
       "name": "BULKY",
-      "nameTranslation": "Nieporęczna"
+      "nameTranslation": "Nieporęczny",
+      "description": "Przedmiot niezdarnie wykonany i niewygodny w użyciu. Zwiększa Obciążenie o 1 (małe szpargały w normalnych warunkach nie mogą mieć tej Wady). Nieporęczne ubrania i pancerze mają Obciążenie 1, nawet gdy są noszone. W przypadku zbroi kary na skutek Zmęczenia są podwajane."
     }
   ],
   "criticalRoll": {

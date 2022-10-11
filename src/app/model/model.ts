@@ -2,11 +2,13 @@ export class Model {
   public name: string;
   public nameTranslation: string;
   public id?: number;
+  public description: string
 
-  constructor(name?: string, nameTranslation?: string, id?: number) {
+  constructor(name?: string, nameTranslation?: string, id?: number, description?: string) {
     this.id = <number>id;
     this.name = <string>name;
     this.nameTranslation = <string>nameTranslation;
+    this.description = <string>description;
   }
 
   static fromJSON(object: Object): Model {

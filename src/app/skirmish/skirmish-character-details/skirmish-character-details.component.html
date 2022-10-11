@@ -166,10 +166,7 @@
       <h2>{{text.getText().conditionsLabel}}</h2>
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let characterCondition of skirmishCharacter.conditions">
-          <span
-            [matTooltip]="characterCondition.condition.description"
-            matTooltipClass="custom-tooltip"
-          >
+          <span [matTooltip]="characterCondition.condition.description" matTooltipClass="custom-tooltip">
             {{characterCondition.condition.nameTranslation}} - {{characterCondition.value}}
           </span>
         </li>
@@ -195,10 +192,7 @@
       <h2>{{text.getText().talentsLabel}}</h2>
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let talent of skirmishCharacter.talents">
-          <span
-            [matTooltip]="talent.talent.description"
-            matTooltipClass="custom-tooltip"
-          >
+          <span [matTooltip]="talent.talent.description" matTooltipClass="custom-tooltip">
             {{talent.talent.nameTranslation}} - {{talent.value}}
           </span>
         </li>
@@ -254,7 +248,9 @@
         <td>
           <ul>
             <li *ngFor="let quality of characterWeapon.weapon.weaponQualities">
-              {{quality.nameTranslation}}
+              <span [matTooltip]="quality.description" matTooltipClass="custom-tooltip">
+                {{quality.nameTranslation}}
+              </span>
             </li>
           </ul>
         </td>
@@ -309,7 +305,9 @@
         <td>
           <ul>
             <li *ngFor="let quality of armor.armorQualities">
-              {{quality.nameTranslation}}
+              <span [matTooltip]="quality.description" matTooltipClass="custom-tooltip">
+                {{quality.nameTranslation}}
+              </span>
             </li>
           </ul>
         </td>

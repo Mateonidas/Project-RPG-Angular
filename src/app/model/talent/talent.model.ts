@@ -2,12 +2,10 @@ import {Model} from "../model";
 
 export class Talent extends Model {
   public maxLevel: string;
-  public description: string;
 
-  constructor(name?: string, nameTranslation?: string, maxLevel?: string, description?: string) {
+  constructor(name?: string, nameTranslation?: string, maxLevel?: string) {
     super(name, nameTranslation);
     this.maxLevel = <string>maxLevel;
-    this.description = <string>description;
   }
 
   static fromJSON(object: Object): Talent {

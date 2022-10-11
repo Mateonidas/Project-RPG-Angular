@@ -81,9 +81,9 @@ export class TextResourceService {
     })
   }
 
-  public static getArmorQualitiesNameTranslation(name: string) {
-    let armorQualities: Model[] = textResource.armorQuality;
-    return <Model>armorQualities.find(armorQuality => {
+  public static getArmorQualityTranslation(name: string) {
+    let armorQualities: ModelWithDescription[] = textResource.armorQuality;
+    return <ModelWithDescription>armorQualities.find(armorQuality => {
       if(armorQuality.name == name) {
         return armorQuality;
       } else {
@@ -126,8 +126,8 @@ export class TextResourceService {
   }
 
   public static getWeaponQualityNameTranslation(name: string) {
-    let weaponQualities: Model[] = textResource.weaponQualities;
-    return <Model>weaponQualities.find(weaponQuality => {
+    let weaponQualities: ModelWithDescription[] = textResource.weaponQualities;
+    return <ModelWithDescription>weaponQualities.find(weaponQuality => {
       if(weaponQuality.name == name) {
         return weaponQuality;
       } else {

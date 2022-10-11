@@ -91,7 +91,7 @@ export class ArmorService {
 
   public prepareArmorQualitiesListTranslation(armorQualities: Model[]) {
     for (let armorQuality of armorQualities) {
-      armorQuality.nameTranslation = TextResourceService.getArmorQualitiesNameTranslation(armorQuality.name).nameTranslation;
+      this.translateService.prepareArmorQuality(armorQuality);
     }
   }
 }
