@@ -46,6 +46,8 @@ import {RollDialogWindow} from "./dialog-window/roll-dialog-window/roll-dialog-w
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatButtonModule} from "@angular/material/button";
+import {MatTreeModule} from "@angular/material/tree";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
@@ -78,17 +80,19 @@ import {MatButtonModule} from "@angular/material/button";
     EditWeaponDialogWindowComponent,
     AutoFocusDirective
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    RouterModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatTooltipModule,
-    MatButtonModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        RouterModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatTooltipModule,
+        MatButtonModule,
+        MatTreeModule,
+        MatExpansionModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

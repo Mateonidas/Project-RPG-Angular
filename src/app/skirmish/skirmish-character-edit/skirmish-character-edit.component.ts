@@ -83,6 +83,7 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
   createCharacter() {
     const name = this.editCharacterForm.value.name;
     const description = this.editCharacterForm.value.description;
+    const group = this.editCharacterForm.value.group;
     const characteristics = <CharacterCharacteristic[]>this.editCharacterForm.value.characteristics;
     const skills = <CharacterSkill[]>this.editCharacterForm.value.skills;
     const talents = <CharacterTalent[]>this.editCharacterForm.value.talents;
@@ -96,6 +97,7 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
       new Character(
         name,
         description,
+        group,
         characteristics,
         skills,
         talents,

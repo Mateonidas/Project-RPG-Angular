@@ -10,6 +10,7 @@ export class Character {
   id!: number;
   name!: string;
   description!: string;
+  group!: string;
   characteristics!: CharacterCharacteristic[];
   skills!: CharacterSkill[];
   talents!: CharacterTalent[];
@@ -20,9 +21,10 @@ export class Character {
   conditions!: CharacterCondition[];
   notes!: string[];
 
-  constructor(name?: string, description?: string, characteristics?: CharacterCharacteristic[], skills?: CharacterSkill[], talents?: CharacterTalent[], rightHanded?: boolean, weapons?: CharacterWeapon[], armor?: Armor[], conditions?: CharacterCondition[], notes?: string[], bodyLocalizations?: CharacterBodyLocalization[]) {
+  constructor(name?: string, description?: string, group?: string, characteristics?: CharacterCharacteristic[], skills?: CharacterSkill[], talents?: CharacterTalent[], rightHanded?: boolean, weapons?: CharacterWeapon[], armor?: Armor[], conditions?: CharacterCondition[], notes?: string[], bodyLocalizations?: CharacterBodyLocalization[]) {
     this.name = <string>name;
     this.description = <string>description;
+    this.group = <string>group;
     this.characteristics = <CharacterCharacteristic[]>characteristics;
     this.skills = <CharacterSkill[]>skills;
     this.talents = <CharacterTalent[]>talents;

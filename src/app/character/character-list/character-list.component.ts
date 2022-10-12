@@ -14,6 +14,7 @@ export class CharacterListComponent implements OnInit {
   isDataAvailable: boolean = false;
   characters!: Character[];
   subscription!: Subscription;
+  test: {group: string, characters: Character[]}[] = [];
 
   constructor(public characterService: CharacterService,
               private router: Router,
@@ -30,6 +31,21 @@ export class CharacterListComponent implements OnInit {
       this.isDataAvailable = true;
     });
     this.characters = this.characterService.getCharacters();
+
+    this.characters.forEach(character => {
+      let isGroupExist = false;
+      for (let element of this.test) {
+        if(element.group === character.group) {
+          element.characters.push(character);
+          isGroupExist = true;
+          break;
+        }
+      }
+
+      if(!isGroupExist) {
+        this.test.push({group: character.group, characters: [character]});
+      }
+    })
   }
 
   onAddCharacter() {
