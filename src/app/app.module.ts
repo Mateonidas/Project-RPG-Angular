@@ -39,15 +39,20 @@ import {ValidationAlertComponent} from './validation/validation-alert/validation
 //   AttackAllyFumbleDialogWindowComponent
 // } from './dialog-window/attack-ally-fumble-dialog-window/attack-ally-fumble-dialog-window.component';
 import {HttpClientModule} from '@angular/common/http';
-import { EditArmorDialogWindowComponent } from './dialog-window/edit-armor-dialog-window/edit-armor-dialog-window.component';
-import { EditWeaponDialogWindowComponent } from './dialog-window/edit-weapon-dialog-window/edit-weapon-dialog-window.component';
-import { AutoFocusDirective } from './shared/directives/auto-focus.directive';
+import {
+  EditArmorDialogWindowComponent
+} from './dialog-window/edit-armor-dialog-window/edit-armor-dialog-window.component';
+import {
+  EditWeaponDialogWindowComponent
+} from './dialog-window/edit-weapon-dialog-window/edit-weapon-dialog-window.component';
+import {AutoFocusDirective} from './shared/directives/auto-focus.directive';
 import {RollDialogWindow} from "./dialog-window/roll-dialog-window/roll-dialog-window.component";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatButtonModule} from "@angular/material/button";
 import {MatTreeModule} from "@angular/material/tree";
 import {MatExpansionModule} from "@angular/material/expansion";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -80,19 +85,20 @@ import {MatExpansionModule} from "@angular/material/expansion";
     EditWeaponDialogWindowComponent,
     AutoFocusDirective
   ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        RouterModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatTooltipModule,
-        MatButtonModule,
-        MatTreeModule,
-        MatExpansionModule
-    ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    RouterModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatTooltipModule,
+    MatButtonModule,
+    MatTreeModule,
+    MatExpansionModule,
+    MatMenuModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
