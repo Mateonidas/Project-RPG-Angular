@@ -36,6 +36,10 @@ export class Character {
     this.notes = <string[]>notes;
   }
 
+   getCharacteristic(name: string): CharacterCharacteristic {
+    return <CharacterCharacteristic>this.characteristics.find(x => x.characteristic.name == name);
+  }
+
   get movement(): CharacterCharacteristic {
     return <CharacterCharacteristic>this.characteristics.find(x => x.characteristic.name == 'MOVEMENT');
   }

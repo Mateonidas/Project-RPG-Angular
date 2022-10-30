@@ -53,6 +53,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatTreeModule} from "@angular/material/tree";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatMenuModule} from "@angular/material/menu";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -85,20 +86,21 @@ import {MatMenuModule} from "@angular/material/menu";
     EditWeaponDialogWindowComponent,
     AutoFocusDirective
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    RouterModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatTooltipModule,
-    MatButtonModule,
-    MatTreeModule,
-    MatExpansionModule,
-    MatMenuModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        RouterModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatTooltipModule,
+        MatButtonModule,
+        MatTreeModule,
+        MatExpansionModule,
+        MatMenuModule,
+        MatTableModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

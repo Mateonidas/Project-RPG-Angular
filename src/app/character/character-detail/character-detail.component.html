@@ -44,40 +44,17 @@
 <div class="row">
   <div class="col-md-12">
     <h2>{{text.getText().characteristicsLabel}}</h2>
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">{{text.getCharacteristicNameTranslation("MOVEMENT").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("WEAPON_SKILL").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("BALLISTIC_SKILL").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("STRENGTH").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("TOUGHNESS").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("INITIATIVE").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("AGILITY").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("DEXTERITY").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("INTELLIGENCE").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("WILLPOWER").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("FELLOWSHIP").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("WOUNDS").nameTranslation}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>{{character.movement.value}}</td>
-        <td>{{character.weaponSkill.value}}</td>
-        <td>{{character.ballisticSkill.value}}</td>
-        <td>{{character.strength.value}}</td>
-        <td>{{character.toughness.value}}</td>
-        <td>{{character.initiative.value}}</td>
-        <td>{{character.agility.value}}</td>
-        <td>{{character.dexterity.value}}</td>
-        <td>{{character.intelligence.value}}</td>
-        <td>{{character.willpower.value}}</td>
-        <td>{{character.fellowship.value}}</td>
-        <td>{{character.wounds.value}}</td>
-      </tr>
-      </tbody>
+
+    <table mat-table [dataSource]="[character]" class="mat-elevation-z8">
+      <ng-container matColumnDef="{{column}}" *ngFor="let column of characteristicsColumns">
+        <th mat-header-cell *matHeaderCellDef>{{text.getCharacteristicNameTranslation(column).nameTranslation}}</th>
+        <td mat-cell *matCellDef="let element">{{element.getCharacteristic(column).value}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="characteristicsColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: characteristicsColumns;"></tr>
     </table>
+
   </div>
 </div>
 

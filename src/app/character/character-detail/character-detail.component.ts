@@ -12,8 +12,9 @@ import {TextResourceService} from "../../shared/services/text-resource-service/t
 })
 export class CharacterDetailComponent implements OnInit {
   character!: Character;
-  protected id!: number;
   text = TextResourceService;
+  characteristicsColumns: string[] = this.fillCharacteristicsColumn();
+  protected id!: number;
 
   constructor(public characterService: CharacterService,
               public skirmishService: SkirmishCharacterService,
@@ -47,5 +48,22 @@ export class CharacterDetailComponent implements OnInit {
     if (event.key == 'Enter') {
       this.onEditCharacter();
     }
+  }
+
+  private fillCharacteristicsColumn() {
+    return [
+      "MOVEMENT",
+      "WEAPON_SKILL",
+      "BALLISTIC_SKILL",
+      "STRENGTH",
+      "TOUGHNESS",
+      "INITIATIVE",
+      "AGILITY",
+      "DEXTERITY",
+      "INTELLIGENCE",
+      "WILLPOWER",
+      "FELLOWSHIP",
+      "WOUNDS"
+    ];
   }
 }
