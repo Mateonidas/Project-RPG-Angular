@@ -16,7 +16,10 @@ export class CharacterDetailComponent implements OnInit {
   protected id!: number;
   characteristicsColumns: string[] = this.fillCharacteristicsColumn();
   bodyLocalizationsColumns: string[] = ['name', 'armorPoints', 'injuries'];
+  notesColumns: string[] = ['note'];
   baseColumns: string[] = ['name', 'level'];
+  weaponColumns: string[] = ['name', 'category', 'reach', 'damage', 'advantagesAndDisadvantages'];
+  armorsColumns: string[] = ['name', 'category', 'localization', 'armorPoints', 'penalties', 'qualities'];
 
   constructor(public characterService: CharacterService,
               public skirmishService: SkirmishCharacterService,

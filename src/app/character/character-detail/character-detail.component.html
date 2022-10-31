@@ -62,24 +62,19 @@
   <hr>
   <div class="row">
     <div class="col-md-12">
-      <h2>Notatki</h2>
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let note of character.notes">
-          {{note}}
-        </li>
-      </ul>
+      <h2>{{text.getText().notesLabel}}</h2>
+
+      <table mat-table [dataSource]="character.notes" class="mat-elevation-z8">
+        <ng-container matColumnDef="note">
+          <td mat-cell *matCellDef="let element">{{element}}</td>
+        </ng-container>
+
+        <tr mat-row *matRowDef="let row; columns: notesColumns;"></tr>
+      </table>
+
     </div>
   </div>
 </ng-container>
-
-<!--<hr>-->
-<!--<div class="row">-->
-<!--  <div class="col-md-12">-->
-<!--    <h4>{{text.getText().primaryHandLabel}}</h4>-->
-<!--    <h5 *ngIf="character.isRightHanded">- {{text.getText().rightHandLabel}}</h5>-->
-<!--    <h5 *ngIf="!character.isRightHanded">- {{text.getText().leftHandLabel}}</h5>-->
-<!--  </div>-->
-<!--</div>-->
 
 <hr>
 <div class="row">
@@ -120,53 +115,57 @@
   <hr>
   <div class="row">
     <div class="row mb-3">
-      <div class="col-md-5">
-        <h2>{{text.getText().skillsLabel}}</h2>
+      <ng-container *ngIf="character.skills.length > 0">
+        <div class="col-md-5">
+          <h2>{{text.getText().skillsLabel}}</h2>
 
-        <table mat-table [dataSource]="character.skills" class="mat-elevation-z8">
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
-            <td mat-cell *matCellDef="let element">
-              {{element.skill.nameTranslation}}
-            </td>
-          </ng-container>
+          <table mat-table [dataSource]="character.skills" class="mat-elevation-z8">
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
+              <td mat-cell *matCellDef="let element">
+                {{element.skill.nameTranslation}}
+              </td>
+            </ng-container>
 
-          <ng-container matColumnDef="level">
-            <th mat-header-cell *matHeaderCellDef>{{text.getText().levelLabel}}</th>
-            <td mat-cell *matCellDef="let element">
-              {{element.value}}
-            </td>
-          </ng-container>
+            <ng-container matColumnDef="level">
+              <th mat-header-cell *matHeaderCellDef>{{text.getText().levelLabel}}</th>
+              <td mat-cell *matCellDef="let element">
+                {{element.value}}
+              </td>
+            </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="baseColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: baseColumns;"></tr>
-        </table>
-      </div>
+            <tr mat-header-row *matHeaderRowDef="baseColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: baseColumns;"></tr>
+          </table>
+        </div>
+      </ng-container>
 
-      <div class="col-md-4">
-        <h2>{{text.getText().talentsLabel}}</h2>
+      <ng-container *ngIf="character.talents.length > 0">
+        <div class="col-md-4">
+          <h2>{{text.getText().talentsLabel}}</h2>
 
-        <table mat-table [dataSource]="character.talents" class="mat-elevation-z8">
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
-            <td mat-cell *matCellDef="let element">
+          <table mat-table [dataSource]="character.talents" class="mat-elevation-z8">
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
+              <td mat-cell *matCellDef="let element">
               <span [matTooltip]="element.talent.description" matTooltipClass="custom-tooltip">
                 {{element.talent.nameTranslation}}
               </span>
-            </td>
-          </ng-container>
+              </td>
+            </ng-container>
 
-          <ng-container matColumnDef="level">
-            <th mat-header-cell *matHeaderCellDef>{{text.getText().levelLabel}}</th>
-            <td mat-cell *matCellDef="let element">
-              {{element.value}}
-            </td>
-          </ng-container>
+            <ng-container matColumnDef="level">
+              <th mat-header-cell *matHeaderCellDef>{{text.getText().levelLabel}}</th>
+              <td mat-cell *matCellDef="let element">
+                {{element.value}}
+              </td>
+            </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="baseColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: baseColumns;"></tr>
-        </table>
-      </div>
+            <tr mat-header-row *matHeaderRowDef="baseColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: baseColumns;"></tr>
+          </table>
+        </div>
+      </ng-container>
 
       <ng-container *ngIf="character.conditions.length > 0">
         <div class="col-md-3">
@@ -204,56 +203,71 @@
   <div class="row">
     <div class="col-md-12">
       <h2>{{text.getText().weaponLabel}}</h2>
-      <table class="table table-bordered">
-        <thead class="thead-dark">
-        <tr>
-          <th scope="col">{{text.getText().nameLabel}}</th>
-          <th scope="col">{{text.getText().categoryLabel}}</th>
-          <th scope="col">{{text.getText().reachLabel}}</th>
-          <th scope="col">{{text.getText().damageLabel}}</th>
-          <th scope="col">{{text.getText().advantagesAndDisadvantagesLabel}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let characterWeapon of character.weapons">
-          <td
-            *ngIf="characterWeapon.value == 1; else characterWeaponValue">{{characterWeapon.weapon.nameTranslation}}</td>
-          <ng-template #characterWeaponValue>
-            <td>{{characterWeapon.weapon.nameTranslation}} ({{characterWeapon.value}})</td>
-          </ng-template>
-          <td>{{characterWeapon.weapon.weaponGroupType.nameTranslation}}</td>
-          <td>
-          <span
-            *ngIf="characterWeapon.weapon.weaponRange == 0; else weaponRange">{{characterWeapon.weapon.weaponReach.nameTranslation}}</span>
-            <ng-template #weaponRange>
-            <span *ngIf="characterWeapon.weapon.weaponGroupType.name.includes('AMMUNITION'); else fullWeaponRange">
-              <span *ngIf="characterWeapon.weapon.weaponRange == 0.5">{{text.getText().halfWeaponRangeLabel}}</span>
-              <span *ngIf="characterWeapon.weapon.weaponRange == 1">{{text.getText().rangeAsWeaponLabel}}</span>
-              <span *ngIf="characterWeapon.weapon.weaponRange > 1">+{{characterWeapon.weapon.weaponRange}}</span>
+      <table mat-table [dataSource]="character.weapons" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="element.value == 1; else characterWeaponValue">{{element.weapon.nameTranslation}}</span>
+            <ng-template #characterWeaponValue>
+              <span>{{element.weapon.nameTranslation}} ({{element.value}})</span>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().categoryLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.weapon.weaponGroupType.nameTranslation}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="reach">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().reachLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <span
+              *ngIf="element.weapon.weaponRange == 0; else weaponRange">{{element.weapon.weaponReach.nameTranslation}}
             </span>
+            <ng-template #weaponRange>
+              <span *ngIf="element.weapon.weaponGroupType.name.includes('AMMUNITION'); else fullWeaponRange">
+                <span *ngIf="element.weapon.weaponRange == 0.5">{{text.getText().halfWeaponRangeLabel}}</span>
+                <span *ngIf="element.weapon.weaponRange == 1">{{text.getText().rangeAsWeaponLabel}}</span>
+                <span *ngIf="element.weapon.weaponRange > 1">+{{element.weapon.weaponRange}}</span>
+              </span>
               <ng-template #fullWeaponRange>
-                <span>{{characterWeapon.weapon.weaponRange}}</span>
+                <span>{{element.weapon.weaponRange}}</span>
               </ng-template>
             </ng-template>
           </td>
-          <td>
-          <span *ngIf="characterWeapon.weapon.isUsingStrength; else elseBlock">
-            +{{+character.strength.value.toString()[0] + characterWeapon.weapon.damage}}
-          </span>
-            <ng-template #elseBlock>+{{characterWeapon.weapon.damage}}</ng-template>
+        </ng-container>
+
+        <ng-container matColumnDef="damage">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().damageLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="element.weapon.isUsingStrength; else elseBlock">
+              +{{+character.strength.value.toString()[0] + element.weapon.damage}}
+            </span>
+            <ng-template #elseBlock>+{{element.weapon.damage}}</ng-template>
           </td>
-          <td>
+        </ng-container>
+
+        <ng-container matColumnDef="advantagesAndDisadvantages">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().advantagesAndDisadvantagesLabel}}</th>
+          <td mat-cell *matCellDef="let element">
             <ul>
-              <li *ngFor="let quality of characterWeapon.weapon.weaponQualities">
+              <li *ngFor="let quality of element.weapon.weaponQualities">
                 <span [matTooltip]="quality.description" matTooltipClass="custom-tooltip">
                   {{quality.nameTranslation}}
                 </span>
               </li>
             </ul>
           </td>
-        </tr>
-        </tbody>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="weaponColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: weaponColumns;"></tr>
       </table>
+
     </div>
   </div>
 </ng-container>
@@ -263,54 +277,73 @@
   <div class="row">
     <div class="col-md-12">
       <h2>{{text.getText().armorLabel}}</h2>
-      <table class="table table-bordered">
-        <thead class="thead-dark">
-        <tr>
-          <th scope="col">{{text.getText().nameLabel}}</th>
-          <th scope="col">{{text.getText().categoryLabel}}</th>
-          <th scope="col">{{text.getText().localizationLabel}}</th>
-          <th scope="col">{{text.getText().armorPointsLabel}}</th>
-          <th scope="col">{{text.getText().penaltiesLabel}}</th>
-          <th scope="col">{{text.getText().qualitiesLabel}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let armor of character.armors">
-          <td>{{armor.nameTranslation}}</td>
-          <td>{{armor.armorCategory.nameTranslation}}</td>
-          <td>
+
+      <table mat-table [dataSource]="character.armors" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.nameTranslation}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().categoryLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.armorCategory.nameTranslation}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="localization">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().localizationLabel}}</th>
+          <td mat-cell *matCellDef="let element">
             <ul>
-              <li *ngFor="let localization of armor.armorBodyLocalizations">
+              <li *ngFor="let localization of element.armorBodyLocalizations">
                 {{localization.bodyLocalization.nameTranslation}}
               </li>
             </ul>
           </td>
-          <td>
+        </ng-container>
+
+        <ng-container matColumnDef="armorPoints">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().armorPointsLabel}}</th>
+          <td mat-cell *matCellDef="let element">
             <ul>
-              <li *ngFor="let localization of armor.armorBodyLocalizations">
+              <li *ngFor="let localization of element.armorBodyLocalizations">
                 {{localization.armorPoints}}
               </li>
             </ul>
           </td>
-          <td>
+        </ng-container>
+
+        <ng-container matColumnDef="penalties">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().penaltiesLabel}}</th>
+          <td mat-cell *matCellDef="let element">
             <ul>
-              <li *ngFor="let penalty of armor.armorPenalties">
+              <li *ngFor="let penalty of element.armorPenalties">
                 {{penalty.nameTranslation}}
               </li>
             </ul>
           </td>
-          <td>
+        </ng-container>
+
+        <ng-container matColumnDef="qualities">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().qualitiesLabel}}</th>
+          <td mat-cell *matCellDef="let element">
             <ul>
-              <li *ngFor="let quality of armor.armorQualities">
+              <li *ngFor="let quality of element.armorQualities">
                 <span [matTooltip]="quality.description" matTooltipClass="custom-tooltip">
                   {{quality.nameTranslation}}
                 </span>
               </li>
             </ul>
           </td>
-        </tr>
-        </tbody>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="armorsColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: armorsColumns;"></tr>
       </table>
+
     </div>
   </div>
 </ng-container>
