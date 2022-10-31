@@ -13,8 +13,10 @@ import {TextResourceService} from "../../shared/services/text-resource-service/t
 export class CharacterDetailComponent implements OnInit {
   character!: Character;
   text = TextResourceService;
-  characteristicsColumns: string[] = this.fillCharacteristicsColumn();
   protected id!: number;
+  characteristicsColumns: string[] = this.fillCharacteristicsColumn();
+  bodyLocalizationsColumns: string[] = ['name', 'armorPoints', 'injuries'];
+  baseColumns: string[] = ['name', 'level'];
 
   constructor(public characterService: CharacterService,
               public skirmishService: SkirmishCharacterService,

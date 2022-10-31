@@ -2,6 +2,10 @@ table {
   width: 100%;
 }
 
+.conditions-table  {
+  width: 30%;
+}
+
 .mat-cell, .mat-header-cell {
   width: 4%;
 }

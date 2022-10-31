@@ -54,6 +54,7 @@ import {MatTreeModule} from "@angular/material/tree";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatTableModule} from "@angular/material/table";
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import {MatTableModule} from "@angular/material/table";
         MatTreeModule,
         MatExpansionModule,
         MatMenuModule,
-        MatTableModule
+        MatTableModule,
+        MatListModule
     ],
   providers: [],
   bootstrap: [AppComponent]
