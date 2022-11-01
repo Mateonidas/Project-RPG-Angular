@@ -1,11 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 border-bottom">
-  <div class="container-fluid border-bottom-5">
-    <a routerLink="/" class="navbar-brand">Project RPG</a>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav me-auto mb-0">
-        <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="/characters">Postacie</a></li>
-        <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="/skirmish">Potyczka</a></li>
-      </ul>
-    </div>
-  </div>
+<nav mat-tab-nav-bar [backgroundColor]="background">
+  <a mat-tab-link routerLink="/"
+     (click)="activeLink = '/'"
+     [active]="activeLink == '/'"
+  >Project RPG</a>
+
+  <a mat-tab-link routerLink="/characters"
+     (click)="activeLink = '/characters'"
+     [active]="activeLink == '/characters'"
+  >Postacie</a>
+
+  <a mat-tab-link routerLink="/skirmish"
+     (click)="activeLink = '/skirmish'"
+     [active]="activeLink == '/skirmish'"
+  >Potyczka</a>
 </nav>

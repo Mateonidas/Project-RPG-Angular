@@ -55,6 +55,8 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatTableModule} from "@angular/material/table";
 import {MatListModule} from "@angular/material/list";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
   declarations: [
@@ -101,7 +103,9 @@ import {MatListModule} from "@angular/material/list";
         MatExpansionModule,
         MatMenuModule,
         MatTableModule,
-        MatListModule
+        MatListModule,
+        MatToolbarModule,
+        MatTabsModule
     ],
   providers: [],
   bootstrap: [AppComponent]
