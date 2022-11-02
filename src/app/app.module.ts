@@ -57,6 +57,8 @@ import {MatTableModule} from "@angular/material/table";
 import {MatListModule} from "@angular/material/list";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatTabsModule} from "@angular/material/tabs";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -89,24 +91,26 @@ import {MatTabsModule} from "@angular/material/tabs";
     EditWeaponDialogWindowComponent,
     AutoFocusDirective
   ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        RouterModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatTooltipModule,
-        MatButtonModule,
-        MatTreeModule,
-        MatExpansionModule,
-        MatMenuModule,
-        MatTableModule,
-        MatListModule,
-        MatToolbarModule,
-        MatTabsModule
-    ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    RouterModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatTooltipModule,
+    MatButtonModule,
+    MatTreeModule,
+    MatExpansionModule,
+    MatMenuModule,
+    MatTableModule,
+    MatListModule,
+    MatToolbarModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    MatInputModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

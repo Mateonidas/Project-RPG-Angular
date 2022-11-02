@@ -12,7 +12,8 @@ import {CharacterService} from "../../shared/services/character-service/characte
 })
 export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent implements OnInit {
 
-  skirmishCharacter!: SkirmishCharacter;
+  character!: SkirmishCharacter;
+  temporaryParametersColumns: string[] = ['isAlive', 'currentWounds', 'initiative', 'advantage'];
 
   constructor(public characterService: CharacterService,
               public skirmishService: SkirmishCharacterService,
@@ -24,7 +25,7 @@ export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
         this.id = +params['id'];
-        this.skirmishCharacter = this.skirmishService.getSkirmishCharacter(this.id);
+        this.character = this.skirmishService.getSkirmishCharacter(this.id);
       }
     )
   }

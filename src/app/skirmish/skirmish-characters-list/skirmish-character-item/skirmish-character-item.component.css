@@ -3,3 +3,7 @@
   -ms-filter: blur(1px);
   filter: blur(1px);
 }
+
+span {
+  white-space: normal !important;
+}

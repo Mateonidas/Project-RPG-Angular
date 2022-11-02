@@ -5,20 +5,14 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        {{text.getText().manageCharacterButton}}
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" style="cursor:pointer;"
-               (click)="onAddToFight()">{{text.getText().addToFightButton}}</a></li>
-        <li><a class="dropdown-item" style="cursor: pointer"
-               (click)="onEditCharacter()">{{text.getText().editCharacterButton}}</a></li>
-        <li><a class="dropdown-item" style="cursor: pointer"
-               (click)="onDeleteCharacter()">{{text.getText().deleteCharacterButton}}</a></li>
-      </ul>
-    </div>
+
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">{{text.getText().manageCharacterButton}}</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="onAddToFight()">{{text.getText().addToFightButton}}</button>
+      <button mat-menu-item (click)="onEditCharacter()">{{text.getText().editCharacterButton}}</button>
+      <button mat-menu-item (click)="onDeleteCharacter()">{{text.getText().deleteCharacterButton}}</button>
+    </mat-menu>
+
   </div>
 </div>
 <div class="row">

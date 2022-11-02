@@ -1,28 +1,58 @@
 <div class="row" *ngIf="isDataAvailable">
   <div class="col-md-10">
     <form [formGroup]="editCharacterForm" (ngSubmit)="onSubmit()">
+
       <div class="row">
         <div class="col-md-12 form-group">
-          <h2>Nazwa</h2>
-          <input type="text" class="form-control" formControlName="name">
+          <h2>Dane</h2>
+          <mat-form-field class="example-full-width" appearance="fill" style="width: 100%">
+            <mat-label>{{text.getText().nameLabel}}</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill" style="width: 100%">
+            <mat-label>{{text.getText().descriptionLabel}}</mat-label>
+            <input matInput formControlName="description">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill" style="width: 100%">
+            <mat-label>{{text.getText().groupLabel}}</mat-label>
+            <input matInput formControlName="group">
+          </mat-form-field>
         </div>
       </div>
 
-      <hr>
-      <div class="row">
-        <div class="col-md-12 form-group">
-          <h2>Opis</h2>
-          <input type="text" class="form-control" formControlName="description">
-        </div>
-      </div>
+<!--      <div class="row">-->
+<!--        <div class="col-md-12 form-group">-->
+<!--          <h2>{{text.getText().nameLabel}}</h2>-->
+<!--          <mat-form-field class="example-full-width" appearance="fill" style="width: 100%">-->
+<!--            <mat-label>{{text.getText().nameLabel}}</mat-label>-->
+<!--            <input matInput formControlName="name">-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+<!--      </div>-->
 
-      <hr>
-      <div class="row">
-        <div class="col-md-12 form-group">
-          <h2>Grupa</h2>
-          <input type="text" class="form-control" formControlName="group">
-        </div>
-      </div>
+<!--      <hr>-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-12 form-group">-->
+<!--          <h2>{{text.getText().descriptionLabel}}</h2>-->
+<!--          <mat-form-field class="example-full-width" appearance="fill" style="width: 100%">-->
+<!--            <mat-label>{{text.getText().descriptionLabel}}</mat-label>-->
+<!--            <input matInput formControlName="description">-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <hr>-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-12 form-group">-->
+<!--          <h2>{{text.getText().groupLabel}}</h2>-->
+<!--          <mat-form-field class="example-full-width" appearance="fill" style="width: 100%">-->
+<!--            <mat-label>{{text.getText().groupLabel}}</mat-label>-->
+<!--            <input matInput formControlName="group">-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+<!--      </div>-->
 
       <hr>
       <div class="row">

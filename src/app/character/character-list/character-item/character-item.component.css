@@ -1,3 +1,7 @@
 section {
   margin-bottom: 5px;
 }
+
+p {
+  white-space: normal !important;
+}

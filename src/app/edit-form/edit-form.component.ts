@@ -49,6 +49,8 @@ export class EditFormComponent {
   id!: number;
   characterBodyLocalizations!: CharacterBodyLocalization[];
 
+  text = TextResourceService;
+
   constructor(protected router: Router,
               protected route: ActivatedRoute,
               protected armorService: ArmorService,

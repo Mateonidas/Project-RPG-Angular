@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {InitiativeDialogWindow} from "../../dialog-window/initiative-dialog-window/initiative-dialog-window.component";
 import {RoundService} from "../../shared/services/round-service/round.service";
+import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
 
 @Component({
   selector: 'app-skirmish-characters-list',
@@ -17,6 +18,8 @@ export class SkirmishCharactersListComponent implements OnInit {
   subscription!: Subscription;
   roundNumber!: number;
   isDataAvailable: boolean = false;
+
+  text = TextResourceService;
 
   constructor(private skirmishCharacterService: SkirmishCharacterService,
               private router: Router,

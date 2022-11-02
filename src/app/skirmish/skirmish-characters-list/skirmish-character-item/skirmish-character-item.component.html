@@ -2,16 +2,14 @@
   <div
     [ngClass]="skirmishCharacter.isDead == true ? 'dropdown dead-character' : 'dropdown'">
 
-    <a
-      style="cursor: pointer"
-      class="list-group-item clearfix rounded mb-2"
-      aria-expanded="false"
-      [routerLink]="[skirmishCharacter.id]"
-      routerLinkActive="active">
-      <div class="row">
+    <button mat-stroked-button color="basic"
+            style="cursor: pointer; width: 100%"
+            [routerLink]="[skirmishCharacter.id]"
+            routerLinkActive="active">
+      <div class="row" style="margin-top: 10px">
         <div class="col-md-6">
           <h2 class="list-group-item-heading">{{skirmishCharacter.name}}</h2>
-          <p class="list-group-item-text">{{skirmishCharacter.description}}</p>
+          <span class="list-group-item-text">{{skirmishCharacter.description}}</span>
         </div>
         <div class="col-md-2" *ngIf="!skirmishCharacter.isDead">
           <h4 class="list-group-item-heading">Inicjatywa</h4>
@@ -47,11 +45,7 @@
           </p>
         </div>
       </div>
-    </a>
+    </button>
 
-    <!--    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">-->
-    <!--      <a class="dropdown-item" [routerLink]="[skirmishCharacter.id]">Szczegóły</a>-->
-    <!--      <a class="dropdown-item" [routerLink]="[skirmishCharacter.id] + '/actions'">Akcje</a>-->
-    <!--    </div>-->
   </div>
 </div>

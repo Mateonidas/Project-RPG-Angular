@@ -8,6 +8,7 @@
   "rightHandLabel": "Prawa",
   "bodyLabel": "Ciało",
   "nameLabel": "Nazwa",
+  "valueLabel": "Wartość",
   "levelLabel": "Poziom",
   "armorPointsLabel": "Punkty Pancerza",
   "injuriesLabel": "Urazy",
@@ -26,11 +27,20 @@
   "penaltiesLabel": "Kara",
   "qualitiesLabel": "Zalety i Wady",
   "localizationLabel": "Lokalizacja",
+  "isAliveLabel": "Żyje",
+  "woundsLabel": "Żywotność",
+  "initiativeLabel": "Inicjatywa",
+  "advantageLabel": "Przewagi",
+  "temporaryParametersLabel": "Parametry tymczasowe",
+  "endTurnLabel": "Koniec rundy",
+  "turnLabel": "Runda: ",
+  "initiativeRollLabel": "Rzut na inicjatywę",
 
   "manageCharacterButton": "Zarządzaj Postacią",
   "addToFightButton": "Dodaj do walki",
   "editCharacterButton": "Edytuj Postać",
   "deleteCharacterButton": "Usuń Postać",
+  "clearDataButton": "Wyczyść dane",
 
   "characteristics": [
     {

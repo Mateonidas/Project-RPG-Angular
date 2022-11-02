@@ -1,26 +1,29 @@
 <div *ngIf="isDataAvailable">
   <div class="row">
     <div class="col-md-12">
-      <h2>Runda: {{roundNumber}}</h2>
+      <h2>{{text.getText().turnLabel}} {{roundNumber}}</h2>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12">
       <div class="dropdown">
-        <button class="btn btn-danger me-2" type="button" (click)="endTurn()">
-          Koniec rundy
+
+        <button mat-raised-button color="primary" (click)="endTurn()">
+          {{text.getText().endTurnLabel}}
         </button>
-        <button class="btn btn-primary dropdown-toggle me-2" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-          Inicjatywa
-          <span class="caret"></span>
+
+        <button mat-raised-button color="primary" (click)="initiativeRolls()">
+          {{text.getText().initiativeRollLabel}}
         </button>
+
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li><a class="dropdown-item" style="cursor:pointer;" (click)="initiativeRolls()">Rzut na inicjatywę</a></li>
         </ul>
-        <button class="btn btn-danger me-2" type="button" (click)="clearData()">
-          Wyczyść dane
+
+        <button mat-raised-button color="warn" (click)="clearData()">
+          {{text.getText().clearDataButton}}
         </button>
+
       </div>
     </div>
   </div>

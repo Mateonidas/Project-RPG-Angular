@@ -1,28 +1,24 @@
 <div class="row" xmlns="http://www.w3.org/1999/html">
   <div class="col-md-12">
-    <h1>{{skirmishCharacter.name}}</h1>
+    <h1>{{character.name}}</h1>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle me-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        {{text.getText().manageCharacterButton}}
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" style="cursor: pointer"
-               (click)="onDeleteCharacter()">{{text.getText().deleteCharacterButton}}</a></li>
-      </ul>
-      <button class="btn btn-primary" type="button" (click)="onEditCharacter()">{{text.getText().editCharacterButton}}</button>
-    </div>
+
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">{{text.getText().manageCharacterButton}}</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="onEditCharacter()">{{text.getText().editCharacterButton}}</button>
+      <button mat-menu-item (click)="onDeleteCharacter()">{{text.getText().deleteCharacterButton}}</button>
+    </mat-menu>
+
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
     <br>
     <h2>{{text.getText().descriptionLabel}}</h2>
-    {{skirmishCharacter.description}}
+    {{character.description}}
     <br>
     <br>
   </div>
@@ -31,7 +27,7 @@
   <div class="col-xs-12">
     <br>
     <h2>{{text.getText().groupLabel}}</h2>
-    {{skirmishCharacter.group}}
+    {{character.group}}
     <br>
     <br>
   </div>
@@ -40,34 +36,42 @@
 <hr>
 <div class="row">
   <div class="col-md-12">
-    <h2>Parametry tymczasowe</h2>
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">Nazwa</th>
-        <th scope="col">Wartość</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>Żyje</td>
-        <td *ngIf="skirmishCharacter.isDead">Nie</td>
-        <td *ngIf="!skirmishCharacter.isDead">Tak</td>
-      </tr>
-      <tr>
-        <td>Żywotność</td>
-        <td>{{skirmishCharacter.currentWounds}}/{{skirmishCharacter.wounds.value}}</td>
-      </tr>
-      <tr>
-        <td>Inicjatywa</td>
-        <td>{{skirmishCharacter.skirmishInitiative}}</td>
-      </tr>
-      <tr>
-        <td>Przewagi</td>
-        <td>{{skirmishCharacter.advantage}}</td>
-      </tr>
-      </tbody>
+    <h2>{{text.getText().temporaryParametersLabel}}</h2>
+
+    <table mat-table [dataSource]="[character]" class="mat-elevation-z8">
+      <ng-container matColumnDef="isAlive">
+        <th mat-header-cell *matHeaderCellDef>{{text.getText().isAliveLabel}}</th>
+        <td mat-cell *matCellDef="let element">
+          <span *ngIf="element.isDead">Nie</span>
+          <span *ngIf="!element.isDead">Tak</span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="currentWounds">
+        <th mat-header-cell *matHeaderCellDef>{{text.getText().woundsLabel}}</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.currentWounds}}/{{element.wounds.value}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="initiative">
+        <th mat-header-cell *matHeaderCellDef>{{text.getText().initiativeLabel}}</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.skirmishInitiative}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="advantage">
+        <th mat-header-cell *matHeaderCellDef>{{text.getText().advantageLabel}}</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.advantage}}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="temporaryParametersColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: temporaryParametersColumns;"></tr>
     </table>
+
   </div>
 </div>
 
@@ -75,252 +79,306 @@
 <div class="row">
   <div class="col-md-12">
     <h2>{{text.getText().characteristicsLabel}}</h2>
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">{{text.getCharacteristicNameTranslation("MOVEMENT").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("WEAPON_SKILL").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("BALLISTIC_SKILL").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("STRENGTH").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("TOUGHNESS").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("INITIATIVE").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("AGILITY").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("DEXTERITY").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("INTELLIGENCE").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("WILLPOWER").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("FELLOWSHIP").nameTranslation}}</th>
-        <th scope="col">{{text.getCharacteristicNameTranslation("WOUNDS").nameTranslation}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>{{skirmishCharacter.movement.value}}</td>
-        <td>{{skirmishCharacter.weaponSkill.value}}</td>
-        <td>{{skirmishCharacter.ballisticSkill.value}}</td>
-        <td>{{skirmishCharacter.strength.value}}</td>
-        <td>{{skirmishCharacter.toughness.value}}</td>
-        <td>{{skirmishCharacter.initiative.value}}</td>
-        <td>{{skirmishCharacter.agility.value}}</td>
-        <td>{{skirmishCharacter.dexterity.value}}</td>
-        <td>{{skirmishCharacter.intelligence.value}}</td>
-        <td>{{skirmishCharacter.willpower.value}}</td>
-        <td>{{skirmishCharacter.fellowship.value}}</td>
-        <td>{{skirmishCharacter.wounds.value}}</td>
-      </tr>
-      </tbody>
+
+    <table mat-table [dataSource]="[character]" class="mat-elevation-z8">
+      <ng-container matColumnDef="{{column}}" *ngFor="let column of characteristicsColumns">
+        <th mat-header-cell *matHeaderCellDef>{{text.getCharacteristicNameTranslation(column).nameTranslation}}</th>
+        <td mat-cell *matCellDef="let element">{{element.getCharacteristic(column).value}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="characteristicsColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: characteristicsColumns;"></tr>
     </table>
+
   </div>
 </div>
 
-<ng-container *ngIf="skirmishCharacter.notes.length > 0">
+<ng-container *ngIf="character.notes.length > 0">
   <hr>
   <div class="row">
     <div class="col-md-12">
-      <h2>Notatki</h2>
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let note of skirmishCharacter.notes">
-          {{note}}
-        </li>
-      </ul>
+      <h2>{{text.getText().notesLabel}}</h2>
+
+      <table mat-table [dataSource]="character.notes" class="mat-elevation-z8">
+        <ng-container matColumnDef="note">
+          <td mat-cell *matCellDef="let element">{{element}}</td>
+        </ng-container>
+
+        <tr mat-row *matRowDef="let row; columns: notesColumns;"></tr>
+      </table>
+
     </div>
   </div>
 </ng-container>
-
-<!--<hr>-->
-<!--<div class="row">-->
-<!--  <div class="col-md-12">-->
-<!--    <h4>{{text.getText().primaryHandLabel}}</h4>-->
-<!--    <h5 *ngIf="skirmishCharacter.isRightHanded">- {{text.getText().rightHandLabel}}</h5>-->
-<!--    <h5 *ngIf="!skirmishCharacter.isRightHanded">- {{text.getText().leftHandLabel}}</h5>-->
-<!--  </div>-->
-<!--</div>-->
 
 <hr>
 <div class="row">
   <div class="col-md-12">
     <h2>{{text.getText().bodyLabel}}</h2>
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">{{text.getText().nameLabel}}</th>
-        <th scope="col">{{text.getText().armorPointsLabel}}</th>
-        <th scope="col">{{text.getText().injuriesLabel}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let bodylocalization of skirmishCharacter.bodyLocalizations">
-        <td>{{bodylocalization.bodyLocalization.nameTranslation}}</td>
-        <td>{{bodylocalization.armorPoints}}</td>
-        <td>
+    <table mat-table [dataSource]="character.bodyLocalizations" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.bodyLocalization.nameTranslation}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="armorPoints">
+        <th mat-header-cell *matHeaderCellDef>{{text.getText().armorPointsLabel}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.armorPoints}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="injuries">
+        <th mat-header-cell *matHeaderCellDef>{{text.getText().injuriesLabel}}</th>
+        <td mat-cell *matCellDef="let element">
           <ul>
-            <li *ngFor="let characterInjury of bodylocalization.injuries">
+            <li *ngFor="let characterInjury of element.injuries">
               <span *ngIf="characterInjury.value == 1">{{characterInjury.injury.nameTranslation}}</span>
               <span
                 *ngIf="characterInjury.value > 1">{{characterInjury.injury.nameTranslation}} {{characterInjury.value}}</span>
             </li>
           </ul>
         </td>
-      </tr>
-      </tbody>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="bodyLocalizationsColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: bodyLocalizationsColumns;"></tr>
     </table>
   </div>
 </div>
 
-<ng-container *ngIf="skirmishCharacter.conditions.length > 0">
+<ng-container *ngIf="character.skills.length > 0 || character.talents.length > 0">
+  <hr>
+  <div class="row">
+    <div class="row mb-3">
+      <ng-container *ngIf="character.skills.length > 0">
+        <div class="col-md-5">
+          <h2>{{text.getText().skillsLabel}}</h2>
+
+          <table mat-table [dataSource]="character.skills" class="mat-elevation-z8">
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
+              <td mat-cell *matCellDef="let element">
+                {{element.skill.nameTranslation}}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="level">
+              <th mat-header-cell *matHeaderCellDef>{{text.getText().levelLabel}}</th>
+              <td mat-cell *matCellDef="let element">
+                {{element.value}}
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="baseColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: baseColumns;"></tr>
+          </table>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="character.talents.length > 0">
+        <div class="col-md-4">
+          <h2>{{text.getText().talentsLabel}}</h2>
+
+          <table mat-table [dataSource]="character.talents" class="mat-elevation-z8">
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
+              <td mat-cell *matCellDef="let element">
+              <span [matTooltip]="element.talent.description" matTooltipClass="custom-tooltip">
+                {{element.talent.nameTranslation}}
+              </span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="level">
+              <th mat-header-cell *matHeaderCellDef>{{text.getText().levelLabel}}</th>
+              <td mat-cell *matCellDef="let element">
+                {{element.value}}
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="baseColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: baseColumns;"></tr>
+          </table>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="character.conditions.length > 0">
+        <div class="col-md-3">
+          <h2>{{text.getText().conditionsLabel}}</h2>
+          <table mat-table [dataSource]="character.conditions" class="mat-elevation-z8">
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
+              <td mat-cell *matCellDef="let element">
+                <span [matTooltip]="element.condition.description" matTooltipClass="custom-tooltip">
+                  {{element.condition.nameTranslation}}
+                </span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="level">
+              <th mat-header-cell *matHeaderCellDef>{{text.getText().levelLabel}}</th>
+              <td mat-cell *matCellDef="let element">
+                {{element.value}}
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="baseColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: baseColumns;"></tr>
+          </table>
+
+        </div>
+      </ng-container>
+
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="character.weapons.length > 0">
   <hr>
   <div class="row">
     <div class="col-md-12">
-      <h2>{{text.getText().conditionsLabel}}</h2>
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let characterCondition of skirmishCharacter.conditions">
-          <span [matTooltip]="characterCondition.condition.description" matTooltipClass="custom-tooltip">
-            {{characterCondition.condition.nameTranslation}} - {{characterCondition.value}}
-          </span>
-        </li>
-      </ul>
-    </div>
-  </div>
-</ng-container>
+      <h2>{{text.getText().weaponLabel}}</h2>
+      <table mat-table [dataSource]="character.weapons" class="mat-elevation-z8">
 
-<ng-container *ngIf="skirmishCharacter.skills.length > 0 || skirmishCharacter.talents.length > 0">
-<hr>
-<div class="row">
-  <div class="row mb-2">
-    <div class="col-md-6">
-      <h2>{{text.getText().skillsLabel}}</h2>
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let characterSkill of skirmishCharacter.skills">
-          {{characterSkill.skill.nameTranslation}} - {{characterSkill.value}}
-        </li>
-      </ul>
-    </div>
-
-    <div class="col-md-6">
-      <h2>{{text.getText().talentsLabel}}</h2>
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let talent of skirmishCharacter.talents">
-          <span [matTooltip]="talent.talent.description" matTooltipClass="custom-tooltip">
-            {{talent.talent.nameTranslation}} - {{talent.value}}
-          </span>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-</ng-container>
-
-<ng-container *ngIf="skirmishCharacter.weapons.length > 0">
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <h2>{{text.getText().weaponLabel}}</h2>
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">{{text.getText().nameLabel}}</th>
-        <th scope="col">{{text.getText().categoryLabel}}</th>
-        <th scope="col">{{text.getText().reachLabel}}</th>
-        <th scope="col">{{text.getText().damageLabel}}</th>
-        <th scope="col">{{text.getText().advantagesAndDisadvantagesLabel}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let characterWeapon of skirmishCharacter.weapons">
-        <td
-          *ngIf="characterWeapon.value == 1; else characterWeaponValue">{{characterWeapon.weapon.nameTranslation}}</td>
-        <ng-template #characterWeaponValue>
-          <td>{{characterWeapon.weapon.nameTranslation}} ({{characterWeapon.value}})</td>
-        </ng-template>
-        <td>{{characterWeapon.weapon.weaponGroupType.nameTranslation}}</td>
-        <td>
-          <span
-            *ngIf="characterWeapon.weapon.weaponRange == 0; else weaponRange">{{characterWeapon.weapon.weaponReach.nameTranslation}}</span>
-          <ng-template #weaponRange>
-            <span *ngIf="characterWeapon.weapon.weaponGroupType.name.includes('AMMUNITION'); else fullWeaponRange">
-              <span *ngIf="characterWeapon.weapon.weaponRange == 0.5">{{text.getText().halfWeaponRangeLabel}}</span>
-              <span *ngIf="characterWeapon.weapon.weaponRange == 1">{{text.getText().rangeAsWeaponLabel}}</span>
-              <span *ngIf="characterWeapon.weapon.weaponRange > 1">+{{characterWeapon.weapon.weaponRange}}</span>
-            </span>
-            <ng-template #fullWeaponRange>
-              <span>{{characterWeapon.weapon.weaponRange}}</span>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="element.value == 1; else characterWeaponValue">{{element.weapon.nameTranslation}}</span>
+            <ng-template #characterWeaponValue>
+              <span>{{element.weapon.nameTranslation}} ({{element.value}})</span>
             </ng-template>
-          </ng-template>
-        </td>
-        <td>
-          <span *ngIf="characterWeapon.weapon.isUsingStrength; else elseBlock">
-            +{{+skirmishCharacter.strength.value.toString()[0]+characterWeapon.weapon.damage}}
-          </span>
-          <ng-template #elseBlock>+{{characterWeapon.weapon.damage}}</ng-template>
-        </td>
-        <td>
-          <ul>
-            <li *ngFor="let quality of characterWeapon.weapon.weaponQualities">
-              <span [matTooltip]="quality.description" matTooltipClass="custom-tooltip">
-                {{quality.nameTranslation}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().categoryLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.weapon.weaponGroupType.nameTranslation}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="reach">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().reachLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <span
+              *ngIf="element.weapon.weaponRange == 0; else weaponRange">{{element.weapon.weaponReach.nameTranslation}}
+            </span>
+            <ng-template #weaponRange>
+              <span *ngIf="element.weapon.weaponGroupType.name.includes('AMMUNITION'); else fullWeaponRange">
+                <span *ngIf="element.weapon.weaponRange == 0.5">{{text.getText().halfWeaponRangeLabel}}</span>
+                <span *ngIf="element.weapon.weaponRange == 1">{{text.getText().rangeAsWeaponLabel}}</span>
+                <span *ngIf="element.weapon.weaponRange > 1">+{{element.weapon.weaponRange}}</span>
               </span>
-            </li>
-          </ul>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+              <ng-template #fullWeaponRange>
+                <span>{{element.weapon.weaponRange}}</span>
+              </ng-template>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="damage">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().damageLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="element.weapon.isUsingStrength; else elseBlock">
+              +{{+character.strength.value.toString()[0] + element.weapon.damage}}
+            </span>
+            <ng-template #elseBlock>+{{element.weapon.damage}}</ng-template>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="advantagesAndDisadvantages">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().advantagesAndDisadvantagesLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <ul>
+              <li *ngFor="let quality of element.weapon.weaponQualities">
+                <span [matTooltip]="quality.description" matTooltipClass="custom-tooltip">
+                  {{quality.nameTranslation}}
+                </span>
+              </li>
+            </ul>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="weaponColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: weaponColumns;"></tr>
+      </table>
+
+    </div>
   </div>
-</div>
 </ng-container>
 
-<ng-container *ngIf="skirmishCharacter.armors.length > 0">
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <h2>{{text.getText().armorLabel}}</h2>
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">{{text.getText().nameLabel}}</th>
-        <th scope="col">{{text.getText().categoryLabel}}</th>
-        <th scope="col">{{text.getText().localizationLabel}}</th>
-        <th scope="col">{{text.getText().armorPointsLabel}}</th>
-        <th scope="col">{{text.getText().penaltiesLabel}}</th>
-        <th scope="col">{{text.getText().qualitiesLabel}}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let armor of skirmishCharacter.armors">
-        <td>{{armor.nameTranslation}}</td>
-        <td>{{armor.armorCategory.nameTranslation}}</td>
-        <td>
-          <ul>
-            <li *ngFor="let localization of armor.armorBodyLocalizations">
-              {{localization.bodyLocalization.nameTranslation}}
-            </li>
-          </ul>
-        </td>
-        <td>
-          <ul>
-            <li *ngFor="let localization of armor.armorBodyLocalizations">
-              {{localization.armorPoints}}
-            </li>
-          </ul>
-        </td>
-        <td>
-          <ul>
-            <li *ngFor="let penalty of armor.armorPenalties">
-              {{penalty.nameTranslation}}
-            </li>
-          </ul>
-        </td>
-        <td>
-          <ul>
-            <li *ngFor="let quality of armor.armorQualities">
-              <span [matTooltip]="quality.description" matTooltipClass="custom-tooltip">
-                {{quality.nameTranslation}}
-              </span>
-            </li>
-          </ul>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+<ng-container *ngIf="character.armors.length > 0">
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{text.getText().armorLabel}}</h2>
+
+      <table mat-table [dataSource]="character.armors" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.nameTranslation}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().categoryLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.armorCategory.nameTranslation}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="localization">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().localizationLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <ul>
+              <li *ngFor="let localization of element.armorBodyLocalizations">
+                {{localization.bodyLocalization.nameTranslation}}
+              </li>
+            </ul>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="armorPoints">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().armorPointsLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <ul>
+              <li *ngFor="let localization of element.armorBodyLocalizations">
+                {{localization.armorPoints}}
+              </li>
+            </ul>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="penalties">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().penaltiesLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <ul>
+              <li *ngFor="let penalty of element.armorPenalties">
+                {{penalty.nameTranslation}}
+              </li>
+            </ul>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="qualities">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().qualitiesLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <ul>
+              <li *ngFor="let quality of element.armorQualities">
+                <span [matTooltip]="quality.description" matTooltipClass="custom-tooltip">
+                  {{quality.nameTranslation}}
+                </span>
+              </li>
+            </ul>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="armorsColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: armorsColumns;"></tr>
+      </table>
+
+    </div>
   </div>
-</div>
 </ng-container>
