@@ -26,7 +26,7 @@ import {CharacterCondition} from "../../model/condition/character-condition.mode
 @Component({
   selector: 'app-character-edit',
   templateUrl: './character-edit.component.html',
-  styleUrls: ['./character-edit.component.css']
+  styleUrls: ['../../../app/edit-form/edit-form.component.css']
 })
 export class CharacterEditComponent extends EditFormComponent implements OnInit {
 

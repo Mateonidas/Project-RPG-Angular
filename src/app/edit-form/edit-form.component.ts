@@ -49,6 +49,8 @@ export class EditFormComponent {
   id!: number;
   characterBodyLocalizations!: CharacterBodyLocalization[];
 
+  characteristicsColumns: string[] = this.fillCharacteristicsColumn();
+
   text = TextResourceService;
 
   constructor(protected router: Router,
@@ -411,5 +413,22 @@ export class EditFormComponent {
           return Promise.resolve({weapon: (<FormControl>this.weapons[index]).value});
         }
       })
+  }
+
+  protected fillCharacteristicsColumn() {
+    return [
+      "MOVEMENT",
+      "WEAPON_SKILL",
+      "BALLISTIC_SKILL",
+      "STRENGTH",
+      "TOUGHNESS",
+      "INITIATIVE",
+      "AGILITY",
+      "DEXTERITY",
+      "INTELLIGENCE",
+      "WILLPOWER",
+      "FELLOWSHIP",
+      "WOUNDS"
+    ];
   }
 }
