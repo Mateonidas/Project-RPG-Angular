@@ -24,12 +24,13 @@ import {CharacterEditComponent} from "../../character/character-edit/character-e
 
 @Component({
   selector: 'app-skirmish-character-edit',
-  templateUrl: './skirmish-character-edit.component.html',
-  styleUrls: ['./skirmish-character-edit.component.css']
+  templateUrl: '../../../app/edit-form/edit-form.component.html',
+  styleUrls: ['../../../app/edit-form/edit-form.component.css']
 })
 export class SkirmishCharacterEditComponent extends CharacterEditComponent implements OnInit {
 
   editMode = false;
+  isSkirmishMode = true;
 
   constructor(router: Router,
               route: ActivatedRoute,

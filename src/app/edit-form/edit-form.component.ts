@@ -39,6 +39,7 @@ import {CharacterCondition} from "../model/condition/character-condition.model";
 export class EditFormComponent {
 
   isDataAvailable: boolean = false;
+  isSkirmishMode = false;
   editCharacterForm!: FormGroup;
   skillsList: Skill[] = [];
   talentsList: Talent[] = [];
@@ -53,17 +54,17 @@ export class EditFormComponent {
 
   text = TextResourceService;
 
-  constructor(protected router: Router,
-              protected route: ActivatedRoute,
-              protected armorService: ArmorService,
-              protected weaponService: WeaponService,
-              protected skillService: SkillService,
-              protected talentService: TalentService,
-              protected bodyLocalizationService: BodyLocalizationService,
-              protected characterService: CharacterService,
-              protected injuryService: InjuryService,
-              protected conditionService: ConditionService,
-              protected modalService: NgbModal) {
+  constructor(public router: Router,
+              public route: ActivatedRoute,
+              public armorService: ArmorService,
+              public weaponService: WeaponService,
+              public skillService: SkillService,
+              public talentService: TalentService,
+              public bodyLocalizationService: BodyLocalizationService,
+              public characterService: CharacterService,
+              public injuryService: InjuryService,
+              public conditionService: ConditionService,
+              public modalService: NgbModal) {
   }
 
   protected async fetchData() {
@@ -413,6 +414,10 @@ export class EditFormComponent {
           return Promise.resolve({weapon: (<FormControl>this.weapons[index]).value});
         }
       })
+  }
+
+  onSubmit() {
+
   }
 
   protected fillCharacteristicsColumn() {

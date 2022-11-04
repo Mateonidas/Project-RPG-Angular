@@ -33,6 +33,14 @@ textarea {
   overflow:hidden;
 }
 
+button {
+  margin-right: 10px;
+}
+
+input {
+  overflow: hidden;
+}
+
 .mat-cell, .mat-header-cell {
   width: 4%;
   text-align: center;
