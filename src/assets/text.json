@@ -56,6 +56,9 @@
   "turnLabel": "Runda: ",
   "initiativeRollLabel": "Rzut na inicjatywę",
   "addWeaponQualityLabel": "Dodaj cechę broni",
+  "addLocalizationLabel": "Dodaj lokalizację",
+  "addPenaltyLabel": "Dodaj karę",
+  "addArmorQualityLabel": "Dodaj cechę pancerza",
   "saveLabel": "Zapisz",
 
   "manageCharacterButton": "Zarządzaj Postacią",
