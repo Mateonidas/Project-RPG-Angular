@@ -52,6 +52,7 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
     this.editCharacterForm = new FormGroup({
       'name': new FormControl(character.name),
       'description': new FormControl(character.description),
+      'group': new FormControl(character.group),
       'characteristics': formArrays.characteristics,
       'skills': formArrays.skills,
       'talents': formArrays.talents,
