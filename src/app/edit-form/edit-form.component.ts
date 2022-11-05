@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Character} from "../model/character/character.model";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {Skill} from "../model/skill/skill.model";
@@ -19,17 +19,14 @@ import {TextResourceService} from "../shared/services/text-resource-service/text
 import {CharacterWeapon} from "../model/weapon/character-weapon.model";
 import {CharacterBodyLocalization} from "../model/body-localization/character-body-localization.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {
-  EditArmorDialogWindowComponent
-} from "../dialog-window/edit-armor-dialog-window/edit-armor-dialog-window.component";
+import {EditArmorDialog} from "../dialog-window/edit-armor-dialog-window/edit-armor-dialog.component";
 import {BodyLocalizationService} from "../shared/services/body-localization-service/body-localization.service";
 import {CharacterService} from "../shared/services/character-service/character.service";
-import {
-  EditWeaponDialogWindowComponent
-} from "../dialog-window/edit-weapon-dialog-window/edit-weapon-dialog-window.component";
 import {InjuryService} from "../shared/services/injuries-service/injury.service";
 import {ConditionService} from "../shared/services/condition-service/condition.service";
 import {CharacterCondition} from "../model/condition/character-condition.model";
+import {MatDialog} from "@angular/material/dialog";
+import {EditWeaponDialog} from "../dialog-window/edit-weapon-dialog/edit-weapon-dialog.component";
 
 @Component({
   selector: 'app-edit-form',
@@ -64,7 +61,8 @@ export class EditFormComponent {
               public characterService: CharacterService,
               public injuryService: InjuryService,
               public conditionService: ConditionService,
-              public modalService: NgbModal) {
+              public modalService: NgbModal,
+              public dialog: MatDialog) {
   }
 
   protected async fetchData() {
@@ -372,48 +370,46 @@ export class EditFormComponent {
   }
 
   createEditArmorDialogWindow(index: number) {
-    const modalRef = this.modalService.open(EditArmorDialogWindowComponent);
-    modalRef.componentInstance.armor = (<FormControl>this.armors[index]).value;
+    const dialogRef = this.dialog.open(EditArmorDialog, {
+      width: '30%',
+      data: (<FormControl>this.armors[index]).value,
+    });
 
-    let armor: Armor;
-    modalRef.componentInstance.emitter.subscribe((result: { armor: Armor}) => {
-      armor = result.armor;
+    dialogRef.afterClosed().subscribe(armor => {
+      if (armor != undefined) {
+        this.armorService.storeArmor(armor).then(() => {
+          if (armor != null) {
+            return Promise.resolve({weapon: armor});
+          } else {
+            return Promise.resolve({weapon: (<FormControl>this.armors[index]).value});
+          }
+        })
+      }
     })
-
-    return modalRef.closed
-      .toPromise()
-      .then(() => {
-        if (armor != null) {
-          return Promise.resolve({armor: armor});
-        } else {
-          return Promise.resolve({armor: (<FormControl>this.armors[index]).value});
-        }
-      })
   }
 
   async onEditWeapon(index: number) {
-    await this.createEditWeaponDialogWindow(index);
+    await this.createEditWeaponDialog(index);
     this.weaponsList = this.weaponService.weaponsList;
   }
 
-  createEditWeaponDialogWindow(index: number) {
-    const modalRef = this.modalService.open(EditWeaponDialogWindowComponent);
-    modalRef.componentInstance.weapon = (<FormControl>this.weapons[index]).value.weapon;
+  createEditWeaponDialog(index: number) {
+    const dialogRef = this.dialog.open(EditWeaponDialog, {
+      width: '30%',
+      data: (<FormControl>this.weapons[index]).value.weapon,
+    });
 
-    let weapon: Weapon;
-    modalRef.componentInstance.emitter.subscribe((result: { weapon: Weapon }) => {
-      weapon = result.weapon;
+    dialogRef.afterClosed().subscribe(weapon => {
+      if (weapon != undefined) {
+        this.weaponService.storeWeapon(weapon).then(() => {
+          if (weapon != null) {
+            return Promise.resolve({weapon: weapon});
+          } else {
+            return Promise.resolve({weapon: (<FormControl>this.weapons[index]).value});
+          }
+        })
+      }
     })
-
-    return modalRef.closed
-      .toPromise()
-      .then(() => {
-        if (weapon != null) {
-          return Promise.resolve({weapon: weapon});
-        } else {
-          return Promise.resolve({weapon: (<FormControl>this.weapons[index]).value});
-        }
-      })
   }
 
   onSubmit() {

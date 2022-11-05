@@ -313,7 +313,7 @@
             </div>
 
             <div class="col-md-2">
-              <button mat-mini-fab color="warn" (click)="onDeleteInjury(i)">X</button>
+              <button mat-mini-fab color="warn" type="button" (click)="onDeleteInjury(i)">X</button>
             </div>
           </div>
 
@@ -372,8 +372,8 @@
       <hr>
       <div class="row">
         <div class="col-md-12">
-          <button class="btn btn-primary me-2" type="submit">Zapisz</button>
-          <button type="submit" class="btn btn-danger" (click)="onCancel()">Powrót</button>
+          <button mat-raised-button color="primary" type="submit">Zapisz</button>
+          <button mat-raised-button color="warn" type="button" (click)="onCancel()">Powrót</button>
         </div>
       </div>
     </form>

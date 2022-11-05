@@ -1,0 +1,125 @@
+<h1 mat-dialog-title>{{text.getText().modificationLabel}} {{weapon.nameTranslation}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form" (ngSubmit)="onSave()">
+    <div mat-dialog-content>
+
+        <div class="row">
+          <mat-form-field appearance="fill">
+            <mat-label>{{text.getText().nameLabel}}</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field appearance="fill">
+            <mat-label>{{text.getText().nameTranslationLabel}}</mat-label>
+            <input matInput formControlName="nameTranslation">
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+              <mat-label>{{text.getText().weaponTypeLabel}}</mat-label>
+              <mat-select formControlName="weaponType" [compareWith]="compareModels">
+                <mat-option *ngFor="let weaponType of weaponService.weaponTypesList" [value]="weaponType">
+                  {{weaponType.nameTranslation}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="fill" class="example-full-width">
+              <mat-label>{{text.getText().weaponGroupLabel}}</mat-label>
+              <mat-select formControlName="weaponGroup" [compareWith]="compareModels">
+                <mat-option *ngFor="let weaponGroup of weaponService.weaponGroupsList" [value]="weaponGroup">
+                  {{weaponGroup.nameTranslation}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="fill" class="example-full-width">
+              <mat-label>{{text.getText().weaponReachLabel}}</mat-label>
+              <mat-select formControlName="weaponReach" [compareWith]="compareModels">
+                <mat-option *ngFor="let weaponReach of weaponService.weaponReachesList" [value]="weaponReach">
+                  {{weaponReach.nameTranslation}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="fill">
+              <mat-label>{{text.getText().weaponRangeLabel}}</mat-label>
+              <input matInput type="number" formControlName="weaponRange">
+            </mat-form-field>
+        </div>
+
+        <div class="row" style="margin-bottom: 10px">
+            <h4>{{text.getText().isUsingBSToCountRangeLabel}}</h4>
+            <mat-radio-group formControlName="isUsingStrengthInRange" [value]="modifiedWeapon.isUsingStrengthInRange">
+              <mat-radio-button [value]=true>{{text.getText().yesLabel}}</mat-radio-button>
+              <mat-radio-button [value]=false>{{text.getText().noLabel}}</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="fill">
+              <mat-label>{{text.getText().damageLabel}}</mat-label>
+              <input matInput type="number" formControlName="damage">
+            </mat-form-field>
+        </div>
+
+        <div class="row" style="margin-bottom: 10px">
+            <h4>{{text.getText().isUsingBSToCountDamageLabel}}</h4>
+            <mat-radio-group formControlName="isUsingStrength" [value]="modifiedWeapon.isUsingStrength">
+              <mat-radio-button [value]=true>{{text.getText().yesLabel}}</mat-radio-button>
+              <mat-radio-button [value]=false>{{text.getText().noLabel}}</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <hr>
+        <div class="row">
+          <div formArrayName="weaponQualities">
+            <div class="row mb-2" *ngFor="let weaponQuality of weaponQualities; let i = index" [formGroupName]="i">
+              <div class="col-md-6">
+                <mat-form-field appearance="fill" class="example-full-width">
+                  <mat-label>{{text.getText().qualityNameLabel}}</mat-label>
+                  <mat-select formControlName="quality" [compareWith]="compareModels">
+                    <mat-option *ngFor="let quality of weaponService.weaponQualitiesList" [value]="quality">
+                      {{quality.nameTranslation}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-3">
+                <mat-form-field appearance="fill">
+                  <mat-label>{{text.getText().valueLabel}}</mat-label>
+                  <input matInput type="number" formControlName="value">
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-2">
+                <button mat-mini-fab color="warn" type="button" (click)="onDeleteWeaponQuality(i)">X</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <button mat-raised-button color="primary" type="button" (click)="onAddWeaponQuality()">
+                  {{text.getText().addWeaponQualityLabel}}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    <div mat-dialog-actions>
+      <button mat-raised-button color="primary" type="submit">{{text.getText().saveLabel}}</button>
+    </div>
+  </form>
+</div>

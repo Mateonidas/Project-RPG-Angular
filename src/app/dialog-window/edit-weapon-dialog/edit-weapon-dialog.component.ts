@@ -1,25 +1,27 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Weapon} from "../../model/weapon/weapon.model";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {WeaponService} from "../../shared/services/weapon-service/weapon.service";
 import {WeaponQuality} from "../../model/weapon/weapon-quality.model";
 import {Model} from "../../model/model";
+import {WeaponService} from "../../shared/services/weapon-service/weapon.service";
+import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
 
 @Component({
-  selector: 'app-edit-weapon-dialog-window',
-  templateUrl: './edit-weapon-dialog-window.component.html',
-  styleUrls: ['./edit-weapon-dialog-window.component.css']
+  selector: 'app-edit-weapon-dialog',
+  templateUrl: './edit-weapon-dialog.component.html',
+  styleUrls: ['./edit-weapon-dialog.component.css']
 })
-export class EditWeaponDialogWindowComponent implements OnInit {
+export class EditWeaponDialog implements OnInit {
 
-  @Input() weapon!: Weapon;
-  @Output() emitter = new EventEmitter<{weapon: Weapon}>();
   form!: FormGroup;
   modifiedWeapon = new Weapon();
+  text = TextResourceService;
 
-  constructor(public activeModal: NgbActiveModal,
-              public weaponService: WeaponService) { }
+  constructor(public dialogRef: MatDialogRef<EditWeaponDialog>,
+              @Inject(MAT_DIALOG_DATA) public weapon: Weapon,
+              public weaponService: WeaponService) {
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -88,10 +90,7 @@ export class EditWeaponDialogWindowComponent implements OnInit {
       weapon = this.weapon;
     }
 
-    this.weaponService.storeWeapon(weapon).then(() => {
-      this.emitter.emit({weapon: weapon});
-      this.activeModal.close('Close click');
-    })
+    this.dialogRef.close(weapon);
   }
 
   private modifyWeapon(weapon: Weapon) {
@@ -109,4 +108,5 @@ export class EditWeaponDialogWindowComponent implements OnInit {
       weapon.weaponQualities.push(weaponQuality);
     }
   }
+
 }

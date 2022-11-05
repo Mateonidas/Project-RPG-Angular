@@ -40,11 +40,8 @@ import {ValidationAlertComponent} from './validation/validation-alert/validation
 // } from './dialog-window/attack-ally-fumble-dialog-window/attack-ally-fumble-dialog-window.component';
 import {HttpClientModule} from '@angular/common/http';
 import {
-  EditArmorDialogWindowComponent
-} from './dialog-window/edit-armor-dialog-window/edit-armor-dialog-window.component';
-import {
-  EditWeaponDialogWindowComponent
-} from './dialog-window/edit-weapon-dialog-window/edit-weapon-dialog-window.component';
+  EditArmorDialog
+} from './dialog-window/edit-armor-dialog-window/edit-armor-dialog.component';
 import {AutoFocusDirective} from './shared/directives/auto-focus.directive';
 import {RollDialogWindow} from "./dialog-window/roll-dialog-window/roll-dialog-window.component";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -61,6 +58,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatSelectModule} from "@angular/material/select";
+import { EditWeaponDialog } from './dialog-window/edit-weapon-dialog/edit-weapon-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -89,9 +88,9 @@ import {MatSelectModule} from "@angular/material/select";
     // AttackReportDialogWindowComponent,
     // RollDialogWindowComponent,
     // AttackAllyFumbleDialogWindowComponent,
-    EditArmorDialogWindowComponent,
-    EditWeaponDialogWindowComponent,
-    AutoFocusDirective
+    EditArmorDialog,
+    AutoFocusDirective,
+    EditWeaponDialog
   ],
   imports: [
     BrowserModule,
@@ -113,7 +112,8 @@ import {MatSelectModule} from "@angular/material/select";
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

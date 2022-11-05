@@ -1,28 +1,30 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Armor} from "../../model/armor/armor.model";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {ArmorService} from "../../shared/services/armor-service/armor.service";
 import {ArmorBodyLocalization} from "../../model/body-localization/armor-body-localization.model";
 import {BodyLocalizationService} from "../../shared/services/body-localization-service/body-localization.service";
 import {Model} from "../../model/model";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
 
 @Component({
   selector: 'app-edit-armor-dialog-window',
-  templateUrl: './edit-armor-dialog-window.component.html',
-  styleUrls: ['./edit-armor-dialog-window.component.css']
+  templateUrl: './edit-armor-dialog.component.html',
+  styleUrls: ['./edit-armor-dialog.component.css']
 })
-export class EditArmorDialogWindowComponent implements OnInit {
+export class EditArmorDialog implements OnInit {
 
-  @Input() armor!: Armor;
-  @Output() emitter = new EventEmitter<{armor: Armor}>();
   form!: FormGroup;
   modifiedArmor = new Armor();
+  text = TextResourceService;
 
-  constructor(public activeModal: NgbActiveModal,
+  constructor(public dialogRef: MatDialogRef<EditArmorDialog>,
+              @Inject(MAT_DIALOG_DATA) public armor: Armor,
               public armorService: ArmorService,
               public bodyLocalizationService: BodyLocalizationService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -43,7 +45,7 @@ export class EditArmorDialogWindowComponent implements OnInit {
   prepareArmorBodyLocalizationsList(armorBodyLocalizationsList: ArmorBodyLocalization[]) {
     let armorBodyLocalizations = new FormArray([]);
 
-    for(let armorBodyLocalization of armorBodyLocalizationsList) {
+    for (let armorBodyLocalization of armorBodyLocalizationsList) {
       armorBodyLocalizations.push(
         new FormGroup({
           'bodyLocalization': new FormControl(armorBodyLocalization.bodyLocalization),
@@ -104,7 +106,7 @@ export class EditArmorDialogWindowComponent implements OnInit {
 
   onSave() {
     let armor: Armor;
-    if(this.form.value.name != this.armor.name || this.form.value.nameTranslation != this.armor.nameTranslation) {
+    if (this.form.value.name != this.armor.name || this.form.value.nameTranslation != this.armor.nameTranslation) {
       this.modifyArmor(this.modifiedArmor);
       armor = this.modifiedArmor;
       armor.id = undefined;
@@ -113,10 +115,7 @@ export class EditArmorDialogWindowComponent implements OnInit {
       armor = this.armor;
     }
 
-    this.armorService.storeArmor(armor).then(() => {
-      this.emitter.emit({armor: armor});
-      this.activeModal.close('Close click');
-    });
+    this.dialogRef.close(armor);
   }
 
   modifyArmor(armor: Armor) {

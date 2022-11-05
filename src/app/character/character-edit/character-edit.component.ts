@@ -22,6 +22,7 @@ import {InjuryService} from "../../shared/services/injuries-service/injury.servi
 import {CharacterInjury} from "../../model/injury/character-injury.model";
 import {ConditionService} from "../../shared/services/condition-service/condition.service";
 import {CharacterCondition} from "../../model/condition/character-condition.model";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-character-edit',
@@ -32,8 +33,8 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
 
   editMode = false;
 
-  constructor(router: Router,
-              route: ActivatedRoute,
+  constructor(public router: Router,
+              public route: ActivatedRoute,
               public armorService: ArmorService,
               public weaponService: WeaponService,
               public skillService: SkillService,
@@ -42,8 +43,9 @@ export class CharacterEditComponent extends EditFormComponent implements OnInit 
               public characterService: CharacterService,
               public injuryService: InjuryService,
               public conditionService: ConditionService,
-              public modalService: NgbModal) {
-    super(router, route, armorService, weaponService, skillService, talentService, bodyLocalizationService, characterService, injuryService, conditionService, modalService);
+              public modalService: NgbModal,
+              public dialog: MatDialog) {
+    super(router, route, armorService, weaponService, skillService, talentService, bodyLocalizationService, characterService, injuryService, conditionService, modalService, dialog);
   }
 
   ngOnInit(): void {
