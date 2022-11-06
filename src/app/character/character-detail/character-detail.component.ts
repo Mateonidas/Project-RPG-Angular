@@ -14,12 +14,15 @@ export class CharacterDetailComponent implements OnInit {
   character!: Character;
   text = TextResourceService;
   protected id!: number;
+  isSkirmishMode = false;
+
   characteristicsColumns: string[] = this.fillCharacteristicsColumn();
   bodyLocalizationsColumns: string[] = ['name', 'armorPoints', 'injuries'];
   notesColumns: string[] = ['note'];
   baseColumns: string[] = ['name', 'level'];
   weaponColumns: string[] = ['name', 'category', 'reach', 'damage', 'advantagesAndDisadvantages'];
   armorsColumns: string[] = ['name', 'category', 'localization', 'armorPoints', 'penalties', 'qualities'];
+  temporaryParametersColumns: string[] = ['isAlive', 'currentWounds', 'initiative', 'advantage'];
 
   constructor(public characterService: CharacterService,
               public skirmishService: SkirmishCharacterService,

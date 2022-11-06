@@ -8,7 +8,7 @@
 
     <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">{{text.getText().manageCharacterButton}}</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="onAddToFight()">{{text.getText().addToFightButton}}</button>
+      <button *ngIf="!isSkirmishMode" mat-menu-item (click)="onAddToFight()">{{text.getText().addToFightButton}}</button>
       <button mat-menu-item (click)="onEditCharacter()">{{text.getText().editCharacterButton}}</button>
       <button mat-menu-item (click)="onDeleteCharacter()">{{text.getText().deleteCharacterButton}}</button>
     </mat-menu>
@@ -31,6 +31,50 @@
     {{character.group}}
     <br>
     <br>
+  </div>
+</div>
+
+<div *ngIf="isSkirmishMode">
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{text.getText().temporaryParametersLabel}}</h2>
+
+      <table mat-table [dataSource]="[character]" class="mat-elevation-z8">
+        <ng-container matColumnDef="isAlive">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().isAliveLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="element.isDead">Nie</span>
+            <span *ngIf="!element.isDead">Tak</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="currentWounds">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().woundsLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.currentWounds}}/{{element.wounds.value}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="initiative">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().initiativeLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.skirmishInitiative}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="advantage">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().advantageLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.advantage}}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="temporaryParametersColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: temporaryParametersColumns;"></tr>
+      </table>
+
+    </div>
   </div>
 </div>
 

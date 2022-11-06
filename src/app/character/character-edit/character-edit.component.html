@@ -1,0 +1,381 @@
+<div class="row" *ngIf="isDataAvailable">
+  <div class="col-md-10">
+    <form [formGroup]="editCharacterForm" (ngSubmit)="onSubmit()">
+
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <h2>Dane</h2>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>{{text.getText().nameLabel}}</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>{{text.getText().descriptionLabel}}</mat-label>
+            <input matInput formControlName="description">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>{{text.getText().groupLabel}}</mat-label>
+            <input matInput formControlName="group">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div *ngIf="isSkirmishMode">
+        <hr>
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <h2>Parametry tymczasowe</h2>
+
+            <mat-form-field appearance="fill" class="example-full-width">
+              <mat-label>{{text.getText().isAlive}}</mat-label>
+              <mat-select formControlName="isDead" [(value)]="isDead">
+                <mat-option [value]="true">
+                  {{text.getText().noLabel}}
+                </mat-option>
+
+                <mat-option [value]="false">
+                  {{text.getText().yesLabel}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>{{text.getText().woundsLabel}}</mat-label>
+              <input matInput type="number" formControlName="currentWounds">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>{{text.getText().initiativeLabel}}</mat-label>
+              <input matInput type="number" formControlName="skirmishInitiative">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>{{text.getText().advantageLabel}}</mat-label>
+              <input matInput type="number" formControlName="advantage">
+            </mat-form-field>
+
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
+        <div class="col-md-12 form-group" formArrayName="characteristics">
+          <h2>{{text.getText().characteristicsLabel}}</h2>
+
+          <table mat-table [dataSource]="[characteristics]" class="mat-elevation-z8">
+            <ng-container matColumnDef="{{column}}" *ngFor="let column of characteristicsColumns; let i=index">
+              <th mat-header-cell
+                  *matHeaderCellDef>{{text.getCharacteristicNameTranslation(column).nameTranslation}}</th>
+              <td mat-cell *matCellDef="let element" [formGroupName]="i">
+                <input matInput type="number" formControlName="value">
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="characteristicsColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: characteristicsColumns;"></tr>
+          </table>
+
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
+        <div class="col-md-12" formArrayName="notes">
+          <h2>Notatki</h2>
+          <div class="row mb-2" *ngFor="let noteControl of notes; index as i">
+            <div class="col-md-10">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>{{text.getText().noteLabel}}</mat-label>
+                <textarea matInput type="text" [formControlName]="i" style="overflow:hidden"></textarea>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-2">
+              <button mat-mini-fab color="warn" (click)="onDeleteNote(i)">X</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <button mat-raised-button color="primary" type="button" (click)="onAddNote()">Dodaj notatkę</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Ręka wiodąca</h2>
+          <mat-radio-group formControlName="isRightHanded">
+            <mat-radio-button [value]=true> Prawa</mat-radio-button>
+            <mat-radio-button [value]=false> Lewa</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
+        <div class="col-md-12" formArrayName="skills">
+          <h2>Umiejętności</h2>
+          <div class="row mb-2" *ngFor="let skillControl of skills; let i = index" [formGroupName]="i">
+            <div class="col-md-8">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>{{text.getText().nameLabel}}</mat-label>
+                <mat-select formControlName="skill" [compareWith]="compareModels">
+                  <mat-option *ngFor="let skill of skillsList" [value]="skill">
+                    {{skill.nameTranslation}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-2">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>{{text.getText().valueLabel}}</mat-label>
+                <input matInput type="number" formControlName="value">
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-2">
+              <button mat-mini-fab color="warn" (click)="onDeleteSkill(i)">X</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <button mat-raised-button color="primary" type="button" (click)="onAddSkill()">Dodaj Umiejętność</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
+        <div class="col-md-12" formArrayName="talents">
+          <h2>Talenty</h2>
+
+          <div class="row mb-2" *ngFor="let talentControl of talents; let i = index" [formGroupName]="i">
+            <div class="col-md-8">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>{{text.getText().nameLabel}}</mat-label>
+                <mat-select formControlName="talent" [compareWith]="compareModels">
+                  <mat-option *ngFor="let talent of talentsList" [value]="talent">
+                    {{talent.nameTranslation}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-2">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>{{text.getText().valueLabel}}</mat-label>
+                <input matInput type="number" formControlName="value" (keyup)="onSetTalentLevel($event, i)">
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-2">
+              <button mat-mini-fab color="warn" type="button" (click)="onDeleteTalent(i)">X</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <button mat-raised-button color="primary" type="button" (click)="onAddTalent()">Dodaj Talent</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
+        <div class="col-md-12" formArrayName="weapons">
+          <h2>Broń</h2>
+          <div class="row mb-2" *ngFor="let weaponControl of weapons; let i = index" [formGroupName]="i">
+            <div class="col-md-7">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>{{text.getText().weaponNameLabel}}</mat-label>
+                <mat-select formControlName="weapon" [compareWith]="compareModels">
+                  <mat-option disabled="disabled">
+                    ---- {{weaponsList[0].weaponGroupType.nameTranslation}} ----
+                  </mat-option>
+                  <ng-container *ngFor="let weapon of weaponsList; let i = index">
+                    <mat-option *ngIf="i > 0 && weapon.weaponGroupType.name !== weaponsList[i-1].weaponGroupType.name"
+                                disabled="disabled">
+                      ---- {{weapon.weaponGroupType.nameTranslation}} ----
+                    </mat-option>
+                    <mat-option [value]="weapon">
+                      {{weapon.nameTranslation}}
+                    </mat-option>
+                  </ng-container>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>{{text.getText().unitsLabel}}</mat-label>
+                <input matInput type="number" formControlName="value">
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <button mat-raised-button color="primary" type="button" (click)="onEditWeapon(i)">Edytuj</button>
+              <button mat-mini-fab color="warn" (click)="onDeleteWeapon(i)">X</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button mat-raised-button color="primary" type="button" (click)="onAddWeapon()">Dodaj Broń</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
+        <div class="col-md-12" formArrayName="armors">
+          <h2>Pancerz</h2>
+          <div class="row mb-2" *ngFor="let armorControl of armors; let i = index" [formGroupName]="i">
+            <div class="col-md-7">
+
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>{{text.getText().nameLabel}}</mat-label>
+                <mat-select [formControl]="armorControl" [compareWith]="compareModels">
+                  <mat-option disabled="disabled">
+                    ---- {{armorsList[0].armorCategory.nameTranslation}} ----
+                  </mat-option>
+                  <ng-container *ngFor="let armor of armorsList; let i = index">
+                    <mat-option *ngIf="i > 0 && armor.armorCategory.name !== armorsList[i-1].armorCategory.name"
+                                disabled="disabled">
+                      ---- {{armor.armorCategory.nameTranslation}} ----
+                    </mat-option>
+                    <mat-option [value]=armor>
+                      {{armor.nameTranslation}}
+                    </mat-option>
+                  </ng-container>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+
+            <div class="col-md-3">
+              <button mat-raised-button color="primary" type="button" (click)="onEditArmor(i)">Edytuj</button>
+              <button mat-mini-fab color="warn" (click)="onDeleteArmor(i)">X</button>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <button mat-raised-button color="primary" type="button" (click)="onAddArmor()">Dodaj Pancerz</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
+        <div class="col-md-12" formArrayName="injuries">
+          <h2>Urazy</h2>
+
+          <div class="row mb-2" *ngFor="let injuryControl of injuries; let i = index" [formGroupName]="i">
+            <div class="col-md-5">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>{{text.getText().injuryNameLabel}}</mat-label>
+                <mat-select formControlName="injury" [compareWith]="compareModels">
+                  <mat-option *ngFor="let injury of injuryService.injuriesList" [value]="injury">
+                    {{injury.nameTranslation}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-3">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>{{text.getText().injuryNameLabel}}</mat-label>
+                <mat-select formControlName="bodyLocalization" [compareWith]="compareModels">
+                  <mat-option *ngFor="let bodyLocalization of characterBodyLocalizations"
+                              [value]="bodyLocalization.bodyLocalization">
+                    {{bodyLocalization.bodyLocalization.nameTranslation}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>{{text.getText().valueLabel}}</mat-label>
+                <input matInput type="number" formControlName="value">
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-2">
+              <button mat-mini-fab color="warn" type="button" (click)="onDeleteInjury(i)">X</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <button mat-raised-button color="primary" type="button" (click)="onAddInjury()">Dodaj Uraz</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
+        <div class="col-md-12" formArrayName="conditions">
+          <h2>Stany</h2>
+
+          <div class="row mb-2" *ngFor="let conditionControl of conditions; let i = index" [formGroupName]="i">
+            <div class="col-md-5">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>{{text.getText().conditionNameLabel}}</mat-label>
+                <mat-select formControlName="condition" [compareWith]="compareModels">
+                  <mat-option *ngFor="let condition of conditionService.conditionsList" [value]="condition">
+                    {{condition.nameTranslation}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-2">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>{{text.getText().valueLabel}}</mat-label>
+                <input matInput type="number" formControlName="value">
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-2">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>{{text.getText().counterLabel}}</mat-label>
+                <input matInput type="number" formControlName="counter">
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-2">
+              <button mat-mini-fab color="warn" (click)="onDeleteCondition(i)">X</button>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button mat-raised-button color="primary" type="button" (click)="onAddCondition()">Dodaj Stan</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
+        <div class="col-md-12">
+          <button mat-raised-button color="primary" type="submit">Zapisz</button>
+          <button mat-raised-button color="warn" type="button" (click)="onCancel()">Powrót</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

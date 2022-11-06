@@ -7,13 +7,13 @@ import {CharacterService} from "../../shared/services/character-service/characte
 
 @Component({
   selector: 'app-skirmish-character-details',
-  templateUrl: './skirmish-character-details.component.html',
-  styleUrls: ['./skirmish-character-details.component.css']
+  templateUrl: '../../character/character-detail/character-detail.component.html',
+  styleUrls: ['../../character/character-detail/character-detail.component.css']
 })
 export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent implements OnInit {
 
   character!: SkirmishCharacter;
-  temporaryParametersColumns: string[] = ['isAlive', 'currentWounds', 'initiative', 'advantage'];
+  isSkirmishMode = true;
 
   constructor(public characterService: CharacterService,
               public skirmishService: SkirmishCharacterService,
@@ -37,7 +37,7 @@ export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent 
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    if(event.key == 'Enter') {
+    if (event.key == 'Enter') {
       this.onEditCharacter();
     }
   }

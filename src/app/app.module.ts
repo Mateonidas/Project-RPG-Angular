@@ -23,7 +23,6 @@ import {
   SkirmishCharacterDetailsComponent
 } from './skirmish/skirmish-character-details/skirmish-character-details.component';
 import {SkirmishCharacterEditComponent} from './skirmish/skirmish-character-edit/skirmish-character-edit.component';
-import {EditFormComponent} from './edit-form/edit-form.component';
 import {InitiativeDialogWindow} from './dialog-window/initiative-dialog-window/initiative-dialog-window.component';
 import {SkirmishActionsListComponent} from './skirmish/skirmish-actions-list/skirmish-actions-list.component';
 import {
@@ -78,7 +77,6 @@ import {MatDialogModule} from "@angular/material/dialog";
     SkirmishCharacterItemComponent,
     SkirmishCharacterDetailsComponent,
     SkirmishCharacterEditComponent,
-    EditFormComponent,
     InitiativeDialogWindow,
     RollDialogWindow,
     SkirmishActionsListComponent,

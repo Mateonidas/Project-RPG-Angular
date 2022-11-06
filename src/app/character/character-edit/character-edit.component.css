@@ -1,12 +1,5 @@
-.table-input {
-  display: block !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  border: 0 !important;
-  width: 100% !important;
-  border-radius: 0 !important;
-  line-height: 2 !important;
-  text-align: center;
+table {
+  width: 100%;
 }
 
 td {
@@ -15,15 +8,6 @@ td {
 }
 
 th {
-  text-align: center;
-}
-
-table {
-  width: 100%;
-}
-
-.mat-cell, .mat-header-cell {
-  width: 4%;
   text-align: center;
 }
 
@@ -39,4 +23,33 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+textarea {
+  overflow:hidden;
+}
+
+button {
+  margin-right: 10px;
+}
+
+input {
+  overflow: hidden;
+}
+
+.mat-cell, .mat-header-cell {
+  width: 4%;
+  text-align: center;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+.mat-mini-fab {
+  margin-top: 5%;
 }

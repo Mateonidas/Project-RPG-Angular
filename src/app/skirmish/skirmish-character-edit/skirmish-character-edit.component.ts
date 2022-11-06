@@ -25,8 +25,8 @@ import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-skirmish-character-edit',
-  templateUrl: '../../../app/edit-form/edit-form.component.html',
-  styleUrls: ['../../../app/edit-form/edit-form.component.css']
+  templateUrl: '../../character/character-edit/character-edit.component.html',
+  styleUrls: ['../../character/character-edit/character-edit.component.html']
 })
 export class SkirmishCharacterEditComponent extends CharacterEditComponent implements OnInit {
 
