@@ -59,6 +59,7 @@ import {MatRadioModule} from "@angular/material/radio";
 import {MatSelectModule} from "@angular/material/select";
 import { EditWeaponDialog } from './dialog-window/edit-weapon-dialog/edit-weapon-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -111,7 +112,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatInputModule,
     MatRadioModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
