@@ -16,6 +16,14 @@
       <button mat-menu-item (click)="onDeleteCharacter()">{{text.getText().deleteCharacterButton}}</button>
     </mat-menu>
 
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="skirmishMenu" *ngIf="isSkirmishMode">
+      Akcje
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #skirmishMenu="matMenu">
+      <button mat-menu-item (click)="onReceiveDamage()">Zadaj obrażenia</button>
+    </mat-menu>
+
   </div>
 </div>
 <div class="row">

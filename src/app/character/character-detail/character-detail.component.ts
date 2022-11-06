@@ -25,7 +25,7 @@ export class CharacterDetailComponent implements OnInit {
   temporaryParametersColumns: string[] = ['isAlive', 'currentWounds', 'initiative', 'advantage'];
 
   constructor(public characterService: CharacterService,
-              public skirmishService: SkirmishCharacterService,
+              public skirmishCharacterService: SkirmishCharacterService,
               protected route: ActivatedRoute,
               protected router: Router) {
   }
@@ -39,7 +39,7 @@ export class CharacterDetailComponent implements OnInit {
   }
 
   onAddToFight() {
-    this.skirmishService.storeSkirmishCharacter(this.character);
+    this.skirmishCharacterService.storeSkirmishCharacter(this.character);
   }
 
   onEditCharacter() {
@@ -74,4 +74,6 @@ export class CharacterDetailComponent implements OnInit {
       "WOUNDS"
     ];
   }
+
+  onReceiveDamage() {}
 }

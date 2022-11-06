@@ -3,7 +3,7 @@ import {Subject} from "rxjs";
 import {Talent} from "../../../model/talent/talent.model";
 import {HttpClient} from "@angular/common/http";
 import {TextResourceService} from "../text-resource-service/text-resource.service";
-import {TranslateService} from "../ translate-service/translate.service";
+import {TranslateService} from "../translate-service/translate.service";
 
 @Injectable({
   providedIn: 'root'

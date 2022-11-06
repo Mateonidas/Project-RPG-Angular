@@ -4,7 +4,7 @@ import {Subject} from "rxjs";
 import {Weapon} from "../../../model/weapon/weapon.model";
 import {TextResourceService} from "../text-resource-service/text-resource.service";
 import {Model} from "../../../model/model";
-import {TranslateService} from "../ translate-service/translate.service";
+import {TranslateService} from "../translate-service/translate.service";
 import {WeaponQuality} from "../../../model/weapon/weapon-quality.model";
 
 @Injectable({

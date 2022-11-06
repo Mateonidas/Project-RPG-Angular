@@ -295,7 +295,7 @@
 
             <div class="col-md-3">
               <mat-form-field appearance="fill" class="example-full-width">
-                <mat-label>{{text.getText().injuryNameLabel}}</mat-label>
+                <mat-label>{{text.getText().localizationNameLabel}}</mat-label>
                 <mat-select formControlName="bodyLocalization" [compareWith]="compareModels">
                   <mat-option *ngFor="let bodyLocalization of characterBodyLocalizations"
                               [value]="bodyLocalization.bodyLocalization">

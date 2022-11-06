@@ -9,3 +9,7 @@ table {
 .mat-cell, .mat-header-cell {
   width: 4%;
 }
+
+button {
+  margin-right: 10px;
+}

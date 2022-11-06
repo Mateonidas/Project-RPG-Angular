@@ -4,6 +4,9 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {CharacterDetailComponent} from "../../character/character-detail/character-detail.component";
 import {CharacterService} from "../../shared/services/character-service/character.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ReceiveDamageDialog} from "../../dialog-window/receive-damage-dialog/receive-damage-dialog.component";
+import {SkirmishService} from "../../shared/services/skirmish-service/skirmish.service";
 
 @Component({
   selector: 'app-skirmish-character-details',
@@ -16,22 +19,24 @@ export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent 
   isSkirmishMode = true;
 
   constructor(public characterService: CharacterService,
-              public skirmishService: SkirmishCharacterService,
+              public skirmishCharacterService: SkirmishCharacterService,
+              public skirmishService: SkirmishService,
               protected route: ActivatedRoute,
-              protected router: Router) {
-    super(characterService, skirmishService, route, router);
+              protected router: Router,
+              private dialog: MatDialog) {
+    super(characterService, skirmishCharacterService, route, router);
   }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
         this.id = +params['id'];
-        this.character = this.skirmishService.getSkirmishCharacter(this.id);
+        this.character = this.skirmishCharacterService.getSkirmishCharacter(this.id);
       }
     )
   }
 
   onDeleteCharacter() {
-    this.skirmishService.removeSkirmishCharacter(this.id);
+    this.skirmishCharacterService.removeSkirmishCharacter(this.id);
     this.router.navigate(['skirmish']);
   }
 
@@ -40,5 +45,23 @@ export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent 
     if (event.key == 'Enter') {
       this.onEditCharacter();
     }
+  }
+
+  async onReceiveDamage() {
+    const dialogRef = this.dialog.open(ReceiveDamageDialog, {
+      width: '20%',
+      data: this.character,
+    });
+
+    dialogRef.afterClosed().subscribe(async receivedDamage => {
+      if (receivedDamage != undefined) {
+        await this.skirmishService.receiveDamage(receivedDamage);
+        await this.reloadSkirmishCharacters();
+      }
+    })
+  }
+
+  async reloadSkirmishCharacters() {
+    await this.skirmishCharacterService.fetchSkirmishCharacter();
   }
 }

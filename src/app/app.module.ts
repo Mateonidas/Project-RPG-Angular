@@ -60,6 +60,8 @@ import {MatSelectModule} from "@angular/material/select";
 import { EditWeaponDialog } from './dialog-window/edit-weapon-dialog/edit-weapon-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatIconModule} from "@angular/material/icon";
+import { ReceiveDamageDialog } from './dialog-window/receive-damage-dialog/receive-damage-dialog.component';
+import { SimpleRollDialog } from './dialog-window/simple-roll-dialog/simple-roll-dialog.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +91,9 @@ import {MatIconModule} from "@angular/material/icon";
     // AttackAllyFumbleDialogWindowComponent,
     EditArmorDialog,
     AutoFocusDirective,
-    EditWeaponDialog
+    EditWeaponDialog,
+    ReceiveDamageDialog,
+    SimpleRollDialog
   ],
   imports: [
     BrowserModule,

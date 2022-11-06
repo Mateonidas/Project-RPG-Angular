@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>{{this.text.getText().receiveDamageLabel}}</h1>
+<div mat-dialog-content>
+  <p>{{this.text.getText().damageForLabel}} {{this.character.name}}</p>
+  <mat-form-field appearance="fill">
+    <mat-label>{{text.getText().valueLabel}}</mat-label>
+    <input matInput type="number" [(ngModel)]="receivedDamage.damage">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="example-full-width">
+    <mat-label>{{text.getText().localizationNameLabel}}</mat-label>
+    <mat-select [(ngModel)]="receivedDamage.bodyLocalization" [compareWith]="compareModels">
+      <mat-option *ngFor="let bodyLocalization of character.bodyLocalizations"
+                  [value]="bodyLocalization.bodyLocalization.name">
+        {{bodyLocalization.bodyLocalization.nameTranslation}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <p>{{text.getText().isWeaponUndamagingLabel}}</p>
+  <mat-radio-group [(ngModel)]="receivedDamage.isWeaponUndamaging">
+    <mat-radio-button [value]=false>{{text.getText().noLabel}}</mat-radio-button>
+    <mat-radio-button [value]=true>{{text.getText().yesLabel}}</mat-radio-button>
+  </mat-radio-group>
+
+  <ng-container *ngIf="receivedDamage.isWeaponUndamaging">
+    <p style="margin-top: 10px">{{text.getText().isCharacterLoseTestLabel}}</p>
+    <mat-radio-group [(ngModel)]="receivedDamage.isLosingTest">
+      <mat-radio-button [value]=false>{{text.getText().noLabel}}</mat-radio-button>
+      <mat-radio-button [value]=true>{{text.getText().yesLabel}}</mat-radio-button>
+    </mat-radio-group>
+  </ng-container>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" [mat-dialog-close]="receivedDamage">{{text.getText().saveLabel}}</button>
+</div>
