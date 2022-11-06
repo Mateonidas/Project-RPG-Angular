@@ -9,7 +9,6 @@ import {ArmorService} from "../../shared/services/armor-service/armor.service";
 import {WeaponService} from "../../shared/services/weapon-service/weapon.service";
 import {SkillService} from "../../shared/services/skill-service/skill.service";
 import {TalentService} from "../../shared/services/talent-service/talent.service";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {BodyLocalizationService} from "../../shared/services/body-localization-service/body-localization.service";
 import {CharacterService} from "../../shared/services/character-service/character.service";
 import {InjuryService} from "../../shared/services/injuries-service/injury.service";
@@ -44,9 +43,8 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
               public characterService: CharacterService,
               public injuryService: InjuryService,
               public conditionService: ConditionService,
-              public modalService: NgbModal,
               public dialog: MatDialog) {
-    super(router, route, armorService, weaponService, skillService, talentService, bodyLocalizationService, characterService, injuryService, conditionService, modalService, dialog);
+    super(router, route, armorService, weaponService, skillService, talentService, bodyLocalizationService, characterService, injuryService, conditionService, dialog);
   }
 
   createEditCharacterForm(character: SkirmishCharacter, formArrays: CharacterFormArraysWrapper) {
@@ -123,10 +121,10 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    if(event.key == 'Enter') {
+    if (event.key == 'Enter') {
       this.onSubmit();
     }
-    if(event.key == 'Escape') {
+    if (event.key == 'Escape') {
       this.onCancel();
     }
   }

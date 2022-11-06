@@ -15,7 +15,6 @@ import {Armor} from "../../model/armor/armor.model";
 import {CharacterWeapon} from "../../model/weapon/character-weapon.model";
 import {CharacterBodyLocalization} from "../../model/body-localization/character-body-localization.model";
 import {BodyLocalizationList} from "../../model/body-localization/body-localization.model";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {BodyLocalizationService} from "../../shared/services/body-localization-service/body-localization.service";
 import {InjuryService} from "../../shared/services/injuries-service/injury.service";
 import {CharacterInjury} from "../../model/injury/character-injury.model";
@@ -28,7 +27,7 @@ import {Weapon} from "../../model/weapon/weapon.model";
 import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
 import {Characteristic} from "../../model/characteristic/characteristic.model";
 import {Model} from "../../model/model";
-import {EditArmorDialog} from "../../dialog-window/edit-armor-dialog-window/edit-armor-dialog.component";
+import {EditArmorDialog} from "../../dialog-window/edit-armor-dialog/edit-armor-dialog.component";
 import {EditWeaponDialog} from "../../dialog-window/edit-weapon-dialog/edit-weapon-dialog.component";
 
 @Component({
@@ -65,7 +64,6 @@ export class CharacterEditComponent implements OnInit {
               public characterService: CharacterService,
               public injuryService: InjuryService,
               public conditionService: ConditionService,
-              public modalService: NgbModal,
               public dialog: MatDialog) {
   }
 

@@ -3,10 +3,10 @@ import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {Subscription} from "rxjs";
 import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {InitiativeDialogWindow} from "../../dialog-window/initiative-dialog-window/initiative-dialog-window.component";
+import {InitiativeDialog} from "../../dialog-window/initiative-dialog/initiative-dialog.component";
 import {RoundService} from "../../shared/services/round-service/round.service";
 import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-skirmish-characters-list',
@@ -24,8 +24,8 @@ export class SkirmishCharactersListComponent implements OnInit {
   constructor(private skirmishCharacterService: SkirmishCharacterService,
               private router: Router,
               private route: ActivatedRoute,
-              private modalService: NgbModal,
-              private roundService: RoundService) {
+              private roundService: RoundService,
+              private dialog: MatDialog) {
   }
 
   async ngOnInit() {
@@ -48,11 +48,16 @@ export class SkirmishCharactersListComponent implements OnInit {
 
   initiativeRolls() {
     for (let skirmishCharacter of this.skirmishCharacters) {
-      const modalRef = this.modalService.open(InitiativeDialogWindow);
-      modalRef.componentInstance.name = skirmishCharacter.name;
-      modalRef.componentInstance.rollEntry.subscribe((rollValue: number) => {
-        skirmishCharacter.skirmishInitiative += rollValue;
-        this.skirmishCharacterService.updateSkirmishCharacter(skirmishCharacter);
+      const dialogRef = this.dialog.open(InitiativeDialog, {
+        width: '20%',
+        data: skirmishCharacter.name,
+      });
+
+      dialogRef.afterClosed().subscribe(rollValue => {
+        if (rollValue != undefined) {
+          skirmishCharacter.skirmishInitiative += rollValue;
+          this.skirmishCharacterService.updateSkirmishCharacter(skirmishCharacter);
+        }
       })
     }
   }
@@ -62,12 +67,6 @@ export class SkirmishCharactersListComponent implements OnInit {
     this.roundNumber = this.roundService.roundNumber;
 
     await this.reloadSkirmishCharacters();
-  }
-
-  private async checkCharacterConditions() {
-    for (let character of this.skirmishCharacters) {
-      // await this.conditionService.endTurnCheckConditions(character)
-    }
   }
 
   clearData() {

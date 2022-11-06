@@ -9,7 +9,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
 
 @Component({
-  selector: 'app-edit-armor-dialog-window',
+  selector: 'app-edit-armor-dialog',
   templateUrl: './edit-armor-dialog.component.html',
   styleUrls: ['./edit-armor-dialog.component.css']
 })
