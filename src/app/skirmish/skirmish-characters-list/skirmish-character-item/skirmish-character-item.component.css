@@ -7,3 +7,13 @@
 span {
   white-space: normal !important;
 }
+
+section {
+  margin-bottom: 5px;
+}
+
+p {
+  white-space: normal !important;
+  font-size: 12px !important;
+  line-height: 20px;
+}
