@@ -78,8 +78,9 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
     if (this.editMode) {
       character.id = this.id;
     }
-    this.skirmishService.updateSkirmishCharacter(character);
-    this.onCancel()
+    this.skirmishService.updateSkirmishCharacter(character).then(() => {
+      this.onCancel();
+    })
   }
 
   createCharacter() {

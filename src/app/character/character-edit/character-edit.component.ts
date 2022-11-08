@@ -424,7 +424,7 @@ export class CharacterEditComponent implements OnInit {
       character.id = this.id;
     }
     this.characterService.storeCharacter(character).then(() => {
-      this.onCancel()
+      this.onCancel();
     });
   }
 
