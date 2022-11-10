@@ -3,6 +3,7 @@ import {Character} from "../../model/character/character.model";
 import {CharacterService} from "../../shared/services/character-service/character.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
+import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
 
 @Component({
   selector: 'app-character-list',
@@ -15,6 +16,8 @@ export class CharacterListComponent implements OnInit {
   characters!: Character[];
   subscription!: Subscription;
   test: {group: string, characters: Character[]}[] = [];
+
+  text = TextResourceService;
 
   constructor(public characterService: CharacterService,
               private router: Router,

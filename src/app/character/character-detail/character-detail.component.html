@@ -7,13 +7,13 @@
   <div class="col-md-12">
 
     <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
-      {{text.getText().manageCharacterButton}}
+      {{text.getText().manageCharacterLabel}}
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button *ngIf="!isSkirmishMode" mat-menu-item (click)="onAddToFight()">{{text.getText().addToFightButton}}</button>
-      <button mat-menu-item (click)="onEditCharacter()">{{text.getText().editCharacterButton}}</button>
-      <button mat-menu-item (click)="onDeleteCharacter()">{{text.getText().deleteCharacterButton}}</button>
+      <button *ngIf="!isSkirmishMode" mat-menu-item (click)="onAddToFight()">{{text.getText().addToFightLabel}}</button>
+      <button mat-menu-item (click)="onEditCharacter()">{{text.getText().editCharacterLabel}}</button>
+      <button mat-menu-item (click)="onDeleteCharacter()">{{text.getText().deleteCharacterLabel}}</button>
     </mat-menu>
 
     <button mat-raised-button color="primary" [matMenuTriggerFor]="skirmishMenu" *ngIf="isSkirmishMode">
@@ -21,7 +21,7 @@
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
     <mat-menu #skirmishMenu="matMenu">
-      <button mat-menu-item (click)="onReceiveDamage()">Zadaj obrażenia</button>
+      <button mat-menu-item (click)="onReceiveDamage()">{{text.getText().dealDamageLabel}}</button>
     </mat-menu>
 
   </div>

@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {EndTurnCheck} from "../../../model/end-turn-check/end-turn-check.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {RollDialogWindow} from "../../../dialog-window/roll-dialog-window/roll-dialog-window.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class RoundService {
   public endTurnCheck: EndTurnCheck;
 
   constructor(private http: HttpClient,
-              private modalService: NgbModal) {
+              private modalService: NgbModal,
+              private dialog: MatDialog) {
     let roundNumber = JSON.parse(<string>localStorage.getItem('roundNumber'));
     if (roundNumber != null) {
       this.roundNumber = roundNumber;
@@ -49,10 +51,12 @@ export class RoundService {
       test.skirmishCharacter = skirmishCharacter;
     }
 
-    const modalRef = this.modalService.open(RollDialogWindow);
-    modalRef.componentInstance.endTurnCheck = endTurnCheck;
-    modalRef.componentInstance.testType = "Testy Stanów"
-    await modalRef.result.then(async () => {
+    const dialogRef = this.dialog.open(RollDialogWindow, {
+      width: '20%',
+      data: {endTurnCheck: endTurnCheck, testType: "Testy Stanów"}
+    })
+
+    dialogRef.afterClosed().subscribe(async () => {
       await this.postEndTurnTestsCheck(endTurnCheck);
     })
   }

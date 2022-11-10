@@ -26,7 +26,7 @@
         <hr>
         <div class="row">
           <div class="col-md-12 form-group">
-            <h2>Parametry tymczasowe</h2>
+            <h2>{{text.getText().temporaryParametersLabel}}</h2>
 
             <mat-form-field appearance="fill" class="example-full-width">
               <mat-label>{{text.getText().isAlive}}</mat-label>
@@ -84,7 +84,7 @@
       <hr>
       <div class="row">
         <div class="col-md-12" formArrayName="notes">
-          <h2>Notatki</h2>
+          <h2>{{text.getText().notesLabel}}</h2>
           <div class="row mb-2" *ngFor="let noteControl of notes; index as i">
             <div class="col-md-10">
               <mat-form-field class="example-full-width" appearance="fill">
@@ -100,7 +100,7 @@
 
           <div class="row">
             <div class="col-md-12">
-              <button mat-raised-button color="primary" type="button" (click)="onAddNote()">Dodaj notatkę</button>
+              <button mat-raised-button color="primary" type="button" (click)="onAddNote()">{{text.getText().addNoteLabel}}</button>
             </div>
           </div>
         </div>
@@ -109,10 +109,10 @@
       <hr>
       <div class="row">
         <div class="col-md-12">
-          <h2>Ręka wiodąca</h2>
+          <h2>{{text.getText().leadingHandLabel}}</h2>
           <mat-radio-group formControlName="isRightHanded">
-            <mat-radio-button [value]=true> Prawa</mat-radio-button>
-            <mat-radio-button [value]=false> Lewa</mat-radio-button>
+            <mat-radio-button [value]=true>{{text.getText().rightHandLabel}}</mat-radio-button>
+            <mat-radio-button [value]=false>{{text.getText().leftHandLabel}}</mat-radio-button>
           </mat-radio-group>
         </div>
       </div>
@@ -120,7 +120,7 @@
       <hr>
       <div class="row">
         <div class="col-md-12" formArrayName="skills">
-          <h2>Umiejętności</h2>
+          <h2>{{text.getText().skillsLabel}}</h2>
           <div class="row mb-2" *ngFor="let skillControl of skills; let i = index" [formGroupName]="i">
             <div class="col-md-8">
               <mat-form-field appearance="fill" class="example-full-width">
@@ -147,7 +147,7 @@
 
           <div class="row">
             <div class="col-md-12">
-              <button mat-raised-button color="primary" type="button" (click)="onAddSkill()">Dodaj Umiejętność</button>
+              <button mat-raised-button color="primary" type="button" (click)="onAddSkill()">{{text.getText().addSkillLabel}}</button>
             </div>
           </div>
         </div>
@@ -156,7 +156,7 @@
       <hr>
       <div class="row">
         <div class="col-md-12" formArrayName="talents">
-          <h2>Talenty</h2>
+          <h2>{{text.getText().talentsLabel}}</h2>
 
           <div class="row mb-2" *ngFor="let talentControl of talents; let i = index" [formGroupName]="i">
             <div class="col-md-8">
@@ -184,7 +184,7 @@
 
           <div class="row">
             <div class="col-md-12">
-              <button mat-raised-button color="primary" type="button" (click)="onAddTalent()">Dodaj Talent</button>
+              <button mat-raised-button color="primary" type="button" (click)="onAddTalent()">{{text.getText().addTalentLabel}}</button>
             </div>
           </div>
         </div>
@@ -193,7 +193,7 @@
       <hr>
       <div class="row">
         <div class="col-md-12" formArrayName="weapons">
-          <h2>Broń</h2>
+          <h2>{{text.getText().weaponLabel}}</h2>
           <div class="row mb-2" *ngFor="let weaponControl of weapons; let i = index" [formGroupName]="i">
             <div class="col-md-7">
               <mat-form-field appearance="fill" class="example-full-width">
@@ -221,13 +221,13 @@
               </mat-form-field>
             </div>
             <div class="col-md-3">
-              <button mat-raised-button color="primary" type="button" (click)="onEditWeapon(i)">Edytuj</button>
+              <button mat-raised-button color="primary" type="button" (click)="onEditWeapon(i)">{{text.getText().editLabel}}</button>
               <button mat-mini-fab color="warn" (click)="onDeleteWeapon(i)">X</button>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button mat-raised-button color="primary" type="button" (click)="onAddWeapon()">Dodaj Broń</button>
+              <button mat-raised-button color="primary" type="button" (click)="onAddWeapon()">{{text.getText().addWeaponLabel}}</button>
             </div>
           </div>
         </div>
@@ -236,7 +236,7 @@
       <hr>
       <div class="row">
         <div class="col-md-12" formArrayName="armors">
-          <h2>Pancerz</h2>
+          <h2>{{text.getText().armorLabel}}</h2>
           <div class="row mb-2" *ngFor="let armorControl of armors; let i = index" [formGroupName]="i">
             <div class="col-md-7">
 
@@ -261,7 +261,7 @@
             </div>
 
             <div class="col-md-3">
-              <button mat-raised-button color="primary" type="button" (click)="onEditArmor(i)">Edytuj</button>
+              <button mat-raised-button color="primary" type="button" (click)="onEditArmor(i)">{{text.getText().editLabel}}</button>
               <button mat-mini-fab color="warn" (click)="onDeleteArmor(i)">X</button>
             </div>
 
@@ -269,7 +269,7 @@
 
           <div class="row">
             <div class="col-md-12">
-              <button mat-raised-button color="primary" type="button" (click)="onAddArmor()">Dodaj Pancerz</button>
+              <button mat-raised-button color="primary" type="button" (click)="onAddArmor()">{{text.getText().addArmorLabel}}</button>
             </div>
           </div>
 
@@ -279,7 +279,7 @@
       <hr>
       <div class="row">
         <div class="col-md-12" formArrayName="injuries">
-          <h2>Urazy</h2>
+          <h2>{{text.getText().injuriesLabel}}</h2>
 
           <div class="row mb-2" *ngFor="let injuryControl of injuries; let i = index" [formGroupName]="i">
             <div class="col-md-5">
@@ -319,7 +319,7 @@
 
           <div class="row">
             <div class="col-md-12">
-              <button mat-raised-button color="primary" type="button" (click)="onAddInjury()">Dodaj Uraz</button>
+              <button mat-raised-button color="primary" type="button" (click)="onAddInjury()">{{text.getText().addInjuryLabel}}</button>
             </div>
           </div>
         </div>
@@ -328,7 +328,7 @@
       <hr>
       <div class="row">
         <div class="col-md-12" formArrayName="conditions">
-          <h2>Stany</h2>
+          <h2>{{text.getText().conditionsLabel}}</h2>
 
           <div class="row mb-2" *ngFor="let conditionControl of conditions; let i = index" [formGroupName]="i">
             <div class="col-md-5">
@@ -363,7 +363,7 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button mat-raised-button color="primary" type="button" (click)="onAddCondition()">Dodaj Stan</button>
+              <button mat-raised-button color="primary" type="button" (click)="onAddCondition()">{{text.getText().addConditionLabel}}</button>
             </div>
           </div>
         </div>
@@ -372,8 +372,8 @@
       <hr>
       <div class="row">
         <div class="col-md-12">
-          <button mat-raised-button color="primary" type="submit">Zapisz</button>
-          <button mat-raised-button color="warn" type="button" (click)="onCancel()">Powrót</button>
+          <button mat-raised-button color="primary" type="submit">{{text.getText().saveLabel}}</button>
+          <button mat-raised-button color="warn" type="button" (click)="onCancel()">{{text.getText().returnLabel}}</button>
         </div>
       </div>
     </form>

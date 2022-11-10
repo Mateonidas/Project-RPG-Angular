@@ -1,26 +1,17 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {Component, Inject} from '@angular/core';
 import {EndTurnCheck} from "../../model/end-turn-check/end-turn-check.model";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
 
 @Component({
   selector: 'app-roll-dialog-window',
   templateUrl: './roll-dialog-window.component.html',
   styleUrls: ['./roll-dialog-window.component.css']
 })
-export class RollDialogWindow implements OnInit {
+export class RollDialogWindow {
 
-  @Input() endTurnCheck!: EndTurnCheck;
-  @Input() testType!: string;
-  @Output() emitter: EventEmitter<any> = new EventEmitter();
+  text = TextResourceService;
 
-  constructor(public activeModal: NgbActiveModal) {
-  }
-
-  ngOnInit(): void {
-  }
-
-  onSave(): void {
-    this.emitter.emit();
-    this.activeModal.close('Close click')
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { endTurnCheck: EndTurnCheck, testType: string }) {
   }
 }

@@ -38,9 +38,7 @@ import {ValidationAlertComponent} from './validation/validation-alert/validation
 //   AttackAllyFumbleDialogWindowComponent
 // } from './dialog-window/attack-ally-fumble-dialog-window/attack-ally-fumble-dialog-window.component';
 import {HttpClientModule} from '@angular/common/http';
-import {
-  EditArmorDialog
-} from './dialog-window/edit-armor-dialog/edit-armor-dialog.component';
+import {EditArmorDialog} from './dialog-window/edit-armor-dialog/edit-armor-dialog.component';
 import {AutoFocusDirective} from './shared/directives/auto-focus.directive';
 import {RollDialogWindow} from "./dialog-window/roll-dialog-window/roll-dialog-window.component";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -57,11 +55,10 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatSelectModule} from "@angular/material/select";
-import { EditWeaponDialog } from './dialog-window/edit-weapon-dialog/edit-weapon-dialog.component';
+import {EditWeaponDialog} from './dialog-window/edit-weapon-dialog/edit-weapon-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatIconModule} from "@angular/material/icon";
-import { ReceiveDamageDialog } from './dialog-window/receive-damage-dialog/receive-damage-dialog.component';
-import { SimpleRollDialog } from './dialog-window/simple-roll-dialog/simple-roll-dialog.component';
+import {ReceiveDamageDialog} from './dialog-window/receive-damage-dialog/receive-damage-dialog.component';
 
 @NgModule({
   declarations: [
@@ -92,8 +89,7 @@ import { SimpleRollDialog } from './dialog-window/simple-roll-dialog/simple-roll
     EditArmorDialog,
     AutoFocusDirective,
     EditWeaponDialog,
-    ReceiveDamageDialog,
-    SimpleRollDialog
+    ReceiveDamageDialog
   ],
   imports: [
     BrowserModule,

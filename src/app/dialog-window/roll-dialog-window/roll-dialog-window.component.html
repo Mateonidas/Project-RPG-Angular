@@ -1,33 +1,52 @@
-<div class="modal-header">
-  <h4 class="modal-title">{{testType}}</h4>
+<!--<div class="modal-header">-->
+<!--  <h4 class="modal-title">{{testType}}</h4>-->
+<!--</div>-->
+<!--<form (ngSubmit)="onSave()">-->
+<!--  <div class="modal-body">-->
+<!--    <div *ngFor="let test of endTurnCheck.tests">-->
+<!--      <p>Rzut dla: {{test.skirmishCharacter.name}}: {{test.conditionType}}</p>-->
+
+<!--      <div class="row mb-1">-->
+<!--        <div class="col-md-3">-->
+<!--          <span>Rzut: </span>-->
+<!--        </div>-->
+<!--        <div class="col-md-3">-->
+<!--          <input type="number" class="form-control" [(ngModel)]="test.result" [ngModelOptions]="{standalone: true}">-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="row">-->
+<!--        <div class="col-md-3">-->
+<!--          <span>Modyfikator: </span>-->
+<!--        </div>-->
+<!--        <div class="col-md-3">-->
+<!--          <input type="number" class="form-control" [(ngModel)]="test.modifier" [ngModelOptions]="{standalone: true}">-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <hr>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="modal-footer">-->
+<!--    <button type="submit" class="btn btn-outline-dark">Zapisz</button>-->
+<!--  </div>-->
+<!--</form>-->
+
+<h1 mat-dialog-title>{{data.testType}}</h1>
+<div mat-dialog-content>
+  <div *ngFor="let test of data.endTurnCheck.tests">
+    <p>{{text.getText().rollForLabel}} {{test.skirmishCharacter.name}}: {{test.conditionType}}</p>
+    <mat-form-field appearance="fill">
+      <mat-label>{{text.getText().rollLabel}}</mat-label>
+      <input matInput type="number" [(ngModel)]="test.result">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>{{text.getText().modifierLabel}}</mat-label>
+      <input matInput type="number" [(ngModel)]="test.modifier">
+    </mat-form-field>
+  </div>
 </div>
-<form (ngSubmit)="onSave()">
-  <div class="modal-body">
-    <div *ngFor="let test of endTurnCheck.tests">
-      <p>Rzut dla: {{test.skirmishCharacter.name}}: {{test.conditionType}}</p>
-
-      <div class="row mb-1">
-        <div class="col-md-3">
-          <span>Rzut: </span>
-        </div>
-        <div class="col-md-3">
-          <input type="number" class="form-control" [(ngModel)]="test.result" [ngModelOptions]="{standalone: true}">
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-3">
-          <span>Modyfikator: </span>
-        </div>
-        <div class="col-md-3">
-          <input type="number" class="form-control" [(ngModel)]="test.modifier" [ngModelOptions]="{standalone: true}">
-        </div>
-      </div>
-
-      <hr>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button type="submit" class="btn btn-outline-dark">Zapisz</button>
-  </div>
-</form>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data">{{text.getText().saveLabel}}</button>
+</div>

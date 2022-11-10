@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
-import {SimpleRollDialog} from "../simple-roll-dialog/simple-roll-dialog.component";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {ReceivedDamage} from "../../model/receive-damage/receive-damage.model";
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
@@ -11,7 +10,7 @@ import {Model} from "../../model/model";
   templateUrl: './receive-damage-dialog.component.html',
   styleUrls: ['./receive-damage-dialog.component.css']
 })
-export class ReceiveDamageDialog implements OnInit{
+export class ReceiveDamageDialog implements OnInit {
 
   receivedDamage!: ReceivedDamage;
   text = TextResourceService;
