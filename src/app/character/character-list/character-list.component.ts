@@ -15,7 +15,7 @@ export class CharacterListComponent implements OnInit {
   isDataAvailable: boolean = false;
   characters!: Character[];
   subscription!: Subscription;
-  test: {group: string, characters: Character[]}[] = [];
+  characterGroups: {group: string, characters: Character[]}[] = [];
 
   text = TextResourceService;
 
@@ -28,6 +28,7 @@ export class CharacterListComponent implements OnInit {
     this.subscription = this.characterService.charactersChanged.subscribe(
       (characters: Character[]) => {
         this.characters = characters;
+        this.characterGroups = this.characterService.getCharacterGroups();
       }
     )
     this.characterService.fetchCharacters().then(() => {
@@ -35,20 +36,7 @@ export class CharacterListComponent implements OnInit {
     });
     this.characters = this.characterService.getCharacters();
 
-    this.characters.forEach(character => {
-      let isGroupExist = false;
-      for (let element of this.test) {
-        if(element.group === character.group) {
-          element.characters.push(character);
-          isGroupExist = true;
-          break;
-        }
-      }
-
-      if(!isGroupExist) {
-        this.test.push({group: character.group, characters: [character]});
-      }
-    })
+    this.characterGroups = this.characterService.getCharacterGroups();
   }
 
   onAddCharacter() {

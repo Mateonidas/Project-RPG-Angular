@@ -72,4 +72,33 @@ export class CharacterService {
     this.charactersList = Character.arrayFromJSON(JSON.parse(<string>localStorage.getItem('characters')));
     return this.charactersList.find(value => value.id == id);
   }
+
+  getCharacterGroups() {
+    return this.createCharacterGroups();
+  }
+
+  private createCharacterGroups() {
+    const characterGroups: {group: string, characters: Character[]}[] = [];
+
+    this.charactersList.forEach(character => {
+      let isGroupExist = false;
+      for (let element of characterGroups) {
+        if (element.group === character.group) {
+          element.characters.push(character);
+          isGroupExist = true;
+          break;
+        }
+      }
+
+      if (!isGroupExist) {
+        characterGroups.push({group: character.group, characters: [character]});
+      }
+    })
+
+    characterGroups.sort(
+      (a, b) => (a.group > b.group) ? 1 : ((b.group > a.group) ? -1 : 0)
+    )
+
+    return characterGroups;
+  }
 }
