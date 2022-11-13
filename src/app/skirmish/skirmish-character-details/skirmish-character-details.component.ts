@@ -63,5 +63,6 @@ export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent 
 
   async reloadSkirmishCharacters() {
     await this.skirmishCharacterService.fetchSkirmishCharacter();
+    this.character = this.skirmishCharacterService.getSkirmishCharacter(this.id);
   }
 }
