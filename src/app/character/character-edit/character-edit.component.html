@@ -173,7 +173,8 @@
             <div class="col-md-2">
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>{{text.getText().valueLabel}}</mat-label>
-                <input matInput type="number" formControlName="value" (keyup)="onSetTalentLevel($event, i)">
+<!--                <input matInput type="number" formControlName="value" (keyup)="onSetTalentLevel($event, i)">-->
+                <input matInput type="number" formControlName="value">
               </mat-form-field>
             </div>
 
@@ -189,6 +190,47 @@
           </div>
         </div>
       </div>
+
+
+
+      <hr>
+      <div class="row">
+        <div class="col-md-12" formArrayName="traits">
+          <h2>{{text.getText().traitsLabel}}</h2>
+
+          <div class="row mb-2" *ngFor="let traitControl of traits; let i = index" [formGroupName]="i">
+            <div class="col-md-8">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>{{text.getText().nameLabel}}</mat-label>
+                <mat-select formControlName="trait" [compareWith]="compareModels" (selectionChange)="checkIfTraitHasValue(traitControl)">
+                  <mat-option *ngFor="let trait of traitsList" [value]="trait">
+                    {{trait.nameTranslation}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-2">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>{{text.getText().valueLabel}}</mat-label>
+                <input matInput type="text" formControlName="value">
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-2">
+              <button mat-mini-fab color="warn" type="button" (click)="onDeleteTrait(i)">X</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <button mat-raised-button color="primary" type="button" (click)="onAddTrait()">{{text.getText().addTraitLabel}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
 
       <hr>
       <div class="row">

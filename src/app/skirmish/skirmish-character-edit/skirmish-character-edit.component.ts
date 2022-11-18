@@ -21,6 +21,8 @@ import {Armor} from "../../model/armor/armor.model";
 import {CharacterCondition} from "../../model/condition/character-condition.model";
 import {CharacterEditComponent} from "../../character/character-edit/character-edit.component";
 import {MatDialog} from "@angular/material/dialog";
+import {TraitService} from "../../shared/services/trait-service/trait.service";
+import {CharacterTrait} from "../../model/trait/character-trait.model";
 
 @Component({
   selector: 'app-skirmish-character-edit',
@@ -39,12 +41,13 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
               public weaponService: WeaponService,
               public skillService: SkillService,
               public talentService: TalentService,
+              public traitService: TraitService,
               public bodyLocalizationService: BodyLocalizationService,
               public characterService: CharacterService,
               public injuryService: InjuryService,
               public conditionService: ConditionService,
               public dialog: MatDialog) {
-    super(router, route, armorService, weaponService, skillService, talentService, bodyLocalizationService, characterService, injuryService, conditionService, dialog);
+    super(router, route, armorService, weaponService, skillService, talentService, traitService, bodyLocalizationService, characterService, injuryService, conditionService, dialog);
   }
 
   createEditCharacterForm(character: SkirmishCharacter, formArrays: CharacterFormArraysWrapper) {
@@ -56,6 +59,7 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
       'characteristics': formArrays.characteristics,
       'skills': formArrays.skills,
       'talents': formArrays.talents,
+      'traits': formArrays.traits,
       'isRightHanded': new FormControl(this.isRightHanded),
       'weapons': formArrays.weapons,
       'armors': formArrays.armors,
@@ -90,6 +94,7 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
     const characteristics = <CharacterCharacteristic[]>this.editCharacterForm.value.characteristics;
     const skills = <CharacterSkill[]>this.editCharacterForm.value.skills;
     const talents = <CharacterTalent[]>this.editCharacterForm.value.talents;
+    const traits = <CharacterTrait[]>this.editCharacterForm.value.traits;
     const isRightHanded = this.editCharacterForm.value.isRightHanded;
     const weapons = <CharacterWeapon[]>this.editCharacterForm.value.weapons;
     const armors = <Armor[]>this.editCharacterForm.value.armors;
@@ -104,6 +109,7 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
         characteristics,
         skills,
         talents,
+        traits,
         isRightHanded,
         weapons,
         armors,

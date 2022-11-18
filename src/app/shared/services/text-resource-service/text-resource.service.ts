@@ -148,8 +148,19 @@ export class TextResourceService {
   }
 
   public static getTalentNameTranslation(name: string) {
-    let talents: ModelWithDescription[] = textResource.talentsAndTraits;
+    let talents: ModelWithDescription[] = textResource.talents;
     return <ModelWithDescription>talents.find(talent => {
+      if(talent.name == name) {
+        return talent;
+      } else {
+        return null;
+      }
+    })
+  }
+
+  public static getTraitNameTranslation(name: string) {
+    let traits: ModelWithDescription[] = textResource.traits;
+    return <ModelWithDescription>traits.find(talent => {
       if(talent.name == name) {
         return talent;
       } else {

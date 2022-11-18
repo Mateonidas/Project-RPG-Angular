@@ -11,6 +11,8 @@ import {Character} from "../../../model/character/character.model";
 import {Talent} from "../../../model/talent/talent.model";
 import {Model} from "../../../model/model";
 import {WeaponQuality} from "../../../model/weapon/weapon-quality.model";
+import {Trait} from "../../../model/trait/trait.model";
+import {CharacterTrait} from "../../../model/trait/character-trait.model";
 
 @Injectable({
   providedIn: 'root'
@@ -21,24 +23,27 @@ export class TranslateService {
   }
 
   public prepareCharacter(character: Character) {
-    this.prepareSkills(character.skills);
+    this.prepareCharacterSkills(character.skills);
     this.prepareCharacterTalents(character.talents);
+    this.prepareCharacterTraits(character.traits)
     this.prepareWeapons(character.weapons);
     this.prepareArmorsList(character.armors);
     this.prepareBodyLocalizations(character.bodyLocalizations);
     this.prepareCharacterConditions(character.conditions);
   }
 
-  private prepareSkills(skills: CharacterSkill[]) {
+  private prepareCharacterSkills(skills: CharacterSkill[]) {
     for (let skill of skills) {
       skill.skill.nameTranslation = TextResourceService.getSkillNameTranslation(skill.skill.name).nameTranslation
     }
+    skills.sort((a, b) => this.compareModels(a.skill, b.skill));
   }
 
   private prepareCharacterTalents(talents: CharacterTalent[]) {
     for (let characterTalent of talents) {
       this.prepareTalent(characterTalent.talent);
     }
+    talents.sort((a, b) => this.compareModels(a.talent, b.talent));
   }
 
   public prepareTalent(talent: Talent) {
@@ -47,10 +52,25 @@ export class TranslateService {
     talent.description = talentTranslation.description;
   }
 
+  private prepareCharacterTraits(traits: CharacterTrait[]) {
+    for (let characterTrait of traits) {
+      this.prepareTrait(characterTrait.trait);
+    }
+    traits.sort((a, b) => this.compareModels(a.trait, b.trait))
+  }
+
+  public prepareTrait(trait: Trait) {
+    let traitTranslation = TextResourceService.getTraitNameTranslation(trait.name);
+    trait.nameTranslation = traitTranslation.nameTranslation;
+    trait.description = traitTranslation.description;
+  }
+
   private prepareWeapons(weapons: CharacterWeapon[]) {
     for (let weapon of weapons) {
       this.prepareWeaponTranslation(weapon.weapon);
     }
+
+    // weapons.sort((a, b) => this.compareModels(a.weapon, b.weapon));
   }
 
   public prepareWeaponTranslation(weapon: Weapon) {
@@ -59,7 +79,7 @@ export class TranslateService {
     weapon.weaponReach.nameTranslation = TextResourceService.getWeaponReachNameTranslation(weapon.weaponReach.name).nameTranslation;
 
     for (let quality of weapon.weaponQualities) {
-      this.prepareWeaponQuality(quality)
+      this.prepareWeaponQuality(quality);
     }
   }
 
@@ -86,7 +106,7 @@ export class TranslateService {
 
   public prepareCondition(condition: Model) {
     let conditionTranslation = TextResourceService.getConditionTranslation(condition.name);
-    condition.nameTranslation = conditionTranslation.nameTranslation
+    condition.nameTranslation = conditionTranslation.nameTranslation;
     condition.description = conditionTranslation.description;
   }
 
@@ -123,5 +143,9 @@ export class TranslateService {
     let armorQualityTranslation = TextResourceService.getArmorQualityTranslation(quality.name);
     quality.nameTranslation = armorQualityTranslation.nameTranslation;
     quality.description = armorQualityTranslation.description;
+  }
+
+  compareModels(c1: Model, c2: Model): number {
+    return (c1.nameTranslation < c2.nameTranslation) ? -1 : (c1.nameTranslation > c2.nameTranslation) ? 1 : 0;
   }
 }

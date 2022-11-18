@@ -8,6 +8,7 @@ export class CharacterFormArraysWrapper {
   criticalWounds = new FormArray([]);
   skills = new FormArray([]);
   talents = new FormArray([]);
+  traits = new FormArray([]);
   weapons = new FormArray([]);
   armors = new FormArray([]);
 }

@@ -1,6 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {FormArray, FormControl, FormGroup} from "@angular/forms";
+import {AbstractControl, FormArray, FormControl, FormGroup} from "@angular/forms";
 import {CharacterService} from "../../shared/services/character-service/character.service";
 import {Character} from "../../model/character/character.model";
 import {CharacterFormArraysWrapper} from "../../model/character/character-form-arrays-wrapper.model";
@@ -29,6 +29,9 @@ import {Characteristic} from "../../model/characteristic/characteristic.model";
 import {Model} from "../../model/model";
 import {EditArmorDialog} from "../../dialog-window/edit-armor-dialog/edit-armor-dialog.component";
 import {EditWeaponDialog} from "../../dialog-window/edit-weapon-dialog/edit-weapon-dialog.component";
+import {TraitService} from "../../shared/services/trait-service/trait.service";
+import {Trait} from "../../model/trait/trait.model";
+import {CharacterTrait} from "../../model/trait/character-trait.model";
 
 @Component({
   selector: 'app-character-edit',
@@ -43,6 +46,7 @@ export class CharacterEditComponent implements OnInit {
   editCharacterForm!: FormGroup;
   skillsList: Skill[] = [];
   talentsList: Talent[] = [];
+  traitsList: Trait[] = [];
   weaponsList: Weapon[] = [];
   armorsList: Armor[] = [];
   isRightHanded = true;
@@ -60,6 +64,7 @@ export class CharacterEditComponent implements OnInit {
               public weaponService: WeaponService,
               public skillService: SkillService,
               public talentService: TalentService,
+              public traitService: TraitService,
               public bodyLocalizationService: BodyLocalizationService,
               public characterService: CharacterService,
               public injuryService: InjuryService,
@@ -73,6 +78,7 @@ export class CharacterEditComponent implements OnInit {
       this.weaponsList = this.weaponService.weaponsList;
       this.skillsList = this.skillService.skillList;
       this.talentsList = this.talentService.talentList;
+      this.traitsList = this.traitService.traitList;
       this.route.params.subscribe(
         (params: Params) => {
           this.id = +params['id'];
@@ -111,6 +117,7 @@ export class CharacterEditComponent implements OnInit {
       'characteristics': formArrays.characteristics,
       'skills': formArrays.skills,
       'talents': formArrays.talents,
+      'traits': formArrays.traits,
       'isRightHanded': new FormControl(this.isRightHanded),
       'weapons': formArrays.weapons,
       'armors': formArrays.armors,
@@ -173,6 +180,20 @@ export class CharacterEditComponent implements OnInit {
     ]);
   }
 
+  onSubmit() {
+    let character = this.createCharacter();
+    if (this.editMode) {
+      character.id = this.id;
+    }
+    this.characterService.storeCharacter(character).then(() => {
+      this.onCancel();
+    });
+  }
+
+  onCancel() {
+    this.router.navigate(['../'], {relativeTo: this.route});
+  }
+
   createCharacter() {
     const name = this.editCharacterForm.value.name;
     const description = this.editCharacterForm.value.description;
@@ -180,6 +201,7 @@ export class CharacterEditComponent implements OnInit {
     const characteristics = <CharacterCharacteristic[]>this.editCharacterForm.value.characteristics;
     const skills = <CharacterSkill[]>this.editCharacterForm.value.skills;
     const talents = <CharacterTalent[]>this.editCharacterForm.value.talents;
+    const traits = <CharacterTrait[]>this.editCharacterForm.value.traits;
     const isRightHanded = this.editCharacterForm.value.isRightHanded;
     const weapons = <CharacterWeapon[]>this.editCharacterForm.value.weapons;
     const armors = <Armor[]>this.editCharacterForm.value.armors;
@@ -193,6 +215,7 @@ export class CharacterEditComponent implements OnInit {
       characteristics,
       skills,
       talents,
+      traits,
       isRightHanded,
       weapons,
       armors,
@@ -263,7 +286,8 @@ export class CharacterEditComponent implements OnInit {
     await this.weaponService.fetchWeaponReaches();
     await this.weaponService.fetchWeaponQualities();
     await this.skillService.fetchSkills();
-    await this.talentService.fetchTalent();
+    await this.talentService.fetchTalents();
+    await this.traitService.fetchTraits();
     await this.characterService.fetchCharacters();
   }
 
@@ -273,6 +297,9 @@ export class CharacterEditComponent implements OnInit {
     }
     if (character.talents) {
       this.prepareTalentsList(formArrays.talents, character.talents);
+    }
+    if (character.traits) {
+      this.prepareTraitsList(formArrays.traits, character.traits);
     }
     if (character.weapons) {
       this.prepareWeaponsList(formArrays.weapons, character.weapons);
@@ -304,6 +331,21 @@ export class CharacterEditComponent implements OnInit {
         new FormGroup({
           'talent': new FormControl(talent.talent),
           'value': new FormControl(talent.value),
+        })
+      )
+    }
+  }
+
+  prepareTraitsList(traits: FormArray, traitsList: CharacterTrait[]) {
+    for (let trait of traitsList) {
+      let value = new FormControl(trait.value);
+      if(!trait.trait.hasValue) {
+        value.disable()
+      }
+      traits.push(
+        new FormGroup({
+          'trait': new FormControl(trait.trait),
+          'value': value,
         })
       )
     }
@@ -417,19 +459,12 @@ export class CharacterEditComponent implements OnInit {
     return new Characteristic(name, TextResourceService.getCharacteristicNameTranslation(name).nameTranslation);
   }
 
-
-  onSubmit() {
-    let character = this.createCharacter();
-    if (this.editMode) {
-      character.id = this.id;
+  checkIfTraitHasValue(traitControl: AbstractControl) {
+    if(traitControl.value.trait != null && !traitControl.value.trait.hasValue) {
+      (<FormGroup>traitControl.get('value')).disable();
+    } else {
+      (<FormGroup>traitControl.get('value')).enable();
     }
-    this.characterService.storeCharacter(character).then(() => {
-      this.onCancel();
-    });
-  }
-
-  onCancel() {
-    this.router.navigate(['../'], {relativeTo: this.route});
   }
 
   compareModels(c1: Model, c2: Model): boolean {
@@ -449,6 +484,15 @@ export class CharacterEditComponent implements OnInit {
     (<FormArray>this.editCharacterForm.get('talents')).push(
       new FormGroup({
         'talent': new FormControl(null),
+        'value': new FormControl(null),
+      })
+    )
+  }
+
+  onAddTrait() {
+    (<FormArray>this.editCharacterForm.get('traits')).push(
+      new FormGroup({
+        'trait': new FormControl(null),
         'value': new FormControl(null),
       })
     )
@@ -487,10 +531,6 @@ export class CharacterEditComponent implements OnInit {
         'counter': new FormControl(null)
       })
     )
-  }
-
-  onSetTalentLevel(event: any, i: number) {
-    this.talents[i].value.value = event.target.value;
   }
 
   async onEditArmor(index: number) {
@@ -574,6 +614,10 @@ export class CharacterEditComponent implements OnInit {
     return (<FormArray>this.editCharacterForm.get('talents')).controls;
   }
 
+  get traits() {
+    return (<FormArray>this.editCharacterForm.get('traits')).controls;
+  }
+
   get weapons() {
     return <FormControl[]>(<FormArray>this.editCharacterForm.get('weapons')).controls;
   }
@@ -596,6 +640,10 @@ export class CharacterEditComponent implements OnInit {
 
   onDeleteTalent(index: number) {
     (<FormArray>this.editCharacterForm.get('talents')).removeAt(index);
+  }
+
+  onDeleteTrait(index: number) {
+    (<FormArray>this.editCharacterForm.get('traits')).removeAt(index);
   }
 
   onDeleteWeapon(index: number) {

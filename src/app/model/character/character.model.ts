@@ -5,6 +5,7 @@ import {CharacterSkill} from "../skill/character-skill.model";
 import {CharacterWeapon} from "../weapon/character-weapon.model";
 import {CharacterBodyLocalization} from "../body-localization/character-body-localization.model";
 import {CharacterCondition} from "../condition/character-condition.model";
+import {CharacterTrait} from "../trait/character-trait.model";
 
 export class Character {
   id!: number;
@@ -14,6 +15,7 @@ export class Character {
   characteristics!: CharacterCharacteristic[];
   skills!: CharacterSkill[];
   talents!: CharacterTalent[];
+  traits!: CharacterTrait[];
   isRightHanded!: boolean;
   weapons!: CharacterWeapon[];
   armors!: Armor[];
@@ -21,13 +23,14 @@ export class Character {
   conditions!: CharacterCondition[];
   notes!: string[];
 
-  constructor(name?: string, description?: string, group?: string, characteristics?: CharacterCharacteristic[], skills?: CharacterSkill[], talents?: CharacterTalent[], rightHanded?: boolean, weapons?: CharacterWeapon[], armor?: Armor[], conditions?: CharacterCondition[], notes?: string[], bodyLocalizations?: CharacterBodyLocalization[]) {
+  constructor(name?: string, description?: string, group?: string, characteristics?: CharacterCharacteristic[], skills?: CharacterSkill[], talents?: CharacterTalent[], traits?: CharacterTrait[], rightHanded?: boolean, weapons?: CharacterWeapon[], armor?: Armor[], conditions?: CharacterCondition[], notes?: string[], bodyLocalizations?: CharacterBodyLocalization[]) {
     this.name = <string>name;
     this.description = <string>description;
     this.group = <string>group;
     this.characteristics = <CharacterCharacteristic[]>characteristics;
     this.skills = <CharacterSkill[]>skills;
     this.talents = <CharacterTalent[]>talents;
+    this.traits = <CharacterTrait[]>traits;
     this.isRightHanded = <boolean>rightHanded;
     this.weapons = <CharacterWeapon[]>weapons;
     this.armors = <Armor[]>armor;
@@ -93,6 +96,7 @@ export class Character {
     character.characteristics = CharacterCharacteristic.arrayFromJSON(character['characteristics']);
     character.skills = CharacterSkill.arrayFromJSON(character["skills"]);
     character.talents = CharacterTalent.arrayFromJSON(character["talents"]);
+    character.traits = CharacterTrait.arrayFromJSON(character["traits"]);
     character.weapons = CharacterWeapon.arrayFromJSON(character['weapons']);
     character.armors = Armor.arrayFromJSON(character['armors']);
     character.bodyLocalizations = CharacterBodyLocalization.arrayFromJSON(character['bodyLocalizations']);

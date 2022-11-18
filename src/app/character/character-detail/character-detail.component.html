@@ -160,7 +160,7 @@
   </div>
 </div>
 
-<ng-container *ngIf="character.skills.length > 0 || character.talents.length > 0">
+<ng-container *ngIf="character.skills.length > 0 || character.talents.length > 0 || character.traits.length > 0">
   <hr>
   <div class="row">
     <div class="row mb-3">
@@ -216,21 +216,22 @@
         </div>
       </ng-container>
 
-      <ng-container *ngIf="character.conditions.length > 0">
-        <div class="col-md-3">
-          <h2>{{text.getText().conditionsLabel}}</h2>
-          <table mat-table [dataSource]="character.conditions" class="mat-elevation-z8">
+      <ng-container *ngIf="character.traits.length > 0">
+        <div class="col-md-4">
+          <h2>{{text.getText().traitsLabel}}</h2>
+
+          <table mat-table [dataSource]="character.traits" class="mat-elevation-z8">
             <ng-container matColumnDef="name">
               <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
               <td mat-cell *matCellDef="let element">
-                <span [matTooltip]="element.condition.description" matTooltipClass="custom-tooltip">
-                  {{element.condition.nameTranslation}}
-                </span>
+              <span [matTooltip]="element.trait.description" matTooltipClass="custom-tooltip">
+                {{element.trait.nameTranslation}}
+              </span>
               </td>
             </ng-container>
 
             <ng-container matColumnDef="level">
-              <th mat-header-cell *matHeaderCellDef>{{text.getText().levelLabel}}</th>
+              <th mat-header-cell *matHeaderCellDef>{{text.getText().valueLabel}}</th>
               <td mat-cell *matCellDef="let element">
                 {{element.value}}
               </td>
@@ -239,10 +240,38 @@
             <tr mat-header-row *matHeaderRowDef="baseColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: baseColumns;"></tr>
           </table>
-
         </div>
       </ng-container>
 
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="character.conditions.length > 0">
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{text.getText().conditionsLabel}}</h2>
+      <table mat-table [dataSource]="character.conditions" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+                <span [matTooltip]="element.condition.description" matTooltipClass="custom-tooltip">
+                  {{element.condition.nameTranslation}}
+                </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="level">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().levelLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.value}}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="baseColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: baseColumns;"></tr>
+      </table>
     </div>
   </div>
 </ng-container>

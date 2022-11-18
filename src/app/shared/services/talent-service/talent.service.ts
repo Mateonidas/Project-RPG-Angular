@@ -16,7 +16,7 @@ export class TalentService {
               private translationService: TranslateService) {
   }
 
-  fetchTalent() {
+  fetchTalents() {
     return this.http.get<Talent[]>('http://localhost:8080/talent').toPromise()
       .then(data => {
         for (let talent of data) {
