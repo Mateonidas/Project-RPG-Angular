@@ -6,13 +6,13 @@ import {TextResourceService} from "../text-resource-service/text-resource.servic
 import {Model} from "../../../model/model";
 import {TranslateService} from "../translate-service/translate.service";
 import {WeaponQuality} from "../../../model/weapon/weapon-quality.model";
+import {WeaponsGroup} from "../../../model/weapon/weapons-group.model";
+import {group} from "@angular/animations";
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeaponService {
-  weaponListChanged = new Subject<Weapon[]>();
-  weaponsList: Weapon[] = [];
   weaponTypesListChanged = new Subject<Model[]>();
   weaponTypesList: Model[] = [];
   weaponGroupsListChanged = new Subject<Model[]>();
@@ -22,6 +22,9 @@ export class WeaponService {
   weaponQualitiesListChanged = new Subject<Model[]>();
   weaponQualitiesList: Model[] = [];
 
+  weaponsGroupsChanged = new Subject<WeaponsGroup[]>();
+  weaponsGroups: WeaponsGroup[] = [];
+
   constructor(private http: HttpClient,
               private translateService: TranslateService) {
   }
@@ -30,8 +33,8 @@ export class WeaponService {
     return this.http.get<Weapon[]>('http://localhost:8080/weapon').toPromise()
       .then(data => {
         this.prepareWeaponsList(data);
-        this.weaponsList = data;
-        this.weaponListChanged.next(this.weaponsList.slice());
+        this.groupWeapons(data);
+        this.weaponsGroupsChanged.next(this.weaponsGroups.slice());
       });
   }
 
@@ -42,6 +45,17 @@ export class WeaponService {
     weapons.sort(
       (a, b) => (a.weaponGroupType > b.weaponGroupType) ? 1 : ((b.weaponGroupType > a.weaponGroupType) ? -1 : 0)
     )
+  }
+
+  groupWeapons(weapons: Weapon[]) {
+    weapons.forEach(weapon => {
+      let weaponGroup = this.weaponsGroups.find(weaponGroup => weaponGroup.name === weapon.weaponGroupType.nameTranslation);
+      if(weaponGroup != undefined) {
+        weaponGroup.weapons.push(weapon);
+      } else {
+        this.weaponsGroups.push(new WeaponsGroup(weapon.weaponGroupType.nameTranslation, [weapon]));
+      }
+    })
   }
 
   async storeWeapon(weapon: Weapon) {

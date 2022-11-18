@@ -2734,6 +2734,16 @@
       "name": "BULKY",
       "nameTranslation": "Nieporęczny",
       "description": "Przedmiot niezdarnie wykonany i niewygodny w użyciu. Zwiększa Obciążenie o 1 (małe szpargały w normalnych warunkach nie mogą mieć tej Wady). Nieporęczne ubrania i pancerze mają Obciążenie 1, nawet gdy są noszone. W przypadku zbroi kary na skutek Zmęczenia są podwajane."
+    },
+    {
+      "name": "UNBALANCED",
+      "nameTranslation": "Niezbalansowany",
+      "description": "Cięża niektórych broni skoncentrowany jest na jej czubku, czyniąc ją nieefektywną podczas parowania. Gdy ta broń używana jest do sparowania nadchodzącego ciosu, Test Parowania z uzyciem tej broni otrzymuje -1 PS."
+    },
+    {
+      "name": "SLASH",
+      "nameTranslation": "Cięcie",
+      "description": "Broń tnąca konentruje się na zdolności wycinania ziejących ran w przeciwniku. Jeśli z jej użyciem zadane zostanie Trafienie Krytyczne, cel wraz z efektami trafienia krytycznego otrzymuje również status Krwawienie. Postać może wykorzystać Punkty Przewag aby jej przeciwnik otrzymał kolejne poziomy statusu Krwawienie."
     }
   ],
   "criticalRoll": {

@@ -241,18 +241,11 @@
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>{{text.getText().weaponNameLabel}}</mat-label>
                 <mat-select formControlName="weapon" [compareWith]="compareModels">
-                  <mat-option disabled="disabled">
-                    ---- {{weaponsList[0].weaponGroupType.nameTranslation}} ----
-                  </mat-option>
-                  <ng-container *ngFor="let weapon of weaponsList; let i = index">
-                    <mat-option *ngIf="i > 0 && weapon.weaponGroupType.name !== weaponsList[i-1].weaponGroupType.name"
-                                disabled="disabled">
-                      ---- {{weapon.weaponGroupType.nameTranslation}} ----
-                    </mat-option>
-                    <mat-option [value]="weapon">
+                  <mat-optgroup *ngFor="let group of weaponsGroups" [label]="group.name">
+                    <mat-option *ngFor="let weapon of group.weapons" [value]="weapon">
                       {{weapon.nameTranslation}}
                     </mat-option>
-                  </ng-container>
+                  </mat-optgroup>
                 </mat-select>
               </mat-form-field>
             </div>

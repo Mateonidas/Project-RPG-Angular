@@ -32,6 +32,7 @@ import {EditWeaponDialog} from "../../dialog-window/edit-weapon-dialog/edit-weap
 import {TraitService} from "../../shared/services/trait-service/trait.service";
 import {Trait} from "../../model/trait/trait.model";
 import {CharacterTrait} from "../../model/trait/character-trait.model";
+import {WeaponsGroup} from "../../model/weapon/weapons-group.model";
 
 @Component({
   selector: 'app-character-edit',
@@ -48,6 +49,7 @@ export class CharacterEditComponent implements OnInit {
   talentsList: Talent[] = [];
   traitsList: Trait[] = [];
   weaponsList: Weapon[] = [];
+  weaponsGroups: WeaponsGroup[] = [];
   armorsList: Armor[] = [];
   isRightHanded = true;
   isDead!: boolean;
@@ -75,7 +77,7 @@ export class CharacterEditComponent implements OnInit {
   ngOnInit(): void {
     this.fetchData().then(() => {
       this.armorsList = this.armorService.armorsList;
-      this.weaponsList = this.weaponService.weaponsList;
+      this.weaponsGroups = this.weaponService.weaponsGroups;
       this.skillsList = this.skillService.skillList;
       this.talentsList = this.talentService.talentList;
       this.traitsList = this.traitService.traitList;
@@ -559,7 +561,7 @@ export class CharacterEditComponent implements OnInit {
 
   async onEditWeapon(index: number) {
     await this.createEditWeaponDialog(index);
-    this.weaponsList = this.weaponService.weaponsList;
+    this.weaponsGroups = this.weaponService.weaponsGroups;
   }
 
   createEditWeaponDialog(index: number) {
