@@ -2342,6 +2342,10 @@
     {
       "name": "PLATE",
       "nameTranslation": "Płytowe"
+    },
+    {
+      "name": "OTHER",
+      "nameTranslation": "Inne"
     }
   ],
   "armorPenalty": [
