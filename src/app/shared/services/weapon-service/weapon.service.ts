@@ -48,6 +48,7 @@ export class WeaponService {
   }
 
   groupWeapons(weapons: Weapon[]) {
+    this.weaponGroups = [];
     weapons.forEach(weapon => {
       let weaponGroup = this.weaponGroups.find(weaponGroup => weaponGroup.name === weapon.weaponGroupType.nameTranslation);
       if(weaponGroup != undefined) {

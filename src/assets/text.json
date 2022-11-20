@@ -2256,6 +2256,10 @@
     {
       "name": "LORE_OF_TZEENTCH",
       "nameTranslation": "Tradycja Tzeentcha"
+    },
+    {
+      "name": "CHAOS_SPELLS",
+      "nameTranslation": "Powszechna Magia Tajemna Chaosu"
     }
   ],
   "spells": [
@@ -2278,6 +2282,30 @@
       "name": "ENTANGLE",
       "nameTranslation": "Pochwycenie",
       "description": "PZ: 3\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Specjalny\n\nZa pomocą magii unieruchamiasz cel, oplatając go tym, co najlepiej pasuje do twojej Tradycji – pnączami, cieniami czy ubraniem. Twój cel otrzymuje 1 poziom Stanu Pochwycenie, którego Siła równa jest twojej Inteligencji. Za każde 2 PS możesz dodać 1 dodatkowy poziom Pochwycenia. Zaklęcie trwa, dopóki wszystkie poziomy Pochwycenia nie zostaną usunięte."
+    },
+    {
+      "name": "BOLT_OF_CORRUPTION",
+      "nameTranslation": "Pocisk spaczenia",
+      "description": "PZ: 8\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Natychmiast\n\nFormujesz mroczną magię w wyładowanie niszczycielskiej energii. Uznawane jest za magiczny pocisk o współczynniku Obrażeń +6. Trafiona ofiara musi zdać Wymagający (+0) Test Odporności lub otrzyma 1 Punkt Zepsucia."
+    },
+    {
+      "name": "BLUE_FIRE_OF_TZEENTCH",
+      "nameTranslation": "Niebieski płomień Tzeentcha",
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Inteligencji\nCel: Obszar (liczba metrów równa Bonusowi z Inicjatywy)\nCzas: Natychmiast\n\nPrzyzywasz wirującą kulę iskrzącego błękitnego ognia, która pochłania Twoich wrogów. Niebieski Płomień Tzeentcha uznawany jest za magiczny pocisk o współczynniku Obrażeń +3 zadawanym wszystkim Celom na Obszarze działania. Każdy trafiony otrzymuje również jeden Stan Podpalenie.\n\nJeżeli w wyniku tego zaklęcia albo wywołanego przez nią Stanu Podpalenie Żywotność istoty o Rozmiarze (Mały) lub większej zostanie obniżona do 0, rzuć 1k10. Gdy wypadnie 9, dwa niebieskie strachulce (patrz str. 85) wydzierają sobie drogę pazurami z ciała ofiary czaru, zabijając ją na miejscu."
+    },
+    {
+      "name": "PINK_FIRE_OF_TZEENTCH",
+      "nameTranslation": "Różowy płomień Tzeentcha",
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Inteligencji\nCel: 1\nCzas: Natychmiast\n\nWirujące pociski różowego ognia tryskają z Twoich rozczapierzonych palców, rozdzierając wrzeszczącą z bólu rzeczywistość. Różowy płomień Tzeentcha uznawany jest za magiczny pocisk o współczynniku Obrażeń +6. Dodatkowo Cel otrzymuje Stan Podpalenie. Jeżeli w wyniku tego zaklęcia albo wywołanego przez nie Stanu Podpalenie Żywotność istoty o Rozmiarze (Mały) lub większej zostanie obniżona do 0, rzuć 1k10. Gdy wypadnie 9, różowy strachulec (patrz str. 85) wydziera sobie drogę pazurami z ciała ofiary czaru, zabijając ją na miejscu."
+    },
+    {
+      "name": "POWER_OF_CHAOS",
+      "nameTranslation": "Potęga Chaosu",
+      "description": "PZ: 4\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Ogłady)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nWzywasz bogów Chaosu, by wspomogli Twe wysiłki poprzez niewielkie rozdarcie prowadzące do Eteru. Każde zaklęcie rzucone na obszarze działania Potęgi Chaosu ma PZ obniżony o połowę. Ponadto wszyscy przebywający na tym obszarze muszą zdać Przeciętny (+20) Test Odporności na koniec każdej Rundy lub otrzymują 1 Punkt Zepsucia. Testy Rzucania Zaklęć na tym obszarze mają Przeciętną (+20) Trudność."    },
+    {
+      "name": "MINDFIRE",
+      "nameTranslation": "Płomień umysłu",
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Inteligencji\nCel: 1\nCzas: Natychmiast\n\nPowietrze wypacza się wokół Twoich palców, tworząc kulę błyszczącej, mglistej energii, którą możesz cisnąć w przeciwnika. Cel trafiony przez Płomień umysłu musi zdać Wymagający (+0) Test Opanowania lub otrzymuje 1 Punkt Zepsucia. Za każde 2 PS uzyskane w Teście rzucania zaklęcia możesz przyznać ofierze kolejny Punkt Zepsucia, jeżeli nie zda Testu Opanowania. Gdyby nieszczęśnik miał z tego powodu otrzymać mutację, rzuca w Tabeli Zepsucia Psychicznego oraz dostaje jeden poziom Stanu Podpalenie, kiedy nienaturalny ogień bucha z jego oczu, ust, nozdrzy i uszu."
     }
   ],
   "bodyLocalizations": [

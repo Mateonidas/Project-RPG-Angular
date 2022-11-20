@@ -27,6 +27,7 @@ export class SpellService {
   }
 
   groupSpells(spells: Spell[]) {
+    this.spellGroups = [];
     spells.forEach(spell => {
       let spellGroup = this.spellGroups.find(spellGroup => spellGroup.name === spell.spellGroup.nameTranslation);
       if (spellGroup != undefined) {
