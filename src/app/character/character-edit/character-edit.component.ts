@@ -32,7 +32,10 @@ import {EditWeaponDialog} from "../../dialog-window/edit-weapon-dialog/edit-weap
 import {TraitService} from "../../shared/services/trait-service/trait.service";
 import {Trait} from "../../model/trait/trait.model";
 import {CharacterTrait} from "../../model/trait/character-trait.model";
-import {WeaponsGroup} from "../../model/weapon/weapons-group.model";
+import {WeaponGroup} from "../../model/weapon/weapons-group.model";
+import {SpellService} from "../../shared/services/spell-service/spell.service";
+import {SpellGroup} from "../../model/spell/spell-group.model";
+import {Spell} from "../../model/spell/spell.model";
 
 @Component({
   selector: 'app-character-edit',
@@ -48,8 +51,8 @@ export class CharacterEditComponent implements OnInit {
   skillsList: Skill[] = [];
   talentsList: Talent[] = [];
   traitsList: Trait[] = [];
-  weaponsList: Weapon[] = [];
-  weaponsGroups: WeaponsGroup[] = [];
+  spellGroups: SpellGroup[] = [];
+  weaponGroups: WeaponGroup[] = [];
   armorsList: Armor[] = [];
   isRightHanded = true;
   isDead!: boolean;
@@ -71,16 +74,18 @@ export class CharacterEditComponent implements OnInit {
               public characterService: CharacterService,
               public injuryService: InjuryService,
               public conditionService: ConditionService,
+              public spellService: SpellService,
               public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.fetchData().then(() => {
       this.armorsList = this.armorService.armorsList;
-      this.weaponsGroups = this.weaponService.weaponsGroups;
+      this.weaponGroups = this.weaponService.weaponGroups;
       this.skillsList = this.skillService.skillList;
       this.talentsList = this.talentService.talentList;
       this.traitsList = this.traitService.traitList;
+      this.spellGroups = this.spellService.spellGroups;
       this.route.params.subscribe(
         (params: Params) => {
           this.id = +params['id'];
@@ -125,7 +130,8 @@ export class CharacterEditComponent implements OnInit {
       'armors': formArrays.armors,
       'injuries': formArrays.injuries,
       'notes': formArrays.notes,
-      'conditions': formArrays.conditions
+      'conditions': formArrays.conditions,
+      'spells': formArrays.spells
     });
   }
 
@@ -209,6 +215,7 @@ export class CharacterEditComponent implements OnInit {
     const armors = <Armor[]>this.editCharacterForm.value.armors;
     const conditions = <CharacterCondition[]>this.editCharacterForm.value.conditions;
     const notes = <string[]>this.editCharacterForm.value.notes;
+    const spells = <Spell[]>this.editCharacterForm.value.spells;
 
     const character = new Character(
       name,
@@ -222,7 +229,8 @@ export class CharacterEditComponent implements OnInit {
       weapons,
       armors,
       conditions,
-      notes
+      notes,
+      spells
     );
 
     this.prepareCharacterBodyLocalizations(character);
@@ -290,6 +298,7 @@ export class CharacterEditComponent implements OnInit {
     await this.skillService.fetchSkills();
     await this.talentService.fetchTalents();
     await this.traitService.fetchTraits();
+    await this.spellService.fetchSpells();
     await this.characterService.fetchCharacters();
   }
 
@@ -314,6 +323,7 @@ export class CharacterEditComponent implements OnInit {
     }
     this.prepareInjuriesList(formArrays.injuries, character.bodyLocalizations);
     this.prepareConditionsList(formArrays.conditions, character.conditions);
+    this.prepareSpellsList(formArrays.spells, character.spells);
   }
 
   prepareSkillsList(skills: FormArray, skillsList: CharacterSkill[]) {
@@ -400,6 +410,14 @@ export class CharacterEditComponent implements OnInit {
           'value': new FormControl(characterCondition.value),
           'counter': new FormControl(characterCondition.counter)
         })
+      )
+    }
+  }
+
+  prepareSpellsList(spells: FormArray, spellsList: Spell[]) {
+    for (let spell of spellsList) {
+      spells.push(
+        new FormControl(spell)
       )
     }
   }
@@ -500,6 +518,12 @@ export class CharacterEditComponent implements OnInit {
     )
   }
 
+  onAddSpell() {
+    (<FormArray>this.editCharacterForm.get('spells')).push(
+      new FormControl(null),
+    )
+  }
+
   onAddWeapon() {
     (<FormArray>this.editCharacterForm.get('weapons')).push(
       new FormGroup({
@@ -535,6 +559,12 @@ export class CharacterEditComponent implements OnInit {
     )
   }
 
+  onAddNote() {
+    (<FormArray>this.editCharacterForm.get('notes')).push(
+      new FormControl(null),
+    )
+  }
+
   async onEditArmor(index: number) {
     await this.createEditArmorDialogWindow(index);
     this.armorsList = this.armorService.armorsList;
@@ -561,7 +591,7 @@ export class CharacterEditComponent implements OnInit {
 
   async onEditWeapon(index: number) {
     await this.createEditWeaponDialog(index);
-    this.weaponsGroups = this.weaponService.weaponsGroups;
+    this.weaponGroups = this.weaponService.weaponGroups;
   }
 
   createEditWeaponDialog(index: number) {
@@ -620,6 +650,10 @@ export class CharacterEditComponent implements OnInit {
     return (<FormArray>this.editCharacterForm.get('traits')).controls;
   }
 
+  get spells() {
+    return <FormControl[]>(<FormArray>this.editCharacterForm.get('spells')).controls;
+  }
+
   get weapons() {
     return <FormControl[]>(<FormArray>this.editCharacterForm.get('weapons')).controls;
   }
@@ -636,6 +670,10 @@ export class CharacterEditComponent implements OnInit {
     return <FormControl[]>(<FormArray>this.editCharacterForm.get('conditions')).controls;
   }
 
+  get notes() {
+    return (<FormArray>this.editCharacterForm.get('notes')).controls;
+  }
+
   onDeleteSkill(index: number) {
     (<FormArray>this.editCharacterForm.get('skills')).removeAt(index);
   }
@@ -646,6 +684,10 @@ export class CharacterEditComponent implements OnInit {
 
   onDeleteTrait(index: number) {
     (<FormArray>this.editCharacterForm.get('traits')).removeAt(index);
+  }
+
+  onDeleteSpell(index: number) {
+    (<FormArray>this.editCharacterForm.get('spells')).removeAt(index);
   }
 
   onDeleteWeapon(index: number) {
@@ -662,16 +704,6 @@ export class CharacterEditComponent implements OnInit {
 
   onDeleteCondition(index: number) {
     (<FormArray>this.editCharacterForm.get('conditions')).removeAt(index);
-  }
-
-  get notes() {
-    return (<FormArray>this.editCharacterForm.get('notes')).controls;
-  }
-
-  onAddNote() {
-    (<FormArray>this.editCharacterForm.get('notes')).push(
-      new FormControl(null),
-    )
   }
 
   onDeleteNote(index: number) {

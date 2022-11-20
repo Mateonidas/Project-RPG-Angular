@@ -13,6 +13,7 @@ import {Model} from "../../../model/model";
 import {WeaponQuality} from "../../../model/weapon/weapon-quality.model";
 import {Trait} from "../../../model/trait/trait.model";
 import {CharacterTrait} from "../../../model/trait/character-trait.model";
+import {Spell} from "../../../model/spell/spell.model";
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,7 @@ export class TranslateService {
     this.prepareCharacterSkills(character.skills);
     this.prepareCharacterTalents(character.talents);
     this.prepareCharacterTraits(character.traits)
+    this.prepareSpellList(character.spells);
     this.prepareWeapons(character.weapons);
     this.prepareArmorsList(character.armors);
     this.prepareBodyLocalizations(character.bodyLocalizations);
@@ -63,6 +65,23 @@ export class TranslateService {
     let traitTranslation = TextResourceService.getTraitNameTranslation(trait.name);
     trait.nameTranslation = traitTranslation.nameTranslation;
     trait.description = traitTranslation.description;
+  }
+
+  public prepareSpellList(spells: Spell[]) {
+    for (const spell of spells) {
+      this.prepareSpell(spell);
+    }
+
+    spells.sort(
+      (a, b) => (a.nameTranslation > b.nameTranslation) ? 1 : ((b.nameTranslation > a.nameTranslation) ? -1 : 0)
+    )
+  }
+
+  private prepareSpell(spell: Spell) {
+    let spellTranslation = TextResourceService.getSpellNameTranslation(spell.name);
+    spell.nameTranslation = spellTranslation.nameTranslation;
+    spell.description = spellTranslation.description;
+    spell.spellGroup.nameTranslation = TextResourceService.getSpellGroupNameTranslation(spell.spellGroup.name).nameTranslation;
   }
 
   private prepareWeapons(weapons: CharacterWeapon[]) {

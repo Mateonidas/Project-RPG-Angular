@@ -11,4 +11,5 @@ export class CharacterFormArraysWrapper {
   traits = new FormArray([]);
   weapons = new FormArray([]);
   armors = new FormArray([]);
+  spells = new FormArray([]);
 }

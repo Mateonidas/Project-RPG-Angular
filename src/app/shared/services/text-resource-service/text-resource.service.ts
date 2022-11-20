@@ -169,6 +169,28 @@ export class TextResourceService {
     })
   }
 
+  public static getSpellNameTranslation(name: string) {
+    let spells: ModelWithDescription[] = textResource.spells;
+    return <ModelWithDescription>spells.find(spell => {
+      if(spell.name == name) {
+        return spell;
+      } else {
+        return null;
+      }
+    })
+  }
+
+  public static getSpellGroupNameTranslation(name: string) {
+    let spellGroups: Model[] = textResource.spellGroups;
+    return <Model>spellGroups.find(spellGroup => {
+      if(spellGroup.name == name) {
+        return spellGroup;
+      } else {
+        return null;
+      }
+    })
+  }
+
   public static getCriticalWoundText(name: string) {
     let criticalRoll: CriticalRoll = textResource.criticalRoll;
     return <CriticalWound>criticalRoll.criticalWounds.find(criticalWound => {

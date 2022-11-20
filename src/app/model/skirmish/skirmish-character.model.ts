@@ -6,6 +6,8 @@ import {CharacterSkill} from "../skill/character-skill.model";
 import {CharacterWeapon} from "../weapon/character-weapon.model";
 import {CharacterBodyLocalization} from "../body-localization/character-body-localization.model";
 import {CharacterCondition} from "../condition/character-condition.model";
+import {CharacterTrait} from "../trait/character-trait.model";
+import {Spell} from "../spell/spell.model";
 
 export class SkirmishCharacter extends Character {
 
@@ -15,7 +17,7 @@ export class SkirmishCharacter extends Character {
   isDead!: boolean;
 
   constructor(character?: Character, id?: number) {
-    super(character?.name, character?.description, character?.group, character?.characteristics, character?.skills, character?.talents, character?.traits, character?.isRightHanded, character?.weapons, character?.armors, character?.conditions, character?.notes, character?.bodyLocalizations);
+    super(character?.name, character?.description, character?.group, character?.characteristics, character?.skills, character?.talents, character?.traits, character?.isRightHanded, character?.weapons, character?.armors, character?.conditions, character?.notes, character?.spells, character?.bodyLocalizations);
     if (character != undefined) {
       this.id = <number>id;
       this.currentWounds = <number>character?.wounds.value;
@@ -30,10 +32,12 @@ export class SkirmishCharacter extends Character {
     character.characteristics = CharacterCharacteristic.arrayFromJSON(character['characteristics']);
     character.skills = CharacterSkill.arrayFromJSON(character['skills']);
     character.talents = CharacterTalent.arrayFromJSON(character['talents']);
+    character.traits = CharacterTrait.arrayFromJSON(character["traits"]);
     character.weapons = CharacterWeapon.arrayFromJSON(character['weapons']);
     character.armors = Armor.arrayFromJSON(character['armors']);
     character.bodyLocalizations = CharacterBodyLocalization.arrayFromJSON(character['bodyLocalizations']);
     character.conditions = CharacterCondition.arrayFromJSON(character['conditions']);
+    character.spells = Spell.arrayFromJSON(character['spells']);
     return character;
   }
 

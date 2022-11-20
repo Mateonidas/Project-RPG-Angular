@@ -11,6 +11,7 @@
   "addTalentLabel": "Dodaj talent",
   "addToFightLabel": "Dodaj do walki",
   "addTraitLabel": "Dodaj cechę",
+  "addSpellLabel": "Dodaj zaklęcie",
   "addWeaponLabel": "Dodaj Broń",
   "addWeaponQualityLabel": "Dodaj cechę broni",
   "advantageLabel": "Przewagi",
@@ -76,6 +77,7 @@
   "talentsLabel": "Talenty",
   "temporaryParametersLabel": "Parametry tymczasowe",
   "traitsLabel": "Cechy Postaci",
+  "spellsLabel": "Zaklęcia",
   "turnLabel": "Runda: ",
   "unitsLabel": "Sztuki",
   "valueLabel": "Wartość",
@@ -87,7 +89,6 @@
   "weaponTypeLabel": "Typ broni",
   "woundsLabel": "Żywotność",
   "yesLabel": "Tak",
-
   "characteristics": [
     {
       "name": "MOVEMENT",
@@ -1287,7 +1288,8 @@
     {
       "name": "MAGNUM_OPUS",
       "nameTranslation": "Arcydzieło",
-      "description": "Maksimum: 1\n\nJesteś niekwestionowanym mistrzem w swojej dziedzinie, tworzącym dzieła tak złożone, że inni mogą je tylko podziwiać, zachwycając się twoim geniuszem. Za każdym razem, gdy wykupujesz ten Talent, tworzysz niezwykłe dzieło, wykorzystując Umiejętność Sztuka lub Rzemiosło. Nie ma ono sobie równych, będzie po wieki inspirowało, zadziwiało i budziło zachwyt swoją wyjątkowością. MG określa premie, które ci przysługują z tej racji. Zwykle wpływają one na Testy Ogłady w kontaktach z tymi, którzy podziwiają twoją sztukę. Sprzedaż dzieła powinna dać ci przynajmniej dziesięciokrotną wartość zwykłej ceny, a czasami nawet więcej."    },
+      "description": "Maksimum: 1\n\nJesteś niekwestionowanym mistrzem w swojej dziedzinie, tworzącym dzieła tak złożone, że inni mogą je tylko podziwiać, zachwycając się twoim geniuszem. Za każdym razem, gdy wykupujesz ten Talent, tworzysz niezwykłe dzieło, wykorzystując Umiejętność Sztuka lub Rzemiosło. Nie ma ono sobie równych, będzie po wieki inspirowało, zadziwiało i budziło zachwyt swoją wyjątkowością. MG określa premie, które ci przysługują z tej racji. Zwykle wpływają one na Testy Ogłady w kontaktach z tymi, którzy podziwiają twoją sztukę. Sprzedaż dzieła powinna dać ci przynajmniej dziesięciokrotną wartość zwykłej ceny, a czasami nawet więcej."
+    },
     {
       "name": "MARKSMAN",
       "nameTranslation": "Strzelec Wyborowy",
@@ -1321,7 +1323,8 @@
     {
       "name": "NIGHT_VISION",
       "nameTranslation": "Widzenie w Ciemności",
-      "description": "Maksimum: Bonus z Inicjatywy\n\nTesty: Percepcja przy słabym świetle\n\nBardzo dobrze widzisz w naturalnych ciemnościach. Jeśli masz źródło choćby słabego blasku (światło gwiazd, księżyca czy bioluminescencję), widzisz wyraźnie na 20 metrów na każde wykupienie tego Talentu. To nie koniec. Dla ciebie oświetlenie okolicy sięga dalej o 20 metrów na każde wykupienie tego Talentu."    },
+      "description": "Maksimum: Bonus z Inicjatywy\n\nTesty: Percepcja przy słabym świetle\n\nBardzo dobrze widzisz w naturalnych ciemnościach. Jeśli masz źródło choćby słabego blasku (światło gwiazd, księżyca czy bioluminescencję), widzisz wyraźnie na 20 metrów na każde wykupienie tego Talentu. To nie koniec. Dla ciebie oświetlenie okolicy sięga dalej o 20 metrów na każde wykupienie tego Talentu."
+    },
     {
       "name": "NIMBLE_FINGERED",
       "nameTranslation": "Zręczny",
@@ -1440,7 +1443,8 @@
     {
       "name": "RIPOSTE",
       "nameTranslation": "Riposta",
-      "description": "Maksimum: Bonus ze Zwinności\n\nTesty: Broń Biała w obronie\n\nWyznajesz zasadę, że najlepszą obroną jest atak, dlatego w walce błyskawicznie kontratakujesz, gdy tylko przeciwnik wyprowadzi cios. Jeśli twoja broń posiada zaletę Szybka, możesz zadać obrażenia, gdy jesteś atakowany, jakbyś wykonywał swoją Akcję. Ripostę możesz wykonać tyle razy w Rundzie, ile razy wykupisz ten Talent."    },
+      "description": "Maksimum: Bonus ze Zwinności\n\nTesty: Broń Biała w obronie\n\nWyznajesz zasadę, że najlepszą obroną jest atak, dlatego w walce błyskawicznie kontratakujesz, gdy tylko przeciwnik wyprowadzi cios. Jeśli twoja broń posiada zaletę Szybka, możesz zadać obrażenia, gdy jesteś atakowany, jakbyś wykonywał swoją Akcję. Ripostę możesz wykonać tyle razy w Rundzie, ile razy wykupisz ten Talent."
+    },
     {
       "name": "RIVER_GUIDE",
       "nameTranslation": "Pilot Rzeczny",
@@ -1740,6 +1744,11 @@
       "name": "WITCH",
       "nameTranslation": "Czarownica!",
       "description": "Maksimum: Bonus z Siły Woli\n\nSama z siebie nauczyłaś się, jak rzucać czary, często robiąc to metodą prób i błędów. Dodaj Język (Magiczny) do listy Umiejętności każdej bieżącej Profesji. Jeśli się już na niej znajduje, każde Rozwinięcie tej Umiejętności kosztuje cię o 5 PD mniej. Co więcej, możesz w dowolnym momencie wydać Punkt Bohatera, by Twoja postać mogła rzucić wybrane przez ciebie zaklęcie z dowolnej Tradycji Magii Tajemnej. Zostaje ono dodane do listy znanych postaci czarów. Możesz tak uczynić tyle razy, ile razy masz wykupiony ten Talent."
+    },
+    {
+      "name": "ARCANE_MAGIC_DEMONOLOGY",
+      "nameTranslation": "Magia Tajemna (Demonologia)",
+      "description": "Maksimum: 1\n\nStudiowałeś jedną z ośmiu tradycji magii: Cienia, Metalu, Niebios, Ognia, Śmierci, Światła, Zwierząt lub Życia albo praktykujesz którąś z mniej znanych: Guślarstwa czy Nekromancji. Możesz zapamiętywać czary ze swojej wybranej tradycji, płacąc za nie koszt w Punktach Doświadczenia (strona 136). Jeśli twój Bonus z Inteligencji równy jest 4, to pierwsze cztery zaklęcia będą cię kosztowały 100 PD, kolejne 4 już 200 PD i tak dalej. Obszerniejsze zasady dotyczące nauki nowych zaklęć znajdują się w Rozdziale 8: Magia. W normalnych warunkach nie możesz nabyć więcej niż jednego Talentu Magia Tajemna (Tradycja). Co więcej, jeśli posiadasz Talent Magia Tajemna (Tradycja), nie możesz wykupić Talentów Błogosławieństwo i Inwokacja. Za 100 PD możesz wyzbyć się tego Talentu, natychmiast tracąc dostęp do wszystkich zapewnianych przez niego czarów."
     }
   ],
   "traits": [
@@ -1836,7 +1845,8 @@
     {
       "name": "CONSTRUCT",
       "nameTranslation": "Konstrukt",
-      "description": "Stworzenie jest konstruktem z magii, całkiem bezrozumnym i spajanym przez magiczne więzy. Nie ma Cech Inteligencja,  Siła Woli ani Ogłada i nigdy nie musi ich testować. Jeśli brakuje czarodzieja, który by je kontrolował, albo stworzenie nie posiada cechy Terytorialny, wałęsa się bezmyślnie, podążając za nurtami przenikającej otoczenie magii.\n\nGdy trzeba obliczyć Żywotność stwora i wymagane jest określenie Bonusu z Siły Woli, użyj jego Bonusu z Siły. Wszystkie ataki stworzenia są Magiczne."    },
+      "description": "Stworzenie jest konstruktem z magii, całkiem bezrozumnym i spajanym przez magiczne więzy. Nie ma Cech Inteligencja,  Siła Woli ani Ogłada i nigdy nie musi ich testować. Jeśli brakuje czarodzieja, który by je kontrolował, albo stworzenie nie posiada cechy Terytorialny, wałęsa się bezmyślnie, podążając za nurtami przenikającej otoczenie magii.\n\nGdy trzeba obliczyć Żywotność stwora i wymagane jest określenie Bonusu z Siły Woli, użyj jego Bonusu z Siły. Wszystkie ataki stworzenia są Magiczne."
+    },
     {
       "name": "CORROSIVE_BLOOD",
       "nameTranslation": "Kwasowa Krew",
@@ -1875,7 +1885,8 @@
     {
       "name": "DISTRACTING",
       "nameTranslation": "Dekoncentrujący",
-      "description": "Stworzenie rozprasza lub dezorientuje wrogów, być może wydzielając usypiający zapach lub powalający smród, a może ze względu na przerażająco dziwaczny wygląd. Wszystkie żywe cele w promieniu tylu metrów, ile wynosi jego Bonus z Wytrzymałości, dostają karę -20 do wszystkich Testów. Cel może dostać tę karę tylko raz – bez względu na to, jak wielu jest dekoncentrujących wrogów."    },
+      "description": "Stworzenie rozprasza lub dezorientuje wrogów, być może wydzielając usypiający zapach lub powalający smród, a może ze względu na przerażająco dziwaczny wygląd. Wszystkie żywe cele w promieniu tylu metrów, ile wynosi jego Bonus z Wytrzymałości, dostają karę -20 do wszystkich Testów. Cel może dostać tę karę tylko raz – bez względu na to, jak wielu jest dekoncentrujących wrogów."
+    },
     {
       "name": "ELITE",
       "nameTranslation": "Elita",
@@ -1909,7 +1920,8 @@
     {
       "name": "FURY",
       "nameTranslation": "Furia",
-      "description": "Stworzenie ulega czasami wszechogarniającej wściekłości. Może wydać wszystkie Przewagi (minimalnie 1), by wzbudzić w sobie Nienawiść wobec przeciwników w walce wręcz. Jeżeli stworzenie zebrało przynajmniej 3 Przewagi, może wydać wszystkie Przewagi, by wpaść w Szał Bojowy. Patrz: strona 190."    },
+      "description": "Stworzenie ulega czasami wszechogarniającej wściekłości. Może wydać wszystkie Przewagi (minimalnie 1), by wzbudzić w sobie Nienawiść wobec przeciwników w walce wręcz. Jeżeli stworzenie zebrało przynajmniej 3 Przewagi, może wydać wszystkie Przewagi, by wpaść w Szał Bojowy. Patrz: strona 190."
+    },
     {
       "name": "GHOSTLY_HOWL",
       "nameTranslation": "Upiorne Wycie",
@@ -2174,6 +2186,98 @@
       "name": "SPLIT",
       "nameTranslation": "Podział",
       "description": "Jeżeli stworzenie otrzyma Ranę Krytyczną albo straci wszystkie punkty Żywotności, natychmiast dzieli się na dwa niebieskie strachulce, wygrzebujące się z resztek swojego rodzica w chmurze wirujących, iskrzących magicznych energii. Obydwa strachulce są niezranione."
+    }
+  ],
+  "spellGroups": [
+    {
+      "name": "PETTY_SPELLS",
+      "nameTranslation": "Magia Prosta"
+    },
+    {
+      "name": "ARCANE_SPELLS",
+      "nameTranslation": "Powszechna Magia Tajemna"
+    },
+    {
+      "name": "LORE_OF_BEASTS",
+      "nameTranslation": "Tradycja Zwierząt"
+    },
+    {
+      "name": "LORE_OF_DEATH",
+      "nameTranslation": "Tradycja Śmierci"
+    },
+    {
+      "name": "LORE_OF_FIRE",
+      "nameTranslation": "Tradycja Ognia"
+    },
+    {
+      "name": "LORE_OF_HEAVENS",
+      "nameTranslation": "Tradycja Niebios"
+    },
+    {
+      "name": "LORE_OF_METAL",
+      "nameTranslation": "Tradycja Metalu"
+    },
+    {
+      "name": "LORE_OF_LIFE",
+      "nameTranslation": "Tradycja Życia"
+    },
+    {
+      "name": "LORE_OF_LIGHT",
+      "nameTranslation": "Tradycja Światła"
+    },
+    {
+      "name": "LORE_OF_SHADOWS",
+      "nameTranslation": "Tradycja Cieni"
+    },
+    {
+      "name": "LORE_OF_HEDGECRAFT",
+      "nameTranslation": "Tradycja Guślarstwa"
+    },
+    {
+      "name": "LORE_OF_WITCHCRAFT",
+      "nameTranslation": "Tradycja Czarnoksięstwa"
+    },
+    {
+      "name": "LORE_OF_DAEMONOLOGY",
+      "nameTranslation": "Tradycja Demonologii"
+    },
+    {
+      "name": "LORE_OF_NECROMANCY",
+      "nameTranslation": "Tradycja Nekromancji"
+    },
+    {
+      "name": "LORE_OF_NURGLE",
+      "nameTranslation": "Tradycja Nurgla"
+    },
+    {
+      "name": "LORE_OF_SLAANESH",
+      "nameTranslation": "Tradycja Slaanesha"
+    },
+    {
+      "name": "LORE_OF_TZEENTCH",
+      "nameTranslation": "Tradycja Tzeentcha"
+    }
+  ],
+  "spells": [
+    {
+      "name": "BOLT",
+      "nameTranslation": "Pocisk",
+      "description": "PZ: 4\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Natychmiast\n\nTworzysz magiczne wyładowanie odpowiadające charakterowi Tradycji. Jest ono magicznym pociskiem zadającym Obrażenia +4."
+    },
+    {
+      "name": "CORROSIVE_BLOOD",
+      "nameTranslation": "Żrąca Krew",
+      "description": "PZ: 4\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nWypełniasz swoje ciało magią, a twoja krew nabiera niezwykłych właściwości. Zyskujesz Cechę Stworzenia Kwasowa Krew (strona 339).\n\nKrew stworzenia jest żrąca. Za każdym razem, gdy zostanie ono ranione, tryska z niego krew i wszystkie związane z nim walką cele dostają 1k10 Ran. Są one normalnie obniżane przez Bonus z Wytrzymałości i Punkty Pancerza, ale wynoszą minimum 1."
+    },
+    {
+      "name": "DOME",
+      "nameTranslation": "Kopuła",
+      "description": "PZ: 7\nZasięg: Rzucający\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nTworzysz nad sobą kopułę z magicznej energii, która blokuje ataki. Każdy w Zasięgu zyskuje Cechę Stworzenia Ochrona (6+) (strona 340) przeciwko magicznym lub dystansowym atakom wyprowadzanym zza kopuły. Wszystkie ataki wewnątrz kopuły wykonywane są normalnie."
+    },
+    {
+      "name": "ENTANGLE",
+      "nameTranslation": "Pochwycenie",
+      "description": "PZ: 3\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Specjalny\n\nZa pomocą magii unieruchamiasz cel, oplatając go tym, co najlepiej pasuje do twojej Tradycji – pnączami, cieniami czy ubraniem. Twój cel otrzymuje 1 poziom Stanu Pochwycenie, którego Siła równa jest twojej Inteligencji. Za każde 2 PS możesz dodać 1 dodatkowy poziom Pochwycenia. Zaklęcie trwa, dopóki wszystkie poziomy Pochwycenia nie zostaną usunięte."
     }
   ],
   "bodyLocalizations": [

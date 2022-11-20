@@ -19,6 +19,7 @@ export class CharacterDetailComponent implements OnInit {
   characteristicsColumns: string[] = this.fillCharacteristicsColumn();
   bodyLocalizationsColumns: string[] = ['name', 'armorPoints', 'injuries'];
   notesColumns: string[] = ['note'];
+  spellColumns: string[] = ['spell'];
   baseColumns: string[] = ['name', 'level'];
   weaponColumns: string[] = ['name', 'category', 'reach', 'damage', 'advantagesAndDisadvantages'];
   armorsColumns: string[] = ['name', 'category', 'localization', 'armorPoints', 'penalties', 'qualities'];

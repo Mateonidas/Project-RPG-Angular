@@ -100,7 +100,8 @@
 
           <div class="row">
             <div class="col-md-12">
-              <button mat-raised-button color="primary" type="button" (click)="onAddNote()">{{text.getText().addNoteLabel}}</button>
+              <button mat-raised-button color="primary" type="button"
+                      (click)="onAddNote()">{{text.getText().addNoteLabel}}</button>
             </div>
           </div>
         </div>
@@ -147,7 +148,8 @@
 
           <div class="row">
             <div class="col-md-12">
-              <button mat-raised-button color="primary" type="button" (click)="onAddSkill()">{{text.getText().addSkillLabel}}</button>
+              <button mat-raised-button color="primary" type="button"
+                      (click)="onAddSkill()">{{text.getText().addSkillLabel}}</button>
             </div>
           </div>
         </div>
@@ -173,7 +175,7 @@
             <div class="col-md-2">
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>{{text.getText().valueLabel}}</mat-label>
-<!--                <input matInput type="number" formControlName="value" (keyup)="onSetTalentLevel($event, i)">-->
+                <!--                <input matInput type="number" formControlName="value" (keyup)="onSetTalentLevel($event, i)">-->
                 <input matInput type="number" formControlName="value">
               </mat-form-field>
             </div>
@@ -185,12 +187,12 @@
 
           <div class="row">
             <div class="col-md-12">
-              <button mat-raised-button color="primary" type="button" (click)="onAddTalent()">{{text.getText().addTalentLabel}}</button>
+              <button mat-raised-button color="primary" type="button"
+                      (click)="onAddTalent()">{{text.getText().addTalentLabel}}</button>
             </div>
           </div>
         </div>
       </div>
-
 
 
       <hr>
@@ -202,7 +204,8 @@
             <div class="col-md-8">
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>{{text.getText().nameLabel}}</mat-label>
-                <mat-select formControlName="trait" [compareWith]="compareModels" (selectionChange)="checkIfTraitHasValue(traitControl)">
+                <mat-select formControlName="trait" [compareWith]="compareModels"
+                            (selectionChange)="checkIfTraitHasValue(traitControl)">
                   <mat-option *ngFor="let trait of traitsList" [value]="trait">
                     {{trait.nameTranslation}}
                   </mat-option>
@@ -224,12 +227,46 @@
 
           <div class="row">
             <div class="col-md-12">
-              <button mat-raised-button color="primary" type="button" (click)="onAddTrait()">{{text.getText().addTraitLabel}}</button>
+              <button mat-raised-button color="primary" type="button"
+                      (click)="onAddTrait()">{{text.getText().addTraitLabel}}</button>
             </div>
           </div>
         </div>
       </div>
 
+
+      <hr>
+      <div class="row">
+        <div class="col-md-12" formArrayName="spells">
+          <h2>{{text.getText().spellsLabel}}</h2>
+          <div class="row mb-2" *ngFor="let spellControl of spells; let i = index" [formGroupName]="i">
+            <div class="col-md-7">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>{{text.getText().nameLabel}}</mat-label>
+                <mat-select [formControl]="spellControl" [compareWith]="compareModels">
+                  <mat-optgroup *ngFor="let group of spellGroups" [label]="group.name">
+                    <mat-option *ngFor="let spell of group.spells" [value]="spell">
+                      {{spell.nameTranslation}}
+                    </mat-option>
+                  </mat-optgroup>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-3">
+              <button mat-mini-fab color="warn" (click)="onDeleteSpell(i)">X</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <button mat-raised-button color="primary" type="button"
+                      (click)="onAddSpell()">{{text.getText().addSpellLabel}}</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
 
 
       <hr>
@@ -241,7 +278,7 @@
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>{{text.getText().weaponNameLabel}}</mat-label>
                 <mat-select formControlName="weapon" [compareWith]="compareModels">
-                  <mat-optgroup *ngFor="let group of weaponsGroups" [label]="group.name">
+                  <mat-optgroup *ngFor="let group of weaponGroups" [label]="group.name">
                     <mat-option *ngFor="let weapon of group.weapons" [value]="weapon">
                       {{weapon.nameTranslation}}
                     </mat-option>
@@ -256,13 +293,15 @@
               </mat-form-field>
             </div>
             <div class="col-md-3">
-              <button mat-raised-button color="primary" type="button" (click)="onEditWeapon(i)">{{text.getText().editLabel}}</button>
+              <button mat-raised-button color="primary" type="button"
+                      (click)="onEditWeapon(i)">{{text.getText().editLabel}}</button>
               <button mat-mini-fab color="warn" (click)="onDeleteWeapon(i)">X</button>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button mat-raised-button color="primary" type="button" (click)="onAddWeapon()">{{text.getText().addWeaponLabel}}</button>
+              <button mat-raised-button color="primary" type="button"
+                      (click)="onAddWeapon()">{{text.getText().addWeaponLabel}}</button>
             </div>
           </div>
         </div>
@@ -296,7 +335,8 @@
             </div>
 
             <div class="col-md-3">
-              <button mat-raised-button color="primary" type="button" (click)="onEditArmor(i)">{{text.getText().editLabel}}</button>
+              <button mat-raised-button color="primary" type="button"
+                      (click)="onEditArmor(i)">{{text.getText().editLabel}}</button>
               <button mat-mini-fab color="warn" (click)="onDeleteArmor(i)">X</button>
             </div>
 
@@ -304,7 +344,8 @@
 
           <div class="row">
             <div class="col-md-12">
-              <button mat-raised-button color="primary" type="button" (click)="onAddArmor()">{{text.getText().addArmorLabel}}</button>
+              <button mat-raised-button color="primary" type="button"
+                      (click)="onAddArmor()">{{text.getText().addArmorLabel}}</button>
             </div>
           </div>
 
@@ -354,7 +395,8 @@
 
           <div class="row">
             <div class="col-md-12">
-              <button mat-raised-button color="primary" type="button" (click)="onAddInjury()">{{text.getText().addInjuryLabel}}</button>
+              <button mat-raised-button color="primary" type="button"
+                      (click)="onAddInjury()">{{text.getText().addInjuryLabel}}</button>
             </div>
           </div>
         </div>
@@ -398,7 +440,8 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button mat-raised-button color="primary" type="button" (click)="onAddCondition()">{{text.getText().addConditionLabel}}</button>
+              <button mat-raised-button color="primary" type="button"
+                      (click)="onAddCondition()">{{text.getText().addConditionLabel}}</button>
             </div>
           </div>
         </div>
@@ -408,7 +451,8 @@
       <div class="row">
         <div class="col-md-12">
           <button mat-raised-button color="primary" type="submit">{{text.getText().saveLabel}}</button>
-          <button mat-raised-button color="warn" type="button" (click)="onCancel()">{{text.getText().returnLabel}}</button>
+          <button mat-raised-button color="warn" type="button"
+                  (click)="onCancel()">{{text.getText().returnLabel}}</button>
         </div>
       </div>
     </form>

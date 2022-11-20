@@ -1,6 +1,6 @@
 import {Weapon} from "./weapon.model";
 
-export class WeaponsGroup {
+export class WeaponGroup {
   public name: string;
   public weapons: Weapon[];
 

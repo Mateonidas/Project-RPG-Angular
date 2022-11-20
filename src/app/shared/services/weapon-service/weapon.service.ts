@@ -6,7 +6,7 @@ import {TextResourceService} from "../text-resource-service/text-resource.servic
 import {Model} from "../../../model/model";
 import {TranslateService} from "../translate-service/translate.service";
 import {WeaponQuality} from "../../../model/weapon/weapon-quality.model";
-import {WeaponsGroup} from "../../../model/weapon/weapons-group.model";
+import {WeaponGroup} from "../../../model/weapon/weapons-group.model";
 import {group} from "@angular/animations";
 
 @Injectable({
@@ -22,8 +22,8 @@ export class WeaponService {
   weaponQualitiesListChanged = new Subject<Model[]>();
   weaponQualitiesList: Model[] = [];
 
-  weaponsGroupsChanged = new Subject<WeaponsGroup[]>();
-  weaponsGroups: WeaponsGroup[] = [];
+  weaponGroupsChanged = new Subject<WeaponGroup[]>();
+  weaponGroups: WeaponGroup[] = [];
 
   constructor(private http: HttpClient,
               private translateService: TranslateService) {
@@ -34,7 +34,7 @@ export class WeaponService {
       .then(data => {
         this.prepareWeaponsList(data);
         this.groupWeapons(data);
-        this.weaponsGroupsChanged.next(this.weaponsGroups.slice());
+        this.weaponGroupsChanged.next(this.weaponGroups.slice());
       });
   }
 
@@ -49,11 +49,11 @@ export class WeaponService {
 
   groupWeapons(weapons: Weapon[]) {
     weapons.forEach(weapon => {
-      let weaponGroup = this.weaponsGroups.find(weaponGroup => weaponGroup.name === weapon.weaponGroupType.nameTranslation);
+      let weaponGroup = this.weaponGroups.find(weaponGroup => weaponGroup.name === weapon.weaponGroupType.nameTranslation);
       if(weaponGroup != undefined) {
         weaponGroup.weapons.push(weapon);
       } else {
-        this.weaponsGroups.push(new WeaponsGroup(weapon.weaponGroupType.nameTranslation, [weapon]));
+        this.weaponGroups.push(new WeaponGroup(weapon.weaponGroupType.nameTranslation, [weapon]));
       }
     })
   }
@@ -75,7 +75,7 @@ export class WeaponService {
   fetchWeaponTypes() {
     return this.http.get<Model[]>('http://localhost:8080/weaponType').toPromise()
       .then(data => {
-        this.prepareWeaponTypeListTranslation(data)
+        this.prepareWeaponTypeListTranslation(data);
         this.weaponTypesList = data;
         this.weaponTypesListChanged.next(this.weaponTypesList.slice());
       })

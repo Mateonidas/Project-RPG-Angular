@@ -6,6 +6,7 @@ import {CharacterWeapon} from "../weapon/character-weapon.model";
 import {CharacterBodyLocalization} from "../body-localization/character-body-localization.model";
 import {CharacterCondition} from "../condition/character-condition.model";
 import {CharacterTrait} from "../trait/character-trait.model";
+import {Spell} from "../spell/spell.model";
 
 export class Character {
   id!: number;
@@ -22,8 +23,9 @@ export class Character {
   bodyLocalizations!: CharacterBodyLocalization[];
   conditions!: CharacterCondition[];
   notes!: string[];
+  spells!: Spell[];
 
-  constructor(name?: string, description?: string, group?: string, characteristics?: CharacterCharacteristic[], skills?: CharacterSkill[], talents?: CharacterTalent[], traits?: CharacterTrait[], rightHanded?: boolean, weapons?: CharacterWeapon[], armor?: Armor[], conditions?: CharacterCondition[], notes?: string[], bodyLocalizations?: CharacterBodyLocalization[]) {
+  constructor(name?: string, description?: string, group?: string, characteristics?: CharacterCharacteristic[], skills?: CharacterSkill[], talents?: CharacterTalent[], traits?: CharacterTrait[], rightHanded?: boolean, weapons?: CharacterWeapon[], armor?: Armor[], conditions?: CharacterCondition[], notes?: string[], spells?: Spell[], bodyLocalizations?: CharacterBodyLocalization[]) {
     this.name = <string>name;
     this.description = <string>description;
     this.group = <string>group;
@@ -37,6 +39,7 @@ export class Character {
     this.bodyLocalizations = <CharacterBodyLocalization[]>bodyLocalizations;
     this.conditions = <CharacterCondition[]>conditions;
     this.notes = <string[]>notes;
+    this.spells = <Spell[]>spells;
   }
 
    getCharacteristic(name: string): CharacterCharacteristic {
@@ -101,6 +104,7 @@ export class Character {
     character.armors = Armor.arrayFromJSON(character['armors']);
     character.bodyLocalizations = CharacterBodyLocalization.arrayFromJSON(character['bodyLocalizations']);
     character.conditions = CharacterCondition.arrayFromJSON(character['conditions']);
+    character.spells = Spell.arrayFromJSON(character['spells']);
     return character;
   }
 

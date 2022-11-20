@@ -16,13 +16,8 @@
       <button mat-menu-item (click)="onDeleteCharacter()">{{text.getText().deleteCharacterLabel}}</button>
     </mat-menu>
 
-    <button mat-raised-button color="primary" [matMenuTriggerFor]="skirmishMenu" *ngIf="isSkirmishMode">
-      Akcje
-      <mat-icon>keyboard_arrow_down</mat-icon>
-    </button>
-    <mat-menu #skirmishMenu="matMenu">
-      <button mat-menu-item (click)="onReceiveDamage()">{{text.getText().dealDamageLabel}}</button>
-    </mat-menu>
+    <button mat-raised-button color="primary" *ngIf="isSkirmishMode"
+            (click)="onReceiveDamage()">{{text.getText().dealDamageLabel}}</button>
 
   </div>
 </div>
@@ -163,116 +158,135 @@
 <ng-container *ngIf="character.skills.length > 0 || character.talents.length > 0 || character.traits.length > 0">
   <hr>
   <div class="row">
-    <div class="row mb-3">
-      <ng-container *ngIf="character.skills.length > 0">
-        <div class="col-md-5">
-          <h2>{{text.getText().skillsLabel}}</h2>
+    <ng-container *ngIf="character.skills.length > 0">
+      <div class="col-md-4">
+        <h2>{{text.getText().skillsLabel}}</h2>
 
-          <table mat-table [dataSource]="character.skills" class="mat-elevation-z8">
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
-              <td mat-cell *matCellDef="let element">
-                {{element.skill.nameTranslation}}
-              </td>
-            </ng-container>
+        <table mat-table [dataSource]="character.skills" class="mat-elevation-z8">
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
+            <td mat-cell *matCellDef="let element">
+              {{element.skill.nameTranslation}}
+            </td>
+          </ng-container>
 
-            <ng-container matColumnDef="level">
-              <th mat-header-cell *matHeaderCellDef>{{text.getText().levelLabel}}</th>
-              <td mat-cell *matCellDef="let element">
-                {{element.value}}
-              </td>
-            </ng-container>
+          <ng-container matColumnDef="level">
+            <th mat-header-cell *matHeaderCellDef>{{text.getText().levelLabel}}</th>
+            <td mat-cell *matCellDef="let element">
+              {{element.value}}
+            </td>
+          </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="baseColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: baseColumns;"></tr>
-          </table>
-        </div>
-      </ng-container>
+          <tr mat-header-row *matHeaderRowDef="baseColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: baseColumns;"></tr>
+        </table>
+      </div>
+    </ng-container>
 
-      <ng-container *ngIf="character.talents.length > 0">
-        <div class="col-md-4">
-          <h2>{{text.getText().talentsLabel}}</h2>
+    <ng-container *ngIf="character.talents.length > 0">
+      <div class="col-md-4">
+        <h2>{{text.getText().talentsLabel}}</h2>
 
-          <table mat-table [dataSource]="character.talents" class="mat-elevation-z8">
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
-              <td mat-cell *matCellDef="let element">
+        <table mat-table [dataSource]="character.talents" class="mat-elevation-z8">
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
+            <td mat-cell *matCellDef="let element">
               <span [matTooltip]="element.talent.description" matTooltipClass="custom-tooltip">
                 {{element.talent.nameTranslation}}
               </span>
-              </td>
-            </ng-container>
+            </td>
+          </ng-container>
 
-            <ng-container matColumnDef="level">
-              <th mat-header-cell *matHeaderCellDef>{{text.getText().levelLabel}}</th>
-              <td mat-cell *matCellDef="let element">
-                {{element.value}}
-              </td>
-            </ng-container>
+          <ng-container matColumnDef="level">
+            <th mat-header-cell *matHeaderCellDef>{{text.getText().levelLabel}}</th>
+            <td mat-cell *matCellDef="let element">
+              {{element.value}}
+            </td>
+          </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="baseColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: baseColumns;"></tr>
-          </table>
-        </div>
-      </ng-container>
+          <tr mat-header-row *matHeaderRowDef="baseColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: baseColumns;"></tr>
+        </table>
+      </div>
+    </ng-container>
 
-      <ng-container *ngIf="character.traits.length > 0">
-        <div class="col-md-4">
-          <h2>{{text.getText().traitsLabel}}</h2>
+    <ng-container *ngIf="character.traits.length > 0">
+      <div class="col-md-4">
+        <h2>{{text.getText().traitsLabel}}</h2>
 
-          <table mat-table [dataSource]="character.traits" class="mat-elevation-z8">
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
-              <td mat-cell *matCellDef="let element">
+        <table mat-table [dataSource]="character.traits" class="mat-elevation-z8">
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
+            <td mat-cell *matCellDef="let element">
               <span [matTooltip]="element.trait.description" matTooltipClass="custom-tooltip">
                 {{element.trait.nameTranslation}}
               </span>
-              </td>
-            </ng-container>
+            </td>
+          </ng-container>
 
-            <ng-container matColumnDef="level">
-              <th mat-header-cell *matHeaderCellDef>{{text.getText().valueLabel}}</th>
-              <td mat-cell *matCellDef="let element">
-                {{element.value}}
-              </td>
-            </ng-container>
+          <ng-container matColumnDef="level">
+            <th mat-header-cell *matHeaderCellDef>{{text.getText().valueLabel}}</th>
+            <td mat-cell *matCellDef="let element">
+              {{element.value}}
+            </td>
+          </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="baseColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: baseColumns;"></tr>
-          </table>
-        </div>
-      </ng-container>
-
-    </div>
+          <tr mat-header-row *matHeaderRowDef="baseColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: baseColumns;"></tr>
+        </table>
+      </div>
+    </ng-container>
   </div>
 </ng-container>
 
-<ng-container *ngIf="character.conditions.length > 0">
+<ng-container *ngIf="character.conditions.length > 0 || character.spells.length > 0">
   <hr>
   <div class="row">
-    <div class="col-md-12">
-      <h2>{{text.getText().conditionsLabel}}</h2>
-      <table mat-table [dataSource]="character.conditions" class="mat-elevation-z8">
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
-          <td mat-cell *matCellDef="let element">
+
+    <ng-container *ngIf="character.conditions.length > 0">
+      <div class="col-md-6">
+        <h2>{{text.getText().conditionsLabel}}</h2>
+        <table mat-table [dataSource]="character.conditions" class="mat-elevation-z8">
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
+            <td mat-cell *matCellDef="let element">
                 <span [matTooltip]="element.condition.description" matTooltipClass="custom-tooltip">
                   {{element.condition.nameTranslation}}
                 </span>
-          </td>
-        </ng-container>
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="level">
-          <th mat-header-cell *matHeaderCellDef>{{text.getText().levelLabel}}</th>
-          <td mat-cell *matCellDef="let element">
-            {{element.value}}
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="level">
+            <th mat-header-cell *matHeaderCellDef>{{text.getText().levelLabel}}</th>
+            <td mat-cell *matCellDef="let element">
+              {{element.value}}
+            </td>
+          </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="baseColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: baseColumns;"></tr>
-      </table>
-    </div>
+          <tr mat-header-row *matHeaderRowDef="baseColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: baseColumns;"></tr>
+        </table>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="character.spells.length > 0">
+      <div class="col-md-6">
+        <h2>{{text.getText().spellsLabel}}</h2>
+        <table mat-table [dataSource]="character.spells" class="mat-elevation-z8">
+          <ng-container matColumnDef="spell">
+            <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
+            <td mat-cell *matCellDef="let element">
+                <span [matTooltip]="element.description" matTooltipClass="custom-tooltip">
+                  {{element.nameTranslation}}
+                </span>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="spellColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: spellColumns;"></tr>
+        </table>
+      </div>
+    </ng-container>
+
   </div>
 </ng-container>
 
