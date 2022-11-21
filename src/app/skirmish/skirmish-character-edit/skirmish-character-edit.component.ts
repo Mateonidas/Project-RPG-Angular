@@ -1,7 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
-import {Character} from "../../model/character/character.model";
 import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {CharacterFormArraysWrapper} from "../../model/character/character-form-arrays-wrapper.model";
@@ -13,16 +12,9 @@ import {BodyLocalizationService} from "../../shared/services/body-localization-s
 import {CharacterService} from "../../shared/services/character-service/character.service";
 import {InjuryService} from "../../shared/services/injuries-service/injury.service";
 import {ConditionService} from "../../shared/services/condition-service/condition.service";
-import {CharacterCharacteristic} from "../../model/characteristic/character-characteristic.model";
-import {CharacterSkill} from "../../model/skill/character-skill.model";
-import {CharacterTalent} from "../../model/talent/character-talent.model";
-import {CharacterWeapon} from "../../model/weapon/character-weapon.model";
-import {Armor} from "../../model/armor/armor.model";
-import {CharacterCondition} from "../../model/condition/character-condition.model";
 import {CharacterEditComponent} from "../../character/character-edit/character-edit.component";
 import {MatDialog} from "@angular/material/dialog";
 import {TraitService} from "../../shared/services/trait-service/trait.service";
-import {CharacterTrait} from "../../model/trait/character-trait.model";
 import {SpellService} from "../../shared/services/spell-service/spell.service";
 
 @Component({
@@ -63,6 +55,7 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
       'talents': formArrays.talents,
       'traits': formArrays.traits,
       'isRightHanded': new FormControl(this.isRightHanded),
+      'spells': formArrays.spells,
       'weapons': formArrays.weapons,
       'armors': formArrays.armors,
       'injuries': formArrays.injuries,
@@ -80,7 +73,7 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
   }
 
   onSubmit() {
-    let character = this.createCharacter();
+    let character = this.createSkirmishCharacter();
     if (this.editMode) {
       character.id = this.id;
     }
@@ -89,37 +82,9 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
     })
   }
 
-  createCharacter() {
-    const name = this.editCharacterForm.value.name;
-    const description = this.editCharacterForm.value.description;
-    const group = this.editCharacterForm.value.group;
-    const characteristics = <CharacterCharacteristic[]>this.editCharacterForm.value.characteristics;
-    const skills = <CharacterSkill[]>this.editCharacterForm.value.skills;
-    const talents = <CharacterTalent[]>this.editCharacterForm.value.talents;
-    const traits = <CharacterTrait[]>this.editCharacterForm.value.traits;
-    const isRightHanded = this.editCharacterForm.value.isRightHanded;
-    const weapons = <CharacterWeapon[]>this.editCharacterForm.value.weapons;
-    const armors = <Armor[]>this.editCharacterForm.value.armors;
-    const conditions = <CharacterCondition[]>this.editCharacterForm.value.conditions;
-    const notes = <string[]>this.editCharacterForm.value.notes;
+  createSkirmishCharacter() {
+    const character = <SkirmishCharacter>this.createCharacter();
 
-    const character = new SkirmishCharacter(
-      new Character(
-        name,
-        description,
-        group,
-        characteristics,
-        skills,
-        talents,
-        traits,
-        isRightHanded,
-        weapons,
-        armors,
-        conditions,
-        notes
-      ));
-
-    this.prepareCharacterBodyLocalizations(character);
     character.advantage = this.editCharacterForm.value.advantage;
     character.skirmishInitiative = this.editCharacterForm.value.skirmishInitiative;
     character.currentWounds = this.editCharacterForm.value.currentWounds;
