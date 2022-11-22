@@ -17,4 +17,20 @@ export class SkirmishService {
   postReceiveDamage(receivedDamage: ReceivedDamage) {
     return this.http.post('http://localhost:8080/receiveDamage', receivedDamage).toPromise().then();
   }
+
+  async addAdvantagePoint(skirmishCharacterId: number) {
+    await this.postAddAdvantagePoint(skirmishCharacterId);
+  }
+
+  private async postAddAdvantagePoint(skirmishCharacterId: number) {
+    return this.http.post('http://localhost:8080/addAdvantagePoint', skirmishCharacterId).toPromise().then();
+  }
+
+  async removeAdvantagePoint(skirmishCharacterId: number) {
+    await this.removeAddAdvantagePoint(skirmishCharacterId);
+  }
+
+  private async removeAddAdvantagePoint(skirmishCharacterId: number) {
+    return this.http.post('http://localhost:8080/removeAdvantagePoint', skirmishCharacterId).toPromise().then();
+  }
 }

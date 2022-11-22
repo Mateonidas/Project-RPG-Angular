@@ -77,4 +77,8 @@ export class CharacterDetailComponent implements OnInit {
   }
 
   onReceiveDamage() {}
+
+  addAdvantagePoint() {}
+
+  removeAdvantagePoint() {}
 }

@@ -61,6 +61,16 @@ export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent 
     })
   }
 
+  async addAdvantagePoint() {
+    await this.skirmishService.addAdvantagePoint(this.character.id);
+    await this.reloadSkirmishCharacters();
+  }
+
+  async removeAdvantagePoint() {
+    await this.skirmishService.removeAdvantagePoint(this.character.id);
+    await this.reloadSkirmishCharacters();
+  }
+
   async reloadSkirmishCharacters() {
     await this.skirmishCharacterService.fetchSkirmishCharacter();
     this.character = this.skirmishCharacterService.getSkirmishCharacter(this.id);
