@@ -14,6 +14,7 @@ import {WeaponQuality} from "../../../model/weapon/weapon-quality.model";
 import {Trait} from "../../../model/trait/trait.model";
 import {CharacterTrait} from "../../../model/trait/character-trait.model";
 import {Spell} from "../../../model/spell/spell.model";
+import {Condition} from "../../../model/condition/condition.model";
 
 @Injectable({
   providedIn: 'root'
@@ -123,7 +124,7 @@ export class TranslateService {
     }
   }
 
-  public prepareCondition(condition: Model) {
+  public prepareCondition(condition: Condition) {
     let conditionTranslation = TextResourceService.getConditionTranslation(condition.name);
     condition.nameTranslation = conditionTranslation.nameTranslation;
     condition.description = conditionTranslation.description;

@@ -411,7 +411,8 @@
             <div class="col-md-5">
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>{{text.getText().conditionNameLabel}}</mat-label>
-                <mat-select formControlName="condition" [compareWith]="compareModels">
+                <mat-select formControlName="condition" [compareWith]="compareModels"
+                            (selectionChange)="checkIfConditionHasCounter(conditionControl)">
                   <mat-option *ngFor="let condition of conditionService.conditionsList" [value]="condition">
                     {{condition.nameTranslation}}
                   </mat-option>

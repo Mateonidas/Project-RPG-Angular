@@ -23,7 +23,6 @@ import {CharacterCondition} from "../../model/condition/character-condition.mode
 import {MatDialog} from "@angular/material/dialog";
 import {Skill} from "../../model/skill/skill.model";
 import {Talent} from "../../model/talent/talent.model";
-import {Weapon} from "../../model/weapon/weapon.model";
 import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
 import {Characteristic} from "../../model/characteristic/characteristic.model";
 import {Model} from "../../model/model";
@@ -350,10 +349,12 @@ export class CharacterEditComponent implements OnInit {
 
   prepareTraitsList(traits: FormArray, traitsList: CharacterTrait[]) {
     for (let trait of traitsList) {
+
       let value = new FormControl(trait.value);
-      if(!trait.trait.hasValue) {
+      if (!trait.trait.hasValue) {
         value.disable()
       }
+
       traits.push(
         new FormGroup({
           'trait': new FormControl(trait.trait),
@@ -404,11 +405,17 @@ export class CharacterEditComponent implements OnInit {
 
   prepareConditionsList(conditions: FormArray, conditionsList: CharacterCondition[]) {
     for (let characterCondition of conditionsList) {
+
+      let counter = new FormControl(characterCondition.condition.hasCounter);
+      if(!characterCondition.condition.hasCounter) {
+        counter.disable()
+      }
+
       conditions.push(
         new FormGroup({
           'condition': new FormControl(characterCondition.condition),
           'value': new FormControl(characterCondition.value),
-          'counter': new FormControl(characterCondition.counter)
+          'counter': counter
         })
       )
     }
@@ -480,10 +487,18 @@ export class CharacterEditComponent implements OnInit {
   }
 
   checkIfTraitHasValue(traitControl: AbstractControl) {
-    if(traitControl.value.trait != null && !traitControl.value.trait.hasValue) {
+    if (traitControl.value.trait != null && !traitControl.value.trait.hasValue) {
       (<FormGroup>traitControl.get('value')).disable();
     } else {
       (<FormGroup>traitControl.get('value')).enable();
+    }
+  }
+
+  checkIfConditionHasCounter(conditionControl: AbstractControl) {
+    if (conditionControl.value.condition.hasCounter != null && !conditionControl.value.condition.hasCounter) {
+      (<FormGroup>conditionControl.get('counter')).disable();
+    } else {
+      (<FormGroup>conditionControl.get('counter')).enable();
     }
   }
 
