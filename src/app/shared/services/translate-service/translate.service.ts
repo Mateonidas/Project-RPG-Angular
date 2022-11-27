@@ -89,8 +89,6 @@ export class TranslateService {
     for (let weapon of weapons) {
       this.prepareWeaponTranslation(weapon.weapon);
     }
-
-    // weapons.sort((a, b) => this.compareModels(a.weapon, b.weapon));
   }
 
   public prepareWeaponTranslation(weapon: Weapon) {
