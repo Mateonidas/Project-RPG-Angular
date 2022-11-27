@@ -122,6 +122,18 @@ export class TranslateService {
     for (let characterCondition of conditions) {
       this.prepareCondition(characterCondition.condition);
     }
+    conditions.sort(
+      (a, b) => (a.condition.nameTranslation > b.condition.nameTranslation) ? 1 : ((b.condition.nameTranslation > a.condition.nameTranslation) ? -1 : 0)
+    );
+  }
+
+  public prepareConditionList(conditions: Condition[]) {
+    for (const condition of conditions) {
+      this.prepareCondition(condition);
+    }
+    conditions.sort(
+      (a, b) => (a.nameTranslation > b.nameTranslation) ? 1 : ((b.nameTranslation > a.nameTranslation) ? -1 : 0)
+    );
   }
 
   public prepareCondition(condition: Condition) {
@@ -135,8 +147,8 @@ export class TranslateService {
       this.prepareArmorTranslation(armor);
     }
     armors.sort(
-      (a, b) => (a.armorCategory.name > b.armorCategory.name) ? 1 : ((b.armorCategory.name > a.armorCategory.name) ? -1 : 0)
-    )
+      (a, b) => (a.armorCategory.nameTranslation > b.armorCategory.nameTranslation) ? 1 : ((b.armorCategory.nameTranslation > a.armorCategory.nameTranslation) ? -1 : 0)
+    );
   }
 
   private prepareArmorTranslation(armor: Armor) {

@@ -1,7 +1,7 @@
 export class Model {
+  public id?: number;
   public name: string;
   public nameTranslation: string;
-  public id?: number;
   public description: string
 
   constructor(name?: string, nameTranslation?: string, id?: number, description?: string) {

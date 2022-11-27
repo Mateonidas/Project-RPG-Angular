@@ -104,7 +104,7 @@ export class Character {
     character.armors = Armor.arrayFromJSON(character['armors']);
     character.bodyLocalizations = CharacterBodyLocalization.arrayFromJSON(character['bodyLocalizations']);
     character.conditions = CharacterCondition.arrayFromJSON(character['conditions']);
-    character.spells = Spell.arrayFromJSON(character['spells']);
+    // character.spells = Spell.arrayFromJSON(character['spells']);
     return character;
   }
 

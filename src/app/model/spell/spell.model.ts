@@ -3,7 +3,6 @@ import {Model} from "../model";
 export class Spell extends Model {
   public spellGroup: Model;
 
-
   constructor(name?: string, nameTranslation?: string, id?: number, description?: string, spellGroup?: Model) {
     super(name, nameTranslation, id, description);
     this.spellGroup = <Model>spellGroup;

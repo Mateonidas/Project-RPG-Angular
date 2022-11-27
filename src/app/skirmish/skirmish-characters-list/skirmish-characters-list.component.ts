@@ -41,6 +41,13 @@ export class SkirmishCharactersListComponent implements OnInit {
     this.skirmishCharacters = this.skirmishCharacterService.getSkirmishCharacters();
   }
 
+  async endTurn() {
+    await this.roundService.nextRound();
+    this.roundNumber = this.roundService.roundNumber;
+
+    await this.reloadSkirmishCharacters();
+  }
+
   async reloadSkirmishCharacters() {
     await this.skirmishCharacterService.fetchSkirmishCharacter();
     this.skirmishCharacters = this.skirmishCharacterService.getSkirmishCharacters();
@@ -60,13 +67,6 @@ export class SkirmishCharactersListComponent implements OnInit {
         }
       })
     }
-  }
-
-  async endTurn() {
-    await this.roundService.nextRound();
-    this.roundNumber = this.roundService.roundNumber;
-
-    await this.reloadSkirmishCharacters();
   }
 
   clearData() {

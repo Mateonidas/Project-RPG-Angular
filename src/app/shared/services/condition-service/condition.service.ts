@@ -19,9 +19,10 @@ export class ConditionService {
   fetchConditions() {
     return this.http.get<Condition[]>('http://localhost:8080/condition').toPromise()
       .then(data => {
-        data.forEach(value => {
-          this.translateService.prepareCondition(value);
-        })
+        // data.forEach(value => {
+        //   this.translateService.prepareCondition(value);
+        // })
+        this.translateService.prepareConditionList(data);
         this.conditionsList = data;
         this.conditionsChanged.next(this.conditionsList.slice());
       })

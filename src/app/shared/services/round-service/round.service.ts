@@ -5,6 +5,7 @@ import {EndTurnCheck} from "../../../model/end-turn-check/end-turn-check.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {RollDialogWindow} from "../../../dialog-window/roll-dialog-window/roll-dialog-window.component";
 import {MatDialog} from "@angular/material/dialog";
+import {TranslateService} from "../translate-service/translate.service";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class RoundService {
 
   constructor(private http: HttpClient,
               private modalService: NgbModal,
+              private translationService: TranslateService,
               private dialog: MatDialog) {
     let roundNumber = JSON.parse(<string>localStorage.getItem('roundNumber'));
     if (roundNumber != null) {
@@ -33,32 +35,34 @@ export class RoundService {
     await this.postEndTurnCheck(this.endTurnCheck);
   }
 
-  postEndTurnCheck(endTurnCheck: EndTurnCheck) {
-    return this.http.post<EndTurnCheck>('http://localhost:8080/endTurnCheck', endTurnCheck).toPromise()
+  async postEndTurnCheck(endTurnCheck: EndTurnCheck) {
+    return await this.http.post<EndTurnCheck>('http://localhost:8080/endTurnCheck', endTurnCheck).toPromise()
       .then(async data => {
         let endTurnCheck = new EndTurnCheck();
         Object.assign(endTurnCheck, data);
         if (endTurnCheck.tests.length > 0) {
+          for (let test of endTurnCheck.tests) {
+            let skirmishCharacter = new SkirmishCharacter();
+            Object.assign(skirmishCharacter, test.skirmishCharacter);
+            test.skirmishCharacter = skirmishCharacter;
+
+            this.translationService.prepareCondition(test.conditionType);
+          }
           await this.testRolls(endTurnCheck);
         }
       })
   }
 
   async testRolls(endTurnCheck: EndTurnCheck) {
-    for (const test of endTurnCheck.tests) {
-      let skirmishCharacter = new SkirmishCharacter();
-      Object.assign(skirmishCharacter, test.skirmishCharacter);
-      test.skirmishCharacter = skirmishCharacter;
-    }
-
     const dialogRef = this.dialog.open(RollDialogWindow, {
       width: '20%',
       data: {endTurnCheck: endTurnCheck, testType: "Testy Stanów"}
     })
 
-    dialogRef.afterClosed().subscribe(async () => {
-      await this.postEndTurnTestsCheck(endTurnCheck);
-    })
+    await dialogRef.afterClosed().toPromise().then(async () => {
+        await this.postEndTurnTestsCheck(endTurnCheck);
+      }
+    );
   }
 
   async postEndTurnTestsCheck(endTurnCheck: EndTurnCheck) {
