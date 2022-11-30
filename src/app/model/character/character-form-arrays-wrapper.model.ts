@@ -1,15 +1,15 @@
-import {FormArray} from "@angular/forms";
+import {UntypedFormArray} from "@angular/forms";
 
 export class CharacterFormArraysWrapper {
-  notes = new FormArray([]);
-  characteristics = new FormArray([]);
-  conditions = new FormArray([]);
-  injuries = new FormArray([]);
-  criticalWounds = new FormArray([]);
-  skills = new FormArray([]);
-  talents = new FormArray([]);
-  traits = new FormArray([]);
-  weapons = new FormArray([]);
-  armors = new FormArray([]);
-  spells = new FormArray([]);
+  notes = new UntypedFormArray([]);
+  characteristics = new UntypedFormArray([]);
+  conditions = new UntypedFormArray([]);
+  injuries = new UntypedFormArray([]);
+  criticalWounds = new UntypedFormArray([]);
+  skills = new UntypedFormArray([]);
+  talents = new UntypedFormArray([]);
+  traits = new UntypedFormArray([]);
+  weapons = new UntypedFormArray([]);
+  armors = new UntypedFormArray([]);
+  spells = new UntypedFormArray([]);
 }

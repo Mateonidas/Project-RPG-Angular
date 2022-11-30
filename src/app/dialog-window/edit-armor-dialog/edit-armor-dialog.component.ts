@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Armor} from "../../model/armor/armor.model";
-import {FormArray, FormControl, FormGroup} from "@angular/forms";
+import {UntypedFormArray, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {ArmorService} from "../../shared/services/armor-service/armor.service";
 import {ArmorBodyLocalization} from "../../model/body-localization/armor-body-localization.model";
 import {BodyLocalizationService} from "../../shared/services/body-localization-service/body-localization.service";
@@ -15,7 +15,7 @@ import {TextResourceService} from "../../shared/services/text-resource-service/t
 })
 export class EditArmorDialog implements OnInit {
 
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   modifiedArmor = new Armor();
   text = TextResourceService;
 
@@ -32,10 +32,10 @@ export class EditArmorDialog implements OnInit {
 
   private initForm() {
     Object.assign(this.modifiedArmor, this.armor);
-    this.form = new FormGroup({
-      'name': new FormControl(this.modifiedArmor.name),
-      'nameTranslation': new FormControl(this.modifiedArmor.nameTranslation),
-      'armorCategory': new FormControl(this.modifiedArmor.armorCategory),
+    this.form = new UntypedFormGroup({
+      'name': new UntypedFormControl(this.modifiedArmor.name),
+      'nameTranslation': new UntypedFormControl(this.modifiedArmor.nameTranslation),
+      'armorCategory': new UntypedFormControl(this.modifiedArmor.armorCategory),
       'armorBodyLocalizations': this.prepareArmorBodyLocalizationsList(this.modifiedArmor.armorBodyLocalizations),
       'armorPenalties': this.prepareArmorPenaltiesList(this.modifiedArmor.armorPenalties),
       'armorQualities': this.prepareArmorQualitiesList(this.modifiedArmor.armorQualities)
@@ -43,14 +43,14 @@ export class EditArmorDialog implements OnInit {
   }
 
   prepareArmorBodyLocalizationsList(armorBodyLocalizationsList: ArmorBodyLocalization[]) {
-    let armorBodyLocalizations = new FormArray([]);
+    let armorBodyLocalizations = new UntypedFormArray([]);
 
     for (let armorBodyLocalization of armorBodyLocalizationsList) {
       armorBodyLocalizations.push(
-        new FormGroup({
-          'bodyLocalization': new FormControl(armorBodyLocalization.bodyLocalization),
-          'armorPoints': new FormControl(armorBodyLocalization.armorPoints),
-          'brokenArmorPoints': new FormControl(armorBodyLocalization.brokenArmorPoints)
+        new UntypedFormGroup({
+          'bodyLocalization': new UntypedFormControl(armorBodyLocalization.bodyLocalization),
+          'armorPoints': new UntypedFormControl(armorBodyLocalization.armorPoints),
+          'brokenArmorPoints': new UntypedFormControl(armorBodyLocalization.brokenArmorPoints)
         })
       )
     }
@@ -59,11 +59,11 @@ export class EditArmorDialog implements OnInit {
   }
 
   prepareArmorPenaltiesList(armorPenaltiesList: Model[]) {
-    let armorPenalties = new FormArray([])
+    let armorPenalties = new UntypedFormArray([])
 
     for (let armorPenalty of armorPenaltiesList) {
       armorPenalties.push(
-        new FormControl(armorPenalty)
+        new UntypedFormControl(armorPenalty)
       );
     }
 
@@ -71,11 +71,11 @@ export class EditArmorDialog implements OnInit {
   }
 
   prepareArmorQualitiesList(armorQualitiesList: Model[]) {
-    let armorQualities = new FormArray([])
+    let armorQualities = new UntypedFormArray([])
 
     for (let armorQuality of armorQualitiesList) {
       armorQualities.push(
-        new FormControl(armorQuality)
+        new UntypedFormControl(armorQuality)
       );
     }
 
@@ -83,24 +83,24 @@ export class EditArmorDialog implements OnInit {
   }
 
   onAddBodyLocalization() {
-    (<FormArray>this.form.get('armorBodyLocalizations')).push(
-      new FormGroup({
-        'bodyLocalization': new FormControl(null),
-        'armorPoints': new FormControl(null),
-        'brokenArmorPoints': new FormControl(null)
+    (<UntypedFormArray>this.form.get('armorBodyLocalizations')).push(
+      new UntypedFormGroup({
+        'bodyLocalization': new UntypedFormControl(null),
+        'armorPoints': new UntypedFormControl(null),
+        'brokenArmorPoints': new UntypedFormControl(null)
       })
     );
   }
 
   onAddArmorPenalty() {
-    (<FormArray>this.form.get('armorPenalties')).push(
-      new FormControl(null)
+    (<UntypedFormArray>this.form.get('armorPenalties')).push(
+      new UntypedFormControl(null)
     );
   }
 
   onAddArmorQuality() {
-    (<FormArray>this.form.get('armorQualities')).push(
-      new FormControl(null)
+    (<UntypedFormArray>this.form.get('armorQualities')).push(
+      new UntypedFormControl(null)
     );
   }
 
@@ -128,15 +128,15 @@ export class EditArmorDialog implements OnInit {
   }
 
   get armorBodyLocalizations() {
-    return (<FormArray>this.form.get('armorBodyLocalizations')).controls;
+    return (<UntypedFormArray>this.form.get('armorBodyLocalizations')).controls;
   }
 
   get armorPenalties() {
-    return <FormControl[]>(<FormArray>this.form.get('armorPenalties')).controls;
+    return <UntypedFormControl[]>(<UntypedFormArray>this.form.get('armorPenalties')).controls;
   }
 
   get armorQualities() {
-    return <FormControl[]>(<FormArray>this.form.get('armorQualities')).controls;
+    return <UntypedFormControl[]>(<UntypedFormArray>this.form.get('armorQualities')).controls;
   }
 
   onSetBodyLocalizations(event: any, i: number) {
@@ -144,15 +144,15 @@ export class EditArmorDialog implements OnInit {
   }
 
   onDeleteArmorBodyLocalization(index: number) {
-    (<FormArray>this.form.get('armorBodyLocalizations')).removeAt(index);
+    (<UntypedFormArray>this.form.get('armorBodyLocalizations')).removeAt(index);
   }
 
   onDeleteArmorPenalty(index: number) {
-    (<FormArray>this.form.get('armorPenalties')).removeAt(index);
+    (<UntypedFormArray>this.form.get('armorPenalties')).removeAt(index);
   }
 
   onDeleteArmorQuality(index: number) {
-    (<FormArray>this.form.get('armorQualities')).removeAt(index);
+    (<UntypedFormArray>this.form.get('armorQualities')).removeAt(index);
   }
 
   compareModels(c1: Model, c2: Model): boolean {

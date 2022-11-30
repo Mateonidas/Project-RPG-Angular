@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Weapon} from "../../model/weapon/weapon.model";
-import {FormArray, FormControl, FormGroup} from "@angular/forms";
+import {UntypedFormArray, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {WeaponQuality} from "../../model/weapon/weapon-quality.model";
 import {Model} from "../../model/model";
 import {WeaponService} from "../../shared/services/weapon-service/weapon.service";
@@ -14,7 +14,7 @@ import {TextResourceService} from "../../shared/services/text-resource-service/t
 })
 export class EditWeaponDialog implements OnInit {
 
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   modifiedWeapon = new Weapon();
   text = TextResourceService;
 
@@ -29,28 +29,28 @@ export class EditWeaponDialog implements OnInit {
 
   private initForm() {
     Object.assign(this.modifiedWeapon, this.weapon);
-    this.form = new FormGroup({
-      'name': new FormControl(this.modifiedWeapon.name),
-      'nameTranslation': new FormControl(this.modifiedWeapon.nameTranslation),
-      'weaponType': new FormControl(this.modifiedWeapon.weaponType),
-      'weaponGroup': new FormControl(this.modifiedWeapon.weaponGroupType),
-      'weaponReach': new FormControl(this.modifiedWeapon.weaponReach),
-      'weaponRange': new FormControl(this.modifiedWeapon.weaponRange),
-      'isUsingStrength': new FormControl(this.modifiedWeapon.isUsingStrength),
-      'isUsingStrengthInRange': new FormControl(this.modifiedWeapon.isUsingStrengthInRange),
-      'damage': new FormControl(this.modifiedWeapon.damage),
+    this.form = new UntypedFormGroup({
+      'name': new UntypedFormControl(this.modifiedWeapon.name),
+      'nameTranslation': new UntypedFormControl(this.modifiedWeapon.nameTranslation),
+      'weaponType': new UntypedFormControl(this.modifiedWeapon.weaponType),
+      'weaponGroup': new UntypedFormControl(this.modifiedWeapon.weaponGroupType),
+      'weaponReach': new UntypedFormControl(this.modifiedWeapon.weaponReach),
+      'weaponRange': new UntypedFormControl(this.modifiedWeapon.weaponRange),
+      'isUsingStrength': new UntypedFormControl(this.modifiedWeapon.isUsingStrength),
+      'isUsingStrengthInRange': new UntypedFormControl(this.modifiedWeapon.isUsingStrengthInRange),
+      'damage': new UntypedFormControl(this.modifiedWeapon.damage),
       'weaponQualities': this.prepareWeaponQualitiesList(this.weapon.weaponQualities)
     });
   }
 
   prepareWeaponQualitiesList(weaponQualitiesList: WeaponQuality[]) {
-    let weaponQualities = new FormArray([]);
+    let weaponQualities = new UntypedFormArray([]);
 
     for (let weaponQuality of weaponQualitiesList) {
       weaponQualities.push(
-        new FormGroup({
-          'quality': new FormControl(weaponQuality),
-          'value': new FormControl(weaponQuality.value)
+        new UntypedFormGroup({
+          'quality': new UntypedFormControl(weaponQuality),
+          'value': new UntypedFormControl(weaponQuality.value)
         })
       )
     }
@@ -59,20 +59,20 @@ export class EditWeaponDialog implements OnInit {
   }
 
   onAddWeaponQuality() {
-    (<FormArray>this.form.get('weaponQualities')).push(
-      new FormGroup({
-        'quality': new FormControl(null),
-        'value': new FormControl(0)
+    (<UntypedFormArray>this.form.get('weaponQualities')).push(
+      new UntypedFormGroup({
+        'quality': new UntypedFormControl(null),
+        'value': new UntypedFormControl(0)
       })
     );
   }
 
   onDeleteWeaponQuality(index: number) {
-    (<FormArray>this.form.get('weaponQualities')).removeAt(index);
+    (<UntypedFormArray>this.form.get('weaponQualities')).removeAt(index);
   }
 
   get weaponQualities() {
-    return (<FormArray>this.form.get('weaponQualities')).controls;
+    return (<UntypedFormArray>this.form.get('weaponQualities')).controls;
   }
 
   compareModels(c1: Model, c2: Model): boolean {

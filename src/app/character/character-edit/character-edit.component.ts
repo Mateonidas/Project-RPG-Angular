@@ -1,6 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {AbstractControl, FormArray, FormControl, FormGroup} from "@angular/forms";
+import {AbstractControl, UntypedFormArray, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {CharacterService} from "../../shared/services/character-service/character.service";
 import {Character} from "../../model/character/character.model";
 import {CharacterFormArraysWrapper} from "../../model/character/character-form-arrays-wrapper.model";
@@ -46,7 +46,7 @@ export class CharacterEditComponent implements OnInit {
   isDataAvailable: boolean = false;
   isSkirmishMode = false;
   editMode = false;
-  editCharacterForm!: FormGroup;
+  editCharacterForm!: UntypedFormGroup;
   skillsList: Skill[] = [];
   talentsList: Talent[] = [];
   traitsList: Trait[] = [];
@@ -116,15 +116,15 @@ export class CharacterEditComponent implements OnInit {
   }
 
   createEditCharacterForm(character: Character, formArrays: CharacterFormArraysWrapper) {
-    this.editCharacterForm = new FormGroup({
-      'name': new FormControl(character.name),
-      'description': new FormControl(character.description),
-      'group': new FormControl(character.group),
+    this.editCharacterForm = new UntypedFormGroup({
+      'name': new UntypedFormControl(character.name),
+      'description': new UntypedFormControl(character.description),
+      'group': new UntypedFormControl(character.group),
       'characteristics': formArrays.characteristics,
       'skills': formArrays.skills,
       'talents': formArrays.talents,
       'traits': formArrays.traits,
-      'isRightHanded': new FormControl(this.isRightHanded),
+      'isRightHanded': new UntypedFormControl(this.isRightHanded),
       'weapons': formArrays.weapons,
       'armors': formArrays.armors,
       'injuries': formArrays.injuries,
@@ -135,54 +135,54 @@ export class CharacterEditComponent implements OnInit {
   }
 
   private static initCharacteristicsTable() {
-    return new FormArray([
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("MOVEMENT")),
-        'value': new FormControl('')
+    return new UntypedFormArray([
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("MOVEMENT")),
+        'value': new UntypedFormControl('')
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("WEAPON_SKILL")),
-        'value': new FormControl('')
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("WEAPON_SKILL")),
+        'value': new UntypedFormControl('')
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("BALLISTIC_SKILL")),
-        'value': new FormControl('')
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("BALLISTIC_SKILL")),
+        'value': new UntypedFormControl('')
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("STRENGTH")),
-        'value': new FormControl('')
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("STRENGTH")),
+        'value': new UntypedFormControl('')
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("TOUGHNESS")),
-        'value': new FormControl('')
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("TOUGHNESS")),
+        'value': new UntypedFormControl('')
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("INITIATIVE")),
-        'value': new FormControl('')
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("INITIATIVE")),
+        'value': new UntypedFormControl('')
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("AGILITY")),
-        'value': new FormControl('')
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("AGILITY")),
+        'value': new UntypedFormControl('')
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("DEXTERITY")),
-        'value': new FormControl('')
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("DEXTERITY")),
+        'value': new UntypedFormControl('')
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("INTELLIGENCE")),
-        'value': new FormControl('')
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("INTELLIGENCE")),
+        'value': new UntypedFormControl('')
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("WILLPOWER")),
-        'value': new FormControl('')
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("WILLPOWER")),
+        'value': new UntypedFormControl('')
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("FELLOWSHIP")),
-        'value': new FormControl('')
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("FELLOWSHIP")),
+        'value': new UntypedFormControl('')
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("WOUNDS")),
-        'value': new FormControl('')
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("WOUNDS")),
+        'value': new UntypedFormControl('')
       }),
     ]);
   }
@@ -325,159 +325,159 @@ export class CharacterEditComponent implements OnInit {
     this.prepareSpellsList(formArrays.spells, character.spells);
   }
 
-  prepareSkillsList(skills: FormArray, skillsList: CharacterSkill[]) {
+  prepareSkillsList(skills: UntypedFormArray, skillsList: CharacterSkill[]) {
     for (let characterSkill of skillsList) {
       skills.push(
-        new FormGroup({
-          'skill': new FormControl(characterSkill.skill),
-          'value': new FormControl(characterSkill.value),
+        new UntypedFormGroup({
+          'skill': new UntypedFormControl(characterSkill.skill),
+          'value': new UntypedFormControl(characterSkill.value),
         })
       )
     }
   }
 
-  prepareTalentsList(talents: FormArray, talentsList: CharacterTalent[]) {
+  prepareTalentsList(talents: UntypedFormArray, talentsList: CharacterTalent[]) {
     for (let talent of talentsList) {
       talents.push(
-        new FormGroup({
-          'talent': new FormControl(talent.talent),
-          'value': new FormControl(talent.value),
+        new UntypedFormGroup({
+          'talent': new UntypedFormControl(talent.talent),
+          'value': new UntypedFormControl(talent.value),
         })
       )
     }
   }
 
-  prepareTraitsList(traits: FormArray, traitsList: CharacterTrait[]) {
+  prepareTraitsList(traits: UntypedFormArray, traitsList: CharacterTrait[]) {
     for (let trait of traitsList) {
 
-      let value = new FormControl(trait.value);
+      let value = new UntypedFormControl(trait.value);
       if (!trait.trait.hasValue) {
         value.disable()
       }
 
       traits.push(
-        new FormGroup({
-          'trait': new FormControl(trait.trait),
+        new UntypedFormGroup({
+          'trait': new UntypedFormControl(trait.trait),
           'value': value,
         })
       )
     }
   }
 
-  prepareWeaponsList(weapons: FormArray, weaponsList: CharacterWeapon[]) {
+  prepareWeaponsList(weapons: UntypedFormArray, weaponsList: CharacterWeapon[]) {
     for (let weapon of weaponsList) {
       weapons.push(
-        new FormGroup({
-          'weapon': new FormControl(weapon.weapon),
-          'value': new FormControl(weapon.value)
+        new UntypedFormGroup({
+          'weapon': new UntypedFormControl(weapon.weapon),
+          'value': new UntypedFormControl(weapon.value)
         })
       )
     }
   }
 
-  prepareArmorList(armorsForms: FormArray, characterArmors: Armor[]) {
+  prepareArmorList(armorsForms: UntypedFormArray, characterArmors: Armor[]) {
     for (let armor of characterArmors) {
       armorsForms.push(
-        new FormControl(armor)
+        new UntypedFormControl(armor)
       )
     }
   }
 
-  prepareNotesList(notes: FormArray, notesList: string[]) {
+  prepareNotesList(notes: UntypedFormArray, notesList: string[]) {
     for (let note of notesList) {
-      notes.push(new FormControl(note))
+      notes.push(new UntypedFormControl(note))
     }
   }
 
-  prepareInjuriesList(injuries: FormArray, bodyLocalizations: CharacterBodyLocalization[]) {
+  prepareInjuriesList(injuries: UntypedFormArray, bodyLocalizations: CharacterBodyLocalization[]) {
     for (let bodyLocalization of bodyLocalizations) {
       for (let injury of bodyLocalization.injuries) {
         injuries.push(
-          new FormGroup({
-            'injury': new FormControl(injury.injury),
-            'bodyLocalization': new FormControl(bodyLocalization.bodyLocalization),
-            'value': new FormControl(injury.value)
+          new UntypedFormGroup({
+            'injury': new UntypedFormControl(injury.injury),
+            'bodyLocalization': new UntypedFormControl(bodyLocalization.bodyLocalization),
+            'value': new UntypedFormControl(injury.value)
           })
         )
       }
     }
   }
 
-  prepareConditionsList(conditions: FormArray, conditionsList: CharacterCondition[]) {
+  prepareConditionsList(conditions: UntypedFormArray, conditionsList: CharacterCondition[]) {
     for (let characterCondition of conditionsList) {
 
-      let counter = new FormControl(characterCondition.condition.hasCounter);
+      let counter = new UntypedFormControl(characterCondition.condition.hasCounter);
       if(!characterCondition.condition.hasCounter) {
         counter.disable()
       }
 
       conditions.push(
-        new FormGroup({
-          'condition': new FormControl(characterCondition.condition),
-          'value': new FormControl(characterCondition.value),
+        new UntypedFormGroup({
+          'condition': new UntypedFormControl(characterCondition.condition),
+          'value': new UntypedFormControl(characterCondition.value),
           'counter': counter
         })
       )
     }
   }
 
-  prepareSpellsList(spells: FormArray, spellsList: Spell[]) {
+  prepareSpellsList(spells: UntypedFormArray, spellsList: Spell[]) {
     for (let spell of spellsList) {
       spells.push(
-        new FormControl(spell)
+        new UntypedFormControl(spell)
       )
     }
   }
 
   protected static initEditCharacteristicsTable(character: Character) {
-    return new FormArray([
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("MOVEMENT")),
-        'value': new FormControl(character.movement.value)
+    return new UntypedFormArray([
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("MOVEMENT")),
+        'value': new UntypedFormControl(character.movement.value)
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("WEAPON_SKILL")),
-        'value': new FormControl(character.weaponSkill.value)
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("WEAPON_SKILL")),
+        'value': new UntypedFormControl(character.weaponSkill.value)
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("BALLISTIC_SKILL")),
-        'value': new FormControl(character.ballisticSkill.value)
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("BALLISTIC_SKILL")),
+        'value': new UntypedFormControl(character.ballisticSkill.value)
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("STRENGTH")),
-        'value': new FormControl(character.strength.value)
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("STRENGTH")),
+        'value': new UntypedFormControl(character.strength.value)
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("TOUGHNESS")),
-        'value': new FormControl(character.toughness.value)
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("TOUGHNESS")),
+        'value': new UntypedFormControl(character.toughness.value)
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("INITIATIVE")),
-        'value': new FormControl(character.initiative.value)
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("INITIATIVE")),
+        'value': new UntypedFormControl(character.initiative.value)
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("AGILITY")),
-        'value': new FormControl(character.agility.value)
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("AGILITY")),
+        'value': new UntypedFormControl(character.agility.value)
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("DEXTERITY")),
-        'value': new FormControl(character.dexterity.value)
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("DEXTERITY")),
+        'value': new UntypedFormControl(character.dexterity.value)
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("INTELLIGENCE")),
-        'value': new FormControl(character.intelligence.value)
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("INTELLIGENCE")),
+        'value': new UntypedFormControl(character.intelligence.value)
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("WILLPOWER")),
-        'value': new FormControl(character.willpower.value)
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("WILLPOWER")),
+        'value': new UntypedFormControl(character.willpower.value)
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("FELLOWSHIP")),
-        'value': new FormControl(character.fellowship.value)
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("FELLOWSHIP")),
+        'value': new UntypedFormControl(character.fellowship.value)
       }),
-      new FormGroup({
-        'characteristic': new FormControl(this.prepareCharacteristic("WOUNDS")),
-        'value': new FormControl(character.wounds.value)
+      new UntypedFormGroup({
+        'characteristic': new UntypedFormControl(this.prepareCharacteristic("WOUNDS")),
+        'value': new UntypedFormControl(character.wounds.value)
       }),
     ]);
   }
@@ -488,17 +488,17 @@ export class CharacterEditComponent implements OnInit {
 
   checkIfTraitHasValue(traitControl: AbstractControl) {
     if (traitControl.value.trait != null && !traitControl.value.trait.hasValue) {
-      (<FormGroup>traitControl.get('value')).disable();
+      (<UntypedFormGroup>traitControl.get('value')).disable();
     } else {
-      (<FormGroup>traitControl.get('value')).enable();
+      (<UntypedFormGroup>traitControl.get('value')).enable();
     }
   }
 
   checkIfConditionHasCounter(conditionControl: AbstractControl) {
     if (conditionControl.value.condition.hasCounter != null && !conditionControl.value.condition.hasCounter) {
-      (<FormGroup>conditionControl.get('counter')).disable();
+      (<UntypedFormGroup>conditionControl.get('counter')).disable();
     } else {
-      (<FormGroup>conditionControl.get('counter')).enable();
+      (<UntypedFormGroup>conditionControl.get('counter')).enable();
     }
   }
 
@@ -507,76 +507,76 @@ export class CharacterEditComponent implements OnInit {
   }
 
   onAddSkill() {
-    (<FormArray>this.editCharacterForm.get('skills')).push(
-      new FormGroup({
-        'skill': new FormControl(null),
-        'value': new FormControl(null),
+    (<UntypedFormArray>this.editCharacterForm.get('skills')).push(
+      new UntypedFormGroup({
+        'skill': new UntypedFormControl(null),
+        'value': new UntypedFormControl(null),
       })
     )
   }
 
   onAddTalent() {
-    (<FormArray>this.editCharacterForm.get('talents')).push(
-      new FormGroup({
-        'talent': new FormControl(null),
-        'value': new FormControl(null),
+    (<UntypedFormArray>this.editCharacterForm.get('talents')).push(
+      new UntypedFormGroup({
+        'talent': new UntypedFormControl(null),
+        'value': new UntypedFormControl(null),
       })
     )
   }
 
   onAddTrait() {
-    (<FormArray>this.editCharacterForm.get('traits')).push(
-      new FormGroup({
-        'trait': new FormControl(null),
-        'value': new FormControl(null),
+    (<UntypedFormArray>this.editCharacterForm.get('traits')).push(
+      new UntypedFormGroup({
+        'trait': new UntypedFormControl(null),
+        'value': new UntypedFormControl(null),
       })
     )
   }
 
   onAddSpell() {
-    (<FormArray>this.editCharacterForm.get('spells')).push(
-      new FormControl(null),
+    (<UntypedFormArray>this.editCharacterForm.get('spells')).push(
+      new UntypedFormControl(null),
     )
   }
 
   onAddWeapon() {
-    (<FormArray>this.editCharacterForm.get('weapons')).push(
-      new FormGroup({
-        'weapon': new FormControl(null),
-        'value': new FormControl(null),
+    (<UntypedFormArray>this.editCharacterForm.get('weapons')).push(
+      new UntypedFormGroup({
+        'weapon': new UntypedFormControl(null),
+        'value': new UntypedFormControl(null),
       })
     )
   }
 
   onAddArmor() {
-    (<FormArray>this.editCharacterForm.get('armors')).push(
-      new FormControl(null),
+    (<UntypedFormArray>this.editCharacterForm.get('armors')).push(
+      new UntypedFormControl(null),
     )
   }
 
   onAddInjury() {
-    (<FormArray>this.editCharacterForm.get('injuries')).push(
-      new FormGroup({
-        'injury': new FormControl(null),
-        'bodyLocalization': new FormControl(null),
-        'value': new FormControl(null),
+    (<UntypedFormArray>this.editCharacterForm.get('injuries')).push(
+      new UntypedFormGroup({
+        'injury': new UntypedFormControl(null),
+        'bodyLocalization': new UntypedFormControl(null),
+        'value': new UntypedFormControl(null),
       })
     )
   }
 
   onAddCondition() {
-    (<FormArray>this.editCharacterForm.get('conditions')).push(
-      new FormGroup({
-        'condition': new FormControl(null),
-        'value': new FormControl(null),
-        'counter': new FormControl(null)
+    (<UntypedFormArray>this.editCharacterForm.get('conditions')).push(
+      new UntypedFormGroup({
+        'condition': new UntypedFormControl(null),
+        'value': new UntypedFormControl(null),
+        'counter': new UntypedFormControl(null)
       })
     )
   }
 
   onAddNote() {
-    (<FormArray>this.editCharacterForm.get('notes')).push(
-      new FormControl(null),
+    (<UntypedFormArray>this.editCharacterForm.get('notes')).push(
+      new UntypedFormControl(null),
     )
   }
 
@@ -588,7 +588,7 @@ export class CharacterEditComponent implements OnInit {
   createEditArmorDialogWindow(index: number) {
     const dialogRef = this.dialog.open(EditArmorDialog, {
       width: '30%',
-      data: (<FormControl>this.armors[index]).value,
+      data: (<UntypedFormControl>this.armors[index]).value,
     });
 
     dialogRef.afterClosed().subscribe(armor => {
@@ -597,7 +597,7 @@ export class CharacterEditComponent implements OnInit {
           if (armor != null) {
             return Promise.resolve({weapon: armor});
           } else {
-            return Promise.resolve({weapon: (<FormControl>this.armors[index]).value});
+            return Promise.resolve({weapon: (<UntypedFormControl>this.armors[index]).value});
           }
         })
       }
@@ -612,7 +612,7 @@ export class CharacterEditComponent implements OnInit {
   createEditWeaponDialog(index: number) {
     const dialogRef = this.dialog.open(EditWeaponDialog, {
       width: '30%',
-      data: (<FormControl>this.weapons[index]).value.weapon,
+      data: (<UntypedFormControl>this.weapons[index]).value.weapon,
     });
 
     dialogRef.afterClosed().subscribe(weapon => {
@@ -621,7 +621,7 @@ export class CharacterEditComponent implements OnInit {
           if (weapon != null) {
             return Promise.resolve({weapon: weapon});
           } else {
-            return Promise.resolve({weapon: (<FormControl>this.weapons[index]).value});
+            return Promise.resolve({weapon: (<UntypedFormControl>this.weapons[index]).value});
           }
         })
       }
@@ -650,79 +650,79 @@ export class CharacterEditComponent implements OnInit {
   }
 
   get characteristics() {
-    return (<FormArray>this.editCharacterForm.get('characteristics')).controls;
+    return (<UntypedFormArray>this.editCharacterForm.get('characteristics')).controls;
   }
 
   get skills() {
-    return (<FormArray>this.editCharacterForm.get('skills')).controls;
+    return (<UntypedFormArray>this.editCharacterForm.get('skills')).controls;
   }
 
   get talents() {
-    return (<FormArray>this.editCharacterForm.get('talents')).controls;
+    return (<UntypedFormArray>this.editCharacterForm.get('talents')).controls;
   }
 
   get traits() {
-    return (<FormArray>this.editCharacterForm.get('traits')).controls;
+    return (<UntypedFormArray>this.editCharacterForm.get('traits')).controls;
   }
 
   get spells() {
-    return <FormControl[]>(<FormArray>this.editCharacterForm.get('spells')).controls;
+    return <UntypedFormControl[]>(<UntypedFormArray>this.editCharacterForm.get('spells')).controls;
   }
 
   get weapons() {
-    return <FormControl[]>(<FormArray>this.editCharacterForm.get('weapons')).controls;
+    return <UntypedFormControl[]>(<UntypedFormArray>this.editCharacterForm.get('weapons')).controls;
   }
 
   get armors() {
-    return <FormControl[]>(<FormArray>this.editCharacterForm.get('armors')).controls;
+    return <UntypedFormControl[]>(<UntypedFormArray>this.editCharacterForm.get('armors')).controls;
   }
 
   get injuries() {
-    return <FormControl[]>(<FormArray>this.editCharacterForm.get('injuries')).controls;
+    return <UntypedFormControl[]>(<UntypedFormArray>this.editCharacterForm.get('injuries')).controls;
   }
 
   get conditions() {
-    return <FormControl[]>(<FormArray>this.editCharacterForm.get('conditions')).controls;
+    return <UntypedFormControl[]>(<UntypedFormArray>this.editCharacterForm.get('conditions')).controls;
   }
 
   get notes() {
-    return (<FormArray>this.editCharacterForm.get('notes')).controls;
+    return (<UntypedFormArray>this.editCharacterForm.get('notes')).controls;
   }
 
   onDeleteSkill(index: number) {
-    (<FormArray>this.editCharacterForm.get('skills')).removeAt(index);
+    (<UntypedFormArray>this.editCharacterForm.get('skills')).removeAt(index);
   }
 
   onDeleteTalent(index: number) {
-    (<FormArray>this.editCharacterForm.get('talents')).removeAt(index);
+    (<UntypedFormArray>this.editCharacterForm.get('talents')).removeAt(index);
   }
 
   onDeleteTrait(index: number) {
-    (<FormArray>this.editCharacterForm.get('traits')).removeAt(index);
+    (<UntypedFormArray>this.editCharacterForm.get('traits')).removeAt(index);
   }
 
   onDeleteSpell(index: number) {
-    (<FormArray>this.editCharacterForm.get('spells')).removeAt(index);
+    (<UntypedFormArray>this.editCharacterForm.get('spells')).removeAt(index);
   }
 
   onDeleteWeapon(index: number) {
-    (<FormArray>this.editCharacterForm.get('weapons')).removeAt(index);
+    (<UntypedFormArray>this.editCharacterForm.get('weapons')).removeAt(index);
   }
 
   onDeleteArmor(index: number) {
-    (<FormArray>this.editCharacterForm.get('armors')).removeAt(index);
+    (<UntypedFormArray>this.editCharacterForm.get('armors')).removeAt(index);
   }
 
   onDeleteInjury(index: number) {
-    (<FormArray>this.editCharacterForm.get('injuries')).removeAt(index);
+    (<UntypedFormArray>this.editCharacterForm.get('injuries')).removeAt(index);
   }
 
   onDeleteCondition(index: number) {
-    (<FormArray>this.editCharacterForm.get('conditions')).removeAt(index);
+    (<UntypedFormArray>this.editCharacterForm.get('conditions')).removeAt(index);
   }
 
   onDeleteNote(index: number) {
-    (<FormArray>this.editCharacterForm.get('notes')).removeAt(index);
+    (<UntypedFormArray>this.editCharacterForm.get('notes')).removeAt(index);
   }
 
   @HostListener('window:keyup', ['$event'])

@@ -1,6 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormControl, FormGroup} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {CharacterFormArraysWrapper} from "../../model/character/character-form-arrays-wrapper.model";
@@ -46,25 +46,25 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
 
   createEditCharacterForm(character: SkirmishCharacter, formArrays: CharacterFormArraysWrapper) {
     this.isDead = character.isDead;
-    this.editCharacterForm = new FormGroup({
-      'name': new FormControl(character.name),
-      'description': new FormControl(character.description),
-      'group': new FormControl(character.group),
+    this.editCharacterForm = new UntypedFormGroup({
+      'name': new UntypedFormControl(character.name),
+      'description': new UntypedFormControl(character.description),
+      'group': new UntypedFormControl(character.group),
       'characteristics': formArrays.characteristics,
       'skills': formArrays.skills,
       'talents': formArrays.talents,
       'traits': formArrays.traits,
-      'isRightHanded': new FormControl(this.isRightHanded),
+      'isRightHanded': new UntypedFormControl(this.isRightHanded),
       'spells': formArrays.spells,
       'weapons': formArrays.weapons,
       'armors': formArrays.armors,
       'injuries': formArrays.injuries,
       'conditions': formArrays.conditions,
-      'currentWounds': new FormControl(character.currentWounds),
-      'skirmishInitiative': new FormControl(character.skirmishInitiative),
-      'advantage': new FormControl(character.advantage),
+      'currentWounds': new UntypedFormControl(character.currentWounds),
+      'skirmishInitiative': new UntypedFormControl(character.skirmishInitiative),
+      'advantage': new UntypedFormControl(character.advantage),
       'notes': formArrays.notes,
-      'isDead': new FormControl(character.isDead),
+      'isDead': new UntypedFormControl(character.isDead),
     });
   }
 

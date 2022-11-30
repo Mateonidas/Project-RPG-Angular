@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {AttacksCategoryList} from "../../../model/attack/attack-category.model";
 import {AttacksTypeList} from "../../../model/attack/attacks-type-list.model";
@@ -23,7 +23,7 @@ import {CharacterWeapon} from "../../../model/weapon/character-weapon.model";
 })
 export class SkirmishActionsAttackComponent implements OnInit {
 
-  attackForm!: FormGroup;
+  attackForm!: UntypedFormGroup;
   attacker!: SkirmishCharacter;
   attacksTypeList!: AttackType[];
   attacksCategoryList = AttacksCategoryList.list;
@@ -59,13 +59,13 @@ export class SkirmishActionsAttackComponent implements OnInit {
     this.attacksTypeList = AttacksTypeList.attacksTypeList.filter(x => x.category.name === 'MELEE');
     this.characterWeapons = this.attacker.weapons.filter(x => x.weapon.weaponType.name === 'MELEE');
 
-    this.attackForm = new FormGroup({
-      'attackCategory': new FormControl(AttacksCategoryList.meleeAttack, [Validators.required]),
-      'attackType': new FormControl(this.attacksTypeList[0], [Validators.required]),
-      'weapon': new FormControl(this.characterWeapons[0], [Validators.required]),
-      'target': new FormControl(this.skirmishCharactersList[0], [Validators.required]),
-      'roll': new FormControl(null, [Validators.required]),
-      'modifier': new FormControl(0, [Validators.required]),
+    this.attackForm = new UntypedFormGroup({
+      'attackCategory': new UntypedFormControl(AttacksCategoryList.meleeAttack, [Validators.required]),
+      'attackType': new UntypedFormControl(this.attacksTypeList[0], [Validators.required]),
+      'weapon': new UntypedFormControl(this.characterWeapons[0], [Validators.required]),
+      'target': new UntypedFormControl(this.skirmishCharactersList[0], [Validators.required]),
+      'roll': new UntypedFormControl(null, [Validators.required]),
+      'modifier': new UntypedFormControl(0, [Validators.required]),
     })
   }
 

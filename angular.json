@@ -108,5 +108,7 @@
       }
     }
   },
-  "defaultProject": "Project-RPG-Angular"
+  "cli": {
+    "analytics": false
+  }
 }
