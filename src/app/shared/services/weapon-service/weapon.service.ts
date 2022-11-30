@@ -7,7 +7,6 @@ import {Model} from "../../../model/model";
 import {TranslateService} from "../translate-service/translate.service";
 import {WeaponQuality} from "../../../model/weapon/weapon-quality.model";
 import {WeaponGroup} from "../../../model/weapon/weapons-group.model";
-import {group} from "@angular/animations";
 
 @Injectable({
   providedIn: 'root'
@@ -51,7 +50,7 @@ export class WeaponService {
     this.weaponGroups = [];
     weapons.forEach(weapon => {
       let weaponGroup = this.weaponGroups.find(weaponGroup => weaponGroup.name === weapon.weaponGroupType.nameTranslation);
-      if(weaponGroup != undefined) {
+      if (weaponGroup != undefined) {
         weaponGroup.weapons.push(weapon);
       } else {
         this.weaponGroups.push(new WeaponGroup(weapon.weaponGroupType.nameTranslation, [weapon]));

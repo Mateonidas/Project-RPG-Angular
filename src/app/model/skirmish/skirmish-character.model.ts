@@ -7,7 +7,6 @@ import {CharacterWeapon} from "../weapon/character-weapon.model";
 import {CharacterBodyLocalization} from "../body-localization/character-body-localization.model";
 import {CharacterCondition} from "../condition/character-condition.model";
 import {CharacterTrait} from "../trait/character-trait.model";
-import {Spell} from "../spell/spell.model";
 
 export class SkirmishCharacter extends Character {
 

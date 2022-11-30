@@ -1,6 +1,5 @@
 import {SkirmishCharacter} from "../skirmish/skirmish-character.model";
 import {Skill} from "../skill/skill.model";
-import {Model} from "../model";
 import {Condition} from "../condition/condition.model";
 
 export class Test {

@@ -5,7 +5,6 @@ export class CharacterFormArraysWrapper {
   characteristics = new UntypedFormArray([]);
   conditions = new UntypedFormArray([]);
   injuries = new UntypedFormArray([]);
-  criticalWounds = new UntypedFormArray([]);
   skills = new UntypedFormArray([]);
   talents = new UntypedFormArray([]);
   traits = new UntypedFormArray([]);

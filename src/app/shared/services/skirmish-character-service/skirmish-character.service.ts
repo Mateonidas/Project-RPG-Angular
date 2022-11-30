@@ -4,7 +4,6 @@ import {Character} from "../../../model/character/character.model";
 import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.model";
 import {HttpClient} from "@angular/common/http";
 import {TranslateService} from "../translate-service/translate.service";
-import {ArmorService} from "../armor-service/armor.service";
 
 @Injectable({
   providedIn: 'root'

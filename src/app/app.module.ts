@@ -24,22 +24,9 @@ import {
 } from './skirmish/skirmish-character-details/skirmish-character-details.component';
 import {SkirmishCharacterEditComponent} from './skirmish/skirmish-character-edit/skirmish-character-edit.component';
 import {InitiativeDialog} from './dialog-window/initiative-dialog/initiative-dialog.component';
-import {SkirmishActionsListComponent} from './skirmish/skirmish-actions-list/skirmish-actions-list.component';
-import {
-  SkirmishActionsAttackComponent
-} from './skirmish/skirmish-actions-list/skirmish-actions-attack/skirmish-actions-attack.component';
-// import {SaveRollDialogWindowComponent} from './dialog-window/save-roll-dialog-window/save-roll-dialog-window.component';
 import {ValidationAlertComponent} from './validation/validation-alert/validation-alert.component';
-// import {
-//   AttackReportDialogWindowComponent
-// } from './dialog-window/report-dialog-window/attack-report-dialog-window.component';
-// import {RollDialogWindowComponent} from './dialog-window/roll-dialog-window/roll-dialog-window.component';
-// import {
-//   AttackAllyFumbleDialogWindowComponent
-// } from './dialog-window/attack-ally-fumble-dialog-window/attack-ally-fumble-dialog-window.component';
 import {HttpClientModule} from '@angular/common/http';
 import {EditArmorDialog} from './dialog-window/edit-armor-dialog/edit-armor-dialog.component';
-import {AutoFocusDirective} from './shared/directives/auto-focus.directive';
 import {RollDialogWindow} from "./dialog-window/roll-dialog-window/roll-dialog-window.component";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTooltipModule} from "@angular/material/tooltip";
@@ -79,15 +66,8 @@ import {ReceiveDamageDialog} from './dialog-window/receive-damage-dialog/receive
     SkirmishCharacterEditComponent,
     InitiativeDialog,
     RollDialogWindow,
-    SkirmishActionsListComponent,
-    SkirmishActionsAttackComponent,
-    // SaveRollDialogWindowComponent,
     ValidationAlertComponent,
-    // AttackReportDialogWindowComponent,
-    // RollDialogWindowComponent,
-    // AttackAllyFumbleDialogWindowComponent,
     EditArmorDialog,
-    AutoFocusDirective,
     EditWeaponDialog,
     ReceiveDamageDialog
   ],
