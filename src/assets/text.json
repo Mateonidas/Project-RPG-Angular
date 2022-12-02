@@ -1535,7 +1535,7 @@
     {
       "name": "SLAYER",
       "nameTranslation": "Zabójca",
-      "description": "Maksimum: 1\n\nKiedy określasz wysokość obrażeń, możesz wykorzystać Bonus z Wytrzymałości wroga zamiast swojego Bonusu z Siły, oczywiście jeśli jest wyższy. Musisz to zrobić, zanim zmodyfikujesz swoją Siłę lub wynikający z niej modyfikator. Co więcej, jeśli twój wróg jest od ciebie większy, a ty zadasz Trafienie Krytyczne (patrz strona 159), pomnóż zadawane obrażenia o tyle kategorii wielkości, ile was dzieli. Na przykład: dwie kategorie oznaczają obrażenia x2, trzy kategorie obrażenia x3 i tak dalej. Mnożnik jest określany i stosowany dopiero po uwzględnieniu wszystkich innych modyfikatorów. Więcej informacji na temat rozmiaru znajduje vsię na stronie 340."
+      "description": "Maksimum: 1\n\nKiedy określasz wysokość obrażeń, możesz wykorzystać Bonus z Wytrzymałości wroga zamiast swojego Bonusu z Siły, oczywiście jeśli jest wyższy. Musisz to zrobić, zanim zmodyfikujesz swoją Siłę lub wynikający z niej modyfikator. Co więcej, jeśli twój wróg jest od ciebie większy, a ty zadasz Trafienie Krytyczne (patrz strona 159), pomnóż zadawane obrażenia o tyle kategorii wielkości, ile was dzieli. Na przykład: dwie kategorie oznaczają obrażenia x2, trzy kategorie obrażenia x3 i tak dalej. Mnożnik jest określany i stosowany dopiero po uwzględnieniu wszystkich innych modyfikatorów. Więcej informacji na temat rozmiaru znajduje się na stronie 340."
     },
     {
       "name": "SMALL",

@@ -519,7 +519,7 @@ export class CharacterEditComponent implements OnInit {
     (<UntypedFormArray>this.editCharacterForm.get('talents')).push(
       new UntypedFormGroup({
         'talent': new UntypedFormControl(null),
-        'value': new UntypedFormControl(null),
+        'value': new UntypedFormControl(1),
       })
     )
   }
@@ -528,7 +528,7 @@ export class CharacterEditComponent implements OnInit {
     (<UntypedFormArray>this.editCharacterForm.get('traits')).push(
       new UntypedFormGroup({
         'trait': new UntypedFormControl(null),
-        'value': new UntypedFormControl(null),
+        'value': new UntypedFormControl(1),
       })
     )
   }
@@ -543,7 +543,7 @@ export class CharacterEditComponent implements OnInit {
     (<UntypedFormArray>this.editCharacterForm.get('weapons')).push(
       new UntypedFormGroup({
         'weapon': new UntypedFormControl(null),
-        'value': new UntypedFormControl(null),
+        'value': new UntypedFormControl(1),
       })
     )
   }
@@ -559,7 +559,7 @@ export class CharacterEditComponent implements OnInit {
       new UntypedFormGroup({
         'injury': new UntypedFormControl(null),
         'bodyLocalization': new UntypedFormControl(null),
-        'value': new UntypedFormControl(null),
+        'value': new UntypedFormControl(1),
       })
     )
   }
