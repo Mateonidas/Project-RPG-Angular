@@ -569,7 +569,7 @@ export class CharacterEditComponent implements OnInit {
       new UntypedFormGroup({
         'condition': new UntypedFormControl(null),
         'value': new UntypedFormControl(1),
-        'counter': new UntypedFormControl(null)
+        'counter': new UntypedFormControl({value: null, disabled: true})
       })
     )
   }
