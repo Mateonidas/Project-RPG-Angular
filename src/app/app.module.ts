@@ -29,23 +29,13 @@ import {HttpClientModule} from '@angular/common/http';
 import {EditArmorDialog} from './dialog-window/edit-armor-dialog/edit-armor-dialog.component';
 import {RollDialogWindow} from "./dialog-window/roll-dialog-window/roll-dialog-window.component";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatTooltipModule} from "@angular/material/tooltip";
-import {MatButtonModule} from "@angular/material/button";
-import {MatTreeModule} from "@angular/material/tree";
-import {MatExpansionModule} from "@angular/material/expansion";
-import {MatMenuModule} from "@angular/material/menu";
-import {MatTableModule} from "@angular/material/table";
-import {MatListModule} from "@angular/material/list";
-import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatTabsModule} from "@angular/material/tabs";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-import {MatRadioModule} from "@angular/material/radio";
-import {MatSelectModule} from "@angular/material/select";
 import {EditWeaponDialog} from './dialog-window/edit-weapon-dialog/edit-weapon-dialog.component';
-import {MatDialogModule} from "@angular/material/dialog";
-import {MatIconModule} from "@angular/material/icon";
 import {ReceiveDamageDialog} from './dialog-window/receive-damage-dialog/receive-damage-dialog.component';
+import {
+  BottomSheetDescription
+} from './shared/bottom-sheet/bottom-sheet-description/bottom-sheet-description.component';
+import {MAT_BOTTOM_SHEET_DEFAULT_OPTIONS} from "@angular/material/bottom-sheet";
+import {MaterialModule} from "../material.module";
 
 @NgModule({
   declarations: [
@@ -69,7 +59,8 @@ import {ReceiveDamageDialog} from './dialog-window/receive-damage-dialog/receive
     ValidationAlertComponent,
     EditArmorDialog,
     EditWeaponDialog,
-    ReceiveDamageDialog
+    ReceiveDamageDialog,
+    BottomSheetDescription
   ],
   imports: [
     BrowserModule,
@@ -79,23 +70,11 @@ import {ReceiveDamageDialog} from './dialog-window/receive-damage-dialog/receive
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatTooltipModule,
-    MatButtonModule,
-    MatTreeModule,
-    MatExpansionModule,
-    MatMenuModule,
-    MatTableModule,
-    MatListModule,
-    MatToolbarModule,
-    MatTabsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatRadioModule,
-    MatSelectModule,
-    MatDialogModule,
-    MatIconModule
+    MaterialModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_BOTTOM_SHEET_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

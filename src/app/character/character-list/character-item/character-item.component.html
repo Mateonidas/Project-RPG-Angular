@@ -1,11 +1,7 @@
-<section>
-  <button mat-stroked-button color="basic"
-          style="cursor: pointer; width: 100%"
-          [routerLink]="[index]"
-          routerLinkActive="active">
-    <div class="pull-left" style="text-align: left">
-      <h2 class="list-group-item-heading">{{character.name}}</h2>
-      <p class="list-group-item-text">{{character.description}}</p>
-    </div>
-  </button>
-</section>
+<a mat-list-item
+  style="cursor: pointer; width: 100%"
+  [routerLink]="[index]" routerLinkActive="active">
+  <h6 style="margin-top: 5px">{{character.name}}</h6>
+  <p>{{character.description}}</p>
+</a>
+<mat-divider></mat-divider>

@@ -4,6 +4,11 @@ import {CharacterService} from "../../shared/services/character-service/characte
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
 import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
+import {MatBottomSheet} from '@angular/material/bottom-sheet';
+import {
+  BottomSheetDescription
+} from "../../shared/bottom-sheet/bottom-sheet-description/bottom-sheet-description.component";
+import {Model} from "../../model/model";
 
 @Component({
   selector: 'app-character-detail',
@@ -28,7 +33,8 @@ export class CharacterDetailComponent implements OnInit {
   constructor(public characterService: CharacterService,
               public skirmishCharacterService: SkirmishCharacterService,
               protected route: ActivatedRoute,
-              protected router: Router) {
+              protected router: Router,
+              protected bottomSheet: MatBottomSheet) {
   }
 
   ngOnInit(): void {
@@ -76,9 +82,19 @@ export class CharacterDetailComponent implements OnInit {
     ];
   }
 
-  onReceiveDamage() {}
+  onReceiveDamage() {
+  }
 
-  addAdvantagePoint() {}
+  addAdvantagePoint() {
+  }
 
-  removeAdvantagePoint() {}
+  removeAdvantagePoint() {
+  }
+
+  openBottomSheet(model: Model) {
+    this.bottomSheet.open(BottomSheetDescription, {
+      data: {nameTranslation: model.nameTranslation, description: model.description},
+      panelClass: 'bottom-sheet'
+    });
+  }
 }

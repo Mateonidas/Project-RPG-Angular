@@ -7,18 +7,21 @@
   <hr>
   <div class="row">
     <div class="col-md-12">
-      <mat-accordion *ngFor="let characterGroup of characterGroups">
-        <mat-expansion-panel hideToggle>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle *ngFor="let characterGroup of characterGroups">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <h3>{{characterGroup.group}}</h3>
+              <h6>{{characterGroup.group}}</h6>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <app-character-item
-            *ngFor="let character of characterGroup.characters"
-            [character]="character"
-            [index]="character.id">
-          </app-character-item>
+          <mat-divider></mat-divider>
+          <mat-nav-list>
+            <app-character-item
+              *ngFor="let character of characterGroup.characters"
+              [character]="character"
+              [index]="character.id">
+            </app-character-item>
+          </mat-nav-list>
         </mat-expansion-panel>
       </mat-accordion>
     </div>

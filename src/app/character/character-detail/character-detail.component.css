@@ -2,6 +2,10 @@ table {
   width: 100%;
 }
 
+button {
+  margin-right: 10px;
+}
+
 .conditions-table  {
   width: 30%;
 }
@@ -10,6 +14,6 @@ table {
   width: 4%;
 }
 
-button {
-  margin-right: 10px;
+.description-span {
+  cursor: pointer;
 }

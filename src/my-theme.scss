@@ -6,6 +6,14 @@ $my-primary: mat.define-palette(mat.$purple-palette);
 $my-accent: mat.define-palette(mat.$blue-gray-palette);
 $my-warn: mat.define-palette(mat.$pink-palette);
 
-$my-theme: mat.define-dark-theme($my-primary, $my-accent, $my-warn);
+$my-theme: mat.define-dark-theme((
+  color: (
+    primary: $my-primary,
+    accent: $my-accent,
+    warn: $my-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0
+));
 
 @include mat.all-component-themes($my-theme);

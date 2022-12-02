@@ -2872,7 +2872,7 @@
     {
       "name": "UNBALANCED",
       "nameTranslation": "Niezbalansowany",
-      "description": "Cięża niektórych broni skoncentrowany jest na jej czubku, czyniąc ją nieefektywną podczas parowania. Gdy ta broń używana jest do sparowania nadchodzącego ciosu, Test Parowania z uzyciem tej broni otrzymuje -1 PS."
+      "description": "Ciężar niektórych broni skoncentrowany jest na jej czubku, czyniąc ją nieefektywną podczas parowania. Gdy ta broń używana jest do sparowania nadchodzącego ciosu, Test Parowania z uzyciem tej broni otrzymuje -1 PS."
     },
     {
       "name": "SLASH",

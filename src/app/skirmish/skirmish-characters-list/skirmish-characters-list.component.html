@@ -26,11 +26,14 @@
   <hr>
   <div class="row">
     <div class="col-md-12">
-      <app-skirmish-character-item
-        *ngFor="let skirmishCharacter of skirmishCharacters; let i = index"
-        [skirmishCharacter]="skirmishCharacter"
-        [index]="i">
-      </app-skirmish-character-item>
+      <mat-nav-list>
+        <mat-divider></mat-divider>
+        <app-skirmish-character-item
+          *ngFor="let skirmishCharacter of skirmishCharacters; let i = index"
+          [skirmishCharacter]="skirmishCharacter"
+          [index]="i">
+        </app-skirmish-character-item>
+      </mat-nav-list>
     </div>
   </div>
 </div>

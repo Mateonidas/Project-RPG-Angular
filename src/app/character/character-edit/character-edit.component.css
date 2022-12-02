@@ -1,5 +1,6 @@
 table {
   width: 100%;
+  table-layout: fixed;
 }
 
 td {
@@ -42,7 +43,6 @@ input {
 }
 
 .mat-cell, .mat-header-cell {
-  width: 4%;
   text-align: center;
 }
 
@@ -51,5 +51,5 @@ input {
 }
 
 .mat-mini-fab {
-  margin-top: 5%;
+  margin-top: 20%;
 }

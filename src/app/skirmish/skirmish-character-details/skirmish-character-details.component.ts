@@ -7,6 +7,7 @@ import {CharacterService} from "../../shared/services/character-service/characte
 import {MatDialog} from "@angular/material/dialog";
 import {ReceiveDamageDialog} from "../../dialog-window/receive-damage-dialog/receive-damage-dialog.component";
 import {SkirmishService} from "../../shared/services/skirmish-service/skirmish.service";
+import {MatBottomSheet} from "@angular/material/bottom-sheet";
 
 @Component({
   selector: 'app-skirmish-character-details',
@@ -23,8 +24,9 @@ export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent 
               public skirmishService: SkirmishService,
               protected route: ActivatedRoute,
               protected router: Router,
-              private dialog: MatDialog) {
-    super(characterService, skirmishCharacterService, route, router);
+              private dialog: MatDialog,
+              protected bottomSheet: MatBottomSheet) {
+    super(characterService, skirmishCharacterService, route, router, bottomSheet);
   }
 
   ngOnInit(): void {
