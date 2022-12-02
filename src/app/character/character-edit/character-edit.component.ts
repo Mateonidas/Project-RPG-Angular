@@ -568,7 +568,7 @@ export class CharacterEditComponent implements OnInit {
     (<UntypedFormArray>this.editCharacterForm.get('conditions')).push(
       new UntypedFormGroup({
         'condition': new UntypedFormControl(null),
-        'value': new UntypedFormControl(null),
+        'value': new UntypedFormControl(1),
         'counter': new UntypedFormControl(null)
       })
     )
