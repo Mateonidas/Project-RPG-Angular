@@ -23,8 +23,7 @@
       </div>
 
       <div *ngIf="isSkirmishMode">
-        <hr>
-        <div class="row">
+        <div class="row details-row">
           <div class="col-md-4 form-group">
             <h4>{{text.getText().temporaryParametersLabel}}</h4>
 
@@ -60,8 +59,7 @@
         </div>
       </div>
 
-      <hr>
-      <div class="row">
+      <div class="row details-row">
         <div class="col-md-12" formArrayName="characteristics">
           <h4>{{text.getText().characteristicsLabel}}</h4>
           <table mat-table [dataSource]="[characteristics]" class="mat-elevation-z8">
@@ -81,8 +79,7 @@
         </div>
       </div>
 
-      <hr>
-      <div class="row">
+      <div class="row details-row">
         <div class="col-md-12" formArrayName="notes">
           <h4>{{text.getText().notesLabel}}</h4>
           <div class="row mb-2" *ngFor="let noteControl of notes; index as i">
@@ -107,8 +104,7 @@
         </div>
       </div>
 
-      <hr>
-      <div class="row">
+      <div class="row details-row">
         <div class="col-md-12">
           <h4>{{text.getText().leadingHandLabel}}</h4>
           <mat-radio-group formControlName="isRightHanded">
@@ -118,8 +114,7 @@
         </div>
       </div>
 
-      <hr>
-      <div class="row">
+      <div class="row details-row">
         <div class="col-md-12" formArrayName="skills">
           <h4>{{text.getText().skillsLabel}}</h4>
           <div class="row mb-2" *ngFor="let skillControl of skills; let i = index" [formGroupName]="i">
@@ -155,8 +150,7 @@
         </div>
       </div>
 
-      <hr>
-      <div class="row">
+      <div class="row details-row">
         <div class="col-md-12" formArrayName="talents">
           <h4>{{text.getText().talentsLabel}}</h4>
 
@@ -194,9 +188,7 @@
         </div>
       </div>
 
-
-      <hr>
-      <div class="row">
+      <div class="row details-row">
         <div class="col-md-12" formArrayName="traits">
           <h4>{{text.getText().traitsLabel}}</h4>
 
@@ -234,9 +226,7 @@
         </div>
       </div>
 
-
-      <hr>
-      <div class="row">
+      <div class="row details-row">
         <div class="col-md-12" formArrayName="spells">
           <h4>{{text.getText().spellsLabel}}</h4>
           <div class="row mb-2" *ngFor="let spellControl of spells; let i = index" [formGroupName]="i">
@@ -268,9 +258,7 @@
         </div>
       </div>
 
-
-      <hr>
-      <div class="row">
+      <div class="row details-row">
         <div class="col-md-12" formArrayName="weapons">
           <h4>{{text.getText().weaponLabel}}</h4>
           <div class="row mb-2" *ngFor="let weaponControl of weapons; let i = index" [formGroupName]="i">
@@ -307,8 +295,7 @@
         </div>
       </div>
 
-      <hr>
-      <div class="row">
+      <div class="row details-row">
         <div class="col-md-12" formArrayName="armors">
           <h4>{{text.getText().armorLabel}}</h4>
           <div class="row mb-2" *ngFor="let armorControl of armors; let i = index" [formGroupName]="i">
@@ -352,8 +339,7 @@
         </div>
       </div>
 
-      <hr>
-      <div class="row">
+      <div class="row details-row">
         <div class="col-md-12" formArrayName="injuries">
           <h4>{{text.getText().injuriesLabel}}</h4>
 
@@ -402,8 +388,7 @@
         </div>
       </div>
 
-      <hr>
-      <div class="row">
+      <div class="row details-row">
         <div class="col-md-12" formArrayName="conditions">
           <h4>{{text.getText().conditionsLabel}}</h4>
 
@@ -448,8 +433,7 @@
         </div>
       </div>
 
-      <hr>
-      <div class="row">
+      <div class="row details-row">
         <div class="col-md-12">
           <button mat-raised-button color="primary" type="submit">{{text.getText().saveLabel}}</button>
           <button mat-raised-button color="warn" type="button"

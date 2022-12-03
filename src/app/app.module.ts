@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HeaderComponent} from './header/header.component';
+import {NavBar} from './header/nav-bar.component';
 import {RouterModule} from "@angular/router";
 import {HomeComponent} from './home/home.component';
 import {AppRoutingModule} from "./app-routing.module";
@@ -40,7 +40,7 @@ import {MaterialModule} from "../material.module";
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    NavBar,
     HomeComponent,
     CharacterComponent,
     CharacterListComponent,

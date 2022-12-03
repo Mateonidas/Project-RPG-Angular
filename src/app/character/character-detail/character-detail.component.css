@@ -17,3 +17,7 @@ button {
 .description-span {
   cursor: pointer;
 }
+
+.details-row {
+  margin-top: 20px;
+}

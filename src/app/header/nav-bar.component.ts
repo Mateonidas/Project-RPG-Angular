@@ -3,10 +3,10 @@ import {ThemePalette} from "@angular/material/core";
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  templateUrl: './nav-bar.component.html',
+  styleUrls: ['./nav-bar.component.scss']
 })
-export class HeaderComponent {
+export class NavBar {
   activeLink = '/';
   background: ThemePalette = 'primary';
 }
