@@ -46,6 +46,7 @@ export class CharacterEditComponent implements OnInit {
   isDataAvailable: boolean = false;
   isSkirmishMode = false;
   editMode = false;
+  copyMode = false;
   editCharacterForm!: UntypedFormGroup;
   skillsList: Skill[] = [];
   talentsList: Talent[] = [];
@@ -85,6 +86,11 @@ export class CharacterEditComponent implements OnInit {
       this.talentsList = this.talentService.talentList;
       this.traitsList = this.traitService.traitList;
       this.spellGroups = this.spellService.spellGroups;
+      this.route.queryParams.subscribe(
+        (queryParams: Params) => {
+          this.copyMode = queryParams['copy'] == "true";
+        }
+      )
       this.route.params.subscribe(
         (params: Params) => {
           this.id = +params['id'];
@@ -191,6 +197,9 @@ export class CharacterEditComponent implements OnInit {
     let character = this.createCharacter();
     if (this.editMode) {
       character.id = this.id;
+    }
+    if(this.copyMode){
+      character.id = -1;
     }
     this.characterService.storeCharacter(character).then(() => {
       this.onCancel();

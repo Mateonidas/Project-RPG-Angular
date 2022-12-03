@@ -17,6 +17,7 @@ const routes: Routes = [
       {path: 'new', component: CharacterEditComponent},
       {path: ':id', component: CharacterDetailComponent},
       {path: ':id/edit', component: CharacterEditComponent},
+      {path: ':id/copy', component: CharacterEditComponent},
     ]},
   {path: 'skirmish', component: SkirmishComponent, children: [
       {path: ':id', component: SkirmishCharacterDetailsComponent},

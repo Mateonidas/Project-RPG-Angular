@@ -58,6 +58,10 @@ export class CharacterDetailComponent implements OnInit {
     this.router.navigate(['characters']);
   }
 
+  onCopyCharacter() {
+    this.router.navigate(['copy'], {relativeTo: this.route, queryParams: {copy: true}, queryParamsHandling: 'merge'});
+  }
+
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event.key == 'Enter') {
