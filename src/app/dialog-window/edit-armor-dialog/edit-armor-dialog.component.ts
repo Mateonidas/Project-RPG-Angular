@@ -50,7 +50,6 @@ export class EditArmorDialog implements OnInit {
         new UntypedFormGroup({
           'bodyLocalization': new UntypedFormControl(armorBodyLocalization.bodyLocalization),
           'armorPoints': new UntypedFormControl(armorBodyLocalization.armorPoints),
-          'brokenArmorPoints': new UntypedFormControl(armorBodyLocalization.brokenArmorPoints)
         })
       )
     }
@@ -87,7 +86,7 @@ export class EditArmorDialog implements OnInit {
       new UntypedFormGroup({
         'bodyLocalization': new UntypedFormControl(null),
         'armorPoints': new UntypedFormControl(null),
-        'brokenArmorPoints': new UntypedFormControl(null)
+        'additionalArmorPoints': new UntypedFormControl(null)
       })
     );
   }

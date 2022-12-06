@@ -8,6 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ReceiveDamageDialog} from "../../dialog-window/receive-damage-dialog/receive-damage-dialog.component";
 import {SkirmishService} from "../../shared/services/skirmish-service/skirmish.service";
 import {MatBottomSheet} from "@angular/material/bottom-sheet";
+import {CharacterBodyLocalization} from "../../model/body-localization/character-body-localization.model";
 
 @Component({
   selector: 'app-skirmish-character-details',
@@ -70,6 +71,16 @@ export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent 
 
   async removeAdvantagePoint() {
     await this.skirmishService.removeAdvantagePoint(this.character.id);
+    await this.reloadSkirmishCharacters();
+  }
+
+  async addAdditionalArmorPoint(bodyLocalization: CharacterBodyLocalization) {
+    await this.skirmishService.addAdditionalArmorPoint(bodyLocalization);
+    await this.reloadSkirmishCharacters();
+  }
+
+  async removeAdditionalArmorPoint(bodyLocalization: CharacterBodyLocalization) {
+    await this.skirmishService.removeAdditionalArmorPoint(bodyLocalization);
     await this.reloadSkirmishCharacters();
   }
 

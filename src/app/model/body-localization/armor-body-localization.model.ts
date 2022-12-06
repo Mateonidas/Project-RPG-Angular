@@ -4,14 +4,12 @@ export class ArmorBodyLocalization {
   public id: number;
   public bodyLocalization: BodyLocalization;
   public armorPoints: number;
-  public brokenArmorPoints: number;
 
 
-  constructor(id?: number, bodyLocalization?: BodyLocalization, armorPoints?: number, brokenArmorPoints?: number) {
+  constructor(id?: number, bodyLocalization?: BodyLocalization, armorPoints?: number, additionalArmorPoints?: number) {
     this.id = <number>id;
     this.bodyLocalization = <BodyLocalization>bodyLocalization;
     this.armorPoints = <number>armorPoints;
-    this.brokenArmorPoints = <number>brokenArmorPoints;
   }
 
   static fromJSON(object: Object): ArmorBodyLocalization {

@@ -9,6 +9,7 @@ import {
   BottomSheetDescription
 } from "../../shared/bottom-sheet/bottom-sheet-description/bottom-sheet-description.component";
 import {Model} from "../../model/model";
+import {CharacterBodyLocalization} from "../../model/body-localization/character-body-localization.model";
 
 @Component({
   selector: 'app-character-detail',
@@ -94,6 +95,13 @@ export class CharacterDetailComponent implements OnInit {
 
   removeAdvantagePoint() {
   }
+
+  addAdditionalArmorPoint(bodyLocalization: CharacterBodyLocalization) {
+  }
+
+  removeAdditionalArmorPoint(bodyLocalization: CharacterBodyLocalization) {
+  }
+
 
   openBottomSheet(model: Model) {
     this.bottomSheet.open(BottomSheetDescription, {

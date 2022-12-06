@@ -2,16 +2,18 @@ import {BodyLocalization} from "./body-localization.model";
 import {CharacterInjury} from "../injury/character-injury.model";
 
 export class CharacterBodyLocalization {
+  public characterId: number;
   public bodyLocalization: BodyLocalization;
   public armorPoints: number;
-  public brokenArmorPoints: number;
+  public additionalArmorPoints: number;
   public injuries: CharacterInjury[];
 
-  constructor(bodyLocalization?: BodyLocalization, armorPoints?: number, brokenArmorPoints?: number, injuries?: CharacterInjury[]) {
+  constructor(bodyLocalization?: BodyLocalization, armorPoints?: number, additionalArmorPoints?: number, injuries?: CharacterInjury[], characterId?: number) {
     this.bodyLocalization = <BodyLocalization>bodyLocalization;
     this.armorPoints = <number>armorPoints;
-    this.brokenArmorPoints = <number>brokenArmorPoints;
+    this.additionalArmorPoints = <number>additionalArmorPoints;
     this.injuries = <CharacterInjury[]>injuries;
+    this.characterId = <number>characterId;
   }
 
   static fromJSON(object: Object): CharacterBodyLocalization {

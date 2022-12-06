@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ReceivedDamage} from "../../../model/receive-damage/receive-damage.model";
+import {CharacterBodyLocalization} from "../../../model/body-localization/character-body-localization.model";
 
 @Injectable({
   providedIn: 'root'
@@ -27,10 +28,28 @@ export class SkirmishService {
   }
 
   async removeAdvantagePoint(skirmishCharacterId: number) {
-    await this.removeAddAdvantagePoint(skirmishCharacterId);
+    await this.postRemoveAdvantagePoint(skirmishCharacterId);
   }
 
-  private async removeAddAdvantagePoint(skirmishCharacterId: number) {
+  private async postRemoveAdvantagePoint(skirmishCharacterId: number) {
     return this.http.post('http://localhost:8080/removeAdvantagePoint', skirmishCharacterId).toPromise().then();
+  }
+
+
+
+  async addAdditionalArmorPoint(bodyLocalization: CharacterBodyLocalization) {
+    await this.postAddAdditionalArmorPoint(bodyLocalization);
+  }
+
+  private async postAddAdditionalArmorPoint(bodyLocalization: CharacterBodyLocalization) {
+    return this.http.post('http://localhost:8080/addAdditionalArmorPoint', bodyLocalization).toPromise().then();
+  }
+
+  async removeAdditionalArmorPoint(bodyLocalization: CharacterBodyLocalization) {
+    await this.postRemoveAdditionalArmorPoint(bodyLocalization);
+  }
+
+  private async postRemoveAdditionalArmorPoint(bodyLocalization: CharacterBodyLocalization) {
+    return this.http.post('http://localhost:8080/removeAdditionalArmorPoin', bodyLocalization).toPromise().then();
   }
 }

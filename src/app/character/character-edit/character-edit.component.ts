@@ -269,7 +269,6 @@ export class CharacterEditComponent implements OnInit {
         for (let characterBodyLocalization of character.bodyLocalizations) {
           if (armorBodyLocalization.bodyLocalization.name === characterBodyLocalization.bodyLocalization.name) {
             characterBodyLocalization.armorPoints += armorBodyLocalization.armorPoints;
-            characterBodyLocalization.armorPoints -= armorBodyLocalization.brokenArmorPoints;
             break;
           }
         }
