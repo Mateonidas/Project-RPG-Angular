@@ -73,6 +73,6 @@ export class SkirmishCharactersListComponent implements OnInit {
     this.skirmishCharacterService.removeAllSkirmishCharacters();
     this.roundService.clearData();
     this.roundNumber = this.roundService.roundNumber;
-    window.location.reload();
+    this.router.navigate(['skirmish']);
   }
 }
