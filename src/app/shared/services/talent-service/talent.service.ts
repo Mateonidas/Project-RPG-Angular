@@ -19,13 +19,8 @@ export class TalentService {
   fetchTalents() {
     return this.http.get<Talent[]>('http://localhost:8080/talent').toPromise()
       .then(data => {
-        for (let talent of data) {
-          this.translationService.prepareTalent(talent);
-        }
+        this.translationService.prepareTalentList(data);
         this.talentList = data;
-        this.talentList.sort(
-          (a, b) => (a.nameTranslation > b.nameTranslation) ? 1 : ((b.nameTranslation > a.nameTranslation) ? -1 : 0)
-        );
         this.talentListChanged.next(this.talentList.slice());
       });
   }

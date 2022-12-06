@@ -49,7 +49,15 @@ export class TranslateService {
     talents.sort((a, b) => this.compareModels(a.talent, b.talent));
   }
 
-  public prepareTalent(talent: Talent) {
+  public prepareTalentList(talents: Talent[]) {
+    talents.forEach(talent => {
+      this.prepareTalent(talent)
+    });
+
+    talents.sort((a, b) => this.compareModels(a, b))
+  }
+
+  private prepareTalent(talent: Talent) {
     let talentTranslation = TextResourceService.getTalentNameTranslation(talent.name);
     talent.nameTranslation = talentTranslation.nameTranslation;
     talent.description = talentTranslation.description;
@@ -176,6 +184,6 @@ export class TranslateService {
   }
 
   compareModels(c1: Model, c2: Model): number {
-    return (c1.nameTranslation < c2.nameTranslation) ? -1 : (c1.nameTranslation > c2.nameTranslation) ? 1 : 0;
+    return c1.nameTranslation.localeCompare(c2.nameTranslation);
   }
 }
