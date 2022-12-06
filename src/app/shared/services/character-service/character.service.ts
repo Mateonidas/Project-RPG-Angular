@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Character} from "../../../model/character/character.model";
 import {Subject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {ArmorService} from "../armor-service/armor.service";
 import {TranslateService} from "../translate-service/translate.service";
 
 @Injectable({
@@ -26,7 +25,8 @@ export class CharacterService {
     return this.http.get<Character[]>('http://localhost:8080/character').toPromise()
       .then(data => {
         this.charactersList = [];
-        for (let character of data) {
+        for (let element of data) {
+          let character = Character.fromJSON(element);
           this.translateService.prepareCharacter(character);
           this.charactersList.push(character);
         }
@@ -78,7 +78,7 @@ export class CharacterService {
   }
 
   private createCharacterGroups() {
-    const characterGroups: {group: string, characters: Character[]}[] = [];
+    const characterGroups: { group: string, characters: Character[] }[] = [];
 
     this.charactersList.forEach(character => {
       let isGroupExist = false;

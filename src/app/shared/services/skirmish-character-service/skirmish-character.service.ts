@@ -67,6 +67,32 @@ export class SkirmishCharacterService {
       .toPromise();
   }
 
+  async storeSkirmishCharacters(characters: Character[]) {
+    let index = this.skirmishCharactersList.length;
+    let skirmishCharacters: SkirmishCharacter[] = [];
+    characters.forEach(character => {
+      let skirmishCharacter: SkirmishCharacter = new SkirmishCharacter(character, index);
+      let numberOfSameCharacters = this.skirmishCharactersList.filter(character => character.name.includes(skirmishCharacter.name)).length
+      if (numberOfSameCharacters > 0) {
+        skirmishCharacter.name = skirmishCharacter.name + ' ' + (numberOfSameCharacters + 1)
+      }
+      skirmishCharacters.push(skirmishCharacter);
+      ++index;
+    })
+
+    await this.putSkirmishCharacters(skirmishCharacters).then(
+      async () => {
+        await this.fetchSkirmishCharacter().then();
+      }
+    );
+  }
+
+  private putSkirmishCharacters(skirmishCharacters: SkirmishCharacter[]) {
+    return this.http
+      .put('http://localhost:8080/skirmishCharacters', skirmishCharacters)
+      .toPromise();
+  }
+
   async updateSkirmishCharacter(skirmishCharacter: SkirmishCharacter) {
     this.skirmishCharactersList[this.getCharacterIndexById(skirmishCharacter.id)] = skirmishCharacter;
     this.skirmishCharactersChanged.next(this.skirmishCharactersList.slice());

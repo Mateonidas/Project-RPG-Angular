@@ -7,6 +7,7 @@ import {InitiativeDialog} from "../../dialog-window/initiative-dialog/initiative
 import {RoundService} from "../../shared/services/round-service/round.service";
 import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
 import {MatDialog} from "@angular/material/dialog";
+import {Character} from "../../model/character/character.model";
 
 @Component({
   selector: 'app-skirmish-characters-list',

@@ -4,6 +4,7 @@ import {CharacterService} from "../../shared/services/character-service/characte
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
+import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
 
 @Component({
   selector: 'app-character-list',
@@ -20,6 +21,7 @@ export class CharacterListComponent implements OnInit {
   text = TextResourceService;
 
   constructor(public characterService: CharacterService,
+              public skirmishCharacterService: SkirmishCharacterService,
               private router: Router,
               private route: ActivatedRoute) {
   }
@@ -41,5 +43,9 @@ export class CharacterListComponent implements OnInit {
 
   onAddCharacter() {
     this.router.navigate(['new'], {relativeTo: this.route});
+  }
+
+  onAddGroupToFight(characters: Character[]) {
+    this.skirmishCharacterService.storeSkirmishCharacters(characters);
   }
 }
