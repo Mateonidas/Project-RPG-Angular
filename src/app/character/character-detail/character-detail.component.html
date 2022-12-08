@@ -357,10 +357,14 @@
           <td mat-cell *matCellDef="let element">
             <ul>
               <li *ngFor="let quality of element.weapon.weaponQualities">
-                <span class="description-span"
-                  (click)="openBottomSheet(quality)">
+                <span *ngIf="quality.value == 1; else characterWeaponValue" (click)="openBottomSheet(quality)">
                   {{quality.nameTranslation}}
                 </span>
+                <ng-template #characterWeaponValue>
+                  <span class="description-span" (click)="openBottomSheet(quality)">
+                    {{quality.nameTranslation}} {{quality.value}}
+                  </span>
+                </ng-template>
               </li>
             </ul>
           </td>
