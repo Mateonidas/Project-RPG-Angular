@@ -1,29 +1,3 @@
-##stage 1
-#FROM node:latest as node
-#WORKDIR /app
-#COPY . .
-#RUN npm install --force
-#RUN npm run build --prod
-#
-##stage 2
-#FROM nginx:alpine
-#COPY --from=node /app/dist/Project-RPG-Angular /etc/nginx/html/
-#
-#EXPOSE 49153 80
-
-#FROM node:latest
-#
-#RUN mkdir -p /usr/src/app
-#WORKDIR /usr/src/app
-#COPY package.json /usr/src/app
-#RUN npm install --force
-#RUN npm install -g angular-cli
-#COPY . /usr/src/app
-#
-#EXPOSE 4200 49153
-#
-#CMD [ "npm", "start" ]
-
 FROM node:latest AS build
 # Create a Virtual directory inside the docker image
 WORKDIR /dist/src/app
