@@ -11,7 +11,3 @@ mat-form-field {
 input {
   overflow: hidden;
 }
-
-.mat-radio-button ~ .mat-radio-button {
-  margin-left: 16px;
-}

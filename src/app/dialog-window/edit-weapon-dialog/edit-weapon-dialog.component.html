@@ -56,14 +56,6 @@
       </mat-form-field>
     </div>
 
-    <div class="row" style="margin-bottom: 10px">
-      <h4>{{text.getText().isUsingBSToCountRangeLabel}}</h4>
-      <mat-radio-group formControlName="isUsingStrengthInRange" [value]="modifiedWeapon.isUsingStrengthInRange">
-        <mat-radio-button [value]=true>{{text.getText().yesLabel}}</mat-radio-button>
-        <mat-radio-button [value]=false>{{text.getText().noLabel}}</mat-radio-button>
-      </mat-radio-group>
-    </div>
-
     <div class="row">
       <mat-form-field appearance="fill">
         <mat-label>{{text.getText().damageLabel}}</mat-label>
@@ -72,11 +64,23 @@
     </div>
 
     <div class="row" style="margin-bottom: 10px">
-      <h4>{{text.getText().isUsingBSToCountDamageLabel}}</h4>
-      <mat-radio-group formControlName="isUsingStrength" [value]="modifiedWeapon.isUsingStrength">
-        <mat-radio-button [value]=true>{{text.getText().yesLabel}}</mat-radio-button>
-        <mat-radio-button [value]=false>{{text.getText().noLabel}}</mat-radio-button>
-      </mat-radio-group>
+      <p>{{text.getText().isUsingBSToCountRangeLabel}}</p>
+      <mat-slide-toggle
+        formControlName="isUsingStrengthInRange"
+        color="primary"
+        checked="false"
+        [(ngModel)]="modifiedWeapon.isUsingStrengthInRange">
+      </mat-slide-toggle>
+    </div>
+
+    <div class="row" style="margin-bottom: 10px">
+      <p>{{text.getText().isUsingBSToCountDamageLabel}}</p>
+      <mat-slide-toggle
+        formControlName="isUsingStrength"
+        color="primary"
+        checked="false"
+        [(ngModel)]="modifiedWeapon.isUsingStrength">
+      </mat-slide-toggle>
     </div>
 
     <hr>

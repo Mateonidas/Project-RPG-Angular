@@ -12,10 +12,6 @@ input {
   overflow: hidden;
 }
 
-.mat-radio-button ~ .mat-radio-button {
-  margin-left: 16px;
-}
-
 .mat-dialog-content {
   overflow: unset;
 }

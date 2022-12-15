@@ -17,17 +17,23 @@
   </mat-form-field>
 
   <p>{{text.getText().isWeaponUndamagingLabel}}</p>
-  <mat-radio-group [(ngModel)]="receivedDamage.isWeaponUndamaging">
-    <mat-radio-button [value]=false>{{text.getText().noLabel}}</mat-radio-button>
-    <mat-radio-button [value]=true>{{text.getText().yesLabel}}</mat-radio-button>
-  </mat-radio-group>
+  <section>
+    <mat-slide-toggle
+      color="primary"
+      checked="false"
+      [(ngModel)]="receivedDamage.isWeaponUndamaging">
+    </mat-slide-toggle>
+  </section>
 
   <ng-container *ngIf="receivedDamage.isWeaponUndamaging">
     <p style="margin-top: 10px">{{text.getText().isCharacterLoseTestLabel}}</p>
-    <mat-radio-group [(ngModel)]="receivedDamage.isLosingTest">
-      <mat-radio-button [value]=false>{{text.getText().noLabel}}</mat-radio-button>
-      <mat-radio-button [value]=true>{{text.getText().yesLabel}}</mat-radio-button>
-    </mat-radio-group>
+    <section>
+      <mat-slide-toggle
+        color="primary"
+        checked="false"
+        [(ngModel)]="receivedDamage.isLosingTest">
+      </mat-slide-toggle>
+    </section>
   </ng-container>
 </div>
 <div mat-dialog-actions>
