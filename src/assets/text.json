@@ -1086,7 +1086,7 @@
     {
       "name": "FRENZY",
       "nameTranslation": "Szał Bojowy",
-      "description": "Maksimum: 1\n\nMożesz wpaść w Szał Bojowy, co opisano na stronie 190."
+      "description": "Maksimum: 1\n\nMożesz wpaść w Szał Bojowy, co opisano na stronie 190.\n\nW trakcie Szału Bojowego postać jest niewrażliwa na wszystkie inne Czynniki Psychologiczne i nie ucieknie ani nie wycofa się z żadnego powodu. Mało tego – musi zawsze poruszać się z pełną prędkością w stronę najbliższego widzianego przeciwnika, by go zaatakować. Ogólnie rzecz biorąc, jedynymi Akcjami, jakie można wtedy wykonać, są Testy Broni Białej w zwarciu albo Atletyki, by szybciej dobiec do przeciwnika. Poza tym w każdej Rundzie postać otrzymuje Akcję Darmową w postaci dodatkowego ataku wręcz, ponieważ naprawdę daje z siebie wszystko. A jakby tego było mało, zaciekłość i brutalność skutkuje podniesieniem Bonusu z Siły o +1. Postać pozostaje w Szale Bojowym, dopóki wszyscy wrogowie w polu widzenia nie zostaną unieszkodliwieni albo dopóki postać nie otrzyma przynajmniej 1 poziomu Oszołomienia lub nie nastąpi Utrata Przytomności. Po zakończeniu Szału Bojowego postać natychmiast otrzymuje 1 poziom Zmęczenia."
     },
     {
       "name": "FRIGHTENING",
@@ -1858,7 +1858,7 @@
     {
       "name": "CORRUPTED",
       "nameTranslation": "Spaczenie",
-      "description": "Stworzenie jest napiętnowane przez Chaos lub przepełnione mroczną magią. Siła spaczenia podana jest w nawiasie. Patrz: str. 182."
+      "description": "Stworzenie jest napiętnowane przez Chaos lub przepełnione mroczną magią. Siła spaczenia podana jest w nawiasie.\n\nPo natknięciu się na źródło spaczenia należy wykonać Wymagający (+0) Test Odporności lub Wymagający (+0) Test Opanowania w zależności od decyzji MG – zazwyczaj fizyczne spaczenie wywołuje Test Wytrzymałości, a psychiczne zepsucie – Opanowania.\n\nIm silniejsze jest źródło spaczenia, tym więcej PS należy uzyskać w Teście, by oprzeć się jego działaniu. Poniżej przedstawione zostały przykładowe źródła oraz liczba PS niezbędna do uniknięcia przydzielenia Punktów Zepsucia.\n\n- Pomniejsze źródło\n\nTe źródła, mimo iż wydają się trywialne, wciąż stanowią niebezpieczeństwo dla wątłych dusz. W przypadku porażki w odparciu Zepsucia spowodowanego przez pomniejsze źródło postać otrzymuje 1 jego Punkt.\n\n- Umiarkowane źródło\n\nUmiarkowane źródła stanowią niebezpieczeństwo dla wszystkich dusz i powinno się ich unikać zawsze i wszędzie. W przypadku porażki w odparciu Zepsucia spowodowanego przez umiarkowane źródło postać otrzymuje 2 jego Punkty. Znikomy Sukces (0-1 PS), skutkuje 1 Punktem Zepsucia. Sukces (2 PS) oznacza, że postać nie otrzymuje żadnych Punktów Zepsucia.\n\n- Potężne źródło\n\nJeśli kiedykolwiek staniesz twarzą w twarz z potężnym źródłem spaczenia, bierz nogi za pas. Zostaniesz chwilę za długo i nigdy nie będziesz już taki sam. Każda porażka w Teście przeciwko Zepsuciu oznacza, że postać otrzymuje 3 jego Punkty. Minimalny sukces (0 PS) to 2 Punkty Zepsucia. Sukces (2 PS) oznacza, że postać otrzymuje 1 Punkt. Jedynie Imponujący Sukces (4 PS) oznacza, że postać nie otrzymuje żadnych Punktów Zepsucia."
     },
     {
       "name": "CUNNING",
