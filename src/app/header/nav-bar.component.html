@@ -1,16 +1,16 @@
 <nav mat-tab-nav-bar [backgroundColor]="background" [tabPanel]="tabPanel" mat-stretch-tabs="false" mat-align-tabs="start">
   <a mat-tab-link routerLink="/"
-     (click)="activeLink = '/'"
+     (click)="setActiveLink('/')"
      [active]="activeLink == '/'"
   >Project RPG</a>
 
   <a mat-tab-link routerLink="/characters"
-     (click)="activeLink = '/characters'"
+     (click)="setActiveLink('/characters')"
      [active]="activeLink == '/characters'"
   >Postacie</a>
 
   <a mat-tab-link routerLink="/skirmish"
-     (click)="activeLink = '/skirmish'"
+     (click)="setActiveLink('/skirmish')"
      [active]="activeLink == '/skirmish'"
   >Potyczka</a>
 </nav>

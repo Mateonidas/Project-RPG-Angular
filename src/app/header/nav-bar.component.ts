@@ -7,6 +7,20 @@ import {ThemePalette} from "@angular/material/core";
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBar {
-  activeLink = '/';
+  activeLink: string | null;
   background: ThemePalette = 'primary';
+
+  constructor() {
+    this.activeLink = localStorage.getItem('activeLink');
+    if(this.activeLink == null) {
+      this.activeLink = '/';
+    }
+  }
+
+  setActiveLink(activeLink: string) {
+    this.activeLink = activeLink;
+    localStorage.setItem('activeLink', activeLink);
+  }
+
+
 }
