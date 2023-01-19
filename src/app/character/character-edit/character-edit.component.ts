@@ -414,7 +414,7 @@ export class CharacterEditComponent implements OnInit {
   prepareConditionsList(conditions: UntypedFormArray, conditionsList: CharacterCondition[]) {
     for (let characterCondition of conditionsList) {
 
-      let counter = new UntypedFormControl(characterCondition.condition.hasCounter);
+      let counter = new UntypedFormControl(characterCondition.counter);
       if(!characterCondition.condition.hasCounter) {
         counter.disable()
       }
