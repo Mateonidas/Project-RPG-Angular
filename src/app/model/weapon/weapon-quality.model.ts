@@ -16,11 +16,9 @@ export class WeaponQuality extends Model {
 
   static arrayFromJSON(objectsArray: Object[]): WeaponQuality[] {
     let weaponsTraits = [];
-    if(objectsArray != undefined) {
-      for (let object of objectsArray) {
-        let weaponTrait = WeaponQuality.fromJSON(object);
-        weaponsTraits.push(weaponTrait);
-      }
+    for (let object of objectsArray) {
+      let weaponTrait = WeaponQuality.fromJSON(object);
+      weaponsTraits.push(weaponTrait);
     }
     return weaponsTraits;
   }
