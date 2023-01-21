@@ -33,7 +33,7 @@ export class EditWeaponDialog implements OnInit {
       'name': new UntypedFormControl(this.modifiedWeapon.name),
       'nameTranslation': new UntypedFormControl(this.modifiedWeapon.nameTranslation),
       'weaponType': new UntypedFormControl(this.modifiedWeapon.weaponType),
-      'weaponGroup': new UntypedFormControl(this.modifiedWeapon.weaponGroup),
+      'weaponGroup': new UntypedFormControl(this.modifiedWeapon.weaponGroupType),
       'weaponReach': new UntypedFormControl(this.modifiedWeapon.weaponReach),
       'weaponRange': new UntypedFormControl(this.modifiedWeapon.weaponRange),
       'isUsingStrength': new UntypedFormControl(this.modifiedWeapon.isUsingStrength),
@@ -97,7 +97,7 @@ export class EditWeaponDialog implements OnInit {
     weapon.name = this.form.value.name;
     weapon.nameTranslation = this.form.value.nameTranslation;
     weapon.weaponType = this.form.value.weaponType;
-    weapon.weaponGroup = this.form.value.weaponGroup;
+    weapon.weaponGroupType = this.form.value.weaponGroup;
     weapon.weaponReach = this.form.value.weaponReach;
     weapon.weaponRange = this.form.value.weaponRange;
     weapon.damage = this.form.value.damage;

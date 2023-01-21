@@ -103,11 +103,11 @@ export class TextResourceService {
     })
   }
 
-  public static getweaponGroupNameTranslation(name: string) {
-    let weaponGroups: Model[] = textResource.weaponGroup;
-    return <Model>weaponGroups.find(weaponGroup => {
-      if(weaponGroup.name == name) {
-        return weaponGroup;
+  public static getWeaponGroupTypeNameTranslation(name: string) {
+    let weaponGroupTypes: Model[] = textResource.weaponGroupType;
+    return <Model>weaponGroupTypes.find(weaponGroupType => {
+      if(weaponGroupType.name == name) {
+        return weaponGroupType;
       } else {
         return null;
       }
