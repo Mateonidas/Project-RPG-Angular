@@ -1,5 +1,5 @@
 import {Model} from "../model";
-import {WeaponQuality} from "./weapon-quality.model";
+import {WeaponQualityValue} from "./weapon-quality-value.model";
 
 export class Weapon extends Model {
   public weaponType: Model;
@@ -9,9 +9,9 @@ export class Weapon extends Model {
   public isUsingStrength: boolean;
   public isUsingStrengthInRange: boolean;
   public damage: number;
-  public weaponQualities: WeaponQuality[];
+  public weaponQualities: WeaponQualityValue[];
 
-  constructor(name?: string, nameTranslation?: string, weaponType?: Model, weaponGroup?: Model, reach?: Model, range?: number, isUsingStrength?: boolean, isUsingStrengthInRange?: boolean, damage?: number, qualities?: WeaponQuality[]) {
+  constructor(name?: string, nameTranslation?: string, weaponType?: Model, weaponGroup?: Model, reach?: Model, range?: number, isUsingStrength?: boolean, isUsingStrengthInRange?: boolean, damage?: number, qualities?: WeaponQualityValue[]) {
     super(name, nameTranslation)
     this.weaponType = <Model>weaponType;
     this.weaponGroup = <Model>weaponGroup;
@@ -20,7 +20,7 @@ export class Weapon extends Model {
     this.damage = <number>damage;
     this.isUsingStrength = <boolean>isUsingStrength;
     this.isUsingStrengthInRange = <boolean>isUsingStrengthInRange;
-    this.weaponQualities = <WeaponQuality[]>qualities;
+    this.weaponQualities = <WeaponQualityValue[]>qualities;
   }
 
   static fromJSON(object: Object): Weapon {
@@ -28,7 +28,7 @@ export class Weapon extends Model {
     weapon.weaponType = Model.fromJSON(weapon['weaponType']);
     weapon.weaponGroup = Model.fromJSON(weapon['weaponGroup']);
     weapon.weaponReach = Model.fromJSON(weapon['weaponReach']);
-    weapon.weaponQualities = WeaponQuality.arrayFromJSON(weapon['weaponQualities']);
+    weapon.weaponQualities = WeaponQualityValue.arrayFromJSON(weapon['weaponQualities']);
     return weapon;
   }
 

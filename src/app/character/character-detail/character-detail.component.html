@@ -364,12 +364,12 @@
             <ul>
               <li *ngFor="let quality of element.weapon.weaponQualities">
                 <span *ngIf="quality.value == 1; else characterWeaponValue" class="description-span"
-                      (click)="openBottomSheet(quality)">
-                  {{quality.nameTranslation}}
+                      (click)="openBottomSheet(quality.weaponQuality)">
+                  {{quality.weaponQuality.nameTranslation}}
                 </span>
                 <ng-template #characterWeaponValue>
-                  <span class="description-span" (click)="openBottomSheet(quality)">
-                    {{quality.nameTranslation}} {{quality.value}}
+                  <span class="description-span" (click)="openBottomSheet(quality.weaponQuality)">
+                    {{quality.weaponQuality.nameTranslation}} {{quality.value}}
                   </span>
                 </ng-template>
               </li>
@@ -445,7 +445,7 @@
               <li *ngFor="let quality of element.armorQualities">
                 <span class="description-span"
                       (click)="openBottomSheet(quality)">
-                  {{quality.nameTranslation}}
+                  {{quality.weaponQuality.nameTranslation}}
                 </span>
               </li>
             </ul>

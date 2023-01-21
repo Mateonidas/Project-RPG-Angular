@@ -10,7 +10,6 @@ import {Armor} from "../../../model/armor/armor.model";
 import {Character} from "../../../model/character/character.model";
 import {Talent} from "../../../model/talent/talent.model";
 import {Model} from "../../../model/model";
-import {WeaponQuality} from "../../../model/weapon/weapon-quality.model";
 import {Trait} from "../../../model/trait/trait.model";
 import {CharacterTrait} from "../../../model/trait/character-trait.model";
 import {Spell} from "../../../model/spell/spell.model";
@@ -35,39 +34,12 @@ export class TranslateService {
     this.prepareCharacterConditions(character.conditions);
   }
 
-  private prepareCharacterSkills(skills: CharacterSkill[]) {
-    for (let skill of skills) {
-      skill.skill.nameTranslation = TextResourceService.getSkillNameTranslation(skill.skill.name).nameTranslation
-    }
-    skills.sort((a, b) => this.compareModels(a.skill, b.skill));
-  }
-
-  private prepareCharacterTalents(talents: CharacterTalent[]) {
-    for (let characterTalent of talents) {
-      this.prepareTalent(characterTalent.talent);
-    }
-    talents.sort((a, b) => this.compareModels(a.talent, b.talent));
-  }
-
   public prepareTalentList(talents: Talent[]) {
     talents.forEach(talent => {
       this.prepareTalent(talent)
     });
 
     talents.sort((a, b) => this.compareModels(a, b))
-  }
-
-  private prepareTalent(talent: Talent) {
-    let talentTranslation = TextResourceService.getTalentNameTranslation(talent.name);
-    talent.nameTranslation = talentTranslation.nameTranslation;
-    talent.description = talentTranslation.description;
-  }
-
-  private prepareCharacterTraits(traits: CharacterTrait[]) {
-    for (let characterTrait of traits) {
-      this.prepareTrait(characterTrait.trait);
-    }
-    traits.sort((a, b) => this.compareModels(a.trait, b.trait))
   }
 
   public prepareTrait(trait: Trait) {
@@ -86,42 +58,20 @@ export class TranslateService {
     )
   }
 
-  private prepareSpell(spell: Spell) {
-    let spellTranslation = TextResourceService.getSpellNameTranslation(spell.name);
-    spell.nameTranslation = spellTranslation.nameTranslation;
-    spell.description = spellTranslation.description;
-    spell.spellGroup.nameTranslation = TextResourceService.getSpellGroupNameTranslation(spell.spellGroup.name).nameTranslation;
-  }
-
-  private prepareWeapons(weapons: CharacterWeapon[]) {
-    for (let weapon of weapons) {
-      this.prepareWeaponTranslation(weapon.weapon);
-    }
-  }
-
   public prepareWeaponTranslation(weapon: Weapon) {
     weapon.weaponType.nameTranslation = TextResourceService.getWeaponTypeNameTranslation(weapon.weaponType.name).nameTranslation;
     weapon.weaponGroup.nameTranslation = TextResourceService.getweaponGroupNameTranslation(weapon.weaponGroup.name).nameTranslation;
     weapon.weaponReach.nameTranslation = TextResourceService.getWeaponReachNameTranslation(weapon.weaponReach.name).nameTranslation;
 
     for (let quality of weapon.weaponQualities) {
-      this.prepareWeaponQuality(quality);
+      this.prepareWeaponQuality(quality.weaponQuality);
     }
   }
 
-  public prepareWeaponQuality(quality: WeaponQuality) {
+  public prepareWeaponQuality(quality: Model) {
     let weaponQualityTranslation = TextResourceService.getWeaponQualityNameTranslation(quality.name);
     quality.nameTranslation = weaponQualityTranslation.nameTranslation;
     quality.description = weaponQualityTranslation.description;
-  }
-
-  private prepareBodyLocalizations(bodyLocalizations: CharacterBodyLocalization[]) {
-    for (let characterBodyLocalization of bodyLocalizations) {
-      characterBodyLocalization.bodyLocalization.nameTranslation = TextResourceService.getBodyLocalizationNameTranslation(characterBodyLocalization.bodyLocalization.name).nameTranslation;
-      for (let characterInjury of characterBodyLocalization.injuries) {
-        characterInjury.injury.nameTranslation = TextResourceService.getInjuryNameTranslation(characterInjury.injury.name).nameTranslation;
-      }
-    }
   }
 
   public prepareCharacterConditions(conditions: CharacterCondition[]) {
@@ -157,6 +107,65 @@ export class TranslateService {
     );
   }
 
+  public prepareArmorQuality(quality: Model) {
+    let armorQualityTranslation = TextResourceService.getArmorQualityTranslation(quality.name);
+    quality.nameTranslation = armorQualityTranslation.nameTranslation;
+    quality.description = armorQualityTranslation.description;
+  }
+
+  compareModels(c1: Model, c2: Model): number {
+    return c1.nameTranslation.localeCompare(c2.nameTranslation);
+  }
+
+  private prepareCharacterSkills(skills: CharacterSkill[]) {
+    for (let skill of skills) {
+      skill.skill.nameTranslation = TextResourceService.getSkillNameTranslation(skill.skill.name).nameTranslation
+    }
+    skills.sort((a, b) => this.compareModels(a.skill, b.skill));
+  }
+
+  private prepareCharacterTalents(talents: CharacterTalent[]) {
+    for (let characterTalent of talents) {
+      this.prepareTalent(characterTalent.talent);
+    }
+    talents.sort((a, b) => this.compareModels(a.talent, b.talent));
+  }
+
+  private prepareTalent(talent: Talent) {
+    let talentTranslation = TextResourceService.getTalentNameTranslation(talent.name);
+    talent.nameTranslation = talentTranslation.nameTranslation;
+    talent.description = talentTranslation.description;
+  }
+
+  private prepareCharacterTraits(traits: CharacterTrait[]) {
+    for (let characterTrait of traits) {
+      this.prepareTrait(characterTrait.trait);
+    }
+    traits.sort((a, b) => this.compareModels(a.trait, b.trait))
+  }
+
+  private prepareSpell(spell: Spell) {
+    let spellTranslation = TextResourceService.getSpellNameTranslation(spell.name);
+    spell.nameTranslation = spellTranslation.nameTranslation;
+    spell.description = spellTranslation.description;
+    spell.spellGroup.nameTranslation = TextResourceService.getSpellGroupNameTranslation(spell.spellGroup.name).nameTranslation;
+  }
+
+  private prepareWeapons(weapons: CharacterWeapon[]) {
+    for (let weapon of weapons) {
+      this.prepareWeaponTranslation(weapon.weapon);
+    }
+  }
+
+  private prepareBodyLocalizations(bodyLocalizations: CharacterBodyLocalization[]) {
+    for (let characterBodyLocalization of bodyLocalizations) {
+      characterBodyLocalization.bodyLocalization.nameTranslation = TextResourceService.getBodyLocalizationNameTranslation(characterBodyLocalization.bodyLocalization.name).nameTranslation;
+      for (let characterInjury of characterBodyLocalization.injuries) {
+        characterInjury.injury.nameTranslation = TextResourceService.getInjuryNameTranslation(characterInjury.injury.name).nameTranslation;
+      }
+    }
+  }
+
   private prepareArmorTranslation(armor: Armor) {
     armor.armorCategory.nameTranslation = TextResourceService.getArmorCategoryNameTranslation(armor.armorCategory.name).nameTranslation;
 
@@ -175,15 +184,5 @@ export class TranslateService {
         this.prepareArmorQuality(quality);
       }
     }
-  }
-
-  public prepareArmorQuality(quality: Model) {
-    let armorQualityTranslation = TextResourceService.getArmorQualityTranslation(quality.name);
-    quality.nameTranslation = armorQualityTranslation.nameTranslation;
-    quality.description = armorQualityTranslation.description;
-  }
-
-  compareModels(c1: Model, c2: Model): number {
-    return c1.nameTranslation.localeCompare(c2.nameTranslation);
   }
 }

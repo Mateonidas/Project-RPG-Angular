@@ -2,10 +2,10 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Weapon} from "../../model/weapon/weapon.model";
 import {UntypedFormArray, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
-import {WeaponQuality} from "../../model/weapon/weapon-quality.model";
 import {Model} from "../../model/model";
 import {WeaponService} from "../../shared/services/weapon-service/weapon.service";
 import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
+import {WeaponQualityValue} from "../../model/weapon/weapon-quality-value.model";
 
 @Component({
   selector: 'app-edit-weapon-dialog',
@@ -43,13 +43,13 @@ export class EditWeaponDialog implements OnInit {
     });
   }
 
-  prepareWeaponQualitiesList(weaponQualitiesList: WeaponQuality[]) {
+  prepareWeaponQualitiesList(weaponQualitiesList: WeaponQualityValue[]) {
     let weaponQualities = new UntypedFormArray([]);
 
     for (let weaponQuality of weaponQualitiesList) {
       weaponQualities.push(
         new UntypedFormGroup({
-          'quality': new UntypedFormControl(weaponQuality),
+          'quality': new UntypedFormControl(weaponQuality.weaponQuality),
           'value': new UntypedFormControl(weaponQuality.value)
         })
       )
@@ -104,7 +104,7 @@ export class EditWeaponDialog implements OnInit {
 
     weapon.weaponQualities = [];
     for (let formWeaponQuality of this.form.value.weaponQualities) {
-      let weaponQuality = new WeaponQuality(formWeaponQuality.quality.name, formWeaponQuality.value);
+      let weaponQuality = new WeaponQualityValue(formWeaponQuality.quality, formWeaponQuality.value);
       weapon.weaponQualities.push(weaponQuality);
     }
   }
