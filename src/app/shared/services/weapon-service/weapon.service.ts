@@ -42,18 +42,18 @@ export class WeaponService {
       this.translateService.prepareWeaponTranslation(weapon);
     }
     weapons.sort(
-      (a, b) => (a.weaponGroupType > b.weaponGroupType) ? 1 : ((b.weaponGroupType > a.weaponGroupType) ? -1 : 0)
+      (a, b) => (a.weaponGroup > b.weaponGroup) ? 1 : ((b.weaponGroup > a.weaponGroup) ? -1 : 0)
     )
   }
 
   groupWeapons(weapons: Weapon[]) {
     this.weaponGroups = [];
     weapons.forEach(weapon => {
-      let weaponGroup = this.weaponGroups.find(weaponGroup => weaponGroup.name === weapon.weaponGroupType.nameTranslation);
+      let weaponGroup = this.weaponGroups.find(weaponGroup => weaponGroup.name === weapon.weaponGroup.nameTranslation);
       if (weaponGroup != undefined) {
         weaponGroup.weapons.push(weapon);
       } else {
-        this.weaponGroups.push(new WeaponGroup(weapon.weaponGroupType.nameTranslation, [weapon]));
+        this.weaponGroups.push(new WeaponGroup(weapon.weaponGroup.nameTranslation, [weapon]));
       }
     })
   }
@@ -98,7 +98,7 @@ export class WeaponService {
 
   private prepareWeaponGroupsListTranslation(list: Model[]) {
     for (let element of list) {
-      element.nameTranslation = TextResourceService.getWeaponGroupTypeNameTranslation(element.name).nameTranslation;
+      element.nameTranslation = TextResourceService.getWeaponGroupNameTranslation(element.name).nameTranslation;
     }
   }
 

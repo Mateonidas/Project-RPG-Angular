@@ -325,7 +325,7 @@
         <ng-container matColumnDef="category">
           <th mat-header-cell *matHeaderCellDef>{{text.getText().categoryLabel}}</th>
           <td mat-cell *matCellDef="let element">
-            {{element.weapon.weaponGroupType.nameTranslation}}
+            {{element.weapon.weaponGroup.nameTranslation}}
           </td>
         </ng-container>
 
@@ -336,7 +336,7 @@
               *ngIf="element.weapon.weaponRange == 0; else weaponRange">{{element.weapon.weaponReach.nameTranslation}}
             </span>
             <ng-template #weaponRange>
-              <span *ngIf="element.weapon.weaponGroupType.name.includes('AMMUNITION'); else fullWeaponRange">
+              <span *ngIf="element.weapon.weaponGroup.name.includes('AMMUNITION'); else fullWeaponRange">
                 <span *ngIf="element.weapon.weaponRange == 0.5">{{text.getText().halfWeaponRangeLabel}}</span>
                 <span *ngIf="element.weapon.weaponRange == 1">{{text.getText().rangeAsWeaponLabel}}</span>
                 <span *ngIf="element.weapon.weaponRange > 1">+{{element.weapon.weaponRange}}</span>

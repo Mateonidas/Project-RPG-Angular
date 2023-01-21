@@ -2569,7 +2569,7 @@
       "nameTranslation": "Broń zasięgowa"
     }
   ],
-  "weaponGroupType": [
+  "weaponGroup": [
     {
       "name": "BASIC",
       "nameTranslation": "Broń biała"
