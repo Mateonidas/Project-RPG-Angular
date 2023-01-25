@@ -92,14 +92,4 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
 
     return character;
   }
-
-  @HostListener('window:keyup', ['$event'])
-  keyEvent(event: KeyboardEvent) {
-    if (event.key == 'Enter') {
-      this.onSubmit();
-    }
-    if (event.key == 'Escape') {
-      this.onCancel();
-    }
-  }
 }

@@ -1,6 +1,9 @@
 <div class="row" *ngIf="isDataAvailable">
   <div class="container">
-    <form [formGroup]="editCharacterForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="editCharacterForm" (ngSubmit)="onSubmit()"
+          (keyup.enter)="onSubmit()"
+          (keyup.escape)="onCancel()"
+    >
 
       <div class="row">
         <div class="col-md-12 form-group">
