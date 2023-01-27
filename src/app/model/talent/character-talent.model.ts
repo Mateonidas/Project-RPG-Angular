@@ -1,12 +1,14 @@
 import {Talent} from "./talent.model";
 
 export class CharacterTalent {
-  public talent: Talent;
-  public value: number;
+  public id: number
+  public talent: Talent
+  public value: number
 
-  constructor(talent?: Talent, level?: number) {
-    this.talent = <Talent>talent;
-    this.value = <number>level;
+  constructor(id?: number, talent?: Talent, level?: number) {
+    this.id = <number>id
+    this.talent = <Talent>talent
+    this.value = <number>level
   }
 
   static fromJSON(object: Object): CharacterTalent {

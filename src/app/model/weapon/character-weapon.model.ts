@@ -1,13 +1,15 @@
 import {Weapon} from "./weapon.model";
 
 export class CharacterWeapon {
-  public weapon: Weapon;
-  public value: number;
+  public id: number
+  public weapon: Weapon
+  public value: number
 
 
-  constructor(weapon?: Weapon, value?: number) {
-    this.weapon = <Weapon>weapon;
-    this.value = <number>value;
+  constructor(id?: number, weapon?: Weapon, value?: number) {
+    this.id = <number>id
+    this.weapon = <Weapon>weapon
+    this.value = <number>value
   }
 
   static fromJSON(object: Object): CharacterWeapon {

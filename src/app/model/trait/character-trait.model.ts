@@ -1,25 +1,27 @@
 import {Trait} from "./trait.model";
 
 export class CharacterTrait {
-  public trait: Trait;
-  public value: String;
+  public id: number
+  public trait: Trait
+  public value: String
 
 
-  constructor(trait?: Trait, value?: String) {
-    this.trait = <Trait>trait;
-    this.value = <String>value;
+  constructor(id?: number, trait?: Trait, value?: String) {
+    this.id = <number>id
+    this.trait = <Trait>trait
+    this.value = <String>value
   }
 
   static fromJSON(object: Object): CharacterTrait {
-    return Object.assign(new CharacterTrait(), object);
+    return Object.assign(new CharacterTrait(), object)
   }
 
   static arrayFromJSON(objectsArray: Object[]): CharacterTrait[] {
-    let traits = [];
+    let traits = []
     for (let object of objectsArray) {
-      let trait = CharacterTrait.fromJSON(object);
-      traits.push(trait);
+      let trait = CharacterTrait.fromJSON(object)
+      traits.push(trait)
     }
-    return traits;
+    return traits
   }
 }

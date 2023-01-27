@@ -249,12 +249,12 @@ export class CharacterEditComponent implements OnInit {
   protected prepareCharacterBodyLocalizations(character: Character) {
 
     if (this.characterBodyLocalizations == null || this.characterBodyLocalizations.length == 0) {
-      const head = new CharacterBodyLocalization(BodyLocalizationList.head, 0, 0, []);
-      const rightArm = new CharacterBodyLocalization(BodyLocalizationList.rightArm, 0, 0, []);
-      const leftArm = new CharacterBodyLocalization(BodyLocalizationList.leftArm, 0, 0, []);
-      const body = new CharacterBodyLocalization(BodyLocalizationList.body, 0, 0, []);
-      const rightLeg = new CharacterBodyLocalization(BodyLocalizationList.rightLeg, 0, 0, []);
-      const leftLeg = new CharacterBodyLocalization(BodyLocalizationList.leftLeg, 0, 0, []);
+      const head = new CharacterBodyLocalization(0, BodyLocalizationList.head, 0, 0, []);
+      const rightArm = new CharacterBodyLocalization(0, BodyLocalizationList.rightArm, 0, 0, []);
+      const leftArm = new CharacterBodyLocalization(0, BodyLocalizationList.leftArm, 0, 0, []);
+      const body = new CharacterBodyLocalization(0, BodyLocalizationList.body, 0, 0, []);
+      const rightLeg = new CharacterBodyLocalization(0, BodyLocalizationList.rightLeg, 0, 0, []);
+      const leftLeg = new CharacterBodyLocalization(0, BodyLocalizationList.leftLeg, 0, 0, []);
       character.bodyLocalizations = [];
       character.bodyLocalizations.push(head, rightArm, leftArm, body, rightLeg, leftLeg);
     } else {
@@ -337,6 +337,7 @@ export class CharacterEditComponent implements OnInit {
     for (let characterSkill of skillsList) {
       skills.push(
         new UntypedFormGroup({
+          'id': new UntypedFormControl(characterSkill.id),
           'skill': new UntypedFormControl(characterSkill.skill),
           'value': new UntypedFormControl(characterSkill.value),
         })
@@ -348,6 +349,7 @@ export class CharacterEditComponent implements OnInit {
     for (let talent of talentsList) {
       talents.push(
         new UntypedFormGroup({
+          'id': new UntypedFormControl(talent.id),
           'talent': new UntypedFormControl(talent.talent),
           'value': new UntypedFormControl(talent.value),
         })
@@ -365,6 +367,7 @@ export class CharacterEditComponent implements OnInit {
 
       traits.push(
         new UntypedFormGroup({
+          'id': new UntypedFormControl(trait.id),
           'trait': new UntypedFormControl(trait.trait),
           'value': value,
         })
@@ -376,6 +379,7 @@ export class CharacterEditComponent implements OnInit {
     for (let weapon of weaponsList) {
       weapons.push(
         new UntypedFormGroup({
+          'id': new UntypedFormControl(weapon.id),
           'weapon': new UntypedFormControl(weapon.weapon),
           'value': new UntypedFormControl(weapon.value)
         })
@@ -402,6 +406,7 @@ export class CharacterEditComponent implements OnInit {
       for (let injury of bodyLocalization.injuries) {
         injuries.push(
           new UntypedFormGroup({
+            'id': new UntypedFormControl(injury.id),
             'injury': new UntypedFormControl(injury.injury),
             'bodyLocalization': new UntypedFormControl(bodyLocalization.bodyLocalization),
             'value': new UntypedFormControl(injury.value)
@@ -421,6 +426,7 @@ export class CharacterEditComponent implements OnInit {
 
       conditions.push(
         new UntypedFormGroup({
+          'id': new UntypedFormControl(characterCondition.id),
           'condition': new UntypedFormControl(characterCondition.condition),
           'value': new UntypedFormControl(characterCondition.value),
           'counter': counter
@@ -440,50 +446,62 @@ export class CharacterEditComponent implements OnInit {
   protected static initEditCharacteristicsTable(character: Character) {
     return new UntypedFormArray([
       new UntypedFormGroup({
+        'id': new UntypedFormControl(character.movement.id),
         'characteristic': new UntypedFormControl(this.prepareCharacteristic("MOVEMENT")),
         'value': new UntypedFormControl(character.movement.value)
       }),
       new UntypedFormGroup({
+        'id': new UntypedFormControl(character.weaponSkill.id),
         'characteristic': new UntypedFormControl(this.prepareCharacteristic("WEAPON_SKILL")),
         'value': new UntypedFormControl(character.weaponSkill.value)
       }),
       new UntypedFormGroup({
+        'id': new UntypedFormControl(character.ballisticSkill.id),
         'characteristic': new UntypedFormControl(this.prepareCharacteristic("BALLISTIC_SKILL")),
         'value': new UntypedFormControl(character.ballisticSkill.value)
       }),
       new UntypedFormGroup({
+        'id': new UntypedFormControl(character.strength.id),
         'characteristic': new UntypedFormControl(this.prepareCharacteristic("STRENGTH")),
         'value': new UntypedFormControl(character.strength.value)
       }),
       new UntypedFormGroup({
+        'id': new UntypedFormControl(character.toughness.id),
         'characteristic': new UntypedFormControl(this.prepareCharacteristic("TOUGHNESS")),
         'value': new UntypedFormControl(character.toughness.value)
       }),
       new UntypedFormGroup({
+        'id': new UntypedFormControl(character.initiative.id),
         'characteristic': new UntypedFormControl(this.prepareCharacteristic("INITIATIVE")),
         'value': new UntypedFormControl(character.initiative.value)
       }),
       new UntypedFormGroup({
+        'id': new UntypedFormControl(character.agility.id),
         'characteristic': new UntypedFormControl(this.prepareCharacteristic("AGILITY")),
         'value': new UntypedFormControl(character.agility.value)
       }),
       new UntypedFormGroup({
+        'id': new UntypedFormControl(character.dexterity.id),
         'characteristic': new UntypedFormControl(this.prepareCharacteristic("DEXTERITY")),
         'value': new UntypedFormControl(character.dexterity.value)
       }),
       new UntypedFormGroup({
+        'id': new UntypedFormControl(character.intelligence.id),
         'characteristic': new UntypedFormControl(this.prepareCharacteristic("INTELLIGENCE")),
         'value': new UntypedFormControl(character.intelligence.value)
       }),
       new UntypedFormGroup({
+        'id': new UntypedFormControl(character.willpower.id),
         'characteristic': new UntypedFormControl(this.prepareCharacteristic("WILLPOWER")),
         'value': new UntypedFormControl(character.willpower.value)
       }),
       new UntypedFormGroup({
+        'id': new UntypedFormControl(character.fellowship.id),
         'characteristic': new UntypedFormControl(this.prepareCharacteristic("FELLOWSHIP")),
         'value': new UntypedFormControl(character.fellowship.value)
       }),
       new UntypedFormGroup({
+        'id': new UntypedFormControl(character.wounds.id),
         'characteristic': new UntypedFormControl(this.prepareCharacteristic("WOUNDS")),
         'value': new UntypedFormControl(character.wounds.value)
       }),

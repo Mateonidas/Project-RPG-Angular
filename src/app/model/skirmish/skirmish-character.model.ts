@@ -19,12 +19,23 @@ export class SkirmishCharacter extends Character {
   constructor(character?: Character, id?: number) {
     super(character?.name, character?.description, character?.group, character?.characteristics, character?.skills, character?.talents, character?.traits, character?.isRightHanded, character?.weapons, character?.armors, character?.conditions, character?.notes, character?.spells, character?.bodyLocalizations);
     if (character != undefined) {
-      this.id = <number>id;
-      this.currentWounds = <number>character?.wounds.value;
-      this.skirmishInitiative = <number>character?.initiative.value;
-      this.advantage = 0;
-      this.isDead = false;
+      this.id = <number>id
+      this.currentWounds = <number>character?.wounds.value
+      this.skirmishInitiative = <number>character?.initiative.value
+      this.advantage = 0
+      this.isDead = false
+      this.clearIds(character)
     }
+  }
+
+  private clearIds(character: Character) {
+    character.characteristics.forEach(value => value.id = 0)
+    character.bodyLocalizations.forEach(value => value.id = 0)
+    character.skills.forEach(value => value.id = 0)
+    character.talents.forEach(value => value.id = 0)
+    character.traits.forEach(value => value.id = 0)
+    character.weapons.forEach(value => value.id = 0)
+    character.conditions.forEach(value => value.id = 0)
   }
 
   static fromJSON(object: Object): SkirmishCharacter {
