@@ -24,18 +24,8 @@ export class SkirmishCharacter extends Character {
       this.skirmishInitiative = <number>character?.initiative.value
       this.advantage = 0
       this.isDead = false
-      this.clearIds(character)
+      this.clearIds()
     }
-  }
-
-  private clearIds(character: Character) {
-    character.characteristics.forEach(value => value.id = 0)
-    character.bodyLocalizations.forEach(value => value.id = 0)
-    character.skills.forEach(value => value.id = 0)
-    character.talents.forEach(value => value.id = 0)
-    character.traits.forEach(value => value.id = 0)
-    character.weapons.forEach(value => value.id = 0)
-    character.conditions.forEach(value => value.id = 0)
   }
 
   static fromJSON(object: Object): SkirmishCharacter {

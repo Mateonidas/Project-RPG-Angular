@@ -42,7 +42,17 @@ export class Character {
     this.spells = <Spell[]>spells;
   }
 
-   getCharacteristic(name: string): CharacterCharacteristic {
+  clearIds() {
+    this.characteristics.forEach(value => value.id = 0)
+    this.bodyLocalizations.forEach(value => value.id = 0)
+    this.skills.forEach(value => value.id = 0)
+    this.talents.forEach(value => value.id = 0)
+    this.traits.forEach(value => value.id = 0)
+    this.weapons.forEach(value => value.id = 0)
+    this.conditions.forEach(value => value.id = 0)
+  }
+
+  getCharacteristic(name: string): CharacterCharacteristic {
     return <CharacterCharacteristic>this.characteristics.find(x => x.characteristic.name == name);
   }
 

@@ -196,14 +196,15 @@ export class CharacterEditComponent implements OnInit {
   onSubmit() {
     let character = this.createCharacter();
     if (this.editMode) {
-      character.id = this.id;
+      character.id = this.id
     }
     if(this.copyMode){
-      character.id = -1;
+      character.id = 0
+      character.clearIds()
     }
     this.characterService.storeCharacter(character).then(() => {
-      this.onCancel();
-    });
+      this.onCancel()
+    })
   }
 
   onCancel() {
