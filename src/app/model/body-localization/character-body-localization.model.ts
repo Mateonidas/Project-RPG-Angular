@@ -9,7 +9,7 @@ export class CharacterBodyLocalization {
   public additionalArmorPoints: number
   public injuries: CharacterInjury[]
 
-  constructor(id?: number, bodyLocalization?: BodyLocalization, armorPoints?: number, additionalArmorPoints?: number, injuries?: CharacterInjury[], characterId?: number) {
+  constructor(bodyLocalization?: BodyLocalization, armorPoints?: number, additionalArmorPoints?: number, injuries?: CharacterInjury[], characterId?: number, id?: number) {
     this.id = <number>id
     this.bodyLocalization = <BodyLocalization>bodyLocalization
     this.armorPoints = <number>armorPoints

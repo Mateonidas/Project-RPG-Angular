@@ -250,12 +250,12 @@ export class CharacterEditComponent implements OnInit {
   protected prepareCharacterBodyLocalizations(character: Character) {
 
     if (this.characterBodyLocalizations == null || this.characterBodyLocalizations.length == 0) {
-      const head = new CharacterBodyLocalization(0, BodyLocalizationList.head, 0, 0, []);
-      const rightArm = new CharacterBodyLocalization(0, BodyLocalizationList.rightArm, 0, 0, []);
-      const leftArm = new CharacterBodyLocalization(0, BodyLocalizationList.leftArm, 0, 0, []);
-      const body = new CharacterBodyLocalization(0, BodyLocalizationList.body, 0, 0, []);
-      const rightLeg = new CharacterBodyLocalization(0, BodyLocalizationList.rightLeg, 0, 0, []);
-      const leftLeg = new CharacterBodyLocalization(0, BodyLocalizationList.leftLeg, 0, 0, []);
+      const head = new CharacterBodyLocalization(BodyLocalizationList.head, 0, 0, []);
+      const rightArm = new CharacterBodyLocalization(BodyLocalizationList.rightArm, 0, 0, []);
+      const leftArm = new CharacterBodyLocalization(BodyLocalizationList.leftArm, 0, 0, []);
+      const body = new CharacterBodyLocalization(BodyLocalizationList.body, 0, 0, []);
+      const rightLeg = new CharacterBodyLocalization(BodyLocalizationList.rightLeg, 0, 0, []);
+      const leftLeg = new CharacterBodyLocalization(BodyLocalizationList.leftLeg, 0, 0, []);
       character.bodyLocalizations = [];
       character.bodyLocalizations.push(head, rightArm, leftArm, body, rightLeg, leftLeg);
     } else {
