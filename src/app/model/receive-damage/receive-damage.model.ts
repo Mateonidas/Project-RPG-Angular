@@ -4,6 +4,7 @@ export class ReceivedDamage {
   public bodyLocalization!: string;
   public isWeaponUndamaging!: boolean;
   public isLosingTest!: boolean;
+  public shield!: number;
 
   constructor(characterId: number) {
     this.characterId = characterId;
