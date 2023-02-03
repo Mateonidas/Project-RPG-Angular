@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {WeaponGroup} from "../../model/weapon/weapons-group.model";
 import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
@@ -14,7 +14,7 @@ import {
   templateUrl: './weapon-group-details.component.html',
   styleUrls: ['./weapon-group-details.component.css']
 })
-export class WeaponGroupDetailsComponent {
+export class WeaponGroupDetailsComponent implements OnInit{
   name!: string
   weaponGroup!: WeaponGroup
   weaponGroups!: WeaponGroup[]

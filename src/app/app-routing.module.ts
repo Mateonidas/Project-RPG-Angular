@@ -13,6 +13,7 @@ import {SkirmishCharacterEditComponent} from "./skirmish/skirmish-character-edit
 import {WeaponComponent} from "./weapon/weapon.component";
 import {WeaponStartComponent} from "./weapon/weapon-start/weapon-start.component";
 import {WeaponGroupDetailsComponent} from "./weapon/weapon-group-details/weapon-group-details.component";
+import {ArmorComponent} from "./armor/armor.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -38,6 +39,8 @@ const routes: Routes = [
       {path: ':name', component: WeaponGroupDetailsComponent},
     ]
   },
+  {
+    path: 'armors', component: ArmorComponent},
 ]
 
 @NgModule({

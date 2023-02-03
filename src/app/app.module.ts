@@ -41,6 +41,8 @@ import {WeaponListComponent} from './weapon/weapon-list/weapon-list.component';
 import {WeaponItemComponent} from './weapon/weapon-list/weapon-group-item/weapon-item.component';
 import {WeaponStartComponent} from './weapon/weapon-start/weapon-start.component';
 import {WeaponGroupDetailsComponent} from './weapon/weapon-group-details/weapon-group-details.component';
+import { ArmorComponent } from './armor/armor.component';
+import { ArmorGroupDetails } from './armor/armor-group-details/armor-group-details.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import {WeaponGroupDetailsComponent} from './weapon/weapon-group-details/weapon-
     WeaponListComponent,
     WeaponItemComponent,
     WeaponStartComponent,
-    WeaponGroupDetailsComponent
+    WeaponGroupDetailsComponent,
+    ArmorComponent,
+    ArmorGroupDetails
   ],
   imports: [
     BrowserModule,
