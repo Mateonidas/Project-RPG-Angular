@@ -1,0 +1,14 @@
+<hr>
+<div class="row">
+  <div class="col-md-12">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle *ngFor="let weaponType of weaponTypes">
+        <mat-expansion-panel-header>
+            <app-weapon-group-item
+              [name]="weaponType">
+            </app-weapon-group-item>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

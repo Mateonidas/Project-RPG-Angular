@@ -1,0 +1,35 @@
+.description-span {
+  cursor: pointer;
+}
+
+.mat-column-name {
+  width: 15%;
+}
+
+.mat-column-price {
+  width: 8%;
+}
+
+.mat-column-enc {
+  width: 5%;
+}
+
+.mat-column-availability {
+  width: 10%;
+}
+
+.mat-column-category {
+  width: 10%;
+}
+
+.mat-column-reach {
+  width: 10%;
+}
+
+.mat-column-damage {
+  width: 5%;
+}
+
+.mat-column-advantagesAndDisadvantages {
+  width: 15%;
+}

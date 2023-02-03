@@ -36,6 +36,11 @@ import {
 } from './shared/bottom-sheet/bottom-sheet-description/bottom-sheet-description.component';
 import {MAT_BOTTOM_SHEET_DEFAULT_OPTIONS} from "@angular/material/bottom-sheet";
 import {MaterialModule} from "../material.module";
+import {WeaponComponent} from './weapon/weapon.component';
+import {WeaponListComponent} from './weapon/weapon-list/weapon-list.component';
+import {WeaponItemComponent} from './weapon/weapon-list/weapon-group-item/weapon-item.component';
+import {WeaponStartComponent} from './weapon/weapon-start/weapon-start.component';
+import {WeaponGroupDetailsComponent} from './weapon/weapon-group-details/weapon-group-details.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +65,12 @@ import {MaterialModule} from "../material.module";
     EditArmorDialog,
     EditWeaponDialog,
     ReceiveDamageDialog,
-    BottomSheetDescription
+    BottomSheetDescription,
+    WeaponComponent,
+    WeaponListComponent,
+    WeaponItemComponent,
+    WeaponStartComponent,
+    WeaponGroupDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +83,7 @@ import {MaterialModule} from "../material.module";
     MaterialModule
   ],
   providers: [
-    {provide: MAT_BOTTOM_SHEET_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}
+    {provide: MAT_BOTTOM_SHEET_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
   ],
   bootstrap: [AppComponent]
 })

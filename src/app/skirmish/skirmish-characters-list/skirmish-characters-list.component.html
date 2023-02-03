@@ -1,38 +1,36 @@
-<div *ngIf="isDataAvailable">
-  <div class="row">
-    <div class="col-md-12">
-      <h4>{{text.getText().turnLabel}} {{roundNumber}}</h4>
+<div class="row">
+  <div class="col-md-12">
+    <h4>{{text.getText().turnLabel}} {{roundNumber}}</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="dropdown">
+
+      <button mat-raised-button color="primary" (click)="endTurn()">
+        {{text.getText().endTurnLabel}}
+      </button>
+
+      <button mat-raised-button color="primary" (click)="initiativeRolls()">
+        {{text.getText().initiativeRollLabel}}
+      </button>
+
+      <button mat-raised-button color="warn" (click)="clearData()">
+        {{text.getText().clearDataLabel}}
+      </button>
+
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="dropdown">
-
-        <button mat-raised-button color="primary" (click)="endTurn()">
-          {{text.getText().endTurnLabel}}
-        </button>
-
-        <button mat-raised-button color="primary" (click)="initiativeRolls()">
-          {{text.getText().initiativeRollLabel}}
-        </button>
-
-        <button mat-raised-button color="warn" (click)="clearData()">
-          {{text.getText().clearDataLabel}}
-        </button>
-
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <mat-nav-list>
-        <mat-divider></mat-divider>
-        <app-skirmish-character-item
-          *ngFor="let skirmishCharacter of skirmishCharacters; let i = index"
-          [skirmishCharacter]="skirmishCharacter"
-          [index]="i">
-        </app-skirmish-character-item>
-      </mat-nav-list>
-    </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <mat-nav-list>
+      <mat-divider></mat-divider>
+      <app-skirmish-character-item
+        *ngFor="let skirmishCharacter of skirmishCharacters; let i = index"
+        [skirmishCharacter]="skirmishCharacter"
+        [index]="i">
+      </app-skirmish-character-item>
+    </mat-nav-list>
   </div>
 </div>

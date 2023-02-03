@@ -13,7 +13,6 @@ import {SkirmishCharacterService} from "../../shared/services/skirmish-character
 })
 export class CharacterListComponent implements OnInit {
 
-  isDataAvailable: boolean = false;
   characters!: Character[];
   subscription!: Subscription;
   characterGroups: {group: string, characters: Character[]}[] = [];
@@ -30,14 +29,9 @@ export class CharacterListComponent implements OnInit {
     this.subscription = this.characterService.charactersChanged.subscribe(
       (characters: Character[]) => {
         this.characters = characters;
-        this.characterGroups = this.characterService.getCharacterGroups();
       }
     )
-    this.characterService.fetchCharacters().then(() => {
-      this.isDataAvailable = true;
-    });
     this.characters = this.characterService.getCharacters();
-
     this.characterGroups = this.characterService.getCharacterGroups();
   }
 

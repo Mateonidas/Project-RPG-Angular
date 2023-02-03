@@ -84,7 +84,7 @@ export class EditWeaponDialog implements OnInit {
     if(this.form.value.name != this.weapon.name || this.form.value.nameTranslation != this.weapon.nameTranslation) {
       this.modifyWeapon(this.modifiedWeapon);
       weapon = this.modifiedWeapon;
-      weapon.id = undefined;
+      weapon.id = 0;
     } else {
       this.modifyWeapon(this.weapon);
       weapon = this.weapon;

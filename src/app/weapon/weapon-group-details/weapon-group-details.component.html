@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3>{{name}}</h3>
+  </div>
+</div>
+<br>
+<div class="row details-row">
+  <div class="col-md-12">
+    <ng-container *ngFor="let weaponGroup of weaponGroups">
+      <h5>{{weaponGroup.name}}</h5>
+      <table mat-table [dataSource]="weaponGroup.weapons" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <span>{{element.nameTranslation}}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().priceLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <span>{{element.price}}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="enc">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().encumbranceLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <span>{{element.encumbrance}}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="availability">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().availabilityLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <span>{{element.availability.nameTranslation}}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().categoryLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.weaponGroup.nameTranslation}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="reach">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().reachLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <span
+              *ngIf="element.weaponRange == 0; else weaponRange">{{element.weaponReach.nameTranslation}}
+            </span>
+            <ng-template #weaponRange>
+              <span *ngIf="element.weaponGroup.name.includes('AMMUNITION'); else fullWeaponRange">
+                <span *ngIf="element.weaponRange == 0.5">{{text.getText().halfWeaponRangeLabel}}</span>
+                <span *ngIf="element.weaponRange == 1">{{text.getText().rangeAsWeaponLabel}}</span>
+                <span *ngIf="element.weaponRange > 1">+{{element.weaponRange}}</span>
+              </span>
+              <ng-template #fullWeaponRange>
+                <span>{{element.weaponRange}}</span>
+              </ng-template>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="damage">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().damageLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="element.isUsingStrength; else elseBlock">
+              + BS + {{element.damage}}
+            </span>
+            <ng-template #elseBlock>+{{element.damage}}</ng-template>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="advantagesAndDisadvantages">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().advantagesAndDisadvantagesLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <ul>
+              <li *ngFor="let quality of element.weaponQualities">
+                <span *ngIf="quality.value == 1; else weaponValue" class="description-span"
+                      (click)="openBottomSheet(quality.weaponQuality)">
+                  {{quality.weaponQuality.nameTranslation}}
+                </span>
+                <ng-template #weaponValue>
+                  <span class="description-span" (click)="openBottomSheet(quality.weaponQuality)">
+                    {{quality.weaponQuality.nameTranslation}} {{quality.value}}
+                  </span>
+                </ng-template>
+              </li>
+            </ul>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="weaponColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: weaponColumns;"></tr>
+      </table>
+      <br>
+    </ng-container>
+  </div>
+</div>

@@ -1,35 +1,33 @@
-<div *ngIf="isDataAvailable">
-  <div class="row">
-    <div class="col-md-12">
-      <button mat-raised-button color="primary" (click)="onAddCharacter()">{{text.getText().addCharacterLabel}}</button>
-    </div>
+<div class="row">
+  <div class="col-md-12">
+    <button mat-raised-button color="primary" (click)="onAddCharacter()">{{text.getText().addCharacterLabel}}</button>
   </div>
-  <hr>
-  <div class="row">
-    <div class="col-md-12">
-      <mat-accordion>
-        <mat-expansion-panel hideToggle *ngFor="let characterGroup of characterGroups">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <h6>{{characterGroup.group}}</h6>
-              <button mat-icon-button color="basic"
-                      type="button"
-                      style="margin-left: 20px; position: absolute; right: 10px; z-index: 3"
-                      (click)="onAddGroupToFight(characterGroup.characters)">
-                <mat-icon>add</mat-icon>
-              </button>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <mat-divider></mat-divider>
-          <mat-nav-list>
-            <app-character-item
-              *ngFor="let character of characterGroup.characters"
-              [character]="character"
-              [index]="character.id">
-            </app-character-item>
-          </mat-nav-list>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-12">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle *ngFor="let characterGroup of characterGroups">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h6>{{characterGroup.group}}</h6>
+            <button mat-icon-button color="basic"
+                    type="button"
+                    style="margin-left: 20px; position: absolute; right: 10px; z-index: 3"
+                    (click)="onAddGroupToFight(characterGroup.characters)">
+              <mat-icon>add</mat-icon>
+            </button>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-divider></mat-divider>
+        <mat-nav-list>
+          <app-character-item
+            *ngFor="let character of characterGroup.characters"
+            [character]="character"
+            [index]="character.id">
+          </app-character-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
 </div>

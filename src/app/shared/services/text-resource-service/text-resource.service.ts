@@ -136,6 +136,17 @@ export class TextResourceService {
     })
   }
 
+  public static getAvailabilityNameTranslation(name: string) {
+    let availabilities: Model[] = textResource.availability;
+    return <Model>availabilities.find(availability => {
+      if(availability.name == name) {
+        return availability;
+      } else {
+        return null;
+      }
+    })
+  }
+
   public static getSkillNameTranslation(name: string) {
     let skills: Model[] = textResource.skills;
     return <Model>skills.find(skill => {

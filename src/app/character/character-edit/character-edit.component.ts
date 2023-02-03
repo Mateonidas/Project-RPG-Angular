@@ -43,7 +43,6 @@ import {Spell} from "../../model/spell/spell.model";
 })
 export class CharacterEditComponent implements OnInit {
 
-  isDataAvailable: boolean = false;
   isSkirmishMode = false;
   editMode = false;
   copyMode = false;
@@ -79,27 +78,24 @@ export class CharacterEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchData().then(() => {
-      this.armorsList = this.armorService.armorsList;
-      this.weaponGroups = this.weaponService.weaponGroups;
-      this.skillsList = this.skillService.skillList;
-      this.talentsList = this.talentService.talentList;
-      this.traitsList = this.traitService.traitList;
-      this.spellGroups = this.spellService.spellGroups;
-      this.route.queryParams.subscribe(
-        (queryParams: Params) => {
-          this.copyMode = queryParams['copy'] == "true";
-        }
-      )
-      this.route.params.subscribe(
-        (params: Params) => {
-          this.id = +params['id'];
-          this.editMode = params['id'] != null;
-          this.initForm();
-        }
-      );
-      this.isDataAvailable = true;
-    });
+    this.armorsList = this.armorService.armorsList;
+    this.weaponGroups = this.weaponService.weaponGroups;
+    this.skillsList = this.skillService.skillList;
+    this.talentsList = this.talentService.talentList;
+    this.traitsList = this.traitService.traitList;
+    this.spellGroups = this.spellService.spellGroups;
+    this.route.queryParams.subscribe(
+      (queryParams: Params) => {
+        this.copyMode = queryParams['copy'] == "true";
+      }
+    )
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = +params['id'];
+        this.editMode = params['id'] != null;
+        this.initForm();
+      }
+    );
   }
 
   initForm() {
@@ -198,7 +194,7 @@ export class CharacterEditComponent implements OnInit {
     if (this.editMode) {
       character.id = this.id
     }
-    if(this.copyMode){
+    if (this.copyMode) {
       character.id = 0
       character.clearIds()
     }
@@ -288,26 +284,6 @@ export class CharacterEditComponent implements OnInit {
         }
       }
     }
-  }
-
-  protected async fetchData() {
-    await this.armorService.fetchArmors();
-    await this.armorService.fetchArmorCategories();
-    await this.armorService.fetchArmorPenalties();
-    await this.armorService.fetchArmorQualities();
-    await this.bodyLocalizationService.fetchBodyLocalizations();
-    await this.injuryService.fetchInjuries();
-    await this.conditionService.fetchConditions();
-    await this.weaponService.fetchWeapons();
-    await this.weaponService.fetchWeaponTypes();
-    await this.weaponService.fetchWeaponGroups();
-    await this.weaponService.fetchWeaponReaches();
-    await this.weaponService.fetchWeaponQualities();
-    await this.skillService.fetchSkills();
-    await this.talentService.fetchTalents();
-    await this.traitService.fetchTraits();
-    await this.spellService.fetchSpells();
-    await this.characterService.fetchCharacters();
   }
 
   protected prepareEditData(character: Character, formArrays: CharacterFormArraysWrapper) {
@@ -421,7 +397,7 @@ export class CharacterEditComponent implements OnInit {
     for (let characterCondition of conditionsList) {
 
       let counter = new UntypedFormControl(characterCondition.counter);
-      if(!characterCondition.condition.hasCounter) {
+      if (!characterCondition.condition.hasCounter) {
         counter.disable()
       }
 

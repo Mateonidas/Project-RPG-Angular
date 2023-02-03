@@ -2,16 +2,21 @@
   <a mat-tab-link routerLink="/"
      (click)="setActiveLink('/')"
      [active]="activeLink == '/'"
-  >Project RPG</a>
+  >{{text.getText().projectRPGLabel}}</a>
 
   <a mat-tab-link routerLink="/characters"
      (click)="setActiveLink('/characters')"
      [active]="activeLink == '/characters'"
-  >Postacie</a>
+  >{{text.getText().charactersLabel}}</a>
 
   <a mat-tab-link routerLink="/skirmish"
      (click)="setActiveLink('/skirmish')"
      [active]="activeLink == '/skirmish'"
-  >Potyczka</a>
+  >{{text.getText().skirmishLabel}}</a>
+
+  <a mat-tab-link routerLink="/weapons"
+     (click)="setActiveLink('/weapons')"
+     [active]="activeLink == '/weapons'"
+  >{{text.getText().weaponsLabel}}</a>
 </nav>
 <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>

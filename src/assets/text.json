@@ -1,4 +1,8 @@
 {
+  "projectRPGLabel": "Project RPG",
+  "charactersLabel": "Postacie",
+  "skirmishLabel": "Potyczka",
+  "weaponsLabel": "Uzbrojenie",
   "addArmorLabel": "Dodaj Pancerz",
   "addArmorQualityLabel": "Dodaj cechę pancerza",
   "addCharacterLabel": "Dodaj Postać",
@@ -23,6 +27,7 @@
   "categoryLabel": "Kategoria",
   "characteristicsLabel": "Cechy",
   "chooseCharacterLabel": "Wybierz postać.",
+  "chooseWeaponLabel": "Wybierz broń.",
   "clearDataLabel": "Wyczyść dane",
   "conditionNameLabel": "Nazwa stanu",
   "conditionsLabel": "Stany",
@@ -58,6 +63,9 @@
   "modificationLabel": "Modyfikacja:",
   "modifierLabel": "Modyfikator:",
   "nameLabel": "Nazwa",
+  "priceLabel": "Cena",
+  "encumbranceLabel": "Obc",
+  "availabilityLabel": "Dostępność",
   "nameTranslationLabel": "Tłumaczenie",
   "noLabel": "Nie",
   "noteLabel": "Notatka",
@@ -2462,6 +2470,28 @@
       "description": "Ten Stan obejmuje nokaut, sen, magię: wszelkie działania, w wyniku których postać traci przytomność. Nie może nic zrobić w swojej Turze i kompletnie nie zdaje sobie sprawy z tego, co się dzieje dookoła. Przy atakowaniu nieprzytomnego celu, postać może ustalić wynik rzutu tak, jakby wydała Punkt Bohatera na efekt Nie zawiodę, lub jeśli MG lubi grać brutalnie, każdy atak wręcz zabija taką postać. Ataki dystansowe działają podobnie, jeśli strzelec atakuje z bliska.\n\nW przeciwieństwie do innych Stanów Utrata Przytomności nie ma poziomów: postać albo jest świadoma, albo nie.\n\nOdzyskanie przytomności zależy od tego, w jaki sposób postać utraciła przytomność. Więcej o tym przeczytasz w podrozdziale Urazy na stronie 172. Zużycie Punktu Determinacji w celu usunięcia Stanu Utrata Przytomności skutkuje tym, że ustępuje on tylko do końca Rundy, o ile nie zniknęła przyczyna, która go wywołała. Po odzyskaniu przytomności postać automatycznie dostaje Stany Powalenie i Zmęczenie."
     }
   ],
+  "availability": [
+    {
+      "name": "COMMON",
+      "nameTranslation": "Powszechna"
+    },
+    {
+      "name": "EXOTIC",
+      "nameTranslation": "Egzotyczna"
+    },
+    {
+      "name": "NA",
+      "nameTranslation": "-"
+    },
+    {
+      "name": "RARE",
+      "nameTranslation": "Rzadka"
+    },
+    {
+      "name": "SCARCE",
+      "nameTranslation": "Ograniczona"
+    }
+  ],
   "armorCategory": [
     {
       "name": "SOFT_LEATHER",
@@ -2568,12 +2598,16 @@
     {
       "name": "RANGED",
       "nameTranslation": "Broń zasięgowa"
+    },
+    {
+      "name": "AMMUNITION",
+      "nameTranslation": "Amunicja"
     }
   ],
   "weaponGroup": [
     {
       "name": "BASIC",
-      "nameTranslation": "Broń biała"
+      "nameTranslation": "Podstawowa"
     },
     {
       "name": "CAVALRY",

@@ -62,6 +62,7 @@ export class TranslateService {
     weapon.weaponType.nameTranslation = TextResourceService.getWeaponTypeNameTranslation(weapon.weaponType.name).nameTranslation;
     weapon.weaponGroup.nameTranslation = TextResourceService.getWeaponGroupNameTranslation(weapon.weaponGroup.name).nameTranslation;
     weapon.weaponReach.nameTranslation = TextResourceService.getWeaponReachNameTranslation(weapon.weaponReach.name).nameTranslation;
+    weapon.availability.nameTranslation = TextResourceService.getAvailabilityNameTranslation(weapon.availability.name).nameTranslation;
 
     for (let quality of weapon.weaponQualities) {
       this.prepareWeaponQuality(quality.weaponQuality);
