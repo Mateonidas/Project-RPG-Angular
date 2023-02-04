@@ -2909,13 +2909,28 @@
     },
     {
       "name": "UNBALANCED",
-      "nameTranslation": "Niezbalansowany",
+      "nameTranslation": "Niezbalansowana",
       "description": "Ciężar niektórych broni skoncentrowany jest na jej czubku, czyniąc ją nieefektywną podczas parowania. Gdy ta broń używana jest do sparowania nadchodzącego ciosu, Test Parowania z uzyciem tej broni otrzymuje -1 PS."
     },
     {
       "name": "SLASH",
       "nameTranslation": "Cięcie",
       "description": "Broń tnąca konentruje się na zdolności wycinania ziejących ran w przeciwniku. Jeśli z jej użyciem zadane zostanie Trafienie Krytyczne, cel wraz z efektami trafienia krytycznego otrzymuje również status Krwawienie. Postać może wykorzystać Punkty Przewag aby jej przeciwnik otrzymał kolejne poziomy statusu Krwawienie."
+    },
+    {
+      "name": "BALLOCK_KNIFE",
+      "nameTranslation": "Puginał",
+      "description": "Cecha 'Nadziewająca' i 'Precyzyjna' są brane pod uwagę tylko jeśli cel jest Zaskoczony lub Powalony."
+    },
+    {
+      "name": "LANCE",
+      "nameTranslation": "Lanca",
+      "description": "Broń traktowana jest jako Broń Improwizowana, jeśli używana jest podczas Rundy, w której nie wykonano Szarży."
+    },
+    {
+      "name": "TRIP",
+      "nameTranslation": "Zahaczająca",
+      "description": "Broń Zahaczająca zaprojektowana jest tak, aby zahaczyć przeciwnika lub w inny sposób zwalić go z nóg. Po uderzeniu, możesz wydać 2 Punkty Przewag i wykonać przeciwstawny test Siły/Atletyki. Jeśli wygrasz, przeciwnik zyskuje stan Powalenie (jeśli jest na wierzchowcu, otrzymuje obrażenia spowodowane upadkiem z 2 metrów i otrzymuje stan Powalenie). Jeśli przegrasz, nie dzieje się nic poza standardowymi efektami przegranego testu przeciwstawnego w walce."
     }
   ],
   "criticalRoll": {

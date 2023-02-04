@@ -3,11 +3,11 @@ import {Model} from "../model";
 export class WeaponQualityValue {
 
   weaponQuality: Model;
-  value: number;
+  value: string;
 
-  constructor(weaponQuality?: Model, value?: number) {
+  constructor(weaponQuality?: Model, value?: string) {
     this.weaponQuality = <Model>weaponQuality;
-    this.value = <number>value;
+    this.value = <string>value;
   }
 
   static fromJSON(object: Object): WeaponQualityValue {

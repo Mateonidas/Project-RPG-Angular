@@ -342,6 +342,7 @@
                 <span *ngIf="element.weapon.weaponRange == 0.5">{{text.getText().halfWeaponRangeLabel}}</span>
                 <span *ngIf="element.weapon.weaponRange == 1">{{text.getText().rangeAsWeaponLabel}}</span>
                 <span *ngIf="element.weapon.weaponRange > 1">+{{element.weapon.weaponRange}}</span>
+                <span *ngIf="element.weapon.weaponRange < 0">{{element.weapon.weaponRange}}</span>
               </span>
               <ng-template #fullWeaponRange>
                 <span>{{element.weapon.weaponRange}}</span>
@@ -356,7 +357,12 @@
             <span *ngIf="element.weapon.isUsingStrength; else elseBlock">
               +{{+character.strength.value.toString()[0] + element.weapon.damage}}
             </span>
-            <ng-template #elseBlock>+{{element.weapon.damage}}</ng-template>
+            <ng-template #elseBlock>
+              <span *ngIf="element.weapon.damage >= 0; else minusDamageBlock">+{{element.weapon.damage}}</span>
+              <ng-template #minusDamageBlock>
+                {{element.weapon.damage}}
+              </ng-template>
+            </ng-template>
           </td>
         </ng-container>
 
