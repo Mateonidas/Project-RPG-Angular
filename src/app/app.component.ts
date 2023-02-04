@@ -31,8 +31,8 @@ export class AppComponent implements OnInit {
               public dialog: MatDialog) {
   }
 
-  ngOnInit(): void {
-    this.fetchData()
+  async ngOnInit() {
+    await this.fetchData()
   }
 
   protected async fetchData() {
