@@ -2931,6 +2931,46 @@
       "name": "TRIP",
       "nameTranslation": "Zahaczająca",
       "description": "Broń Zahaczająca zaprojektowana jest tak, aby zahaczyć przeciwnika lub w inny sposób zwalić go z nóg. Po uderzeniu, możesz wydać 2 Punkty Przewag i wykonać przeciwstawny test Siły/Atletyki. Jeśli wygrasz, przeciwnik zyskuje stan Powalenie (jeśli jest na wierzchowcu, otrzymuje obrażenia spowodowane upadkiem z 2 metrów i otrzymuje stan Powalenie). Jeśli przegrasz, nie dzieje się nic poza standardowymi efektami przegranego testu przeciwstawnego w walce."
+    },
+    {
+      "name": "SPREAD",
+      "nameTranslation": "Rozrzut",
+      "description": "Broń z cechą Rozrzut wystrzeliwuje rozprzestrzeniającą się chmurę pocisków, które mogą trafić wiele celów. W zależności od zasięgu, bronie z tą cechą mogą zachowywać się inaczej.\n\nZasięg bezpośredni: strzał trafia pojedynczego przeciwnika. Dodaj wartość cechy do obrażeń broni.\n\nOd krótkiego po długi zasięg: wystrzał trafia cel, oraz kolejne (wartość) widocznych celów. Cele nie mogą być oddalone od siebie więcej niż (wartość) metrów od siebie.\n\nBardzo daleki zasięg: tak jak dla od krótkiego do długiego zasięgu, ale zredukuj obrażenia broni o (wartość)."
+    },
+    {
+      "name": "INFECTED",
+      "nameTranslation": "Zainfekowana",
+      "description": "Broń przenosi paskudną infekcję. Jeśli spowoduje utratę Żywotności żyjącego przeciwnika, musi on zdać Łatwy (+40) Test Odporności, inaczej nabawi się Ropiejącej Rany (patrz strona 187)"
+    },
+    {
+      "name": "PAPER_CARTRIDGE",
+      "nameTranslation": "Ładunek prochowy",
+      "description": "Gotowe opakowanie kuli, prochu i waty, które upraszcza przeładowanie broni czarnoprochowej. Testy wykonywane w celu przeładowania broni z tą amunicją otrzymują modyfikator +10."
+    },
+    {
+      "name": "AQSHY_INFUSED_POWDER",
+      "nameTranslation": "Proch Aqshy",
+      "description": "Proch dla bardzo odważnych lub głupich, stworzony z piasku z pustyń Nehekary, nasycony wiatrem Aqshy sposobem znanym tylko Kolegium Płomieni. Jest bardziej wybuchowy niż zwykły proch i zużywa lufę broni znacznie szybciej niż jego zwykły odpowiednik. Każdy nieudany test z cyfrą 8 lub 9 na dziesiątkach lub jednościach liczy się jako pech."
+    },
+    {
+      "name": "LARGE_BULLET_AND_POWDER",
+      "nameTranslation": "Duża kula i proch",
+      "description": "Technicznie mała kula armatnia, która ładowana jest do luf o dużej średnicy, w broniach takich jak Arkebuz lub Moździerz ręczny. Ci, którzy strzelają z takiej broni lub stojący w odległości 2 metrów od użytkownia, muszą zdać Test Wytrzymałości (+0) lub zyskają stan Ogłuszenie."
+    },
+    {
+      "name": "GRAPPLE",
+      "nameTranslation": "Chwytak",
+      "description": "Zaproponowany Imperialnej Marynarce do użytku w trakcie abordaży, Chwytak składa się z mocno watowanego haka zaprojektowanego do wystrzelenia z Moździerza ręcznego, wraz z 20 lub więcej metrów liny. Może zostać użyty do przymocowania liny do odległego punktu lub złapanie w sidła uciekającego wroga. W takim przypadku przy udanym trafieniu nakłada jedne stan Pochwycenia. Tym, którzy rozważają użycie go podczas skradania się, należy się informacja o wyjątkowym huku, występującym podczas wystrzału."
+    },
+    {
+      "name": "MATCHLOCK",
+      "nameTranslation": "Zamek zapłonowy",
+      "description": "Przed wystrzałem, użytkownik musi zużyć Akcję na zapalenie lontu broni."
+    },
+    {
+      "name": "CANE_PISTOL",
+      "nameTranslation": "Pistolet laskowy",
+      "description": "Pistolet ukryty w lasce, przez co broń jest nieco niepraktyczna, ale bardzo trudna do zauważenia. Ci, którzy szukaja ukrytej broni, muszą zdać Test Percepcji (-20) lub Test Percepcji (-30), jeśli nie znają broni czarnoprochowej."
     }
   ],
   "criticalRoll": {
