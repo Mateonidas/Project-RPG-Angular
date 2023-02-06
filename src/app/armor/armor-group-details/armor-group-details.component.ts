@@ -14,7 +14,7 @@ import {
   styleUrls: ['./armor-group-details.component.css']
 })
 export class ArmorGroupDetails implements OnInit {
-  armorGroups!: {name: string, armors: Armor[]}[]
+  armorGroups!: { name: string, armors: Armor[] }[]
   text = TextResourceService
   armorsColumns: string[] = ['name', 'price', 'enc', 'availability', 'category', 'localization', 'armorPoints', 'penalties', 'qualities'];
 
@@ -34,11 +34,13 @@ export class ArmorGroupDetails implements OnInit {
   private groupArmors(armors: Armor[]) {
     this.armorGroups = []
     armors.forEach(armor => {
-      let armorGroup = this.armorGroups.find(a => a.name === armor.armorCategory.nameTranslation)
-      if(armorGroup != undefined) {
-        armorGroup.armors.push(armor)
-      } else {
-        this.armorGroups.push({armors: [armor], name: armor.armorCategory.nameTranslation})
+      if (armor.armorCategory.name != 'OTHER') {
+        let armorGroup = this.armorGroups.find(a => a.name === armor.armorCategory.nameTranslation)
+        if (armorGroup != undefined) {
+          armorGroup.armors.push(armor)
+        } else {
+          this.armorGroups.push({armors: [armor], name: armor.armorCategory.nameTranslation})
+        }
       }
     })
   }
