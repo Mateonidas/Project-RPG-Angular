@@ -26,6 +26,17 @@ export class TextResourceService {
     })
   }
 
+  public static getCharacterBodyLocalizationNameTranslation(name: string) {
+    let bodyLocalizations: Model[] = textResource.characterBodyLocalizations;
+    return <BodyLocalization>bodyLocalizations.find(bodyLocalization => {
+      if(bodyLocalization.name == name) {
+        return bodyLocalization;
+      } else {
+        return null;
+      }
+    })
+  }
+
   public static getBodyLocalizationNameTranslation(name: string) {
     let bodyLocalizations: Model[] = textResource.bodyLocalizations;
     return <BodyLocalization>bodyLocalizations.find(bodyLocalization => {
