@@ -2325,27 +2325,27 @@
   "bodyLocalizations": [
     {
       "name": "HEAD",
-      "nameTranslation": "Głowa"
+      "nameTranslation": "Głowa (01-09)"
     },
     {
       "name": "RIGHT_ARM",
-      "nameTranslation": "Prawe ramię"
+      "nameTranslation": "Prawe ramię (25-44)"
     },
     {
       "name": "LEFT_ARM",
-      "nameTranslation": "Lewe ramię"
+      "nameTranslation": "Lewe ramię (10-24)"
     },
     {
       "name": "BODY",
-      "nameTranslation": "Korpus"
+      "nameTranslation": "Korpus (45-79)"
     },
     {
       "name": "RIGHT_LEG",
-      "nameTranslation": "Prawa noga"
+      "nameTranslation": "Prawa noga (90-00)"
     },
     {
       "name": "LEFT_LEG",
-      "nameTranslation": "Lewa noga"
+      "nameTranslation": "Lewa noga (80-89)"
     }
   ],
   "injury": [
