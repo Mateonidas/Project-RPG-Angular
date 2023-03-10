@@ -5,9 +5,7 @@ import {Weapon} from "../../../model/weapon/weapon.model"
 import {TextResourceService} from "../text-resource-service/text-resource.service"
 import {Model} from "../../../model/model"
 import {TranslateService} from "../translate-service/translate.service"
-import {WeaponQualityValue} from "../../../model/weapon/weapon-quality-value.model"
 import {WeaponGroup} from "../../../model/weapon/weapons-group.model"
-import {Character} from "../../../model/character/character.model"
 
 @Injectable({
   providedIn: 'root'
@@ -33,10 +31,15 @@ export class WeaponService {
   fetchWeapons() {
     return this.http.get<Weapon[]>('http://localhost:8080/weapon').toPromise()
       .then(data => {
-        this.prepareWeaponsList(data)
-        this.groupWeapons(data)
+        if (data != null) {
+          this.prepareWeaponsList(data)
+          this.groupWeapons(data)
+          this.weaponsList = data
+        } else {
+          this.weaponsList = []
+          this.weaponGroups = []
+        }
         this.weaponGroupsChanged.next(this.weaponGroups.slice())
-        this.weaponsList = data
         localStorage.setItem('weapons', JSON.stringify(this.weaponsList))
         localStorage.setItem('weaponGroups', JSON.stringify(this.weaponGroups))
       })

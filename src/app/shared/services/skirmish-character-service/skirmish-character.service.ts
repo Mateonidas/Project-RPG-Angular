@@ -37,11 +37,13 @@ export class SkirmishCharacterService {
     return this.http.get<SkirmishCharacter[]>('http://localhost:8080/skirmishCharacter').toPromise()
       .then(data => {
         this.skirmishCharactersList = [];
-        for (let character of data) {
-          this.translateService.prepareCharacter(character);
-          let skirmishCharacter = new SkirmishCharacter();
-          Object.assign(skirmishCharacter, character);
-          this.skirmishCharactersList.push(skirmishCharacter);
+        if (data != null) {
+          for (let character of data) {
+            this.translateService.prepareCharacter(character);
+            let skirmishCharacter = new SkirmishCharacter();
+            Object.assign(skirmishCharacter, character);
+            this.skirmishCharactersList.push(skirmishCharacter);
+          }
         }
         localStorage.setItem('skirmishCharacters', JSON.stringify(this.skirmishCharactersList));
         this.skirmishCharactersChanged.next(this.skirmishCharactersList.slice());
