@@ -25,9 +25,9 @@ export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent 
               public skirmishService: SkirmishService,
               protected route: ActivatedRoute,
               protected router: Router,
-              private dialog: MatDialog,
+              protected dialog: MatDialog,
               protected bottomSheet: MatBottomSheet) {
-    super(characterService, skirmishCharacterService, route, router, bottomSheet);
+    super(characterService, skirmishCharacterService, route, router, bottomSheet, dialog);
   }
 
   ngOnInit(): void {

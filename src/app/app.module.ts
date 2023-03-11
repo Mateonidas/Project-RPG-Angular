@@ -43,6 +43,7 @@ import {WeaponStartComponent} from './weapon/weapon-start/weapon-start.component
 import {WeaponGroupDetailsComponent} from './weapon/weapon-group-details/weapon-group-details.component';
 import { ArmorComponent } from './armor/armor.component';
 import { ArmorGroupDetails } from './armor/armor-group-details/armor-group-details.component';
+import { AddManyToFightDialog } from './dialog-window/add-many-to-fight/add-many-to-fight-dialog.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { ArmorGroupDetails } from './armor/armor-group-details/armor-group-detai
     WeaponStartComponent,
     WeaponGroupDetailsComponent,
     ArmorComponent,
-    ArmorGroupDetails
+    ArmorGroupDetails,
+    AddManyToFightDialog
   ],
   imports: [
     BrowserModule,

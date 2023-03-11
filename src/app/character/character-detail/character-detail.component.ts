@@ -10,6 +10,8 @@ import {
 } from "../../shared/bottom-sheet/bottom-sheet-description/bottom-sheet-description.component";
 import {Model} from "../../model/model";
 import {CharacterBodyLocalization} from "../../model/body-localization/character-body-localization.model";
+import {MatDialog} from "@angular/material/dialog";
+import {AddManyToFightDialog} from "../../dialog-window/add-many-to-fight/add-many-to-fight-dialog.component";
 
 @Component({
   selector: 'app-character-detail',
@@ -35,7 +37,8 @@ export class CharacterDetailComponent implements OnInit {
               public skirmishCharacterService: SkirmishCharacterService,
               protected route: ActivatedRoute,
               protected router: Router,
-              protected bottomSheet: MatBottomSheet) {
+              protected bottomSheet: MatBottomSheet,
+              protected dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -48,6 +51,20 @@ export class CharacterDetailComponent implements OnInit {
 
   onAddToFight() {
     this.skirmishCharacterService.storeSkirmishCharacter(this.character);
+  }
+
+  onAddManyToFight() {
+    const dialogRef = this.dialog.open(AddManyToFightDialog, {
+      width: '20%',
+    })
+
+    dialogRef.afterClosed().subscribe(number => {
+      if (number > 1) {
+        this.skirmishCharacterService.storeSkirmishCharacters(this.character, number)
+      } else if (number == 1) {
+        this.skirmishCharacterService.storeSkirmishCharacter(this.character)
+      }
+    })
   }
 
   onEditCharacter() {

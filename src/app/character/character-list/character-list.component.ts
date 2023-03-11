@@ -40,6 +40,6 @@ export class CharacterListComponent implements OnInit {
   }
 
   onAddGroupToFight(characters: Character[]) {
-    this.skirmishCharacterService.storeSkirmishCharacters(characters);
+    this.skirmishCharacterService.storeSkirmishCharactersGroup(characters);
   }
 }

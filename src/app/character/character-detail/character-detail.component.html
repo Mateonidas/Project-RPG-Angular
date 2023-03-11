@@ -14,6 +14,8 @@
     <mat-menu #menu="matMenu">
       <button *ngIf="!isSkirmishMode" mat-menu-item
               (click)="onAddToFight()">{{text.getText().addToFightLabel}}</button>
+      <button *ngIf="!isSkirmishMode" mat-menu-item
+              (click)="onAddManyToFight()">{{text.getText().addManyToFightLabel}}</button>
       <button mat-menu-item (click)="onEditCharacter()">{{text.getText().editCharacterLabel}}</button>
       <button mat-menu-item (click)="onDeleteCharacter()">{{text.getText().deleteCharacterLabel}}</button>
       <button *ngIf="!isSkirmishMode" mat-menu-item (click)="onCopyCharacter()">{{text.getText().copyCharacterLabel}}</button>
