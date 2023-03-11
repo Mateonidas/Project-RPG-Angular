@@ -22,6 +22,7 @@ export class ReceiveDamageDialog implements OnInit {
     this.receivedDamage = new ReceivedDamage(this.character.id);
     this.receivedDamage.isWeaponUndamaging = false;
     this.receivedDamage.isLosingTest = true;
+    this.receivedDamage.isSuddenDeath = true;
   }
 
   compareModels(c1: Model, c2: Model): boolean {

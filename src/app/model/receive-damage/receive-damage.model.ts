@@ -5,6 +5,7 @@ export class ReceivedDamage {
   public isWeaponUndamaging!: boolean;
   public isLosingTest!: boolean;
   public shield!: number;
+  public isSuddenDeath!: boolean;
 
   constructor(characterId: number) {
     this.characterId = characterId;

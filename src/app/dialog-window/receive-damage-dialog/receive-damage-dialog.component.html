@@ -25,7 +25,6 @@
   <section>
     <mat-slide-toggle
       color="primary"
-      checked="false"
       [(ngModel)]="receivedDamage.isWeaponUndamaging">
     </mat-slide-toggle>
   </section>
@@ -35,11 +34,18 @@
     <section>
       <mat-slide-toggle
         color="primary"
-        checked="false"
         [(ngModel)]="receivedDamage.isLosingTest">
       </mat-slide-toggle>
     </section>
   </ng-container>
+
+  <p>{{text.getText().suddenDeath}}</p>
+  <section>
+    <mat-slide-toggle
+      color="primary"
+      [(ngModel)]="receivedDamage.isSuddenDeath">
+    </mat-slide-toggle>
+  </section>
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button color="primary" [mat-dialog-close]="receivedDamage">{{text.getText().saveLabel}}</button>
