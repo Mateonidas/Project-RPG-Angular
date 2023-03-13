@@ -65,6 +65,7 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
       'advantage': new UntypedFormControl(character.advantage),
       'notes': formArrays.notes,
       'isDead': new UntypedFormControl(character.isDead),
+      'sequenceNumber': new UntypedFormControl(character.sequenceNumber)
     });
   }
 
@@ -89,6 +90,7 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
     character.skirmishInitiative = this.editCharacterForm.value.skirmishInitiative;
     character.currentWounds = this.editCharacterForm.value.currentWounds;
     character.isDead = this.editCharacterForm.value.isDead;
+    character.sequenceNumber = this.editCharacterForm.value.sequenceNumber;
 
     return character;
   }

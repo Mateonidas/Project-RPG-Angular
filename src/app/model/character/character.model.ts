@@ -24,6 +24,7 @@ export class Character {
   conditions!: CharacterCondition[];
   notes!: string[];
   spells!: Spell[];
+  sequenceNumber!: number;
 
   constructor(name?: string, description?: string, group?: string, characteristics?: CharacterCharacteristic[], skills?: CharacterSkill[], talents?: CharacterTalent[], traits?: CharacterTrait[], rightHanded?: boolean, weapons?: CharacterWeapon[], armor?: Armor[], conditions?: CharacterCondition[], notes?: string[], spells?: Spell[], bodyLocalizations?: CharacterBodyLocalization[]) {
     this.name = <string>name;

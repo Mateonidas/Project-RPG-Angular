@@ -17,7 +17,7 @@ export class InitiativeDialog {
     for (const skirmishCharacter of skirmishCharacters) {
       this.skirmishInitiatives.push({
         characterId: skirmishCharacter.id,
-        characterName: skirmishCharacter.name,
+        characterName: skirmishCharacter.sequenceNumber > 1? skirmishCharacter.name + skirmishCharacter.sequenceNumber : skirmishCharacter.name,
         initiative: undefined
       })
     }

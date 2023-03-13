@@ -54,7 +54,7 @@ export class SkirmishCharacterService {
     let skirmishCharacter = new SkirmishCharacter(character, this.skirmishCharactersList.length)
     let numberOfSameCharacters = this.skirmishCharactersList.filter(character => character.name.includes(skirmishCharacter.name)).length
     if (numberOfSameCharacters > 0) {
-      skirmishCharacter.name = skirmishCharacter.name + ' ' + (numberOfSameCharacters + 1)
+      skirmishCharacter.sequenceNumber = numberOfSameCharacters + 1
     }
     await this.putSkirmishCharacter(skirmishCharacter).then(
       async () => {
@@ -77,7 +77,7 @@ export class SkirmishCharacterService {
     for (let i = numberOfSameCharacters; number > i; number--) {
       let skirmishCharacter = new SkirmishCharacter(character, 0)
       if (number > 1) {
-        skirmishCharacter.name = skirmishCharacter.name + ' ' + number
+        skirmishCharacter.sequenceNumber = number
       }
       newSkirmishCharacters.push(skirmishCharacter)
     }
@@ -96,7 +96,7 @@ export class SkirmishCharacterService {
       let skirmishCharacter: SkirmishCharacter = new SkirmishCharacter(character, index)
       let numberOfSameCharacters = this.skirmishCharactersList.filter(character => character.name.includes(skirmishCharacter.name)).length
       if (numberOfSameCharacters > 0) {
-        skirmishCharacter.name = skirmishCharacter.name + ' ' + (numberOfSameCharacters + 1)
+        skirmishCharacter.sequenceNumber = numberOfSameCharacters + 1
       }
       skirmishCharacters.push(skirmishCharacter)
       ++index

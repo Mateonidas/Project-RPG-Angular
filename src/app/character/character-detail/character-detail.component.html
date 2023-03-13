@@ -1,6 +1,7 @@
 <div class="row" xmlns="http://www.w3.org/1999/html">
   <div class="col-md-12">
-    <h3>{{character.name}}</h3>
+    <h3 *ngIf="character.sequenceNumber == null || character.sequenceNumber <= 1">{{character.name}}</h3>
+    <h3 *ngIf="character.sequenceNumber != null && character.sequenceNumber > 1">{{character.name}} {{character.sequenceNumber}}</h3>
   </div>
 </div>
 

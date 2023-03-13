@@ -10,8 +10,6 @@ export class SkirmishCharacterItemComponent implements OnInit {
   @Input() skirmishCharacter!: SkirmishCharacter;
   @Input() index!: number;
 
-
-
   constructor() { }
 
   ngOnInit(): void {

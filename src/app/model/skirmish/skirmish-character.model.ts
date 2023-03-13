@@ -24,6 +24,7 @@ export class SkirmishCharacter extends Character {
       this.skirmishInitiative = <number>character?.initiative.value
       this.advantage = 0
       this.isDead = false
+      this.sequenceNumber = 1
       this.clearIds()
     }
   }
