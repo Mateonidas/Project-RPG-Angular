@@ -3,10 +3,10 @@ import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {Subscription} from "rxjs";
 import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {InitiativeDialog} from "../../dialog-window/initiative-dialog/initiative-dialog.component";
 import {RoundService} from "../../shared/services/round-service/round.service";
 import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
 import {MatDialog} from "@angular/material/dialog";
+import {InitiativeDialog} from "../../dialog-window/initiative-dialog/initiative-dialog.component";
 
 @Component({
   selector: 'app-skirmish-characters-list',
@@ -35,7 +35,7 @@ export class SkirmishCharactersListComponent implements OnInit {
     )
 
     this.roundNumber = this.roundService.roundNumber;
-    
+
     this.skirmishCharacters = this.skirmishCharacterService.getSkirmishCharacters();
   }
 
@@ -52,19 +52,14 @@ export class SkirmishCharactersListComponent implements OnInit {
   }
 
   initiativeRolls() {
-    for (let skirmishCharacter of this.skirmishCharacters) {
-      const dialogRef = this.dialog.open(InitiativeDialog, {
-        width: '20%',
-        data: skirmishCharacter.name,
-      });
+    const dialogRef = this.dialog.open(InitiativeDialog, {
+      width: '20%',
+      data: this.skirmishCharacters.slice(),
+    });
 
-      dialogRef.afterClosed().subscribe(rollValue => {
-        if (rollValue != undefined) {
-          skirmishCharacter.skirmishInitiative += rollValue;
-          this.skirmishCharacterService.updateSkirmishCharacter(skirmishCharacter);
-        }
-      })
-    }
+    dialogRef.afterClosed().subscribe(skirmishCharacters => {
+      this.skirmishCharacterService.updateSkirmishCharacters(skirmishCharacters)
+    })
   }
 
   clearData() {

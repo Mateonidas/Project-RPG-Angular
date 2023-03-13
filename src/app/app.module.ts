@@ -23,7 +23,6 @@ import {
   SkirmishCharacterDetailsComponent
 } from './skirmish/skirmish-character-details/skirmish-character-details.component';
 import {SkirmishCharacterEditComponent} from './skirmish/skirmish-character-edit/skirmish-character-edit.component';
-import {InitiativeDialog} from './dialog-window/initiative-dialog/initiative-dialog.component';
 import {ValidationAlertComponent} from './validation/validation-alert/validation-alert.component';
 import {HttpClientModule} from '@angular/common/http';
 import {EditArmorDialog} from './dialog-window/edit-armor-dialog/edit-armor-dialog.component';
@@ -44,6 +43,7 @@ import {WeaponGroupDetailsComponent} from './weapon/weapon-group-details/weapon-
 import { ArmorComponent } from './armor/armor.component';
 import { ArmorGroupDetails } from './armor/armor-group-details/armor-group-details.component';
 import { AddManyToFightDialog } from './dialog-window/add-many-to-fight/add-many-to-fight-dialog.component';
+import { InitiativeDialog } from './dialog-window/initiative-dialog/initiative-dialog.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +62,6 @@ import { AddManyToFightDialog } from './dialog-window/add-many-to-fight/add-many
     SkirmishCharacterItemComponent,
     SkirmishCharacterDetailsComponent,
     SkirmishCharacterEditComponent,
-    InitiativeDialog,
     RollDialogWindow,
     ValidationAlertComponent,
     EditArmorDialog,
@@ -76,7 +75,8 @@ import { AddManyToFightDialog } from './dialog-window/add-many-to-fight/add-many
     WeaponGroupDetailsComponent,
     ArmorComponent,
     ArmorGroupDetails,
-    AddManyToFightDialog
+    AddManyToFightDialog,
+    InitiativeDialog
   ],
   imports: [
     BrowserModule,

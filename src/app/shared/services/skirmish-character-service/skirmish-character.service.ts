@@ -102,6 +102,10 @@ export class SkirmishCharacterService {
       ++index
     })
 
+    await this.updateSkirmishCharacters(skirmishCharacters);
+  }
+
+  public async updateSkirmishCharacters(skirmishCharacters: SkirmishCharacter[]) {
     await this.putSkirmishCharacters(skirmishCharacters).then(
       async () => {
         await this.fetchSkirmishCharacter().then()
