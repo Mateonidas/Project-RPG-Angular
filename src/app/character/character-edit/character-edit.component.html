@@ -1,8 +1,5 @@
 <div class="container">
-  <form [formGroup]="editCharacterForm" (ngSubmit)="onSubmit()"
-        (keyup.enter)="onSubmit()"
-        (keyup.escape)="onCancel()"
-  >
+  <form [formGroup]="editCharacterForm" (ngSubmit)="onSubmit()">
 
     <div class="row">
       <div class="col-md-12 form-group">
@@ -93,7 +90,7 @@
           </div>
 
           <div class="col-md-2">
-            <button mat-mini-fab color="warn" (click)="onDeleteNote(i)">X</button>
+            <button mat-mini-fab color="warn" type="button" (click)="onDeleteNote(i)">X</button>
           </div>
         </div>
 
@@ -139,7 +136,7 @@
           </div>
 
           <div class="col-md-2">
-            <button mat-mini-fab color="warn" (click)="onDeleteSkill(i)">X</button>
+            <button mat-mini-fab color="warn" type="button" (click)="onDeleteSkill(i)">X</button>
           </div>
         </div>
 
@@ -246,7 +243,7 @@
           </div>
 
           <div class="col-md-3">
-            <button mat-mini-fab color="warn" (click)="onDeleteSpell(i)">X</button>
+            <button mat-mini-fab color="warn" type="button" (click)="onDeleteSpell(i)">X</button>
           </div>
         </div>
 
@@ -285,7 +282,7 @@
           <div class="col-md-3">
             <button mat-raised-button color="primary" type="button"
                     (click)="onEditWeapon(i)">{{text.getText().editLabel}}</button>
-            <button mat-mini-fab color="warn" (click)="onDeleteWeapon(i)">X</button>
+            <button mat-mini-fab color="warn" type="button" (click)="onDeleteWeapon(i)">X</button>
           </div>
         </div>
         <div class="row">
@@ -326,7 +323,7 @@
           <div class="col-md-3">
             <button mat-raised-button color="primary" type="button"
                     (click)="onEditArmor(i)">{{text.getText().editLabel}}</button>
-            <button mat-mini-fab color="warn" (click)="onDeleteArmor(i)">X</button>
+            <button mat-mini-fab color="warn" type="button" (click)="onDeleteArmor(i)">X</button>
           </div>
 
         </div>
@@ -422,7 +419,7 @@
           </div>
 
           <div class="col-md-2">
-            <button mat-mini-fab color="warn" (click)="onDeleteCondition(i)">X</button>
+            <button mat-mini-fab color="warn" type="button" (click)="onDeleteCondition(i)">X</button>
           </div>
 
         </div>
@@ -437,7 +434,7 @@
 
     <div class="row details-row">
       <div class="col-md-12">
-        <button mat-raised-button color="primary" type="submit">{{text.getText().saveLabel}}</button>
+        <button mat-raised-button color="primary" type="button">{{text.getText().saveLabel}}</button>
         <button mat-raised-button color="warn" type="button"
                 (click)="onCancel()">{{text.getText().returnLabel}}</button>
       </div>
