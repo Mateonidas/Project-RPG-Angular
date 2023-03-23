@@ -69,13 +69,13 @@ export class SkirmishCharacterService {
       .toPromise()
   }
 
-  async storeSkirmishCharacters(character: Character, number: number) {
-    let numberOfSameCharacters = this.skirmishCharactersList.filter(character => character.name.includes(character.name)).length
+  async storeSkirmishCharacters(newCharacter: Character, number: number) {
+    let numberOfSameCharacters = this.skirmishCharactersList.filter(character => character.name.includes(newCharacter.name)).length
     number = number + numberOfSameCharacters
     let newSkirmishCharacters = []
 
     for (let i = numberOfSameCharacters; number > i; number--) {
-      let skirmishCharacter = new SkirmishCharacter(character, 0)
+      let skirmishCharacter = new SkirmishCharacter(newCharacter, 0)
       if (number > 1) {
         skirmishCharacter.sequenceNumber = number
       }
