@@ -9,26 +9,27 @@ import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
   styleUrls: ['./initiative-dialog.component.css']
 })
 export class InitiativeDialog {
-  text = TextResourceService;
+  text = TextResourceService
   skirmishInitiatives: SkirmishInitiative[] = []
 
   constructor(@Inject(MAT_DIALOG_DATA) public skirmishCharacters: SkirmishCharacter[],
               public dialogRef: MatDialogRef<InitiativeDialog>) {
     for (const skirmishCharacter of skirmishCharacters) {
-      this.skirmishInitiatives.push({
-        characterId: skirmishCharacter.id,
-        characterName: skirmishCharacter.sequenceNumber > 1? skirmishCharacter.name + skirmishCharacter.sequenceNumber : skirmishCharacter.name,
-        initiative: undefined
-      })
+      if (!this.skirmishInitiatives.find(s => s.characterName == skirmishCharacter.name)) {
+        this.skirmishInitiatives.push({
+          characterName: skirmishCharacter.sequenceNumber > 1 ? skirmishCharacter.name + skirmishCharacter.sequenceNumber : skirmishCharacter.name,
+          initiative: undefined
+        })
+      }
     }
   }
 
   onSaveInitiative() {
     for (const skirmishInitiative of this.skirmishInitiatives) {
-      const character = this.skirmishCharacters.find(character => character.id == skirmishInitiative.characterId)
-      if (character != undefined) {
-        if(skirmishInitiative.initiative != undefined) {
-          character.skirmishInitiative += skirmishInitiative.initiative
+      const characters = this.skirmishCharacters.filter(character => character.name == skirmishInitiative.characterName)
+      for (const skirmishCharacter of characters) {
+        if (skirmishInitiative.initiative != undefined) {
+          skirmishCharacter.skirmishInitiative += skirmishInitiative.initiative
         }
       }
     }
@@ -38,7 +39,6 @@ export class InitiativeDialog {
 }
 
 interface SkirmishInitiative {
-  characterId: number,
   characterName: string,
-  initiative: number|undefined
+  initiative: number | undefined
 }
