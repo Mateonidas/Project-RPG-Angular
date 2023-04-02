@@ -407,6 +407,10 @@
       "nameTranslation": "Splatanie Magii (Ulgu)"
     },
     {
+      "name": "CHANNELLING_TZEENTCH",
+      "nameTranslation": "Splatanie Magii (Tzeentch)"
+    },
+    {
       "name": "EVALUATE",
       "nameTranslation": "Wycena"
     },
@@ -2319,11 +2323,112 @@
     {
       "name": "POWER_OF_CHAOS",
       "nameTranslation": "Potęga Chaosu",
-      "description": "PZ: 4\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Ogłady)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nWzywasz bogów Chaosu, by wspomogli Twe wysiłki poprzez niewielkie rozdarcie prowadzące do Eteru. Każde zaklęcie rzucone na obszarze działania Potęgi Chaosu ma PZ obniżony o połowę. Ponadto wszyscy przebywający na tym obszarze muszą zdać Przeciętny (+20) Test Odporności na koniec każdej Rundy lub otrzymują 1 Punkt Zepsucia. Testy Rzucania Zaklęć na tym obszarze mają Przeciętną (+20) Trudność."    },
+      "description": "PZ: 4\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Ogłady)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nWzywasz bogów Chaosu, by wspomogli Twe wysiłki poprzez niewielkie rozdarcie prowadzące do Eteru. Każde zaklęcie rzucone na obszarze działania Potęgi Chaosu ma PZ obniżony o połowę. Ponadto wszyscy przebywający na tym obszarze muszą zdać Przeciętny (+20) Test Odporności na koniec każdej Rundy lub otrzymują 1 Punkt Zepsucia. Testy Rzucania Zaklęć na tym obszarze mają Przeciętną (+20) Trudność."
+    },
     {
       "name": "MINDFIRE",
       "nameTranslation": "Płomień umysłu",
       "description": "PZ: 6\nZasięg: Liczba metrów równa Inteligencji\nCel: 1\nCzas: Natychmiast\n\nPowietrze wypacza się wokół Twoich palców, tworząc kulę błyszczącej, mglistej energii, którą możesz cisnąć w przeciwnika. Cel trafiony przez Płomień umysłu musi zdać Wymagający (+0) Test Opanowania lub otrzymuje 1 Punkt Zepsucia. Za każde 2 PS uzyskane w Teście rzucania zaklęcia możesz przyznać ofierze kolejny Punkt Zepsucia, jeżeli nie zda Testu Opanowania. Gdyby nieszczęśnik miał z tego powodu otrzymać mutację, rzuca w Tabeli Zepsucia Psychicznego oraz dostaje jeden poziom Stanu Podpalenie, kiedy nienaturalny ogień bucha z jego oczu, ust, nozdrzy i uszu."
+    },
+    {
+      "name": "DART",
+      "nameTranslation": "Magiczne żądło",
+      "description": "PZ: 0\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Natychmiast\n\nSprawiasz, że malutka strzałka, cała z magicznej energii, wystrzeliwuje ci z palców. Uznaje się ją za magiczny pocisk ze współczynnikiem Obrażeń +0."
+    },
+    {
+      "name": "MAGIC_FLAME",
+      "nameTranslation": "Magiczny Płomień",
+      "description": "PZ: 0\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nWzniecasz mały płomień, który drgając, budzi się do życia na twojej dłoni. Nie poparzy cię, ale będzie emitował ciepło i będzie w stanie zająć palne przedmioty tak jak naturalny płomień."
+    },
+    {
+      "name": "PURIFY_WATER",
+      "nameTranslation": "Oczyszczenie Wody",
+      "description": "PZ: 0\nZasięg: 1 metr\nCel: Specjalny\nCzas: Natychmiast\n\nUzdatniasz wodę w pojemniku, np. butli, konwi czy dzbanie. Wszelkie niemagiczne nieczystości, jak trucizny i zanieczyszczenia, zostają usunięte – pozostaje zdatna do picia i czysta woda. Jeśli w pojemniku znajdowała się ciecz w większości składająca się z wody, jak np. piwo czy wino, również ulega oczyszczeniu i zmienia się w pyszną i czystą wodę. Bez alkoholu!"
+    },
+    {
+      "name": "PURIFY_WATER",
+      "nameTranslation": "Oczyszczenie Wody",
+      "description": "PZ: 0\nZasięg: 1 metr\nCel: Specjalny\nCzas: Natychmiast\n\nUzdatniasz wodę w pojemniku, np. butli, konwi czy dzbanie. Wszelkie niemagiczne nieczystości, jak trucizny i zanieczyszczenia, zostają usunięte – pozostaje zdatna do picia i czysta woda. Jeśli w pojemniku znajdowała się ciecz w większości składająca się z wody, jak np. piwo czy wino, również ulega oczyszczeniu i zmienia się w pyszną i czystą wodę. Bez alkoholu!"
+    },
+    {
+      "name": "WARNING",
+      "nameTranslation": "Ostrzeżenie",
+      "description": "PZ: 0\nZasięg: 1 metr\nCel: Specjalny\nCzas: Natychmiast\n\nWplatasz magię w przedmiot, dzięki czemu natychmiast dowiadujesz się, czy został on zatruty lub czy nie została na niego założona pułapka."
+    },
+    {
+      "name": "SHOCK",
+      "nameTranslation": "Porażenie",
+      "description": "PZ: 0\nZasięg: Dotyk\nCel: 1\nCzas: Natychmiast\n\nCel otrzymuje 1 poziom Oszołomienia."
+    },
+    {
+      "name": "DRAIN",
+      "nameTranslation": "Wyssanie",
+      "description": "PZ: 0\nZasięg: Dotyk\nCel: 1\nCzas: Natychmiast\n\nDotykasz celu, wysysając z niego życie. Zaklęcie to jest magicznym pociskiem zadającym +0 Obrażeń ignorujących Punkty Pancerza. Leczysz 1 Ranę."
+    },
+    {
+      "name": "SOUNDS",
+      "nameTranslation": "Odgłosy",
+      "description": "PZ: 0\nZasięg: Liczba metrów równa Sile Woli\nCel: Specjalny\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nNiedaleko siebie wytwarzasz niewielki odgłos. To może być cichy, niewyraźny dźwięk, który wydaje się dochodzić z konkretnego miejsca niezależnie od zasięgu wzroku. Odgłosy mogą przypominać coś konkretnego, np. chód, szept czy dźwięki zwierząt, ale nic na tyle szczególnego, by mogło nieść wiadomość.\n\nPodczas trwania zaklęcia możesz kontrolować przemieszczanie się dźwięku, jeśli powiedzie ci się Przeciętny (+20) Test Splatania Magii. Sukces umożliwia ci przesuwać dźwięk do innego miejsca w zasięgu lub zwiększać i zmniejszać jego głośność."
+    },
+    {
+      "name": "DAZZLE",
+      "nameTranslation": "Oślepienie",
+      "description": "PZ: 0\nZasięg: Dotyk\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nCel otrzymuje 1 poziom Oślepienia – i kolejny poziom Oślepienia na początku każdej Rundy, dopóki trwa zaklęcie."
+    },
+    {
+      "name": "OPEN_LOCK",
+      "nameTranslation": "Otwarcie zamka",
+      "description": "PZ: 0\nZasięg: Dotyk\nCel: Specjalny\nCzas: Natychmiast\n\nDotknięty niemagiczny zamek otwiera się."
+    },
+    {
+      "name": "LIGHT",
+      "nameTranslation": "Poblask",
+      "description": "PZ: 0\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba minut równa Sile Woli\n\nTworzysz małe źródło światła, porównywalne z pochodnią, które świeci wprost z twojej dłoni, laski czy innej części twojej osoby. W czasie gdy zaklęcie jest aktywne, możesz zdecydować się zwiększyć moc światła do podobnego do latarni lub zmniejszyć je do blasku świecy, jeśli powiedzie ci się Przeciętny (+20) Test Splatania Magii."
+    },
+    {
+      "name": "EAVESDROP",
+      "nameTranslation": "Podsłuch",
+      "description": "PZ: 0\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Liczba minut równa Bonusowi z Inicjatywy\n\nMożesz usłyszeć, co mówią twoje cele, tak jakby stały obok ciebie."
+    },
+    {
+      "name": "ROT",
+      "nameTranslation": "Zgnilizna",
+      "description": "PZ: 0\nZasięg: 1 metr\nCel: Specjalny\nCzas: Natychmiast\n\nSprawiasz, że organiczny materiał wielkości pięści gnije natychmiast. Jedzenie się psuje, ubrania rozpadają, skóra wysusza się (tracąc 1 Punkt Pancerza w 1 miejscu) itd. – w zależności od decyzji MG."
+    },
+    {
+      "name": "MUNDANE_AURA",
+      "nameTranslation": "Aura codzienności",
+      "description": "PZ: 4\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba minut równa Sile Woli\n\nWysysasz wszelkie Wiatry Magii ze swego ciała i swojego dobytku, usuwając wszelkie ślady magicznej aury. Przez okres trwania zaklęcia dla osób posiadających Talent Percepcja Magiczna lub podobny wydajesz się zwykłą osobą, nieposiadającą nadprzyrodzonych zdolności. Nie wytwarzasz wtedy żadnych eterycznych wibracji i twoja magiczna aura nie może zostać wykryta żadnymi sposobami. Podczas trwania tego zaklęcia nie możesz rzucać żadnych zaklęć. Aura codzienności rozprasza się natychmiast, gdy rozpoczniesz Test Splatania Magii."
+    },
+    {
+      "name": "FLIGHT",
+      "nameTranslation": "Lot",
+      "description": "PZ: 8\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nMożesz latać – dzięki eterycznym skrzydłom, w kolumnie magicznego światła lub w inny odpowiedni dla Tradycji sposób. Zyskujesz Cechę Stworzenia Latanie (Zwinność) (strona 339)."
+    },
+    {
+      "name": "AETHYRIC_ARMOUR",
+      "nameTranslation": "Pancerz Eteru",
+      "description": "PZ: 2\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli +\n\nZyskujesz 1 Punkt Pancerza na wszystkich Miejscach Trafień, oplatając się ochronnym pasem magii."
+    },
+    {
+      "name": "TELEPORT",
+      "nameTranslation": "Przeskok",
+      "description": "PZ: 5\nZasięg: Rzucający\nCel: Rzucający\nCzas: Natychmiast\n\nWykorzystując magię, przemieszczasz się natychmiast na odległość wynoszącą maksymalnie tyle, ile wynosi twój Bonus z Siły Woli. Dzięki temu możesz nie przejmować się jarami, dołami, pułapkami i innymi niebezpieczeństwami, ignorując przeszkody. Za każde +2 PS możesz zwiększyć dystans takiej teleportacji o tyle metrów, ile wynosi twój Bonus z Siły Woli."
+    },
+    {
+      "name": "CHAIN_ATTACK",
+      "nameTranslation": "Seria pocisków",
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Sile Woli\nCel: Specjalny\nCzas: Natychmiast\n\nWyzwalasz z magii wirujące i raniące cel zaklęcia kolce. Uznaje się je za magiczne pociski, które zadają +4 Obrażenia. Jeśli Seria pocisków zmniejszy Żywotność celu do 0, przenosi się na następny cel w ramach początkowego Zasięgu zaklęcia i w odległości tylu metrów od poprzedniego celu, ile wynosi Bonus z Siły Woli rzucającego, nadal zadając takie same obrażenia. Kolce mogą przeskakiwać w ten sposób tyle razy, ile wynosi Bonus z Siły Woli. Za każde 2 PS kolce mogą przeskoczyć na jeden dodatkowy cel."
+    },
+    {
+      "name": "DARK_VISION",
+      "nameTranslation": "Widzenie w ciemności",
+      "description": "PZ: 1\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nTwoje naturalne zmysły zostają wzmocnione dzięki postrzeganiu magii. Podczas trwania zaklęcia zyskujesz Cechę Stworzenia Widzenie w Ciemności (strona 342)."
+    },
+    {
+      "name": "BLAST",
+      "nameTranslation": "Wybuch",
+      "description": "PZ: 4\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Natychmiast\n\nFormujesz magię w wybuchowy podmuch. Uznawany jest on za magiczny pocisk o współczynniku Obrażeń +3 zadawanym wszystkim celom w Zasięgu."
     }
   ],
   "bodyLocalizations": [
