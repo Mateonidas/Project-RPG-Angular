@@ -434,7 +434,8 @@
 
     <div class="row details-row">
       <div class="col-md-12">
-        <button mat-raised-button color="primary" type="button">{{text.getText().saveLabel}}</button>
+        <button mat-raised-button color="primary" type="button"
+                (click)="onSubmit()">{{text.getText().saveLabel}}</button>
         <button mat-raised-button color="warn" type="button"
                 (click)="onCancel()">{{text.getText().returnLabel}}</button>
       </div>
