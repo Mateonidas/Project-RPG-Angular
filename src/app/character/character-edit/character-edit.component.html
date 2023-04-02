@@ -59,6 +59,51 @@
     </div>
 
     <div class="row details-row">
+      <div class="col-md-12" formArrayName="conditions">
+        <h4>{{text.getText().conditionsLabel}}</h4>
+
+        <div class="row mb-2" *ngFor="let conditionControl of conditions; let i = index" [formGroupName]="i">
+          <div class="col-md-5">
+            <mat-form-field appearance="fill" class="example-full-width">
+              <mat-label>{{text.getText().conditionNameLabel}}</mat-label>
+              <mat-select formControlName="condition" [compareWith]="compareModels"
+                          (selectionChange)="checkIfConditionHasCounter(conditionControl)">
+                <mat-option *ngFor="let condition of conditionService.conditionsList" [value]="condition">
+                  {{condition.nameTranslation}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-2">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>{{text.getText().valueLabel}}</mat-label>
+              <input matInput type="number" formControlName="value">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-2">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>{{text.getText().counterLabel}}</mat-label>
+              <input matInput type="number" formControlName="counter">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-2">
+            <button mat-mini-fab color="warn" type="button" (click)="onDeleteCondition(i)">X</button>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button mat-raised-button color="primary" type="button"
+                    (click)="onAddCondition()">{{text.getText().addConditionLabel}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row details-row">
       <div class="col-md-12" formArrayName="characteristics">
         <h4>{{text.getText().characteristicsLabel}}</h4>
         <table mat-table [dataSource]="[characteristics]" class="mat-elevation-z8">
@@ -382,51 +427,6 @@
           <div class="col-md-12">
             <button mat-raised-button color="primary" type="button"
                     (click)="onAddInjury()">{{text.getText().addInjuryLabel}}</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row details-row">
-      <div class="col-md-12" formArrayName="conditions">
-        <h4>{{text.getText().conditionsLabel}}</h4>
-
-        <div class="row mb-2" *ngFor="let conditionControl of conditions; let i = index" [formGroupName]="i">
-          <div class="col-md-5">
-            <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>{{text.getText().conditionNameLabel}}</mat-label>
-              <mat-select formControlName="condition" [compareWith]="compareModels"
-                          (selectionChange)="checkIfConditionHasCounter(conditionControl)">
-                <mat-option *ngFor="let condition of conditionService.conditionsList" [value]="condition">
-                  {{condition.nameTranslation}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-
-          <div class="col-md-2">
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>{{text.getText().valueLabel}}</mat-label>
-              <input matInput type="number" formControlName="value">
-            </mat-form-field>
-          </div>
-
-          <div class="col-md-2">
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>{{text.getText().counterLabel}}</mat-label>
-              <input matInput type="number" formControlName="counter">
-            </mat-form-field>
-          </div>
-
-          <div class="col-md-2">
-            <button mat-mini-fab color="warn" type="button" (click)="onDeleteCondition(i)">X</button>
-          </div>
-
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <button mat-raised-button color="primary" type="button"
-                    (click)="onAddCondition()">{{text.getText().addConditionLabel}}</button>
           </div>
         </div>
       </div>
