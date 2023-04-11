@@ -44,6 +44,7 @@ import { ArmorComponent } from './armor/armor.component';
 import { ArmorGroupDetails } from './armor/armor-group-details/armor-group-details.component';
 import { AddManyToFightDialog } from './dialog-window/add-many-to-fight/add-many-to-fight-dialog.component';
 import { InitiativeDialog } from './dialog-window/initiative-dialog/initiative-dialog.component';
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -78,16 +79,17 @@ import { InitiativeDialog } from './dialog-window/initiative-dialog/initiative-d
     AddManyToFightDialog,
     InitiativeDialog
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    RouterModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MaterialModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        RouterModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        FlexLayoutModule
+    ],
   providers: [
     {provide: MAT_BOTTOM_SHEET_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
   ],
