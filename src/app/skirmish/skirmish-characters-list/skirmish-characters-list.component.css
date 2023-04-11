@@ -1,3 +1,5 @@
-button {
-  margin-right: 5px;
+@media (max-width: 1600px) {
+  .mat-button-responsive {
+    font-size: 13px;
+  }
 }
