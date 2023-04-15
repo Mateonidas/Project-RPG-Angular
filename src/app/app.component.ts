@@ -19,6 +19,8 @@ import {SkirmishCharacterService} from "./shared/services/skirmish-character-ser
 })
 export class AppComponent implements OnInit {
 
+  dataLoaded = false;
+
   constructor(public armorService: ArmorService,
               public weaponService: WeaponService,
               public skillService: SkillService,
@@ -34,7 +36,11 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await this.fetchData()
+    this.dataLoaded = false
+    await this.fetchData().then(() => {
+        this.dataLoaded = true
+      }
+    )
   }
 
   protected async fetchData() {

@@ -44,6 +44,7 @@ import { ArmorComponent } from './armor/armor.component';
 import { ArmorGroupDetails } from './armor/armor-group-details/armor-group-details.component';
 import { AddManyToFightDialog } from './dialog-window/add-many-to-fight/add-many-to-fight-dialog.component';
 import { InitiativeDialog } from './dialog-window/initiative-dialog/initiative-dialog.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { InitiativeDialog } from './dialog-window/initiative-dialog/initiative-d
     ArmorComponent,
     ArmorGroupDetails,
     AddManyToFightDialog,
-    InitiativeDialog
+    InitiativeDialog,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

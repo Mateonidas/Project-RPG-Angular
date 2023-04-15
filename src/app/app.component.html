@@ -1,3 +1,7 @@
+<ng-container *ngIf="!dataLoaded">
+  <app-loader></app-loader>
+</ng-container>
+<ng-container *ngIf="dataLoaded">
 <app-header></app-header>
 <div class="container-fluid container-wd">
   <div class="row">
@@ -6,3 +10,4 @@
     </div>
   </div>
 </div>
+</ng-container>
