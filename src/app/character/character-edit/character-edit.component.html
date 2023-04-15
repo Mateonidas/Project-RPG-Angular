@@ -1,8 +1,8 @@
-<div class="container">
+<div>
   <form [formGroup]="editCharacterForm" (ngSubmit)="onSubmit()">
 
-    <div class="row">
-      <div class="col-md-12 form-group">
+    <div fxLayout="row">
+      <div fxFlex="100">
         <h4>Dane</h4>
         <mat-form-field class="example-full-width text-field" appearance="fill">
           <mat-label>{{text.getText().nameLabel}}</mat-label>
@@ -22,8 +22,8 @@
     </div>
 
     <div *ngIf="isSkirmishMode">
-      <div class="row details-row">
-        <div class="col-md-4 form-group">
+      <div fxLayout="row" class="details-row">
+        <div fxFlex="40">
           <h4>{{text.getText().temporaryParametersLabel}}</h4>
 
           <mat-form-field appearance="fill" class="example-full-width">
@@ -58,44 +58,41 @@
       </div>
     </div>
 
-    <div class="row details-row">
-      <div class="col-md-12" formArrayName="conditions">
-        <h4>{{text.getText().conditionsLabel}}</h4>
-
-        <div class="row mb-2" *ngFor="let conditionControl of conditions; let i = index" [formGroupName]="i">
-          <div class="col-md-5">
-            <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>{{text.getText().conditionNameLabel}}</mat-label>
-              <mat-select formControlName="condition" [compareWith]="compareModels"
-                          (selectionChange)="checkIfConditionHasCounter(conditionControl)">
-                <mat-option *ngFor="let condition of conditionService.conditionsList" [value]="condition">
-                  {{condition.nameTranslation}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-
-          <div class="col-md-2">
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>{{text.getText().valueLabel}}</mat-label>
-              <input matInput type="number" formControlName="value">
-            </mat-form-field>
-          </div>
-
-          <div class="col-md-2">
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>{{text.getText().counterLabel}}</mat-label>
-              <input matInput type="number" formControlName="counter">
-            </mat-form-field>
-          </div>
-
-          <div class="col-md-2">
-            <button mat-mini-fab color="warn" type="button" (click)="onDeleteCondition(i)">X</button>
-          </div>
-
+    <div fxLayout="row" class="details-row">
+      <div fxFlex="100" formArrayName="conditions">
+        <div fxLayout="row">
+          <h4>{{text.getText().conditionsLabel}}</h4>
         </div>
-        <div class="row">
-          <div class="col-md-12">
+          <div fxLayout="row" fxLayoutGap="20px" *ngFor="let conditionControl of conditions; let i = index" [formGroupName]="i">
+              <div fxFlex="40">
+                <mat-form-field appearance="fill" class="example-full-width">
+                  <mat-label>{{text.getText().conditionNameLabel}}</mat-label>
+                  <mat-select formControlName="condition" [compareWith]="compareModels"
+                              (selectionChange)="checkIfConditionHasCounter(conditionControl)">
+                    <mat-option *ngFor="let condition of conditionService.conditionsList" [value]="condition">
+                      {{condition.nameTranslation}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            <div fxFlex="10">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>{{text.getText().valueLabel}}</mat-label>
+                <input matInput type="number" formControlName="value">
+              </mat-form-field>
+            </div>
+            <div fxFlex="10">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>{{text.getText().counterLabel}}</mat-label>
+                <input matInput type="number" formControlName="counter">
+              </mat-form-field>
+            </div>
+            <div fxFlex="10">
+              <button mat-mini-fab color="warn" type="button" (click)="onDeleteCondition(i)">X</button>
+            </div>
+          </div>
+        <div fxLayout="row">
+          <div fxFlex="20">
             <button mat-raised-button color="primary" type="button"
                     (click)="onAddCondition()">{{text.getText().addConditionLabel}}</button>
           </div>
@@ -139,7 +136,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div fxLayout="row">
           <div class="col-md-12">
             <button mat-raised-button color="primary" type="button"
                     (click)="onAddNote()">{{text.getText().addNoteLabel}}</button>
@@ -185,7 +182,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div fxLayout="row">
           <div class="col-md-12">
             <button mat-raised-button color="primary" type="button"
                     (click)="onAddSkill()">{{text.getText().addSkillLabel}}</button>
@@ -223,7 +220,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div fxLayout="row">
           <div class="col-md-12">
             <button mat-raised-button color="primary" type="button"
                     (click)="onAddTalent()">{{text.getText().addTalentLabel}}</button>
@@ -261,7 +258,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div fxLayout="row">
           <div class="col-md-12">
             <button mat-raised-button color="primary" type="button"
                     (click)="onAddTrait()">{{text.getText().addTraitLabel}}</button>
@@ -292,7 +289,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div fxLayout="row">
           <div class="col-md-12">
             <button mat-raised-button color="primary" type="button"
                     (click)="onAddSpell()">{{text.getText().addSpellLabel}}</button>
@@ -330,7 +327,7 @@
             <button mat-mini-fab color="warn" type="button" (click)="onDeleteWeapon(i)">X</button>
           </div>
         </div>
-        <div class="row">
+        <div fxLayout="row">
           <div class="col-md-12">
             <button mat-raised-button color="primary" type="button"
                     (click)="onAddWeapon()">{{text.getText().addWeaponLabel}}</button>
@@ -373,7 +370,7 @@
 
         </div>
 
-        <div class="row">
+        <div fxLayout="row">
           <div class="col-md-12">
             <button mat-raised-button color="primary" type="button"
                     (click)="onAddArmor()">{{text.getText().addArmorLabel}}</button>
@@ -423,7 +420,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div fxLayout="row">
           <div class="col-md-12">
             <button mat-raised-button color="primary" type="button"
                     (click)="onAddInjury()">{{text.getText().addInjuryLabel}}</button>
