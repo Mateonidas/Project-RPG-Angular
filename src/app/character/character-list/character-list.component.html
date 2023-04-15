@@ -1,11 +1,9 @@
-<div class="row">
-  <div class="col-md-12">
+<div fxLayout="row" fxLayoutGap="5px">
     <button mat-raised-button color="primary" (click)="onAddCharacter()">{{text.getText().addCharacterLabel}}</button>
-  </div>
 </div>
 <hr>
-<div class="row">
-  <div class="col-md-12">
+<div fxLayout="row">
+  <div fxFlex="100">
     <mat-accordion>
       <mat-expansion-panel hideToggle *ngFor="let characterGroup of characterGroups">
         <mat-expansion-panel-header>
