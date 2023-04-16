@@ -1,29 +1,23 @@
-<div class="row">
-  <div class="col-md-12">
+<div fxLayout="row">
+  <div fxFlex="100">
     <h4>{{text.getText().turnLabel}} {{roundNumber}}</h4>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="dropdown">
-
-      <button mat-raised-button color="primary" (click)="endTurn()">
+<div fxLayout="row" fxLayoutGap="5px">
+      <button mat-raised-button color="primary" class="mat-button-responsive" (click)="endTurn()">
         {{text.getText().endTurnLabel}}
       </button>
 
-      <button mat-raised-button color="primary" (click)="initiativeRolls()">
+      <button mat-raised-button color="primary" class="mat-button-responsive" (click)="initiativeRolls()">
         {{text.getText().initiativeRollLabel}}
       </button>
 
-      <button mat-raised-button color="warn" (click)="clearData()">
+      <button mat-raised-button color="warn" class="mat-button-responsive" (click)="clearData()">
         {{text.getText().clearDataLabel}}
       </button>
-
-    </div>
-  </div>
 </div>
-<div class="row">
-  <div class="col-md-12">
+<div fxLayout="row">
+  <div fxFlex="100">
     <mat-nav-list>
       <mat-divider></mat-divider>
       <app-skirmish-character-item

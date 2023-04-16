@@ -5,40 +5,40 @@
             style="cursor: pointer; width: 100%"
             [routerLink]="[skirmishCharacter.id]"
             routerLinkActive="active">
-      <div class="row" style="margin-top: 10px">
-        <div class="col-md-6">
+      <div fxLayout="row" style="margin-top: 10px">
+        <div fxFlex="60">
           <h6 class="list-group-item-heading" *ngIf="skirmishCharacter.sequenceNumber <= 1">{{skirmishCharacter.name}}</h6>
           <h6 class="list-group-item-heading" *ngIf="skirmishCharacter.sequenceNumber > 1">{{skirmishCharacter.name}} {{skirmishCharacter.sequenceNumber}}</h6>
           <span class="list-group-item-text">{{skirmishCharacter.description}}</span>
         </div>
-        <div class="col-md-2" *ngIf="!skirmishCharacter.isDead">
+        <div fxFlex="20" *ngIf="!skirmishCharacter.isDead">
           <h6 class="list-group-item-heading">Inicjatywa</h6>
           <p class="list-group-item-text">{{skirmishCharacter.skirmishInitiative}}</p>
         </div>
-        <div class="col-md-4" *ngIf="!skirmishCharacter.isDead">
+        <div fxFlex="20" *ngIf="!skirmishCharacter.isDead">
           <h6 class="list-group-item-heading">Żywotność</h6>
           <p class="list-group-item-text">{{skirmishCharacter.currentWounds}}/{{skirmishCharacter.wounds.value}}</p>
         </div>
-        <div class="col-md-6" *ngIf="skirmishCharacter.isDead">
+        <div fxFlex="100" *ngIf="skirmishCharacter.isDead">
           <h6 class="list-group-item-heading">Martwy</h6>
         </div>
       </div>
-      <div class="row" *ngIf="!skirmishCharacter.isDead">
-        <div class="col-md-6">
+      <div fxLayout="row" *ngIf="!skirmishCharacter.isDead">
+        <div fxFlex="60">
         </div>
-        <div class="col-md-2">
+        <div fxFlex="20">
           <h6 class="list-group-item-heading">Przewagi</h6>
           <p class="list-group-item-text">{{skirmishCharacter.advantage}}</p>
         </div>
-        <div class="col-md-4">
+        <div fxFlex="20">
           <h6 class="list-group-item-heading">Stany</h6>
           <p *ngFor="let characterCondition of skirmishCharacter.conditions" class="list-group-item-text">
             - {{characterCondition.condition.nameTranslation}} {{characterCondition.value}}
           </p>
         </div>
       </div>
-      <div class="row" *ngIf="skirmishCharacter.notes.length > 0">
-        <div class="col-md-12">
+      <div fxLayout="row" *ngIf="skirmishCharacter.notes.length > 0">
+        <div fxFlex="100">
           <h6 class="list-group-item-heading">Notatki</h6>
           <p *ngFor="let note of skirmishCharacter.notes" class="list-group-item-text">
             - {{note}}

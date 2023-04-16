@@ -2,12 +2,12 @@
   <app-loader></app-loader>
 </ng-container>
 <ng-container *ngIf="dataLoaded">
-<app-header></app-header>
-<div class="container-fluid container-wd">
-  <div class="row">
-    <div class="col-md-12">
-      <router-outlet></router-outlet>
+  <app-header></app-header>
+  <div class="container-fluid container-wd">
+    <div fxLayout="row">
+      <div fxFlex="100">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
-</div>
 </ng-container>
