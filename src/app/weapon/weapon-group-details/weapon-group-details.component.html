@@ -1,11 +1,11 @@
-<div class="row">
-  <div class="col-md-12" style="text-align: center">
+<div fxLayout="row">
+  <div fxFlex="100" style="text-align: center">
     <h3>{{name}}</h3>
   </div>
 </div>
 <br>
-<div class="row details-row">
-  <div class="col-md-12">
+<div fxLayout="row" class="details-row">
+  <div fxFlex="100">
     <ng-container *ngFor="let weaponGroup of weaponGroups">
       <h5>{{weaponGroup.name}}</h5>
       <table mat-table [dataSource]="weaponGroup.weapons" class="mat-elevation-z8">

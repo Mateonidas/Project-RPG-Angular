@@ -1,11 +1,11 @@
-<div class="row">
-  <div class="col-md-12" style="text-align: center">
+<div fxLayout="row">
+  <div fxFlex="100" style="text-align: center">
     <h3>{{text.getText().armorsLabel}}</h3>
   </div>
 </div>
 <br>
-<div class="row details-row">
-  <div class="col-md-12">
+<div fxLayout="row" class="details-row">
+  <div fxFlex="100">
     <ng-container *ngFor="let armorGroup of armorGroups">
       <h5>{{armorGroup.name}}</h5>
       <table mat-table [dataSource]="armorGroup.armors" class="mat-elevation-z8">
@@ -15,35 +15,30 @@
             <span>{{element.nameTranslation}}</span>
           </td>
         </ng-container>
-
         <ng-container matColumnDef="price">
           <th mat-header-cell *matHeaderCellDef>{{text.getText().priceLabel}}</th>
           <td mat-cell *matCellDef="let element">
             <span>{{element.price}}</span>
           </td>
         </ng-container>
-
         <ng-container matColumnDef="enc">
           <th mat-header-cell *matHeaderCellDef>{{text.getText().encumbranceLabel}}</th>
           <td mat-cell *matCellDef="let element">
             <span>{{element.encumbrance}}</span>
           </td>
         </ng-container>
-
         <ng-container matColumnDef="availability">
           <th mat-header-cell *matHeaderCellDef>{{text.getText().availabilityLabel}}</th>
           <td mat-cell *matCellDef="let element">
             <span>{{element.availability.nameTranslation}}</span>
           </td>
         </ng-container>
-
         <ng-container matColumnDef="category">
           <th mat-header-cell *matHeaderCellDef>{{text.getText().categoryLabel}}</th>
           <td mat-cell *matCellDef="let element">
             {{element.armorCategory.nameTranslation}}
           </td>
         </ng-container>
-
         <ng-container matColumnDef="localization">
           <th mat-header-cell *matHeaderCellDef>{{text.getText().localizationLabel}}</th>
           <td mat-cell *matCellDef="let element">
@@ -54,7 +49,6 @@
             </ul>
           </td>
         </ng-container>
-
         <ng-container matColumnDef="armorPoints">
           <th mat-header-cell *matHeaderCellDef>{{text.getText().armorPointsLabel}}</th>
           <td mat-cell *matCellDef="let element">
@@ -65,7 +59,6 @@
             </ul>
           </td>
         </ng-container>
-
         <ng-container matColumnDef="penalties">
           <th mat-header-cell *matHeaderCellDef>{{text.getText().penaltiesLabel}}</th>
           <td mat-cell *matCellDef="let element">
@@ -76,7 +69,6 @@
             </ul>
           </td>
         </ng-container>
-
         <ng-container matColumnDef="qualities">
           <th mat-header-cell *matHeaderCellDef>{{text.getText().qualitiesLabel}}</th>
           <td mat-cell *matCellDef="let element">
@@ -90,7 +82,6 @@
             </ul>
           </td>
         </ng-container>
-
         <tr mat-header-row *matHeaderRowDef="armorsColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: armorsColumns;"></tr>
       </table>
