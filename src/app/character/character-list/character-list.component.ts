@@ -29,6 +29,7 @@ export class CharacterListComponent implements OnInit {
     this.subscription = this.characterService.charactersChanged.subscribe(
       (characters: Character[]) => {
         this.characters = characters;
+        this.characterGroups = this.characterService.getCharacterGroups();
       }
     )
     this.characters = this.characterService.getCharacters();
