@@ -37,7 +37,6 @@ import {MAT_BOTTOM_SHEET_DEFAULT_OPTIONS} from "@angular/material/bottom-sheet";
 import {MaterialModule} from "../material.module";
 import {WeaponComponent} from './weapon/weapon.component';
 import {WeaponListComponent} from './weapon/weapon-list/weapon-list.component';
-import {WeaponItemComponent} from './weapon/weapon-list/weapon-group-item/weapon-item.component';
 import {WeaponStartComponent} from './weapon/weapon-start/weapon-start.component';
 import {WeaponGroupDetailsComponent} from './weapon/weapon-group-details/weapon-group-details.component';
 import { ArmorComponent } from './armor/armor.component';
@@ -72,7 +71,6 @@ import { LoaderComponent } from './loader/loader.component';
     BottomSheetDescription,
     WeaponComponent,
     WeaponListComponent,
-    WeaponItemComponent,
     WeaponStartComponent,
     WeaponGroupDetailsComponent,
     ArmorComponent,

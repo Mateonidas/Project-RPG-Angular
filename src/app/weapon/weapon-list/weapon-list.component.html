@@ -1,14 +1,12 @@
 <hr>
 <div fxLayout="row">
   <div fxFlex="100">
-    <mat-accordion>
-      <mat-expansion-panel hideToggle *ngFor="let weaponType of weaponTypes">
-        <mat-expansion-panel-header>
-            <app-weapon-group-item
-              [name]="weaponType">
-            </app-weapon-group-item>
-        </mat-expansion-panel-header>
-      </mat-expansion-panel>
-    </mat-accordion>
+    <mat-list class="mat-list">
+      <div *ngFor="let weaponType of weaponTypes">
+        <mat-list-item class="mat-list-item" [routerLink]="[weaponType]" routerLinkActive="active">
+          <h6>{{weaponType}}</h6>
+        </mat-list-item>
+      </div>
+    </mat-list>
   </div>
 </div>

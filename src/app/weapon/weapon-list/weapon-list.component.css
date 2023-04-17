@@ -1,3 +1,31 @@
 .mat-expansion-panel, .mat-expanded{
   margin-bottom: 5px
 }
+
+mat-list {
+  border-radius: 4px;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+  background-color: #424242;
+}
+
+mat-list-item {
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  background-color: #424242;
+}
+
+mat-list-item:hover {
+  background-color: rgb(86, 85, 85);
+}
+
+mat-list-item:last-child {
+  border-bottom: none;
+}
+
+mat-list-item-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
