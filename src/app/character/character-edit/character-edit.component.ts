@@ -598,6 +598,7 @@ export class CharacterEditComponent implements OnInit {
       if (armor != undefined) {
         this.armorService.storeArmor(armor).then(() => {
           if (armor != null) {
+            this.armorsList = this.armorService.armorsList;
             return Promise.resolve({weapon: armor});
           } else {
             return Promise.resolve({weapon: (<UntypedFormControl>this.armors[index]).value});
@@ -622,6 +623,7 @@ export class CharacterEditComponent implements OnInit {
       if (weapon != undefined) {
         this.weaponService.storeWeapon(weapon).then(() => {
           if (weapon != null) {
+            this.weaponGroups = this.weaponService.weaponGroups;
             return Promise.resolve({weapon: weapon});
           } else {
             return Promise.resolve({weapon: (<UntypedFormControl>this.weapons[index]).value});
