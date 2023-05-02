@@ -599,9 +599,9 @@ export class CharacterEditComponent implements OnInit {
         this.armorService.storeArmor(armor).then(() => {
           if (armor != null) {
             this.armorsList = this.armorService.armorsList;
-            return Promise.resolve({weapon: armor});
+            return Promise.resolve({armor: armor});
           } else {
-            return Promise.resolve({weapon: (<UntypedFormControl>this.armors[index]).value});
+            return Promise.resolve({armor: (<UntypedFormControl>this.armors[index]).value});
           }
         })
       }

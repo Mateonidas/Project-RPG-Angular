@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Armor} from "../../model/armor/armor.model";
-import {UntypedFormArray, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
+import {UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {ArmorService} from "../../shared/services/armor-service/armor.service";
 import {ArmorBodyLocalization} from "../../model/body-localization/armor-body-localization.model";
 import {BodyLocalizationService} from "../../shared/services/body-localization-service/body-localization.service";
@@ -33,8 +33,8 @@ export class EditArmorDialog implements OnInit {
   private initForm() {
     Object.assign(this.modifiedArmor, this.armor);
     this.form = new UntypedFormGroup({
-      'name': new UntypedFormControl(this.modifiedArmor.name),
-      'nameTranslation': new UntypedFormControl(this.modifiedArmor.nameTranslation),
+      'name': new UntypedFormControl(this.modifiedArmor.name, Validators.required),
+      'nameTranslation': new UntypedFormControl(this.modifiedArmor.nameTranslation, Validators.required),
       'armorCategory': new UntypedFormControl(this.modifiedArmor.armorCategory),
       'armorBodyLocalizations': this.prepareArmorBodyLocalizationsList(this.modifiedArmor.armorBodyLocalizations),
       'armorPenalties': this.prepareArmorPenaltiesList(this.modifiedArmor.armorPenalties),
@@ -49,7 +49,7 @@ export class EditArmorDialog implements OnInit {
       armorBodyLocalizations.push(
         new UntypedFormGroup({
           'bodyLocalization': new UntypedFormControl(armorBodyLocalization.bodyLocalization),
-          'armorPoints': new UntypedFormControl(armorBodyLocalization.armorPoints),
+          'armorPoints': new UntypedFormControl(armorBodyLocalization.armorPoints, Validators.required),
         })
       )
     }
@@ -85,7 +85,7 @@ export class EditArmorDialog implements OnInit {
     (<UntypedFormArray>this.form.get('armorBodyLocalizations')).push(
       new UntypedFormGroup({
         'bodyLocalization': new UntypedFormControl(null),
-        'armorPoints': new UntypedFormControl(null),
+        'armorPoints': new UntypedFormControl(null, Validators.required),
         'additionalArmorPoints': new UntypedFormControl(null)
       })
     );
@@ -104,17 +104,19 @@ export class EditArmorDialog implements OnInit {
   }
 
   onSave() {
-    let armor: Armor;
-    if (this.form.value.name != this.armor.name || this.form.value.nameTranslation != this.armor.nameTranslation) {
-      this.modifyArmor(this.modifiedArmor);
-      armor = this.modifiedArmor;
-      armor.id = undefined;
-    } else {
-      this.modifyArmor(this.armor);
-      armor = this.armor;
-    }
+    if (this.form.valid) {
+      let armor: Armor;
+      if (this.form.value.name != this.armor.name || this.form.value.nameTranslation != this.armor.nameTranslation) {
+        this.modifyArmor(this.modifiedArmor);
+        armor = this.modifiedArmor;
+        armor.id = undefined;
+      } else {
+        this.modifyArmor(this.armor);
+        armor = this.armor;
+      }
 
-    this.dialogRef.close(armor);
+      this.dialogRef.close(armor);
+    }
   }
 
   modifyArmor(armor: Armor) {

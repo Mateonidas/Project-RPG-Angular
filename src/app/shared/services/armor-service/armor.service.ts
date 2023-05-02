@@ -110,4 +110,18 @@ export class ArmorService {
       this.translateService.prepareArmorQuality(armorQuality)
     }
   }
+
+  async removeArmor(id: number) {
+    await this.deleteArmor(id).then(
+      async () => {
+        await this.fetchArmors().then()
+      }
+    )
+  }
+
+  private deleteArmor(id: number) {
+    return this.http
+      .delete(`http://localhost:8080/armor/${id}`)
+      .toPromise()
+  }
 }

@@ -83,9 +83,25 @@
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="armorsColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: armorsColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: armorsColumns;" (contextmenu)="onContextMenu($event, row)"></tr>
       </table>
       <br>
     </ng-container>
   </div>
 </div>
+
+<div style="visibility: hidden; position: fixed"
+     [style.left]="contextMenuPosition.x"
+     [style.top]="contextMenuPosition.y"
+     [matMenuTriggerFor]="contextMenu">
+</div>
+
+<mat-menu #contextMenu="matMenu">
+  <ng-template matMenuContent let-armor="armor">
+    <button mat-menu-item (click)="onEditArmor(armor)">
+      <span *ngIf="armor.isBaseArmor == true">{{text.getText().copyLabel}}</span>
+      <span *ngIf="armor.isBaseArmor == false">{{text.getText().editLabel}}</span>
+    </button>
+    <button *ngIf="armor.isBaseArmor == false" mat-menu-item (click)="onDeleteArmor(armor.id)">{{text.getText().deleteLabel}}</button>
+  </ng-template>
+</mat-menu>
