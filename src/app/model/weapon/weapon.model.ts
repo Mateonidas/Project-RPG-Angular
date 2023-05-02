@@ -14,8 +14,9 @@ export class Weapon extends Model {
   public price: string;
   public encumbrance: string;
   public availability: Model;
+  public isBaseWeapon: boolean;
 
-  constructor(name?: string, nameTranslation?: string, weaponType?: Model, weaponGroup?: Model, reach?: Model, range?: number, isUsingStrength?: boolean, isUsingStrengthInRange?: boolean, damage?: number, qualities?: WeaponQualityValue[], id?: number, price?: string, encumbrance?: string, availability?: Model) {
+  constructor(name?: string, nameTranslation?: string, weaponType?: Model, weaponGroup?: Model, reach?: Model, range?: number, isUsingStrength?: boolean, isUsingStrengthInRange?: boolean, damage?: number, qualities?: WeaponQualityValue[], id?: number, price?: string, encumbrance?: string, availability?: Model, isBaseWeapon?: boolean) {
     super(name, nameTranslation)
     this.weaponType = <Model>weaponType
     this.weaponGroup = <Model>weaponGroup
@@ -26,9 +27,10 @@ export class Weapon extends Model {
     this.isUsingStrengthInRange = <boolean>isUsingStrengthInRange
     this.weaponQualities = <WeaponQualityValue[]>qualities
     this.id = <number>id
-    this.price = <string>price;
-    this.encumbrance = <string>encumbrance;
-    this.availability = <Model>availability;
+    this.price = <string>price
+    this.encumbrance = <string>encumbrance
+    this.availability = <Model>availability
+    this.isBaseWeapon = <boolean>isBaseWeapon
   }
 
   static fromJSON(object: Object): Weapon {

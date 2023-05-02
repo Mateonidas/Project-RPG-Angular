@@ -45,6 +45,7 @@ import { AddManyToFightDialog } from './dialog-window/add-many-to-fight/add-many
 import { InitiativeDialog } from './dialog-window/initiative-dialog/initiative-dialog.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { LoaderComponent } from './loader/loader.component';
+import { ConfirmationDialogComponent } from './dialog-window/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { LoaderComponent } from './loader/loader.component';
     ArmorGroupDetails,
     AddManyToFightDialog,
     InitiativeDialog,
-    LoaderComponent
+    LoaderComponent,
+    ConfirmationDialogComponent
   ],
     imports: [
         BrowserModule,

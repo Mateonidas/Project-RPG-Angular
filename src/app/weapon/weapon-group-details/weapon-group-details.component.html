@@ -98,9 +98,26 @@
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="weaponColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: weaponColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: weaponColumns;"
+            (contextmenu)="onContextMenu($event, row)"></tr>
       </table>
       <br>
     </ng-container>
   </div>
 </div>
+
+<div style="visibility: hidden; position: fixed"
+     [style.left]="contextMenuPosition.x"
+     [style.top]="contextMenuPosition.y"
+     [matMenuTriggerFor]="contextMenu">
+</div>
+
+<mat-menu #contextMenu="matMenu">
+  <ng-template matMenuContent let-weapon="weapon">
+    <button mat-menu-item (click)="onEditWeapon(weapon)">
+      <span *ngIf="weapon.isBaseWeapon == true">Kopiuj</span>
+      <span *ngIf="weapon.isBaseWeapon == false">Edytuj</span>
+    </button>
+    <button *ngIf="weapon.isBaseWeapon == false" mat-menu-item (click)="onDeleteWeapon(weapon.id)">Usuń</button>
+  </ng-template>
+</mat-menu>

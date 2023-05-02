@@ -161,4 +161,18 @@ export class WeaponService {
       this.translateService.prepareWeaponQuality(quality)
     }
   }
+
+  async removeWeapon(id: number) {
+    await this.deleteWeapon(id).then(
+      async () => {
+        await this.fetchWeapons().then()
+      }
+    )
+  }
+
+  private deleteWeapon(id: number) {
+    return this.http
+      .delete(`http://localhost:8080/weapon/${id}`)
+      .toPromise()
+  }
 }
