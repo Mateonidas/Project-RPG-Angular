@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Weapon} from "../../model/weapon/weapon.model";
-import {UntypedFormArray, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
+import {UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {Model} from "../../model/model";
 import {WeaponService} from "../../shared/services/weapon-service/weapon.service";
 import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
@@ -30,15 +30,15 @@ export class EditWeaponDialog implements OnInit {
   private initForm() {
     Object.assign(this.modifiedWeapon, this.weapon);
     this.form = new UntypedFormGroup({
-      'name': new UntypedFormControl(this.modifiedWeapon.name),
-      'nameTranslation': new UntypedFormControl(this.modifiedWeapon.nameTranslation),
+      'name': new UntypedFormControl(this.modifiedWeapon.name, Validators.required),
+      'nameTranslation': new UntypedFormControl(this.modifiedWeapon.nameTranslation, Validators.required),
       'weaponType': new UntypedFormControl(this.modifiedWeapon.weaponType),
       'weaponGroup': new UntypedFormControl(this.modifiedWeapon.weaponGroup),
       'weaponReach': new UntypedFormControl(this.modifiedWeapon.weaponReach),
       'weaponRange': new UntypedFormControl(this.modifiedWeapon.weaponRange),
       'isUsingStrength': new UntypedFormControl(this.modifiedWeapon.isUsingStrength),
       'isUsingStrengthInRange': new UntypedFormControl(this.modifiedWeapon.isUsingStrengthInRange),
-      'damage': new UntypedFormControl(this.modifiedWeapon.damage),
+      'damage': new UntypedFormControl(this.modifiedWeapon.damage, Validators.required),
       'weaponQualities': this.prepareWeaponQualitiesList(this.weapon.weaponQualities)
     });
   }
@@ -80,17 +80,19 @@ export class EditWeaponDialog implements OnInit {
   }
 
   onSave() {
-    let weapon: Weapon;
-    if(this.form.value.name != this.weapon.name || this.form.value.nameTranslation != this.weapon.nameTranslation) {
-      this.modifyWeapon(this.modifiedWeapon);
-      weapon = this.modifiedWeapon;
-      weapon.id = 0;
-    } else {
-      this.modifyWeapon(this.weapon);
-      weapon = this.weapon;
-    }
+    if (this.form.valid) {
+      let weapon: Weapon;
+      if (this.weapon.isBaseWeapon || this.form.value.name != this.weapon.name || this.form.value.nameTranslation != this.weapon.nameTranslation) {
+        this.modifyWeapon(this.modifiedWeapon);
+        weapon = this.modifiedWeapon;
+        weapon.id = 0;
+      } else {
+        this.modifyWeapon(this.weapon);
+        weapon = this.weapon;
+      }
 
-    this.dialogRef.close(weapon);
+      this.dialogRef.close(weapon);
+    }
   }
 
   private modifyWeapon(weapon: Weapon) {
