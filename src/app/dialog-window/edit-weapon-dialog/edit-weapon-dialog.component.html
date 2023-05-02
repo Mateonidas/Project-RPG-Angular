@@ -1,4 +1,7 @@
-<h1 mat-dialog-title>{{text.getText().modificationLabel}} {{weapon.nameTranslation}}</h1>
+<h1 mat-dialog-title>
+  <span *ngIf="weapon.nameTranslation != undefined">{{text.getText().modificationLabel}} {{weapon.nameTranslation}}</span>
+  <span *ngIf="weapon.nameTranslation == undefined">{{text.getText().addWeaponLabel}}</span>
+</h1>
 
 <form [formGroup]="form" (ngSubmit)="onSave()">
   <div mat-dialog-content>
@@ -70,6 +73,31 @@
         <mat-error *ngIf="form.get('damage')?.invalid && (form.get('damage')?.dirty || form.get('damage')?.touched)">
           {{text.getText().fieldIsRequiresLabel}}
         </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row">
+      <mat-form-field appearance="fill">
+        <mat-label>{{text.getText().priceLabel}}</mat-label>
+        <input matInput type="number" formControlName="price">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row">
+      <mat-form-field appearance="fill">
+        <mat-label>{{text.getText().encumbranceLabel}}</mat-label>
+        <input matInput type="number" formControlName="encumbrance">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row">
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>{{text.getText().availabilityLabel}}</mat-label>
+        <mat-select formControlName="availability">
+          <mat-option *ngFor="let availability of availabilityService.availabilityList" [value]="availability">
+            {{availability.nameTranslation}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
 

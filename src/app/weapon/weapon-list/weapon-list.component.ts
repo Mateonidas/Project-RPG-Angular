@@ -2,6 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {WeaponService} from "../../shared/services/weapon-service/weapon.service";
 import {WeaponGroup} from "../../model/weapon/weapons-group.model";
+import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
+import {Weapon} from "../../model/weapon/weapon.model";
+import {EditWeaponDialog} from "../../dialog-window/edit-weapon-dialog/edit-weapon-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-weapon-list',
@@ -12,9 +16,11 @@ export class WeaponListComponent implements OnInit {
   subscription!: Subscription
   weaponTypes: string[] = []
 
-  constructor(public weaponService: WeaponService) {
-  }
+  text = TextResourceService
 
+  constructor(public weaponService: WeaponService,
+              public dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     this.subscription = this.weaponService.weaponGroupsChanged.subscribe(
@@ -36,4 +42,23 @@ export class WeaponListComponent implements OnInit {
     })
   }
 
+  async addWeapon() {
+    await this.createEditWeaponDialog();
+  }
+
+  createEditWeaponDialog() {
+    const dialogRef = this.dialog.open(EditWeaponDialog, {
+      width: '30%',
+      data: new Weapon(),
+    });
+
+    dialogRef.afterClosed().subscribe(weapon => {
+      if (weapon != undefined) {
+        this.weaponService.storeWeapon(weapon).then(() => {
+          this.groupWeaponCategories(this.weaponService.getWeaponGroups())
+          return Promise.resolve({weapon: weapon});
+        })
+      }
+    })
+  }
 }
