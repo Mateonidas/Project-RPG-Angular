@@ -1,6 +1,6 @@
-<h2 mat-dialog-title>Potwierdzenie</h2>
-<mat-dialog-content>Czy na pewno chcesz to zrobić?</mat-dialog-content>
+<h2 mat-dialog-title>{{text.getText().confirmationLabel}}</h2>
+<mat-dialog-content>{{text.getText().confirmationTextLabel}}</mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Nie</button>
-  <button mat-button color="warn" (click)="onYesClick()">Tak</button>
+  <button mat-button (click)="onNoClick()">{{text.getText().noLabel}}</button>
+  <button mat-button color="warn" (click)="onYesClick()">{{text.getText().yesLabel}}</button>
 </mat-dialog-actions>
