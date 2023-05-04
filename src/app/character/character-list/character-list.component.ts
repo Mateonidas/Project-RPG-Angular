@@ -42,5 +42,7 @@ export class CharacterListComponent implements OnInit {
 
   onAddGroupToFight(characters: Character[]) {
     this.skirmishCharacterService.storeSkirmishCharactersGroup(characters);
+    // @ts-ignore
+    event.stopPropagation()
   }
 }
