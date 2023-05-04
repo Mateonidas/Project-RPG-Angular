@@ -1,16 +1,16 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {Armor} from "../../model/armor/armor.model";
-import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
-import {ArmorService} from "../../shared/services/armor-service/armor.service";
-import {MatBottomSheet} from "@angular/material/bottom-sheet";
-import {Model} from "../../model/model";
+import {Component, OnInit, ViewChild} from '@angular/core'
+import {Armor} from "../../model/armor/armor.model"
+import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service"
+import {ArmorService} from "../../shared/services/armor-service/armor.service"
+import {MatBottomSheet} from "@angular/material/bottom-sheet"
+import {Model} from "../../model/model"
 import {
   BottomSheetDescription
-} from "../../shared/bottom-sheet/bottom-sheet-description/bottom-sheet-description.component";
-import {MatMenuTrigger} from "@angular/material/menu";
-import {ConfirmationDialogComponent} from "../../dialog-window/confirmation-dialog/confirmation-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
-import {EditArmorDialog} from "../../dialog-window/edit-armor-dialog/edit-armor-dialog.component";
+} from "../../shared/bottom-sheet/bottom-sheet-description/bottom-sheet-description.component"
+import {MatMenuTrigger} from "@angular/material/menu"
+import {ConfirmationDialogComponent} from "../../dialog-window/confirmation-dialog/confirmation-dialog.component"
+import {MatDialog} from "@angular/material/dialog"
+import {EditArmorDialog} from "../../dialog-window/edit-armor-dialog/edit-armor-dialog.component"
 
 @Component({
   selector: 'app-armor-group-details',
@@ -20,10 +20,10 @@ import {EditArmorDialog} from "../../dialog-window/edit-armor-dialog/edit-armor-
 export class ArmorGroupDetails implements OnInit {
   armorGroups!: { name: string, armors: Armor[] }[]
   text = TextResourceService
-  armorsColumns: string[] = ['name', 'price', 'enc', 'availability', 'category', 'localization', 'armorPoints', 'penalties', 'qualities'];
+  armorsColumns: string[] = ['name', 'price', 'enc', 'availability', 'category', 'localization', 'armorPoints', 'penalties', 'qualities']
 
-  @ViewChild(MatMenuTrigger) contextMenu!: MatMenuTrigger;
-  contextMenuPosition = {x: '0px', y: '0px'};
+  @ViewChild(MatMenuTrigger) contextMenu!: MatMenuTrigger
+  contextMenuPosition = {x: '0px', y: '0px'}
 
   constructor(private armorService: ArmorService,
               private bottomSheet: MatBottomSheet,
@@ -61,30 +61,34 @@ export class ArmorGroupDetails implements OnInit {
   }
 
   onContextMenu(event: MouseEvent, armor: Armor) {
-    event.preventDefault();
-    this.contextMenuPosition.x = event.clientX + 'px';
-    this.contextMenuPosition.y = event.clientY + 'px';
+    event.preventDefault()
+    this.contextMenuPosition.x = event.clientX + 'px'
+    this.contextMenuPosition.y = event.clientY + 'px'
     this.contextMenu.menuData = {'armor': armor}
     // @ts-ignore
-    this.contextMenu.menu.focusFirstItem('mouse');
-    this.contextMenu.openMenu();
+    this.contextMenu.menu.focusFirstItem('mouse')
+    this.contextMenu.openMenu()
+  }
+
+  async onAddArmor() {
+    await this.createEditArmorDialogWindow(new Armor())
   }
 
   async onEditArmor(armor: Armor) {
-    await this.createEditArmorDialogWindow(armor);
+    await this.createEditArmorDialogWindow(armor)
   }
 
   createEditArmorDialogWindow(armor: Armor) {
     const dialogRef = this.dialog.open(EditArmorDialog, {
       width: '30%',
       data: armor,
-    });
+    })
 
     dialogRef.afterClosed().subscribe(armor => {
       if (armor != undefined) {
         this.armorService.storeArmor(armor).then(() => {
           this.groupArmors(this.armorService.armorsList)
-          return Promise.resolve({weapon: armor});
+          return Promise.resolve({weapon: armor})
         })
       }
     })
@@ -93,14 +97,14 @@ export class ArmorGroupDetails implements OnInit {
   onDeleteArmor(id: number) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px'
-    });
+    })
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
         this.armorService.removeArmor(id).then(() => {
           this.groupArmors(this.armorService.armorsList)
-        });
+        })
       }
-    });
+    })
   }
 }

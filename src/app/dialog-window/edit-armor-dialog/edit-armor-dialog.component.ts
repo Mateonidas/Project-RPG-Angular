@@ -7,6 +7,7 @@ import {BodyLocalizationService} from "../../shared/services/body-localization-s
 import {Model} from "../../model/model";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
+import {AvailabilityService} from "../../shared/services/availability-service/availability.service";
 
 @Component({
   selector: 'app-edit-armor-dialog',
@@ -22,8 +23,8 @@ export class EditArmorDialog implements OnInit {
   constructor(public dialogRef: MatDialogRef<EditArmorDialog>,
               @Inject(MAT_DIALOG_DATA) public armor: Armor,
               public armorService: ArmorService,
-              public bodyLocalizationService: BodyLocalizationService
-  ) {
+              public bodyLocalizationService: BodyLocalizationService,
+              public availabilityService: AvailabilityService) {
   }
 
   ngOnInit(): void {
@@ -33,12 +34,15 @@ export class EditArmorDialog implements OnInit {
   private initForm() {
     Object.assign(this.modifiedArmor, this.armor);
     this.form = new UntypedFormGroup({
-      'name': new UntypedFormControl(this.modifiedArmor.name, Validators.required),
-      'nameTranslation': new UntypedFormControl(this.modifiedArmor.nameTranslation, Validators.required),
-      'armorCategory': new UntypedFormControl(this.modifiedArmor.armorCategory),
-      'armorBodyLocalizations': this.prepareArmorBodyLocalizationsList(this.modifiedArmor.armorBodyLocalizations),
-      'armorPenalties': this.prepareArmorPenaltiesList(this.modifiedArmor.armorPenalties),
-      'armorQualities': this.prepareArmorQualitiesList(this.modifiedArmor.armorQualities)
+      'name': new UntypedFormControl(this.modifiedArmor.name ?? null, Validators.required),
+      'nameTranslation': new UntypedFormControl(this.modifiedArmor.nameTranslation ?? null, Validators.required),
+      'armorCategory': new UntypedFormControl(this.modifiedArmor.armorCategory ?? this.armorService.armorCategoriesList[0]),
+      'armorBodyLocalizations': this.prepareArmorBodyLocalizationsList(this.modifiedArmor.armorBodyLocalizations ?? []),
+      'armorPenalties': this.prepareArmorPenaltiesList(this.modifiedArmor.armorPenalties ?? []),
+      'armorQualities': this.prepareArmorQualitiesList(this.modifiedArmor.armorQualities ?? []),
+      'price': new UntypedFormControl(this.modifiedArmor.price ?? null),
+      'encumbrance': new UntypedFormControl(this.modifiedArmor.encumbrance ?? null),
+      'availability': new UntypedFormControl(this.modifiedArmor.availability ?? this.availabilityService.availabilityList[0]),
     });
   }
 
@@ -126,6 +130,9 @@ export class EditArmorDialog implements OnInit {
     armor.armorBodyLocalizations = <ArmorBodyLocalization[]>this.form.value.armorBodyLocalizations;
     armor.armorPenalties = <Model[]>this.form.value.armorPenalties;
     armor.armorQualities = <Model[]>this.form.value.armorQualities;
+    armor.price = this.form.value.price ?? '-';
+    armor.encumbrance = this.form.value.encumbrance ?? '-';
+    armor.availability = this.form.value.availability;
   }
 
   get armorBodyLocalizations() {
