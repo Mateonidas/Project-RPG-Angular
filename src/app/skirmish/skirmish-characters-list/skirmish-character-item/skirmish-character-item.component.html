@@ -25,6 +25,10 @@
       </div>
       <div fxLayout="row" *ngIf="!skirmishCharacter.isDead">
         <div fxFlex="60">
+          <h6 class="list-group-item-heading">Notatki</h6>
+          <p class="list-group-item-text">
+            +
+          </p>
         </div>
         <div fxFlex="20">
           <h6 class="list-group-item-heading">Przewagi</h6>
@@ -34,14 +38,6 @@
           <h6 class="list-group-item-heading">Stany</h6>
           <p *ngFor="let characterCondition of skirmishCharacter.conditions" class="list-group-item-text">
             - {{characterCondition.condition.nameTranslation}} {{characterCondition.value}}
-          </p>
-        </div>
-      </div>
-      <div fxLayout="row" *ngIf="skirmishCharacter.notes.length > 0">
-        <div fxFlex="100">
-          <h6 class="list-group-item-heading">Notatki</h6>
-          <p *ngFor="let note of skirmishCharacter.notes" class="list-group-item-text">
-            - {{note}}
           </p>
         </div>
       </div>
