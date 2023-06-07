@@ -2434,6 +2434,26 @@
       "name": "BLAST",
       "nameTranslation": "Wybuch",
       "description": "PZ: 4\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Natychmiast\n\nFormujesz magię w wybuchowy podmuch. Uznawany jest on za magiczny pocisk o współczynniku Obrażeń +3 zadawanym wszystkim celom w Zasięgu."
+    },
+    {
+      "name": "IDYLL",
+      "nameTranslation": "Idylla",
+      "description": "PZ: 5\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\nTwoja magia wbija się głęboko w cel, zalewając jego duszę dręczącą świadomością jego zniszczonych marzeń. Inicjatywa celu spada do 10, jeśli jeszcze nie była poniżej tego poziomu, ponieważ jego umysł wywraca się na nitce. W Turze celu jego ruch jest losowy i ustalany przez MG. Cel zaczyna lamentować nad swoim życiem, lubieżnie opowiadając wszystko, co miało się wydarzyć, i machając rękoma w powietrzu. Ponadto cel może wykonać Akcję jedynie wtedy, gdy powiedzie mu się Wymagający (+0) Test Opanowania. W przeciwnym razie jest zbyt zajęty opłakiwaniem wszystkiego, co mogło się wydarzyć, a nie wydarzyło."
+    },
+    {
+      "name": "WARD",
+      "nameTranslation": "Magiczna Ochrona",
+      "description": "PZ: 5\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\nTwoja magia wbija się głęboko w cel, zalewając jego duszę dręczącą świadomością jego zniszczonych marzeń. Inicjatywa celu spada do 10, jeśli jeszcze nie była poniżej tego poziomu, ponieważ jego umysł wywraca się na nitce. W Turze celu jego ruch jest losowy i ustalany przez MG. Cel zaczyna lamentować nad swoim życiem, lubieżnie opowiadając wszystko, co miało się wydarzyć, i machając rękoma w powietrzu. Ponadto cel może wykonać Akcję jedynie wtedy, gdy powiedzie mu się Wymagający (+0) Test Opanowania. W przeciwnym razie jest zbyt zajęty opłakiwaniem wszystkiego, co mogło się wydarzyć, a nie wydarzyło."
+    },
+    {
+      "name": "RAISE_DEAD",
+      "nameTranslation": "Ożywienie",
+      "description": "PZ: 8\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Do wschodu słońca\nKierujesz ciężki podmuch Dhar w ziemię, sprawiając, że stare kości zaczynają się grupować i wstają z martwych. 1 + PS szkieletów wydrapie sobie drogę na powierzchnię w Zasięgu do końca Rundy, w porządku dowolnie ustalonym przez ciebie. Rozpoczynają one Rundę w Stanie Powalenie. Przyzwani nieumarli będą całkowicie pod twoją kontrolą i wykonają proste rozkazy. Jeśli zostaniesz zabity lub otrzymasz Stan Utrata Przytomności, zaklęcie dobiegnie końca, a przyzwani Ożywieńcy padną na ziemię. Za każde 2 PS w Teście Rzucenia Zaklęcia możesz przyzwać dodatkowe szkielety w liczbie równej PS."
+    },
+    {
+      "name": "VANHELS_CALL",
+      "nameTranslation": "Zew Vanhela",
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Sile Woli\nCel: Specjalny\nCzas: Natychmiast\nManipulujesz skomplikowanym wirem Dhar i wysyłasz go w stronę swoich celów, wypełniając je jego przytłaczającą energią. Cele o Cesze Stworzenia Ożywieniec w liczbie równej twemu Bonusowi z Inteligencji zyskują dodatkowy Ruch lub Akcję – wybierz jeden efekt, który wpłynie na wszystkie cele. Efekt następuje w momencie rzucenia zaklęcia. Za każde +2 PS w Teście Rzucenia Zaklęcia możesz wpłynąć na dodatkowe cele (w liczbie równej Bonusowi z Inteligencji)."
     }
   ],
   "bodyLocalizations": [
