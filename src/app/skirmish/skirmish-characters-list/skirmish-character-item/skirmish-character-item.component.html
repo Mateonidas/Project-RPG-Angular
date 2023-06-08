@@ -1,5 +1,5 @@
  <div
-    [ngClass]="skirmishCharacter.isDead == true ? 'dropdown dead-character' : 'dropdown'">
+    [ngClass]="skirmishCharacter.isDead ? 'dropdown dead-character' : 'dropdown'">
 
     <a mat-list-item
             style="cursor: pointer; width: 100%"
@@ -12,30 +12,32 @@
           <span class="list-group-item-text">{{skirmishCharacter.description}}</span>
         </div>
         <div fxFlex="20" *ngIf="!skirmishCharacter.isDead">
-          <h6 class="list-group-item-heading">Inicjatywa</h6>
+          <h6 class="list-group-item-heading">{{text.getText().initiativeLabel}}</h6>
           <p class="list-group-item-text">{{skirmishCharacter.skirmishInitiative}}</p>
         </div>
         <div fxFlex="20" *ngIf="!skirmishCharacter.isDead">
-          <h6 class="list-group-item-heading">Żywotność</h6>
+          <h6 class="list-group-item-heading">{{text.getText().woundsLabel}}</h6>
           <p class="list-group-item-text">{{skirmishCharacter.currentWounds}}/{{skirmishCharacter.wounds.value}}</p>
         </div>
         <div fxFlex="100" *ngIf="skirmishCharacter.isDead">
-          <h6 class="list-group-item-heading">Martwy</h6>
+          <h6 class="list-group-item-heading">{{text.getText().deadLabel}}</h6>
         </div>
       </div>
       <div fxLayout="row" *ngIf="!skirmishCharacter.isDead">
         <div fxFlex="60">
-          <h6 class="list-group-item-heading">Notatki</h6>
-          <p class="list-group-item-text">
-            +
-          </p>
+          <div *ngIf="skirmishCharacter.notes.length > 0">
+            <h6 class="list-group-item-heading">{{text.getText().notesLabel}}</h6>
+            <p class="list-group-item-text">
+              +
+            </p>
+          </div>
         </div>
         <div fxFlex="20">
-          <h6 class="list-group-item-heading">Przewagi</h6>
+          <h6 class="list-group-item-heading">{{text.getText().advantageLabel}}</h6>
           <p class="list-group-item-text">{{skirmishCharacter.advantage}}</p>
         </div>
         <div fxFlex="20">
-          <h6 class="list-group-item-heading">Stany</h6>
+          <h6 class="list-group-item-heading">{{text.getText().conditionsLabel}}</h6>
           <p *ngFor="let characterCondition of skirmishCharacter.conditions" class="list-group-item-text">
             - {{characterCondition.condition.nameTranslation}} {{characterCondition.value}}
           </p>

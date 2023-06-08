@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.model";
+import {TextResourceService} from "../../../shared/services/text-resource-service/text-resource.service";
 
 @Component({
   selector: 'app-skirmish-character-item',
@@ -9,6 +10,8 @@ import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.mode
 export class SkirmishCharacterItemComponent implements OnInit {
   @Input() skirmishCharacter!: SkirmishCharacter;
   @Input() index!: number;
+
+  text = TextResourceService;
 
   constructor() { }
 
