@@ -1,14 +1,15 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
-import {ActivatedRoute, Params, Router} from "@angular/router";
-import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
-import {CharacterDetailComponent} from "../../character/character-detail/character-detail.component";
-import {CharacterService} from "../../shared/services/character-service/character.service";
-import {MatDialog} from "@angular/material/dialog";
-import {ReceiveDamageDialog} from "../../dialog-window/receive-damage-dialog/receive-damage-dialog.component";
-import {SkirmishService} from "../../shared/services/skirmish-service/skirmish.service";
-import {MatBottomSheet} from "@angular/material/bottom-sheet";
-import {CharacterBodyLocalization} from "../../model/body-localization/character-body-localization.model";
+import {Component, HostListener, OnInit} from '@angular/core'
+import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service"
+import {ActivatedRoute, Params, Router} from "@angular/router"
+import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model"
+import {CharacterDetailComponent} from "../../character/character-detail/character-detail.component"
+import {CharacterService} from "../../shared/services/character-service/character.service"
+import {MatDialog} from "@angular/material/dialog"
+import {ReceiveDamageDialog} from "../../dialog-window/receive-damage-dialog/receive-damage-dialog.component"
+import {SkirmishService} from "../../shared/services/skirmish-service/skirmish.service"
+import {MatBottomSheet} from "@angular/material/bottom-sheet"
+import {CharacterBodyLocalization} from "../../model/body-localization/character-body-localization.model"
+import {AddConditionDialogComponent} from "../../dialog-window/add-condition-dialog/add-condition-dialog.component"
 
 @Component({
   selector: 'app-skirmish-character-details',
@@ -17,8 +18,8 @@ import {CharacterBodyLocalization} from "../../model/body-localization/character
 })
 export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent implements OnInit {
 
-  character!: SkirmishCharacter;
-  isSkirmishMode = true;
+  character!: SkirmishCharacter
+  isSkirmishMode = true
 
   constructor(public characterService: CharacterService,
               public skirmishCharacterService: SkirmishCharacterService,
@@ -27,26 +28,26 @@ export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent 
               protected router: Router,
               protected dialog: MatDialog,
               protected bottomSheet: MatBottomSheet) {
-    super(characterService, skirmishCharacterService, route, router, bottomSheet, dialog);
+    super(characterService, skirmishCharacterService, route, router, bottomSheet, dialog)
   }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-        this.id = +params['id'];
-        this.character = this.skirmishCharacterService.getSkirmishCharacter(this.id);
+        this.id = +params['id']
+        this.character = this.skirmishCharacterService.getSkirmishCharacter(this.id)
       }
     )
   }
 
   onDeleteCharacter() {
-    this.skirmishCharacterService.removeSkirmishCharacter(this.id);
-    this.router.navigate(['skirmish']);
+    this.skirmishCharacterService.removeSkirmishCharacter(this.id)
+    this.router.navigate(['skirmish'])
   }
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event.key == 'Enter') {
-      this.onEditCharacter();
+      this.onEditCharacter()
     }
   }
 
@@ -54,38 +55,52 @@ export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent 
     const dialogRef = this.dialog.open(ReceiveDamageDialog, {
       width: '20%',
       data: this.character,
-    });
+    })
 
     dialogRef.afterClosed().subscribe(async receivedDamage => {
       if (receivedDamage != undefined) {
-        await this.skirmishService.receiveDamage(receivedDamage);
-        await this.reloadSkirmishCharacters();
+        await this.skirmishService.receiveDamage(receivedDamage)
+        await this.reloadSkirmishCharacters()
+      }
+    })
+  }
+
+  async onAddCondition() {
+    const dialogRef = this.dialog.open(AddConditionDialogComponent, {
+      width: '40%',
+      data: this.character,
+    })
+
+    dialogRef.afterClosed().subscribe(async addConditions => {
+      if (addConditions != undefined) {
+        await this.skirmishService.addConditions(addConditions)
+        await this.reloadSkirmishCharacters()
       }
     })
   }
 
   async addAdvantagePoint() {
-    await this.skirmishService.addAdvantagePoint(this.character.id);
-    await this.reloadSkirmishCharacters();
+    await this.skirmishService.addAdvantagePoint(this.character.id)
+    await this.reloadSkirmishCharacters()
   }
 
   async removeAdvantagePoint() {
-    await this.skirmishService.removeAdvantagePoint(this.character.id);
-    await this.reloadSkirmishCharacters();
+    await this.skirmishService.removeAdvantagePoint(this.character.id)
+    await this.reloadSkirmishCharacters()
   }
 
   async addAdditionalArmorPoint(bodyLocalization: CharacterBodyLocalization) {
-    await this.skirmishService.addAdditionalArmorPoint(bodyLocalization);
-    await this.reloadSkirmishCharacters();
+    await this.skirmishService.addAdditionalArmorPoint(bodyLocalization)
+    await this.reloadSkirmishCharacters()
   }
 
   async removeAdditionalArmorPoint(bodyLocalization: CharacterBodyLocalization) {
-    await this.skirmishService.removeAdditionalArmorPoint(bodyLocalization);
-    await this.reloadSkirmishCharacters();
+    await this.skirmishService.removeAdditionalArmorPoint(bodyLocalization)
+    await this.reloadSkirmishCharacters()
   }
 
   async reloadSkirmishCharacters() {
-    await this.skirmishCharacterService.fetchSkirmishCharacter();
-    this.character = this.skirmishCharacterService.getSkirmishCharacter(this.id);
+    await this.skirmishCharacterService.fetchSkirmishCharacter()
+    this.character = this.skirmishCharacterService.getSkirmishCharacter(this.id)
   }
 }

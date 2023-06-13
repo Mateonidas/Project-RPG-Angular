@@ -126,4 +126,8 @@ export class CharacterDetailComponent implements OnInit {
       panelClass: 'bottom-sheet'
     });
   }
+
+  onAddCondition() {
+
+  }
 }

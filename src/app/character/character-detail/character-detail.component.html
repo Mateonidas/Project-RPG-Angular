@@ -22,6 +22,8 @@
     </mat-menu>
     <button mat-raised-button color="primary" *ngIf="isSkirmishMode"
             (click)="onReceiveDamage()">{{text.getText().dealDamageLabel}}</button>
+    <button mat-raised-button color="primary" *ngIf="isSkirmishMode"
+            (click)="onAddCondition()">{{text.getText().addConditionLabel}}</button>
 
   </div>
 </div>
