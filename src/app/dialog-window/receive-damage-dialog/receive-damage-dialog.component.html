@@ -1,19 +1,26 @@
 <h1 mat-dialog-title>{{this.text.getText().receiveDamageLabel}}</h1>
 <div mat-dialog-content>
   <p>{{this.text.getText().damageForLabel}} {{this.character.name}}</p>
+
   <mat-form-field appearance="fill">
     <mat-label>{{text.getText().valueLabel}}</mat-label>
-    <input matInput type="number" [(ngModel)]="receivedDamage.damage">
+    <input matInput type="number" [(ngModel)]="receivedDamage.damage" required #damageInput="ngModel">
+    <mat-error *ngIf="damageInput.invalid && (damageInput.dirty || damageInput.touched)">
+      {{text.getText().fieldIsRequiresLabel}}
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="example-full-width">
     <mat-label>{{text.getText().localizationNameLabel}}</mat-label>
-    <mat-select [(ngModel)]="receivedDamage.bodyLocalization" [compareWith]="compareModels">
+    <mat-select [(ngModel)]="receivedDamage.bodyLocalization" [compareWith]="compareModels" required #bodyLocalization="ngModel">
       <mat-option *ngFor="let bodyLocalization of character.bodyLocalizations"
                   [value]="bodyLocalization.bodyLocalization.name">
         {{bodyLocalization.bodyLocalization.nameTranslation}}
       </mat-option>
     </mat-select>
+    <mat-error *ngIf="bodyLocalization.invalid && (bodyLocalization.dirty || bodyLocalization.touched)">
+      {{text.getText().fieldIsRequiresLabel}}
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -21,32 +28,62 @@
     <input matInput type="number" [(ngModel)]="receivedDamage.shield">
   </mat-form-field>
 
-  <p>{{text.getText().isWeaponUndamagingLabel}}</p>
   <section>
-    <mat-slide-toggle
-      color="primary"
-      [(ngModel)]="receivedDamage.isWeaponUndamaging">
-    </mat-slide-toggle>
+    <mat-checkbox
+      [(ngModel)]="receivedDamage.isSuddenDeath"
+      color="primary">
+      {{text.getText().suddenDeath}}
+    </mat-checkbox>
   </section>
 
-  <ng-container *ngIf="receivedDamage.isWeaponUndamaging">
-    <p style="margin-top: 10px">{{text.getText().isCharacterLoseTestLabel}}</p>
-    <section>
-      <mat-slide-toggle
-        color="primary"
-        [(ngModel)]="receivedDamage.isLosingTest">
-      </mat-slide-toggle>
-    </section>
-  </ng-container>
-
-  <p>{{text.getText().suddenDeath}}</p>
   <section>
-    <mat-slide-toggle
-      color="primary"
-      [(ngModel)]="receivedDamage.isSuddenDeath">
-    </mat-slide-toggle>
+    <mat-checkbox
+      [(ngModel)]="receivedDamage.isIgnoringArmor"
+      color="primary">
+      {{text.getText().ignoringArmor}}
+    </mat-checkbox>
+  </section>
+
+  <section>
+    <mat-checkbox
+      [(ngModel)]="receivedDamage.isWeaponUndamaging"
+      color="primary">
+      {{text.getText().isWeaponUndamagingLabel}}
+    </mat-checkbox>
+    <ul>
+      <li>
+        <mat-checkbox
+          [(ngModel)]="receivedDamage.isLosingTest" color="primary"
+          [disabled]="!receivedDamage.isWeaponUndamaging">
+          {{text.getText().isCharacterLoseTestLabel}}
+        </mat-checkbox>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <mat-checkbox
+      [(ngModel)]="isArmorDestroyed"
+      color="primary">
+      {{text.getText().destroyArmor}}
+    </mat-checkbox>
+    <ul>
+      <li>
+        <mat-form-field appearance="fill">
+          <mat-label>{{text.getText().destroyArmorPoints}}</mat-label>
+          <input matInput type="number"
+            [(ngModel)]="receivedDamage.destroyArmorValue"
+            [disabled]="!isArmorDestroyed"
+          >
+        </mat-form-field>
+      </li>
+    </ul>
   </section>
 </div>
 <div mat-dialog-actions>
-  <button mat-raised-button color="primary" [mat-dialog-close]="receivedDamage">{{text.getText().saveLabel}}</button>
+  <button mat-raised-button
+          color="primary"
+          (click)="saveAndCloseDialog()">
+    {{text.getText().saveLabel}}
+  </button>
 </div>
