@@ -42,6 +42,13 @@
   </div>
 </div>
 
+<div fxLayout="row" class="details-row" *ngIf="character.status">
+  <div fxFlex="100">
+    <h4>{{text.getText().statusLabel}}</h4>
+    {{character.status}}
+  </div>
+</div>
+
 <div *ngIf="isSkirmishMode">
   <div fxLayout="row" class="details-row">
     <div fxFlex="100">

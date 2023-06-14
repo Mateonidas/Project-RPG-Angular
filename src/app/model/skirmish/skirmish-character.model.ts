@@ -17,7 +17,7 @@ export class SkirmishCharacter extends Character {
   isDead!: boolean;
 
   constructor(character?: Character, id?: number) {
-    super(character?.name, character?.description, character?.group, character?.characteristics, character?.skills, character?.talents, character?.traits, character?.isRightHanded, character?.weapons, character?.armors, character?.conditions, character?.notes, character?.spells, character?.bodyLocalizations);
+    super(character?.name, character?.description, character?.group, character?.status, character?.characteristics, character?.skills, character?.talents, character?.traits, character?.isRightHanded, character?.weapons, character?.armors, character?.conditions, character?.notes, character?.spells, character?.bodyLocalizations);
     if (character != undefined) {
       this.id = <number>id
       this.currentWounds = <number>character?.wounds.value
