@@ -23,5 +23,10 @@
      (click)="setActiveLink('/armors')"
      [active]="activeLink == '/armors'"
   >{{text.getText().armorsLabel}}</a>
+
+  <a mat-tab-link routerLink="/conditions"
+     (click)="setActiveLink('/conditions')"
+     [active]="activeLink == '/conditions'"
+  >{{text.getText().conditionsLabel}}</a>
 </nav>
 <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>

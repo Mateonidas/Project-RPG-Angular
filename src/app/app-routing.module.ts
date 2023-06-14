@@ -14,6 +14,7 @@ import {WeaponComponent} from "./weapon/weapon.component";
 import {WeaponStartComponent} from "./weapon/weapon-start/weapon-start.component";
 import {WeaponGroupDetailsComponent} from "./weapon/weapon-group-details/weapon-group-details.component";
 import {ArmorComponent} from "./armor/armor.component";
+import {ConditionListComponent} from "./condition-list/condition-list.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -40,7 +41,11 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'armors', component: ArmorComponent},
+    path: 'armors', component: ArmorComponent
+  },
+  {
+    path: 'conditions', component: ConditionListComponent
+  }
 ]
 
 @NgModule({

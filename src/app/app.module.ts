@@ -47,6 +47,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import { LoaderComponent } from './loader/loader.component';
 import { ConfirmationDialogComponent } from './dialog-window/confirmation-dialog/confirmation-dialog.component';
 import { AddConditionDialogComponent } from './dialog-window/add-condition-dialog/add-condition-dialog.component';
+import { ConditionListComponent } from './condition-list/condition-list.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { AddConditionDialogComponent } from './dialog-window/add-condition-dialo
     InitiativeDialog,
     LoaderComponent,
     ConfirmationDialogComponent,
-    AddConditionDialogComponent
+    AddConditionDialogComponent,
+    ConditionListComponent
   ],
     imports: [
         BrowserModule,
