@@ -46,6 +46,7 @@ import { InitiativeDialog } from './dialog-window/initiative-dialog/initiative-d
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { LoaderComponent } from './loader/loader.component';
 import { ConfirmationDialogComponent } from './dialog-window/confirmation-dialog/confirmation-dialog.component';
+import { AddConditionDialogComponent } from './dialog-window/add-condition-dialog/add-condition-dialog.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { ConfirmationDialogComponent } from './dialog-window/confirmation-dialog
     AddManyToFightDialog,
     InitiativeDialog,
     LoaderComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    AddConditionDialogComponent
   ],
     imports: [
         BrowserModule,
