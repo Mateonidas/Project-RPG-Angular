@@ -16,13 +16,13 @@ export class ReceiveDamageDialog implements OnInit {
   isArmorDestroyed!: boolean
   text = TextResourceService
 
-  constructor(@Inject(MAT_DIALOG_DATA) public character: SkirmishCharacter,
+  constructor(@Inject(MAT_DIALOG_DATA) public skirmishCharacter: SkirmishCharacter,
               public dialogRef: MatDialogRef<ReceiveDamageDialog>) {
   }
 
   ngOnInit(): void {
     this.receivedDamage = new ReceivedDamage(
-      this.character.id,
+      this.skirmishCharacter.id,
       false,
       true,
       true,
@@ -35,8 +35,8 @@ export class ReceiveDamageDialog implements OnInit {
   }
 
   saveAndCloseDialog() {
-    if(!this.receivedDamage.damage
-    || !this.receivedDamage.bodyLocalization) {
+    if (!this.receivedDamage.damage
+      || !this.receivedDamage.bodyLocalization) {
       return
     }
 
@@ -47,7 +47,7 @@ export class ReceiveDamageDialog implements OnInit {
 
   returnReceivedDamage(): Promise<ReceivedDamage> {
     return new Promise((resolve => {
-      if(!this.isArmorDestroyed) {
+      if (!this.isArmorDestroyed) {
         this.receivedDamage.destroyArmorValue = 0
       }
       resolve(this.receivedDamage)

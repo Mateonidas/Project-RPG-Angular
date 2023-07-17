@@ -1,17 +1,18 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import {Character} from "../../model/character/character.model";
-import {CharacterService} from "../../shared/services/character-service/character.service";
-import {ActivatedRoute, Params, Router} from "@angular/router";
-import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
-import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
-import {MatBottomSheet} from '@angular/material/bottom-sheet';
+import {Component, HostListener, OnInit} from '@angular/core'
+import {Character} from "../../model/character/character.model"
+import {CharacterService} from "../../shared/services/character-service/character.service"
+import {ActivatedRoute, Params, Router} from "@angular/router"
+import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service"
+import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service"
+import {MatBottomSheet} from '@angular/material/bottom-sheet'
 import {
   BottomSheetDescription
-} from "../../shared/bottom-sheet/bottom-sheet-description/bottom-sheet-description.component";
-import {Model} from "../../model/model";
-import {CharacterBodyLocalization} from "../../model/body-localization/character-body-localization.model";
-import {MatDialog} from "@angular/material/dialog";
-import {AddManyToFightDialog} from "../../dialog-window/add-many-to-fight/add-many-to-fight-dialog.component";
+} from "../../shared/bottom-sheet/bottom-sheet-description/bottom-sheet-description.component"
+import {Model} from "../../model/model"
+import {CharacterBodyLocalization} from "../../model/body-localization/character-body-localization.model"
+import {MatDialog} from "@angular/material/dialog"
+import {AddManyToFightDialog} from "../../dialog-window/add-many-to-fight/add-many-to-fight-dialog.component"
+import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model"
 
 @Component({
   selector: 'app-character-detail',
@@ -19,19 +20,20 @@ import {AddManyToFightDialog} from "../../dialog-window/add-many-to-fight/add-ma
   styleUrls: ['./character-detail.component.css']
 })
 export class CharacterDetailComponent implements OnInit {
-  character!: Character;
-  text = TextResourceService;
-  protected id!: number;
-  isSkirmishMode = false;
+  character!: Character
+  skirmishCharacter!: SkirmishCharacter
+  text = TextResourceService
+  protected id!: number
+  isSkirmishMode = false
 
-  characteristicsColumns: string[] = this.fillCharacteristicsColumn();
-  bodyLocalizationsColumns: string[] = ['name', 'armorPoints', 'injuries'];
-  notesColumns: string[] = ['note'];
-  spellColumns: string[] = ['spell'];
-  baseColumns: string[] = ['name', 'level'];
-  weaponColumns: string[] = ['name', 'category', 'reach', 'damage', 'advantagesAndDisadvantages'];
-  armorsColumns: string[] = ['name', 'category', 'localization', 'armorPoints', 'penalties', 'qualities'];
-  temporaryParametersColumns: string[] = ['isAlive', 'currentWounds', 'initiative', 'advantage'];
+  characteristicsColumns: string[] = this.fillCharacteristicsColumn()
+  bodyLocalizationsColumns: string[] = ['name', 'armorPoints', 'injuries']
+  notesColumns: string[] = ['note']
+  spellColumns: string[] = ['spell']
+  baseColumns: string[] = ['name', 'level']
+  weaponColumns: string[] = ['name', 'category', 'reach', 'damage', 'advantagesAndDisadvantages']
+  armorsColumns: string[] = ['name', 'category', 'localization', 'armorPoints', 'penalties', 'qualities']
+  temporaryParametersColumns: string[] = ['isAlive', 'currentWounds', 'initiative', 'advantage']
 
   constructor(public characterService: CharacterService,
               public skirmishCharacterService: SkirmishCharacterService,
@@ -43,14 +45,14 @@ export class CharacterDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-        this.id = +params['id'];
-        this.character = <Character>this.characterService.getCharacter(this.id);
+        this.id = +params['id']
+        this.character = <Character>this.characterService.getCharacter(this.id)
       }
     )
   }
 
   onAddToFight() {
-    this.skirmishCharacterService.storeSkirmishCharacter(this.character);
+    this.skirmishCharacterService.storeSkirmishCharacter(this.character)
   }
 
   onAddManyToFight() {
@@ -68,22 +70,22 @@ export class CharacterDetailComponent implements OnInit {
   }
 
   onEditCharacter() {
-    this.router.navigate(['edit'], {relativeTo: this.route});
+    this.router.navigate(['edit'], {relativeTo: this.route})
   }
 
   onDeleteCharacter() {
-    this.characterService.removeCharacter(this.id);
-    this.router.navigate(['characters']);
+    this.characterService.removeCharacter(this.id)
+    this.router.navigate(['characters'])
   }
 
   onCopyCharacter() {
-    this.router.navigate(['copy'], {relativeTo: this.route, queryParams: {copy: true}, queryParamsHandling: 'merge'});
+    this.router.navigate(['copy'], {relativeTo: this.route, queryParams: {copy: true}, queryParamsHandling: 'merge'})
   }
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event.key == 'Enter') {
-      this.onEditCharacter();
+      this.onEditCharacter()
     }
   }
 
@@ -101,7 +103,7 @@ export class CharacterDetailComponent implements OnInit {
       "WILLPOWER",
       "FELLOWSHIP",
       "WOUNDS"
-    ];
+    ]
   }
 
   onReceiveDamage() {
@@ -124,7 +126,7 @@ export class CharacterDetailComponent implements OnInit {
     this.bottomSheet.open(BottomSheetDescription, {
       data: {nameTranslation: model.nameTranslation, description: model.description},
       panelClass: 'bottom-sheet'
-    });
+    })
   }
 
   onAddCondition() {

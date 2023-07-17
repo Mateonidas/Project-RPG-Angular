@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
@@ -44,12 +44,31 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
     super(router, route, armorService, weaponService, skillService, talentService, traitService, bodyLocalizationService, characterService, injuryService, conditionService, spellService, dialog);
   }
 
-  createEditCharacterForm(character: SkirmishCharacter, formArrays: CharacterFormArraysWrapper) {
-    this.isDead = character.isDead;
+  initForm() {
+    let skirmishCharacter = new SkirmishCharacter()
+    let formArrays = new CharacterFormArraysWrapper()
+
+    if (this.editMode) {
+      skirmishCharacter = this.getSkirmishCharacter()
+      formArrays.characteristics = CharacterEditComponent.initEditCharacteristicsTable(skirmishCharacter.character)
+      this.isRightHanded = skirmishCharacter.character.isRightHanded
+      this.prepareEditData(skirmishCharacter.character, formArrays)
+      this.characterBodyLocalizations = skirmishCharacter.character.bodyLocalizations
+    } else {
+      skirmishCharacter.character.name = ''
+      skirmishCharacter.character.description = ''
+      formArrays.characteristics = CharacterEditComponent.initCharacteristicsTable()
+    }
+
+    this.createEditSkirmishCharacterForm(skirmishCharacter, formArrays)
+  }
+
+  createEditSkirmishCharacterForm(skirmishCharacter: SkirmishCharacter, formArrays: CharacterFormArraysWrapper) {
+    this.isDead = skirmishCharacter.isDead;
     this.editCharacterForm = new UntypedFormGroup({
-      'name': new UntypedFormControl(character.name),
-      'description': new UntypedFormControl(character.description),
-      'group': new UntypedFormControl(character.group),
+      'name': new UntypedFormControl(skirmishCharacter.character.name),
+      'description': new UntypedFormControl(skirmishCharacter.character.description),
+      'group': new UntypedFormControl(skirmishCharacter.character.group),
       'characteristics': formArrays.characteristics,
       'skills': formArrays.skills,
       'talents': formArrays.talents,
@@ -60,16 +79,16 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
       'armors': formArrays.armors,
       'injuries': formArrays.injuries,
       'conditions': formArrays.conditions,
-      'currentWounds': new UntypedFormControl(character.currentWounds),
-      'skirmishInitiative': new UntypedFormControl(character.skirmishInitiative),
-      'advantage': new UntypedFormControl(character.advantage),
+      'currentWounds': new UntypedFormControl(skirmishCharacter.currentWounds),
+      'skirmishInitiative': new UntypedFormControl(skirmishCharacter.skirmishInitiative),
+      'advantage': new UntypedFormControl(skirmishCharacter.advantage),
       'notes': formArrays.notes,
-      'isDead': new UntypedFormControl(character.isDead),
-      'sequenceNumber': new UntypedFormControl(character.sequenceNumber)
+      'isDead': new UntypedFormControl(skirmishCharacter.isDead),
+      'sequenceNumber': new UntypedFormControl(skirmishCharacter.sequenceNumber)
     });
   }
 
-  getCharacter() {
+  getSkirmishCharacter() {
     return this.skirmishService.getSkirmishCharacter(this.id);
   }
 
@@ -84,14 +103,15 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
   }
 
   createSkirmishCharacter() {
-    const character = <SkirmishCharacter>this.createCharacter();
+    const skirmishCharacter = new SkirmishCharacter()
 
-    character.advantage = this.editCharacterForm.value.advantage;
-    character.skirmishInitiative = this.editCharacterForm.value.skirmishInitiative;
-    character.currentWounds = this.editCharacterForm.value.currentWounds;
-    character.isDead = this.editCharacterForm.value.isDead;
-    character.sequenceNumber = this.editCharacterForm.value.sequenceNumber;
+    skirmishCharacter.character = this.createCharacter();
+    skirmishCharacter.advantage = this.editCharacterForm.value.advantage;
+    skirmishCharacter.skirmishInitiative = this.editCharacterForm.value.skirmishInitiative;
+    skirmishCharacter.currentWounds = this.editCharacterForm.value.currentWounds;
+    skirmishCharacter.isDead = this.editCharacterForm.value.isDead;
+    skirmishCharacter.sequenceNumber = this.editCharacterForm.value.sequenceNumber;
 
-    return character;
+    return skirmishCharacter;
   }
 }

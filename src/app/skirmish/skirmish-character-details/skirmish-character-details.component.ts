@@ -10,6 +10,7 @@ import {SkirmishService} from "../../shared/services/skirmish-service/skirmish.s
 import {MatBottomSheet} from "@angular/material/bottom-sheet"
 import {CharacterBodyLocalization} from "../../model/body-localization/character-body-localization.model"
 import {AddConditionDialogComponent} from "../../dialog-window/add-condition-dialog/add-condition-dialog.component"
+import {Character} from "../../model/character/character.model";
 
 @Component({
   selector: 'app-skirmish-character-details',
@@ -18,7 +19,8 @@ import {AddConditionDialogComponent} from "../../dialog-window/add-condition-dia
 })
 export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent implements OnInit {
 
-  character!: SkirmishCharacter
+  character!: Character
+  skirmishCharacter!: SkirmishCharacter
   isSkirmishMode = true
 
   constructor(public characterService: CharacterService,
@@ -34,7 +36,8 @@ export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
         this.id = +params['id']
-        this.character = this.skirmishCharacterService.getSkirmishCharacter(this.id)
+        this.skirmishCharacter = this.skirmishCharacterService.getSkirmishCharacter(this.id)
+        this.character = this.skirmishCharacter.character
       }
     )
   }
@@ -54,7 +57,7 @@ export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent 
   async onReceiveDamage() {
     const dialogRef = this.dialog.open(ReceiveDamageDialog, {
       width: '20%',
-      data: this.character,
+      data: this.skirmishCharacter,
     })
 
     dialogRef.afterClosed().subscribe(async receivedDamage => {
@@ -80,12 +83,12 @@ export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent 
   }
 
   async addAdvantagePoint() {
-    await this.skirmishService.addAdvantagePoint(this.character.id)
+    await this.skirmishService.addAdvantagePoint(this.skirmishCharacter.id)
     await this.reloadSkirmishCharacters()
   }
 
   async removeAdvantagePoint() {
-    await this.skirmishService.removeAdvantagePoint(this.character.id)
+    await this.skirmishService.removeAdvantagePoint(this.skirmishCharacter.id)
     await this.reloadSkirmishCharacters()
   }
 
@@ -101,6 +104,7 @@ export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent 
 
   async reloadSkirmishCharacters() {
     await this.skirmishCharacterService.fetchSkirmishCharacter()
-    this.character = this.skirmishCharacterService.getSkirmishCharacter(this.id)
+    this.skirmishCharacter = this.skirmishCharacterService.getSkirmishCharacter(this.id)
+    this.character = this.skirmishCharacter.character
   }
 }

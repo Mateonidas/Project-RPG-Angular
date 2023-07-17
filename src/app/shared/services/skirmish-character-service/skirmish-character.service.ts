@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core'
 import {Subject} from "rxjs"
-import {Character} from "../../../model/character/character.model"
 import {SkirmishCharacter} from "../../../model/skirmish/skirmish-character.model"
 import {HttpClient} from "@angular/common/http"
 import {TranslateService} from "../translate-service/translate.service"
+import {Character} from "../../../model/character/character.model";
 
 @Injectable({
   providedIn: 'root'
@@ -38,10 +38,9 @@ export class SkirmishCharacterService {
       .then(data => {
         this.skirmishCharactersList = []
         if (data != null) {
-          for (let character of data) {
-            this.translateService.prepareCharacter(character)
-            let skirmishCharacter = new SkirmishCharacter()
-            Object.assign(skirmishCharacter, character)
+          for (let dataSkirmishCharacter of data) {
+            let skirmishCharacter = SkirmishCharacter.fromJSON(dataSkirmishCharacter)
+            this.translateService.prepareCharacter(skirmishCharacter.character)
             this.skirmishCharactersList.push(skirmishCharacter)
           }
         }
@@ -52,7 +51,8 @@ export class SkirmishCharacterService {
 
   async storeSkirmishCharacter(character: Character) {
     let skirmishCharacter = new SkirmishCharacter(character, this.skirmishCharactersList.length)
-    let numberOfSameCharacters = this.skirmishCharactersList.filter(character => character.name.includes(skirmishCharacter.name)).length
+    skirmishCharacter.character.id = 0
+    let numberOfSameCharacters = this.skirmishCharactersList.filter(skirmishCharacter => skirmishCharacter.character.name.includes(skirmishCharacter.character.name)).length
     if (numberOfSameCharacters > 0) {
       skirmishCharacter.sequenceNumber = numberOfSameCharacters + 1
     }
@@ -70,7 +70,7 @@ export class SkirmishCharacterService {
   }
 
   async storeSkirmishCharacters(newCharacter: Character, number: number) {
-    let numberOfSameCharacters = this.skirmishCharactersList.filter(character => character.name.includes(newCharacter.name)).length
+    let numberOfSameCharacters = this.skirmishCharactersList.filter(skirmishCharacter => skirmishCharacter.character.name.includes(newCharacter.name)).length
     number = number + numberOfSameCharacters
     let newSkirmishCharacters = []
 
@@ -92,13 +92,13 @@ export class SkirmishCharacterService {
   async storeSkirmishCharactersGroup(characters: Character[]) {
     let index = this.skirmishCharactersList.length
     let skirmishCharacters: SkirmishCharacter[] = []
-    characters.forEach(character => {
-      let skirmishCharacter: SkirmishCharacter = new SkirmishCharacter(character, index)
-      let numberOfSameCharacters = this.skirmishCharactersList.filter(character => character.name.includes(skirmishCharacter.name)).length
+    characters.forEach(skirmishCharacter => {
+      let newSkirmishCharacter: SkirmishCharacter = new SkirmishCharacter(skirmishCharacter, index)
+      let numberOfSameCharacters = this.skirmishCharactersList.filter(skirmishCharacter => skirmishCharacter.character.name.includes(newSkirmishCharacter.character.name)).length
       if (numberOfSameCharacters > 0) {
-        skirmishCharacter.sequenceNumber = numberOfSameCharacters + 1
+        newSkirmishCharacter.sequenceNumber = numberOfSameCharacters + 1
       }
-      skirmishCharacters.push(skirmishCharacter)
+      skirmishCharacters.push(newSkirmishCharacter)
       ++index
     })
 

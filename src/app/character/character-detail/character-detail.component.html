@@ -1,7 +1,12 @@
 <div fxLayout="row">
-  <div fxFlex="100">
-    <h3 *ngIf="character.sequenceNumber == null || character.sequenceNumber <= 1">{{character.name}}</h3>
-    <h3 *ngIf="character.sequenceNumber != null && character.sequenceNumber > 1">{{character.name}} {{character.sequenceNumber}}</h3>
+  <div fxFlex="100" *ngIf="isSkirmishMode">
+    <h3
+      *ngIf="skirmishCharacter.sequenceNumber == null || skirmishCharacter.sequenceNumber <= 1">{{character.name}}</h3>
+    <h3
+      *ngIf="skirmishCharacter.sequenceNumber != null && skirmishCharacter.sequenceNumber > 1">{{character.name}} {{skirmishCharacter.sequenceNumber}}</h3>
+  </div>
+  <div fxFlex="100" *ngIf="!isSkirmishMode">
+    <h3>{{character.name}}</h3>
   </div>
 </div>
 
@@ -18,13 +23,13 @@
               (click)="onAddManyToFight()">{{text.getText().addManyToFightLabel}}</button>
       <button mat-menu-item (click)="onEditCharacter()">{{text.getText().editCharacterLabel}}</button>
       <button mat-menu-item (click)="onDeleteCharacter()">{{text.getText().deleteCharacterLabel}}</button>
-      <button *ngIf="!isSkirmishMode" mat-menu-item (click)="onCopyCharacter()">{{text.getText().copyCharacterLabel}}</button>
+      <button *ngIf="!isSkirmishMode" mat-menu-item
+              (click)="onCopyCharacter()">{{text.getText().copyCharacterLabel}}</button>
     </mat-menu>
     <button mat-raised-button color="primary" *ngIf="isSkirmishMode"
             (click)="onReceiveDamage()">{{text.getText().dealDamageLabel}}</button>
     <button mat-raised-button color="primary" *ngIf="isSkirmishMode"
             (click)="onAddCondition()">{{text.getText().addConditionLabel}}</button>
-
   </div>
 </div>
 
@@ -53,7 +58,7 @@
   <div fxLayout="row" class="details-row">
     <div fxFlex="100">
       <h4>{{text.getText().temporaryParametersLabel}}</h4>
-      <table mat-table [dataSource]="[character]" class="mat-elevation-z8">
+      <table mat-table [dataSource]="[skirmishCharacter]" class="mat-elevation-z8">
         <ng-container matColumnDef="isAlive">
           <th mat-header-cell *matHeaderCellDef>{{text.getText().isAliveLabel}}</th>
           <td mat-cell *matCellDef="let element">
@@ -64,7 +69,7 @@
         <ng-container matColumnDef="currentWounds">
           <th mat-header-cell *matHeaderCellDef>{{text.getText().woundsLabel}}</th>
           <td mat-cell *matCellDef="let element">
-            {{element.currentWounds}}/{{element.wounds.value}}
+            {{element.currentWounds}}/{{element.character.wounds.value}}
           </td>
         </ng-container>
         <ng-container matColumnDef="initiative">
@@ -113,7 +118,7 @@
       <h4>{{text.getText().notesLabel}}</h4>
       <table mat-table [dataSource]="character.notes" class="mat-elevation-z8">
         <ng-container matColumnDef="note">
-          <td mat-cell *matCellDef="let element">{{element}}</td>
+          <td mat-cell *matCellDef="let element">{{element.note}}</td>
         </ng-container>
 
         <tr mat-row *matRowDef="let row; columns: notesColumns;"></tr>

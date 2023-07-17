@@ -35,6 +35,7 @@ import {WeaponGroup} from "../../model/weapon/weapons-group.model"
 import {SpellService} from "../../shared/services/spell-service/spell.service"
 import {SpellGroup} from "../../model/spell/spell-group.model"
 import {Spell} from "../../model/spell/spell.model"
+import {Note} from "../../model/note/note.model";
 
 @Component({
   selector: 'app-character-edit',
@@ -137,7 +138,7 @@ export class CharacterEditComponent implements OnInit {
     })
   }
 
-  private static initCharacteristicsTable() {
+  protected static initCharacteristicsTable() {
     return new UntypedFormArray([
       new UntypedFormGroup({
         'characteristic': new UntypedFormControl(this.prepareCharacteristic("MOVEMENT")),
@@ -199,6 +200,7 @@ export class CharacterEditComponent implements OnInit {
       character.id = 0
       character.clearIds()
     }
+    character.type = 'BASE'
     this.characterService.storeCharacter(character).then(() => {
       this.onCancel()
     })
@@ -221,7 +223,7 @@ export class CharacterEditComponent implements OnInit {
     const weapons = <CharacterWeapon[]>this.editCharacterForm.value.weapons
     const armors = <Armor[]>this.editCharacterForm.value.armors
     const conditions = <CharacterCondition[]>this.editCharacterForm.value.conditions
-    const notes = <string[]>this.editCharacterForm.value.notes
+    const notes = <Note[]>this.editCharacterForm.value.notes
     const spells = <Spell[]>this.editCharacterForm.value.spells
 
     const character = new Character(
@@ -375,9 +377,14 @@ export class CharacterEditComponent implements OnInit {
     }
   }
 
-  prepareNotesList(notes: UntypedFormArray, notesList: string[]) {
+  prepareNotesList(notes: UntypedFormArray, notesList: Note[]) {
     for (let note of notesList) {
-      notes.push(new UntypedFormControl(note))
+      notes.push(
+        new UntypedFormGroup({
+          'id': new UntypedFormControl(note.id),
+          'note': new UntypedFormControl(note.note),
+        })
+      )
     }
   }
 
@@ -582,7 +589,10 @@ export class CharacterEditComponent implements OnInit {
 
   onAddNote() {
     (<UntypedFormArray>this.editCharacterForm.get('notes')).push(
-      new UntypedFormControl(null),
+      new UntypedFormGroup({
+        'id': new UntypedFormControl(null),
+        'note': new UntypedFormControl(null),
+      })
     )
   }
 

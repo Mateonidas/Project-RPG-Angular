@@ -7,6 +7,7 @@ import {CharacterBodyLocalization} from "../body-localization/character-body-loc
 import {CharacterCondition} from "../condition/character-condition.model"
 import {CharacterTrait} from "../trait/character-trait.model"
 import {Spell} from "../spell/spell.model"
+import {Note} from "../note/note.model";
 
 export class Character {
   id!: number
@@ -23,11 +24,11 @@ export class Character {
   armors!: Armor[]
   bodyLocalizations!: CharacterBodyLocalization[]
   conditions!: CharacterCondition[]
-  notes!: string[]
+  notes!: Note[]
   spells!: Spell[]
-  sequenceNumber!: number
+  type!: string
 
-  constructor(name?: string, description?: string, group?: string, status?: string, characteristics?: CharacterCharacteristic[], skills?: CharacterSkill[], talents?: CharacterTalent[], traits?: CharacterTrait[], rightHanded?: boolean, weapons?: CharacterWeapon[], armor?: Armor[], conditions?: CharacterCondition[], notes?: string[], spells?: Spell[], bodyLocalizations?: CharacterBodyLocalization[]) {
+  constructor(name?: string, description?: string, group?: string, status?: string, characteristics?: CharacterCharacteristic[], skills?: CharacterSkill[], talents?: CharacterTalent[], traits?: CharacterTrait[], rightHanded?: boolean, weapons?: CharacterWeapon[], armor?: Armor[], conditions?: CharacterCondition[], notes?: Note[], spells?: Spell[], bodyLocalizations?: CharacterBodyLocalization[]) {
     this.name = <string>name
     this.description = <string>description
     this.group = <string>group
@@ -40,7 +41,7 @@ export class Character {
     this.armors = <Armor[]>armor
     this.bodyLocalizations = <CharacterBodyLocalization[]>bodyLocalizations
     this.conditions = <CharacterCondition[]>conditions
-    this.notes = <string[]>notes
+    this.notes = <Note[]>notes
     this.spells = <Spell[]>spells
     this.status = <string>status
   }
@@ -53,6 +54,7 @@ export class Character {
     this.traits.forEach(value => value.id = 0)
     this.weapons.forEach(value => value.id = 0)
     this.conditions.forEach(value => value.id = 0)
+    this.notes.forEach(value => value.id = 0)
   }
 
   getCharacteristic(name: string): CharacterCharacteristic {
@@ -118,6 +120,7 @@ export class Character {
     character.bodyLocalizations = CharacterBodyLocalization.arrayFromJSON(character['bodyLocalizations'])
     character.conditions = CharacterCondition.arrayFromJSON(character['conditions'])
     character.spells = Spell.arrayFromJSON(character['spells'])
+    character.notes = Note.arrayFromJSON(character['notes'])
     return character
   }
 

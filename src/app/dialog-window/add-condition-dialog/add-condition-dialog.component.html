@@ -49,8 +49,9 @@
       <h5>Lista Postaci</h5>
     </div>
 
-    <div *ngFor="let character of skirmishCharacters">
-      <mat-checkbox [formControlName]="character.id" color="primary">{{character.name}}</mat-checkbox>
+    <div *ngFor="let skirmishCharacter of skirmishCharacters">
+      <mat-checkbox [formControlName]="skirmishCharacter.id"
+                    color="primary">{{skirmishCharacter.character.name}}</mat-checkbox>
     </div>
   </form>
 </div>

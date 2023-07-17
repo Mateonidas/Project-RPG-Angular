@@ -15,9 +15,9 @@ export class InitiativeDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public skirmishCharacters: SkirmishCharacter[],
               public dialogRef: MatDialogRef<InitiativeDialog>) {
     for (const skirmishCharacter of skirmishCharacters) {
-      if (!this.skirmishInitiatives.find(s => s.characterName == skirmishCharacter.name)) {
+      if (!this.skirmishInitiatives.find(s => s.characterName == skirmishCharacter.character.name)) {
         this.skirmishInitiatives.push({
-          characterName: skirmishCharacter.sequenceNumber > 1 ? skirmishCharacter.name + skirmishCharacter.sequenceNumber : skirmishCharacter.name,
+          characterName: skirmishCharacter.sequenceNumber > 1 ? skirmishCharacter.character.name + skirmishCharacter.sequenceNumber : skirmishCharacter.character.name,
           initiative: undefined
         })
       }
@@ -26,7 +26,7 @@ export class InitiativeDialog {
 
   onSaveInitiative() {
     for (const skirmishInitiative of this.skirmishInitiatives) {
-      const characters = this.skirmishCharacters.filter(character => character.name == skirmishInitiative.characterName)
+      const characters = this.skirmishCharacters.filter(skirmishCharacter => skirmishCharacter.character.name == skirmishInitiative.characterName)
       for (const skirmishCharacter of characters) {
         if (skirmishInitiative.initiative != undefined) {
           skirmishCharacter.skirmishInitiative += skirmishInitiative.initiative

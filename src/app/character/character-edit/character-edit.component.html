@@ -129,11 +129,11 @@
     <div fxLayout="row" class="details-row">
       <div fxFlex="100" formArrayName="notes">
         <h4>{{text.getText().notesLabel}}</h4>
-        <div fxLayout="row" fxLayoutGap="10px" *ngFor="let noteControl of notes; index as i">
+        <div fxLayout="row" fxLayoutGap="10px" *ngFor="let noteControl of notes; index as i" [formGroupName]="i">
           <div fxFlex="90">
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>{{text.getText().noteLabel}}</mat-label>
-              <textarea matInput type="text" [formControlName]="i" style="overflow:hidden"></textarea>
+              <textarea matInput type="text" formControlName="note" style="overflow:hidden"></textarea>
             </mat-form-field>
           </div>
           <div fxFlex="10">

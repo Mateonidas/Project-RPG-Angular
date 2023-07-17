@@ -2,7 +2,8 @@
 <div mat-dialog-content>
   <div *ngFor="let test of data.endTurnCheck.tests">
     <hr>
-    <p>{{text.getText().rollForLabel}} {{test.skirmishCharacter.name}} - {{test.conditionType.nameTranslation}}</p>
+    <p>{{text.getText().rollForLabel}} {{test.skirmishCharacter.character.name}}
+      - {{test.conditionType.nameTranslation}}</p>
     <mat-form-field appearance="fill">
       <mat-label>{{text.getText().rollLabel}}</mat-label>
       <input matInput type="number" [(ngModel)]="test.result" [disabled]="!test.isFeasible">

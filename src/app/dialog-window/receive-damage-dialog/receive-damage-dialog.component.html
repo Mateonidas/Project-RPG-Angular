@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>{{this.text.getText().receiveDamageLabel}}</h1>
 <div mat-dialog-content>
-  <p>{{this.text.getText().damageForLabel}} {{this.character.name}}</p>
+  <p>{{this.text.getText().damageForLabel}} {{this.skirmishCharacter.character.name}}</p>
 
   <mat-form-field appearance="fill">
     <mat-label>{{text.getText().valueLabel}}</mat-label>
@@ -12,8 +12,9 @@
 
   <mat-form-field appearance="fill" class="example-full-width">
     <mat-label>{{text.getText().localizationNameLabel}}</mat-label>
-    <mat-select [(ngModel)]="receivedDamage.bodyLocalization" [compareWith]="compareModels" required #bodyLocalization="ngModel">
-      <mat-option *ngFor="let bodyLocalization of character.bodyLocalizations"
+    <mat-select [(ngModel)]="receivedDamage.bodyLocalization" [compareWith]="compareModels" required
+                #bodyLocalization="ngModel">
+      <mat-option *ngFor="let bodyLocalization of skirmishCharacter.character.bodyLocalizations"
                   [value]="bodyLocalization.bodyLocalization.name">
         {{bodyLocalization.bodyLocalization.nameTranslation}}
       </mat-option>
@@ -72,8 +73,8 @@
         <mat-form-field appearance="fill">
           <mat-label>{{text.getText().destroyArmorPoints}}</mat-label>
           <input matInput type="number"
-            [(ngModel)]="receivedDamage.destroyArmorValue"
-            [disabled]="!isArmorDestroyed"
+                 [(ngModel)]="receivedDamage.destroyArmorValue"
+                 [disabled]="!isArmorDestroyed"
           >
         </mat-form-field>
       </li>
