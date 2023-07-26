@@ -48,6 +48,14 @@ import { LoaderComponent } from './loader/loader.component';
 import { ConfirmationDialogComponent } from './dialog-window/confirmation-dialog/confirmation-dialog.component';
 import { AddConditionDialogComponent } from './dialog-window/add-condition-dialog/add-condition-dialog.component';
 import { ConditionListComponent } from './condition-list/condition-list.component';
+import { DetailsNameComponent } from './details-components/details-name/details-name.component';
+import { SharedButtonsComponent } from './details-components/menu-buttons/shared-buttons/shared-buttons.component';
+import { CharacterButtonsComponent } from './details-components/menu-buttons/character-buttons/character-buttons.component';
+import { SkirmishCharacterButtonsComponent } from './details-components/menu-buttons/skirmish-character-buttons/skirmish-character-buttons.component';
+import { DetailsDescriptionsComponent } from './details-components/details-descriptions/details-descriptions.component';
+import { DetailsSkirmishCharacterParametersComponent } from './details-components/details-skirmish-character-parameters/details-skirmish-character-parameters.component';
+import { DetailsCharacterComponent } from './details-components/details-character/details-character.component';
+import { DetailsBodyLocalizationsComponent } from './details-components/details-body-localizations/details-body-localizations.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +91,15 @@ import { ConditionListComponent } from './condition-list/condition-list.componen
     LoaderComponent,
     ConfirmationDialogComponent,
     AddConditionDialogComponent,
-    ConditionListComponent
+    ConditionListComponent,
+    DetailsNameComponent,
+    SharedButtonsComponent,
+    CharacterButtonsComponent,
+    SkirmishCharacterButtonsComponent,
+    DetailsDescriptionsComponent,
+    DetailsSkirmishCharacterParametersComponent,
+    DetailsCharacterComponent,
+    DetailsBodyLocalizationsComponent
   ],
     imports: [
         BrowserModule,

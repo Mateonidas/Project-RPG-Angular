@@ -1,0 +1,16 @@
+table {
+  width: 100%;
+}
+
+.mat-cell, .mat-header-cell {
+  width: 4%;
+}
+
+.description-span {
+  cursor: pointer;
+}
+
+.details-row {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

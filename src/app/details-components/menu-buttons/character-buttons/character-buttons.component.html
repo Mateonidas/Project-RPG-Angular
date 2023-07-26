@@ -1,0 +1,14 @@
+<div fxLayout="row">
+  <div fxFlex="100">
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
+      {{text.getText().manageCharacterLabel}}
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="onAddToFight()">{{text.getText().addToFightLabel}}</button>
+      <button mat-menu-item (click)="onAddManyToFight()">{{text.getText().addManyToFightLabel}}</button>
+      <button mat-menu-item (click)="onCopyCharacter()">{{text.getText().copyCharacterLabel}}</button>
+      <app-shared-buttons [id]="character.id"></app-shared-buttons>
+    </mat-menu>
+  </div>
+</div>

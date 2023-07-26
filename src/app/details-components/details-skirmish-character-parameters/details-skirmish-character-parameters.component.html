@@ -1,0 +1,42 @@
+<div>
+  <div fxLayout="row" class="details-row">
+    <div fxFlex="100">
+      <h4>{{text.getText().temporaryParametersLabel}}</h4>
+      <table mat-table [dataSource]="[skirmishCharacter]" class="mat-elevation-z8">
+        <ng-container matColumnDef="isAlive">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().isAliveLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="element.isDead">Nie</span>
+            <span *ngIf="!element.isDead">Tak</span>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="currentWounds">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().woundsLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.currentWounds}}/{{element.character.wounds.value}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="initiative">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().initiativeLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.skirmishInitiative}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="advantage">
+          <th mat-header-cell *matHeaderCellDef>{{text.getText().advantageLabel}}</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.advantage}}
+            <button mat-mini-fab color="basic" type="button" style="margin-left: 20px" (click)="addAdvantagePoint()">
+              +
+            </button>
+            <button mat-mini-fab color="basic" type="button" (click)="removeAdvantagePoint()">
+              -
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="temporaryParametersColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: temporaryParametersColumns;"></tr>
+      </table>
+    </div>
+  </div>
+</div>

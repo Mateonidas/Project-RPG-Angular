@@ -1,0 +1,13 @@
+<div fxLayout="row">
+  <div fxFlex="100">
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
+      {{text.getText().manageCharacterLabel}}
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <app-shared-buttons [id]="skirmishCharacter.id"></app-shared-buttons>
+    </mat-menu>
+    <button mat-raised-button color="primary" (click)="onReceiveDamage()">{{text.getText().dealDamageLabel}}</button>
+    <button mat-raised-button color="primary" (click)="onAddCondition()">{{text.getText().addConditionLabel}}</button>
+  </div>
+</div>

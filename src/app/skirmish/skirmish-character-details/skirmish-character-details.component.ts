@@ -2,49 +2,32 @@ import {Component, HostListener, OnInit} from '@angular/core'
 import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service"
 import {ActivatedRoute, Params, Router} from "@angular/router"
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model"
-import {CharacterDetailComponent} from "../../character/character-detail/character-detail.component"
-import {CharacterService} from "../../shared/services/character-service/character.service"
-import {MatDialog} from "@angular/material/dialog"
-import {ReceiveDamageDialog} from "../../dialog-window/receive-damage-dialog/receive-damage-dialog.component"
-import {SkirmishService} from "../../shared/services/skirmish-service/skirmish.service"
-import {MatBottomSheet} from "@angular/material/bottom-sheet"
-import {CharacterBodyLocalization} from "../../model/body-localization/character-body-localization.model"
-import {AddConditionDialogComponent} from "../../dialog-window/add-condition-dialog/add-condition-dialog.component"
-import {Character} from "../../model/character/character.model";
+import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
 
 @Component({
   selector: 'app-skirmish-character-details',
-  templateUrl: '../../character/character-detail/character-detail.component.html',
-  styleUrls: ['../../character/character-detail/character-detail.component.css']
+  templateUrl: './skirmish-character-details.component.html',
+  styleUrls: ['./skirmish-character-details.component.css']
 })
-export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent implements OnInit {
+export class SkirmishCharacterDetailsComponent implements OnInit {
 
-  character!: Character
   skirmishCharacter!: SkirmishCharacter
-  isSkirmishMode = true
+  text = TextResourceService
+  protected id!: number
 
-  constructor(public characterService: CharacterService,
-              public skirmishCharacterService: SkirmishCharacterService,
-              public skirmishService: SkirmishService,
+  bodyLocalizationsColumns: string[] = ['name', 'armorPoints', 'injuries']
+
+  constructor(public skirmishCharacterService: SkirmishCharacterService,
               protected route: ActivatedRoute,
-              protected router: Router,
-              protected dialog: MatDialog,
-              protected bottomSheet: MatBottomSheet) {
-    super(characterService, skirmishCharacterService, route, router, bottomSheet, dialog)
+              protected router: Router) {
   }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
         this.id = +params['id']
         this.skirmishCharacter = this.skirmishCharacterService.getSkirmishCharacter(this.id)
-        this.character = this.skirmishCharacter.character
       }
     )
-  }
-
-  onDeleteCharacter() {
-    this.skirmishCharacterService.removeSkirmishCharacter(this.id)
-    this.router.navigate(['skirmish'])
   }
 
   @HostListener('window:keyup', ['$event'])
@@ -54,57 +37,7 @@ export class SkirmishCharacterDetailsComponent extends CharacterDetailComponent 
     }
   }
 
-  async onReceiveDamage() {
-    const dialogRef = this.dialog.open(ReceiveDamageDialog, {
-      width: '20%',
-      data: this.skirmishCharacter,
-    })
-
-    dialogRef.afterClosed().subscribe(async receivedDamage => {
-      if (receivedDamage != undefined) {
-        await this.skirmishService.receiveDamage(receivedDamage)
-        await this.reloadSkirmishCharacters()
-      }
-    })
-  }
-
-  async onAddCondition() {
-    const dialogRef = this.dialog.open(AddConditionDialogComponent, {
-      width: '40%',
-      data: this.character,
-    })
-
-    dialogRef.afterClosed().subscribe(async addConditions => {
-      if (addConditions != undefined) {
-        await this.skirmishService.addConditions(addConditions)
-        await this.reloadSkirmishCharacters()
-      }
-    })
-  }
-
-  async addAdvantagePoint() {
-    await this.skirmishService.addAdvantagePoint(this.skirmishCharacter.id)
-    await this.reloadSkirmishCharacters()
-  }
-
-  async removeAdvantagePoint() {
-    await this.skirmishService.removeAdvantagePoint(this.skirmishCharacter.id)
-    await this.reloadSkirmishCharacters()
-  }
-
-  async addAdditionalArmorPoint(bodyLocalization: CharacterBodyLocalization) {
-    await this.skirmishService.addAdditionalArmorPoint(bodyLocalization)
-    await this.reloadSkirmishCharacters()
-  }
-
-  async removeAdditionalArmorPoint(bodyLocalization: CharacterBodyLocalization) {
-    await this.skirmishService.removeAdditionalArmorPoint(bodyLocalization)
-    await this.reloadSkirmishCharacters()
-  }
-
-  async reloadSkirmishCharacters() {
-    await this.skirmishCharacterService.fetchSkirmishCharacter()
-    this.skirmishCharacter = this.skirmishCharacterService.getSkirmishCharacter(this.id)
-    this.character = this.skirmishCharacter.character
+  onEditCharacter() {
+    this.router.navigate(['edit'], {relativeTo: this.route})
   }
 }

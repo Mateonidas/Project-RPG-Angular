@@ -1,0 +1,16 @@
+table {
+  width: 100%;
+}
+
+button {
+  margin-right: 10px;
+}
+
+.mat-cell, .mat-header-cell {
+  width: 4%;
+}
+
+.details-row {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

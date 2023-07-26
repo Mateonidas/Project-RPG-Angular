@@ -76,6 +76,7 @@ export class SkirmishCharacterService {
 
     for (let i = numberOfSameCharacters; number > i; number--) {
       let skirmishCharacter = new SkirmishCharacter(newCharacter, 0)
+      skirmishCharacter.character.id = 0
       if (number > 1) {
         skirmishCharacter.sequenceNumber = number
       }
@@ -94,6 +95,7 @@ export class SkirmishCharacterService {
     let skirmishCharacters: SkirmishCharacter[] = []
     characters.forEach(skirmishCharacter => {
       let newSkirmishCharacter: SkirmishCharacter = new SkirmishCharacter(skirmishCharacter, index)
+      newSkirmishCharacter.character.id = 0
       let numberOfSameCharacters = this.skirmishCharactersList.filter(skirmishCharacter => skirmishCharacter.character.name.includes(newSkirmishCharacter.character.name)).length
       if (numberOfSameCharacters > 0) {
         newSkirmishCharacter.sequenceNumber = numberOfSameCharacters + 1
@@ -160,5 +162,10 @@ export class SkirmishCharacterService {
     return this.http
       .delete('http://localhost:8080/skirmishCharacter')
       .toPromise()
+  }
+
+  async reloadSkirmishCharacter(id: number) {
+    await this.fetchSkirmishCharacter()
+    return this.getSkirmishCharacter(id)
   }
 }
