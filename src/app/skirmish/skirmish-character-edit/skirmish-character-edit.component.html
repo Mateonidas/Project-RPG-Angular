@@ -1,6 +1,7 @@
 <div>
   <form [formGroup]="editCharacterForm" (ngSubmit)="onSubmit()">
     <app-description-edit [editCharacterForm]="editCharacterForm"></app-description-edit>
+    <app-temporary-parameters [editCharacterForm]="editCharacterForm"></app-temporary-parameters>
     <app-conditions-edit [editCharacterForm]="editCharacterForm"></app-conditions-edit>
     <app-characteristics-edit [editCharacterForm]="editCharacterForm"></app-characteristics-edit>
     <app-notes-edit [editCharacterForm]="editCharacterForm"></app-notes-edit>

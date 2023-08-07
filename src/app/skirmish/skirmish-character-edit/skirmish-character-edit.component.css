@@ -1,0 +1,59 @@
+::ng-deep table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+::ng-deep td {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+::ng-deep th {
+  text-align: center;
+}
+
+::ng-deep th.mat-header-cell:first-of-type {
+  padding-left: 0 !important;
+}
+
+::ng-deep th.mat-header-cell:last-of-type {
+  padding-right: 0 !important;
+}
+
+::ng-deep input::-webkit-outer-spin-button,
+::ng-deep input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+::ng-deep mat-form-field {
+  width: 100%;
+}
+
+::ng-deep textarea {
+  overflow:hidden;
+}
+
+::ng-deep button {
+  margin-right: 10px;
+}
+
+::ng-deep input {
+  overflow: hidden;
+}
+
+::ng-deep .mat-cell, ::ng-deep .mat-header-cell {
+  text-align: center;
+}
+
+::ng-deep .mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+::ng-deep .mat-mini-fab {
+  margin-top: 20%;
+}
+
+::ng-deep .details-row {
+  margin-top: 20px;
+}

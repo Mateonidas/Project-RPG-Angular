@@ -56,6 +56,18 @@ import { DetailsDescriptionsComponent } from './details-components/details-descr
 import { DetailsSkirmishCharacterParametersComponent } from './details-components/details-skirmish-character-parameters/details-skirmish-character-parameters.component';
 import { DetailsCharacterComponent } from './details-components/details-character/details-character.component';
 import { DetailsBodyLocalizationsComponent } from './details-components/details-body-localizations/details-body-localizations.component';
+import { DescriptionEditComponent } from './edit-form-components/description-edit/description-edit.component';
+import { TemporaryParametersComponent } from './edit-form-components/temporary-parameters/temporary-parameters.component';
+import { ConditionsEditComponent } from './edit-form-components/conditions-edit/conditions-edit.component';
+import { CharacteristicsEditComponent } from './edit-form-components/characteristics-edit/characteristics-edit.component';
+import { NotesEditComponent } from './edit-form-components/notes-edit/notes-edit.component';
+import { SkillsEditComponent } from './edit-form-components/skills-edit/skills-edit.component';
+import { TalentsEditComponent } from './edit-form-components/talents-edit/talents-edit.component';
+import { TraitsEditComponent } from './edit-form-components/traits-edit/traits-edit.component';
+import { SpellsEditComponent } from './edit-form-components/spells-edit/spells-edit.component';
+import { WeaponsEditComponent } from './edit-form-components/weapons-edit/weapons-edit.component';
+import { ArmorEditComponent } from './edit-form-components/armor-edit/armor-edit.component';
+import { InjuryEditComponent } from './edit-form-components/injury-edit/injury-edit.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +111,19 @@ import { DetailsBodyLocalizationsComponent } from './details-components/details-
     DetailsDescriptionsComponent,
     DetailsSkirmishCharacterParametersComponent,
     DetailsCharacterComponent,
-    DetailsBodyLocalizationsComponent
+    DetailsBodyLocalizationsComponent,
+    DescriptionEditComponent,
+    TemporaryParametersComponent,
+    ConditionsEditComponent,
+    CharacteristicsEditComponent,
+    NotesEditComponent,
+    SkillsEditComponent,
+    TalentsEditComponent,
+    TraitsEditComponent,
+    SpellsEditComponent,
+    WeaponsEditComponent,
+    ArmorEditComponent,
+    InjuryEditComponent,
   ],
     imports: [
         BrowserModule,

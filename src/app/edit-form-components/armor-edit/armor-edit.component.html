@@ -1,0 +1,37 @@
+<div fxLayout="row" class="details-row" [formGroup]="editCharacterForm">
+  <div fxFlex="100" formArrayName="armors">
+    <h4>{{text.getText().armorLabel}}</h4>
+    <div fxLayout="row" fxLayoutGap="20" *ngFor="let armorControl of armors; let i = index" [formGroupName]="i">
+      <div fxFlex="40">
+        <mat-form-field appearance="fill" class="example-full-width">
+          <mat-label>{{text.getText().nameLabel}}</mat-label>
+          <mat-select [formControl]="armorControl" [compareWith]="compareModels">
+            <mat-option disabled="disabled">
+              ---- {{armorsList[0].armorCategory.nameTranslation}} ----
+            </mat-option>
+            <ng-container *ngFor="let armor of armorsList; let i = index">
+              <mat-option *ngIf="i > 0 && armor.armorCategory.name !== armorsList[i-1].armorCategory.name"
+                          disabled="disabled">
+                ---- {{armor.armorCategory.nameTranslation}} ----
+              </mat-option>
+              <mat-option [value]=armor>
+                {{armor.nameTranslation}}
+              </mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex="20">
+        <button mat-raised-button color="primary" type="button"
+                (click)="onEditArmor(i)">{{text.getText().editLabel}}</button>
+        <button mat-mini-fab color="warn" type="button" (click)="onDeleteArmor(i)">X</button>
+      </div>
+    </div>
+    <div fxLayout="row">
+      <div fxFlex="100">
+        <button mat-raised-button color="primary" type="button"
+                (click)="onAddArmor()">{{text.getText().addArmorLabel}}</button>
+      </div>
+    </div>
+  </div>
+</div>

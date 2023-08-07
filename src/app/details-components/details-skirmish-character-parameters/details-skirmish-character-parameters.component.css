@@ -6,8 +6,16 @@ button {
   margin-right: 10px;
 }
 
+.conditions-table  {
+  width: 30%;
+}
+
 .mat-cell, .mat-header-cell {
   width: 4%;
+}
+
+.description-span {
+  cursor: pointer;
 }
 
 .details-row {

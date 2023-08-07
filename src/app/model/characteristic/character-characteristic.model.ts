@@ -11,11 +11,6 @@ export class CharacterCharacteristic {
     this.value = <number>value
   }
 
-  // constructor(characteristic?: Characteristic, value?: number) {
-  //   this.characteristic = <Characteristic>characteristic;
-  //   this.value = <number>value;
-  // }
-
   static fromJSON(object: Object): CharacterCharacteristic {
     let characterCharacteristics = Object.assign(new CharacterCharacteristic(), object)
     characterCharacteristics.characteristic = Characteristic.fromJSON(characterCharacteristics['characteristic'])

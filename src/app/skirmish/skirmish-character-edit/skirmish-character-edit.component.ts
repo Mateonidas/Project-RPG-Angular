@@ -4,44 +4,28 @@ import {UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {CharacterFormArraysWrapper} from "../../model/character/character-form-arrays-wrapper.model";
-import {ArmorService} from "../../shared/services/armor-service/armor.service";
-import {WeaponService} from "../../shared/services/weapon-service/weapon.service";
-import {SkillService} from "../../shared/services/skill-service/skill.service";
-import {TalentService} from "../../shared/services/talent-service/talent.service";
-import {BodyLocalizationService} from "../../shared/services/body-localization-service/body-localization.service";
 import {CharacterService} from "../../shared/services/character-service/character.service";
-import {InjuryService} from "../../shared/services/injuries-service/injury.service";
-import {ConditionService} from "../../shared/services/condition-service/condition.service";
 import {CharacterEditComponent} from "../../character/character-edit/character-edit.component";
 import {MatDialog} from "@angular/material/dialog";
-import {TraitService} from "../../shared/services/trait-service/trait.service";
-import {SpellService} from "../../shared/services/spell-service/spell.service";
+import {
+  CharacteristicsEditComponent
+} from "../../edit-form-components/characteristics-edit/characteristics-edit.component";
 
 @Component({
   selector: 'app-skirmish-character-edit',
-  templateUrl: '../../character/character-edit/character-edit.component.html',
-  styleUrls: ['../../character/character-edit/character-edit.component.css']
+  templateUrl: './skirmish-character-edit.component.html',
+  styleUrls: ['./skirmish-character-edit.component.css']
 })
 export class SkirmishCharacterEditComponent extends CharacterEditComponent implements OnInit {
 
   editMode = false;
-  isSkirmishMode = true;
 
   constructor(router: Router,
               route: ActivatedRoute,
               public skirmishService: SkirmishCharacterService,
-              public armorService: ArmorService,
-              public weaponService: WeaponService,
-              public skillService: SkillService,
-              public talentService: TalentService,
-              public traitService: TraitService,
-              public bodyLocalizationService: BodyLocalizationService,
               public characterService: CharacterService,
-              public injuryService: InjuryService,
-              public conditionService: ConditionService,
-              public spellService: SpellService,
               public dialog: MatDialog) {
-    super(router, route, armorService, weaponService, skillService, talentService, traitService, bodyLocalizationService, characterService, injuryService, conditionService, spellService, dialog);
+    super(router, route, characterService, dialog);
   }
 
   initForm() {
@@ -50,16 +34,15 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
 
     if (this.editMode) {
       skirmishCharacter = this.getSkirmishCharacter()
-      formArrays.characteristics = CharacterEditComponent.initEditCharacteristicsTable(skirmishCharacter.character)
       this.isRightHanded = skirmishCharacter.character.isRightHanded
       this.prepareEditData(skirmishCharacter.character, formArrays)
       this.characterBodyLocalizations = skirmishCharacter.character.bodyLocalizations
     } else {
       skirmishCharacter.character.name = ''
       skirmishCharacter.character.description = ''
-      formArrays.characteristics = CharacterEditComponent.initCharacteristicsTable()
     }
 
+    formArrays.characteristics = CharacteristicsEditComponent.initCharacteristicsTable(skirmishCharacter.character.characteristics)
     this.createEditSkirmishCharacterForm(skirmishCharacter, formArrays)
   }
 
@@ -69,6 +52,7 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
       'name': new UntypedFormControl(skirmishCharacter.character.name),
       'description': new UntypedFormControl(skirmishCharacter.character.description),
       'group': new UntypedFormControl(skirmishCharacter.character.group),
+      'status': new UntypedFormControl(skirmishCharacter.character.status),
       'characteristics': formArrays.characteristics,
       'skills': formArrays.skills,
       'talents': formArrays.talents,

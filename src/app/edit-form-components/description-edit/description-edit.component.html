@@ -1,0 +1,24 @@
+<div fxLayout="row" [formGroup]="editCharacterForm">
+  <div fxFlex="100">
+    <h4>Dane</h4>
+    <mat-form-field class="example-full-width text-field" appearance="fill">
+      <mat-label>{{text.getText().nameLabel}}</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width text-field" appearance="fill">
+      <mat-label>{{text.getText().descriptionLabel}}</mat-label>
+      <input matInput formControlName="description">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width text-field" appearance="fill">
+      <mat-label>{{text.getText().groupLabel}}</mat-label>
+      <input matInput formControlName="group">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width text-field" appearance="fill">
+      <mat-label>{{text.getText().statusLabel}}</mat-label>
+      <input matInput formControlName="status">
+    </mat-form-field>
+  </div>
+</div>

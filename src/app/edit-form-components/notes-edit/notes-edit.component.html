@@ -1,0 +1,22 @@
+<div fxLayout="row" class="details-row" [formGroup]="editCharacterForm">
+  <div fxFlex="100" formArrayName="notes">
+    <h4>{{text.getText().notesLabel}}</h4>
+    <div fxLayout="row" fxLayoutGap="10px" *ngFor="let noteControl of notes; index as i" [formGroupName]="i">
+      <div fxFlex="90">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>{{text.getText().noteLabel}}</mat-label>
+          <textarea matInput type="text" formControlName="note" style="overflow:hidden"></textarea>
+        </mat-form-field>
+      </div>
+      <div fxFlex="10">
+        <button mat-mini-fab color="warn" type="button" (click)="onDeleteNote(i)">X</button>
+      </div>
+    </div>
+    <div fxLayout="row">
+      <div fxFlex="100">
+        <button mat-raised-button color="primary" type="button"
+                (click)="onAddNote()">{{text.getText().addNoteLabel}}</button>
+      </div>
+    </div>
+  </div>
+</div>
