@@ -116,7 +116,6 @@
   "weaponTypeLabel": "Typ broni",
   "woundsLabel": "Żywotność",
   "yesLabel": "Tak",
-
   "characteristics": [
     {
       "name": "MOVEMENT",
@@ -2296,89 +2295,14 @@
   ],
   "spells": [
     {
-      "name": "BOLT",
-      "nameTranslation": "Pocisk",
-      "description": "PZ: 4\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Natychmiast\n\nTworzysz magiczne wyładowanie odpowiadające charakterowi Tradycji. Jest ono magicznym pociskiem zadającym Obrażenia +4."
+      "name": "ANIMAL_FRIEND",
+      "nameTranslation": "Przyjaciel zwierząt",
+      "description": "PZ: 0\nZasięg: Rzucający\nCel: Rzucający\nCzas: Natychmiast\n\nOdczuwasz nagły przypływ Wiatrów Magii z ich źródła. Wiesz, gdzie znajduje się północ."
     },
     {
-      "name": "CORROSIVE_BLOOD",
-      "nameTranslation": "Żrąca Krew",
-      "description": "PZ: 4\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nWypełniasz swoje ciało magią, a twoja krew nabiera niezwykłych właściwości. Zyskujesz Cechę Stworzenia Kwasowa Krew (strona 339).\n\nKrew stworzenia jest żrąca. Za każdym razem, gdy zostanie ono ranione, tryska z niego krew i wszystkie związane z nim walką cele dostają 1k10 Ran. Są one normalnie obniżane przez Bonus z Wytrzymałości i Punkty Pancerza, ale wynoszą minimum 1."
-    },
-    {
-      "name": "DOME",
-      "nameTranslation": "Kopuła",
-      "description": "PZ: 7\nZasięg: Rzucający\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nTworzysz nad sobą kopułę z magicznej energii, która blokuje ataki. Każdy w Zasięgu zyskuje Cechę Stworzenia Ochrona (6+) (strona 340) przeciwko magicznym lub dystansowym atakom wyprowadzanym zza kopuły. Wszystkie ataki wewnątrz kopuły wykonywane są normalnie."
-    },
-    {
-      "name": "ENTANGLE",
-      "nameTranslation": "Pochwycenie",
-      "description": "PZ: 3\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Specjalny\n\nZa pomocą magii unieruchamiasz cel, oplatając go tym, co najlepiej pasuje do twojej Tradycji – pnączami, cieniami czy ubraniem. Twój cel otrzymuje 1 poziom Stanu Pochwycenie, którego Siła równa jest twojej Inteligencji. Za każde 2 PS możesz dodać 1 dodatkowy poziom Pochwycenia. Zaklęcie trwa, dopóki wszystkie poziomy Pochwycenia nie zostaną usunięte."
-    },
-    {
-      "name": "BOLT_OF_CORRUPTION",
-      "nameTranslation": "Pocisk spaczenia",
-      "description": "PZ: 8\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Natychmiast\n\nFormujesz mroczną magię w wyładowanie niszczycielskiej energii. Uznawane jest za magiczny pocisk o współczynniku Obrażeń +6. Trafiona ofiara musi zdać Wymagający (+0) Test Odporności lub otrzyma 1 Punkt Zepsucia."
-    },
-    {
-      "name": "BLUE_FIRE_OF_TZEENTCH",
-      "nameTranslation": "Niebieski płomień Tzeentcha",
-      "description": "PZ: 6\nZasięg: Liczba metrów równa Inteligencji\nCel: Obszar (liczba metrów równa Bonusowi z Inicjatywy)\nCzas: Natychmiast\n\nPrzyzywasz wirującą kulę iskrzącego błękitnego ognia, która pochłania Twoich wrogów. Niebieski Płomień Tzeentcha uznawany jest za magiczny pocisk o współczynniku Obrażeń +3 zadawanym wszystkim Celom na Obszarze działania. Każdy trafiony otrzymuje również jeden Stan Podpalenie.\n\nJeżeli w wyniku tego zaklęcia albo wywołanego przez nią Stanu Podpalenie Żywotność istoty o Rozmiarze (Mały) lub większej zostanie obniżona do 0, rzuć 1k10. Gdy wypadnie 9, dwa niebieskie strachulce (patrz str. 85) wydzierają sobie drogę pazurami z ciała ofiary czaru, zabijając ją na miejscu."
-    },
-    {
-      "name": "PINK_FIRE_OF_TZEENTCH",
-      "nameTranslation": "Różowy płomień Tzeentcha",
-      "description": "PZ: 6\nZasięg: Liczba metrów równa Inteligencji\nCel: 1\nCzas: Natychmiast\n\nWirujące pociski różowego ognia tryskają z Twoich rozczapierzonych palców, rozdzierając wrzeszczącą z bólu rzeczywistość. Różowy płomień Tzeentcha uznawany jest za magiczny pocisk o współczynniku Obrażeń +6. Dodatkowo Cel otrzymuje Stan Podpalenie. Jeżeli w wyniku tego zaklęcia albo wywołanego przez nie Stanu Podpalenie Żywotność istoty o Rozmiarze (Mały) lub większej zostanie obniżona do 0, rzuć 1k10. Gdy wypadnie 9, różowy strachulec (patrz str. 85) wydziera sobie drogę pazurami z ciała ofiary czaru, zabijając ją na miejscu."
-    },
-    {
-      "name": "POWER_OF_CHAOS",
-      "nameTranslation": "Potęga Chaosu",
-      "description": "PZ: 4\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Ogłady)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nWzywasz bogów Chaosu, by wspomogli Twe wysiłki poprzez niewielkie rozdarcie prowadzące do Eteru. Każde zaklęcie rzucone na obszarze działania Potęgi Chaosu ma PZ obniżony o połowę. Ponadto wszyscy przebywający na tym obszarze muszą zdać Przeciętny (+20) Test Odporności na koniec każdej Rundy lub otrzymują 1 Punkt Zepsucia. Testy Rzucania Zaklęć na tym obszarze mają Przeciętną (+20) Trudność."
-    },
-    {
-      "name": "MINDFIRE",
-      "nameTranslation": "Płomień umysłu",
-      "description": "PZ: 6\nZasięg: Liczba metrów równa Inteligencji\nCel: 1\nCzas: Natychmiast\n\nPowietrze wypacza się wokół Twoich palców, tworząc kulę błyszczącej, mglistej energii, którą możesz cisnąć w przeciwnika. Cel trafiony przez Płomień umysłu musi zdać Wymagający (+0) Test Opanowania lub otrzymuje 1 Punkt Zepsucia. Za każde 2 PS uzyskane w Teście rzucania zaklęcia możesz przyznać ofierze kolejny Punkt Zepsucia, jeżeli nie zda Testu Opanowania. Gdyby nieszczęśnik miał z tego powodu otrzymać mutację, rzuca w Tabeli Zepsucia Psychicznego oraz dostaje jeden poziom Stanu Podpalenie, kiedy nienaturalny ogień bucha z jego oczu, ust, nozdrzy i uszu."
-    },
-    {
-      "name": "DART",
-      "nameTranslation": "Magiczne żądło",
-      "description": "PZ: 0\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Natychmiast\n\nSprawiasz, że malutka strzałka, cała z magicznej energii, wystrzeliwuje ci z palców. Uznaje się ją za magiczny pocisk ze współczynnikiem Obrażeń +0."
-    },
-    {
-      "name": "MAGIC_FLAME",
-      "nameTranslation": "Magiczny Płomień",
-      "description": "PZ: 0\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nWzniecasz mały płomień, który drgając, budzi się do życia na twojej dłoni. Nie poparzy cię, ale będzie emitował ciepło i będzie w stanie zająć palne przedmioty tak jak naturalny płomień."
-    },
-    {
-      "name": "PURIFY_WATER",
-      "nameTranslation": "Oczyszczenie Wody",
-      "description": "PZ: 0\nZasięg: 1 metr\nCel: Specjalny\nCzas: Natychmiast\n\nUzdatniasz wodę w pojemniku, np. butli, konwi czy dzbanie. Wszelkie niemagiczne nieczystości, jak trucizny i zanieczyszczenia, zostają usunięte – pozostaje zdatna do picia i czysta woda. Jeśli w pojemniku znajdowała się ciecz w większości składająca się z wody, jak np. piwo czy wino, również ulega oczyszczeniu i zmienia się w pyszną i czystą wodę. Bez alkoholu!"
-    },
-    {
-      "name": "PURIFY_WATER",
-      "nameTranslation": "Oczyszczenie Wody",
-      "description": "PZ: 0\nZasięg: 1 metr\nCel: Specjalny\nCzas: Natychmiast\n\nUzdatniasz wodę w pojemniku, np. butli, konwi czy dzbanie. Wszelkie niemagiczne nieczystości, jak trucizny i zanieczyszczenia, zostają usunięte – pozostaje zdatna do picia i czysta woda. Jeśli w pojemniku znajdowała się ciecz w większości składająca się z wody, jak np. piwo czy wino, również ulega oczyszczeniu i zmienia się w pyszną i czystą wodę. Bez alkoholu!"
-    },
-    {
-      "name": "WARNING",
-      "nameTranslation": "Ostrzeżenie",
-      "description": "PZ: 0\nZasięg: 1 metr\nCel: Specjalny\nCzas: Natychmiast\n\nWplatasz magię w przedmiot, dzięki czemu natychmiast dowiadujesz się, czy został on zatruty lub czy nie została na niego założona pułapka."
-    },
-    {
-      "name": "SHOCK",
-      "nameTranslation": "Porażenie",
-      "description": "PZ: 0\nZasięg: Dotyk\nCel: 1\nCzas: Natychmiast\n\nCel otrzymuje 1 poziom Oszołomienia."
-    },
-    {
-      "name": "DRAIN",
-      "nameTranslation": "Wyssanie",
-      "description": "PZ: 0\nZasięg: Dotyk\nCel: 1\nCzas: Natychmiast\n\nDotykasz celu, wysysając z niego życie. Zaklęcie to jest magicznym pociskiem zadającym +0 Obrażeń ignorujących Punkty Pancerza. Leczysz 1 Ranę."
-    },
-    {
-      "name": "SOUNDS",
-      "nameTranslation": "Odgłosy",
-      "description": "PZ: 0\nZasięg: Liczba metrów równa Sile Woli\nCel: Specjalny\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nNiedaleko siebie wytwarzasz niewielki odgłos. To może być cichy, niewyraźny dźwięk, który wydaje się dochodzić z konkretnego miejsca niezależnie od zasięgu wzroku. Odgłosy mogą przypominać coś konkretnego, np. chód, szept czy dźwięki zwierząt, ale nic na tyle szczególnego, by mogło nieść wiadomość.\n\nPodczas trwania zaklęcia możesz kontrolować przemieszczanie się dźwięku, jeśli powiedzie ci się Przeciętny (+20) Test Splatania Magii. Sukces umożliwia ci przesuwać dźwięk do innego miejsca w zasięgu lub zwiększać i zmniejszać jego głośność."
+      "name": "BEARINGS",
+      "nameTranslation": "Orientacja",
+      "description": "PZ: 0\nZasięg: 1 metr\nCel: 1\nCzas: 1 godzina\n\nZaprzyjaźniasz się z istotą, która jest mniejsza od ciebie i ma Cechę Stworzenia Zwierzęcy. Zwierzę ufa ci zupełnie i uważa za przyjaciela."
     },
     {
       "name": "DAZZLE",
@@ -2386,14 +2310,24 @@
       "description": "PZ: 0\nZasięg: Dotyk\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nCel otrzymuje 1 poziom Oślepienia – i kolejny poziom Oślepienia na początku każdej Rundy, dopóki trwa zaklęcie."
     },
     {
-      "name": "OPEN_LOCK",
-      "nameTranslation": "Otwarcie zamka",
-      "description": "PZ: 0\nZasięg: Dotyk\nCel: Specjalny\nCzas: Natychmiast\n\nDotknięty niemagiczny zamek otwiera się."
+      "name": "CAREFUL_STEP",
+      "nameTranslation": "Jak kamień w wodę",
+      "description": "PZ: 0\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba minut równa Sile Woli\n\nMagia przepływająca przez twoje stopy sprawia, że wszelka materia organiczna, po której przechodzisz, pozostaje nietknięta – gałązki się nie łamią, trawa wraca do poprzedniej pozycji, nic nie dzieje się nawet delikatnym kwiatkom. Ci, którzy będą próbować tropić rzucającego czar na wiejskich terenach, otrzymają karę -30 do Testu."
     },
     {
-      "name": "LIGHT",
-      "nameTranslation": "Poblask",
-      "description": "PZ: 0\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba minut równa Sile Woli\n\nTworzysz małe źródło światła, porównywalne z pochodnią, które świeci wprost z twojej dłoni, laski czy innej części twojej osoby. W czasie gdy zaklęcie jest aktywne, możesz zdecydować się zwiększyć moc światła do podobnego do latarni lub zmniejszyć je do blasku świecy, jeśli powiedzie ci się Przeciętny (+20) Test Splatania Magii."
+      "name": "CONSERVE",
+      "nameTranslation": "Żelazne racje",
+      "description": "PZ: 0\nZasięg: 1 metr\nCel: 1\nCzas: Liczba dni równa Bonusowi z Siły Woli\n\nZabezpieczasz racje żywnościowe, które starczą na jeden dzień. Podczas tego okresu nie zgniją, nie spleśnieją, nie sczerstwieją, a"
+    },
+    {
+      "name": "DART",
+      "nameTranslation": "Magiczne żądło",
+      "description": "PZ: 0\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Natychmiast\n\nSprawiasz, że malutka strzałka, cała z magicznej energii, wystrzeliwuje ci z palców. Uznaje się ją za magiczny pocisk ze współczynnikiem Obrażeń +0."
+    },
+    {
+      "name": "DRAIN",
+      "nameTranslation": "Wyssanie",
+      "description": "PZ: 0\nZasięg: Dotyk\nCel: 1\nCzas: Natychmiast\n\nDotykasz celu, wysysając z niego życie. Zaklęcie to jest magicznym pociskiem zadającym +0 Obrażeń ignorujących Punkty Pancerza. Leczysz 1 Ranę."
     },
     {
       "name": "EAVESDROP",
@@ -2401,19 +2335,89 @@
       "description": "PZ: 0\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Liczba minut równa Bonusowi z Inicjatywy\n\nMożesz usłyszeć, co mówią twoje cele, tak jakby stały obok ciebie."
     },
     {
+      "name": "GUST",
+      "nameTranslation": "Podmuch",
+      "description": "PZ: 0\nZasięg: Liczba metrów równa Sile Woli\nCel: Specjalny\nCzas: Natychmiast\n\nTworzysz krótki podmuch wiatru, wystarczająco mocny, by zdmuchnąć świece, zatrzasnąć drzwi czy zwiać kartki papieru z blatu."
+    },
+    {
+      "name": "LIGHT",
+      "nameTranslation": "Poblask",
+      "description": "PZ: 0\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba minut równa Sile Woli\n\nTworzysz małe źródło światła, porównywalne z pochodnią, które świeci wprost z twojej dłoni, laski czy innej części twojej osoby. W czasie gdy zaklęcie jest aktywne, możesz zdecydować się zwiększyć moc światła do podobnego do latarni lub zmniejszyć je do blasku świecy, jeśli powiedzie ci się Przeciętny (+20) Test Splatania Magii."
+    },
+    {
+      "name": "MAGIC_FLAME",
+      "nameTranslation": "Magiczny Płomień",
+      "description": "PZ: 0\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nWzniecasz mały płomień, który drgając, budzi się do życia na twojej dłoni. Nie poparzy cię, ale będzie emitował ciepło i będzie w stanie zająć palne przedmioty tak jak naturalny płomień."
+    },
+    {
+      "name": "MARSH_LIGHTS",
+      "nameTranslation": "Błędne ogniki",
+      "description": "PZ: 0\nZasięg: Liczba metrów równa Sile Woli\nCel: Specjalny\nCzas: Liczba minut równa Sile Woli\n\nTworzysz kilka migających magicznych światełek, maksymalnie tyle, ile wynosi twój Bonus z Inteligencji. Przypominają one pochodnie lub przysłonięte latarnie. Dopóki pozostają w zasięgu wzroku, poświęcając akcję, możesz je kontrolować, jeśli uda ci się Przeciętny (+20) Test Splatania Magii. Możesz wtedy przesuwać je w dowolnym kierunku. Będą przemieszczać się w tempie chodu, przechodząc przez przedmioty (lub osoby) na swojej drodze, dopóki przy pomocy kolejnego Testu nie zmienisz kierunku ich ruchu."
+    },
+    {
+      "name": "MURMURED_WHISPER",
+      "nameTranslation": "Daleki szpet",
+      "description": "PZ: 0\nZasięg: Liczba metrów równa Sile Woli\nCel: Specjalny\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nWysyłasz swój głos do jednego punktu na odległość równą Sile Woli w metrach – niezależnie od tego, czy punkt jest w zasięgu wzroku, czy też nie. Twój głos rozlega się z tego miejsca i słyszą go wszyscy w zasięgu słuchu."
+    },
+    {
+      "name": "OPEN_LOCK",
+      "nameTranslation": "Otwarcie zamka",
+      "description": "PZ: 0\nZasięg: Dotyk\nCel: Specjalny\nCzas: Natychmiast\n\nDotknięty niemagiczny zamek otwiera się."
+    },
+    {
+      "name": "PRODUCE_SMALL_ANIMAL",
+      "nameTranslation": "Królik z kapelusza",
+      "description": "PZ: 0\nZasięg: Dotyk\nCel: Specjalny\nCzas: Natychmiast\n\nSięgasz do torby, kieszeni, kapelusza lub pod kamień, krzew czy do nory i tworzysz małe zwierzątko tego rodzaju, którego spodziewałbyś się w danym miejscu, np. królika, gołębia lub szczura. Jeśli w danym miejscu nie występują żadne lokalne zwierzęta, zaklęcie nie zadziała. Nie wiadomo jednak, w jakim humorze będzie stworzone zwierzątko."
+    },
+    {
+      "name": "PROTECTION_FROM_RAIN",
+      "nameTranslation": "Ochrona przed deszczem",
+      "description": "PZ: 0\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba godzin równa Bonusowi z Wytrzymałości\n\nNie jesteś w stanie zmoknąć – niezależnie od warunków pogodowych. Dotyczy to deszczu, gradu, deszczu ze śniegiem i śniegu, a także wszelkiej wody spadającej z nieba, jednakże nie dotyczy to wody stojącej."
+    },
+    {
+      "name": "PURIFY_WATER",
+      "nameTranslation": "Oczyszczenie Wody",
+      "description": "PZ: 0\nZasięg: 1 metr\nCel: Specjalny\nCzas: Natychmiast\n\nUzdatniasz wodę w pojemniku, np. butli, konwi czy dzbanie. Wszelkie niemagiczne nieczystości, jak trucizny i zanieczyszczenia, zostają usunięte – pozostaje zdatna do picia i czysta woda. Jeśli w pojemniku znajdowała się ciecz w większości składająca się z wody, jak np. piwo czy wino, również ulega oczyszczeniu i zmienia się w pyszną i czystą wodę. Bez alkoholu!"
+    },
+    {
       "name": "ROT",
       "nameTranslation": "Zgnilizna",
       "description": "PZ: 0\nZasięg: 1 metr\nCel: Specjalny\nCzas: Natychmiast\n\nSprawiasz, że organiczny materiał wielkości pięści gnije natychmiast. Jedzenie się psuje, ubrania rozpadają, skóra wysusza się (tracąc 1 Punkt Pancerza w 1 miejscu) itd. – w zależności od decyzji MG."
     },
     {
-      "name": "MUNDANE_AURA",
-      "nameTranslation": "Aura codzienności",
-      "description": "PZ: 4\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba minut równa Sile Woli\n\nWysysasz wszelkie Wiatry Magii ze swego ciała i swojego dobytku, usuwając wszelkie ślady magicznej aury. Przez okres trwania zaklęcia dla osób posiadających Talent Percepcja Magiczna lub podobny wydajesz się zwykłą osobą, nieposiadającą nadprzyrodzonych zdolności. Nie wytwarzasz wtedy żadnych eterycznych wibracji i twoja magiczna aura nie może zostać wykryta żadnymi sposobami. Podczas trwania tego zaklęcia nie możesz rzucać żadnych zaklęć. Aura codzienności rozprasza się natychmiast, gdy rozpoczniesz Test Splatania Magii."
+      "name": "SLEEP",
+      "nameTranslation": "Uśpienie",
+      "description": "PZ: 0\nZasięg: Dotyk\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nDotykasz przeciwnika, a ten natychmiast zapada w głęboki sen. Jeśli cel miał już Stan Powalony, natychmiast otrzymuje też Utratę Przytomności.\nCel zostanie nieprzytomny, dopóki trwa zaklęcie, jednak głośne dźwięki, przenoszenie czy potrącenie natychmiast go obudzi. Jeśli cel stał lub siedział podczas rzucenia zaklęcia, następuje Powalenie, a cel budzi się na ziemi po uderzeniu w nią. Jeśli cel nie próbuje odeprzeć snu lub jest po prostu bardzo zmęczony, po zakończeniu zaklęcia będzie chrapał w najlepsze."
     },
     {
-      "name": "FLIGHT",
-      "nameTranslation": "Lot",
-      "description": "PZ: 8\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nMożesz latać – dzięki eterycznym skrzydłom, w kolumnie magicznego światła lub w inny odpowiedni dla Tradycji sposób. Zyskujesz Cechę Stworzenia Latanie (Zwinność) (strona 339)."
+      "name": "SPRING",
+      "nameTranslation": "Źródełko",
+      "description": "PZ: 0\nZasięg: Dotyk\nCel: Specjalny\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nDotykasz ziemi i z tego miejsca wydobywa się woda, wypływając w tempie pół litra na Rundę. Źródełko może wyprodukować maksymalnie tyle litrów wody, ile wynosi połowa Bonusu z Inicjatywy."
+    },
+    {
+      "name": "SHOCK",
+      "nameTranslation": "Porażenie",
+      "description": "PZ: 0\nZasięg: Dotyk\nCel: 1\nCzas: Natychmiast\n\nCel otrzymuje 1 poziom Oszołomienia."
+    },
+    {
+      "name": "SLY_HANDS",
+      "nameTranslation": "As w rękawie",
+      "description": "PZ: 0\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nTeleportujesz mały przedmiot (nie większy niż twoja pięść), który jest w twoim posiadaniu, wprost do twojej dłoni."
+    },
+    {
+      "name": "SOUNDS",
+      "nameTranslation": "Odgłosy",
+      "description": "PZ: 0\nZasięg: Liczba metrów równa Sile Woli\nCel: Specjalny\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nNiedaleko siebie wytwarzasz niewielki odgłos. To może być cichy, niewyraźny dźwięk, który wydaje się dochodzić z konkretnego miejsca niezależnie od zasięgu wzroku. Odgłosy mogą przypominać coś konkretnego, np. chód, szept czy dźwięki zwierząt, ale nic na tyle szczególnego, by mogło nieść wiadomość.\n\nPodczas trwania zaklęcia możesz kontrolować przemieszczanie się dźwięku, jeśli powiedzie ci się Przeciętny (+20) Test Splatania Magii. Sukces umożliwia ci przesuwać dźwięk do innego miejsca w zasięgu lub zwiększać i zmniejszać jego głośność."
+    },
+    {
+      "name": "TWITCH",
+      "nameTranslation": "Drganie",
+      "description": "PZ: 0\nZasięg: Liczba metrów równa Bonusowi z Siły Woli\nCel: Specjalny\nCzas: Natychmiast\n\nSprawiasz, że mały przedmiot zaczyna się lekko poruszać. Coś może spaść z półki, księga może się nagle zamknąć. Jeśli przedmiot jest przez kogoś trzymany, postać ta musi wykonać Przeciętny (+20) Test Zręczności – jeśli się nie powiedzie, ta rzecz wymknie jej się z rąk."
+    },
+    {
+      "name": "WARNING",
+      "nameTranslation": "Ostrzeżenie",
+      "description": "PZ: 0\nZasięg: 1 metr\nCel: Specjalny\nCzas: Natychmiast\n\nWplatasz magię w przedmiot, dzięki czemu natychmiast dowiadujesz się, czy został on zatruty lub czy nie została na niego założona pułapka."
     },
     {
       "name": "AETHYRIC_ARMOUR",
@@ -2421,19 +2425,14 @@
       "description": "PZ: 2\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli +\n\nZyskujesz 1 Punkt Pancerza na wszystkich Miejscach Trafień, oplatając się ochronnym pasem magii."
     },
     {
-      "name": "TELEPORT",
-      "nameTranslation": "Przeskok",
-      "description": "PZ: 5\nZasięg: Rzucający\nCel: Rzucający\nCzas: Natychmiast\n\nWykorzystując magię, przemieszczasz się natychmiast na odległość wynoszącą maksymalnie tyle, ile wynosi twój Bonus z Siły Woli. Dzięki temu możesz nie przejmować się jarami, dołami, pułapkami i innymi niebezpieczeństwami, ignorując przeszkody. Za każde +2 PS możesz zwiększyć dystans takiej teleportacji o tyle metrów, ile wynosi twój Bonus z Siły Woli."
+      "name": "AETHYRIC_ARMS",
+      "nameTranslation": "Magiczna broń",
+      "description": "PZ: 2\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli +\n\nMożesz stworzyć broń białą, której Obrażenia równe będą +Bonus z Siły Woli. Broń ta może przybrać dowolną formę i używa się jej za pomocą dowolnej posiadanej Umiejętności Broń Biała. Uznaje się ją za Magiczną."
     },
     {
-      "name": "CHAIN_ATTACK",
-      "nameTranslation": "Seria pocisków",
-      "description": "PZ: 6\nZasięg: Liczba metrów równa Sile Woli\nCel: Specjalny\nCzas: Natychmiast\n\nWyzwalasz z magii wirujące i raniące cel zaklęcia kolce. Uznaje się je za magiczne pociski, które zadają +4 Obrażenia. Jeśli Seria pocisków zmniejszy Żywotność celu do 0, przenosi się na następny cel w ramach początkowego Zasięgu zaklęcia i w odległości tylu metrów od poprzedniego celu, ile wynosi Bonus z Siły Woli rzucającego, nadal zadając takie same obrażenia. Kolce mogą przeskakiwać w ten sposób tyle razy, ile wynosi Bonus z Siły Woli. Za każde 2 PS kolce mogą przeskoczyć na jeden dodatkowy cel."
-    },
-    {
-      "name": "DARK_VISION",
-      "nameTranslation": "Widzenie w ciemności",
-      "description": "PZ: 1\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nTwoje naturalne zmysły zostają wzmocnione dzięki postrzeganiu magii. Podczas trwania zaklęcia zyskujesz Cechę Stworzenia Widzenie w Ciemności (strona 342)."
+      "name": "ARROW_SHIELD",
+      "nameTranslation": "Niszczyciel strzał",
+      "description": "PZ: 3\nZasięg: Rzucający\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Liczba Rund równa Bonusowi z Siły Woli +\n\nWszelkie pociski z materii organicznej, jak np. strzały czy bełty z drewnianym promieniem, są automatycznie niszczone, jeśli wlecą w Zasięg zaklęcia – nie zadają żadnych obrażeń. Zaklęcie nie wpływa na pociski nieorganiczne, jak np. noże czy kule pistoletowe."
     },
     {
       "name": "BLAST",
@@ -2441,24 +2440,649 @@
       "description": "PZ: 4\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Natychmiast\n\nFormujesz magię w wybuchowy podmuch. Uznawany jest on za magiczny pocisk o współczynniku Obrażeń +3 zadawanym wszystkim celom w Zasięgu."
     },
     {
-      "name": "IDYLL",
-      "nameTranslation": "Idylla",
-      "description": "PZ: 5\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\nTwoja magia wbija się głęboko w cel, zalewając jego duszę dręczącą świadomością jego zniszczonych marzeń. Inicjatywa celu spada do 10, jeśli jeszcze nie była poniżej tego poziomu, ponieważ jego umysł wywraca się na nitce. W Turze celu jego ruch jest losowy i ustalany przez MG. Cel zaczyna lamentować nad swoim życiem, lubieżnie opowiadając wszystko, co miało się wydarzyć, i machając rękoma w powietrzu. Ponadto cel może wykonać Akcję jedynie wtedy, gdy powiedzie mu się Wymagający (+0) Test Opanowania. W przeciwnym razie jest zbyt zajęty opłakiwaniem wszystkiego, co mogło się wydarzyć, a nie wydarzyło."
+      "name": "BOLT",
+      "nameTranslation": "Pocisk",
+      "description": "PZ: 4\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Natychmiast\n\nTworzysz magiczne wyładowanie odpowiadające charakterowi Tradycji. Jest ono magicznym pociskiem zadającym Obrażenia +4."
+    },
+    {
+      "name": "BREATH",
+      "nameTranslation": "Zionięcie",
+      "description": "PZ: 6\nZasięg: 1 metr\nCel: Specjalny\nCzas: Natychmiast\n\nNatychmiast wykonujesz Zionięcie, tak jak opisano przy aktywacji Cechy Stworzenia Zionięcie (patrz strona 343), za 2 Przewagi. Zionięcie jest magicznym pociskiem o współczynniku Obrażeń +Bonus z Wytrzymałości. MG zdecyduje, jaki rodzaj Zionięcia najbardziej pasuje do twojej Tradycji."
+    },
+    {
+      "name": "BRIDGE",
+      "nameTranslation": "Most",
+      "description": "PZ: 4\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (patrz opis)\nCzas: Liczba Rund równa Bonusowi z Siły Woli +\n\nTworzysz most z magicznej energii, którego długość i szerokość w metrach mogą być równe maksymalnie tyle, ile wynosi twój Bonus z Siły Woli. Za każde 2 PS możesz zwiększyć szerokość lub długość mostu o tyle metrów, ile wynosi Bonus z Siły Woli."
+    },
+    {
+      "name": "CHAIN_ATTACK",
+      "nameTranslation": "Seria pocisków",
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Sile Woli\nCel: Specjalny\nCzas: Natychmiast\n\nWyzwalasz z magii wirujące i raniące cel zaklęcia kolce. Uznaje się je za magiczne pociski, które zadają +4 Obrażenia. Jeśli Seria pocisków zmniejszy Żywotność celu do 0, przenosi się na następny cel w ramach początkowego Zasięgu zaklęcia i w odległości tylu metrów od poprzedniego celu, ile wynosi Bonus z Siły Woli rzucającego, nadal zadając takie same obrażenia. Kolce mogą przeskakiwać w ten sposób tyle razy, ile wynosi Bonus z Siły Woli. Za każde 2 PS kolce mogą przeskoczyć na jeden dodatkowy cel."
+    },
+    {
+      "name": "CORROSIVE_BLOOD",
+      "nameTranslation": "Żrąca Krew",
+      "description": "PZ: 4\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nWypełniasz swoje ciało magią, a twoja krew nabiera niezwykłych właściwości. Zyskujesz Cechę Stworzenia Kwasowa Krew (strona 339).\n\nKrew stworzenia jest żrąca. Za każdym razem, gdy zostanie ono ranione, tryska z niego krew i wszystkie związane z nim walką cele dostają 1k10 Ran. Są one normalnie obniżane przez Bonus z Wytrzymałości i Punkty Pancerza, ale wynoszą minimum 1."
+    },
+    {
+      "name": "DARK_VISION",
+      "nameTranslation": "Widzenie w ciemności",
+      "description": "PZ: 1\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nTwoje naturalne zmysły zostają wzmocnione dzięki postrzeganiu magii. Podczas trwania zaklęcia zyskujesz Cechę Stworzenia Widzenie w Ciemności (strona 342)."
+    },
+    {
+      "name": "DISTRACTING",
+      "nameTranslation": "Dekoncentracja",
+      "description": "PZ: 4\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nOtaczasz się wirującą i świszczącą mocą, która rozprasza wrogów. Podczas trwania zaklęcia zyskujesz Cechę Stworzenia Dekoncentrujący (strona 338)."
+    },
+    {
+      "name": "DOME",
+      "nameTranslation": "Kopuła",
+      "description": "PZ: 7\nZasięg: Rzucający\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nTworzysz nad sobą kopułę z magicznej energii, która blokuje ataki. Każdy w Zasięgu zyskuje Cechę Stworzenia Ochrona (6+) (strona 340) przeciwko magicznym lub dystansowym atakom wyprowadzanym zza kopuły. Wszystkie ataki wewnątrz kopuły wykonywane są normalnie."
+    },
+    {
+      "name": "DROP",
+      "nameTranslation": "Niezdarność",
+      "description": "PZ: 1\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Natychmiast\n\nWlewasz magię w trzymany przez kogoś przedmiot. Może to być broń, lina lub czyjaś dłoń. Jeśli przeciwnikowi nie uda się Wymagający (+0) Test Zręczności, wypuści to, co trzyma w dłoni. Za każde 2 PS możesz dodać karę -10 do Testu Zręczności."
+    },
+    {
+      "name": "ENTANGLE",
+      "nameTranslation": "Pochwycenie",
+      "description": "PZ: 3\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Specjalny\n\nZa pomocą magii unieruchamiasz cel, oplatając go tym, co najlepiej pasuje do twojej Tradycji – pnączami, cieniami czy ubraniem. Twój cel otrzymuje 1 poziom Stanu Pochwycenie, którego Siła równa jest twojej Inteligencji. Za każde 2 PS możesz dodać 1 dodatkowy poziom Pochwycenia. Zaklęcie trwa, dopóki wszystkie poziomy Pochwycenia nie zostaną usunięte."
+    },
+    {
+      "name": "FEARSOME",
+      "nameTranslation": "Straszny wygląd",
+      "description": "PZ: 3\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nWypełniasz siebie magią, budząc grozę wśród wrogów. Zyskujesz 1 poziom Strachu. Za każde 3 PS możesz zwiększyć poziom Strachu o 1."
+    },
+    {
+      "name": "FLIGHT",
+      "nameTranslation": "Lot",
+      "description": "PZ: 8\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nMożesz latać – dzięki eterycznym skrzydłom, w kolumnie magicznego światła lub w inny odpowiedni dla Tradycji sposób. Zyskujesz Cechę Stworzenia Latanie (Zwinność) (strona 339)."
+    },
+    {
+      "name": "MAGIC_SHIELD",
+      "nameTranslation": "Magiczna tarcza",
+      "description": "PZ: 4\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nOtaczasz się splotami ochronnej magii. Gdy zaklęcie jest aktywne, możesz dodać Bonus z Siły Woli do PS podczas wszelkich prób rozpraszania magii, które przeprowadzasz."
+    },
+    {
+      "name": "MOVE_OBJECT",
+      "nameTranslation": "Dotyk na odległość",
+      "description": "PZ: 4\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: 1 Runda\n\nUżywając magii, możesz chwycić przedmiot (ale nie świadomą istotę) nie większy od ciebie i przesunąć go mocą, której Siła równa jest twojej Sile Woli. Możesz przemieścić ten przedmiot maksymalnie o tyle metrów, ile wynosi twój Bonus z Siły Woli. Każdy, kto będzie próbował zatrzymać ten przedmiot, musi wykonać Przeciwstawny Test Siły Woli/Siły. Za każde 2 PS możesz zwiększyć dystans przesunięcia o tyle metrów, ile wynosi Bonus z Siły Woli."
+    },
+    {
+      "name": "MUNDANE_AURA",
+      "nameTranslation": "Aura codzienności",
+      "description": "PZ: 4\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba minut równa Sile Woli\n\nWysysasz wszelkie Wiatry Magii ze swego ciała i swojego dobytku, usuwając wszelkie ślady magicznej aury. Przez okres trwania zaklęcia dla osób posiadających Talent Percepcja Magiczna lub podobny wydajesz się zwykłą osobą, nieposiadającą nadprzyrodzonych zdolności. Nie wytwarzasz wtedy żadnych eterycznych wibracji i twoja magiczna aura nie może zostać wykryta żadnymi sposobami. Podczas trwania tego zaklęcia nie możesz rzucać żadnych zaklęć. Aura codzienności rozprasza się natychmiast, gdy rozpoczniesz Test Splatania Magii."
+    },
+    {
+      "name": "PUSH",
+      "nameTranslation": "Odepchnięcie",
+      "description": "PZ: 6\nZasięg: Rzucający\nCel: Rzucający\nCzas: Natychmiast\n\nWszystkie żywe stworzenia w promieniu tylu metrów, ile wynosi twój Bonus z Siły Woli, zostają odepchnięte na taką właśnie odległość i zostają Powalone. Jeśli wpadną na ścianę lub inną dużą przeszkodę, zatrzymują się na niej, ale otrzymują tyle Obrażeń, ile metrów powinny jeszcze przebyć. Za każde +2 PS możesz odepchnąć przeciwników dalej – o tyle metrów, ile wynosi Bonus z Siły Woli."
+    },
+    {
+      "name": "TELEPORT",
+      "nameTranslation": "Przeskok",
+      "description": "PZ: 5\nZasięg: Rzucający\nCel: Rzucający\nCzas: Natychmiast\n\nWykorzystując magię, przemieszczasz się natychmiast na odległość wynoszącą maksymalnie tyle, ile wynosi twój Bonus z Siły Woli. Dzięki temu możesz nie przejmować się jarami, dołami, pułapkami i innymi niebezpieczeństwami, ignorując przeszkody. Za każde +2 PS możesz zwiększyć dystans takiej teleportacji o tyle metrów, ile wynosi twój Bonus z Siły Woli."
+    },
+    {
+      "name": "TERRIFYING",
+      "nameTranslation": "Przerażający wygląd",
+      "description": "PZ: 7\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nZyskujesz Cechę Stworzenia Groza (1) (strona 339)."
     },
     {
       "name": "WARD",
       "nameTranslation": "Magiczna Ochrona",
-      "description": "PZ: 5\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\nTwoja magia wbija się głęboko w cel, zalewając jego duszę dręczącą świadomością jego zniszczonych marzeń. Inicjatywa celu spada do 10, jeśli jeszcze nie była poniżej tego poziomu, ponieważ jego umysł wywraca się na nitce. W Turze celu jego ruch jest losowy i ustalany przez MG. Cel zaczyna lamentować nad swoim życiem, lubieżnie opowiadając wszystko, co miało się wydarzyć, i machając rękoma w powietrzu. Ponadto cel może wykonać Akcję jedynie wtedy, gdy powiedzie mu się Wymagający (+0) Test Opanowania. W przeciwnym razie jest zbyt zajęty opłakiwaniem wszystkiego, co mogło się wydarzyć, a nie wydarzyło."
+      "description": "PZ: 5\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nTwoja magia wbija się głęboko w cel, zalewając jego duszę dręczącą świadomością jego zniszczonych marzeń. Inicjatywa celu spada do 10, jeśli jeszcze nie była poniżej tego poziomu, ponieważ jego umysł wywraca się na nitce. W Turze celu jego ruch jest losowy i ustalany przez MG. Cel zaczyna lamentować nad swoim życiem, lubieżnie opowiadając wszystko, co miało się wydarzyć, i machając rękoma w powietrzu. Ponadto cel może wykonać Akcję jedynie wtedy, gdy powiedzie mu się Wymagający (+0) Test Opanowania. W przeciwnym razie jest zbyt zajęty opłakiwaniem wszystkiego, co mogło się wydarzyć, a nie wydarzyło."
+    },
+    {
+      "name": "AMBER_TALONS",
+      "nameTranslation": "Szpony furii",
+      "description": "PZ: 6\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nTwoje paznokcie zmieniają się w niezwykle ostre pazury z kryształowego bursztynu. Ataki bez broni, z wykorzystaniem Umiejętności Broń Biała (Bijatyka) liczą się jako magiczne, zadają Obrażenia + Bonus z Siły Woli, a za każdym razem, gdy atak kończy się zadaniem Rany, cel otrzymuje też +1 poziom Stanu Krwawienie."
+    },
+    {
+      "name": "BEAST_FORM",
+      "nameTranslation": "Zwierzęca postać",
+      "description": "PZ: 5\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba minut równa Sile Woli\n\nPrzepełniasz swoje własne kości i ciało Wiatrem Ghur, odkształcając ciało w zwierzęcą formę. Podczas rzucania zaklęcia wybierz rodzaj zwierzęcia ze Zwierzyńca Reiklandu umieszczonego w Bestiariuszu. Zyskujesz wszystkie podstawowe Cechy Stworzenia wyłączając Zwierzęcy. Za każde 2 PS możesz zyskać również Opcjonalną Cechę Stworzenia. Ponadto zamień swoją Siłę, Wytrzymałość, Zwinność oraz Zręczność z charakterystykami tego zwierzęcia, a następnie ponownie oblicz swoją Żywotność. W Zwierzęcej postaci wyglądasz jak normalny osobnik danego zwierzęcia, choć z lekko bursztynowym i brązowym zabarwieniem. Nie możesz mówić, co oznacza również, że nie możesz rzucać zaklęć lub próbować rozproszenia. Jeśli otrzymasz Rany podczas trwania zaklęcia, po powrocie do normalnej postaci tracisz tyle samo Żywotności, która może spaść maksymalnie do 0."
+    },
+    {
+      "name": "BEAST_MASTER",
+      "nameTranslation": "Głos pana",
+      "description": "PZ: 10\nZasięg: Liczba metrów równa Bonusowi z Siły Woli\nCel: 1\nCzas: Liczba dni równa Bonusowi z Siły Woli\n\nTwój oddech bucha kolorem bursztynu, oczy przyjmują podobny połysk, a Ghur przelewa się przez twoje ciało. Twoje spojrzenie i słowa przekonują 1 stworzenie o Cesze Stworzenia Zwierzęcy, że jesteś jego przewodnikiem stada – w twojej obronie będzie walczyć do śmierci. Obiekt twojej magii będzie wykonywał polecenia, instynktownie rozumiejąc proste komendy. Jeśli zwierzę zostanie uwolnione od mocy zaklęcia – czy to po jego wygaśnięciu, czy przez rozproszenie go – w jego umyśle pozostanie szacunek do ciebie i nie zaatakuje cię, chyba że zostanie do tego zmuszone. Twoi sojusznicy wcale nie muszą mieć tyle szczęścia."
+    },
+    {
+      "name": "BEAST_TONGUE",
+      "nameTranslation": "Mowa zwierząt",
+      "description": "PZ: 3\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba minut równa Sile Woli\n\nMożesz komunikować się ze wszystkimi stworzeniami, które mają Cechę Stworzenia Zwierzęcy. Ghur zapycha twoje gardło, a z twoich ust wydobywają się warknięcia, syki i ryki odpowiednie do gatunku stworzenia, do którego przemawiasz. Mimo że zwierzęta nie muszą odczuwać potrzeby, by ci odpowiedzieć lub wykonać twoje sugestie, większość będzie na tyle zaintrygowana, by cię wysłuchać. Podczas trwania zaklęcia zyskujesz +20 do Testów Oswajania i Tresury. Możesz rozmawiać wtedy wyłącznie ze zwierzętami – nie jesteś w stanie wydobyć z ust dźwięków pasujących do cywilizowanych języków, możesz więc komunikować się ze swoją drużyną wyłącznie za pomocą gestów lub Języka (Bitewnego). Zwróć uwagę, że w trakcie trwania Mowy zwierząt nie możesz rzucać żadnych zaklęć."
+    },
+    {
+      "name": "FLOCK_OF_DOOM",
+      "nameTranslation": "Uczta kruków",
+      "description": "PZ: 8\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nWzywasz stado morderczych kruków lub ptaków odpowiednich dla okolicy, które przypuszczają atak na twoich wrogów. Stado gwałtownie atakuje każdego w Zasięgu, jeśli nie posiada on Talentu Magia Tajemna (Zwierzęta), zadając +7 Obrażeń pod koniec każdej Rundy. Stado pozostaje w Zasięgu do końca czasu trwania zaklęcia. W ramach swojej Akcji możesz wykonać Przeciętny (+20) Test Oswajania, by przemieścić stado na inny cel w zasięgu zaklęcia. Wszystkie stworzenia w Zasięgu otrzymują +1 poziom Oślepienia."
+    },
+    {
+      "name": "HUNTERS_HIDE",
+      "nameTranslation": "Skura łowcy",
+      "description": "PZ: 6\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\nKryjesz się pod migoczącym całunem Ghur. Podczas trwania zaklęcia zyskujesz premię +20 do Wytrzymałości, Cechę Stworzenia Widzenie w Ciemności oraz Strach (1) (strona 341), jak również Talent Wyczulony Zmysł (Węch)."
+    },
+    {
+      "name": "THE_AMBER_SPEAR",
+      "nameTranslation": "Bursztynowa włócznia",
+      "description": "PZ: 8\nZasięg: Liczba metrów równa Sile Woli\nCel: Specjalny\nCzas: Natychmiast\n\nCiskasz wielką włócznią czystego Ghur w prostej linii. Uznaje się ją za magiczny pocisk, który zadaje +12 Obrażeń. Uderza w pierwsze napotkane na swojej drodze stworzenie, ignorując Punkty Pancerza, jeśli pancerz wykonany był ze skóry lub futra. Jeśli cel otrzyma Ranę, otrzymuje również +1 poziom Krwawienia. Włócznia przechodzi przez pierwszy cel i uderza w następny w ten sam sposób, z tą różnicą, że zadaje Obrażenia mniejsze o 1. Jeśli włócznia nie zada żadnych Ran, zostaje zatrzymana, a zaklęcie przestaje działać. Bursztynowa włócznia zadaje minimum 1 Ranę (strona 236) jedynie pierwszemu trafionemu celowi."
+    },
+    {
+      "name": "WYSSANS_WILDFORM",
+      "nameTranslation": "Dzika postać Wissana",
+      "description": "PZ: 8\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nPrzyzywasz dziką moc Ghur, zanurzasz się w niej i poddajesz się rozkoszom dzikości. Zyskujesz następujące Cechy Stworzenia (strona 338): Broń (+Bonus z Siły +2), Duży, Mieszkaniec Lasu, Magiczny, Pancerz (2), Strach (1), Szał Bojowy, Ugryzienie (+Bonus z Siły +1), Wojowniczy. Podczas trwania zaklęcia nie jesteś w stanie używać żadnego Języka ani Wiedzy."
+    },
+    {
+      "name": "CARESS_OF_LANIPH",
+      "nameTranslation": "Pieszczota Laniph",
+      "description": "PZ: 7\nZasięg: Dotyk\nCel: Specjalny\nCzas: Natychmiast\n\nWyciągasz rękę, która wydaje się uschnięta, niemalże szkieletowa, gdy wysysa Wiatr Shyish z ciała celu. Zaklęcie to jest magicznym pociskiem zadającym +6 Obrażeń ignorujących Bonus z Wytrzymałości i Punkty Pancerza. Za każde zadane 2 Rany możesz uleczyć 1 swoją Ranę."
+    },
+    {
+      "name": "DYING_WORDS",
+      "nameTranslation": "Ostatnie słowa",
+      "description": "PZ: 6\nZasięg: Dotyk\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nDotykając niedawno zmarłego ciała (osoby, która zmarła w ciągu ostatniej doby), na krótko przyzywasz do niego jego duszę. Przez czas trwania zaklęcia możesz komunikować się ze zmarłą duszą, chociaż ta nie może zrobić nic innego niż mówić. Nie musi odpowiadać na twoje pytania, choć zmarli nigdy nie kłamią."
+    },
+    {
+      "name": "PURPLE_PALL_OF_SHYISH",
+      "nameTranslation": "Purpurowy całun",
+      "description": "PZ: 9\nZasięg: Rzucający\nCel: Rzucający\nCzas trwania: Liczba Rund równa Bonusowi z Siły Woli\n\nZ fioletowych pasemek magii tkasz sobie całun. Zyskujesz Punkty Pancerza równe Bonusowi z Siły Woli na wszystkich Miejscach Trafienia oraz Cechę Stworzenia Strach (1) (strona 341). Za każde +2 PS możesz zwiększyć poziom Strachu o 1."
+    },
+    {
+      "name": "SANCTIFY",
+      "nameTranslation": "Krąg śmierci",
+      "description": "PZ: 10\nZasięg: Dotyk\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Liczba minut równa Sile Woli\n\nOpisując magiczny krąg, otaczasz się ochroną Shyish i tworzysz barierę nieprzekraczalną dla Ożywieńców. Istoty o Cesze Stworzenia Ożywieniec nie mogą wejść do kręgu ani z niego wyjść."
+    },
+    {
+      "name": "SCYTHE_OF_SHYISH",
+      "nameTranslation": "Kosa żniwiarza",
+      "description": "PZ: 6\nZasięg: Rzucający\nCel: Rzucający\nCzas trwania: Liczba Rund równa Bonusowi z Siły Woli\n\nWyczarowujesz magiczną kosę, której możesz używać w walce przy pomocy Umiejętności Broń Biała (Drzewcowa). Działa ona jak normalna kosa, której Obrażenia równe są +Bonus z Siły Woli+3. Wrogowie o Cesze Stworzenia Ożywieniec nie otrzymują żadnej Przewagi podczas walki z tobą."
+    },
+    {
+      "name": "SOUL_VORTEX",
+      "nameTranslation": "Posłaniec śmierci",
+      "description": "PZ: 8\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Natychmiast\n\nCiskasz migoczącą kulą Shyish, która staje w fioletowych płomieniach, tworząc wir upiornych twarzy, których usta otwarte są w niemym wrzasku strachu. Cele w Zasięgu otrzymują +1 poziom Stanu Panika. Przeciwko Ożywieńcom zaklęcie to jest uznawane za magiczny pocisk zadający +10 Obrażeń ignorujących Bonus z Wytrzymałości i Punkty Pancerza."
+    },
+    {
+      "name": "STEAL_LIFE",
+      "nameTranslation": "Wyssanie życia",
+      "description": "PZ: 7\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Natychmiast\n\nCienkie pasemka fioletowej mgły łączą się na krótko z celem zaklęcia, który marnieje na twoich oczach. Zaklęcie to jest magicznym pociskiem zadającym +1 poziom Stanu Zmęczenie oraz +6 Obrażeń ignorujących Punkty Pancerza. Ponadto możesz usunąć wszystkie swoje aktualne poziomy Zmęczenia, a także wyleczyć swoje Rany w liczbie połowy Ran zadanych celowi, zaokrąglając w górę."
+    },
+    {
+      "name": "SWIFT_PASSING",
+      "nameTranslation": "Dotyk śmierci",
+      "description": "PZ: 6\nZasięg: Dotyk\nCel: Specjalny\nCzas: Natychmiast\n\nTwój dotyk przynosi ostateczną śmierć istocie, która jest śmiertelnie ranna. Jeśli uda ci się dotknąć celu, którego Żywotność wynosi 0 i który ma co najmniej 2 Krytyczne Rany, śmierć przychodzi natychmiast. Ponadto cel nie może zostać ożywiony jako nieumarły."
+    },
+    {
+      "name": "AQSHYS_AEGIS",
+      "nameTranslation": "Tarcza Aqshy",
+      "description": "PZ: 5\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nOkrywasz się płomiennym płaszczem z Aqshy, który zasila płomienną tarczę. Jesteś w pełni odporny na niemagiczny ogień, wliczając w to oddechowe ataki potworów, i ignorujesz wszelkie poziomy Stanu Podpalenie. Ponadto Tarcza Aqshy gwarantuje ci Cechę Stworzenia Ochrona (9+) (strona 340) przeciwko atakom z wykorzystaniem magicznego ognia z Tradycji Ognia."
+    },
+    {
+      "name": "CAUTERISE",
+      "nameTranslation": "Przypalenie",
+      "description": "PZ: 4\nZasięg: Dotyk\nCel: 1\nCzas: Natychmiast\n\nPrzepuszczając Aqshy przez swoje dłonie, kładziesz je na rany sojusznika. Natychmiast leczysz 1k10 Ran i usuwasz wszystkie poziomy Krwawienia. Ponadto rany te nie ulegną zakażeniu. Cele, które nie mają Talentu Magia Tajemna (Ogień), muszą zdać Wymagający (+0) Test Opanowania lub zaczną wrzeszczeć z bólu. Jeśli nie powiedzie się on o -6 lub więcej PS, następuje Utrata Przytomności, a cel do końca życia będzie miał paskudną bliznę. Odzyskuje przytomność 1k10 godzin później."
+    },
+    {
+      "name": "CROWN_OF_FLAME",
+      "nameTranslation": "Ognista korona",
+      "description": "PZ: 8\nZasięg: Rzucający\nCel: Rzucający\nCzas trwania: Liczba Rund równa Bonusowi z Siły Woli\n\nFormujesz Aqshy w majestatyczną koronę inspirującego ognia, która opada na twoje skronie. Zyskujesz Strach (1) oraz 1 poziom Talentu Wódz na czas trwania zaklęcia.\nZa każde 2 PS możesz zwiększyć Strach o +1 poziom lub otrzymać dodatkowy poziom Talentu Wódz. Ponadto podczas trwania zaklęcia otrzymujesz premię +10 do Testów Rzucania Zaklęć i Splatania Magii Aqshy."
+    },
+    {
+      "name": "FLAMING_HEARTS",
+      "nameTranslation": "Żar serc",
+      "description": "PZ: 8\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nTwój głos nabiera głębokiego brzmienia, rozbrzmiewając echem ognistej pasji Aqshy. Wszyscy sojusznicy w zasięgu zaklęcia tracą wszystkie poziomy Paniki i Zmęczenia oraz otrzymują +1 poziom Talentów Musztra, Nieustraszony oraz Waleczne Serce podczas trwania zaklęcia."
+    },
+    {
+      "name": "FIREWALL",
+      "nameTranslation": "Płomienna zasłona",
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (specjalny)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nSplatasz ognistą smugę Aqshy, tworząc ścianę zrobioną z ognia. Ognista zasłona ma tyle metrów szerokości, ile wynosi twój Bonus z Siły Woli, i jest na metr głęboka.\n\nZa każde +2 PS możesz zwiększyć jej szerokość o tyle metrów, ile wynosi Bonus z Siły Woli. Każdy, kto przejdzie przez ścianę, otrzymuje 1 poziom Podpalenia i Obrażenia równe Bonusowi z Siły Woli, które traktuje się jak magiczny pocisk."
+    },
+    {
+      "name": "GREAT_FIRES_OF_UZHUL",
+      "nameTranslation": "Pożoga zagłady U’zhula",
+      "description": "PZ: 10\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nCiskasz we wrogów ogromną, wybuchową porcją Aqshy, która wybucha we wściekłą pożogę, gorącą jak palenisko w kuźni. Zaklęcie to jest magicznym pociskiem zadającym pierwszemu celowi +10 Obrażeń ignorujących Punkty Pancerza, a dodatkowo +1 poziomy Podpalenia oraz Stan Powalenie. Każdy w Zasięgu (liczonym od pierwszego celu) otrzymuje +5 Obrażeń ignorujących Punkty Pancerza i musi zdać Test Uniku, a w razie porażki otrzymuje 1 poziom Podpalenia. Następnie zaklęcie przestaje być traktowane jak magiczny pocisk, ale nadal pali wszystkich w Zasięgu przez cały czas trwania. Na początku Rundy każdy w Zasięgu otrzymuje 1k10+6 Obrażeń ignorujących Punkty Pancerza i +1 poziom Podpalenia."
+    },
+    {
+      "name": "FLAMING_SWORD_OF_RHUIN",
+      "nameTranslation": "Gorejący miecz Rhuin",
+      "description": "PZ: 8\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nOplatasz miecz magicznymi płomieniami. Broń zadaje +6 Obrażeń i zyskuje Zaletę Druzgocząca (strona 298), a każdy trafiony przez ostrze otrzymuje 1 poziom Podpalenia. Jeśli postać trzymająca oręż nie ma Talentu Magia Tajemna (Ogień), a atak z wykorzystaniem Gorejącego miecza zakończy się Pechem, otrzymuje ona +1 poziom Podpalenia."
+    },
+    {
+      "name": "PURGE",
+      "nameTranslation": "Oczyszczający płomień",
+      "description": "PZ: 10\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nSplatasz potężny ogień, który na danym obszarze wypala piętno i zepsucie. Wszystkie palne rzeczy w Zasięgu stają w płomieniach, a stworzenia otrzymują tyle poziomów Podpalenia, ile wynoszą PS z Testu. Jeśli miejsce zawiera źródła spaczenia, jak np. moc Dhar, spaczeń czy przedmioty naznaczone Chaosem, one również tlą się i czernieją, zaczynając się palić. Zaklęcie może być podtrzymane w następnych Rundach, jeśli powiedzie się Wymagający (+0) Test Splatania Magii. Czas niezbędny do wyeliminowania źródła spaczenia ustalany jest przez MG. Mała ilość (mniejsza niż żołądź) spaczenia lub mały, spaczony Chaosem przedmiot mogą wymagać około 10-Bonus z Siły Woli Rund (minimum 1 Rundy). Większa ilość spaczenia (wielkości pięści) lub potężniejszy obiekt spaczony Chaosem mogą wymagać dwukrotnie dłuższego okresu wypalania. Na potężny artefakt Chaosu niezbędne będzie kilka godzin, a może i dłużej. O źródłach spaczenia i ich wpływach więcej przeczytasz na stronie 182."
+    },
+    {
+      "name": "CERULEAN_SHIELD",
+      "nameTranslation": "Niebiańska tarcza",
+      "description": "PZ: 7\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nOkrywasz się trzaskającą klatką strzelającej iskrami elektryczności i Azyru. Na czas trwania zaklęcia zyskujesz tyle Punktów Pancerza chroniących przed atakami wręcz na wszystkich Miejscach Trafienia, ile wynoszą PS z Testu Rzucania Zaklęcia. Jeśli zostaniesz zaatakowany bronią metalową – sztyletem, mieczem, włócznią o stalowym grocie – atakujący otrzymuje tyle Obrażeń, ile wynosi twój Bonus z Siły Woli."
+    },
+    {
+      "name": "COMET_OF_CASANDORA",
+      "nameTranslation": "Kometa Kasandory",
+      "description": "PZ: 10\nZasięg: Liczba metrów równa Inicjatywie\nCel: Obszarowy (liczba metrów równa Bonusowi z Inicjatywy)\nCzas: Specjalny\n\nSplatasz tyle Azyru, ile możesz pochwycić i dosięgnąć w niebiosach, przyzywając kometę, która rozpętuje inferno w szeregach wroga. Wybierz punkt celu w Zasięgu zaklęcia. Pod koniec następnej Rundy wykonaj Przeciętny (+20) Test Percepcji. Za każdy osiągnięty PS możesz przesunąć punkt uderzenia o tyle metrów, ile wynosi twój Bonus z Inicjatywy.\n\nZa każdy ujemny PS MG może przesunąć punkt uderzenia w losowym kierunku o tyle metrów, ile wynosi twój Bonus z Inicjatywy. Kometa Kasandory uznawana jest za magiczny pocisk o współczynniku Obrażeń +12, który zadaje Obrażenia wszystkim istotom w Zasięgu. Otrzymują one również Stan Powalony i +1 poziom Podpalenia."
+    },
+    {
+      "name": "FATES_FICKLE_FINGERS",
+      "nameTranslation": "Łaska losu",
+      "description": "PZ: 6\nZasięg: Rzucający\nCel: Obszarowy (liczba metrów równa Bonusowi z Inicjatywy)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nBieżące Punkty Szczęścia wszystkich sojuszników w Zasięgu – poza posiadającymi Talent Magia Tajemna (Niebiosa) – łączone są w jedną wspólną pulę. Każdy z tych sojuszników może pobierać z niej punkty – kto pierwszy, ten lepszy. Gdy zaklęcie się kończy, rozdajesz pozostałe Punkty Szczęścia tak sprawiedliwie, jak to tylko możliwe."
+    },
+    {
+      "name": "STARCROSSED",
+      "nameTranslation": "Pod nieszczęśliwą gwiazdą",
+      "description": "PZ: 7\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Inicjatywy\n\nPodczas trwania zaklęcia możesz wydać swoje Punkty Szczęścia, by zmusić przeciwnika do wykonania Testu jeszcze raz."
+    },
+    {
+      "name": "TESSLAS_ARC",
+      "nameTranslation": "Błyskawica T’Essli",
+      "description": "PZ: 7\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Natychmiast\n\nSkwierczący piorun wystrzeliwuje z koniuszków twoich palców, uderzając w cel. To magiczny pocisk zadający +10 Obrażeń i 1 poziom Oślepienia."
+    },
+    {
+      "name": "THE_FIRST_PORTENT_OF_AMUL",
+      "nameTranslation": "Pierwsze proroctwo Amul",
+      "description": "PZ: 3\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Inicjatywy\n\nZyskujesz 1 Punkt Szczęścia. Za każde 2 PS zyskujesz 1 więcej. Wszelkie punkty niewykorzystane do końca czasu trwania zaklęcia przepadają."
+    },
+    {
+      "name": "THE_SECOND_PORTENT_OF_AMUL",
+      "nameTranslation": "Drugie proroctwo Amul",
+      "description": "PZ: 6\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Inicjatywy\n\nZyskujesz tyle Punktów Szczęścia, ile PS uzyskałeś w Teście. Za każde 2 PS zyskujesz dodatkowy Punkt Szczęścia. Wszelkie punkty niewykorzystane do końca czasu trwania zaklęcia przepadają."
+    },
+    {
+      "name": "THE_THIRD_PORTENT_OF_AMUL",
+      "nameTranslation": "Trzecie proroctwo Amul",
+      "description": "PZ: 12\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Inicjatywy\n\nZyskujesz 1 dodatkowy Punkt Przeznaczenia. Jeśli punkt ten nie zostanie wykorzystany przez czas trwania zaklęcia, przepada."
+    },
+    {
+      "name": "CRUCIBLE_OF_CHAMON",
+      "nameTranslation": "Tygiel Chamonu",
+      "description": "PZ: 7\nZasięg: Liczba metrów równa Bonusowi z Siły Woli\nCel: 1\nCzas: Natychmiast\n\nSplatasz Chamon i ładujesz nim jeden niemagiczny przedmiot, jak np. broń lub fragment pancerza. Przedmiot topi się, kapiąc na podłogę gorącym metalem, który ochładza się niemal natychmiast. Jeśli przedmiot był trzymany w dłoniach, wypada z nich. Jeśli był noszony, traktuje się go jako magiczny pocisk o współczynniku Obrażeń +Bonus z Siły Woli, ignorujący Bonus z Wytrzymałości celu. Po zniszczeniu przedmiotu metal nadal zachowuje swoją wartość i właściwości, może być przekuty później przez kowala."
+    },
+    {
+      "name": "ENCHANT_WEAPON",
+      "nameTranslation": "Umagicznienie broni",
+      "description": "PZ: 6\nZasięg: Dotyk\nCel: Specjalny\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nOplatasz jedną niemagiczną broń ciężkimi pasmami Chamonu, zwiększając jej możliwości. Przez czas działania zaklęcia broń uznaje się za Magiczną. Ponadto zyskuje ona Zaletę Niełamliwa (strona 298) i zadaje dodatkowe Obrażenia równe Bonusowi z Siły Woli. Za każde 3 PS możesz dodać jedną Zaletę lub usunąć jedną Wadę tej broni na czas trwania zaklęcia."
+    },
+    {
+      "name": "FEATHER_OF_LEAD",
+      "nameTranslation": "Pancerz z ołowiu",
+      "description": "PZ: 5\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nWzywasz Złoty Wiatr i zmieniasz gęstość przedmiotów należących do celów, zwiększając lub zmniejszając ich wagę. Na czas trwania zaklęcia na wszystkich w Zasięgu działa jeden z wybranych przez ciebie efektów: • Zwiększenie Przeciążenia o dwa stopnie (w tym z braku na pierwszy stopień). • Wszelkie Przeciążenia są ignorowane (więcej na ten temat: strona 293)."
+    },
+    {
+      "name": "FOOLS_GOLD",
+      "nameTranslation": "Złoto głupców",
+      "description": "PZ: 4\nZasięg: Dotyk\nCel: 1\nCzas: Liczba minut równa Sile Woli\n\nWplatasz Chamon w jeden niemagiczny metalowy przedmiot, zmieniając jego alchemiczną naturę. Na czas trwania zaklęcia wszystkie metalowe elementy przedmiotu stają się złotem. To nie jest iluzja, a prawdziwa transmutacja. Gdy jednak zaklęcie się kończy, przedmiot wraca do swojego początkowego stanu. To zaklęcie może zniszczyć dobrą broń, sprawić, że pancerz będzie zbyt ciężki, by go nosić, lub zmienić ołowiane krążki w coś znacznie bardziej pociągającego. Drobne, narracyjne efekty zaklęcia opisuje MG."
+    },
+    {
+      "name": "FORGE_OF_CHAMON",
+      "nameTranslation": "Kuźnia Chamonu",
+      "description": "PZ: 9\nZasięg: Liczba metrów równa Bonusowi z Siły Woli\nCel: Specjalny\nCzas: Liczba minut równa Sile Woli\n\nZmieniasz jakość jednego przedmiotu zrobionego z metalu. Możesz dodać jedną Zaletę lub usunąć jedną Wadę. Za każde 2 PS możesz dodać Zaletę lub usunąć kolejną Wadę."
+    },
+    {
+      "name": "GLITTERING_ROBE",
+      "nameTranslation": "Lśniąca szata",
+      "description": "PZ: 5\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Wytrzymałości\n\nDzikie podmuchy Chamonu wirują dookoła ciebie, odbijając ciosy i przechwytując pociski oraz magiczne ataki. Zyskujesz Cechę Stworzenia Ochrona (9+) (strona 340) przeciwko wszystkim atakom i zaklęciom, których jesteś celem. Każdy skutecznie odparty atak zwiększa skuteczność Ochrony o 1 poziom, maksymalnie do Ochrona (3+)."
+    },
+    {
+      "name": "MUTABLE_METAL",
+      "nameTranslation": "Przekształcenie metalu",
+      "description": "PZ: 5\nZasięg: Dotyk\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nDotykasz niemagicznego, metalowego przedmiotu, który natychmiast staje się ciepły od napływu Wiatru Chamon. Możesz go zginać i formować, jeśli powiedzie ci się Przeciętny (+20) Test Siły. Jeśli chcesz wykonać bardziej skomplikowaną modyfikację, możesz zamiast tego spróbować wykonać Przeciętny (+20) Test odpowiedniego Rzemiosła (np. Kowalstwa)."
+    },
+    {
+      "name": "TRANSMUTATION_OF_CHAMON",
+      "nameTranslation": "Transmutacja Chamonu",
+      "description": "PZ: 12\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nSplatasz Chamon z metalu noszonego przez wrogów i z samej ziemi wokół wrogów, na krótko przemieniając ich ciała w metal. Atak ten jest magicznym pociskiem wpływającym na wszystkich w Zasięgu. Ma on współczynnik Obrażeń +Bonus z Siły Woli. Zaklęcie ignoruje Bonus z Wytrzymałości, a ponadto wszyscy nim dotknięci otrzymują 1 poziom Ogłuszenia, Oszołomienia oraz Oślepienia aż do końca jego trwania. Wszystkie cele zaklęcia zyskują też 1 Punkt Pancerza na wszystkich Miejscach Trafienia, bo są zakute w złoto, ale cierpią jednocześnie z powodu Duszenia (strona 181). Jeśli cel umrze podczas trwania tego zaklęcia, zostaje na wieczność zakuty w skorupę surowego metalu i staje się makabrycznym dowodem potęgi magii."
+    },
+    {
+      "name": "BARKSKIN",
+      "nameTranslation": "Skóra z kory",
+      "description": "PZ: 3\nZasięg: Dotyk\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nSprawiasz, że skóra celu staje się twarda i mocna jak kora drzewa. Podczas trwania zaklęcia cel otrzymuje +2 do Bonusu z Wytrzymałości, ale jednocześnie otrzymuje też karę -10 do Zręczności i Zwinności."
+    },
+    {
+      "name": "EARTHBLOOD",
+      "nameTranslation": "Krew ziemi",
+      "description": "PZ: 6\nZasięg: Rzucający\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nAby rzucić ten czar, musisz mieć bezpośredni kontakt z ziemią. Stanie na niej boso wystarczy. W czasie trwania zaklęcia wszystkie stworzenia, które mają bezpośredni kontakt z ziemią w Zasięgu zaklęcia, leczą na początku Rundy tyle Ran, ile wynosi twój Bonus z Siły Woli."
+    },
+    {
+      "name": "EARTHPOOL",
+      "nameTranslation": "Wrota ziemi",
+      "description": "PZ: 8\nZasięg: Rzucający\nCel: Rzucający\nCzas: Natychmiast\n\nPo rzuceniu zaklęcia natychmiast znikasz w ziemi w dzikim potoku Wiatru Ghyran. Pojawiasz się na początku następnej Rundy w dowolnym miejscu w promieniu tylu metrów, ile wynosi twoja Siła Woli, gwałtownie wyłaniając się spod ziemi. Za każde +2 PS możesz zwiększyć ten dystans o tyle metrów, ile wynosi twoja Siła Woli. Wszyscy wrogowie, których w ten sposób zwiążesz walką, otrzymują Stan Zaskoczenie. Zaklęcie to nie pozwala ci przemieszczać się przez kamień, ale za to możesz poruszać się przez wodę."
+    },
+    {
+      "name": "FAT_OF_THE_LAND",
+      "nameTranslation": "Ziemia karmicielka",
+      "description": "PZ: 4\nZasięg: Dotyk\nCel: 1\nCzas: Liczba dni równa Bonusowi z Siły Woli\n\nZalewasz cel pożywną porcją Ghyran. Cel nie musi jeść ani pić przez czas trwania zaklęcia, ale będzie wypróżniał się normalnie, choć wszystkie wydzieliny staną się soczyście zielone."
+    },
+    {
+      "name": "FOREST_OF_THORNS",
+      "nameTranslation": "Pole cierniowe",
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nZaklęcie to można rzucić jedynie na połać ziemi (choć może to być nawet mały jej skrawek). Tworzysz gęsty splot krzewów jeżyn i pnączy pokrytych niezwykle ostrymi cierniami, które błyskawicznie wyrastają z ziemi, pokrywając cały Zasięg.\nGdy zaklęcie jest aktywne, wszelkie próby przejścia przez ten teren piechotą wymagają zdania Trudnego (-20) Testu Zwinności, o ile postać nie ma Talentu Magia Tajemna (Życie). Porażka oznacza +1 poziom Krwawienia i +1 poziom Pochwycenia o Sile równej twojej Sile Woli. Po zakończeniu zaklęcia rośliny pozostają na miejscu, ale tracą swoje nadprzyrodzone właściwości."
+    },
+    {
+      "name": "LIE_OF_THE_LAND",
+      "nameTranslation": "Ziemia przewodniczka",
+      "description": "PZ: 5\nZasięg: Liczba kilometrów równa Bonusowi z Inicjatywy +2\nCel: Rzucający\nCzas: Specjalny\n\nDotykasz ziemi, a twoje zmysły przepływają razem z Wiatrem Ghyran przez całą okolicę. Po minucie dostrajania się do okolicy otrzymujesz dokładną mentalną mapę wszystkich jej naturalnych cech – pól, lasów, rzek, ale nie osad – w Zasięgu zaklęcia. Na osiedla mogą wskazywać puste połacie terenu, wykopane rowy itd. Za każdym razem, gdy zwiększasz Zasięg zaklęcia dzięki PS, o 1 minutę wydłuża się także czas potrzebny na dostrojenie."
+    },
+    {
+      "name": "LIFEBLOOM",
+      "nameTranslation": "Rozkwitanie",
+      "description": "PZ: 8\nZasięg: Liczba metrów równa Bonusowi z Siły Woli\nCel: Specjalny\nCzas: Specjalny\n\nSprawiasz, że Ghyran zalewa okolicę, którą nawiedziła plaga lub która jest wymarła. Twoim celem może być puste koryto rzeki, studnia, pole czy zwierzę domowe. Jeśli uda ci się rzucić zaklęcie, cel zaczyna tętnić życiem: • Wyschnięta rzeka znów zaczyna płynąć. • Wyschnięta lub zatruta studnia wypełnia się czystą wodą. • Pola, winnice i sady budzą się do życia, a wszystkie plony natychmiast osiągają pełną dojrzałość. • Chore lub bezproduktywne zwierzęta ponownie stają się zdrowe. Zwierzęta będą teraz znów wytwarzać produkty (krowy dadzą mleko, kury zniosą jaja, owce dostarczą wełny i skór itd.), a ich choroby zostaną uleczone."
+    },
+    {
+      "name": "REGENERATE",
+      "nameTranslation": "Regeneracja",
+      "description": "PZ: 6\nZasięg: Dotyk\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nTwój cel zyskuje Cechę Stworzenia Regeneracja (strona 340)."
+    },
+    {
+      "name": "BANISHMENT",
+      "nameTranslation": "Wypędzenie",
+      "description": "PZ: 12\nZasięg: Rzucający\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Natychmiast\n\nWysyłasz oczyszczający krąg Hysh ze swoich dłoni, który wpływa na wszystkie stworzenia w Zasięgu, jeśli ich Wytrzymałość jest mniejsza niż twoja Siła Woli. Cele, które mają Cechę Stworzenia Demoniczny albo Ożywieniec, zyskują Cechę Stworzenia Niestabilny (strona 339). Jeśli już mają tę cechę, ich Żywotność zostaje obniżona do 0."
+    },
+    {
+      "name": "BLINDING_LIGHT",
+      "nameTranslation": "Rozbłysk",
+      "description": "PZ: 5\nZasięg: Liczba metrów równa Sile Woli\nCel: Rzucający\nCzas: Natychmiast\n\nWytwarzasz jasne, oślepiające światło, które promienieje z twoich dłoni lub laski. Każdy, kto na ciebie spojrzy, a nie posiada Talentu Magia Tajemna (Światło), otrzymuje tyle poziomów Oślepienia, ile PS wynika z Testu Rzucania Zaklęcia."
+    },
+    {
+      "name": "CLARITY_OF_THOUGHT",
+      "nameTranslation": "Jasność umysłu",
+      "description": "PZ: 6\nZasięg: Dotyk\nCel: 1\nCzas: Liczba minut równa Inteligencji\n\nUspokajasz umysł celu, dzięki czemu może on myśleć bez przeszkód. Wszystkie modyfikatory ujemne wpływające na proces myślenia – wynikające ze Stanów, mutacji umysłu czy Psychologii albo dowolnych innych źródeł – na czas trwania zaklęcia nie są brane pod uwagę."
+    },
+    {
+      "name": "DAEMONBANE",
+      "nameTranslation": "Zguba demonów",
+      "description": "PZ: 10\nZasięg: Liczba metrów równa Bonusowi z Siły Woli\nCel: 1\nCzas: Natychmiast\n\nWzywasz podmuch Hysh, który przedziera się przez granicę między światem materialnym a Domeną Chaosu. Rzucenie zaklęcia jest Przeciwstawnym Testem przeciwko Sile Woli celu. Jeśli zwyciężysz w Teście, unicestwiasz cel o Cesze Stworzenia Demoniczny, zdmuchując go oślepiającym białym światłem i wysyłając tam, skąd przybył. Jeśli zaklęcie skutecznie wygna demona, każdy, kto patrzy na twój cel, a nie posiada Talentu Magia Tajemna (Światło), otrzymuje tyle poziomów Oślepienia, o ile PS wygrałeś."
+    },
+    {
+      "name": "HEALING_LIGHT",
+      "nameTranslation": "Leczące światło",
+      "description": "PZ: 9\nZasięg: Liczba metrów równa Bonusowi z Siły Woli\nCel: 1\nCzas: Natychmiast\n\nTwój cel rozświetla się jasnym, oczyszczającym światłem (porównywalnym ze światłem ogniska), lecząc tyle ran, ile wynosi twój Bonus z Inteligencji + Bonus z Siły Woli. Jeśli celowi powiedzie się Trudny (-20) Test Odporności, 1 Punkt Zepsucia zostanie wymazany, jeśli cel otrzymał go w ciągu ostatniej godziny."
+    },
+    {
+      "name": "NET_OF_AMYNTOK",
+      "nameTranslation": "Sieć Amyntoka",
+      "description": "PZ: 8\nZasięg: Liczba metrów równa Bonusowi z Inteligencji\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Inteligencji celu\n\nTworzysz delikatną sieć utkaną z pasemek Hysh, rozpinając ją nad swoim celem, którego umysł jest przytłoczony zagadkami i tajemnicami, przez co nie jest w stanie podjąć żadnej decyzji. Cel otrzymuje +1 poziom Oszołomienia, którego nie może usunąć, dopóki trwa zaklęcie. Podczas próby usunięcia Stanu cel musi wykonać Test Inteligencji, a nie Test Odporności. Cele o Cesze Stworzenia Zwierzęcy są odporne na to zaklęcie."
+    },
+    {
+      "name": "PHAS_PROTECTION",
+      "nameTranslation": "Ochrona Phâ",
+      "description": "PZ: 10\nZasięg: Rzucający\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nPrzyzywasz ochronną aurę czystego, świętego światła. Spaczone stworzenia – te o Cesze Stworzenia Demoniczny albo Ożywieniec, zmutowane lub których Punkty Zepsucia są wyższe niż suma ich Bonusu z Wytrzymałości i Bonusu z Siły Woli – nie mogą wejść w obszar chroniony zaklęciem. Wszystkie, które podczas rzucenia zaklęcia znajdowały się w jego Zasięgu, otrzymują Stan Panika, dopóki nie opuszczą tego miejsca. W Zasięgu zaklęcia żadne stworzenie nie może otrzymać Punktów Zepsucia, dopóki ono trwa."
+    },
+    {
+      "name": "SPEED_OF_THOUGHT",
+      "nameTranslation": "Natchnienie",
+      "description": "PZ: 8\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nEnergia Hysh wypełnia twój umysł, dzięki czemu możesz myśleć o wiele szybciej. Zyskujesz premię +20 do Inteligencji i Inicjatywy."
+    },
+    {
+      "name": "CHOKING_SHADOWS",
+      "nameTranslation": "Dusiciel",
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Bonusowi z Siły Woli\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nOplatasz szyje swoich wrogów cienistymi mackami Ulgu. Zakładając, że muszą oni oddychać, otrzymują 1 poziom Zmęczenia, nie mogą mówić, a ponadto stosuje się w ich przypadku zasady Duszenia (strona 181)."
+    },
+    {
+      "name": "DOPPELGANGER",
+      "nameTranslation": "Sobowtór",
+      "description": "PZ: 10\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba minut równa Bonusowi z Inteligencji\n\nTkasz z Ulgu maskę i płaszcz, które nakładasz na siebie, przybierając postać podobną do innego humanoida, którego dobrze znasz (co ustalane jest przez MG). Podobieństwo jest na tyle dobre, że jeśli ktoś nie posiada Talentu Percepcja Magiczna, nie pozna się na sztuczce, choć niektórzy mogą zauważyć, że część manieryzmów nie jest identyczna. Nawet ci, którzy posiadają ten Talent, muszą zdać Trudny (-10) Test Percepcji, a w przypadku niepowodzenia nie przejrzą twojego magicznego przebrania. Jednakże, nawet jeśli uda im się wyczuć fortel, nie będą w stanie spojrzeć „poza” zaklęcie. Aby zobaczyć twoją prawdziwą formę, muszą rozproszyć zaklęcie."
+    },
+    {
+      "name": "ILLUSION",
+      "nameTranslation": "Iluzja",
+      "description": "PZ: 8\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Inicjatywy)\nCzas: Liczba minut równa Sile Woli\n\nTworzysz zawiłą sieć z kosmyków Ulgu, zaciemniając Zasięg dzięki iluzorycznemu obrazowi, który sobie wymyśliłeś. Automatycznie zmylisz każdego, kto nie posiada Talentu Percepcja Magiczna. Nawet ci, którzy posiadają ten Talent, muszą zdać Trudny (-10) Test Percepcji, a w przypadku niepowodzenia nie przejrzą twojej iluzji. Jednakże, nawet jeśli uda im się wyczuć fortel, nie będą w stanie spojrzeć „poza” zaklęcie. W tym celu muszą rozproszyć zaklęcie. Iluzja z definicji jest statyczna. W ramach swojej Akcji, jeśli powiedzie ci się Trudny (-20) Test Splatania Magii, możesz sprawić, by iluzja się w tej Rundzie poruszała."
+    },
+    {
+      "name": "MINDSLIP",
+      "nameTranslation": "Luka w pamięci",
+      "description": "PZ: 6\nZasięg: 1 metr\nCel: 1\nCzas: Liczba minut równa Sile Woli\n\nWyczarowujesz delikatne nici Ulgu w umyśle swojego celu, sprawiając, że wszelka jego pamięć o Tobie znika na czas trwania zaklęcia. Gdy zaklęcie się skończy, cel musi zdać Przeciętny (+20) Test Inteligencji. Jeśli to się nie uda, utrata pamięci będzie trwała (choć można ją usunąć, rozpraszając ten efekt)."
+    },
+    {
+      "name": "MYSTIFYING_MIASMA",
+      "nameTranslation": "Strefa zamętu",
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nWysyłasz przed siebie wijące się kłęby mgły cieni, które przedzierają się przez powietrze i mylą zmysły. Każdy w zasięgu mgły, kto nie posiada Talentu Magia Tajemna (Cienie), zostaje dotknięty przez zamęt, otrzymując 1 poziom Ogłuszenia, Oślepienia i Zmęczenia, które będą się utrzymywać, dopóki trwa zaklęcie. Każdy objęty czarem musi także zdać Wymagający (+0) Test Percepcji, w przeciwnym wypadku zostanie Powalony. Jeśli zaklęcie zostanie rozproszone podczas trwania, każdy nim objęty musi zdać Łatwy (+40) Test Inicjatywy – jeśli się nie uda, otrzyma 1 poziom Oszołomienia."
+    },
+    {
+      "name": "SHADOWSTEED",
+      "nameTranslation": "Rumak z cieni",
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Bonusowi z Siły Woli\nCel: 1\nCzas: Do następnego wschodu słońca\n\nPrzyzywasz rumaka z cieni. Nienaturalne ciało stworzenia jest czarne jak noc o północy i wydaje się jednocześnie materialne i niematerialne. Stosuje się do niego normalne zasady jeździectwa. Kiedy rumak z cieni nie przebywa na słońcu, zyskuje następujące Cechy Stworzenia: Eteryczny, Magiczny, Nie Czuje Bólu, Skryty, Strach (1), Ochrona (9+) oraz Widzenie w Ciemności. Mimo tego, że rumak nie jest materialny, można na nim normalnie jeździć. Jeźdźcy, którzy posiadają Talent Magia Tajemna (Cienie), zyskują w tym przypadku premię +20 do Testów Jeździectwa. Wszyscy inni otrzymują karę -20 do Testów Jeździectwa. Rumaki z cieni nie znają zmęczenia i nie muszą odpoczywać (choć ich jeźdźcy owszem!). Gdy pierwsze promienie słońca przebiją się nad horyzontem, rumak rozwiewa się w niematerialną mgłę. Jeździec, który w momencie zakończenia zaklęcia lub jego rozproszenia będzie dosiadał rumaka, otrzyma Obrażenia z powodu Upadku (strona 166)."
+    },
+    {
+      "name": "SHADOWSTEP",
+      "nameTranslation": "Krok przez cienie",
+      "description": "PZ: 8\nZasięg: Liczba metrów równa Sile Woli\nCel: Rzucający\nCzas: Natychmiast\n\nTworzysz cienisty portal z Wiatru Ulgu, który może nieść cię poprzez Eter. Znikasz w miejscu, w którym stoisz, i natychmiast pojawiasz się w innym, które znajduje się w Zasięgu równym twojej Sile Woli liczonym w metrach. Wszyscy wrogowie, którzy byli Związani walką z tobą lub stają się Związani walką, zostają Zaskoczeni."
+    },
+    {
+      "name": "SHROUD_OF_INVISIBILITY",
+      "nameTranslation": "Całun niewidzialności",
+      "description": "PZ: 8\nZasięg: Dotyk\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nOtulasz cel całunem Ulgu. Staje się on niewidzialny i nie może zostać dostrzeżony przez zwykłych śmiertelników. Automatycznie zmylisz każdego, kto nie posiada Talentu Percepcja Magiczna. Ci, którzy posiadają ten Talent, muszą zdać Wymagający (+0) Test Percepcji, by zauważyć, że ktoś jest w pobliżu, ale nie będą w stanie podać jego dokładnego położenia. Aby to zrobić, muszą rozproszyć zaklęcie. Oczywiście można wyczuć cel innymi zmysłami, a zaklęcie zostanie przerwane, jeśli cel będzie wydawał głośne dźwięki lub kogoś zaatakuje."
+    },
+    {
+      "name": "GOODWILL",
+      "nameTranslation": "Dobra wola",
+      "description": "PZ: 0\nZasięg: Rzucający\nCel: Obszarowy (liczba metrów równa Bonusowi z Ogłady)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nTworzysz atmosferę, która przepełniona jest przyjaźnią i dobrym nastawieniem. Wszystkie Testy Ogłady w Zasięgu zaklęcia otrzymują premię +10, a Nienawiść i Wrogość są ignorowane."
+    },
+    {
+      "name": "MIRKRIDE",
+      "nameTranslation": "Wędrówka ducha",
+      "description": "PZ: 0\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba minut równa Bonusowi z Siły Woli\n\nPo wymówieniu starożytnych magicznych formuł twoja dusza oddziela się od ciała i wkracza na granicę między światem materialnym a światem duchów. W czasie trwania zaklęcia postać jest oderwana od świata – może być jedynie niewidzialnym świadkiem, ale nie jest w stanie na niego wpływać. Bariery fizyczne nie stanowią za to żadnej przeszkody, można spokojnie przechodzić przez niemagiczne zabezpieczenia. Ciało pozostaje w miejscu, nieruchome i nieczułe. Po zakończeniu zaklęcia dusza jest gwałtownie wciągana z powrotem do ciała. Jeśli ciało zostanie zabite, dusza będzie przez wieczność błąkać się bez celu na granicy światów."
+    },
+    {
+      "name": "NEPENTHE",
+      "nameTranslation": "Eliksir zapomnienia",
+      "description": "PZ: 0\nZasięg: Dotyk\nCel: Specjalny\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nMruczysz potężne słowa nad przygotowanym uprzednio naparem z ziół, magicznie przemieniając go w potężny eliksir. Jeśli zostanie wypity podczas trwania tego zaklęcia, cel może zdecydować, by zupełnie i trwale zapomnieć jedną osobę."
+    },
+    {
+      "name": "NOSTRUM",
+      "nameTranslation": "Panaceum",
+      "description": "PZ: 0\nZasięg: Dotyk\nCel: Specjalny\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nSkandujesz zaklęcie nad przygotowaną wcześniej miksturą, przepełniając ją magiczną mocą. Jeśli zostanie wypita podczas trwania tego zaklęcia, cel może natychmiast uleczyć tyle Ran, ile wynosi twój Bonus z Siły Woli. Ponadto leczona jest także jedna choroba. Za każde 2 PS możesz wyleczyć dodatkową chorobę."
+    },
+    {
+      "name": "PART_THE_BRANCHES",
+      "nameTranslation": "Sporządzenie oktogramu",
+      "description": "PZ: 0\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba minut równa Sile Woli\n\nTwoje źrenice rozszerzają się, gdy tylko kończysz wymawiać słowa zaklęcia, dzięki czemu możesz wejrzeć w świat duchów. Jesteś w stanie zobaczyć niewidzialne stworzenia, duchy i demony – nawet te, których nie da się ujrzeć przy użyciu innych zdolności."
+    },
+    {
+      "name": "PROTECTIVE_CHARM",
+      "nameTranslation": "Talizman ochronny",
+      "description": "PZ: 0\nZasięg: Dotyk\nCel: Specjalny\nCzas: Liczba dni równa Bonusowi z Siły Woli\n\nPrzepełniasz talizman potężną mocą ochronną. Wszyscy, którzy będą go nosić, zyskują Talent Odporność na Magię. Jeśli już posiadają ten Talent, talizman niczego nie zmieni."
+    },
+    {
+      "name": "BLIGHT",
+      "nameTranslation": "Nieurodzaj",
+      "description": "PZ: 14\nZasięg: Liczba metrów równa Bonusowi z Siły Woli\nCel: Specjalny\nCzas: Specjalny\n\nTwoim celem może być studnia, pole lub zwierzę domowe. Jeśli uda ci się rzucić zaklęcie, cel staje się obiektem plagi:\n• Studnia pełna czystej wody natychmiast wypełnia się słoną, stojącą wodą.\n• Wszelkie uprawy zasadzone na splugawionym polu gniją w ciągu jednej nocy.\n• Zwierzę zapada na jakąś chorobę. Od tej pory nie produkuje żadnych dóbr (krowy przestają dawać mleko, kury się nie niosą, owcze runa splatają się, linieją i stają się niezdatne do użytku). Ponadto zwierzę umrze w ciągu 10 -PS dni."
+    },
+    {
+      "name": "CREEPING_MENACE",
+      "nameTranslation": "Pełzające paskudztwo",
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nPrzyzywasz rój pełzających stworzeń, które nękają twoich wrogów. Każdy cel objęty zaklęciem natychmiast zostaje Związany Walką z gigantycznymi szczurami, gigantycznymi pająkami lub wężami. Skorzystaj ze standardowych statystyk odpowiedniego typu, dodając właściwość Rój. Poświęcając Akcję, możesz wykonać Wymagający (+0) Test Oswajania, by skierować jeden lub więcej rojów do ataku na inny cel. Po zakończeniu zaklęcia wszelkie pozostałe stworzenia z rojów rozpływają się w cieniach."
+    },
+    {
+      "name": "CURSE_OF_CRIPPLING_PAIN",
+      "nameTranslation": "Klątwa porażającego bólu",
+      "description": "PZ: 10\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nDźgając prymitywną figurkę lub lalkę przedstawiające twój cel, zadajesz mu przeszywający ból. Jeśli rzucenie zaklęcia powiedzie się, wybierz Miejsce Trafienia:\n• Noga – przez ten czas jest zupełnie bezużyteczna, jakby została Amputowana (patrz strona 180). Jeśli cel biegnie, natychmiast zostaje Powalony i otrzymuje Obrażenia jak w przypadku Upadku.\n• Ręka – przez ten czas jest zupełnie bezużyteczna, jakby została Amputowana (patrz strona 180). Jeśli cel trzymał coś w tej dłoni, przedmiot automatycznie upada na ziemię.\n• Korpus – cel zwija się z bólu i otrzymuje +1 poziom Zmęczenia. Ponadto musi wykonać Trudny (-20) Test Odporności, jeśli się on nie powiedzie, cel zostanie Powalony.\n• Głowa – cel zostaje Oszołomiony, a ponadto musi wykonać Przeciętny (+20) Test Odporności, jeśli się on nie uda, nastąpi Utrata Przytomności.\nW trakcie trwania zaklęcia możesz poświęcić swoją akcję, by wykonać Test Splatania Magii, żeby dźgnąć kolejne miejsce lalki i wpłynąć na następny fragment ciała ofiary."
+    },
+    {
+      "name": "CURSE_OF_ILL_FORTUNE",
+      "nameTranslation": "Klątwa pecha",
+      "description": "PZ: 8\nZasięg: Liczba kilometrów równa Bonusowi z Siły Woli\nCel: 1\nCzas: Liczba dni równa Bonusowi z Siły Woli\n\nSkładnikiem do tego zaklęcia jest jakiś przedmiot, który wcześniej był w posiadaniu celu: albo coś osobistego, albo pukiel włosów. Przez czas trwania zaklęcia cel prześladuje pech. Przykładowo pękają troki i łańcuchy oraz dzieje się wiele innych nieprzyjemnych, ale drobnych efektów narracyjnych. Cel otrzymuje karę -10 do wszystkich Testów (co sumuje się ze wszystkimi innymi modyfikatorami), a ponadto nie może używać Punktów Szczęścia."
+    },
+    {
+      "name": "HAUNTING_HORROR",
+      "nameTranslation": "Zmora",
+      "description": "PZ: 8\nZasięg: Dotyk\nCel: Obszarowy (jedno miejsce)\nCzas: Liczba dni równa Sile Woli\n\nWybierasz jedno miejsce, jak np. dom lub polana, wysyłając tam niezwykle uciążliwe duchy i zmory, które wywołują koszmary u każdego, kto wejdzie na ten obszar. W trakcie trwania zaklęcia wszyscy nim dotknięci stają się niezwykle nerwowi z powodu upiornych omamów, przemykających cieni i szepczących głosów, mówiących na granicy słuchu. Jeśli cele nie posiadają Talentu Magia Tajemna (Czarownictwo), otrzymują +1 poziom Zmęczenia.\nNastępnie, chyba że powiedzie im się Wymagający (+0) Test Opanowania, otrzymują kolejny poziom Zmęczenia i 1 poziom Paniki, które można usunąć, jedynie oddalając się od zaczarowanego miejsca."
+    },
+    {
+      "name": "THE_EVIL_EYE",
+      "nameTranslation": "Złe oko",
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Sile Woli\nCel: Specjalny\nCzas: Natychmiast\n\nWbijasz wzrok w jeden cel, który musi patrzeć na ciebie. Wykonaj Przeciwstawny Test Zastraszania/Opanowania, dodając PS uzyskane w wyniku Testu Rzucenia Zaklęcia. Twój przeciwnik otrzymuje 1 poziom Zmęczenia za każde 2 PS powyżej jego wyniku. Jeśli wygrasz w Teście, a PS będą wyższe lub równe 6, twój cel otrzymuje także 1 poziom Paniki."
+    },
+    {
+      "name": "DESTROY_LESSER_DAEMON",
+      "nameTranslation": "Zniszczenie pomniejszego demona",
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nTwoje zaklęcie przerywa powiew Dhar, który utrzymuje demona w świecie materialnym, i zawraca Wiatr w twoją stronę. Cel, który posiada Cechę Stworzenia Demoniczny, o Sile Woli mniejszej niż twoja otrzymuje Obrażenia równe twojemu Bonusowi z Siły Woli, które ignorują Bonus z Wytrzymałości oraz Punkty Pancerza. Ponadto możesz zwiększyć jedną ze swoich Cech o +10 na czas trwania zaklęcia, ponieważ wysysasz z demona bluźniercze moce."
+    },
+    {
+      "name": "DETECT_DAEMON",
+      "nameTranslation": "Wykrycie demona",
+      "description": "PZ: 4\nZasięg: Liczba metrów równa Sile Woli\nCel: Specjalny\nCzas: Natychmiast\n\nTwoje zaklęcie namierza wszelkie demoniczne wpływy w otaczającym cię obszarze. Automatycznie wiesz, czy w Zasięgu znajduje się demon, czy to przyzwany, czy zaklęty w przedmiocie, opętujący śmiertelnika itd."
+    },
+    {
+      "name": "MANIFEST_LESSER_DAEMON",
+      "nameTranslation": "Przyzwanie pomniejszego demona",
+      "description": "PZ: 8\nZasięg: Liczba metrów równa Bonusowi z Siły Woli\nCel: Specjalny\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nKierujesz obrzydliwym strumieniem Dhar, na chwilę rozrywając materię rzeczywistości. Przez wyrwę natychmiast przechodzi pomniejszy demon (dwa przykłady na stronie 335: Demonetka i Krwiopuszcz). Wykonaj Przeciwstawny Test Splatania Magii (Dhar)/Siła Woli przeciwko demonowi. Jeśli uda ci się go wygrać, demon zareaguje na jedną komendę z twojej strony – bardzo dosłownie – a później zniknie (zakładając, że uda mu się zakończyć zadanie, zanim nie skończy się zaklęcie). Jeśli przegrasz Test, demon natychmiast zaatakuje."
+    },
+    {
+      "name": "OCTAGRAM",
+      "nameTranslation": "Oktagram",
+      "description": "PZ: 10\nZasięg: Dotyk\nCel: Obszarowy (maksymalna szerokość w metrach równa Bonusowi z Siły Woli)\nCzas: Liczba minut równa Sile Woli\n\nWymalowujesz oktogram na podłodze, znacząc go bluźnierczymi symbolami, co chroni cię przed wszelkimi demonicznymi wpływami. Stworzenia o Cesze Stworzenia Demoniczny nie mogą wejść ani wyjść z kręgu, chyba że ich Siła Woli jest dwa razy większa od twojej."
     },
     {
       "name": "RAISE_DEAD",
       "nameTranslation": "Ożywienie",
-      "description": "PZ: 8\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Do wschodu słońca\nKierujesz ciężki podmuch Dhar w ziemię, sprawiając, że stare kości zaczynają się grupować i wstają z martwych. 1 + PS szkieletów wydrapie sobie drogę na powierzchnię w Zasięgu do końca Rundy, w porządku dowolnie ustalonym przez ciebie. Rozpoczynają one Rundę w Stanie Powalenie. Przyzwani nieumarli będą całkowicie pod twoją kontrolą i wykonają proste rozkazy. Jeśli zostaniesz zabity lub otrzymasz Stan Utrata Przytomności, zaklęcie dobiegnie końca, a przyzwani Ożywieńcy padną na ziemię. Za każde 2 PS w Teście Rzucenia Zaklęcia możesz przyzwać dodatkowe szkielety w liczbie równej PS."
+      "description": "PZ: 8\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Do wschodu słońca\n\nKierujesz ciężki podmuch Dhar w ziemię, sprawiając, że stare kości zaczynają się grupować i wstają z martwych. 1 + PS szkieletów wydrapie sobie drogę na powierzchnię w Zasięgu do końca Rundy, w porządku dowolnie ustalonym przez ciebie. Rozpoczynają one Rundę w Stanie Powalenie. Przyzwani nieumarli będą całkowicie pod twoją kontrolą i wykonają proste rozkazy. Jeśli zostaniesz zabity lub otrzymasz Stan Utrata Przytomności, zaklęcie dobiegnie końca, a przyzwani Ożywieńcy padną na ziemię. Za każde 2 PS w Teście Rzucenia Zaklęcia możesz przyzwać dodatkowe szkielety w liczbie równej PS."
+    },
+    {
+      "name": "REANIMATE",
+      "nameTranslation": "Ożywienie umarłych",
+      "description": "PZ: 8\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Do wschodu słońca\n\nKierujesz cuchnące pasma gęstego Dhar przed siebie, wbijając je w ciała, ożywiając te, które niegdyś były martwe. Ożywiasz tyle martwych ciał (w postaci zombie) lub szkieletów w Zasięgu, ile wynosi twój Bonus z Siły Woli + PS. Rozpoczynają one Rundę w Stanie Powalenie.\nPrzyzwani nieumarli będą całkowicie pod twoją kontrolą i wykonają proste rozkazy. Jeśli zostaniesz zabity lub otrzymasz Stan Utrata Przytomności, zaklęcie dobiegnie końca, a Ożywieńcy padną na ziemię. Za każde +2 PS w Teście Rzucenia Zaklęcia możesz przyzwać dodatkowe szkielety lub zombie w liczbie równej twojemu Bonusowi z Siły Woli + PS."
+    },
+    {
+      "name": "SCREAMING_SKULL",
+      "nameTranslation": "Wrzeszcząca czaszka",
+      "description": "PZ: 8\nZasięg: Liczba metrów równa Sile Woli\nCel: Specjalny\nCzas: Natychmiast\n\nWykrzykujesz słowa zaklęcia wysokim głosem i wielka, czarna czaszka opleciona zielono-fioletowym ogniem tworzy się przed tobą, a potem przelatuje naprzód, wrzeszcząc i wyjąc. Czaszka porusza się w linii prostej w Zasięgu zaklęcia, unosząc się nad ziemią i przenikając wszelkie przeszkody. Wrzeszcząca czaszka jest magicznym pociskiem, który wpływa wyłącznie na cele, które nie mają Cechy Stworzenia Ożywieniec. Ma współczynnik Obrażeń równy +Bonus z Siły Woli. Każde stworzenie, które otrzyma Obrażenia, musi zdać Wymagający (+0) Test Opanowania albo otrzymuje +1 poziom Stanu Panika."
     },
     {
       "name": "VANHELS_CALL",
       "nameTranslation": "Zew Vanhela",
-      "description": "PZ: 6\nZasięg: Liczba metrów równa Sile Woli\nCel: Specjalny\nCzas: Natychmiast\nManipulujesz skomplikowanym wirem Dhar i wysyłasz go w stronę swoich celów, wypełniając je jego przytłaczającą energią. Cele o Cesze Stworzenia Ożywieniec w liczbie równej twemu Bonusowi z Inteligencji zyskują dodatkowy Ruch lub Akcję – wybierz jeden efekt, który wpłynie na wszystkie cele. Efekt następuje w momencie rzucenia zaklęcia. Za każde +2 PS w Teście Rzucenia Zaklęcia możesz wpłynąć na dodatkowe cele (w liczbie równej Bonusowi z Inteligencji)."
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Sile Woli\nCel: Specjalny\nCzas: Natychmiast\n\nManipulujesz skomplikowanym wirem Dhar i wysyłasz go w stronę swoich celów, wypełniając je jego przytłaczającą energią. Cele o Cesze Stworzenia Ożywieniec w liczbie równej twemu Bonusowi z Inteligencji zyskują dodatkowy Ruch lub Akcję – wybierz jeden efekt, który wpłynie na wszystkie cele. Efekt następuje w momencie rzucenia zaklęcia. Za każde +2 PS w Teście Rzucenia Zaklęcia możesz wpłynąć na dodatkowe cele (w liczbie równej Bonusowi z Inteligencji)."
+    },
+    {
+      "name": "STREAM_OF_CORRUPTION",
+      "nameTranslation": "Struga zepsucia",
+      "description": "PZ: 9\nZasięg: Specjalny\nCel: Specjalny\nCzas: Natychmiast\n\nTwoje szczęki rozwierają się przerażająco szeroko, a następnie wyrzygujesz przed siebie obrzydliwy opar chorób i potworności. Natychmiast wykonujesz Zionięcie – jak przy wydaniu 2 Przewag na aktywację odpowiedniej Cechy Stworzenia (patrz strona 343). Zionięcie jest magicznym pociskiem o współczynniku Obrażeń równym +Bonus z Wytrzymałości. Ignoruje Punkty Pancerza. Atak ma również właściwości Kwas oraz Trucizna opisane w Cesze Stworzenia Zionięcie. Ponadto, jeśli jakiś cel otrzyma więcej Ran, niż wynosi jego Bonus z Wytrzymałości, natychmiast musi wykonać Wymagający (+0) Test Odporności – jeśli się nie powiedzie, w celu rozwinie się Zatrucie Krwi. Za każde 2 PS możesz zwiększyć Obrażenia o +2. "
+    },
+    {
+      "name": "ACQUIESCENCE",
+      "nameTranslation": "Idylla",
+      "description": "PZ: 5\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nTwoja magia wbija się głęboko w cel, zalewając jego duszę dręczącą świadomością jego zniszczonych marzeń. Inicjatywa celu spada do 10, jeśli jeszcze nie była poniżej tego poziomu, ponieważ jego umysł wywraca się na nice. W Turze celu jego ruch jest losowy i ustalany przez MG. Cel zaczyna lamentować nad swoim życiem, lubieżnie opowiadając wszystko, co miało się wydarzyć, i machając rękoma w powietrzu. Ponadto cel może wykonać Akcję jedynie wtedy, gdy powiedzie mu się Wymagający (+0) Test Opanowania. W przeciwnym razie jest zbyt zajęty opłakiwaniem wszystkiego, co mogło się wydarzyć, a nie wydarzyło. "
+    },
+    {
+      "name": "TREASON_OF_TZEENTCH",
+      "nameTranslation": "Zdradliwość Tzeentcha",
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nKierujesz zwiewne pasma zdradziecko splecionych Wiatrów Magii prosto w umysł swojego celu, wypaczając motywacje, osłabiając pragnienia i rozpalając ognie niezadowolenia. Cel nie może używać Talentów ani Rozwinięć Umiejętności podczas wykonywania Testów, co oznacza, że przeprowadza się je jedynie z podstawowymi Cechami."
+    },
+    {
+      "name": "BLAST_OF_CORRUPTION",
+      "nameTranslation": "Wybuch spaczenia",
+      "description": "PZ: 8\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Siły Woli)\nCzas: Natychmiast\nFormujesz mroczną magię w eksplozję spaczenia. Uznawana jest ona za magiczny pocisk ze współczynnikiem Obrażeń +5, zadawanym wszystkim celom na Obszarze działania. Każda z ofiar zaklęcia musi zdać Wymagający (+0) Test Odporności lub otrzyma 1 Punkt Zepsucia."
+    },
+    {
+      "name": "BOLT_OF_CORRUPTION",
+      "nameTranslation": "Pocisk spaczenia",
+      "description": "PZ: 8\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Natychmiast\nFormujesz mroczną magię w wyładowanie niszczycielskiej energii. Uznawane jest za magiczny pocisk o współczynniku Obrażeń +6. Trafiona ofiara musi zdać Wymagający (+0) Test Odporności lub otrzyma 1 Punkt Zepsucia."
+    },
+    {
+      "name": "DAEMONIC_MIEN",
+      "nameTranslation": "Demoniczne oblicze",
+      "description": "PZ: 8\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Ogłady +\nKierujesz zmieniającą energię Chaosu do własnego ciała, tymczasowo poświęcając swoją śmiertelną formę na ołtarzu mrocznego patrona. Twoje ciało przemienia się, przyjmując aspekty demonów będących w służbie boga, któremu oddajesz mroczną cześć. Rzuć 1k10 i sprawdź wynik w Tabeli Efektów Demonicznych Obliczy na stronie 78. Otrzymujesz odpowiednią Cechę na czas działania zaklęcia. Za każde 2 PS możesz przedłużyć Czas działania czaru i jednocześnie ponownie rzucić w Tabeli. Gdy masz Cechę Demoniczny i Twoja Żywotność zostanie zredukowana do 0, Twoja dusza zostaje wessana do Królestwa Chaosu zgodnie z zasadami działania tej Cechy."
+    },
+    {
+      "name": "FOUL_MESSENGER",
+      "nameTranslation": "Plugawy posłaniec",
+      "description": "PZ: 8\nZasięg: Liczba kilometrów równa półtorakrotności Twojej Ogłady\nCel: Specjalny\nCzas: Natychmiast\nPrzyzywasz rój pomniejszych demonów, spętanych i posłusznych Twojej woli. Ich wygląd zależy od bóstwa, któremu służysz. Demony przekażą krótką wiadomość (nie więcej niż 25 słów) wybranej przez Ciebie postaci. Przemieszczają się niemal natychmiastowo i są niewidzialne (oraz niesłyszalne) dla nikogo, kto nie ma Talentu Percepcja Magiczna. Każdy z tym Talentem może wykonać Trudny (-20) Test Percepcji, by zauważyć rój i usłyszeć wiadomość. Za każde dodatkowe 2 PS możesz podwoić długość wiadomości."
+    },
+    {
+      "name": "JOYOUS_ASPECT",
+      "nameTranslation": "Radosne oblicze",
+      "description": "PZ: 4\nZasięg: Dotyk\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Ogłady +\nCzarodziej skrywa cel (być może samego siebie) w wypaczonym bąblu utkanym z przesiąkniętego Dharem Wiatru Ulgu. Magia otacza postać ukrywając aurą. W czasie trwania zaklęcia cel wydaje się pozbawiony wszelkich fizycznych skaz czy wad. Blizny, deformacje, a przede wszystkim mutacje, stają się niewykrywalne w żaden sposób, poza boską interwencją. Chociaż oczywiste deformacje są ukryte, postać wydaje się dziwna, obca, nazbyt pełna życia bądź nienaturalnie pociągająca. Każdy, kto zda Trudny (-20) Test Percepcji, zauważy, że z istotą jest coś nie tak, chociaż nie będzie w stanie tego dokładnie wskazać. Dla Bohaterów z Talentem Percepcja Magiczna Test jest Wymagający (+0). W przypadku sukcesu zorientują się, że na postać zostało rzucone zaklęcie, ale i tak nie będą wiedzieć, co się pod nim skrywa."
+    },
+    {
+      "name": "OBSESSION",
+      "nameTranslation": "Obsesja",
+      "description": "PZ: 8\nZasięg: Liczba kilometrów równa półtorakrotności Bonusu z Inteligencji\nCel: Specjalny\nCzas: Liczba dni równa PS\nMusisz mieć ukochany lub cenny przedmiot należący do osoby, na którą chcesz rzucić zaklęcie. Splatasz magię z czystą energią Chaosu, nasycając nimi przedmiot, a w ten sposób wpływając przez niego na swój cel. Ofiara dostaje obsesji na jakimś punkcie. Natura tej manii zależy od charakteru postaci oraz Tradycji Twojej magii. Dla przykładu, rzucone dzięki Magii Nurgla zaklęcie może sprawić, że niedawno zraniona ofiara będzie obsesyjnie rozdrapywać swoje rany. Magia Slaanesha z kolei może zmusić łakomczucha bądź smakosza do przejedzenia. Ofiara musi co godzinę zdać Przeciętny (+20) Test Odporności lub podda się obsesji. W przypadku porażki następne Testy stają się Wymagające (+0). Kolejne porażki dalej podnoszą Trudność, aż do poziomu Bardzo Trudnego (-30). Jeżeli ofiara będzie miała Pecha w którymkolwiek z Testów (porażka przy wyrzuceniu dubletu), mania całkowicie ją pochłania. Nie może robić nic poza oddawaniem się obsesji za wszelką cenę, bez względu na konsekwencje. Dzieje się tak przez liczbę godzin równą 1k10 - Bonus z Siły Woli celu (minimum 1 godzina). Na koniec czasu działania zaklęcia, niezależnie od poniesionych fizycznych, społecznych albo finansowych konsekwencji, ofiara musi zdać Wymagający (+0) Test Odporności lub otrzymuje 1 Punkt Zepsucia.\n\nPostać może być celem tego zaklęcia tylko raz na każdą Tradycję, za pomocą której można je rzucić. Każda próba ponownego rzucenia czaru tą samą Tradycją na ten cel automatycznie kończy się niepowodzeniem."
+    },
+    {
+      "name": "POWER_OF_CHAOS",
+      "nameTranslation": "Potęga Chaosu",
+      "description": "PZ: 4\nZasięg: Liczba metrów równa Sile Woli\nCel: Obszarowy (liczba metrów równa Bonusowi z Ogłady)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\nWzywasz bogów Chaosu, by wspomogli Twe wysiłki poprzez niewielkie rozdarcie prowadzące do Eteru. Każde zaklęcie rzucone na obszarze działania Potęgi Chaosu ma PZ obniżony o połowę. Ponadto wszyscy przebywający na tym obszarze muszą zdać Przeciętny (+20) Test Odporności na koniec każdej Rundy lub otrzymują 1 Punkt Zepsucia. Testy Rzucania Zaklęć na tym obszarze mają Przeciętną (+20) Trudność."
+    },
+    {
+      "name": "REND_AETHYR",
+      "nameTranslation": "Rozdarcie Eteru",
+      "description": "PZ: 16\nZasięg: Liczba metrów równa Sile Woli\nCel: Specjalny\nCzas: Liczba Rund równa Bonusowi z Siły Woli +\nTwoje plugawe, bluźniercze słowa rozdzierają rzeczywistość i przez powstałą wyrwę świat zalewa fala przeklętych sług Mrocznych Bogów. W zasięgu działania zaklęcia pojawia się poszarpany portal prowadzący wprost do Eteru. Na koniec każdej Rundy z Domeny Chaosu przechodzi przez niego jeden pomniejszy demon. Istota ta nie znajduje się pod Twoją kontrolą, ale prawdopodobnie będzie Cię chronić i atakować Twoich wrogów, zgodnie z wolą jej przeklętego pana. Rodzaj demona zależy od Tradycji Chaosu: Slaanesh przyzywa demonetki, Nurgle siewców zarazy, Tzeentch strachulce, Khorne krwiopuszcze, a czarnoksiężnicy Chaosu Niepodzielnego – furie Chaosu. W czasie działania zaklęcia każdy przyzwany w ten sposób demon jest niewrażliwy na Cechę Niestabilny.\n\nZa każde +5 PS w Teście Rzucenia Zaklęcia możesz zwiększyć liczbę pojawiających się co Rundę demonów o +1.\n\nŻywe istoty muszą zdać Przeciętny (+20) Test Odporności na koniec każdej Rundy, w której widzą wyrwę w rzeczywistości. W przeciwnym razie otrzymują 1 Punkt Zepsucia. Każda postać na tyle głupia lub pechowa, by wejść w portal, zostaje pochłonięta przez Królestwo Chaosu i natychmiast umiera, o ile nie wyda Punktu Przeznaczenia. W takim wypadku zostaje wyrzucona z powrotem do rzeczywistości, być może ocalona za sprawą mocy, dla której wciąż musi wykonać jakieś zadanie.\n\nJeżeli wyrzucisz Pecha, rzucając to zaklęcie, demony przechodzące przez wyrwę należą do rywala Twojego boga i są wobec Ciebie wrogo nastawione!"
+    },
+    {
+      "name": "SLAVE_TO_DARKNESS",
+      "nameTranslation": "Niewolnik ciemności",
+      "description": "PZ: 8\nZasięg: Dotyk\nCel: 1\nCzas: Specjalny\nProsisz swego patrona, by porwał duszę Twojej ofiary i zastąpił ją czymś potwornym. Wykonaj Test Przeciwstawny Siły Woli, który musisz wygrać o przynajmniej 2 PS. W przypadku sukcesu wyjąca dusza ofiary zostaje strącona do Domeny Chaosu, a jej ciało opętuje demon. O ile postać nie wyda Punktu Przeznaczenia, kontrolę nad nią przejmuje MG. Jeżeli nie wygrasz Testu Przeciwstawnego o przynajmniej 2 PS, padasz ofiarą Większej Manifestacji i zaklęcie nie odnosi skutku. Pech w tym Teście oznacza, że zostajesz ukarany przez swojego patrona za arogancję. Twoja dusza zostaje wyrwana z ciała, by już nigdy do niego nie powrócić. Możesz tego uniknąć, wydając Punkt Przeznaczenia, ale bóstwo najpewniej nie będzie zadowolone, gdy w ten sposób rażąco sprzeciwisz się jego osądowi.\n\nBiorąc pod uwagę ryzyko i ograniczenia tego zaklęcia, zwykle używa się go na odpowiednio przygotowanych ofiarach. Nieszczęśnicy są wcześniej oszałamiani narkotykami, pętani lub w inny sposób spacyfikowani."
+    },
+    {
+      "name": "BOON_OF_TZEENTCH",
+      "nameTranslation": "Dar Tzeentcha",
+      "description": "PZ: 9\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba dni równa Bonusowi z Inicjatywy\nZaklęcie sprawia, że Twój umysł zostaje natchniony zagadkową przemyślnością Zmieniającego Drogi, co daje Ci dostęp do nowej wiedzy tajemnej. Wybierz jedno zaklęcie z dowolnej Tradycji (dla przyśpieszenia rozgrywki MG może dać na to Graczowi 9 sekund). Dopóki trwa Dar Tzeentcha, masz dostęp do tego zaklęcia, jakbyś je znał. Nie możesz go jednak zapisać w księdze zaklęć, na zwoju itp. Jeżeli zechcesz je rzucić, możesz użyć Splatania Magii (Dhar) lub odpowiedniej Tradycji, która normalnie jest do niego wymagana (o ile ją znasz).\n\nJeżeli podczas Splatania Magii lub rzucania nowego zaklęcia padniesz ofiarą manifestacji, Dar Tzeentcha opuszcza Twój umysł z obrzydzeniem i jednocześnie usuwa się z Twojej księgi zaklęć (o ile pozwolił się w niej zapisać)."
+    },
+    {
+      "name": "THE_PURPLE_HAND",
+      "nameTranslation": "Purpurowa dłoń",
+      "description": "PZ: 3\nZasięg: Liczba metrów równa Inteligencji\nCel: 1\nCzas: Różny\nZaklęcie to jest pomniejszą klątwą nakładaną przez czarnoksiężników Purpurowej Dłoni, by zastraszyć lub uspokoić zbyt porywczych członków organizacji. Spośród wszystkich niewerbalnych tajemnych znaków kultystów znaczenie tego jest najbardziej oczywiste: natychmiast zmień zachowanie albo spotkają cię surowe konsekwencje.\n\nAby rzucić zaklęcie, mag musi zdobyć fragment ciała swojego celu, włos czy fragment paznokcia powinny wystarczyć. Jeżeli uda się je pozyskać i rzucić czar, dłonie ofiary przybierają głęboki purpurowy kolor. Efekt klątwy utrzymuje się przez godzinę za każdy PS uzyskany przez czarodzieja przy rzucaniu zaklęcia."
+    },
+    {
+      "name": "CURSE_OF_TZEENTCH",
+      "nameTranslation": "Klątwa Tzeentcha",
+      "description": "PZ: 9\nZasięg: Liczba metrów równa Inteligencji\nCel: 1\nCzas: Różny\nTradycja Tzeentcha naucza, że wszystkie zaklęcia ostatecznie pochodzą od tego boga i są jego własnością. Dzięki temu zaklęciu czarnoksiężnik może sprawić, iż wrogi mag straci swoją cenną wiedzę i zdolność do rzucenia czaru.\n\nPo udanym rzuceniu Klątwy Tzeentcha czarnoksiężnik oraz jego cel muszą wykonać Test Przeciwstawny Siły Woli. W przypadku wygranej czarownika ofiara traci dostęp do losowo wybranego zaklęcia na tyle dni, ile PS osiągnięto w Teście Przeciwstawnym."
+    },
+    {
+      "name": "BLUE_FIRE_OF_TZEENTCH",
+      "nameTranslation": "Niebieski płomień Tzeentcha",
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Inteligencji\nCel: Obszar (liczba metrów równa Bonusowi z Inicjatywy)\nCzas: Natychmiast\nPrzyzywasz wirującą kulę iskrzącego błękitnego ognia, która pochłania Twoich wrogów. Niebieski Płomień Tzeentcha uznawany jest za magiczny pocisk o współczynniku Obrażeń +3 zadawanym wszystkim Celom na Obszarze działania. Każdy trafiony otrzymuje również jeden Stan Podpalenie.\n\nJeżeli w wyniku tego zaklęcia albo wywołanego przez nią Stanu Podpalenie Żywotność istoty o Rozmiarze (Mały) lub większej zostanie obniżona do 0, rzuć 1k10. Gdy wypadnie 9, dwa niebieskie strachulce (patrz str. 85) wydzierają sobie drogę pazurami z ciała ofiary czaru, zabijając ją na miejscu."
+    },
+    {
+      "name": "BOLT_OF_CHANGE",
+      "nameTranslation": "Pocisk przemiany",
+      "description": "PZ: 9\nZasięg: Liczba metrów równa Inteligencji\nCel: 1\nCzas: Natychmiast\nPulsujący pocisk migotliwej energii Chaosu przecina powietrze i traktowany jest jak magiczny pocisk o współczynniku Obrażeń +7. Co więcej, trafiony cel musi wykonać Wymagający (+0) Test Odporności lub dostaje 1 Punkt Zepsucia. W przypadku Pecha w tym Teście ofiara natychmiast musi wylosować mutację i otrzymuje Talent Magia Chaosu (Tzeentch). Bohater poddany mutującemu wpływowi tego zaklęcia może wydać Punkt Bohatera, aby oprzeć się przemianie."
+    },
+    {
+      "name": "THE_FLICKERING_FLAMES_OF_FICKLE_FATE",
+      "nameTranslation": "Migoczące płomienie kapryśnego losu",
+      "description": "PZ: 4\nZasięg: Liczba metrów równa Inteligencji\nCel: Specjalny\nCzas: Liczba Rund równa Bonusowi z Siły Woli +\nPrzyzywasz strumień magicznego ognia, który pluje, trzaska i płonie, ale nie jest podsycany żadną fizyczną materią. Ogień nie ma fizycznych właściwości, nie zapala, nie parzy, nie wydziela ciepła. Wszystkie żywe istoty i demony, które widzą płomienie, mogą jednorazowo przerzucić każdy Test, tak jakby wydały Punkt Szczęścia. Za każdym razem, kiedy ktoś to zrobi, musi zdać Wymagający (+0) Test Odporności lub otrzymuje 1 Punkt Zepsucia. Bohaterowie z Piętnem Tzeentcha są odporni na ten efekt. Tego Testu nie można przerzucić, korzystając z efektu zaklęcia."
+    },
+    {
+      "name": "MASTER_OF_FORTUNE",
+      "nameTranslation": "Pan losu",
+      "description": "PZ: 8\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba dni równa Bonusowi z Siły Woli\nCzarnoksiężnicy Tzeentcha często targują się ze swoim panem, by umożliwił im wejrzeć w ich możliwe przeznaczenie. Takie wróżenie jest niebezpieczne, albowiem Pan Przemian to kapryśne bóstwo, gotowe karać nawet najwierniejszych wyznawców. Raz rzucony czar nie może zostać rzucony ponownie, póki nie skończy się działanie pierwszego.\n\nZa każdy dodatni PS w Teście Języka (Magiczny) przy rzucaniu zaklęcia czarodziej otrzymuje 1 Punkt Szczęścia, którego może użyć zgodnie z zasadami w czasie trwania czaru. Za każdy ujemny PS czarnoksiężnik otrzymuje jeden Punkt Zepsucia, gdy jego umysł wypełniają niezrozumiałe i niepokojące echa przyszłości."
+    },
+    {
+      "name": "MINDFIRE",
+      "nameTranslation": "Płomień umysłu",
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Inteligencji\nCel: 1\nCzas: Natychmiast\nPowietrze wypacza się wokół Twoich palców, tworząc kulę błyszczącej, mglistej energii, którą możesz cisnąć w przeciwnika. Cel trafiony przez Płomień umysłu musi zdać Wymagający (+0) Test Opanowania lub otrzymuje 1 Punkt Zepsucia. Za każde 2 PS uzyskane w Teście rzucania zaklęcia możesz przyznać ofierze kolejny Punkt Zepsucia, jeżeli nie zda Testu Opanowania. Gdyby nieszczęśnik miał z tego powodu otrzymać mutację, rzuca w Tabeli Zepsucia Psychicznego oraz dostaje jeden poziom Stanu Podpalenie, kiedy nienaturalny ogień bucha z jego oczu, ust, nozdrzy i uszu."
+    },
+    {
+      "name": "PINK_FIRE_OF_TZEENTCH",
+      "nameTranslation": "Różowy płomień Tzeentcha",
+      "description": "PZ: 6\nZasięg: Liczba metrów równa Inteligencji\nCel: 1\nCzas: Natychmiast\nWirujące pociski różowego ognia tryskają z Twoich rozczapierzonych palców, rozdzierając wrzeszczącą z bólu rzeczywistość. Różowy płomień Tzeentcha uznawany jest za magiczny pocisk o współczynniku Obrażeń +6. Dodatkowo Cel otrzymuje Stan Podpalenie.\n\nJeżeli w wyniku tego zaklęcia albo wywołanego przez nie Stanu Podpalenie Żywotność istoty o Rozmiarze (Mały) lub większej zostanie obniżona do 0, rzuć 1k10. Gdy wypadnie 9, różowy strachulec (patrz str. 85) wydziera sobie drogę pazurami z ciała ofiary czaru, zabijając ją na miejscu."
+    },
+    {
+      "name": "SENSE_THE_SKEIN",
+      "nameTranslation": "Wyczucie splotu",
+      "description": "PZ: 3\nZasięg: Rzucający\nCel: Rzucający\nCzas: 1 Runda\nTwoje oczy błyszczą różowym i błękitnym blaskiem, gdy wypowiadasz zakazane słowa mocy. Łuski opadają z Twych powiek i przez ulotny moment dostrzegasz splot losu łączący wszystkie rzeczy. Możesz wybrać jeden Cel znajdujący się w zasięgu wzroku. MG musi wyjawić Ci jego Motywację oraz Ambicje krótkoi długoterminowe."
+    },
+    {
+      "name": "TRANSFORMATION_OF_TZEENTCH",
+      "nameTranslation": "Transformacja Tzeentcha",
+      "description": "PZ: 10\nZasięg: Liczba metrów równa Bonusowi z Inicjatywy\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\nNa Twój rozkaz z ziemi wyrastają więzy eterycznego ognia, po czym chwytają wybrany przez Ciebie cel w kokon magicznej energii. Ofiara otrzymuje Stan Powalenie i jest uznana za bezbronną na czas działania zaklęcia. Gdy czas działania Transformacji Tzeentcha się skończy, cel musi wykonać Test Przeciwstawny Odporność/Język (Magiczny). Jeżeli mu się nie powiedzie, otrzymuje 1 Punkt Zepsucia +1 za każdy PS, o który przegrał."
+    },
+    {
+      "name": "TZEENTCHS_FIRESTORM",
+      "nameTranslation": "Burza ognia Tzeentcha",
+      "description": "PZ: 11\nZasięg: Liczba metrów równa Inteligencji\nCel: Obszarowy (liczba metrów równa Bonusowi z Inicjatywy)\nCzas: Liczba Rund równa Bonusowi z Siły Woli\nW wybranym miejscu wybucha burza purpurowego ognia, przywołana Twoim opętańczym śmiechem. Jest uznawana za magiczny pocisk o współczynniku Obrażeń +9, jego ofiary otrzymują również jeden Stan Podpalenie.\n\nJeżeli w wyniku tego zaklęcia albo wywołanego przez nie Stanu Podpalenie Żywotność istoty o Rozmiarze (Mały) lub większej zostanie obniżona do 0, rzuć 1k10. Gdy wypadnie 9, dwa różowe strachulce (patrz str. 85) wydzierają sobie drogę pazurami z ciała ofiary czaru, zabijając ją na miejscu."
+    },
+    {
+      "name": "TZEENTCHS_GOLDEN_AURA",
+      "nameTranslation": "Złota aura Tzeentcha",
+      "description": "PZ: 7\nZasięg: Rzucający\nCel: Rzucający\nCzas: Liczba Rund równa Bonusowi z Siły Woli\nJest to najbardziej praktyczne i bezpośrednie zaklęcie w arsenale czarnoksiężnika Tzeentcha. Otacza go przyzwany z Eteru wir żółtego ognia, chroniąc przed ciosami i pociskami. W czasie działania czaru postać otrzymuje Cechę Ochrona (9+)."
+    },
+    {
+      "name": "WORD_OF_TZEENTCH",
+      "nameTranslation": "Słowo Tzeentcha",
+      "description": "PZ: 7\nZasięg: Liczba metrów równa Bonusowi z Siły\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Inteligencji\nGdy Twój język formułuje dziwaczne dźwięki tego bluźnierczego zaklęcia, dwa głosy wydobywają się z Twojego gardła w przeklętej, nienaturalnej harmonii. Wypowiedziane słowa niosą dodatkowe znaczenie dla istoty będącej celem zaklęcia, choć ofiara nigdy nie zapamięta, co powiedziano. Pozostaje pełna złych przeczuć, jak gdyby zapomniała o czymś wielce istotnym dla swojej przyszłości.\n\nCzarownik i żyjąca istota będąca celem zaklęcia muszą wykonać Test Przeciwstawny Inteligencji. Jeżeli czarownik wygra Test, cel Czaru otrzymuje jeden poziom Stanu Oszołomienie i +1 poziom za każdy PS różnicy. Jeśli ofiara zaklęcia miała Pecha, otrzymuje Stan Utrata Przytomności i 1 Punkt Zepsucia.\n\nGdy wszystkie Stany zostaną usunięte, cel zaklęcia musi zdać Przeciętny (+20) Test Odporności lub otrzymuje 1 Punkt Zepsucia. Jeżeli Test zakończy się Pechem, ofiara natychmiast otrzymuje jedną mutację psychiczną i nie może wybrać żadnej nowej Ambicji krótkoterminowej przez następne 1k10 tygodni."
     }
   ],
   "bodyLocalizations": [
