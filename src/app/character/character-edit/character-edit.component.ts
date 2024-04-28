@@ -91,6 +91,7 @@ export class CharacterEditComponent implements OnInit {
       'name': new UntypedFormControl(character.name),
       'description': new UntypedFormControl(character.description),
       'group': new UntypedFormControl(character.group),
+      'groupType': new UntypedFormControl(character.groupType),
       'status': new UntypedFormControl(character.status),
       'characteristics': formArrays.characteristics,
       'skills': formArrays.skills,
@@ -128,6 +129,7 @@ export class CharacterEditComponent implements OnInit {
   createCharacter() {
     const name = this.editCharacterForm.value.name
     const description = this.editCharacterForm.value.description
+    const groupType= this.editCharacterForm.value.groupType
     const group = this.editCharacterForm.value.group
     const status = this.editCharacterForm.value.status
     const characteristics = <CharacterCharacteristic[]>this.editCharacterForm.value.characteristics
@@ -144,6 +146,7 @@ export class CharacterEditComponent implements OnInit {
     const character = new Character(
       name,
       description,
+      groupType,
       group,
       status,
       characteristics,

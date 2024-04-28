@@ -9,13 +9,13 @@ import {SkirmishCharacterService} from "../../shared/services/skirmish-character
 @Component({
   selector: 'app-character-list',
   templateUrl: './character-list.component.html',
-  styleUrls: ['./character-list.component.css']
+  styleUrls: ['./character-list.component.css'],
 })
 export class CharacterListComponent implements OnInit {
 
   characters!: Character[];
   subscription!: Subscription;
-  characterGroups: {group: string, characters: Character[]}[] = [];
+  characterGroupsTypes: {name: string, groups: { name: string, characters: Character[] }[]}[] = [];
 
   text = TextResourceService;
 
@@ -29,11 +29,11 @@ export class CharacterListComponent implements OnInit {
     this.subscription = this.characterService.charactersChanged.subscribe(
       (characters: Character[]) => {
         this.characters = characters;
-        this.characterGroups = this.characterService.getCharacterGroups();
+        this.characterGroupsTypes = this.characterService.getCharacterGroupsTypes();
       }
     )
     this.characters = this.characterService.getCharacters();
-    this.characterGroups = this.characterService.getCharacterGroups();
+    this.characterGroupsTypes = this.characterService.getCharacterGroupsTypes();
   }
 
   onAddCharacter() {

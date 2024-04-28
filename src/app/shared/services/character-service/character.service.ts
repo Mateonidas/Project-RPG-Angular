@@ -75,32 +75,45 @@ export class CharacterService {
     return this.charactersList.find(value => value.id == id)
   }
 
-  getCharacterGroups() {
-    return this.createCharacterGroups()
+  getCharacterGroupsTypes() {
+    return this.createCharacterGroupsTypes()
   }
 
-  private createCharacterGroups() {
-    const characterGroups: { group: string, characters: Character[] }[] = []
+  private createCharacterGroupsTypes() {
+    const groupsTypes: {name: string, groups: { name: string, characters: Character[] }[]}[] = []
 
     this.charactersList.forEach(character => {
-      let isGroupExist = false
-      for (let element of characterGroups) {
-        if (element.group === character.group) {
-          element.characters.push(character)
-          isGroupExist = true
+      let isTypeExist = false
+      for (let groupType of groupsTypes) {
+        let isGroupExist = false
+        if(groupType.name === character.groupType) {
+          for (let group of groupType.groups) {
+            if(group.name === character.group) {
+              group.characters.push(character)
+              isGroupExist = true
+              break
+            }
+          }
+
+          if(!isGroupExist) {
+            groupType.groups.push({name: character.group, characters: [character]})
+          }
+          isTypeExist = true
           break
         }
       }
 
-      if (!isGroupExist) {
-        characterGroups.push({group: character.group, characters: [character]})
+      if(!isTypeExist) {
+        groupsTypes.push({name: character.groupType, groups: [{name: character.group, characters: [character]}]})
       }
     })
 
-    characterGroups.sort(
-      (a, b) => (a.group > b.group) ? 1 : ((b.group > a.group) ? -1 : 0)
-    )
+    groupsTypes.forEach(groupType => {
+      groupType.groups.sort(
+        (a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)
+      )
+    })
 
-    return characterGroups
+    return groupsTypes
   }
 }

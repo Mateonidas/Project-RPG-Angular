@@ -12,6 +12,11 @@
     </mat-form-field>
 
     <mat-form-field class="example-full-width text-field" appearance="fill">
+      <mat-label>{{text.getText().groupTypeLabel}}</mat-label>
+      <input matInput formControlName="groupType">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width text-field" appearance="fill">
       <mat-label>{{text.getText().groupLabel}}</mat-label>
       <input matInput formControlName="group">
     </mat-form-field>

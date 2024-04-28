@@ -2,30 +2,34 @@
     <button mat-raised-button color="primary" (click)="onAddCharacter()">{{text.getText().addCharacterLabel}}</button>
 </div>
 <hr>
-<div fxLayout="row">
-  <div fxFlex="100">
-    <mat-accordion>
-      <mat-expansion-panel hideToggle *ngFor="let characterGroup of characterGroups">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <h6>{{characterGroup.group}}</h6>
-            <button mat-icon-button color="basic"
-                    type="button"
-                    style="margin-left: 20px; position: absolute; right: 10px; z-index: 3"
-                    (click)="onAddGroupToFight(characterGroup.characters)">
-              <mat-icon>add</mat-icon>
-            </button>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-divider></mat-divider>
-        <mat-nav-list>
-          <app-character-item
-            *ngFor="let character of characterGroup.characters"
-            [character]="character"
-            [index]="character.id">
-          </app-character-item>
-        </mat-nav-list>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </div>
-</div>
+<mat-tab-group>
+  <mat-tab *ngFor="let type of characterGroupsTypes" label="{{type.name}}">
+    <div fxLayout="row">
+      <div fxFlex="100">
+        <mat-accordion>
+          <mat-expansion-panel hideToggle *ngFor="let characterGroup of type.groups">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h6>{{characterGroup.name}}</h6>
+                <button mat-icon-button
+                        type="button"
+                        style="margin-left: 20px; position: absolute; right: 10px; z-index: 3"
+                        (click)="onAddGroupToFight(characterGroup.characters)">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+            <mat-nav-list>
+              <app-character-item
+                *ngFor="let character of characterGroup.characters"
+                [character]="character"
+                [index]="character.id">
+              </app-character-item>
+            </mat-nav-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

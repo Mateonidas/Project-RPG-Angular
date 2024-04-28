@@ -51,6 +51,7 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
     this.editCharacterForm = new UntypedFormGroup({
       'name': new UntypedFormControl(skirmishCharacter.character.name),
       'description': new UntypedFormControl(skirmishCharacter.character.description),
+      'groupType': new UntypedFormControl(skirmishCharacter.character.groupType),
       'group': new UntypedFormControl(skirmishCharacter.character.group),
       'status': new UntypedFormControl(skirmishCharacter.character.status),
       'characteristics': formArrays.characteristics,

@@ -5,6 +5,7 @@ import {TextResourceService} from "../text-resource-service/text-resource.servic
 import {Subject} from "rxjs"
 import {Model} from "../../../model/model"
 import {TranslateService} from "../translate-service/translate.service"
+import {tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -24,31 +25,26 @@ export class ArmorService {
   }
 
   fetchArmors() {
-    return this.http.get<Armor[]>('http://localhost:8080/armor').toPromise()
-      .then(data => {
-          if (data != null) {
-            this.translateService.prepareArmorsList(data)
-            this.armorsList = data
-          } else {
-            this.armorsList = []
-          }
-          this.armorsListChanged.next(this.armorsList.slice())
+    return this.http.get<Armor[]>('http://localhost:8080/armor').pipe(
+      tap(data => {
+        if (data) {
+          this.translateService.prepareArmorsList(data);
+          this.armorsList = data;
+        } else {
+          this.armorsList = [];
         }
-      )
+        this.armorsListChanged.next(this.armorsList.slice());
+      })
+    ).toPromise();
   }
 
   async storeArmor(armor: Armor) {
-    await this.putArmor(armor).then(
-      async () => {
-        await this.fetchArmors().then()
-      }
-    )
+    await this.putArmor(armor).toPromise();
+    await this.fetchArmors();
   }
 
   putArmor(armor: Armor) {
-    return this.http
-      .put('http://localhost:8080/armor', armor)
-      .toPromise()
+    return this.http.put('http://localhost:8080/armor', armor)
   }
 
   fetchArmorCategories() {
