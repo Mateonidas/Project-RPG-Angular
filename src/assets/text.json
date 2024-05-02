@@ -2533,7 +2533,7 @@
     {
       "name": "WARD",
       "nameTranslation": "Magiczna Ochrona",
-      "description": "PZ: 5\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nTwoja magia wbija się głęboko w cel, zalewając jego duszę dręczącą świadomością jego zniszczonych marzeń. Inicjatywa celu spada do 10, jeśli jeszcze nie była poniżej tego poziomu, ponieważ jego umysł wywraca się na nitce. W Turze celu jego ruch jest losowy i ustalany przez MG. Cel zaczyna lamentować nad swoim życiem, lubieżnie opowiadając wszystko, co miało się wydarzyć, i machając rękoma w powietrzu. Ponadto cel może wykonać Akcję jedynie wtedy, gdy powiedzie mu się Wymagający (+0) Test Opanowania. W przeciwnym razie jest zbyt zajęty opłakiwaniem wszystkiego, co mogło się wydarzyć, a nie wydarzyło."
+      "description": "PZ: 5\nZasięg: Liczba metrów równa Sile Woli\nCel: 1\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nOplatasz się ochronną magią, zyskując Cechę Stworzenia Ochrona (9+)(strona 340).\n\nStworzenie jest magiczne, nosi specjalny talizman albo ma szczęście – niektóre ciosy po prostu go nie trafiają. Rzuć 1k10 po każdym otrzymanym ciosie. Jeśli stworzenie wyrzuci tyle, ile wynosi podana wartość, lub więcej, cios zostaje zignorowany, nawet jeśli jest to Trafienie Krytyczne."
     },
     {
       "name": "AMBER_TALONS",
