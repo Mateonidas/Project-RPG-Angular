@@ -129,7 +129,7 @@ export class CharacterEditComponent implements OnInit {
   createCharacter() {
     const name = this.editCharacterForm.value.name
     const description = this.editCharacterForm.value.description
-    const groupType= this.editCharacterForm.value.groupType
+    const groupType = this.editCharacterForm.value.groupType
     const group = this.editCharacterForm.value.group
     const status = this.editCharacterForm.value.status
     const characteristics = <CharacterCharacteristic[]>this.editCharacterForm.value.characteristics
@@ -167,21 +167,14 @@ export class CharacterEditComponent implements OnInit {
   }
 
   protected prepareCharacterBodyLocalizations(character: Character) {
-    if (this.characterBodyLocalizations == null || this.characterBodyLocalizations.length == 0) {
-      const head = new CharacterBodyLocalization(BodyLocalizationList.head, 0, 0, [])
-      const rightArm = new CharacterBodyLocalization(BodyLocalizationList.rightArm, 0, 0, [])
-      const leftArm = new CharacterBodyLocalization(BodyLocalizationList.leftArm, 0, 0, [])
-      const body = new CharacterBodyLocalization(BodyLocalizationList.body, 0, 0, [])
-      const rightLeg = new CharacterBodyLocalization(BodyLocalizationList.rightLeg, 0, 0, [])
-      const leftLeg = new CharacterBodyLocalization(BodyLocalizationList.leftLeg, 0, 0, [])
-      character.bodyLocalizations = []
-      character.bodyLocalizations.push(head, rightArm, leftArm, body, rightLeg, leftLeg)
-    } else {
-      character.bodyLocalizations = this.characterBodyLocalizations
-      for (let bodyLocalization of character.bodyLocalizations) {
-        bodyLocalization.armorPoints = 0
-      }
-    }
+    const head = new CharacterBodyLocalization(BodyLocalizationList.head, 0, 0, [])
+    const rightArm = new CharacterBodyLocalization(BodyLocalizationList.rightArm, 0, 0, [])
+    const leftArm = new CharacterBodyLocalization(BodyLocalizationList.leftArm, 0, 0, [])
+    const body = new CharacterBodyLocalization(BodyLocalizationList.body, 0, 0, [])
+    const rightLeg = new CharacterBodyLocalization(BodyLocalizationList.rightLeg, 0, 0, [])
+    const leftLeg = new CharacterBodyLocalization(BodyLocalizationList.leftLeg, 0, 0, [])
+    character.bodyLocalizations = []
+    character.bodyLocalizations.push(head, leftArm, rightArm, body, leftLeg, rightLeg)
 
     for (let armor of character.armors) {
       for (let armorBodyLocalization of armor.armorBodyLocalizations) {
