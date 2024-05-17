@@ -3,6 +3,7 @@ import {TextResourceService} from "../../../shared/services/text-resource-servic
 import {CharacterService} from "../../../shared/services/character-service/character.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
+import {SkirmishCharacterService} from "../../../shared/services/skirmish-character-service/skirmish-character.service";
 
 @Component({
   selector: 'app-shared-buttons',
@@ -12,8 +13,10 @@ import {MatDialog} from "@angular/material/dialog";
 export class SharedButtonsComponent {
   text = TextResourceService
   @Input() id!: number
+  @Input() isSkirmishMode!: boolean
 
   constructor(public characterService: CharacterService,
+              public skirmishCharacterService: SkirmishCharacterService,
               protected route: ActivatedRoute,
               protected router: Router,
               protected dialog: MatDialog) {
@@ -24,7 +27,12 @@ export class SharedButtonsComponent {
   }
 
   onDeleteCharacter() {
-    this.characterService.removeCharacter(this.id)
-    this.router.navigate(['characters'])
+    if(this.isSkirmishMode) {
+      this.skirmishCharacterService.removeSkirmishCharacter(this.id)
+      this.router.navigate(['skirmish'])
+    } else {
+      this.characterService.removeCharacter(this.id)
+      this.router.navigate(['characters'])
+    }
   }
 }
