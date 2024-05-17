@@ -21,7 +21,7 @@ export class AddConditionDialogComponent implements OnInit{
 
   conditionsForm!: FormGroup
 
-  constructor(@Inject(MAT_DIALOG_DATA) public character: SkirmishCharacter,
+  constructor(@Inject(MAT_DIALOG_DATA) public skirmishCharacter: SkirmishCharacter,
               private skirmishCharacterService: SkirmishCharacterService,
               public conditionService: ConditionService,
               public dialogRef: MatDialogRef<AddConditionDialogComponent>) {
@@ -33,7 +33,7 @@ export class AddConditionDialogComponent implements OnInit{
       'conditions': new FormArray([])
     })
     this.skirmishCharacters.forEach(character => {
-      if(character.id === this.character.id) {
+      if(character.id === this.skirmishCharacter.id) {
         this.conditionsForm.addControl(character.id.toString(), new FormControl(true))
       } else {
         this.conditionsForm.addControl(character.id.toString(), new FormControl(false))

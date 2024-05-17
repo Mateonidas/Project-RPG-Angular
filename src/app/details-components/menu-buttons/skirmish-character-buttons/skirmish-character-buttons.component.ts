@@ -40,7 +40,7 @@ export class SkirmishCharacterButtonsComponent {
   async onAddCondition() {
     const dialogRef = this.dialog.open(AddConditionDialogComponent, {
       width: '40%',
-      data: this.skirmishCharacter.character,
+      data: this.skirmishCharacter,
     })
 
     dialogRef.afterClosed().subscribe(async addConditions => {
