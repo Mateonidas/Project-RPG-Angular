@@ -3,6 +3,7 @@ import {SkirmishCharacterService} from "../../shared/services/skirmish-character
 import {ActivatedRoute, Params, Router} from "@angular/router"
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model"
 import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-skirmish-character-details',
@@ -13,9 +14,8 @@ export class SkirmishCharacterDetailsComponent implements OnInit {
 
   skirmishCharacter!: SkirmishCharacter
   text = TextResourceService
+  subscription!: Subscription
   protected id!: number
-
-  bodyLocalizationsColumns: string[] = ['name', 'armorPoints', 'injuries']
 
   constructor(public skirmishCharacterService: SkirmishCharacterService,
               protected route: ActivatedRoute,
@@ -26,6 +26,15 @@ export class SkirmishCharacterDetailsComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
         this.id = +params['id']
         this.skirmishCharacter = this.skirmishCharacterService.getSkirmishCharacter(this.id)
+      }
+    )
+
+    this.subscription = this.skirmishCharacterService.skirmishCharactersChanged.subscribe(
+      (skirmishCharacters: SkirmishCharacter[]) => {
+        let updatedCharacter = skirmishCharacters.find(skirmishCharacter => skirmishCharacter.id == this.skirmishCharacter.id)
+        if(updatedCharacter instanceof SkirmishCharacter) {
+          this.skirmishCharacter = updatedCharacter
+        }
       }
     )
   }
