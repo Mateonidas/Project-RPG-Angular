@@ -45,4 +45,8 @@ export class CharacterListComponent implements OnInit {
     // @ts-ignore
     event.stopPropagation()
   }
+
+  onAddToGroup(type: string, characterGroup: string) {
+    this.router.navigate(['new'], {relativeTo: this.route, queryParams: {groupType: type, group: characterGroup}, queryParamsHandling: 'merge'})
+  }
 }

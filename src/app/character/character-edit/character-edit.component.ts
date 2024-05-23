@@ -44,6 +44,8 @@ export class CharacterEditComponent implements OnInit {
   isRightHanded = true
   isDead!: boolean
   id!: number
+  groupType!: string
+  group!: string
 
   characterBodyLocalizations!: CharacterBodyLocalization[]
   text = TextResourceService
@@ -55,9 +57,14 @@ export class CharacterEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false
+    this.router.onSameUrlNavigation = 'reload'
+
     this.route.queryParams.subscribe(
       (queryParams: Params) => {
         this.copyMode = queryParams['copy'] == "true"
+        this.groupType = queryParams['groupType']
+        this.group = queryParams['group']
       }
     )
     this.route.params.subscribe(
@@ -81,6 +88,10 @@ export class CharacterEditComponent implements OnInit {
     } else {
       character.name = ''
       character.description = ''
+      if(this.groupType != null && this.group != null) {
+        character.groupType = this.groupType
+        character.group = this.group
+      }
     }
     formArrays.characteristics = CharacteristicsEditComponent.initCharacteristicsTable(character.characteristics)
     this.createEditCharacterForm(character, formArrays)

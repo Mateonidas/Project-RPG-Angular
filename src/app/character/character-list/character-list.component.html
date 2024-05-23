@@ -12,10 +12,16 @@
               <mat-panel-title>
                 <h6>{{characterGroup.name}}</h6>
                 <button mat-icon-button
+                type="button"
+                style="margin-left: 20px; position: absolute; right: 50px; z-index: 3"
+                (click)="onAddToGroup(type.name, characterGroup.name)">
+                <mat-icon>add</mat-icon>
+                </button>
+                <button mat-icon-button
                         type="button"
                         style="margin-left: 20px; position: absolute; right: 10px; z-index: 3"
                         (click)="onAddGroupToFight(characterGroup.characters)">
-                  <mat-icon>add</mat-icon>
+                  <mat-icon>keyboard_double_arrow_right</mat-icon>
                 </button>
               </mat-panel-title>
             </mat-expansion-panel-header>
