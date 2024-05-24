@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {CharacterService} from "../../shared/services/character-service/character.service";
 import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {MatBottomSheet} from "@angular/material/bottom-sheet";
 import {MatDialog} from "@angular/material/dialog";
 import {Character} from "../../model/character/character.model";
@@ -10,6 +9,7 @@ import {Model} from "../../model/model";
 import {
   BottomSheetDescription
 } from "../../shared/bottom-sheet/bottom-sheet-description/bottom-sheet-description.component";
+import {Spell} from "../../model/spell/spell.model";
 
 @Component({
   selector: 'app-details-character',
@@ -20,16 +20,13 @@ export class DetailsCharacterComponent {
   @Input() character!: Character
   text = TextResourceService
   characteristicsColumns: string[] = this.fillCharacteristicsColumn()
-  bodyLocalizationsColumns: string[] = ['name', 'armorPoints', 'injuries']
   notesColumns: string[] = ['note']
   spellColumns: string[] = ['spell']
   baseColumns: string[] = ['name', 'level']
   weaponColumns: string[] = ['name', 'category', 'reach', 'damage', 'advantagesAndDisadvantages']
   armorsColumns: string[] = ['name', 'category', 'localization', 'armorPoints', 'penalties', 'qualities']
 
-  constructor(public characterService: CharacterService,
-              public skirmishCharacterService: SkirmishCharacterService,
-              protected route: ActivatedRoute,
+  constructor(public skirmishCharacterService: SkirmishCharacterService,
               protected router: Router,
               protected bottomSheet: MatBottomSheet,
               protected dialog: MatDialog) {
@@ -52,10 +49,37 @@ export class DetailsCharacterComponent {
     ]
   }
 
+  protected createListOfSpells(spells: Spell[]): (Spell | Group)[] {
+    spells.sort((a, b) => a.spellGroup.nameTranslation!.localeCompare(b.spellGroup.nameTranslation!));
+
+    const result: (Spell | Group)[] = [];
+    let currentGroupName = '';
+
+    for (const spell of spells) {
+      const groupName = spell.spellGroup.nameTranslation!;
+      if (groupName !== currentGroupName) {
+        result.push({ isGroup: true, name: groupName });
+        currentGroupName = groupName;
+      }
+      result.push(spell);
+    }
+
+    return result;
+  }
+
+  isGroup(index: number, item: Group): boolean{
+    return item.isGroup;
+  }
+
   openBottomSheet(model: Model) {
     this.bottomSheet.open(BottomSheetDescription, {
       data: {nameTranslation: model.nameTranslation, description: model.description},
       panelClass: 'bottom-sheet'
     })
   }
+}
+
+export interface Group {
+  name: string;
+  isGroup: boolean;
 }
