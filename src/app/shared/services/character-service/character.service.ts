@@ -21,20 +21,18 @@ export class CharacterService {
     }
   }
 
-  fetchCharacters() {
-    return this.http.get<Character[]>('http://localhost:8080/character').toPromise()
-      .then(data => {
-        this.charactersList = []
-        if (data != null) {
-          for (let element of data) {
-            let character = Character.fromJSON(element)
-            this.translateService.prepareCharacter(character)
-            this.charactersList.push(character)
-          }
-        }
-        localStorage.setItem('characters', JSON.stringify(this.charactersList))
-        this.charactersChanged.next(this.charactersList.slice())
-      })
+  async fetchCharacters() {
+    const data = await this.http.get<Character[]>('http://localhost:8080/character').toPromise()
+    this.charactersList = []
+    if (data != null) {
+      for (let element of data) {
+        let character = Character.fromJSON(element)
+        this.translateService.prepareCharacter(character)
+        this.charactersList.push(character)
+      }
+    }
+    localStorage.setItem('characters', JSON.stringify(this.charactersList))
+    this.charactersChanged.next(this.charactersList.slice())
   }
 
   async storeCharacter(character: Character) {

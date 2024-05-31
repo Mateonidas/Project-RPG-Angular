@@ -57,9 +57,6 @@ export class CharacterEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false
-    this.router.onSameUrlNavigation = 'reload'
-
     this.route.queryParams.subscribe(
       (queryParams: Params) => {
         this.copyMode = queryParams['copy'] == "true"
