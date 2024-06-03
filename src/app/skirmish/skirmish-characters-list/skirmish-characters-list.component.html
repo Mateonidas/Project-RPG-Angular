@@ -1,20 +1,65 @@
 <div fxLayout="row">
+  <h4>{{text.getText().groupAdvantageLabel}}</h4>
+</div>
+
+<div fxLayout="row" style="width: 80%">
+  <table mat-table [dataSource]="fightingGroups" class="mat-elevation-z8 advantage-groups-table">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell>Name</th>
+      <td mat-cell *matCellDef="let element"> {{ element }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="advantage">
+      <th mat-header-cell>Advantage</th>
+      <td mat-cell *matCellDef="let element"> {{ getGroupAdvantage(element) }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="buttons">
+      <th mat-header-cell>Buttons</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-mini-fab color="basic" type="button" (click)="addGroupAdvantage(element)">
+          +
+        </button>
+        <button mat-mini-fab color="basic" type="button" style="margin-left: 10px"
+                (click)="removeGroupAdvantage(element)">
+          -
+        </button>
+        <button mat-mini-fab color="warn" type="button" style="margin-left: 20px" (click)="onDeleteGroup(element)">X</button>
+    </ng-container>
+
+    <tr mat-row *matRowDef="let row; columns: ['name','advantage','buttons'];"></tr>
+  </table>
+</div>
+
+<div fxLayout="row">
   <div fxFlex="100">
-    <h4>{{text.getText().turnLabel}} {{roundNumber}}</h4>
+    <button mat-raised-button color="primary" type="button"
+            (click)="onAddGroup()">{{text.getText().addGroupLabel}}
+    </button>
+  </div>
+</div>
+
+<br>
+<mat-divider></mat-divider>
+<br>
+
+<div fxLayout="row">
+  <div fxFlex="100">
+    <h4>{{ text.getText().turnLabel }} {{ roundNumber }}</h4>
   </div>
 </div>
 <div fxLayout="row" fxLayoutGap="5px">
-      <button mat-raised-button color="primary" class="mat-button-responsive" (click)="endTurn()">
-        {{text.getText().endTurnLabel}}
-      </button>
+  <button mat-raised-button color="primary" class="mat-button-responsive" (click)="endTurn()">
+    {{ text.getText().endTurnLabel }}
+  </button>
 
-      <button mat-raised-button color="primary" class="mat-button-responsive" (click)="initiativeRolls()">
-        {{text.getText().initiativeRollLabel}}
-      </button>
+  <button mat-raised-button color="primary" class="mat-button-responsive" (click)="initiativeRolls()">
+    {{ text.getText().initiativeRollLabel }}
+  </button>
 
-      <button mat-raised-button color="warn" class="mat-button-responsive" (click)="clearData()">
-        {{text.getText().clearDataLabel}}
-      </button>
+  <button mat-raised-button color="warn" class="mat-button-responsive" (click)="clearData()">
+    {{ text.getText().clearDataLabel }}
+  </button>
 </div>
 <div fxLayout="row">
   <div fxFlex="100">

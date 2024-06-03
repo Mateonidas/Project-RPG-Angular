@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {SkirmishCharacter} from "../../model/skirmish/skirmish-character.model";
 import {Subscription} from "rxjs";
 import {SkirmishCharacterService} from "../../shared/services/skirmish-character-service/skirmish-character.service";
@@ -7,6 +7,7 @@ import {RoundService} from "../../shared/services/round-service/round.service";
 import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service";
 import {MatDialog} from "@angular/material/dialog";
 import {InitiativeDialog} from "../../dialog-window/initiative-dialog/initiative-dialog.component";
+import {MatTable} from "@angular/material/table";
 
 @Component({
   selector: 'app-skirmish-characters-list',
@@ -17,8 +18,12 @@ export class SkirmishCharactersListComponent implements OnInit {
   skirmishCharacters!: SkirmishCharacter[];
   subscription!: Subscription;
   roundNumber!: number;
+  fightingGroups: string[] = [];
+  groupNumber = 1;
 
   text = TextResourceService;
+
+  @ViewChild(MatTable) table!: MatTable<String>;
 
   constructor(private skirmishCharacterService: SkirmishCharacterService,
               private router: Router,
@@ -35,8 +40,26 @@ export class SkirmishCharactersListComponent implements OnInit {
     )
 
     this.roundNumber = this.roundService.roundNumber;
-
     this.skirmishCharacters = this.skirmishCharacterService.getSkirmishCharacters();
+
+    this.initializeFightingGroups();
+    this.initializeGroupNumber();
+  }
+
+  initializeFightingGroups() {
+    const storedGroups = this.getSessionStorageItem('fightingGroups');
+    this.fightingGroups = storedGroups ? JSON.parse(storedGroups) : [this.text.getText().heroesLabel];
+    if (!storedGroups) {
+      this.setSessionStorageItem(this.text.getText().heroesLabel, '0');
+    }
+  }
+
+  initializeGroupNumber() {
+    const storedGroupNumber = this.getSessionStorageItem('groupNumber');
+    this.groupNumber = storedGroupNumber ? JSON.parse(storedGroupNumber) : 1;
+    if (!storedGroupNumber) {
+      this.setSessionStorageItem('groupNumber', JSON.stringify(this.groupNumber));
+    }
   }
 
   async endTurn() {
@@ -66,6 +89,60 @@ export class SkirmishCharactersListComponent implements OnInit {
     this.skirmishCharacterService.removeAllSkirmishCharacters();
     this.roundService.clearData();
     this.roundNumber = this.roundService.roundNumber;
+
+    sessionStorage.removeItem('fightingGroups');
+    sessionStorage.removeItem('groupNumber');
+    this.fightingGroups.forEach(item => sessionStorage.removeItem(item));
+
+    this.groupNumber = 1;
+    this.fightingGroups = [this.text.getText().heroesLabel];
+    this.setSessionStorageItem(this.text.getText().heroesLabel, '0');
+
     this.router.navigate(['skirmish']);
+  }
+
+  getGroupAdvantage(group: string): string | null {
+    return this.getSessionStorageItem(group);
+  }
+
+  addGroupAdvantage(group: string) {
+    this.updateGroupAdvantage(group, 1);
+  }
+
+  removeGroupAdvantage(group: string) {
+    this.updateGroupAdvantage(group, -1);
+  }
+
+  updateGroupAdvantage(group: string, delta: number) {
+    const advantages = this.getGroupAdvantage(group);
+    if (advantages != null) {
+      const advantagesNumber = Number.parseInt(advantages) + delta;
+      this.setSessionStorageItem(group, String(advantagesNumber));
+    }
+  }
+
+  onAddGroup() {
+    const newGroup = `Grupa ${this.groupNumber}`;
+    this.fightingGroups.push(newGroup);
+    this.setSessionStorageItem(newGroup, '0');
+    this.setSessionStorageItem('fightingGroups', JSON.stringify(this.fightingGroups));
+    this.groupNumber++;
+    this.setSessionStorageItem('groupNumber', JSON.stringify(this.groupNumber));
+    this.table.renderRows();
+  }
+
+  onDeleteGroup(group: string) {
+    this.fightingGroups = this.fightingGroups.filter(item => item !== group);
+    this.setSessionStorageItem('fightingGroups', JSON.stringify(this.fightingGroups));
+    sessionStorage.removeItem(group);
+    this.table.renderRows();
+  }
+
+  private getSessionStorageItem(key: string): string | null {
+    return sessionStorage.getItem(key);
+  }
+
+  private setSessionStorageItem(key: string, value: string) {
+    sessionStorage.setItem(key, value);
   }
 }
