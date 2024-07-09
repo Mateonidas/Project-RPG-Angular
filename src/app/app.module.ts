@@ -77,6 +77,7 @@ import {WeaponsEditComponent} from './edit-form-components/weapons-edit/weapons-
 import {ArmorEditComponent} from './edit-form-components/armor-edit/armor-edit.component';
 import {InjuryEditComponent} from './edit-form-components/injury-edit/injury-edit.component';
 import {MatTabsModule} from "@angular/material/tabs";
+import { SpellListComponent } from './spell-list/spell-list.component';
 
 @NgModule({
   declarations: [
@@ -133,6 +134,7 @@ import {MatTabsModule} from "@angular/material/tabs";
     WeaponsEditComponent,
     ArmorEditComponent,
     InjuryEditComponent,
+    SpellListComponent,
   ],
   imports: [
     BrowserModule,

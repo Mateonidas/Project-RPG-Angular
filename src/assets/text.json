@@ -2771,7 +2771,7 @@
     {
       "name": "LIFEBLOOM",
       "nameTranslation": "Rozkwitanie",
-      "description": "PZ: 8\nZasięg: Liczba metrów równa Bonusowi z Siły Woli\nCel: Specjalny\nCzas: Specjalny\n\nSprawiasz, że Ghyran zalewa okolicę, którą nawiedziła plaga lub która jest wymarła. Twoim celem może być puste koryto rzeki, studnia, pole czy zwierzę domowe. Jeśli uda ci się rzucić zaklęcie, cel zaczyna tętnić życiem: • Wyschnięta rzeka znów zaczyna płynąć. • Wyschnięta lub zatruta studnia wypełnia się czystą wodą. • Pola, winnice i sady budzą się do życia, a wszystkie plony natychmiast osiągają pełną dojrzałość. • Chore lub bezproduktywne zwierzęta ponownie stają się zdrowe. Zwierzęta będą teraz znów wytwarzać produkty (krowy dadzą mleko, kury zniosą jaja, owce dostarczą wełny i skór itd.), a ich choroby zostaną uleczone."
+      "description": "PZ: 8\nZasięg: Liczba metrów równa Bonusowi z Siły Woli\nCel: Specjalny\nCzas: Specjalny\n\nSprawiasz, że Ghyran zalewa okolicę, którą nawiedziła plaga lub która jest wymarła. Twoim celem może być puste koryto rzeki, studnia, pole czy zwierzę domowe. Jeśli uda ci się rzucić zaklęcie, cel zaczyna tętnić życiem:\n• Wyschnięta rzeka znów zaczyna płynąć.\n• Wyschnięta lub zatruta studnia wypełnia się czystą wodą.\n• Pola, winnice i sady budzą się do życia, a wszystkie plony natychmiast osiągają pełną dojrzałość.\n• Chore lub bezproduktywne zwierzęta ponownie stają się zdrowe. Zwierzęta będą teraz znów wytwarzać produkty (krowy dadzą mleko, kury zniosą jaja, owce dostarczą wełny i skór itd.), a ich choroby zostaną uleczone."
     },
     {
       "name": "REGENERATE",
