@@ -160,6 +160,9 @@ export class WeaponService {
     for (let quality of list) {
       this.translateService.prepareWeaponQuality(quality)
     }
+    list.sort(
+      (a, b) => (a.nameTranslation > b.nameTranslation) ? 1 : ((b.nameTranslation > a.nameTranslation) ? -1 : 0)
+    )
   }
 
   async removeWeapon(id: number) {

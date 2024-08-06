@@ -16,6 +16,7 @@ import {WeaponGroupDetailsComponent} from "./weapon/weapon-group-details/weapon-
 import {ArmorComponent} from "./armor/armor.component";
 import {ConditionListComponent} from "./condition-list/condition-list.component";
 import {SpellListComponent} from "./spell-list/spell-list.component";
+import {QualityListComponent} from "./quality-list/quality-list.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -43,6 +44,9 @@ const routes: Routes = [
   },
   {
     path: 'armors', component: ArmorComponent
+  },
+  {
+    path: 'qualities', component: QualityListComponent
   },
   {
     path: 'conditions', component: ConditionListComponent

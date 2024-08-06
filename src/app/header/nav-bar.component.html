@@ -24,6 +24,11 @@
      [active]="activeLink == '/armors'"
   >{{text.getText().armorsLabel}}</a>
 
+  <a mat-tab-link routerLink="/qualities"
+     (click)="setActiveLink('/qualities')"
+     [active]="activeLink == '/qualities'"
+  >{{text.getText().qualitiesLabel}}</a>
+
   <a mat-tab-link routerLink="/conditions"
      (click)="setActiveLink('/conditions')"
      [active]="activeLink == '/conditions'"

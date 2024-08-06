@@ -105,6 +105,9 @@ export class ArmorService {
     for (let armorQuality of armorQualities) {
       this.translateService.prepareArmorQuality(armorQuality)
     }
+    armorQualities.sort(
+      (a, b) => (a.nameTranslation > b.nameTranslation) ? 1 : ((b.nameTranslation > a.nameTranslation) ? -1 : 0)
+    )
   }
 
   async removeArmor(id: number) {

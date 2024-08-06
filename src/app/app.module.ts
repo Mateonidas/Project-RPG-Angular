@@ -78,6 +78,8 @@ import {ArmorEditComponent} from './edit-form-components/armor-edit/armor-edit.c
 import {InjuryEditComponent} from './edit-form-components/injury-edit/injury-edit.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import { SpellListComponent } from './spell-list/spell-list.component';
+import { QualityListComponent } from './quality-list/quality-list.component';
+import { QualityGroupComponent } from './quality-list/quality-group/quality-group.component';
 
 @NgModule({
   declarations: [
@@ -135,6 +137,8 @@ import { SpellListComponent } from './spell-list/spell-list.component';
     ArmorEditComponent,
     InjuryEditComponent,
     SpellListComponent,
+    QualityListComponent,
+    QualityGroupComponent,
   ],
   imports: [
     BrowserModule,
