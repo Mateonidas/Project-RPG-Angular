@@ -1,6 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core'
 import {ActivatedRoute, Params, Router} from "@angular/router"
-import {FormGroup, UntypedFormArray, UntypedFormControl, UntypedFormGroup} from "@angular/forms"
+import {FormArray, FormGroup, UntypedFormArray, UntypedFormControl, UntypedFormGroup} from "@angular/forms"
 import {CharacterService} from "../../shared/services/character-service/character.service"
 import {Character} from "../../model/character/character.model"
 import {CharacterFormArraysWrapper} from "../../model/character/character-form-arrays-wrapper.model"
@@ -21,15 +21,15 @@ import {Note} from "../../model/note/note.model";
 import {
   CharacteristicsEditComponent
 } from "../../edit-form-components/characteristics-edit/characteristics-edit.component";
-import {SkillsEditComponent} from "../../edit-form-components/skills-edit/skills-edit.component";
-import {TalentsEditComponent} from "../../edit-form-components/talents-edit/talents-edit.component";
-import {TraitsEditComponent} from "../../edit-form-components/traits-edit/traits-edit.component";
 import {WeaponsEditComponent} from "../../edit-form-components/weapons-edit/weapons-edit.component";
 import {ArmorEditComponent} from "../../edit-form-components/armor-edit/armor-edit.component";
 import {NotesEditComponent} from "../../edit-form-components/notes-edit/notes-edit.component";
-import {InjuryEditComponent} from "../../edit-form-components/injury-edit/injury-edit.component";
 import {ConditionsEditComponent} from "../../edit-form-components/conditions-edit/conditions-edit.component";
 import {SpellsEditComponent} from "../../edit-form-components/spells-edit/spells-edit.component";
+import {SkillService} from "../../shared/services/skill-service/skill.service";
+import {TalentService} from "../../shared/services/talent-service/talent.service";
+import {TraitService} from "../../shared/services/trait-service/trait.service";
+import {InjuryService} from "../../shared/services/injuries-service/injury.service";
 
 @Component({
   selector: 'app-character-edit',
@@ -53,6 +53,10 @@ export class CharacterEditComponent implements OnInit {
   constructor(public router: Router,
               public route: ActivatedRoute,
               public characterService: CharacterService,
+              public skillService: SkillService,
+              public talentService: TalentService,
+              public traitService: TraitService,
+              public injuryService: InjuryService,
               public dialog: MatDialog) {
   }
 
@@ -85,7 +89,7 @@ export class CharacterEditComponent implements OnInit {
     } else {
       character.name = ''
       character.description = ''
-      if(this.groupType != null && this.group != null) {
+      if (this.groupType != null && this.group != null) {
         character.groupType = this.groupType
         character.group = this.group
       }
@@ -201,7 +205,7 @@ export class CharacterEditComponent implements OnInit {
         if (injury.value.bodyLocalization.name === characterBodyLocalization.bodyLocalization.name) {
           let characterInjury = new CharacterInjury()
           characterInjury.value = injury.value.value
-          characterInjury.injury = injury.value.injury
+          characterInjury.model = injury.value.model
           characterBodyLocalization.injuries.push(characterInjury)
         }
       }
@@ -210,13 +214,13 @@ export class CharacterEditComponent implements OnInit {
 
   protected prepareEditData(character: Character, formArrays: CharacterFormArraysWrapper) {
     if (character.skills) {
-      SkillsEditComponent.prepareSkillsList(formArrays.skills, character.skills)
+      this.prepareSkillsList(formArrays.skills, character.skills)
     }
     if (character.talents) {
-      TalentsEditComponent.prepareTalentsList(formArrays.talents, character.talents)
+      this.prepareTalentsList(formArrays.talents, character.talents)
     }
     if (character.traits) {
-      TraitsEditComponent.prepareTraitsList(formArrays.traits, character.traits)
+      this.prepareTraitsList(formArrays.traits, character.traits)
     }
     if (character.weapons) {
       WeaponsEditComponent.prepareWeaponsList(formArrays.weapons, character.weapons)
@@ -227,9 +231,66 @@ export class CharacterEditComponent implements OnInit {
     if (character.notes) {
       NotesEditComponent.prepareNotesList(formArrays.notes, character.notes)
     }
-    InjuryEditComponent.prepareInjuriesList(formArrays.injuries, character.bodyLocalizations)
+    this.prepareInjuriesList(formArrays.injuries, character.bodyLocalizations)
     ConditionsEditComponent.prepareConditionsList(formArrays.conditions, character.conditions)
     SpellsEditComponent.prepareSpellsList(formArrays.spells, character.spells)
+  }
+
+  private prepareSkillsList(skills: FormArray, skillsList: CharacterSkill[]) {
+    for (let characterSkill of skillsList) {
+      skills.push(
+        new UntypedFormGroup({
+          'id': new UntypedFormControl(characterSkill.id),
+          'model': new UntypedFormControl(characterSkill.model),
+          'value': new UntypedFormControl(characterSkill.value),
+        })
+      );
+    }
+  }
+
+  private prepareTalentsList(talents: FormArray, talentsList: CharacterTalent[]) {
+    for (let characterTalent of talentsList) {
+      talents.push(
+        new UntypedFormGroup({
+          'id': new UntypedFormControl(characterTalent.id),
+          'model': new UntypedFormControl(characterTalent.model),
+          'value': new UntypedFormControl(characterTalent.value),
+        })
+      );
+    }
+  }
+
+  private prepareTraitsList(traits: UntypedFormArray, traitsList: CharacterTrait[]) {
+    for (let trait of traitsList) {
+
+      let value = new UntypedFormControl(trait.value)
+      if (!trait.model.hasValue) {
+        value.disable()
+      }
+
+      traits.push(
+        new UntypedFormGroup({
+          'id': new UntypedFormControl(trait.id),
+          'model': new UntypedFormControl(trait.model),
+          'value': value,
+        })
+      )
+    }
+  }
+
+  private prepareInjuriesList(injuries: UntypedFormArray, bodyLocalizations: CharacterBodyLocalization[]) {
+    for (let bodyLocalization of bodyLocalizations) {
+      for (let injury of bodyLocalization.injuries) {
+        injuries.push(
+          new UntypedFormGroup({
+            'id': new UntypedFormControl(injury.id),
+            'model': new UntypedFormControl(injury.model),
+            'bodyLocalization': new UntypedFormControl(bodyLocalization.bodyLocalization),
+            'value': new UntypedFormControl(injury.value)
+          })
+        )
+      }
+    }
   }
 
   getCharacter() {

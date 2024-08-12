@@ -2,12 +2,12 @@ import {Talent} from "./talent.model";
 
 export class CharacterTalent {
   public id: number
-  public talent: Talent
+  public model: Talent
   public value: number
 
   constructor(id?: number, talent?: Talent, level?: number) {
     this.id = <number>id
-    this.talent = <Talent>talent
+    this.model = <Talent>talent
     this.value = <number>level
   }
 

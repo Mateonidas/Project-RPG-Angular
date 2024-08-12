@@ -69,17 +69,14 @@ import {TemporaryParametersComponent} from './edit-form-components/temporary-par
 import {ConditionsEditComponent} from './edit-form-components/conditions-edit/conditions-edit.component';
 import {CharacteristicsEditComponent} from './edit-form-components/characteristics-edit/characteristics-edit.component';
 import {NotesEditComponent} from './edit-form-components/notes-edit/notes-edit.component';
-import {SkillsEditComponent} from './edit-form-components/skills-edit/skills-edit.component';
-import {TalentsEditComponent} from './edit-form-components/talents-edit/talents-edit.component';
-import {TraitsEditComponent} from './edit-form-components/traits-edit/traits-edit.component';
 import {SpellsEditComponent} from './edit-form-components/spells-edit/spells-edit.component';
 import {WeaponsEditComponent} from './edit-form-components/weapons-edit/weapons-edit.component';
 import {ArmorEditComponent} from './edit-form-components/armor-edit/armor-edit.component';
-import {InjuryEditComponent} from './edit-form-components/injury-edit/injury-edit.component';
 import {MatTabsModule} from "@angular/material/tabs";
-import { SpellListComponent } from './spell-list/spell-list.component';
-import { QualityListComponent } from './quality-list/quality-list.component';
-import { QualityGroupComponent } from './quality-list/quality-group/quality-group.component';
+import {SpellListComponent} from './spell-list/spell-list.component';
+import {QualityListComponent} from './quality-list/quality-list.component';
+import {QualityGroupComponent} from './quality-list/quality-group/quality-group.component';
+import {SelectListComponent} from './edit-form-components/select-list/select-list.component';
 
 @NgModule({
   declarations: [
@@ -129,16 +126,13 @@ import { QualityGroupComponent } from './quality-list/quality-group/quality-grou
     ConditionsEditComponent,
     CharacteristicsEditComponent,
     NotesEditComponent,
-    SkillsEditComponent,
-    TalentsEditComponent,
-    TraitsEditComponent,
     SpellsEditComponent,
     WeaponsEditComponent,
     ArmorEditComponent,
-    InjuryEditComponent,
     SpellListComponent,
     QualityListComponent,
     QualityGroupComponent,
+    SelectListComponent,
   ],
   imports: [
     BrowserModule,

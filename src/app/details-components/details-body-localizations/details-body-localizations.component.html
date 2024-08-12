@@ -26,9 +26,9 @@
         <td mat-cell *matCellDef="let element">
           <ul>
             <li *ngFor="let characterInjury of element.injuries">
-              <span *ngIf="characterInjury.value == 1">{{characterInjury.injury.nameTranslation}}</span>
+              <span *ngIf="characterInjury.value == 1">{{characterInjury.model.nameTranslation}}</span>
               <span
-                *ngIf="characterInjury.value > 1">{{characterInjury.injury.nameTranslation}} {{characterInjury.value}}</span>
+                *ngIf="characterInjury.value > 1">{{characterInjury.model.nameTranslation}} {{characterInjury.value}}</span>
             </li>
           </ul>
         </td>

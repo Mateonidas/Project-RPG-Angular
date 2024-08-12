@@ -10,6 +10,10 @@ import {MatDialog} from "@angular/material/dialog";
 import {
   CharacteristicsEditComponent
 } from "../../edit-form-components/characteristics-edit/characteristics-edit.component";
+import {SkillService} from "../../shared/services/skill-service/skill.service";
+import {TalentService} from "../../shared/services/talent-service/talent.service";
+import {TraitService} from "../../shared/services/trait-service/trait.service";
+import {InjuryService} from "../../shared/services/injuries-service/injury.service";
 
 @Component({
   selector: 'app-skirmish-character-edit',
@@ -24,8 +28,12 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
               route: ActivatedRoute,
               public skirmishService: SkirmishCharacterService,
               public characterService: CharacterService,
+              public skillService: SkillService,
+              public talentService: TalentService,
+              public traitService: TraitService,
+              public injuryService: InjuryService,
               public dialog: MatDialog) {
-    super(router, route, characterService, dialog);
+    super(router, route, characterService, skillService, talentService, traitService, injuryService, dialog);
   }
 
   initForm() {

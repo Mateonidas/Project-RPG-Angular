@@ -36,16 +36,16 @@ export class TranslateService {
 
   private prepareCharacterSkills(skills: CharacterSkill[]) {
     for (let skill of skills) {
-      skill.skill.nameTranslation = TextResourceService.getSkillNameTranslation(skill.skill.name).nameTranslation
+      skill.model.nameTranslation = TextResourceService.getSkillNameTranslation(skill.model.name).nameTranslation
     }
-    skills.sort((a, b) => this.compareModels(a.skill, b.skill));
+    skills.sort((a, b) => this.compareModels(a.model, b.model));
   }
 
   private prepareCharacterTalents(talents: CharacterTalent[]) {
     for (let characterTalent of talents) {
-      this.prepareTalent(characterTalent.talent);
+      this.prepareTalent(characterTalent.model);
     }
-    talents.sort((a, b) => this.compareModels(a.talent, b.talent));
+    talents.sort((a, b) => this.compareModels(a.model, b.model));
   }
 
   public prepareTalentList(talents: Talent[]) {
@@ -64,9 +64,9 @@ export class TranslateService {
 
   private prepareCharacterTraits(traits: CharacterTrait[]) {
     for (let characterTrait of traits) {
-      this.prepareTrait(characterTrait.trait);
+      this.prepareTrait(characterTrait.model);
     }
-    traits.sort((a, b) => this.compareModels(a.trait, b.trait))
+    traits.sort((a, b) => this.compareModels(a.model, b.model))
   }
 
   public prepareTrait(trait: Trait) {
@@ -130,7 +130,7 @@ export class TranslateService {
     for (let characterBodyLocalization of bodyLocalizations) {
       characterBodyLocalization.bodyLocalization.nameTranslation = TextResourceService.getCharacterBodyLocalizationNameTranslation(characterBodyLocalization.bodyLocalization.name).nameTranslation;
       for (let characterInjury of characterBodyLocalization.injuries) {
-        characterInjury.injury.nameTranslation = TextResourceService.getInjuryNameTranslation(characterInjury.injury.name).nameTranslation;
+        characterInjury.model.nameTranslation = TextResourceService.getInjuryNameTranslation(characterInjury.model.name).nameTranslation;
       }
     }
   }

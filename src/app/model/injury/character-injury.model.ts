@@ -2,19 +2,19 @@ import {Model} from "../model";
 
 export class CharacterInjury {
   public id: number;
-  public injury: Model;
+  public model: Model;
   public value: number;
 
 
   constructor(id?: number, injury?: Model, value?: number) {
     this.id = <number>id;
-    this.injury = <Model>injury;
+    this.model = <Model>injury;
     this.value = <number>value;
   }
 
   static fromJSON(object: Object): CharacterInjury {
     let characterInjury = Object.assign(new CharacterInjury(), object);
-    characterInjury.injury = Model.fromJSON(characterInjury['injury']);
+    characterInjury.model = Model.fromJSON(characterInjury['model']);
     return characterInjury;
   }
 

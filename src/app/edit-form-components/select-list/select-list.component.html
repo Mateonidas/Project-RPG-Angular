@@ -1,22 +1,27 @@
 <div fxLayout="row" class="details-row" [formGroup]="editCharacterForm">
-  <div fxFlex="100" formArrayName="injuries">
-    <h4>{{text.getText().injuriesLabel}}</h4>
-    <div fxLayout="row" fxLayoutGap="20" *ngFor="let injuryControl of injuries; let i = index" [formGroupName]="i">
-      <div fxFlex="30">
+  <div fxFlex="100" formArrayName="{{formArrayName}}">
+    <h4>{{titleLabel}}</h4>
+    <div fxLayout="row" fxLayoutGap="20" *ngFor="let formArray of formArrays; let i = index" [formGroupName]="i">
+      <div fxFlex="40">
         <mat-form-field appearance="fill" class="example-full-width">
-          <mat-label>{{text.getText().injuryNameLabel}}</mat-label>
-          <mat-select formControlName="injury" [compareWith]="compareModels">
-            <mat-option *ngFor="let injury of injuryList" [value]="injury">
-              {{injury.nameTranslation}}
+          <mat-label>{{text.getText().nameLabel}}</mat-label>
+          <input type="text"
+                 matInput
+                 formControlName="model"
+                 [matAutocomplete]="auto"
+                  (selectionchange)="checkIfTraitHasValue(formArray)">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredList[i] | async" [value]="option">
+              {{ option.nameTranslation }}
             </mat-option>
-          </mat-select>
+          </mat-autocomplete>
         </mat-form-field>
       </div>
-      <div fxFlex="20">
+      <div fxFlex="20" *ngIf="formArrayName==='injuries'">
         <mat-form-field appearance="fill" class="example-full-width">
           <mat-label>{{text.getText().localizationNameLabel}}</mat-label>
           <mat-select formControlName="bodyLocalization">
-            <mat-option *ngFor="let bodyLocalization of characterBodyLocalizations"
+            <mat-option *ngFor="let bodyLocalization of additionalData"
                         [value]="bodyLocalization.bodyLocalization">
               {{bodyLocalization.bodyLocalization.nameTranslation}}
             </mat-option>
@@ -30,13 +35,13 @@
         </mat-form-field>
       </div>
       <div fxFlex="10">
-        <button mat-mini-fab color="warn" type="button" (click)="onDeleteInjury(i)">X</button>
+        <button mat-mini-fab color="warn" type="button" (click)="onDeleteFormArray(i)">X</button>
       </div>
     </div>
     <div fxLayout="row">
       <div fxFlex="100">
         <button mat-raised-button color="primary" type="button"
-                (click)="onAddInjury()">{{text.getText().addInjuryLabel}}</button>
+                (click)="onAddFormArray()">{{addButtonLabel}}</button>
       </div>
     </div>
   </div>

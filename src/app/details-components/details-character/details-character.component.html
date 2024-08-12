@@ -39,7 +39,7 @@
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
             <td mat-cell *matCellDef="let element">
-              {{element.skill.nameTranslation}}
+              {{element.model.nameTranslation}}
             </td>
           </ng-container>
           <ng-container matColumnDef="level">
@@ -62,7 +62,7 @@
             <td mat-cell *matCellDef="let element">
               <span class="description-span"
                     (click)="openBottomSheet(element.talent)">
-                {{element.talent.nameTranslation}}
+                {{element.model.nameTranslation}}
               </span>
             </td>
           </ng-container>
@@ -86,7 +86,7 @@
             <td mat-cell *matCellDef="let element">
               <span class="description-span"
                     (click)="openBottomSheet(element.trait)">
-                {{element.trait.nameTranslation}}
+                {{element.model.nameTranslation}}
               </span>
             </td>
           </ng-container>

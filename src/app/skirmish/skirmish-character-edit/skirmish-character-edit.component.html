@@ -5,14 +5,38 @@
     <app-conditions-edit [editCharacterForm]="editCharacterForm"></app-conditions-edit>
     <app-characteristics-edit [editCharacterForm]="editCharacterForm"></app-characteristics-edit>
     <app-notes-edit [editCharacterForm]="editCharacterForm"></app-notes-edit>
-    <app-skills-edit [editCharacterForm]="editCharacterForm"></app-skills-edit>
-    <app-talents-edit [editCharacterForm]="editCharacterForm"></app-talents-edit>
-    <app-traits-edit [editCharacterForm]="editCharacterForm"></app-traits-edit>
+    <app-select-list
+      [editCharacterForm]="editCharacterForm"
+      [formArrayName]="'skills'"
+      [list]="skillService.skillList"
+      [titleLabel]="text.getText().skillsLabel"
+      [addButtonLabel]="text.getText().addSkillLabel">
+    </app-select-list>
+    <app-select-list
+      [editCharacterForm]="editCharacterForm"
+      [formArrayName]="'talents'"
+      [list]="talentService.talentList"
+      [titleLabel]="text.getText().talentsLabel"
+      [addButtonLabel]="text.getText().addTalentLabel">
+    </app-select-list>
+    <app-select-list
+      [editCharacterForm]="editCharacterForm"
+      [formArrayName]="'traits'"
+      [list]="traitService.traitList"
+      [titleLabel]="text.getText().traitsLabel"
+      [addButtonLabel]="text.getText().addTraitLabel">
+    </app-select-list>
     <app-spells-edit [editCharacterForm]="editCharacterForm"></app-spells-edit>
     <app-weapons-edit [editCharacterForm]="editCharacterForm"></app-weapons-edit>
     <app-armor-edit [editCharacterForm]="editCharacterForm"></app-armor-edit>
-    <app-injury-edit [editCharacterForm]="editCharacterForm"
-                     [characterBodyLocalizations]="characterBodyLocalizations"></app-injury-edit>
+    <app-select-list
+      [editCharacterForm]="editCharacterForm"
+      [formArrayName]="'injuries'"
+      [list]="injuryService.injuriesList"
+      [titleLabel]="text.getText().injuriesLabel"
+      [addButtonLabel]="text.getText().addInjuryLabel"
+      [additionalData]="characterBodyLocalizations">
+    </app-select-list>
 
     <div fxLayout="row" class="details-row">
       <div fxFlex="100">

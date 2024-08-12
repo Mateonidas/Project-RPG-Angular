@@ -2,13 +2,13 @@ import {Trait} from "./trait.model";
 
 export class CharacterTrait {
   public id: number
-  public trait: Trait
+  public model: Trait
   public value: String
 
 
   constructor(id?: number, trait?: Trait, value?: String) {
     this.id = <number>id
-    this.trait = <Trait>trait
+    this.model = <Trait>trait
     this.value = <String>value
   }
 
