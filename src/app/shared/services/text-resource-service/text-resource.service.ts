@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import textResource from '../../../../assets/text.json';
 import {BodyLocalization} from "../../../model/body-localization/body-localization.model";
-import {Characteristic} from "../../../model/characteristic/characteristic.model";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,7 @@ export class TextResourceService {
 
   public static getCharacteristicNameTranslation(name: string) {
     let characteristic: Model[] = textResource.characteristics;
-    return <Characteristic>characteristic.find(characteristic => {
+    return <Model>characteristic.find(characteristic => {
       if(characteristic.name == name) {
         return characteristic;
       } else {

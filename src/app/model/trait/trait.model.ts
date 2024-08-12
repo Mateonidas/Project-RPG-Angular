@@ -3,7 +3,6 @@ import {Model} from "../model";
 export class Trait extends Model {
   public hasValue: boolean;
 
-
   constructor(name?: string, nameTranslation?: string, hasValue?: boolean) {
     super(name, nameTranslation);
     this.hasValue = <boolean>hasValue;

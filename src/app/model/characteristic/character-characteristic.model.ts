@@ -1,19 +1,19 @@
-import {Characteristic} from "./characteristic.model";
+import {Model} from "../model";
 
 export class CharacterCharacteristic {
   public id: number
-  public characteristic: Characteristic
+  public characteristic: Model
   public value: number
 
-  constructor(id? :number, characteristic?: Characteristic, value?: number) {
+  constructor(id? :number, characteristic?: Model, value?: number) {
     this.id = <number>id
-    this.characteristic = <Characteristic>characteristic
+    this.characteristic = <Model>characteristic
     this.value = <number>value
   }
 
   static fromJSON(object: Object): CharacterCharacteristic {
     let characterCharacteristics = Object.assign(new CharacterCharacteristic(), object)
-    characterCharacteristics.characteristic = Characteristic.fromJSON(characterCharacteristics['characteristic'])
+    characterCharacteristics.characteristic = Model.fromJSON(characterCharacteristics['characteristic'])
 
     return characterCharacteristics
   }

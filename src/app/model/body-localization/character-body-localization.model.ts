@@ -1,5 +1,6 @@
 import {BodyLocalization} from "./body-localization.model"
-import {CharacterInjury} from "../injury/character-injury.model"
+import {ValueModel} from "../value-model";
+import {Model} from "../model";
 
 export class CharacterBodyLocalization {
   public id: number
@@ -7,21 +8,21 @@ export class CharacterBodyLocalization {
   public bodyLocalization: BodyLocalization
   public armorPoints: number
   public additionalArmorPoints: number
-  public injuries: CharacterInjury[]
+  public injuries: ValueModel<Model>[]
 
-  constructor(bodyLocalization?: BodyLocalization, armorPoints?: number, additionalArmorPoints?: number, injuries?: CharacterInjury[], characterId?: number, id?: number) {
+  constructor(bodyLocalization?: BodyLocalization, armorPoints?: number, additionalArmorPoints?: number, injuries?: ValueModel<Model>[], characterId?: number, id?: number) {
     this.id = <number>id
     this.bodyLocalization = <BodyLocalization>bodyLocalization
     this.armorPoints = <number>armorPoints
     this.additionalArmorPoints = <number>additionalArmorPoints
-    this.injuries = <CharacterInjury[]>injuries
+    this.injuries = <ValueModel<Model>[]>injuries
     this.characterId = <number>characterId
   }
 
   static fromJSON(object: Object): CharacterBodyLocalization {
     let characterBodyLocalization = Object.assign(new CharacterBodyLocalization(), object)
     characterBodyLocalization.bodyLocalization = BodyLocalization.fromJSON(characterBodyLocalization['bodyLocalization'])
-    characterBodyLocalization.injuries = CharacterInjury.arrayFromJSON(characterBodyLocalization['injuries'])
+    characterBodyLocalization.injuries = ValueModel.arrayFromJSON<Model>(characterBodyLocalization['injuries'], Model)
     return characterBodyLocalization
   }
 
