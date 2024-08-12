@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CharacterSkill} from "../../../model/skill/character-skill.model";
 import {TextResourceService} from "../text-resource-service/text-resource.service";
-import {CharacterTalent} from "../../../model/talent/character-talent.model";
 import {CharacterWeapon} from "../../../model/weapon/character-weapon.model";
 import {CharacterBodyLocalization} from "../../../model/body-localization/character-body-localization.model";
 import {CharacterCondition} from "../../../model/condition/character-condition.model";
@@ -11,9 +9,9 @@ import {Character} from "../../../model/character/character.model";
 import {Talent} from "../../../model/talent/talent.model";
 import {Model} from "../../../model/model";
 import {Trait} from "../../../model/trait/trait.model";
-import {CharacterTrait} from "../../../model/trait/character-trait.model";
 import {Spell} from "../../../model/spell/spell.model";
 import {Condition} from "../../../model/condition/condition.model";
+import {ValueModel} from "../../../model/value-model";
 
 @Injectable({
   providedIn: 'root'
@@ -34,14 +32,14 @@ export class TranslateService {
     this.prepareCharacterConditions(character.conditions);
   }
 
-  private prepareCharacterSkills(skills: CharacterSkill[]) {
+  private prepareCharacterSkills(skills: ValueModel<Model>[]) {
     for (let skill of skills) {
       skill.model.nameTranslation = TextResourceService.getSkillNameTranslation(skill.model.name).nameTranslation
     }
     skills.sort((a, b) => this.compareModels(a.model, b.model));
   }
 
-  private prepareCharacterTalents(talents: CharacterTalent[]) {
+  private prepareCharacterTalents(talents: ValueModel<Talent>[]) {
     for (let characterTalent of talents) {
       this.prepareTalent(characterTalent.model);
     }
@@ -62,7 +60,7 @@ export class TranslateService {
     talent.description = talentTranslation.description;
   }
 
-  private prepareCharacterTraits(traits: CharacterTrait[]) {
+  private prepareCharacterTraits(traits: ValueModel<Trait>[]) {
     for (let characterTrait of traits) {
       this.prepareTrait(characterTrait.model);
     }

@@ -5,17 +5,13 @@ import {CharacterService} from "../../shared/services/character-service/characte
 import {Character} from "../../model/character/character.model"
 import {CharacterFormArraysWrapper} from "../../model/character/character-form-arrays-wrapper.model"
 import {CharacterCharacteristic} from "../../model/characteristic/character-characteristic.model"
-import {CharacterSkill} from "../../model/skill/character-skill.model"
-import {CharacterTalent} from "../../model/talent/character-talent.model"
 import {Armor} from "../../model/armor/armor.model"
 import {CharacterWeapon} from "../../model/weapon/character-weapon.model"
 import {CharacterBodyLocalization} from "../../model/body-localization/character-body-localization.model"
 import {BodyLocalizationList} from "../../model/body-localization/body-localization.model"
-import {CharacterInjury} from "../../model/injury/character-injury.model"
 import {CharacterCondition} from "../../model/condition/character-condition.model"
 import {MatDialog} from "@angular/material/dialog"
 import {TextResourceService} from "../../shared/services/text-resource-service/text-resource.service"
-import {CharacterTrait} from "../../model/trait/character-trait.model"
 import {Spell} from "../../model/spell/spell.model"
 import {Note} from "../../model/note/note.model";
 import {
@@ -30,6 +26,10 @@ import {SkillService} from "../../shared/services/skill-service/skill.service";
 import {TalentService} from "../../shared/services/talent-service/talent.service";
 import {TraitService} from "../../shared/services/trait-service/trait.service";
 import {InjuryService} from "../../shared/services/injuries-service/injury.service";
+import {ValueModel} from "../../model/value-model";
+import {Talent} from "../../model/talent/talent.model";
+import {Trait} from "../../model/trait/trait.model";
+import {Model} from "../../model/model";
 
 @Component({
   selector: 'app-character-edit',
@@ -145,9 +145,9 @@ export class CharacterEditComponent implements OnInit {
     const group = this.editCharacterForm.value.group
     const status = this.editCharacterForm.value.status
     const characteristics = <CharacterCharacteristic[]>this.editCharacterForm.value.characteristics
-    const skills = <CharacterSkill[]>this.editCharacterForm.value.skills
-    const talents = <CharacterTalent[]>this.editCharacterForm.value.talents
-    const traits = <CharacterTrait[]>this.editCharacterForm.value.traits
+    const skills = <ValueModel<Model>[]>this.editCharacterForm.value.skills
+    const talents = <ValueModel<Talent>[]>this.editCharacterForm.value.talents
+    const traits = <ValueModel<Trait>[]>this.editCharacterForm.value.traits
     const isRightHanded = this.editCharacterForm.value.isRightHanded
     const weapons = <CharacterWeapon[]>this.editCharacterForm.value.weapons
     const armors = <Armor[]>this.editCharacterForm.value.armors
@@ -203,7 +203,7 @@ export class CharacterEditComponent implements OnInit {
       characterBodyLocalization.injuries = []
       for (let injury of this.injuries) {
         if (injury.value.bodyLocalization.name === characterBodyLocalization.bodyLocalization.name) {
-          let characterInjury = new CharacterInjury()
+          let characterInjury = new ValueModel<Model>
           characterInjury.value = injury.value.value
           characterInjury.model = injury.value.model
           characterBodyLocalization.injuries.push(characterInjury)
@@ -236,7 +236,7 @@ export class CharacterEditComponent implements OnInit {
     SpellsEditComponent.prepareSpellsList(formArrays.spells, character.spells)
   }
 
-  private prepareSkillsList(skills: FormArray, skillsList: CharacterSkill[]) {
+  private prepareSkillsList(skills: FormArray, skillsList: ValueModel<Model>[]) {
     for (let characterSkill of skillsList) {
       skills.push(
         new UntypedFormGroup({
@@ -248,7 +248,7 @@ export class CharacterEditComponent implements OnInit {
     }
   }
 
-  private prepareTalentsList(talents: FormArray, talentsList: CharacterTalent[]) {
+  private prepareTalentsList(talents: FormArray, talentsList: ValueModel<Talent>[]) {
     for (let characterTalent of talentsList) {
       talents.push(
         new UntypedFormGroup({
@@ -260,7 +260,7 @@ export class CharacterEditComponent implements OnInit {
     }
   }
 
-  private prepareTraitsList(traits: UntypedFormArray, traitsList: CharacterTrait[]) {
+  private prepareTraitsList(traits: UntypedFormArray, traitsList: ValueModel<Trait>[]) {
     for (let trait of traitsList) {
 
       let value = new UntypedFormControl(trait.value)

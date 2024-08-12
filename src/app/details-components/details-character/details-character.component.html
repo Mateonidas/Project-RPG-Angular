@@ -61,7 +61,7 @@
             <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
             <td mat-cell *matCellDef="let element">
               <span class="description-span"
-                    (click)="openBottomSheet(element.talent)">
+                    (click)="openBottomSheet(element.model)">
                 {{element.model.nameTranslation}}
               </span>
             </td>
@@ -85,7 +85,7 @@
             <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
             <td mat-cell *matCellDef="let element">
               <span class="description-span"
-                    (click)="openBottomSheet(element.trait)">
+                    (click)="openBottomSheet(element.model)">
                 {{element.model.nameTranslation}}
               </span>
             </td>

@@ -1,21 +1,21 @@
 import {Injectable} from '@angular/core'
 import {Subject} from "rxjs"
-import {Skill} from "../../../model/skill/skill.model"
 import {HttpClient} from "@angular/common/http"
 import {TextResourceService} from "../text-resource-service/text-resource.service"
+import {Model} from "../../../model/model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SkillService {
-  skillListChanged = new Subject<Skill[]>()
-  skillList: Skill[] = []
+  skillListChanged = new Subject<Model[]>()
+  skillList: Model[] = []
 
   constructor(private http: HttpClient) {
   }
 
   fetchSkills() {
-    return this.http.get<Skill[]>('http://localhost:8080/skill').toPromise()
+    return this.http.get<Model[]>('http://localhost:8080/skill').toPromise()
       .then(data => {
         if (data != null) {
           for (let skill of data) {

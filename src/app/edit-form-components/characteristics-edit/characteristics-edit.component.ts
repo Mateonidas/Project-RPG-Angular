@@ -3,7 +3,7 @@ import {TextResourceService} from "../../shared/services/text-resource-service/t
 import {FormGroup, UntypedFormArray, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {CharacteristicsEnum} from "../../utils/enums";
 import {CharacterCharacteristic} from "../../model/characteristic/character-characteristic.model";
-import {Characteristic} from "../../model/characteristic/characteristic.model";
+import {Model} from "../../model/model";
 
 @Component({
   selector: 'app-characteristics-edit',
@@ -48,7 +48,7 @@ export class CharacteristicsEditComponent {
   }
 
   protected static prepareCharacteristic(name: string) {
-    return new Characteristic(name, TextResourceService.getCharacteristicNameTranslation(name).nameTranslation)
+    return new Model(name, TextResourceService.getCharacteristicNameTranslation(name).nameTranslation)
   }
 
   get characteristics() {
