@@ -50,13 +50,13 @@ export class SkirmishCharacterService {
   }
 
   async storeSkirmishCharacter(character: Character) {
-    let skirmishCharacter = new SkirmishCharacter(character, this.skirmishCharactersList.length)
-    skirmishCharacter.character.id = 0
-    let numberOfSameCharacters = this.skirmishCharactersList.filter(skirmishCharacter => skirmishCharacter.character.name.includes(skirmishCharacter.character.name)).length
+    let newSkirmishCharacter = new SkirmishCharacter(character, this.skirmishCharactersList.length)
+    newSkirmishCharacter.character.id = 0
+    let numberOfSameCharacters = this.skirmishCharactersList.filter(skirmishCharacter => skirmishCharacter.character.name.includes(newSkirmishCharacter.character.name)).length
     if (numberOfSameCharacters > 0) {
-      skirmishCharacter.sequenceNumber = numberOfSameCharacters + 1
+      newSkirmishCharacter.sequenceNumber = numberOfSameCharacters + 1
     }
-    await this.putSkirmishCharacter(skirmishCharacter).then(
+    await this.putSkirmishCharacter(newSkirmishCharacter).then(
       async () => {
         await this.fetchSkirmishCharacter().then()
       }
@@ -69,15 +69,15 @@ export class SkirmishCharacterService {
       .toPromise()
   }
 
-  async storeSkirmishCharacters(newCharacter: Character, number: number) {
+  async storeSkirmishCharacters(newCharacter: Character, characterNumber: number) {
     let numberOfSameCharacters = this.skirmishCharactersList.filter(skirmishCharacter => skirmishCharacter.character.name.includes(newCharacter.name)).length
-    number = number + numberOfSameCharacters
+    let number = characterNumber + numberOfSameCharacters
     let newSkirmishCharacters = []
 
     for (let i = numberOfSameCharacters; number > i; number--) {
       let skirmishCharacter = new SkirmishCharacter(newCharacter, 0)
       skirmishCharacter.character.id = 0
-      if (number > 1) {
+      if (characterNumber > 1) {
         skirmishCharacter.sequenceNumber = number
       }
       newSkirmishCharacters.push(skirmishCharacter)
