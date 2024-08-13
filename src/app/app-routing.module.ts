@@ -1,22 +1,22 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {HomeComponent} from "./home/home.component";
-import {CharacterComponent} from "./character/character.component";
-import {CharacterStartComponent} from "./character/character-start/character-start.component";
-import {CharacterDetailComponent} from "./character/character-detail/character-detail.component";
-import {CharacterEditComponent} from "./character/character-edit/character-edit.component";
-import {SkirmishComponent} from "./skirmish/skirmish.component";
+import {HomeComponent} from "./core/components/home/home.component";
+import {CharacterComponent} from "./features/character/character.component";
+import {CharacterStartComponent} from "./features/character/character-start/character-start.component";
+import {CharacterDetailComponent} from "./features/character/character-detail/character-detail.component";
+import {CharacterEditComponent} from "./features/character/character-edit/character-edit.component";
+import {SkirmishComponent} from "./features/skirmish/skirmish.component";
 import {
   SkirmishCharacterDetailsComponent
-} from "./skirmish/skirmish-character-details/skirmish-character-details.component";
-import {SkirmishCharacterEditComponent} from "./skirmish/skirmish-character-edit/skirmish-character-edit.component";
-import {WeaponComponent} from "./weapon/weapon.component";
-import {WeaponStartComponent} from "./weapon/weapon-start/weapon-start.component";
-import {WeaponGroupDetailsComponent} from "./weapon/weapon-group-details/weapon-group-details.component";
-import {ArmorComponent} from "./armor/armor.component";
-import {ConditionListComponent} from "./condition-list/condition-list.component";
-import {SpellListComponent} from "./spell-list/spell-list.component";
-import {QualityListComponent} from "./quality-list/quality-list.component";
+} from "./features/skirmish/skirmish-character-details/skirmish-character-details.component";
+import {SkirmishCharacterEditComponent} from "./features/skirmish/skirmish-character-edit/skirmish-character-edit.component";
+import {WeaponListComponent} from "./features/list-of-elements/weapon-list/weapon-list.component";
+import {WeaponListStartComponent} from "./features/list-of-elements/weapon-list/weapon-start/weapon-list-start.component";
+import {WeaponGroupItemListComponent} from "./features/list-of-elements/weapon-list/weapon-group-item-list/weapon-group-item-list.component";
+import {ArmorListComponent} from "./features/list-of-elements/armor-list/armor-list.component";
+import {ConditionListComponent} from "./features/list-of-elements/condition-list/condition-list.component";
+import {SpellListComponent} from "./features/list-of-elements/spell-list/spell-list.component";
+import {QualityListComponent} from "./features/list-of-elements/quality-list/quality-list.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -37,13 +37,13 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'weapons', component: WeaponComponent, children: [
-      {path: '', component: WeaponStartComponent},
-      {path: ':name', component: WeaponGroupDetailsComponent},
+    path: 'weapons', component: WeaponListComponent, children: [
+      {path: '', component: WeaponListStartComponent},
+      {path: ':name', component: WeaponGroupItemListComponent},
     ]
   },
   {
-    path: 'armors', component: ArmorComponent
+    path: 'armors', component: ArmorListComponent
   },
   {
     path: 'qualities', component: QualityListComponent

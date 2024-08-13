@@ -1,17 +1,17 @@
 import {Component, OnInit} from '@angular/core'
-import {ArmorService} from "./shared/services/armor-service/armor.service"
-import {WeaponService} from "./shared/services/weapon-service/weapon.service"
-import {SkillService} from "./shared/services/skill-service/skill.service"
-import {TalentService} from "./shared/services/talent-service/talent.service"
-import {TraitService} from "./shared/services/trait-service/trait.service"
-import {BodyLocalizationService} from "./shared/services/body-localization-service/body-localization.service"
-import {CharacterService} from "./shared/services/character-service/character.service"
-import {InjuryService} from "./shared/services/injuries-service/injury.service"
-import {ConditionService} from "./shared/services/condition-service/condition.service"
-import {SpellService} from "./shared/services/spell-service/spell.service"
+import {ArmorService} from "./core/services/armor-service/armor.service"
+import {WeaponService} from "./core/services/weapon-service/weapon.service"
+import {SkillService} from "./core/services/skill-service/skill.service"
+import {TalentService} from "./core/services/talent-service/talent.service"
+import {TraitService} from "./core/services/trait-service/trait.service"
+import {BodyLocalizationService} from "./core/services/body-localization-service/body-localization.service"
+import {CharacterService} from "./core/services/character-service/character.service"
+import {InjuryService} from "./core/services/injuries-service/injury.service"
+import {ConditionService} from "./core/services/condition-service/condition.service"
+import {SpellService} from "./core/services/spell-service/spell.service"
 import {MatDialog} from "@angular/material/dialog"
-import {SkirmishCharacterService} from "./shared/services/skirmish-character-service/skirmish-character.service"
-import {AvailabilityService} from "./shared/services/availability-service/availability.service";
+import {SkirmishCharacterService} from "./core/services/skirmish-character-service/skirmish-character.service"
+import {AvailabilityService} from "./core/services/availability-service/availability.service";
 
 @Component({
   selector: 'app-root',

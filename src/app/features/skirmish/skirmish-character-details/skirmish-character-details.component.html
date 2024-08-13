@@ -1,0 +1,24 @@
+<app-details-name
+  [name]="skirmishCharacter.character.name">
+</app-details-name>
+
+<app-skirmish-character-buttons
+  [skirmishCharacter]="skirmishCharacter">
+</app-skirmish-character-buttons>
+
+<app-details-descriptions
+  [character]="skirmishCharacter.character">
+</app-details-descriptions>
+
+<app-skirmish-character-parameters
+  [skirmishCharacter]="skirmishCharacter">
+</app-skirmish-character-parameters>
+
+<app-details-body-localizations
+  [character]="skirmishCharacter.character"
+  [skirmishCharacter]="skirmishCharacter"
+  [isSkirmishMode]="true">
+</app-details-body-localizations>
+
+<app-details-character [character]="skirmishCharacter.character">
+</app-details-character>
