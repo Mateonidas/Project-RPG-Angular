@@ -1,4 +1,5 @@
 span {
+  white-space: pre-line !important;
   text-align: justify;
   display:block;
   margin-right: 20px;

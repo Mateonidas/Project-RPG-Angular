@@ -17,6 +17,9 @@ import {ArmorListComponent} from "./features/list-of-elements/armor-list/armor-l
 import {ConditionListComponent} from "./features/list-of-elements/condition-list/condition-list.component";
 import {SpellListComponent} from "./features/list-of-elements/spell-list/spell-list.component";
 import {QualityListComponent} from "./features/list-of-elements/quality-list/quality-list.component";
+import {
+  TalentAndTraitListComponent
+} from "./features/list-of-elements/talent-and-trait-list/talent-and-trait-list.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -47,6 +50,9 @@ const routes: Routes = [
   },
   {
     path: 'qualities', component: QualityListComponent
+  },
+  {
+    path: 'talents_and_traits', component: TalentAndTraitListComponent
   },
   {
     path: 'conditions', component: ConditionListComponent

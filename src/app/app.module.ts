@@ -75,8 +75,9 @@ import {ArmorEditComponent} from './shared/components/edit-form-components/armor
 import {MatTabsModule} from "@angular/material/tabs";
 import {SpellListComponent} from './features/list-of-elements/spell-list/spell-list.component';
 import {QualityListComponent} from './features/list-of-elements/quality-list/quality-list.component';
-import {QualityGroupItemListComponent} from './features/list-of-elements/quality-list/quality-group-item-list/quality-group-item-list.component';
+import {ItemListComponent} from './shared/components/item-list/item-list.component';
 import {SelectListComponent} from './shared/components/edit-form-components/select-list/select-list.component';
+import { TalentAndTraitListComponent } from './features/list-of-elements/talent-and-trait-list/talent-and-trait-list.component';
 
 @NgModule({
   declarations: [
@@ -131,8 +132,9 @@ import {SelectListComponent} from './shared/components/edit-form-components/sele
     ArmorEditComponent,
     SpellListComponent,
     QualityListComponent,
-    QualityGroupItemListComponent,
+    ItemListComponent,
     SelectListComponent,
+    TalentAndTraitListComponent,
   ],
   imports: [
     BrowserModule,
