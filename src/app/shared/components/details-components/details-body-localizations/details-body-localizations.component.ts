@@ -5,6 +5,9 @@ import {SkirmishCharacter} from "../../../../core/model/skirmish/skirmish-charac
 import {CharacterBodyLocalization} from "../../../../core/model/body-localization/character-body-localization.model";
 import {SkirmishCharacterService} from "../../../../core/services/skirmish-character-service/skirmish-character.service";
 import {SkirmishService} from "../../../../core/services/skirmish-service/skirmish.service";
+import {MatBottomSheet} from "@angular/material/bottom-sheet";
+import {Model} from "../../../../core/model/model";
+import {BottomSheetDescription} from "../../bottom-sheet/bottom-sheet-description/bottom-sheet-description.component";
 
 @Component({
   selector: 'app-details-body-localizations',
@@ -21,7 +24,8 @@ export class DetailsBodyLocalizationsComponent implements OnInit{
   bodyLocalizationsColumns: string[] = ['name', 'armorPoints', 'injuries']
 
   constructor(public skirmishCharacterService: SkirmishCharacterService,
-              public skirmishService: SkirmishService) {
+              public skirmishService: SkirmishService,
+              protected bottomSheet: MatBottomSheet) {
   }
 
   ngOnInit(): void {
@@ -40,5 +44,12 @@ export class DetailsBodyLocalizationsComponent implements OnInit{
     await this.skirmishService.removeAdditionalArmorPoint(bodyLocalization)
     this.skirmishCharacter = await this.skirmishCharacterService.reloadSkirmishCharacter(this.skirmishCharacter!.id)
     this.character = this.skirmishCharacter.character
+  }
+
+  openBottomSheet(model: Model) {
+    this.bottomSheet.open(BottomSheetDescription, {
+      data: {nameTranslation: model.nameTranslation, description: model.description},
+      panelClass: 'bottom-sheet'
+    })
   }
 }

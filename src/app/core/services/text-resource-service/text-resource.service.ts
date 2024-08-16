@@ -47,9 +47,9 @@ export class TextResourceService {
     })
   }
 
-  public static getInjuryNameTranslation(name: string) {
-    let injuries: Model[] = textResource.injury;
-    return <Model>injuries.find(injury => {
+  public static getInjuryTranslation(name: string) {
+    let injuries: ModelWithDescription[] = textResource.injury;
+    return <ModelWithDescription>injuries.find(injury => {
       if(injury.name == name) {
         return injury;
       } else {

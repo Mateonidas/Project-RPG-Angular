@@ -128,7 +128,9 @@ export class TranslateService {
     for (let characterBodyLocalization of bodyLocalizations) {
       characterBodyLocalization.bodyLocalization.nameTranslation = TextResourceService.getCharacterBodyLocalizationNameTranslation(characterBodyLocalization.bodyLocalization.name).nameTranslation;
       for (let characterInjury of characterBodyLocalization.injuries) {
-        characterInjury.model.nameTranslation = TextResourceService.getInjuryNameTranslation(characterInjury.model.name).nameTranslation;
+        let injuryTranslation = TextResourceService.getInjuryTranslation(characterInjury.model.name);
+        characterInjury.model.nameTranslation = injuryTranslation.nameTranslation;
+        characterInjury.model.description = injuryTranslation.description;
       }
     }
   }

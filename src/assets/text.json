@@ -3146,63 +3146,78 @@
   "injury": [
     {
       "name": "MINOR_TORN_MUSCLE",
-      "nameTranslation": "Pomniejsze zerwanie mięśni"
+      "nameTranslation": "Pomniejsze zerwanie mięśni",
+      "description": "Jeden z mięśni został zerwany albo nastąpiło skręcenie stawu, co skutkuje ograniczeniem ruchomości i sporym bólem. Wszelkie Testy związane z użyciem danego miejsca wykonuje się z karą -10. Jeśli trafiona została noga, Szybkość spada o połowę.\n\nLeczenie: Mięśnie częściowo zagoją się w ciągu 30 dni - Bonus z Wytrzymałości. Sukces w Teście Leczenia zmniejszy ten okres o 1 dzień plus 1 dodatkowy dzień za każdy PS (premię tę można uzyskać tylko raz)."
     },
     {
       "name": "MAJOR_TORN_MUSCLE",
-      "nameTranslation": "Poważne zerwanie mięśni"
+      "nameTranslation": "Poważne zerwanie mięśni",
+      "description": "Jeden z mięśni lub jakieś ważne ścięgno zostały poważnie uszkodzone, co wywołuje ogromny ból i poważną utratę ruchomości zranionej kończyny. W takiej sytuacji stosuje się te same zasady, co w przypadku Zerwania mięśni (pomniejszego), ale wszystkie kary zwiększają się do -20.\n\nLeczenie: Mięśnie częściowo zagoją się w ciągu 30 dni - Bonus z Wytrzymałości, po których używanie kończyny będzie pociągało za sobą kary -10 do odpowiednich Testów. Mięśnie zagoją się całkowicie w ciągu następnych 30 dni - Bonus z Wytrzymałości. Test Leczenia nie pomoże w tej sytuacji – medyk po prostu stwierdzi, żeby nie używać trafionego miejsca."
     },
     {
       "name": "MINOR_BROKEN_BONE",
-      "nameTranslation": "Pomniejsze złamanie"
+      "nameTranslation": "Pomniejsze złamanie",
+      "description": "Złamanie jednej kości, ale bez przemieszczenia. Przy dobrych wiatrach zrośnie się samo. Trafione miejsce jest bezużyteczne, dopóki złamanie się nie zagoi. W przypadku ramion lub nóg postaci pozostaje poleganie na drugiej kończynie, ponieważ ból jest ogromny i zwykle konieczne są łubki. Do czasu wyleczenia należy skorzystać z zasad dotyczących Odciętego ramienia lub Odciętej nogi (patrz Amputacje).\n\nW przypadku ciosów w głowę postać będzie musiała przejść na dietę płynną, a dodatkowo wszystkie Testy Języków obarczone są karą -30. Pomniejsze Złamania korpusu oznaczają, że siła i zdolność poruszania się postaci są mocno ograniczone: Szybkość spada o połowę, a ponadto wartości Siły i Zwinności spadają o -30.\n\nLeczenie: Złamana kość będzie zrastać się przez 30+1k10 dni. Pod koniec tego okresu należy wykonać Przeciętny (+20) Test Odporności, by sprawdzić, czy kość zrosła się prawidłowo i czy nie wystąpią skutki uboczne. Porażka oznacza, że postać otrzymuje trwałą karę -5 do wszystkich Testów Zwinności, w których używa ramienia lub nogi, -5 do wartości Zwinności w przypadku źle zrośniętych złamań korpusu lub trwałą karę -5 do Testów Języków, jeśli chodzi o efekty ciosów w głowę.\n\nUdany Przeciętny (+20) Test Leczenia wykonany w ciągu tygodnia od otrzymania rany sprawia, że postać nie musi wykonywać Testu Odporności, ale połamane miejsce musi zostać unieruchomione do końca okresu leczenia. Jeśli gips lub łubki mają zostać zdjęte, niezbędny będzie kolejny Przeciętny (+20) Test Leczenia wykonany w ciągu 1 dnia, jeśli postać chce uniknąć Testu Odporności."
     },
     {
       "name": "MAJOR_BROKEN_BONE",
-      "nameTranslation": "Poważne złamanie"
+      "nameTranslation": "Poważne złamanie",
+      "description": "Jedna z kości została poważnie strzaskana, więc albo sterczy pod dziwnym kątem, albo zwisa bezwładnie, trzymając się jedynie na skórze. Mało prawdopodobne, że zrośnie się bez odpowiedniej pomocy medycznej.\n\nTrafione miejsce jest bezużyteczne, dopóki kości się nie zrosną. Należy\nzastosować identyczne zasady co w przypadku Złamania (pomniejszego).\nLeczenie: Leczenie takiego Urazu zajmuje 10 dni dłużej niż pomniejszego. Wszystkie wspomniane wyżej Testy są Wymagające (+0). Porażki w nich skutkują karami -10, a nie -5."
     },
     {
       "name": "AMPUTATED_ARM",
-      "nameTranslation": "Amputowane ramię"
+      "nameTranslation": "Amputowane ramię",
+      "description": "Za każdym razem, gdy postać otrzymuje Ranę Krytyczną oznaczoną jako Amputacja (trudność), musi wykonać Test Odporności (poziom Trudności Testu w nawiasie), w przeciwnym wypadku otrzyma Stan Powalenie. Jeśli Test zakończy się Porażką (-2 PS) lub gorzej, postać otrzymuje 1 poziom Oszołomienia. W przypadku Krytycznej Porażki (-4 PS) następuje Utrata Przytomności. Wszystkie Amputacje wymagają leczenia Chirurgicznego, aby zagoiły się prawidłowo, co oznacza, że postać nie może wyleczyć 1 Rany bez wizyty u chirurga. Więcej o Chirurgii przeczytasz na stronie 181.\n\nWszystkie Testy, w których niezbędne jest używanie obu dłoni, obarczone są karą -20, ponadto postać nie może używać broni dwuręcznych. Jeśli odcięta została dłoń wiodąca, Testy walki przy pomocy drugiej dłoni nadal wykonywane są z karą -20. Za 100 Punktów Doświadczenia można zmniejszyć tę karę o 5, ponieważ postać stopniowo uczy się władać drugą dłonią. Jeśli odcięte zostaną obie dłonie, jedynym wyjściem dla postaci jest nauka walki hakami."
     },
     {
       "name": "AMPUTATED_EAR",
-      "nameTranslation": "Amputowane ucho"
+      "nameTranslation": "Amputowane ucho",
+      "description": "Za każdym razem, gdy postać otrzymuje Ranę Krytyczną oznaczoną jako Amputacja (trudność), musi wykonać Test Odporności (poziom Trudności Testu w nawiasie), w przeciwnym wypadku otrzyma Stan Powalenie. Jeśli Test zakończy się Porażką (-2 PS) lub gorzej, postać otrzymuje 1 poziom Oszołomienia. W przypadku Krytycznej Porażki (-4 PS) następuje Utrata Przytomności. Wszystkie Amputacje wymagają leczenia Chirurgicznego, aby zagoiły się prawidłowo, co oznacza, że postać nie może wyleczyć 1 Rany bez wizyty u chirurga. Więcej o Chirurgii przeczytasz na stronie 181.\n\nUtrata ucha jest bolesna, ale prędzej czy później można się do tego przyzwyczaić. Pechem jest utrata obydwu uszu, wtedy wszelkie Testy Percepcji oparte na słuchu obarczone są karą -20. Ponadto za każde odcięte ucho wszystkie Testy Ogłady otrzymują karę -5, ponieważ rana jest dobrze widoczna."
     },
     {
       "name": "AMPUTATED_EYE",
-      "nameTranslation": "Amputowane oko"
+      "nameTranslation": "Amputowane oko",
+      "description": "Za każdym razem, gdy postać otrzymuje Ranę Krytyczną oznaczoną jako Amputacja (trudność), musi wykonać Test Odporności (poziom Trudności Testu w nawiasie), w przeciwnym wypadku otrzyma Stan Powalenie. Jeśli Test zakończy się Porażką (-2 PS) lub gorzej, postać otrzymuje 1 poziom Oszołomienia. W przypadku Krytycznej Porażki (-4 PS) następuje Utrata Przytomności. Wszystkie Amputacje wymagają leczenia Chirurgicznego, aby zagoiły się prawidłowo, co oznacza, że postać nie może wyleczyć 1 Rany bez wizyty u chirurga. Więcej o Chirurgii przeczytasz na stronie 181.\n\nUtrata oka jest strasznym przeżyciem, ale w końcu każdy uczy się, jak żyć tylko z jednym. Prawdziwym nieszczęściem jest utrata obojga oczu, wtedy wszelkie Testy związane ze wzrokiem, a więc Testy Broni, Jeździectwa, Uników itd. obarczone są karą -30. Ponadto za każde stracone oko wszystkie Testy Ogłady otrzymują karę -5, ponieważ pobliźniony oczodół nie sprawia najlepszego wrażenia."
     },
     {
       "name": "AMPUTATED_FINGERS",
-      "nameTranslation": "Amputowane palce"
+      "nameTranslation": "Amputowane palce",
+      "description": "Za każdym razem, gdy postać otrzymuje Ranę Krytyczną oznaczoną jako Amputacja (trudność), musi wykonać Test Odporności (poziom Trudności Testu w nawiasie), w przeciwnym wypadku otrzyma Stan Powalenie. Jeśli Test zakończy się Porażką (-2 PS) lub gorzej, postać otrzymuje 1 poziom Oszołomienia. W przypadku Krytycznej Porażki (-4 PS) następuje Utrata Przytomności. Wszystkie Amputacje wymagają leczenia Chirurgicznego, aby zagoiły się prawidłowo, co oznacza, że postać nie może wyleczyć 1 Rany bez wizyty u chirurga. Więcej o Chirurgii przeczytasz na stronie 181.\n\nPrzede wszystkim chwyt zranioną dłonią jest osłabiony, co sprawia, że szanse na Pech podczas używania jej rosną. Za pierwszy stracony palec porażki we wszelkich odpowiednich Testach, w których na kościach wypadła 1, uznawane są za Pech. W przypadku dwóch odciętych palców Pech występuje, gdy na kościach wypadnie 1 lub 2, i tak dalej.\n\nPonadto za każdy stracony palec wszystkie Testy z wykorzystaniem okaleczonej dłoni otrzymują karę -5. Jeśli postać straci w dłoni 4 lub 5 palców, należy zastosować zasady jak w przypadku odciętej dłoni."
     },
     {
       "name": "AMPUTATED_FOOT",
-      "nameTranslation": "Amputowana stopa"
+      "nameTranslation": "Amputowana stopa",
+      "description": "Za każdym razem, gdy postać otrzymuje Ranę Krytyczną oznaczoną jako Amputacja (trudność), musi wykonać Test Odporności (poziom Trudności Testu w nawiasie), w przeciwnym wypadku otrzyma Stan Powalenie. Jeśli Test zakończy się Porażką (-2 PS) lub gorzej, postać otrzymuje 1 poziom Oszołomienia. W przypadku Krytycznej Porażki (-4 PS) następuje Utrata Przytomności. Wszystkie Amputacje wymagają leczenia Chirurgicznego, aby zagoiły się prawidłowo, co oznacza, że postać nie może wyleczyć 1 Rany bez wizyty u chirurga. Więcej o Chirurgii przeczytasz na stronie 181.\n\nSzybkość zostaje trwale zmniejszona o połowę, a wszystkie Testy związane z poruszaniem się, jak np. Uniki, otrzymują karę -20. Utrata obu stóp znacznie utrudnia chodzenie. Może czas zatrudnić pachołka, który będzie służył za wierzchowca?"
     },
     {
       "name": "AMPUTATED_HAND",
-      "nameTranslation": "Amputowana dłoń"
+      "nameTranslation": "Amputowana dłoń",
+      "description": "Za każdym razem, gdy postać otrzymuje Ranę Krytyczną oznaczoną jako Amputacja (trudność), musi wykonać Test Odporności (poziom Trudności Testu w nawiasie), w przeciwnym wypadku otrzyma Stan Powalenie. Jeśli Test zakończy się Porażką (-2 PS) lub gorzej, postać otrzymuje 1 poziom Oszołomienia. W przypadku Krytycznej Porażki (-4 PS) następuje Utrata Przytomności. Wszystkie Amputacje wymagają leczenia Chirurgicznego, aby zagoiły się prawidłowo, co oznacza, że postać nie może wyleczyć 1 Rany bez wizyty u chirurga. Więcej o Chirurgii przeczytasz na stronie 181.\n\nWszystkie Testy, w których niezbędne jest używanie obu dłoni, obarczone są karą -20, ponadto postać nie może używać broni dwuręcznych, jednak do przedramienia może przymocować tarczę. Jeśli odcięta została dłoń wiodąca, Testy walki przy pomocy drugiej dłoni nadal wykonywane są z karą -20. Za 100 Punktów Doświadczenia można zmniejszyć tę karę o 5, ponieważ postać stopniowo uczy się władać drugą dłonią. Jeśli odcięte zostaną obie dłonie, jedynym wyjściem dla postaci jest nauka walki hakami."
     },
     {
       "name": "AMPUTATED_LEG",
-      "nameTranslation": "Amputowana noga"
+      "nameTranslation": "Amputowana noga",
+      "description": "Za każdym razem, gdy postać otrzymuje Ranę Krytyczną oznaczoną jako Amputacja (trudność), musi wykonać Test Odporności (poziom Trudności Testu w nawiasie), w przeciwnym wypadku otrzyma Stan Powalenie. Jeśli Test zakończy się Porażką (-2 PS) lub gorzej, postać otrzymuje 1 poziom Oszołomienia. W przypadku Krytycznej Porażki (-4 PS) następuje Utrata Przytomności. Wszystkie Amputacje wymagają leczenia Chirurgicznego, aby zagoiły się prawidłowo, co oznacza, że postać nie może wyleczyć 1 Rany bez wizyty u chirurga. Więcej o Chirurgii przeczytasz na stronie 181.\n\nSzybkość zostaje trwale zmniejszona o połowę, a wszystkie Testy związane z poruszaniem się otrzymują karę -20. Niemożliwe jest wykonywanie Uników"
     },
     {
       "name": "AMPUTATED_NOSE",
-      "nameTranslation": "Amputowany nos"
+      "nameTranslation": "Amputowany nos",
+      "description": "Za każdym razem, gdy postać otrzymuje Ranę Krytyczną oznaczoną jako Amputacja (trudność), musi wykonać Test Odporności (poziom Trudności Testu w nawiasie), w przeciwnym wypadku otrzyma Stan Powalenie. Jeśli Test zakończy się Porażką (-2 PS) lub gorzej, postać otrzymuje 1 poziom Oszołomienia. W przypadku Krytycznej Porażki (-4 PS) następuje Utrata Przytomności. Wszystkie Amputacje wymagają leczenia Chirurgicznego, aby zagoiły się prawidłowo, co oznacza, że postać nie może wyleczyć 1 Rany bez wizyty u chirurga. Więcej o Chirurgii przeczytasz na stronie 181.\n\nUtrata nosa sprawia, że postać zaczyna wyglądać naprawdę dziwacznie. Oznacza także trwałą utratę 20 punktów Ogłady, a także karę -30 do wszystkich Testów węchu."
     },
     {
       "name": "AMPUTATED_TEETH",
-      "nameTranslation": "Wyrwane zęby"
+      "nameTranslation": "Wyrwane zęby",
+      "description": "Za każdym razem, gdy postać otrzymuje Ranę Krytyczną oznaczoną jako Amputacja (trudność), musi wykonać Test Odporności (poziom Trudności Testu w nawiasie), w przeciwnym wypadku otrzyma Stan Powalenie. Jeśli Test zakończy się Porażką (-2 PS) lub gorzej, postać otrzymuje 1 poziom Oszołomienia. W przypadku Krytycznej Porażki (-4 PS) następuje Utrata Przytomności. Wszystkie Amputacje wymagają leczenia Chirurgicznego, aby zagoiły się prawidłowo, co oznacza, że postać nie może wyleczyć 1 Rany bez wizyty u chirurga. Więcej o Chirurgii przeczytasz na stronie 181.\n\nUtrata zębów może oszpecić postać, a poza tym znacznie utrudnia spożywanie posiłków. Za każde 2 utracone zęby Ogłada trwale spada o 1 punkt. Ponadto utrata ponad połowy zębów (ludzie: 16, elfy: 18, niziołki i krasnoludy: 20) sprawia, że jedzenie staje się bardzo uciążliwe, zajmuje dwa razy więcej czasu, a niektóre posiłki są niemożliwe do zjedzenia – jest to przede wszystkim kwestia odgrywania postaci i opisywania działań."
     },
     {
       "name": "AMPUTATED_TOES",
-      "nameTranslation": "Amputowane palce u stopy"
+      "nameTranslation": "Amputowane palce u stopy",
+      "description": "Za każdym razem, gdy postać otrzymuje Ranę Krytyczną oznaczoną jako Amputacja (trudność), musi wykonać Test Odporności (poziom Trudności Testu w nawiasie), w przeciwnym wypadku otrzyma Stan Powalenie. Jeśli Test zakończy się Porażką (-2 PS) lub gorzej, postać otrzymuje 1 poziom Oszołomienia. W przypadku Krytycznej Porażki (-4 PS) następuje Utrata Przytomności. Wszystkie Amputacje wymagają leczenia Chirurgicznego, aby zagoiły się prawidłowo, co oznacza, że postać nie może wyleczyć 1 Rany bez wizyty u chirurga. Więcej o Chirurgii przeczytasz na stronie 181.\n\nUtrata palców u nóg mocno wpływa na równowagę. Za każdy utracony palec u nóg postać traci 1 punkt Zwinności i Walki Wręcz."
     },
     {
       "name": "AMPUTATED_TONGUE",
-      "nameTranslation": "Amputowany język"
+      "nameTranslation": "Amputowany język",
+      "description": "Za każdym razem, gdy postać otrzymuje Ranę Krytyczną oznaczoną jako Amputacja (trudność), musi wykonać Test Odporności (poziom Trudności Testu w nawiasie), w przeciwnym wypadku otrzyma Stan Powalenie. Jeśli Test zakończy się Porażką (-2 PS) lub gorzej, postać otrzymuje 1 poziom Oszołomienia. W przypadku Krytycznej Porażki (-4 PS) następuje Utrata Przytomności. Wszystkie Amputacje wymagają leczenia Chirurgicznego, aby zagoiły się prawidłowo, co oznacza, że postać nie może wyleczyć 1 Rany bez wizyty u chirurga. Więcej o Chirurgii przeczytasz na stronie 181.\n\nUtrata języka sprawia, że postać może jedynie pomrukiwać i chrząkać, a jej komunikacja ogranicza się do używania języka migowego. Postać automatycznie odnosi porażkę we wszystkich Testach Języków, które wymagają mówienia."
     }
   ],
   "condition": [
