@@ -13,6 +13,7 @@ export class TalentAndTraitListComponent implements OnInit {
   talents!: Model[];
   traits!: Model[];
   text = TextResourceService;
+  filterValue?: string;
 
   constructor(private talentService: TalentService,
               private traitService: TraitService) {
@@ -21,5 +22,9 @@ export class TalentAndTraitListComponent implements OnInit {
   ngOnInit() {
     this.talents = this.talentService.talentList;
     this.traits = this.traitService.traitList;
+  }
+
+  applyFilter(newFilterValue: string) {
+    this.filterValue = newFilterValue;
   }
 }

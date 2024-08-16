@@ -1,9 +1,15 @@
+<app-list-filter
+  (filterValueChanged)="applyFilter($event)">
+</app-list-filter>
+
 <app-item-list
   [title]="text.getText().talentsLabel"
-  [qualityGroup]="talents">
+  [qualityGroup]="talents"
+  [filterValue]="filterValue">
 </app-item-list>
 
 <app-item-list
   [title]="text.getText().traitsLabel"
-  [qualityGroup]="traits">
+  [qualityGroup]="traits"
+  [filterValue]="filterValue">
 </app-item-list>

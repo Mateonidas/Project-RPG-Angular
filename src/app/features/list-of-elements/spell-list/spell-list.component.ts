@@ -11,11 +11,15 @@ import {SpellService} from "../../../core/services/spell-service/spell.service";
 export class SpellListComponent implements OnInit{
   spellGroups!: SpellGroup[]
   text = TextResourceService
-  spellColumns: string[] = ['name', 'description']
+  filterValue?: string;
 
   constructor(private spellService: SpellService) {}
 
   ngOnInit(): void {
     this.spellGroups = this.spellService.spellGroups;
+  }
+
+  applyFilter(newFilterValue: string) {
+    this.filterValue = newFilterValue;
   }
 }

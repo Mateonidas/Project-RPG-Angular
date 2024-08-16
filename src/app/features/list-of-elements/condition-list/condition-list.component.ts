@@ -9,14 +9,18 @@ import {Condition} from "../../../core/model/condition/condition.model";
   styleUrls: ['./condition-list.component.css']
 })
 export class ConditionListComponent implements OnInit{
-  conditionList!: Condition[]
-  text = TextResourceService
-  conditionColumns: string[] = ['name', 'description']
+  conditions!: Condition[];
+  text = TextResourceService;
+  filterValue?: string;
 
   constructor(private conditionService: ConditionService) {
   }
 
   ngOnInit(): void {
-    this.conditionList = this.conditionService.conditionsList
+    this.conditions = this.conditionService.conditionsList
+  }
+
+  applyFilter(newFilterValue: string) {
+    this.filterValue = newFilterValue;
   }
 }

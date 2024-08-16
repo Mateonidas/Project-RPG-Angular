@@ -78,6 +78,8 @@ import {QualityListComponent} from './features/list-of-elements/quality-list/qua
 import {ItemListComponent} from './shared/components/item-list/item-list.component';
 import {SelectListComponent} from './shared/components/edit-form-components/select-list/select-list.component';
 import { TalentAndTraitListComponent } from './features/list-of-elements/talent-and-trait-list/talent-and-trait-list.component';
+import { ListFilterComponent } from './shared/components/list-filter/list-filter.component';
+import { WeaponGroupTableComponent } from './features/list-of-elements/weapon-list/weapon-group-item-list/weapon-group-table/weapon-group-table.component';
 
 @NgModule({
   declarations: [
@@ -135,6 +137,8 @@ import { TalentAndTraitListComponent } from './features/list-of-elements/talent-
     ItemListComponent,
     SelectListComponent,
     TalentAndTraitListComponent,
+    ListFilterComponent,
+    WeaponGroupTableComponent,
   ],
   imports: [
     BrowserModule,

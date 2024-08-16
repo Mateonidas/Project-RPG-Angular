@@ -3,16 +3,15 @@ import {WeaponGroup} from "../../../../core/model/weapon/weapons-group.model";
 import {TextResourceService} from "../../../../core/services/text-resource-service/text-resource.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {WeaponService} from "../../../../core/services/weapon-service/weapon.service";
-import {MatBottomSheet} from "@angular/material/bottom-sheet";
-import {Model} from "../../../../core/model/model";
-import {
-  BottomSheetDescription
-} from "../../../../shared/components/bottom-sheet/bottom-sheet-description/bottom-sheet-description.component";
 import {MatMenuTrigger} from "@angular/material/menu";
 import {Weapon} from "../../../../core/model/weapon/weapon.model";
-import {EditWeaponDialog} from "../../../../shared/components/dialog-window/edit-weapon-dialog/edit-weapon-dialog.component";
+import {
+  EditWeaponDialog
+} from "../../../../shared/components/dialog-window/edit-weapon-dialog/edit-weapon-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
-import {ConfirmationDialogComponent} from "../../../../shared/components/dialog-window/confirmation-dialog/confirmation-dialog.component";
+import {
+  ConfirmationDialogComponent
+} from "../../../../shared/components/dialog-window/confirmation-dialog/confirmation-dialog.component";
 
 @Component({
   selector: 'app-weapon-group-item-list',
@@ -24,14 +23,13 @@ export class WeaponGroupItemListComponent implements OnInit {
   weaponGroup!: WeaponGroup
   weaponGroups!: WeaponGroup[]
   text = TextResourceService
-  weaponColumns: string[] = ['name', 'price', 'enc', 'availability', 'category', 'reach', 'damage', 'advantagesAndDisadvantages'];
+  filterValue?: string;
 
   @ViewChild(MatMenuTrigger) contextMenu!: MatMenuTrigger;
   contextMenuPosition = {x: '0px', y: '0px'};
 
   constructor(private route: ActivatedRoute,
               private weaponService: WeaponService,
-              private bottomSheet: MatBottomSheet,
               public dialog: MatDialog) {
   }
 
@@ -43,26 +41,9 @@ export class WeaponGroupItemListComponent implements OnInit {
     )
   }
 
-  openBottomSheet(model: Model) {
-    this.bottomSheet.open(BottomSheetDescription, {
-      data: {nameTranslation: model.nameTranslation, description: model.description},
-      panelClass: 'bottom-sheet'
-    })
-  }
-
   groupWeaponCategories(weaponGroups: WeaponGroup[]) {
     weaponGroups.sort((a, b) => a.name.localeCompare(b.name));
     this.weaponGroups = weaponGroups.filter(g => g.type === this.name)
-  }
-
-  onContextMenu(event: MouseEvent, weapon: Weapon) {
-    event.preventDefault();
-    this.contextMenuPosition.x = event.clientX + 'px';
-    this.contextMenuPosition.y = event.clientY + 'px';
-    this.contextMenu.menuData = {'weapon': weapon}
-    // @ts-ignore
-    this.contextMenu.menu.focusFirstItem('mouse');
-    this.contextMenu.openMenu();
   }
 
   async onEditWeapon(weapon: Weapon) {
@@ -97,5 +78,9 @@ export class WeaponGroupItemListComponent implements OnInit {
         });
       }
     });
+  }
+
+  applyFilter(newFilterValue: string) {
+    this.filterValue = newFilterValue;
   }
 }

@@ -9,10 +9,11 @@ import {TextResourceService} from "../../../core/services/text-resource-service/
   templateUrl: './quality-list.component.html',
   styleUrls: ['./quality-list.component.css']
 })
-export class QualityListComponent implements OnInit{
+export class QualityListComponent implements OnInit {
   weaponQualities!: Model[];
   armorQualities!: Model[];
   text = TextResourceService;
+  filterValue?: string;
 
   constructor(private weaponService: WeaponService,
               private armorService: ArmorService) {
@@ -21,5 +22,9 @@ export class QualityListComponent implements OnInit{
   ngOnInit() {
     this.weaponQualities = this.weaponService.weaponQualitiesList;
     this.armorQualities = this.armorService.armorQualitiesList;
+  }
+
+  applyFilter(newFilterValue: string) {
+    this.filterValue = newFilterValue;
   }
 }

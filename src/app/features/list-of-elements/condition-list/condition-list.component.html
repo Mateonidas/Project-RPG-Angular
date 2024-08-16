@@ -1,28 +1,9 @@
-<div fxLayout="row">
-  <div fxFlex="100" style="text-align: center">
-    <h3>{{text.getText().conditionsLabel}}</h3>
-  </div>
-</div>
-<br>
+<app-list-filter
+  (filterValueChanged)="applyFilter($event)">
+</app-list-filter>
 
-<div fxLayout="row" fxLayoutAlign="center center" class="details-row">
-  <div fxFlex="70">
-      <table mat-table [dataSource]="conditionList" class="mat-elevation-z8">
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>{{text.getText().nameLabel}}</th>
-          <td mat-cell *matCellDef="let element">
-            <span>{{element.nameTranslation}}</span>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef>{{text.getText().descriptionLabel}}</th>
-          <td mat-cell *matCellDef="let element" style="padding: 20px 0;">
-            <span>{{element.description}}</span>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="conditionColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: conditionColumns;"></tr>
-      </table>
-      <br>
-  </div>
-</div>
+<app-item-list
+  [title]="text.getText().conditionsLabel"
+  [qualityGroup]="conditions"
+  [filterValue]="filterValue">
+</app-item-list>
