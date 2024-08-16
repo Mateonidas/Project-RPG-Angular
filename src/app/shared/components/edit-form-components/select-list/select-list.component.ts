@@ -49,7 +49,7 @@ export class SelectListComponent implements OnInit {
     ));
     let newFormGroup = new UntypedFormGroup({
       'model': control,
-      'value': new UntypedFormControl(null)
+      'value': new UntypedFormControl(1)
     })
 
     if(this.formArrayName === 'injuries') {
