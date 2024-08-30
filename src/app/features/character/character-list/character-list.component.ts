@@ -13,7 +13,6 @@ import {SkirmishCharacterService} from "../../../core/services/skirmish-characte
 })
 export class CharacterListComponent implements OnInit {
 
-  characters!: Character[];
   subscription!: Subscription;
   characterGroupsTypes: {name: string, groups: { name: string, characters: Character[] }[]}[] = [];
 
@@ -27,12 +26,10 @@ export class CharacterListComponent implements OnInit {
 
   async ngOnInit() {
     this.subscription = this.characterService.charactersChanged.subscribe(
-      (characters: Character[]) => {
-        this.characters = characters;
+      () => {
         this.characterGroupsTypes = this.characterService.getCharacterGroupsTypes();
       }
     )
-    this.characters = this.characterService.getCharacters();
     this.characterGroupsTypes = this.characterService.getCharacterGroupsTypes();
   }
 

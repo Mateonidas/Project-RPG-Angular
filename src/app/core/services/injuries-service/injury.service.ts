@@ -30,7 +30,7 @@ export class InjuryService {
 
   private prepareInjuryNameTranslation(data: Model[]) {
     for (let injury of data) {
-      let injuryTranslation = TextResourceService.getInjuryTranslation(injury.name);
+      let injuryTranslation = TextResourceService.getTranslation("injury", injury.name);
       injury.nameTranslation = injuryTranslation.nameTranslation;
       injury.description = injuryTranslation.description;
     }

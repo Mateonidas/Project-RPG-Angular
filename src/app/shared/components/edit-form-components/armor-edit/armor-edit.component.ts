@@ -1,11 +1,18 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormGroup, UntypedFormArray, UntypedFormControl} from "@angular/forms";
+import {
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  UntypedFormArray,
+  UntypedFormControl
+} from "@angular/forms";
 import {TextResourceService} from "../../../../core/services/text-resource-service/text-resource.service";
 import {Model} from "../../../../core/model/model";
 import {Armor} from "../../../../core/model/armor/armor.model";
 import {ArmorService} from "../../../../core/services/armor-service/armor.service";
 import {EditArmorDialog} from "../../dialog-window/edit-armor-dialog/edit-armor-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {CharacterArmor} from "../../../../core/model/armor/character-armor.model";
 
 @Component({
   selector: 'app-armor-edit',
@@ -19,7 +26,8 @@ export class ArmorEditComponent implements OnInit {
   armorsList: Armor[] = []
 
   constructor(public armorService: ArmorService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private fb: FormBuilder) {
     this.armorsList = this.armorService.armorsList
   }
 
@@ -52,18 +60,28 @@ export class ArmorEditComponent implements OnInit {
     })
   }
 
-  static prepareArmorList(armorsForms: UntypedFormArray, characterArmors: Armor[]) {
-    for (let armor of characterArmors) {
+  static prepareArmorList(armorsForms: UntypedFormArray, characterArmors: CharacterArmor[]) {
+    for (let characterArmor of characterArmors) {
       armorsForms.push(
-        new UntypedFormControl(armor)
+        new FormGroup({
+          'id': new UntypedFormControl(characterArmor.id),
+          'armor': new UntypedFormControl(characterArmor.armor),
+          'armorBodyLocalizations': new UntypedFormControl(characterArmor.armorBodyLocalizations),
+          'armorPoints': new UntypedFormControl(characterArmor.armorBodyLocalizations[0].armorPoints),
+          'duration': new UntypedFormControl(characterArmor.duration)
+        })
       )
     }
   }
 
   onAddArmor() {
-    (<UntypedFormArray>this.editCharacterForm.get('armors')).push(
-      new UntypedFormControl(null),
-    )
+    (<UntypedFormArray>this.editCharacterForm.get('armors')).push(this.fb.group({
+      'id': [null],
+      'armor': [null],
+      'armorBodyLocalizations': [null],
+      'armorPoints': [null],
+      'duration': [null]
+    }));
   }
 
   onDeleteArmor(index: number) {
@@ -76,5 +94,13 @@ export class ArmorEditComponent implements OnInit {
 
   get armors() {
     return <UntypedFormControl[]>(<UntypedFormArray>this.editCharacterForm.get('armors')).controls
+  }
+
+  onChangeArmor() {
+  }
+
+  isMagicalArmor(index: number): boolean {
+    const armor = (this.editCharacterForm.get('armors') as FormArray).at(index).value;
+    return armor.armor != null && armor.armor.armorType.name === 'MAGICAL';
   }
 }

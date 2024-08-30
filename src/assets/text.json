@@ -20,8 +20,10 @@
   "advantagesAndDisadvantagesLabel": "Zalety i Wady",
   "armorCategoryLabel": "Kategoria pancerza",
   "armorLabel": "Pancerz",
+  "armorLayerLabel": "Warstwa pancerza",
   "armorPointsLabel": "Punkty Pancerza",
   "armorsLabel": "Pancerze",
+  "armorTypeLabel": "Typ pancerza",
   "availabilityLabel": "Dostępność",
   "bodyLabel": "Ciało",
   "categoryLabel": "Kategoria",
@@ -48,6 +50,8 @@
   "descriptionLabel": "Opis",
   "destroyArmor": "Pancerz jest niszczony",
   "destroyArmorPoints": "Punkty zniszczenia pancerza",
+  "durationLabel": "Czas trwania",
+  "editArmorPointsLabel": "Edytuj Punkty Pancerza",
   "editCharacterLabel": "Edytuj Postać",
   "editLabel": "Edytuj",
   "encumbranceLabel": "Obc",
@@ -98,6 +102,7 @@
   "rightHandLabel": "Prawa",
   "rollForLabel": "Rzut dla:",
   "rollLabel": "Rzut:",
+  "roundsLabel": "rundy",
   "saveLabel": "Zapisz",
   "shieldLabel": "Tarcza",
   "skillsLabel": "Umiejętności",
@@ -3326,7 +3331,21 @@
       "nameTranslation": "Inne"
     }
   ],
-  "armorPenalty": [
+  "armorType": [
+    {
+      "name": "NON_METAL",
+      "nameTranslation": "Niemetalowy"
+    },
+    {
+      "name": "METAL",
+      "nameTranslation": "Metalowy"
+    },
+    {
+      "name": "MAGICAL",
+      "nameTranslation": "Magiczny"
+    }
+  ],
+  "armorPenalties": [
     {
       "name": "MINUS_TEN_PERCEPTION",
       "nameTranslation": "-10 do Percepcji"
@@ -3340,7 +3359,7 @@
       "nameTranslation": "-20 do Percepcji"
     }
   ],
-  "armorQuality": [
+  "armorQualities": [
     {
       "name": "FLEXIBLE",
       "nameTranslation": "Giętki",

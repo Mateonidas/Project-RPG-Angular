@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>
+  <span>{{ text.getText().editArmorPointsLabel }}</span>
+</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content>
+    <ng-container formArrayName="items">
+      <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i" style="margin-bottom: 15px;">
+        <mat-form-field appearance="fill">
+          <mat-label>{{ item.get('bodyLocalization.nameTranslation')?.value }}</mat-label>
+          <input matInput type="number" formControlName="armorPoints">
+        </mat-form-field>
+      </div>
+    </ng-container>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" type="submit">Zapisz</button>
+  </div>
+</form>

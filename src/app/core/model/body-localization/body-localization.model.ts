@@ -25,15 +25,15 @@ export class BodyLocalization extends Model {
 export class BodyLocalizationList extends ListModel {
 
   public static list: BodyLocalization[] = [
-    new BodyLocalization('HEAD', TextResourceService.getBodyLocalizationNameTranslation('HEAD').nameTranslation),
-    new BodyLocalization('RIGHT_ARM',  TextResourceService.getBodyLocalizationNameTranslation('RIGHT_ARM').nameTranslation),
-    new BodyLocalization('LEFT_ARM',  TextResourceService.getBodyLocalizationNameTranslation('LEFT_ARM').nameTranslation),
-    new BodyLocalization('BODY',  TextResourceService.getBodyLocalizationNameTranslation('BODY').nameTranslation),
-    new BodyLocalization('RIGHT_LEG',  TextResourceService.getBodyLocalizationNameTranslation('RIGHT_LEG').nameTranslation),
-    new BodyLocalization('LEFT_LEG',  TextResourceService.getBodyLocalizationNameTranslation('LEFT_LEG').nameTranslation),
+    new BodyLocalization('HEAD', TextResourceService.getTranslation("bodyLocalizations", 'HEAD').nameTranslation),
+    new BodyLocalization('RIGHT_ARM', TextResourceService.getTranslation("bodyLocalizations", 'RIGHT_ARM').nameTranslation),
+    new BodyLocalization('LEFT_ARM', TextResourceService.getTranslation("bodyLocalizations", 'LEFT_ARM').nameTranslation),
+    new BodyLocalization('BODY', TextResourceService.getTranslation("bodyLocalizations", 'BODY').nameTranslation),
+    new BodyLocalization('RIGHT_LEG', TextResourceService.getTranslation("bodyLocalizations", 'RIGHT_LEG').nameTranslation),
+    new BodyLocalization('LEFT_LEG', TextResourceService.getTranslation("bodyLocalizations", 'LEFT_LEG').nameTranslation),
   ];
 
-  static get head(){
+  static get head() {
     return <BodyLocalization>BodyLocalizationList.getListItemByName('HEAD');
   }
 

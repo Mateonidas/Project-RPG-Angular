@@ -26,7 +26,7 @@ export class AvailabilityService {
 
   private prepareAvailabilityListTranslation(data: Model[]) {
     for (const element of data) {
-      element.nameTranslation = TextResourceService.getAvailabilityNameTranslation(element.name).nameTranslation;
+      element.nameTranslation = TextResourceService.getTranslation("availability", element.name).nameTranslation;
     }
   }
 }

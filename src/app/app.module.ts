@@ -80,6 +80,7 @@ import {SelectListComponent} from './shared/components/edit-form-components/sele
 import { TalentAndTraitListComponent } from './features/list-of-elements/talent-and-trait-list/talent-and-trait-list.component';
 import { ListFilterComponent } from './shared/components/list-filter/list-filter.component';
 import { WeaponGroupTableComponent } from './features/list-of-elements/weapon-list/weapon-group-item-list/weapon-group-table/weapon-group-table.component';
+import { EditArmorPointsWindowComponent } from './shared/components/dialog-window/edit-armor-points-window/edit-armor-points-window.component';
 
 @NgModule({
   declarations: [
@@ -139,6 +140,7 @@ import { WeaponGroupTableComponent } from './features/list-of-elements/weapon-li
     TalentAndTraitListComponent,
     ListFilterComponent,
     WeaponGroupTableComponent,
+    EditArmorPointsWindowComponent,
   ],
   imports: [
     BrowserModule,

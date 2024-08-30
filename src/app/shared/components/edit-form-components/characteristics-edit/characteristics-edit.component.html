@@ -1,13 +1,14 @@
 <div fxLayout="row" class="details-row" [formGroup]="editCharacterForm">
   <div fxFlex="100" formArrayName="characteristics">
-    <h4>{{text.getText().characteristicsLabel}}</h4>
+    <h4>{{ text.getText().characteristicsLabel }}</h4>
     <table mat-table [dataSource]="[characteristics]" class="mat-elevation-z8">
       <ng-container matColumnDef="{{column}}" *ngFor="let column of characteristicsColumns; let i=index">
         <th mat-header-cell
-            *matHeaderCellDef>{{text.getCharacteristicNameTranslation(column).nameTranslation}}</th>
+            *matHeaderCellDef>{{ text.getTranslation("characteristics", column).nameTranslation }}
+        </th>
         <td mat-cell *matCellDef="let element" [formGroupName]="i">
           <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>{{text.getText().valueLabel}}</mat-label>
+            <mat-label>{{ text.getText().valueLabel }}</mat-label>
             <input matInput type="number" formControlName="value">
           </mat-form-field>
         </td>

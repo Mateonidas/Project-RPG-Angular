@@ -46,8 +46,8 @@
           <th mat-header-cell *matHeaderCellDef>{{text.getText().localizationLabel}}</th>
           <td mat-cell *matCellDef="let element">
             <ul>
-              <li *ngFor="let localization of element.armorBodyLocalizations">
-                {{localization.bodyLocalization.nameTranslation}}
+              <li *ngFor="let localization of element.bodyLocalizations">
+                {{localization.nameTranslation}}
               </li>
             </ul>
           </td>
@@ -55,11 +55,7 @@
         <ng-container matColumnDef="armorPoints">
           <th mat-header-cell *matHeaderCellDef>{{text.getText().armorPointsLabel}}</th>
           <td mat-cell *matCellDef="let element">
-            <ul>
-              <li *ngFor="let localization of element.armorBodyLocalizations">
-                {{localization.armorPoints}}
-              </li>
-            </ul>
+            <span>{{element.armorPoints}}</span>
           </td>
         </ng-container>
         <ng-container matColumnDef="penalties">

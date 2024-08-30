@@ -1,37 +1,49 @@
 <h1 mat-dialog-title>
-  <span *ngIf="armor.nameTranslation != undefined">{{text.getText().modificationLabel}} {{armor.nameTranslation}}</span>
-  <span *ngIf="armor.nameTranslation == undefined">{{text.getText().addArmorLabel}} {{armor.nameTranslation}}</span>
+  <span
+    *ngIf="armor.nameTranslation != undefined">{{ text.getText().modificationLabel }} {{ armor.nameTranslation }}</span>
+  <span *ngIf="armor.nameTranslation == undefined">{{ text.getText().addArmorLabel }} {{ armor.nameTranslation }}</span>
 </h1>
 <form [formGroup]="form" (ngSubmit)="onSave()">
   <div mat-dialog-content>
 
     <div fxLayout="row">
       <mat-form-field appearance="fill">
-        <mat-label>{{text.getText().nameLabel}}</mat-label>
+        <mat-label>{{ text.getText().nameLabel }}</mat-label>
         <input matInput formControlName="name" required>
         <mat-error *ngIf="form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)">
-          {{text.getText().fieldIsRequiresLabel}}
+          {{ text.getText().fieldIsRequiresLabel }}
         </mat-error>
       </mat-form-field>
     </div>
 
     <div fxLayout="row">
       <mat-form-field appearance="fill">
-        <mat-label>{{text.getText().nameTranslationLabel}}</mat-label>
+        <mat-label>{{ text.getText().nameTranslationLabel }}</mat-label>
         <input matInput formControlName="nameTranslation" required>
         <mat-error
           *ngIf="form.get('nameTranslation')?.invalid && (form.get('nameTranslation')?.dirty || form.get('nameTranslation')?.touched)">
-          {{text.getText().fieldIsRequiresLabel}}
+          {{ text.getText().fieldIsRequiresLabel }}
         </mat-error>
       </mat-form-field>
     </div>
 
     <div fxLayout="row">
       <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
-        <mat-label>{{text.getText().armorCategoryLabel}}</mat-label>
+        <mat-label>{{ text.getText().armorCategoryLabel }}</mat-label>
         <mat-select formControlName="armorCategory" [compareWith]="compareModels">
           <mat-option *ngFor="let armorCategory of armorService.armorCategoriesList" [value]="armorCategory">
-            {{armorCategory.nameTranslation}}
+            {{ armorCategory.nameTranslation }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row">
+      <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+        <mat-label>{{ text.getText().armorTypeLabel }}</mat-label>
+        <mat-select formControlName="armorType" [compareWith]="compareModels">
+          <mat-option *ngFor="let armorType of armorService.armorTypesList" [value]="armorType">
+            {{ armorType.nameTranslation }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -39,24 +51,38 @@
 
     <div fxLayout="row">
       <mat-form-field appearance="fill">
-        <mat-label>{{text.getText().priceLabel}}</mat-label>
+        <mat-label>{{ text.getText().armorLayerLabel }}</mat-label>
+        <input matInput type="number" formControlName="layer">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row">
+      <mat-form-field appearance="fill">
+        <mat-label>{{ text.getText().armorPointsLabel }}</mat-label>
+        <input matInput type="number" formControlName="armorPoints">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row">
+      <mat-form-field appearance="fill">
+        <mat-label>{{ text.getText().priceLabel }}</mat-label>
         <input matInput formControlName="price">
       </mat-form-field>
     </div>
 
     <div fxLayout="row">
       <mat-form-field appearance="fill">
-        <mat-label>{{text.getText().encumbranceLabel}}</mat-label>
+        <mat-label>{{ text.getText().encumbranceLabel }}</mat-label>
         <input matInput type="number" formControlName="encumbrance">
       </mat-form-field>
     </div>
 
     <div fxLayout="row">
       <mat-form-field appearance="fill" class="example-full-width">
-        <mat-label>{{text.getText().availabilityLabel}}</mat-label>
-        <mat-select formControlName="availability">
+        <mat-label>{{ text.getText().availabilityLabel }}</mat-label>
+        <mat-select formControlName="availability" [compareWith]="compareModels">
           <mat-option *ngFor="let availability of availabilityService.availabilityList" [value]="availability">
-            {{availability.nameTranslation}}
+            {{ availability.nameTranslation }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -64,40 +90,29 @@
 
     <hr>
     <div fxLayout="row">
-      <div formArrayName="armorBodyLocalizations" fxFlex="100">
+      <div formArrayName="bodyLocalizations" fxFlex="100">
         <div fxLayout="row" fxLayoutGap="20"
-             *ngFor="let armorBodyLocalizationControl of armorBodyLocalizations; let i = index"
+             *ngFor="let bodyLocalizationControl of bodyLocalizations; let i = index"
              [formGroupName]="i">
           <div fxFlex="50">
             <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>{{text.getText().localizationNameLabel}}</mat-label>
-              <mat-select formControlName="bodyLocalization" [compareWith]="compareModels">
+              <mat-label>{{ text.getText().localizationNameLabel }}</mat-label>
+              <mat-select [formControl]="bodyLocalizationControl" [compareWith]="compareModels">
                 <mat-option *ngFor="let bodyLocalization of bodyLocalizationService.bodyLocalizationsList"
                             [value]="bodyLocalization">
-                  {{bodyLocalization.nameTranslation}}
+                  {{ bodyLocalization.nameTranslation }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
-          <div fxFlex="30">
-            <mat-form-field appearance="fill">
-              <mat-label>{{text.getText().armorPointsLabel}}</mat-label>
-              <input matInput type="number" formControlName="armorPoints"
-                     (keyup)="onSetBodyLocalizations($event, i)" required>
-              <mat-error
-                *ngIf="form.get('armorPoints')?.invalid && (form.get('armorPoints')?.dirty || form.get('armorPoints')?.touched)">
-                {{text.getText().fieldIsRequiresLabel}}
-              </mat-error>
-            </mat-form-field>
-          </div>
           <div fxFlex="10">
-            <button mat-mini-fab color="warn" type="button" (click)="onDeleteArmorBodyLocalization(i)">X</button>
+            <button mat-mini-fab color="warn" type="button" (click)="onDeleteBodyLocalization(i)">X</button>
           </div>
         </div>
         <div fxLayout="row">
           <div fxFlex="100">
             <button mat-raised-button color="primary" type="button" (click)="onAddBodyLocalization()">
-              {{text.getText().addLocalizationLabel}}
+              {{ text.getText().addLocalizationLabel }}
             </button>
           </div>
         </div>
@@ -111,10 +126,10 @@
              [formGroupName]="i">
           <div fxFlex="50">
             <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>{{text.getText().qualityNameLabel}}</mat-label>
+              <mat-label>{{ text.getText().penaltiesLabel }}</mat-label>
               <mat-select [formControl]="armorPenaltyControl" [compareWith]="compareModels">
                 <mat-option *ngFor="let armorPenalty of armorService.armorPenaltiesList" [value]="armorPenalty">
-                  {{armorPenalty.nameTranslation}}
+                  {{ armorPenalty.nameTranslation }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -126,7 +141,7 @@
         <div fxLayout="row">
           <div fxFlex="100">
             <button mat-raised-button color="primary" type="button" (click)="onAddArmorPenalty()">
-              {{text.getText().addPenaltyLabel}}
+              {{ text.getText().addPenaltyLabel }}
             </button>
           </div>
         </div>
@@ -140,10 +155,10 @@
              [formGroupName]="i">
           <div fxFlex="50">
             <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>{{text.getText().qualityNameLabel}}</mat-label>
+              <mat-label>{{ text.getText().qualityNameLabel }}</mat-label>
               <mat-select [formControl]="armorQualityControl" [compareWith]="compareModels">
                 <mat-option *ngFor="let armorQuality of armorService.armorQualitiesList" [value]="armorQuality">
-                  {{armorQuality.nameTranslation}}
+                  {{ armorQuality.nameTranslation }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -155,7 +170,7 @@
         <div fxLayout="row">
           <div fxFlex="100">
             <button mat-raised-button color="primary" type="button" (click)="onAddArmorQuality()">
-              {{text.getText().addArmorQualityLabel}}
+              {{ text.getText().addArmorQualityLabel }}
             </button>
           </div>
         </div>
@@ -164,7 +179,7 @@
   </div>
 
   <div mat-dialog-actions>
-    <button mat-raised-button color="primary" type="submit" (click)="onSave()">{{text.getText().saveLabel}}</button>
+    <button mat-raised-button color="primary" type="submit" (click)="onSave()">{{ text.getText().saveLabel }}</button>
   </div>
 </form>
 

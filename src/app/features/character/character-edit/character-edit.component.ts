@@ -5,7 +5,6 @@ import {CharacterService} from "../../../core/services/character-service/charact
 import {Character} from "../../../core/model/character/character.model"
 import {CharacterFormArraysWrapper} from "../../../core/model/character/character-form-arrays-wrapper.model"
 import {CharacterCharacteristic} from "../../../core/model/characteristic/character-characteristic.model"
-import {Armor} from "../../../core/model/armor/armor.model"
 import {CharacterWeapon} from "../../../core/model/weapon/character-weapon.model"
 import {CharacterBodyLocalization} from "../../../core/model/body-localization/character-body-localization.model"
 import {BodyLocalizationList} from "../../../core/model/body-localization/body-localization.model"
@@ -17,10 +16,14 @@ import {Note} from "../../../core/model/note/note.model";
 import {
   CharacteristicsEditComponent
 } from "../../../shared/components/edit-form-components/characteristics-edit/characteristics-edit.component";
-import {WeaponsEditComponent} from "../../../shared/components/edit-form-components/weapons-edit/weapons-edit.component";
+import {
+  WeaponsEditComponent
+} from "../../../shared/components/edit-form-components/weapons-edit/weapons-edit.component";
 import {ArmorEditComponent} from "../../../shared/components/edit-form-components/armor-edit/armor-edit.component";
 import {NotesEditComponent} from "../../../shared/components/edit-form-components/notes-edit/notes-edit.component";
-import {ConditionsEditComponent} from "../../../shared/components/edit-form-components/conditions-edit/conditions-edit.component";
+import {
+  ConditionsEditComponent
+} from "../../../shared/components/edit-form-components/conditions-edit/conditions-edit.component";
 import {SpellsEditComponent} from "../../../shared/components/edit-form-components/spells-edit/spells-edit.component";
 import {SkillService} from "../../../core/services/skill-service/skill.service";
 import {TalentService} from "../../../core/services/talent-service/talent.service";
@@ -30,6 +33,8 @@ import {ValueModel} from "../../../core/model/value-model";
 import {Talent} from "../../../core/model/talent/talent.model";
 import {Trait} from "../../../core/model/trait/trait.model";
 import {Model} from "../../../core/model/model";
+import {CharacterArmor} from "../../../core/model/armor/character-armor.model";
+import {ArmorBodyLocalization} from "../../../core/model/body-localization/armor-body-localization.model";
 
 @Component({
   selector: 'app-character-edit',
@@ -139,6 +144,7 @@ export class CharacterEditComponent implements OnInit {
   }
 
   createCharacter() {
+    const id = <number>this.editCharacterForm.value.characterId
     const name = this.editCharacterForm.value.name
     const description = this.editCharacterForm.value.description
     const groupType = this.editCharacterForm.value.groupType
@@ -150,7 +156,7 @@ export class CharacterEditComponent implements OnInit {
     const traits = <ValueModel<Trait>[]>this.editCharacterForm.value.traits
     const isRightHanded = this.editCharacterForm.value.isRightHanded
     const weapons = <CharacterWeapon[]>this.editCharacterForm.value.weapons
-    const armors = <Armor[]>this.editCharacterForm.value.armors
+    const armors = <CharacterArmor[]>this.editCharacterForm.value.armors
     const conditions = <CharacterCondition[]>this.editCharacterForm.value.conditions
     const notes = <Note[]>this.editCharacterForm.value.notes
     const spells = <Spell[]>this.editCharacterForm.value.spells
@@ -173,9 +179,29 @@ export class CharacterEditComponent implements OnInit {
       spells
     )
 
+    character.id = id
+    this.prepareCharacterArmor(character)
     this.prepareCharacterBodyLocalizations(character)
 
     return character
+  }
+
+  protected prepareCharacterArmor(character: Character) {
+    for (let characterArmor of character.armors) {
+      if (!characterArmor.id || characterArmor.id === 0 || characterArmor.armor.armorType.name === 'MAGICAL') {
+        characterArmor.armorBodyLocalizations = [];
+        for (let bodyLocalization of characterArmor.armor.bodyLocalizations) {
+          let armorBodyLocalization = new ArmorBodyLocalization()
+          armorBodyLocalization.bodyLocalization = bodyLocalization;
+          if (characterArmor.armor.armorType.name === 'MAGICAL') {
+            armorBodyLocalization.armorPoints = characterArmor.armorPoints!;
+          } else {
+            armorBodyLocalization.armorPoints = characterArmor.armor.armorPoints;
+          }
+          characterArmor.armorBodyLocalizations.push(armorBodyLocalization);
+        }
+      }
+    }
   }
 
   protected prepareCharacterBodyLocalizations(character: Character) {
@@ -188,8 +214,8 @@ export class CharacterEditComponent implements OnInit {
     character.bodyLocalizations = []
     character.bodyLocalizations.push(head, leftArm, rightArm, body, leftLeg, rightLeg)
 
-    for (let armor of character.armors) {
-      for (let armorBodyLocalization of armor.armorBodyLocalizations) {
+    for (let characterArmor of character.armors) {
+      for (let armorBodyLocalization of characterArmor.armorBodyLocalizations) {
         for (let characterBodyLocalization of character.bodyLocalizations) {
           if (armorBodyLocalization.bodyLocalization.name === characterBodyLocalization.bodyLocalization.name) {
             characterBodyLocalization.armorPoints += armorBodyLocalization.armorPoints
@@ -294,7 +320,7 @@ export class CharacterEditComponent implements OnInit {
   }
 
   getCharacter() {
-    return <Character>this.characterService.getCharacter(this.id)
+    return this.characterService.getCharacter(this.id)
   }
 
   get characteristics() {
