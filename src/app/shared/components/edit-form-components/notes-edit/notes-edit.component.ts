@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {FormGroup, UntypedFormArray, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup, UntypedFormArray} from "@angular/forms";
 import {TextResourceService} from "../../../../core/services/text-resource-service/text-resource.service";
 import {Note} from "../../../../core/model/note/note.model";
 
@@ -12,12 +12,16 @@ export class NotesEditComponent {
   @Input() editCharacterForm!: FormGroup
   text = TextResourceService
 
-  static prepareNotesList(notes: UntypedFormArray, notesList: Note[]) {
+  constructor(public formBuilder: FormBuilder) {
+  }
+
+  static prepareNotesList(notes: FormArray, notesList: Note[]) {
+    const formBuilder = new FormBuilder();
     for (let note of notesList) {
       notes.push(
-        new UntypedFormGroup({
-          'id': new UntypedFormControl(note.id),
-          'note': new UntypedFormControl(note.note),
+        formBuilder.group({
+          'id': [note.id],
+          'note': [note.note],
         })
       )
     }
@@ -25,9 +29,9 @@ export class NotesEditComponent {
 
   onAddNote() {
     (<UntypedFormArray>this.editCharacterForm.get('notes')).push(
-      new UntypedFormGroup({
-        'id': new UntypedFormControl(null),
-        'note': new UntypedFormControl(null),
+      this.formBuilder.group({
+        'id': [null],
+        'note': [null],
       })
     )
   }

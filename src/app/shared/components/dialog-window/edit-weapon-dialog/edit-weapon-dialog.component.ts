@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Weapon} from "../../../../core/model/weapon/weapon.model";
-import {UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {FormBuilder, UntypedFormArray, UntypedFormGroup, Validators} from "@angular/forms";
 import {Model} from "../../../../core/model/model";
 import {WeaponService} from "../../../../core/services/weapon-service/weapon.service";
 import {TextResourceService} from "../../../../core/services/text-resource-service/text-resource.service";
@@ -22,7 +22,8 @@ export class EditWeaponDialog implements OnInit {
   constructor(public dialogRef: MatDialogRef<EditWeaponDialog>,
               @Inject(MAT_DIALOG_DATA) public weapon: Weapon,
               public weaponService: WeaponService,
-              public availabilityService: AvailabilityService) {
+              public availabilityService: AvailabilityService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -31,20 +32,20 @@ export class EditWeaponDialog implements OnInit {
 
   private initForm() {
     Object.assign(this.modifiedWeapon, this.weapon);
-    this.form = new UntypedFormGroup({
-      'name': new UntypedFormControl(this.modifiedWeapon.name ?? null, Validators.required),
-      'nameTranslation': new UntypedFormControl(this.modifiedWeapon.nameTranslation ?? null, Validators.required),
-      'weaponType': new UntypedFormControl(this.modifiedWeapon.weaponType ?? this.weaponService.weaponTypesList[0]),
-      'weaponGroup': new UntypedFormControl(this.modifiedWeapon.weaponGroup ?? this.weaponService.weaponGroupsList[0]),
-      'weaponReach': new UntypedFormControl(this.modifiedWeapon.weaponReach ?? this.weaponService.weaponReachesList[0]),
-      'weaponRange': new UntypedFormControl(this.modifiedWeapon.weaponRange ?? null),
-      'isUsingStrength': new UntypedFormControl(this.modifiedWeapon.isUsingStrength ?? null),
-      'isUsingStrengthInRange': new UntypedFormControl(this.modifiedWeapon.isUsingStrengthInRange ?? null),
-      'damage': new UntypedFormControl(this.modifiedWeapon.damage ?? null, Validators.required),
+    this.form = this.formBuilder.group({
+      'name': [this.modifiedWeapon.name ?? null, Validators.required],
+      'nameTranslation': [this.modifiedWeapon.nameTranslation ?? null, Validators.required],
+      'weaponType': [this.modifiedWeapon.weaponType ?? this.weaponService.weaponTypesList[0]],
+      'weaponGroup': [this.modifiedWeapon.weaponGroup ?? this.weaponService.weaponGroupsList[0]],
+      'weaponReach': [this.modifiedWeapon.weaponReach ?? this.weaponService.weaponReachesList[0]],
+      'weaponRange': [this.modifiedWeapon.weaponRange ?? null],
+      'isUsingStrength': [this.modifiedWeapon.isUsingStrength ?? null],
+      'isUsingStrengthInRange': [this.modifiedWeapon.isUsingStrengthInRange ?? null],
+      'damage': [this.modifiedWeapon.damage ?? null, Validators.required],
       'weaponQualities': this.prepareWeaponQualitiesList(this.weapon.weaponQualities ?? []),
-      'price': new UntypedFormControl(this.modifiedWeapon.price ?? null),
-      'encumbrance': new UntypedFormControl(this.modifiedWeapon.encumbrance ?? null),
-      'availability': new UntypedFormControl(this.modifiedWeapon.availability ?? this.availabilityService.availabilityList[0]),
+      'price': [this.modifiedWeapon.price ?? null],
+      'encumbrance': [this.modifiedWeapon.encumbrance ?? null],
+      'availability': [this.modifiedWeapon.availability ?? this.availabilityService.availabilityList[0]],
     });
   }
 
@@ -53,9 +54,9 @@ export class EditWeaponDialog implements OnInit {
 
     for (let weaponQuality of weaponQualitiesList) {
       weaponQualities.push(
-        new UntypedFormGroup({
-          'quality': new UntypedFormControl(weaponQuality.weaponQuality),
-          'value': new UntypedFormControl(weaponQuality.value)
+        this.formBuilder.group({
+          'quality': [weaponQuality.weaponQuality],
+          'value': [weaponQuality.value]
         })
       )
     }
@@ -65,9 +66,9 @@ export class EditWeaponDialog implements OnInit {
 
   onAddWeaponQuality() {
     (<UntypedFormArray>this.form.get('weaponQualities')).push(
-      new UntypedFormGroup({
-        'quality': new UntypedFormControl(null),
-        'value': new UntypedFormControl(0)
+      this.formBuilder.group({
+        'quality': [null],
+        'value': [0]
       })
     );
   }

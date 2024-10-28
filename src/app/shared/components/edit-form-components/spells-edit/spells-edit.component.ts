@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormGroup, UntypedFormArray, UntypedFormControl} from "@angular/forms";
+import {FormBuilder, FormGroup, UntypedFormArray, UntypedFormControl} from "@angular/forms";
 import {TextResourceService} from "../../../../core/services/text-resource-service/text-resource.service";
 import {Model} from "../../../../core/model/model";
 import {SpellGroup} from "../../../../core/model/spell/spell-group.model";
@@ -11,23 +11,25 @@ import {Spell} from "../../../../core/model/spell/spell.model";
   templateUrl: './spells-edit.component.html',
   styleUrls: ['./spells-edit.component.css']
 })
-export class SpellsEditComponent implements OnInit{
+export class SpellsEditComponent implements OnInit {
   @Input() editCharacterForm!: FormGroup
   text = TextResourceService
 
   spellGroups: SpellGroup[] = []
 
-  constructor(public spellService: SpellService) {
+  constructor(public spellService: SpellService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
-   this.spellGroups = this.spellService.spellGroups
+    this.spellGroups = this.spellService.spellGroups
   }
 
   static prepareSpellsList(spells: UntypedFormArray, spellsList: Spell[]) {
+    const formBuilder = new FormBuilder();
     for (let spell of spellsList) {
       spells.push(
-        new UntypedFormControl(spell)
+        formBuilder.control(spell)
       )
     }
   }
@@ -38,7 +40,7 @@ export class SpellsEditComponent implements OnInit{
 
   onAddSpell() {
     (<UntypedFormArray>this.editCharacterForm.get('spells')).push(
-      new UntypedFormControl(null),
+      this.formBuilder.control(null),
     )
   }
 

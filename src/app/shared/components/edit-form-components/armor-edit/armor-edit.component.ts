@@ -1,11 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormGroup,
-  UntypedFormArray,
-  UntypedFormControl
-} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup, UntypedFormArray, UntypedFormControl} from "@angular/forms";
 import {TextResourceService} from "../../../../core/services/text-resource-service/text-resource.service";
 import {Model} from "../../../../core/model/model";
 import {Armor} from "../../../../core/model/armor/armor.model";
@@ -27,7 +21,7 @@ export class ArmorEditComponent implements OnInit {
 
   constructor(public armorService: ArmorService,
               public dialog: MatDialog,
-              private fb: FormBuilder) {
+              private formBuilder: FormBuilder) {
     this.armorsList = this.armorService.armorsList
   }
 
@@ -36,14 +30,15 @@ export class ArmorEditComponent implements OnInit {
   }
 
   async onEditArmor(index: number) {
-    await this.createEditArmorDialogWindow(index)
+    const characterArmor = (this.editCharacterForm.get('armors') as FormArray).at(index).value;
+    this.createEditArmorDialogWindow(characterArmor.armor.id)
     this.armorsList = this.armorService.armorsList
   }
 
   createEditArmorDialogWindow(index: number) {
     const dialogRef = this.dialog.open(EditArmorDialog, {
       width: '30%',
-      data: (<UntypedFormControl>this.armors[index]).value,
+      data: (<UntypedFormControl>this.armors[index]).value.armor,
     })
 
     dialogRef.afterClosed().subscribe(armor => {
@@ -61,21 +56,20 @@ export class ArmorEditComponent implements OnInit {
   }
 
   static prepareArmorList(armorsForms: UntypedFormArray, characterArmors: CharacterArmor[]) {
+    const formBuilder = new FormBuilder()
     for (let characterArmor of characterArmors) {
-      armorsForms.push(
-        new FormGroup({
-          'id': new UntypedFormControl(characterArmor.id),
-          'armor': new UntypedFormControl(characterArmor.armor),
-          'armorBodyLocalizations': new UntypedFormControl(characterArmor.armorBodyLocalizations),
-          'armorPoints': new UntypedFormControl(characterArmor.armorBodyLocalizations[0].armorPoints),
-          'duration': new UntypedFormControl(characterArmor.duration)
-        })
-      )
+      armorsForms.push(formBuilder.group({
+        'id': [characterArmor.id],
+        'armor': [characterArmor.armor],
+        'armorBodyLocalizations': [characterArmor.armorBodyLocalizations],
+        'armorPoints': [characterArmor.armorBodyLocalizations[0].armorPoints],
+        'duration': [characterArmor.duration]
+      }));
     }
   }
 
   onAddArmor() {
-    (<UntypedFormArray>this.editCharacterForm.get('armors')).push(this.fb.group({
+    (<UntypedFormArray>this.editCharacterForm.get('armors')).push(this.formBuilder.group({
       'id': [null],
       'armor': [null],
       'armorBodyLocalizations': [null],

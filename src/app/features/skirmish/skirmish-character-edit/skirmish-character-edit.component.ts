@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {UntypedFormControl, UntypedFormGroup} from "@angular/forms";
+import {FormBuilder, UntypedFormBuilder} from "@angular/forms";
 import {SkirmishCharacterService} from "../../../core/services/skirmish-character-service/skirmish-character.service";
 import {SkirmishCharacter} from "../../../core/model/skirmish/skirmish-character.model";
 import {CharacterFormArraysWrapper} from "../../../core/model/character/character-form-arrays-wrapper.model";
@@ -32,8 +32,10 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
               public talentService: TalentService,
               public traitService: TraitService,
               public injuryService: InjuryService,
-              public dialog: MatDialog) {
-    super(router, route, characterService, skillService, talentService, traitService, injuryService, dialog);
+              public dialog: MatDialog,
+              protected formBuilder: FormBuilder,
+              protected untypedFormBuilder: UntypedFormBuilder) {
+    super(router, route, characterService, skillService, talentService, traitService, injuryService, dialog, formBuilder, untypedFormBuilder);
   }
 
   initForm() {
@@ -56,29 +58,29 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
 
   createEditSkirmishCharacterForm(skirmishCharacter: SkirmishCharacter, formArrays: CharacterFormArraysWrapper) {
     this.isDead = skirmishCharacter.isDead;
-    this.editCharacterForm = new UntypedFormGroup({
-      'characterId': new UntypedFormControl(skirmishCharacter.character.id),
-      'name': new UntypedFormControl(skirmishCharacter.character.name),
-      'description': new UntypedFormControl(skirmishCharacter.character.description),
-      'groupType': new UntypedFormControl(skirmishCharacter.character.groupType),
-      'group': new UntypedFormControl(skirmishCharacter.character.group),
-      'status': new UntypedFormControl(skirmishCharacter.character.status),
+    this.editCharacterForm = this.formBuilder.group({
+      'characterId': [skirmishCharacter.character.id],
+      'name': [skirmishCharacter.character.name],
+      'description': [skirmishCharacter.character.description],
+      'group': [skirmishCharacter.character.group],
+      'groupType': [skirmishCharacter.character.groupType],
+      'status': [skirmishCharacter.character.status],
       'characteristics': formArrays.characteristics,
       'skills': formArrays.skills,
       'talents': formArrays.talents,
       'traits': formArrays.traits,
-      'isRightHanded': new UntypedFormControl(this.isRightHanded),
-      'spells': formArrays.spells,
+      'isRightHanded': [this.isRightHanded],
       'weapons': formArrays.weapons,
       'armors': formArrays.armors,
       'injuries': formArrays.injuries,
-      'conditions': formArrays.conditions,
-      'currentWounds': new UntypedFormControl(skirmishCharacter.currentWounds),
-      'skirmishInitiative': new UntypedFormControl(skirmishCharacter.skirmishInitiative),
-      'advantage': new UntypedFormControl(skirmishCharacter.advantage),
       'notes': formArrays.notes,
-      'isDead': new UntypedFormControl(skirmishCharacter.isDead),
-      'sequenceNumber': new UntypedFormControl(skirmishCharacter.sequenceNumber)
+      'conditions': formArrays.conditions,
+      'spells': formArrays.spells,
+      'currentWounds': [skirmishCharacter.currentWounds],
+      'skirmishInitiative': [skirmishCharacter.skirmishInitiative],
+      'advantage': [skirmishCharacter.advantage],
+      'isDead': [skirmishCharacter.isDead],
+      'sequenceNumber': [skirmishCharacter.sequenceNumber]
     });
   }
 

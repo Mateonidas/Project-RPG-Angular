@@ -1,5 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AbstractControl, FormArray, FormGroup, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup
+} from "@angular/forms";
 import {TextResourceService} from "../../../../core/services/text-resource-service/text-resource.service";
 import {Model} from "../../../../core/model/model";
 import {Observable} from "rxjs";
@@ -19,6 +27,10 @@ export class SelectListComponent implements OnInit {
   @Input() additionalData?: any[];
   text = TextResourceService;
   filteredList: Observable<Model[]>[] = []
+
+  constructor(private formBuilder: FormBuilder,
+              private untypedFormBuilder: UntypedFormBuilder) {
+  }
 
   ngOnInit() {
     this.initializeFilteredList()
@@ -40,20 +52,21 @@ export class SelectListComponent implements OnInit {
     (this.editCharacterForm.get(this.formArrayName) as FormArray).push(this.createFormArray());
   }
 
-  createFormArray(): UntypedFormGroup {
-    const control = new UntypedFormControl('');
+  createFormArray(): FormGroup {
+    const control = this.untypedFormBuilder.control('');
     this.filteredList.push(control.valueChanges.pipe(
       startWith(''),
       map(value => (typeof value === 'string' ? value : value?.nameTranslation)),
       map(name => (name ? this._filter(name) : this.list.slice()))
     ));
-    let newFormGroup = new UntypedFormGroup({
-      'model': control,
-      'value': new UntypedFormControl(1)
-    })
 
-    if(this.formArrayName === 'injuries') {
-      newFormGroup.addControl('bodyLocalization', new UntypedFormControl(null))
+    const newFormGroup = this.formBuilder.group({});
+
+    newFormGroup.addControl('model', control)
+    newFormGroup.addControl('value', this.formBuilder.control(1));
+
+    if (this.formArrayName === 'injuries') {
+      newFormGroup.addControl('bodyLocalization', this.formBuilder.control(null));
     }
 
     return newFormGroup;

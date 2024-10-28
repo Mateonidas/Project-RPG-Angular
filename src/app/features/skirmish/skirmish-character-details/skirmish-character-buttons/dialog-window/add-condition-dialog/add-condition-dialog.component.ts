@@ -1,11 +1,13 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {SkirmishCharacter} from "../../../../../../core/model/skirmish/skirmish-character.model";
-import {SkirmishCharacterService} from "../../../../../../core/services/skirmish-character-service/skirmish-character.service";
+import {
+  SkirmishCharacterService
+} from "../../../../../../core/services/skirmish-character-service/skirmish-character.service";
 import {TextResourceService} from "../../../../../../core/services/text-resource-service/text-resource.service";
 import {ConditionService} from "../../../../../../core/services/condition-service/condition.service";
 import {Model} from "../../../../../../core/model/model";
-import {AbstractControl, FormArray, FormControl, FormGroup, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, UntypedFormGroup} from "@angular/forms";
 import {CharacterCondition} from "../../../../../../core/model/condition/character-condition.model";
 import {AddConditions} from "../../../../../../core/model/condition/add-conditions.model";
 
@@ -14,7 +16,7 @@ import {AddConditions} from "../../../../../../core/model/condition/add-conditio
   templateUrl: './add-condition-dialog.component.html',
   styleUrls: ['./add-condition-dialog.component.css']
 })
-export class AddConditionDialogComponent implements OnInit{
+export class AddConditionDialogComponent implements OnInit {
 
   skirmishCharacters!: SkirmishCharacter[]
   text = TextResourceService;
@@ -24,16 +26,17 @@ export class AddConditionDialogComponent implements OnInit{
   constructor(@Inject(MAT_DIALOG_DATA) public skirmishCharacter: SkirmishCharacter,
               private skirmishCharacterService: SkirmishCharacterService,
               public conditionService: ConditionService,
-              public dialogRef: MatDialogRef<AddConditionDialogComponent>) {
+              public dialogRef: MatDialogRef<AddConditionDialogComponent>,
+              public formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
     this.skirmishCharacters = this.skirmishCharacterService.skirmishCharactersList
-    this.conditionsForm = new FormGroup({
-      'conditions': new FormArray([])
+    this.conditionsForm = this.formBuilder.group({
+      'conditions': this.formBuilder.array([])
     })
     this.skirmishCharacters.forEach(character => {
-      if(character.id === this.skirmishCharacter.id) {
+      if (character.id === this.skirmishCharacter.id) {
         this.conditionsForm.addControl(character.id.toString(), new FormControl(true))
       } else {
         this.conditionsForm.addControl(character.id.toString(), new FormControl(false))
@@ -44,6 +47,7 @@ export class AddConditionDialogComponent implements OnInit{
   compareModels(c1: Model, c2: Model): boolean {
     return c1 && c2 ? c1.name === c2.name : c1 === c2;
   }
+
   checkIfConditionHasCounter(conditionControl: AbstractControl) {
     if (conditionControl.value.condition.hasCounter != null && !conditionControl.value.condition.hasCounter) {
       (<UntypedFormGroup>conditionControl.get('counter')).disable();
@@ -63,10 +67,10 @@ export class AddConditionDialogComponent implements OnInit{
 
   onAddCondition() {
     (<FormArray>this.conditionsForm.get('conditions')).push(
-      new FormGroup({
-        'condition': new UntypedFormControl(null),
-        'value': new UntypedFormControl(1),
-        'counter': new UntypedFormControl({value: null, disabled: true})
+      this.formBuilder.group({
+        'condition': [null],
+        'value': [1],
+        'counter': [{value: null, disabled: true}]
       })
     )
   }

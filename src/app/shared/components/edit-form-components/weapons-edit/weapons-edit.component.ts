@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormGroup, UntypedFormArray, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, UntypedFormArray, UntypedFormControl} from "@angular/forms";
 import {TextResourceService} from "../../../../core/services/text-resource-service/text-resource.service";
 import {Model} from "../../../../core/model/model";
 import {WeaponGroup} from "../../../../core/model/weapon/weapons-group.model";
@@ -13,14 +13,15 @@ import {CharacterWeapon} from "../../../../core/model/weapon/character-weapon.mo
   templateUrl: './weapons-edit.component.html',
   styleUrls: ['./weapons-edit.component.css']
 })
-export class WeaponsEditComponent implements OnInit{
+export class WeaponsEditComponent implements OnInit {
   @Input() editCharacterForm!: FormGroup
   text = TextResourceService
 
   weaponGroups: WeaponGroup[] = []
 
   constructor(public weaponService: WeaponService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              public formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -56,23 +57,20 @@ export class WeaponsEditComponent implements OnInit{
     return c1 && c2 ? c1.name === c2.name : c1 === c2
   }
 
-  static prepareWeaponsList(weapons: UntypedFormArray, weaponsList: CharacterWeapon[]) {
-    for (let weapon of weaponsList) {
-      weapons.push(
-        new UntypedFormGroup({
-          'id': new UntypedFormControl(weapon.id),
-          'weapon': new UntypedFormControl(weapon.weapon),
-          'value': new UntypedFormControl(weapon.value)
-        })
-      )
+  static prepareWeaponsList(weapons: UntypedFormArray, characterWeapons: CharacterWeapon[]) {
+    const formBuilder = new FormBuilder();
+    for (let characterWeapon of characterWeapons) {
+      weapons.push(formBuilder.group({
+        'weapon': [characterWeapon.weapon],
+        'value': [characterWeapon.value]
+      }))
     }
   }
 
   onAddWeapon() {
-    (<UntypedFormArray>this.editCharacterForm.get('weapons')).push(
-      new UntypedFormGroup({
-        'weapon': new UntypedFormControl(null),
-        'value': new UntypedFormControl(1),
+    (<UntypedFormArray>this.editCharacterForm.get('weapons')).push(this.formBuilder.group({
+        'weapon': [null],
+        'value': [1]
       })
     )
   }

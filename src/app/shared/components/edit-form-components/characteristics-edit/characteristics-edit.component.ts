@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {TextResourceService} from "../../../../core/services/text-resource-service/text-resource.service";
-import {FormGroup, UntypedFormArray, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 import {CharacteristicsEnum} from "../../../utils/enums";
 import {CharacterCharacteristic} from "../../../../core/model/characteristic/character-characteristic.model";
 import {Model} from "../../../../core/model/model";
@@ -25,24 +25,27 @@ export class CharacteristicsEditComponent {
   }
 
   private static initEmptyCharacteristicsTable() {
+    const formBuilder = new FormBuilder();
+
     const characteristics: string[] = Object.values(CharacteristicsEnum)
       .filter(value => typeof value === 'string') as string[];
 
-    return new UntypedFormArray(characteristics.map(characteristic => (
-      new UntypedFormGroup({
-        'id': new UntypedFormControl(null),
-        'characteristic': new UntypedFormControl(this.prepareCharacteristic(characteristic)),
-        'value': new UntypedFormControl(null)
+    return formBuilder.array(characteristics.map(characteristic => (
+      formBuilder.group({
+        'id': [null],
+        'characteristic': [this.prepareCharacteristic(characteristic)],
+        'value': [null]
       })
     )))
   }
 
   private static initFilledCharacteristicsTable(characteristics: CharacterCharacteristic[]) {
-    return new UntypedFormArray(characteristics.map(characteristic => (
-      new UntypedFormGroup({
-        'id': new UntypedFormControl(characteristic.characteristic.id),
-        'characteristic': new UntypedFormControl(this.prepareCharacteristic(characteristic.characteristic.name)),
-        'value': new UntypedFormControl(characteristic.value)
+    const formBuilder = new FormBuilder();
+    return formBuilder.array(characteristics.map(characteristic => (
+      formBuilder.group({
+        'id': [characteristic.characteristic.id],
+        'characteristic': [this.prepareCharacteristic(characteristic.characteristic.name)],
+        'value': [characteristic.value]
       })
     )))
   }
@@ -52,7 +55,7 @@ export class CharacteristicsEditComponent {
   }
 
   get characteristics() {
-    return (<UntypedFormArray>this.editCharacterForm.get('characteristics')).controls
+    return (<FormArray>this.editCharacterForm.get('characteristics')).controls
   }
 
   protected fillCharacteristicsColumn() {

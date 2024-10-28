@@ -1,6 +1,14 @@
 import {Component, Input} from '@angular/core';
 import {TextResourceService} from "../../../../core/services/text-resource-service/text-resource.service";
-import {AbstractControl, FormGroup, UntypedFormArray, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup
+} from "@angular/forms";
 import {Model} from "../../../../core/model/model";
 import {ConditionService} from "../../../../core/services/condition-service/condition.service";
 import {CharacterCondition} from "../../../../core/model/condition/character-condition.model";
@@ -14,7 +22,8 @@ export class ConditionsEditComponent {
   @Input() editCharacterForm!: FormGroup
   text = TextResourceService
 
-  constructor(public conditionService: ConditionService,) {
+  constructor(public conditionService: ConditionService,
+              private formBuilder: FormBuilder) {
   }
 
   checkIfConditionHasCounter(conditionControl: AbstractControl) {
@@ -29,19 +38,21 @@ export class ConditionsEditComponent {
     return c1 && c2 ? c1.name === c2.name : c1 === c2
   }
 
-  static prepareConditionsList(conditions: UntypedFormArray, conditionsList: CharacterCondition[]) {
+  static prepareConditionsList(conditions: FormArray, conditionsList: CharacterCondition[]) {
+    const formBuilder = new FormBuilder();
+
     for (let characterCondition of conditionsList) {
 
-      let counter = new UntypedFormControl(characterCondition.counter)
+      let counter = formBuilder.control(characterCondition.counter)
       if (!characterCondition.condition.hasCounter) {
         counter.disable()
       }
 
       conditions.push(
-        new UntypedFormGroup({
-          'id': new UntypedFormControl(characterCondition.id),
-          'condition': new UntypedFormControl(characterCondition.condition),
-          'value': new UntypedFormControl(characterCondition.value),
+        formBuilder.group({
+          'id': [characterCondition.id],
+          'condition': [characterCondition.condition],
+          'value': [characterCondition.value],
           'counter': counter
         })
       )
@@ -50,10 +61,10 @@ export class ConditionsEditComponent {
 
   onAddCondition() {
     (<UntypedFormArray>this.editCharacterForm.get('conditions')).push(
-      new UntypedFormGroup({
-        'condition': new UntypedFormControl(null),
-        'value': new UntypedFormControl(1),
-        'counter': new UntypedFormControl({value: null, disabled: true})
+      this.formBuilder.group({
+        'condition': [null],
+        'value': [1],
+        'counter': [{value: null, disabled: true}]
       })
     )
   }

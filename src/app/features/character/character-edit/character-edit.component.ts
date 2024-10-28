@@ -1,6 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core'
 import {ActivatedRoute, Params, Router} from "@angular/router"
-import {FormArray, FormGroup, UntypedFormArray, UntypedFormControl, UntypedFormGroup} from "@angular/forms"
+import {FormArray, FormBuilder, FormControl, FormGroup, UntypedFormBuilder} from "@angular/forms"
 import {CharacterService} from "../../../core/services/character-service/character.service"
 import {Character} from "../../../core/model/character/character.model"
 import {CharacterFormArraysWrapper} from "../../../core/model/character/character-form-arrays-wrapper.model"
@@ -62,7 +62,9 @@ export class CharacterEditComponent implements OnInit {
               public talentService: TalentService,
               public traitService: TraitService,
               public injuryService: InjuryService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              protected formBuilder: FormBuilder,
+              protected untypedFormBuilder: UntypedFormBuilder) {
   }
 
   ngOnInit(): void {
@@ -104,17 +106,17 @@ export class CharacterEditComponent implements OnInit {
   }
 
   createEditCharacterForm(character: Character, formArrays: CharacterFormArraysWrapper) {
-    this.editCharacterForm = new UntypedFormGroup({
-      'name': new UntypedFormControl(character.name),
-      'description': new UntypedFormControl(character.description),
-      'group': new UntypedFormControl(character.group),
-      'groupType': new UntypedFormControl(character.groupType),
-      'status': new UntypedFormControl(character.status),
+    this.editCharacterForm = this.formBuilder.group({
+      'name': [character.name],
+      'description': [character.description],
+      'group': [character.group],
+      'groupType': [character.groupType],
+      'status': [character.status],
       'characteristics': formArrays.characteristics,
       'skills': formArrays.skills,
       'talents': formArrays.talents,
       'traits': formArrays.traits,
-      'isRightHanded': new UntypedFormControl(this.isRightHanded),
+      'isRightHanded': [this.isRightHanded],
       'weapons': formArrays.weapons,
       'armors': formArrays.armors,
       'injuries': formArrays.injuries,
@@ -265,10 +267,10 @@ export class CharacterEditComponent implements OnInit {
   private prepareSkillsList(skills: FormArray, skillsList: ValueModel<Model>[]) {
     for (let characterSkill of skillsList) {
       skills.push(
-        new UntypedFormGroup({
-          'id': new UntypedFormControl(characterSkill.id),
-          'model': new UntypedFormControl(characterSkill.model),
-          'value': new UntypedFormControl(characterSkill.value),
+        this.formBuilder.group({
+          'id': [characterSkill.id],
+          'model': [characterSkill.model],
+          'value': [characterSkill.value],
         })
       );
     }
@@ -277,42 +279,42 @@ export class CharacterEditComponent implements OnInit {
   private prepareTalentsList(talents: FormArray, talentsList: ValueModel<Talent>[]) {
     for (let characterTalent of talentsList) {
       talents.push(
-        new UntypedFormGroup({
-          'id': new UntypedFormControl(characterTalent.id),
-          'model': new UntypedFormControl(characterTalent.model),
-          'value': new UntypedFormControl(characterTalent.value),
+        this.formBuilder.group({
+          'id': [characterTalent.id],
+          'model': [characterTalent.model],
+          'value': [characterTalent.value],
         })
       );
     }
   }
 
-  private prepareTraitsList(traits: UntypedFormArray, traitsList: ValueModel<Trait>[]) {
+  private prepareTraitsList(traits: FormArray, traitsList: ValueModel<Trait>[]) {
     for (let trait of traitsList) {
 
-      let value = new UntypedFormControl(trait.value)
+      let value = this.untypedFormBuilder.control(trait.value)
       if (!trait.model.hasValue) {
         value.disable()
       }
 
       traits.push(
-        new UntypedFormGroup({
-          'id': new UntypedFormControl(trait.id),
-          'model': new UntypedFormControl(trait.model),
+        this.formBuilder.group({
+          'id': [trait.id],
+          'model': [trait.model],
           'value': value,
         })
       )
     }
   }
 
-  private prepareInjuriesList(injuries: UntypedFormArray, bodyLocalizations: CharacterBodyLocalization[]) {
+  private prepareInjuriesList(injuries: FormArray, bodyLocalizations: CharacterBodyLocalization[]) {
     for (let bodyLocalization of bodyLocalizations) {
       for (let injury of bodyLocalization.injuries) {
         injuries.push(
-          new UntypedFormGroup({
-            'id': new UntypedFormControl(injury.id),
-            'model': new UntypedFormControl(injury.model),
-            'bodyLocalization': new UntypedFormControl(bodyLocalization.bodyLocalization),
-            'value': new UntypedFormControl(injury.value)
+          this.formBuilder.group({
+            'id': [injury.id],
+            'model': [injury.model],
+            'bodyLocalization': [bodyLocalization.bodyLocalization],
+            'value': [injury.value]
           })
         )
       }
@@ -324,43 +326,43 @@ export class CharacterEditComponent implements OnInit {
   }
 
   get characteristics() {
-    return (<UntypedFormArray>this.editCharacterForm.get('characteristics')).controls
+    return (<FormArray>this.editCharacterForm.get('characteristics')).controls
   }
 
   get skills() {
-    return (<UntypedFormArray>this.editCharacterForm.get('skills')).controls
+    return (<FormArray>this.editCharacterForm.get('skills')).controls
   }
 
   get talents() {
-    return (<UntypedFormArray>this.editCharacterForm.get('talents')).controls
+    return (<FormArray>this.editCharacterForm.get('talents')).controls
   }
 
   get traits() {
-    return (<UntypedFormArray>this.editCharacterForm.get('traits')).controls
+    return (<FormArray>this.editCharacterForm.get('traits')).controls
   }
 
   get spells() {
-    return <UntypedFormControl[]>(<UntypedFormArray>this.editCharacterForm.get('spells')).controls
+    return <FormControl[]>(<FormArray>this.editCharacterForm.get('spells')).controls
   }
 
   get weapons() {
-    return <UntypedFormControl[]>(<UntypedFormArray>this.editCharacterForm.get('weapons')).controls
+    return <FormControl[]>(<FormArray>this.editCharacterForm.get('weapons')).controls
   }
 
   get armors() {
-    return <UntypedFormControl[]>(<UntypedFormArray>this.editCharacterForm.get('armors')).controls
+    return <FormControl[]>(<FormArray>this.editCharacterForm.get('armors')).controls
   }
 
   get injuries() {
-    return <UntypedFormControl[]>(<UntypedFormArray>this.editCharacterForm.get('injuries')).controls
+    return <FormControl[]>(<FormArray>this.editCharacterForm.get('injuries')).controls
   }
 
   get conditions() {
-    return <UntypedFormControl[]>(<UntypedFormArray>this.editCharacterForm.get('conditions')).controls
+    return <FormControl[]>(<FormArray>this.editCharacterForm.get('conditions')).controls
   }
 
   get notes() {
-    return (<UntypedFormArray>this.editCharacterForm.get('notes')).controls
+    return (<FormArray>this.editCharacterForm.get('notes')).controls
   }
 
   @HostListener('window:keyup', ['$event'])

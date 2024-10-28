@@ -16,9 +16,9 @@ export class EditArmorPointsWindowComponent {
 
   constructor(public dialogRef: MatDialogRef<EditArmorPointsWindowComponent>,
               @Inject(MAT_DIALOG_DATA) public armor: CharacterArmor,
-              private fb: FormBuilder) {
-    this.form = this.fb.group({
-      items: this.fb.array([])
+              private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      items: this.formBuilder.array([])
     });
 
     this.populateForm();
@@ -30,9 +30,9 @@ export class EditArmorPointsWindowComponent {
 
   populateForm() {
     this.armor.armorBodyLocalizations.forEach(item => {
-      this.items.push(this.fb.group({
+      this.items.push(this.formBuilder.group({
         id: item.id,
-        bodyLocalization: this.fb.group({
+        bodyLocalization: this.formBuilder.group({
           id: item.bodyLocalization.id,
           name: item.bodyLocalization.name,
           nameTranslation: item.bodyLocalization.nameTranslation
