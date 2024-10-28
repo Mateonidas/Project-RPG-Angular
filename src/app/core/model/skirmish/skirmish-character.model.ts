@@ -11,7 +11,7 @@ export class SkirmishCharacter {
 
   constructor(character?: Character, id?: number) {
     if (character != undefined) {
-      this.id = <number>id
+      this.id = <number>id ?? 0
       this.character = <Character>character
       this.currentWounds = <number>character.wounds.value
       this.skirmishInitiative = <number>character.initiative.value

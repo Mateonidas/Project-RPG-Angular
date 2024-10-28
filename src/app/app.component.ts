@@ -50,6 +50,7 @@ export class AppComponent implements OnInit {
     await this.armorService.fetchArmorCategories()
     await this.armorService.fetchArmorPenalties()
     await this.armorService.fetchArmorQualities()
+    await this.armorService.fetchArmorTypes()
     await this.bodyLocalizationService.fetchBodyLocalizations()
     await this.injuryService.fetchInjuries()
     await this.conditionService.fetchConditions()

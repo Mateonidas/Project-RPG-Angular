@@ -2,12 +2,12 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {Armor} from "../../../../core/model/armor/armor.model";
 import {UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {ArmorService} from "../../../../core/services/armor-service/armor.service";
-import {ArmorBodyLocalization} from "../../../../core/model/body-localization/armor-body-localization.model";
 import {BodyLocalizationService} from "../../../../core/services/body-localization-service/body-localization.service";
 import {Model} from "../../../../core/model/model";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {TextResourceService} from "../../../../core/services/text-resource-service/text-resource.service";
 import {AvailabilityService} from "../../../../core/services/availability-service/availability.service";
+import {BodyLocalization} from "../../../../core/model/body-localization/body-localization.model";
 
 @Component({
   selector: 'app-edit-armor-dialog',
@@ -37,25 +37,25 @@ export class EditArmorDialog implements OnInit {
       'name': new UntypedFormControl(this.modifiedArmor.name ?? null, Validators.required),
       'nameTranslation': new UntypedFormControl(this.modifiedArmor.nameTranslation ?? null, Validators.required),
       'armorCategory': new UntypedFormControl(this.modifiedArmor.armorCategory ?? this.armorService.armorCategoriesList[0]),
-      'armorBodyLocalizations': this.prepareArmorBodyLocalizationsList(this.modifiedArmor.armorBodyLocalizations ?? []),
+      'armorPoints': new UntypedFormControl(this.modifiedArmor.encumbrance ?? null),
+      'bodyLocalizations': this.prepareBodyLocalizationsList(this.modifiedArmor.bodyLocalizations ?? []),
       'armorPenalties': this.prepareArmorPenaltiesList(this.modifiedArmor.armorPenalties ?? []),
       'armorQualities': this.prepareArmorQualitiesList(this.modifiedArmor.armorQualities ?? []),
       'price': new UntypedFormControl(this.modifiedArmor.price ?? null),
       'encumbrance': new UntypedFormControl(this.modifiedArmor.encumbrance ?? null),
       'availability': new UntypedFormControl(this.modifiedArmor.availability ?? this.availabilityService.availabilityList[0]),
+      'layer': new UntypedFormControl(this.modifiedArmor.layer ?? null),
+      'armorType': new UntypedFormControl(this.modifiedArmor.armorType ?? this.armorService.armorTypesList[0]),
     });
   }
 
-  prepareArmorBodyLocalizationsList(armorBodyLocalizationsList: ArmorBodyLocalization[]) {
+  prepareBodyLocalizationsList(bodyLocalizations: BodyLocalization[]) {
     let armorBodyLocalizations = new UntypedFormArray([]);
 
-    for (let armorBodyLocalization of armorBodyLocalizationsList) {
+    for (let armorBodyLocalization of bodyLocalizations) {
       armorBodyLocalizations.push(
-        new UntypedFormGroup({
-          'bodyLocalization': new UntypedFormControl(armorBodyLocalization.bodyLocalization),
-          'armorPoints': new UntypedFormControl(armorBodyLocalization.armorPoints, Validators.required),
-        })
-      )
+        new UntypedFormControl(armorBodyLocalization)
+      );
     }
 
     return armorBodyLocalizations;
@@ -86,12 +86,8 @@ export class EditArmorDialog implements OnInit {
   }
 
   onAddBodyLocalization() {
-    (<UntypedFormArray>this.form.get('armorBodyLocalizations')).push(
-      new UntypedFormGroup({
-        'bodyLocalization': new UntypedFormControl(null),
-        'armorPoints': new UntypedFormControl(null, Validators.required),
-        'additionalArmorPoints': new UntypedFormControl(null)
-      })
+    (<UntypedFormArray>this.form.get('bodyLocalizations')).push(
+      new UntypedFormControl(null)
     );
   }
 
@@ -127,16 +123,18 @@ export class EditArmorDialog implements OnInit {
     armor.name = this.form.value.name;
     armor.nameTranslation = this.form.value.nameTranslation;
     armor.armorCategory = this.form.value.armorCategory;
-    armor.armorBodyLocalizations = <ArmorBodyLocalization[]>this.form.value.armorBodyLocalizations;
+    armor.bodyLocalizations = <BodyLocalization[]>this.form.value.bodyLocalizations;
     armor.armorPenalties = <Model[]>this.form.value.armorPenalties;
     armor.armorQualities = <Model[]>this.form.value.armorQualities;
     armor.price = this.form.value.price ?? '-';
     armor.encumbrance = this.form.value.encumbrance ?? '-';
     armor.availability = this.form.value.availability;
+    armor.layer = this.form.value.layer;
+    armor.armorType = this.form.value.armorType;
   }
 
-  get armorBodyLocalizations() {
-    return (<UntypedFormArray>this.form.get('armorBodyLocalizations')).controls;
+  get bodyLocalizations() {
+    return <UntypedFormControl[]>(<UntypedFormArray>this.form.get('bodyLocalizations')).controls;
   }
 
   get armorPenalties() {
@@ -148,11 +146,11 @@ export class EditArmorDialog implements OnInit {
   }
 
   onSetBodyLocalizations(event: any, i: number) {
-    this.armorBodyLocalizations[i].value.value = event.target.value;
+    this.bodyLocalizations[i].value.value = event.target.value;
   }
 
-  onDeleteArmorBodyLocalization(index: number) {
-    (<UntypedFormArray>this.form.get('armorBodyLocalizations')).removeAt(index);
+  onDeleteBodyLocalization(index: number) {
+    (<UntypedFormArray>this.form.get('bodyLocalizations')).removeAt(index);
   }
 
   onDeleteArmorPenalty(index: number) {

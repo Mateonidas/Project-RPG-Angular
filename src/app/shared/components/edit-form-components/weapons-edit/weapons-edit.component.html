@@ -2,7 +2,7 @@
   <div fxFlex="100" formArrayName="weapons">
     <h4>{{text.getText().weaponLabel}}</h4>
     <div fxLayout="row" fxLayoutGap="20" *ngFor="let weaponControl of weapons; let i = index" [formGroupName]="i">
-      <div fxFlex="40">
+      <div fxFlex="30">
         <mat-form-field appearance="fill" class="example-full-width">
           <mat-label>{{text.getText().weaponNameLabel}}</mat-label>
           <mat-select formControlName="weapon" [compareWith]="compareModels">

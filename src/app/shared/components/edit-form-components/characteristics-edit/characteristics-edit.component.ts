@@ -17,7 +17,7 @@ export class CharacteristicsEditComponent {
   characteristicsColumns: string[] = this.fillCharacteristicsColumn()
 
   public static initCharacteristicsTable(characteristics: CharacterCharacteristic[]) {
-    if(characteristics != undefined) {
+    if (characteristics != undefined) {
       return this.initFilledCharacteristicsTable(characteristics)
     } else {
       return this.initEmptyCharacteristicsTable()
@@ -48,7 +48,7 @@ export class CharacteristicsEditComponent {
   }
 
   protected static prepareCharacteristic(name: string) {
-    return new Model(name, TextResourceService.getCharacteristicNameTranslation(name).nameTranslation)
+    return new Model(name, TextResourceService.getTranslation("characteristics", name).nameTranslation)
   }
 
   get characteristics() {

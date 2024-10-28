@@ -29,7 +29,7 @@ export class BodyLocalizationService {
 
   private prepareBodyLocalizationTranslation(bodyLocalizations: BodyLocalization[]) {
     for (let bodyLocalization of bodyLocalizations) {
-      bodyLocalization.nameTranslation = TextResourceService.getBodyLocalizationNameTranslation(bodyLocalization.name).nameTranslation
+      bodyLocalization.nameTranslation = TextResourceService.getTranslation("bodyLocalizations", bodyLocalization.name).nameTranslation
     }
   }
 }

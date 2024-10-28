@@ -4,6 +4,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router"
 import {SkirmishCharacter} from "../../../core/model/skirmish/skirmish-character.model"
 import {TextResourceService} from "../../../core/services/text-resource-service/text-resource.service";
 import {Subscription} from "rxjs";
+import {CharacterService} from "../../../core/services/character-service/character.service";
 
 @Component({
   selector: 'app-skirmish-character-details',
@@ -14,10 +15,11 @@ export class SkirmishCharacterDetailsComponent implements OnInit {
 
   skirmishCharacter!: SkirmishCharacter
   text = TextResourceService
-  subscription!: Subscription
+  skirmishCharacterSubscription!: Subscription
   protected id!: number
 
   constructor(public skirmishCharacterService: SkirmishCharacterService,
+              public characterService: CharacterService,
               protected route: ActivatedRoute,
               protected router: Router) {
   }
@@ -29,12 +31,18 @@ export class SkirmishCharacterDetailsComponent implements OnInit {
       }
     )
 
-    this.subscription = this.skirmishCharacterService.skirmishCharactersChanged.subscribe(
+    this.skirmishCharacterSubscription = this.skirmishCharacterService.skirmishCharactersChanged.subscribe(
       (skirmishCharacters: SkirmishCharacter[]) => {
         let updatedCharacter = skirmishCharacters.find(skirmishCharacter => skirmishCharacter.id == this.skirmishCharacter.id)
         if(updatedCharacter instanceof SkirmishCharacter) {
           this.skirmishCharacter = updatedCharacter
         }
+      }
+    )
+
+    this.characterService.charactersChanged.subscribe(
+      async () => {
+        this.skirmishCharacter = await this.skirmishCharacterService.reloadSkirmishCharacter(this.id);
       }
     )
   }

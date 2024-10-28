@@ -57,6 +57,7 @@ export class SkirmishCharacterEditComponent extends CharacterEditComponent imple
   createEditSkirmishCharacterForm(skirmishCharacter: SkirmishCharacter, formArrays: CharacterFormArraysWrapper) {
     this.isDead = skirmishCharacter.isDead;
     this.editCharacterForm = new UntypedFormGroup({
+      'characterId': new UntypedFormControl(skirmishCharacter.character.id),
       'name': new UntypedFormControl(skirmishCharacter.character.name),
       'description': new UntypedFormControl(skirmishCharacter.character.description),
       'groupType': new UntypedFormControl(skirmishCharacter.character.groupType),

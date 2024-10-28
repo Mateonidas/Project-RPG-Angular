@@ -50,8 +50,7 @@ export class SkirmishCharacterService {
   }
 
   async storeSkirmishCharacter(character: Character) {
-    let newSkirmishCharacter = new SkirmishCharacter(character, this.skirmishCharactersList.length)
-    newSkirmishCharacter.character.id = 0
+    let newSkirmishCharacter = new SkirmishCharacter(character)
     let numberOfSameCharacters = this.skirmishCharactersList.filter(skirmishCharacter => skirmishCharacter.character.name.includes(newSkirmishCharacter.character.name)).length
     if (numberOfSameCharacters > 0) {
       newSkirmishCharacter.sequenceNumber = numberOfSameCharacters + 1

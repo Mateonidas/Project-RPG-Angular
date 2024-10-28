@@ -8,9 +8,13 @@ import {
   BottomSheetDescription
 } from "../../../../shared/components/bottom-sheet/bottom-sheet-description/bottom-sheet-description.component"
 import {MatMenuTrigger} from "@angular/material/menu"
-import {ConfirmationDialogComponent} from "../../../../shared/components/dialog-window/confirmation-dialog/confirmation-dialog.component"
+import {
+  ConfirmationDialogComponent
+} from "../../../../shared/components/dialog-window/confirmation-dialog/confirmation-dialog.component"
 import {MatDialog} from "@angular/material/dialog"
-import {EditArmorDialog} from "../../../../shared/components/dialog-window/edit-armor-dialog/edit-armor-dialog.component"
+import {
+  EditArmorDialog
+} from "../../../../shared/components/dialog-window/edit-armor-dialog/edit-armor-dialog.component"
 
 @Component({
   selector: 'app-armor-group-item-list',
@@ -42,13 +46,11 @@ export class ArmorGroupItemList implements OnInit {
   private groupArmors(armors: Armor[]) {
     this.armorGroups = []
     armors.forEach(armor => {
-      if (armor.armorCategory.name != 'OTHER') {
-        let armorGroup = this.armorGroups.find(a => a.name === armor.armorCategory.nameTranslation)
-        if (armorGroup != undefined) {
-          armorGroup.armors.push(armor)
-        } else {
-          this.armorGroups.push({armors: [armor], name: armor.armorCategory.nameTranslation})
-        }
+      let armorGroup = this.armorGroups.find(a => a.name === armor.armorCategory.nameTranslation)
+      if (armorGroup != undefined) {
+        armorGroup.armors.push(armor)
+      } else {
+        this.armorGroups.push({armors: [armor], name: armor.armorCategory.nameTranslation})
       }
     })
   }

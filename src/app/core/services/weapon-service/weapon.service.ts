@@ -113,7 +113,7 @@ export class WeaponService {
 
   private prepareWeaponTypeListTranslation(list: Model[]) {
     for (let element of list) {
-      element.nameTranslation = TextResourceService.getWeaponTypeNameTranslation(element.name).nameTranslation
+      element.nameTranslation = TextResourceService.getTranslation("weaponType", element.name).nameTranslation
     }
   }
 
@@ -128,7 +128,7 @@ export class WeaponService {
 
   private prepareWeaponGroupsListTranslation(list: Model[]) {
     for (let element of list) {
-      element.nameTranslation = TextResourceService.getWeaponGroupNameTranslation(element.name).nameTranslation
+      element.nameTranslation = TextResourceService.getTranslation("weaponGroup", element.name).nameTranslation
     }
   }
 
@@ -143,7 +143,7 @@ export class WeaponService {
 
   private prepareWeaponReachesListTranslation(list: Model[]) {
     for (let element of list) {
-      element.nameTranslation = TextResourceService.getWeaponReachNameTranslation(element.name).nameTranslation
+      element.nameTranslation = TextResourceService.getTranslation("weaponReach", element.name).nameTranslation
     }
   }
 

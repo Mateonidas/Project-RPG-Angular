@@ -1,15 +1,15 @@
 <div fxLayout="row" class="details-row" [formGroup]="editCharacterForm">
   <div fxFlex="100" formArrayName="{{formArrayName}}">
-    <h4>{{titleLabel}}</h4>
+    <h4>{{ titleLabel }}</h4>
     <div fxLayout="row" fxLayoutGap="20" *ngFor="let formArray of formArrays; let i = index" [formGroupName]="i">
       <div fxFlex="40">
         <mat-form-field appearance="fill" class="example-full-width">
-          <mat-label>{{text.getText().nameLabel}}</mat-label>
+          <mat-label>{{ text.getText().nameLabel }}</mat-label>
           <input type="text"
                  matInput
                  formControlName="model"
                  [matAutocomplete]="auto"
-                  (selectionchange)="checkIfTraitHasValue(formArray)">
+                 (selectionchange)="checkIfTraitHasValue(formArray)">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
             <mat-option *ngFor="let option of filteredList[i] | async" [value]="option">
               {{ option.nameTranslation }}
@@ -19,19 +19,19 @@
       </div>
       <div fxFlex="20" *ngIf="formArrayName==='injuries'">
         <mat-form-field appearance="fill" class="example-full-width">
-          <mat-label>{{text.getText().localizationNameLabel}}</mat-label>
+          <mat-label>{{ text.getText().localizationNameLabel }}</mat-label>
           <mat-select formControlName="bodyLocalization">
             <mat-option *ngFor="let bodyLocalization of additionalData"
                         [value]="bodyLocalization.bodyLocalization">
-              {{bodyLocalization.bodyLocalization.nameTranslation}}
+              {{ bodyLocalization.bodyLocalization.nameTranslation }}
             </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
       <div fxFlex="10">
         <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>{{text.getText().valueLabel}}</mat-label>
-          <input matInput type="number" formControlName="value">
+          <mat-label>{{ text.getText().valueLabel }}</mat-label>
+          <input matInput type="text" formControlName="value">
         </mat-form-field>
       </div>
       <div fxFlex="10">
@@ -41,7 +41,8 @@
     <div fxLayout="row">
       <div fxFlex="100">
         <button mat-raised-button color="primary" type="button"
-                (click)="onAddFormArray()">{{addButtonLabel}}</button>
+                (click)="onAddFormArray()">{{ addButtonLabel }}
+        </button>
       </div>
     </div>
   </div>

@@ -1,4 +1,3 @@
-import {Armor} from "../armor/armor.model"
 import {CharacterCharacteristic} from "../characteristic/character-characteristic.model"
 import {CharacterWeapon} from "../weapon/character-weapon.model"
 import {CharacterBodyLocalization} from "../body-localization/character-body-localization.model"
@@ -9,6 +8,7 @@ import {ValueModel} from "../value-model";
 import {Talent} from "../talent/talent.model";
 import {Trait} from "../trait/trait.model";
 import {Model} from "../model";
+import {CharacterArmor} from "../armor/character-armor.model";
 
 export class Character {
   id!: number
@@ -23,14 +23,14 @@ export class Character {
   traits!: ValueModel<Trait>[]
   isRightHanded!: boolean
   weapons!: CharacterWeapon[]
-  armors!: Armor[]
+  armors!: CharacterArmor[]
   bodyLocalizations!: CharacterBodyLocalization[]
   conditions!: CharacterCondition[]
   notes!: Note[]
   spells!: Spell[]
   type!: string
 
-  constructor(name?: string, description?: string, groupType?: string, group?: string, status?: string, characteristics?: CharacterCharacteristic[], skills?: ValueModel<Model>[], talents?: ValueModel<Talent>[], traits?: ValueModel<Trait>[], rightHanded?: boolean, weapons?: CharacterWeapon[], armor?: Armor[], conditions?: CharacterCondition[], notes?: Note[], spells?: Spell[], bodyLocalizations?: CharacterBodyLocalization[]) {
+  constructor(name?: string, description?: string, groupType?: string, group?: string, status?: string, characteristics?: CharacterCharacteristic[], skills?: ValueModel<Model>[], talents?: ValueModel<Talent>[], traits?: ValueModel<Trait>[], rightHanded?: boolean, weapons?: CharacterWeapon[], armor?: CharacterArmor[], conditions?: CharacterCondition[], notes?: Note[], spells?: Spell[], bodyLocalizations?: CharacterBodyLocalization[]) {
     this.name = <string>name
     this.description = <string>description
     this.groupType = <string>groupType
@@ -41,7 +41,7 @@ export class Character {
     this.traits = <ValueModel<Trait>[]>traits
     this.isRightHanded = <boolean>rightHanded
     this.weapons = <CharacterWeapon[]>weapons
-    this.armors = <Armor[]>armor
+    this.armors = <CharacterArmor[]>armor
     this.bodyLocalizations = <CharacterBodyLocalization[]>bodyLocalizations
     this.conditions = <CharacterCondition[]>conditions
     this.notes = <Note[]>notes
@@ -119,7 +119,7 @@ export class Character {
     character.talents = ValueModel.arrayFromJSON<Talent>(character["talents"], Talent)
     character.traits = ValueModel.arrayFromJSON<Trait>(character["traits"], Trait)
     character.weapons = CharacterWeapon.arrayFromJSON(character['weapons'])
-    character.armors = Armor.arrayFromJSON(character['armors'])
+    character.armors = CharacterArmor.arrayFromJSON(character['armors'])
     character.bodyLocalizations = CharacterBodyLocalization.arrayFromJSON(character['bodyLocalizations'])
     character.conditions = CharacterCondition.arrayFromJSON(character['conditions'])
     character.spells = Spell.arrayFromJSON(character['spells'])

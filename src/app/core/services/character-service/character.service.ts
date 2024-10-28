@@ -68,9 +68,9 @@ export class CharacterService {
     return this.charactersList.slice()
   }
 
-  getCharacter(id: number) {
+  getCharacter(id: number): Character {
     this.charactersList = Character.arrayFromJSON(JSON.parse(<string>localStorage.getItem('characters')))
-    return this.charactersList.find(value => value.id == id)
+    return <Character>this.charactersList.find(value => value.id == id)
   }
 
   getCharacterGroupsTypes() {
@@ -78,22 +78,22 @@ export class CharacterService {
   }
 
   private createCharacterGroupsTypes() {
-    const groupsTypes: {name: string, groups: { name: string, characters: Character[] }[]}[] = []
+    const groupsTypes: { name: string, groups: { name: string, characters: Character[] }[] }[] = []
 
-    this.charactersList.forEach(character => {
+    this.charactersList.filter(character => character.type === 'BASE').forEach(character => {
       let isTypeExist = false
       for (let groupType of groupsTypes) {
         let isGroupExist = false
-        if(groupType.name === character.groupType) {
+        if (groupType.name === character.groupType) {
           for (let group of groupType.groups) {
-            if(group.name === character.group) {
+            if (group.name === character.group) {
               group.characters.push(character)
               isGroupExist = true
               break
             }
           }
 
-          if(!isGroupExist) {
+          if (!isGroupExist) {
             groupType.groups.push({name: character.group, characters: [character]})
           }
           isTypeExist = true
@@ -101,7 +101,7 @@ export class CharacterService {
         }
       }
 
-      if(!isTypeExist) {
+      if (!isTypeExist) {
         groupsTypes.push({name: character.groupType, groups: [{name: character.group, characters: [character]}]})
       }
     })
@@ -113,5 +113,9 @@ export class CharacterService {
     })
 
     return groupsTypes
+  }
+
+  async reloadCharacter(id: number) {
+    return this.getCharacter(id)
   }
 }

@@ -19,7 +19,7 @@ export class SkillService {
       .then(data => {
         if (data != null) {
           for (let skill of data) {
-            skill.nameTranslation = TextResourceService.getSkillNameTranslation(skill.name).nameTranslation
+            skill.nameTranslation = TextResourceService.getTranslation("skills", skill.name).nameTranslation
           }
           this.skillList = data
           this.skillList.sort(
