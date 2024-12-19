@@ -33,7 +33,7 @@ export class SkirmishCharacterItemComponent implements OnInit {
     const startColor = {r: 22, g: 137, b: 55};
     const endColor = {r: 244, g: 63, b: 94};
     const {r, g, b} = this.calculateHealthColor(endColor, startColor, healthPercentage);
-    const a = 1;
+    const a = 0.5;
 
     return {
       'background-color': `rgba(${r}, ${g}, ${b}, ${a})`,

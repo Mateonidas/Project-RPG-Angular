@@ -81,6 +81,7 @@ import { TalentAndTraitListComponent } from './features/list-of-elements/talent-
 import { ListFilterComponent } from './shared/components/list-filter/list-filter.component';
 import { WeaponGroupTableComponent } from './features/list-of-elements/weapon-list/weapon-group-item-list/weapon-group-table/weapon-group-table.component';
 import { EditArmorPointsWindowComponent } from './shared/components/dialog-window/edit-armor-points-window/edit-armor-points-window.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -142,18 +143,19 @@ import { EditArmorPointsWindowComponent } from './shared/components/dialog-windo
     WeaponGroupTableComponent,
     EditArmorPointsWindowComponent,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    RouterModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    FlexLayoutModule,
-    MatTabsModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        RouterModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        FlexLayoutModule,
+        MatTabsModule,
+        NgOptimizedImage
+    ],
   providers: [
     {provide: MAT_BOTTOM_SHEET_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
   ],

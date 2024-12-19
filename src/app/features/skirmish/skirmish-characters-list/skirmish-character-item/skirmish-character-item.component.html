@@ -54,9 +54,12 @@
           </div>
           <div fxFlex="50">
             <h6 class="list-group-item-heading">{{ text.getText().conditionsLabel }}</h6>
-            <p *ngFor="let characterCondition of skirmishCharacter.character.conditions" class="list-group-item-text">
-              - {{ characterCondition.condition.nameTranslation }} {{ characterCondition.value }}
-            </p>
+            <div class="icon-container" *ngFor="let characterCondition of skirmishCharacter.character.conditions">
+              <img [ngSrc]="'../../../../../assets/icons/' + characterCondition.condition.name + '.png'"
+                   [title]="characterCondition.condition.nameTranslation + ' ' + characterCondition.value"
+                   alt="Ablaze" height="25" width="25" class="overlap-icon"/>
+              <p *ngIf="characterCondition.value > 1" class="condition-number">&nbsp; x{{characterCondition.value}}</p>
+            </div>
           </div>
         </div>
       </div>

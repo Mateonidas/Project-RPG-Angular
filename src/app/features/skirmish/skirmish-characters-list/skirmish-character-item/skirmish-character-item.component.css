@@ -1,41 +1,37 @@
-span {
-  white-space: normal !important;
+a {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  width: 100%;
 }
 
 section {
   margin-bottom: 5px;
 }
 
-p {
+span {
   white-space: normal !important;
-  font-size: 12px !important;
-  line-height: 20px;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-  cursor: pointer;
-  width: 100%;
+.active {
+  border-bottom: none !important;
 }
 
-.tile-left {
-  border-right: 1px solid rgba(0, 0, 0, 0.1); /* Opcjonalna linia podziału */
+.condition-number {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.dead-character {
+  filter: blur(1px);
+  -ms-filter: blur(1px);
+  -webkit-filter: blur(1px);
+}
+
+.icon-container {
+  display: flex;
+  margin-bottom: 5px;
   position: relative;
-  z-index: 2;
-  padding: 10px;
-  color: inherit;
-}
-
-.tile-right {
-  position: relative;
-  z-index: 2;
-  padding: 10px;
-  color: inherit;
-}
-
-.mdc-list-item.mdc-list-item--with-one-line {
-  height: 100% !important;
 }
 
 .mdc-list-item {
@@ -43,34 +39,53 @@ a {
   padding-right: 0;
 }
 
-.active {
-  border-bottom: none !important;
-}
-
-.dead-character {
-  -webkit-filter: blur(1px);
-  -ms-filter: blur(1px);
-  filter: blur(1px);
+.mdc-list-item.mdc-list-item--with-one-line {
+  height: 100% !important;
 }
 
 .skirmish-character-tile {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
-  overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  margin-top: 5px;
   background-color: rgba(43, 75, 77, 0.42);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  margin-top: 5px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+  width: 100%;
 }
 
 .tile-background {
-  position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
   height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
   z-index: 0;
 }
 
+.tile-left {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  color: inherit;
+  padding: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.tile-right {
+  color: inherit;
+  padding: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.overlap-icon {
+  justify-content: flex-start;
+  margin-left: -5px;
+  position: relative;
+  z-index: 1;
+}
+
+.overlap-icon:first-child {
+  margin-left: 0;
+}
