@@ -101,7 +101,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/my-theme.scss",
+              "@angular/material/prebuilt-themes/cyan-orange.css",
               "src/styles.css"
             ],
             "scripts": []

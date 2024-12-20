@@ -3,7 +3,12 @@
 @include mat.elevation-classes();
 @include mat.app-background();
 
-$my-primary: mat.m2-define-palette(mat.$m2-purple-palette);
+//$my-primary: mat.m2-define-palette(mat.$m2-green-palette);
+//$my-primary: mat.m2-define-palette(mat.$m2-light-green-palette);
+//$my-primary: mat.m2-define-palette(mat.$m2-orange-palette);
+//$my-primary: mat.m2-define-palette(mat.$m2-deep-orange-palette);
+$my-primary: mat.m2-define-palette(mat.$m2-indigo-palette);
+
 $my-accent: mat.m2-define-palette(mat.$m2-blue-gray-palette);
 $my-warn: mat.m2-define-palette(mat.$m2-pink-palette);
 

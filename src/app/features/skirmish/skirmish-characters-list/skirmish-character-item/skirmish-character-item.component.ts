@@ -31,10 +31,10 @@ export class SkirmishCharacterItemComponent implements OnInit {
       healthPercentage = Math.max(0, Math.min(100, (currentHealth / maxHealth) * 100));
     }
 
-    const startColor = {r: 22, g: 137, b: 55};
-    const endColor = {r: 244, g: 63, b: 94};
+    const startColor = {r: 63, g: 81, b: 181};
+    const endColor = {r: 233, g: 30, b: 99};
     const {r, g, b} = this.calculateHealthColor(endColor, startColor, healthPercentage);
-    const a = 0.5;
+    const a = 1;
 
     return {
       'background-color': `rgba(${r}, ${g}, ${b}, ${a})`,
