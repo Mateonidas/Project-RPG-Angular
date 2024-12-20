@@ -105,9 +105,11 @@ export class WeaponService {
   fetchWeaponTypes() {
     return this.http.get<Model[]>('http://localhost:8080/weaponType').toPromise()
       .then(data => {
-        this.prepareWeaponTypeListTranslation(data)
-        this.weaponTypesList = data
-        this.weaponTypesListChanged.next(this.weaponTypesList.slice())
+        if(data != undefined) {
+          this.prepareWeaponTypeListTranslation(data)
+          this.weaponTypesList = data
+          this.weaponTypesListChanged.next(this.weaponTypesList.slice())
+        }
       })
   }
 
@@ -120,9 +122,11 @@ export class WeaponService {
   fetchWeaponGroups() {
     return this.http.get<Model[]>('http://localhost:8080/weaponGroup').toPromise()
       .then(data => {
-        this.prepareWeaponGroupsListTranslation(data)
-        this.weaponGroupsList = data
-        this.weaponGroupsListChanged.next(this.weaponGroupsList.slice())
+        if(data != undefined) {
+          this.prepareWeaponGroupsListTranslation(data)
+          this.weaponGroupsList = data
+          this.weaponGroupsListChanged.next(this.weaponGroupsList.slice())
+        }
       })
   }
 
@@ -135,9 +139,11 @@ export class WeaponService {
   fetchWeaponReaches() {
     return this.http.get<Model[]>('http://localhost:8080/weaponReach').toPromise()
       .then(data => {
-        this.prepareWeaponReachesListTranslation(data)
-        this.weaponReachesList = data
-        this.weaponReachesListChanged.next(this.weaponReachesList.slice())
+        if(data != undefined) {
+          this.prepareWeaponReachesListTranslation(data)
+          this.weaponReachesList = data
+          this.weaponReachesListChanged.next(this.weaponReachesList.slice())
+        }
       })
   }
 
@@ -150,9 +156,11 @@ export class WeaponService {
   fetchWeaponQualities() {
     return this.http.get<Model[]>('http://localhost:8080/weaponQuality').toPromise()
       .then(data => {
-        this.prepareWeaponQualitiesListTranslation(data)
-        this.weaponQualitiesList = data
-        this.weaponQualitiesListChanged.next(this.weaponQualitiesList.slice())
+        if(data != undefined) {
+          this.prepareWeaponQualitiesListTranslation(data)
+          this.weaponQualitiesList = data
+          this.weaponQualitiesListChanged.next(this.weaponQualitiesList.slice())
+        }
       })
   }
 

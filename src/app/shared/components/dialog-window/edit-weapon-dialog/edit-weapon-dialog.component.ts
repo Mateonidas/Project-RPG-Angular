@@ -9,9 +9,10 @@ import {WeaponQualityValue} from "../../../../core/model/weapon/weapon-quality-v
 import {AvailabilityService} from "../../../../core/services/availability-service/availability.service";
 
 @Component({
-  selector: 'app-edit-weapon-dialog',
-  templateUrl: './edit-weapon-dialog.component.html',
-  styleUrls: ['./edit-weapon-dialog.component.css']
+    selector: 'app-edit-weapon-dialog',
+    templateUrl: './edit-weapon-dialog.component.html',
+    styleUrls: ['./edit-weapon-dialog.component.css'],
+    standalone: false
 })
 export class EditWeaponDialog implements OnInit {
 

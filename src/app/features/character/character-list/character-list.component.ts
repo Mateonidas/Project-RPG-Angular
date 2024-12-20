@@ -7,9 +7,10 @@ import {TextResourceService} from "../../../core/services/text-resource-service/
 import {SkirmishCharacterService} from "../../../core/services/skirmish-character-service/skirmish-character.service";
 
 @Component({
-  selector: 'app-character-list',
-  templateUrl: './character-list.component.html',
-  styleUrls: ['./character-list.component.css'],
+    selector: 'app-character-list',
+    templateUrl: './character-list.component.html',
+    styleUrls: ['./character-list.component.css'],
+    standalone: false
 })
 export class CharacterListComponent implements OnInit {
 

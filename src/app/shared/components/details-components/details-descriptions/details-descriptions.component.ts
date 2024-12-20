@@ -3,9 +3,10 @@ import {TextResourceService} from "../../../../core/services/text-resource-servi
 import {Character} from "../../../../core/model/character/character.model";
 
 @Component({
-  selector: 'app-details-descriptions',
-  templateUrl: './details-descriptions.component.html',
-  styleUrls: ['./details-descriptions.component.css']
+    selector: 'app-details-descriptions',
+    templateUrl: './details-descriptions.component.html',
+    styleUrls: ['./details-descriptions.component.css'],
+    standalone: false
 })
 export class DetailsDescriptionsComponent {
   text = TextResourceService

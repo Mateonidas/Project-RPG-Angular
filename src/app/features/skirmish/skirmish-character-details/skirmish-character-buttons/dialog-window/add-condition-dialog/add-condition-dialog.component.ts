@@ -12,9 +12,10 @@ import {CharacterCondition} from "../../../../../../core/model/condition/charact
 import {AddConditions} from "../../../../../../core/model/condition/add-conditions.model";
 
 @Component({
-  selector: 'app-add-condition-dialog',
-  templateUrl: './add-condition-dialog.component.html',
-  styleUrls: ['./add-condition-dialog.component.css']
+    selector: 'app-add-condition-dialog',
+    templateUrl: './add-condition-dialog.component.html',
+    styleUrls: ['./add-condition-dialog.component.css'],
+    standalone: false
 })
 export class AddConditionDialogComponent implements OnInit {
 

@@ -5,9 +5,10 @@ import {Model} from "../../../core/model/model";
 import {TextResourceService} from "../../../core/services/text-resource-service/text-resource.service";
 
 @Component({
-  selector: 'app-quality-list',
-  templateUrl: './quality-list.component.html',
-  styleUrls: ['./quality-list.component.css']
+    selector: 'app-quality-list',
+    templateUrl: './quality-list.component.html',
+    styleUrls: ['./quality-list.component.css'],
+    standalone: false
 })
 export class QualityListComponent implements OnInit {
   weaponQualities!: Model[];

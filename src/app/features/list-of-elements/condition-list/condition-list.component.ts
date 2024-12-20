@@ -4,9 +4,10 @@ import {ConditionService} from "../../../core/services/condition-service/conditi
 import {Condition} from "../../../core/model/condition/condition.model";
 
 @Component({
-  selector: 'app-condition-list',
-  templateUrl: './condition-list.component.html',
-  styleUrls: ['./condition-list.component.css']
+    selector: 'app-condition-list',
+    templateUrl: './condition-list.component.html',
+    styleUrls: ['./condition-list.component.css'],
+    standalone: false
 })
 export class ConditionListComponent implements OnInit{
   conditions!: Condition[];

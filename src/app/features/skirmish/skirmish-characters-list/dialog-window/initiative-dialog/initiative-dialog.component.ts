@@ -4,9 +4,10 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {SkirmishCharacter} from "../../../../../core/model/skirmish/skirmish-character.model";
 
 @Component({
-  selector: 'app-initiative-dialog',
-  templateUrl: './initiative-dialog.component.html',
-  styleUrls: ['./initiative-dialog.component.css']
+    selector: 'app-initiative-dialog',
+    templateUrl: './initiative-dialog.component.html',
+    styleUrls: ['./initiative-dialog.component.css'],
+    standalone: false
 })
 export class InitiativeDialog {
   text = TextResourceService

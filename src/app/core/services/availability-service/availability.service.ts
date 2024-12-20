@@ -18,9 +18,11 @@ export class AvailabilityService {
   fetchAvailabilities() {
     return this.http.get<Model[]>('http://localhost:8080/availability').toPromise()
       .then(data => {
-        this.prepareAvailabilityListTranslation(data)
-        this.availabilityList = data
-        this.availabilityListChanged.next(this.availabilityList.slice())
+        if(data != undefined) {
+          this.prepareAvailabilityListTranslation(data)
+          this.availabilityList = data
+          this.availabilityListChanged.next(this.availabilityList.slice())
+        }
       })
   }
 

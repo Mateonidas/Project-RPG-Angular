@@ -10,9 +10,10 @@ import {InitiativeDialog} from "./dialog-window/initiative-dialog/initiative-dia
 import {MatTable} from "@angular/material/table";
 
 @Component({
-  selector: 'app-skirmish-characters-list',
-  templateUrl: './skirmish-characters-list.component.html',
-  styleUrls: ['./skirmish-characters-list.component.css']
+    selector: 'app-skirmish-characters-list',
+    templateUrl: './skirmish-characters-list.component.html',
+    styleUrls: ['./skirmish-characters-list.component.css'],
+    standalone: false
 })
 export class SkirmishCharactersListComponent implements OnInit {
   skirmishCharacters!: SkirmishCharacter[];

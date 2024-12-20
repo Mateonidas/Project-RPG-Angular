@@ -6,9 +6,10 @@ import {TextResourceService} from "../../../../core/services/text-resource-servi
 import {ArmorBodyLocalization} from "../../../../core/model/body-localization/armor-body-localization.model";
 
 @Component({
-  selector: 'app-edit-armor-points-window',
-  templateUrl: './edit-armor-points-window.component.html',
-  styleUrls: ['./edit-armor-points-window.component.css']
+    selector: 'app-edit-armor-points-window',
+    templateUrl: './edit-armor-points-window.component.html',
+    styleUrls: ['./edit-armor-points-window.component.css'],
+    standalone: false
 })
 export class EditArmorPointsWindowComponent {
   form!: FormGroup;

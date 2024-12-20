@@ -17,9 +17,10 @@ import {
 } from "../../../../shared/components/dialog-window/edit-armor-dialog/edit-armor-dialog.component"
 
 @Component({
-  selector: 'app-armor-group-item-list',
-  templateUrl: './armor-group-item-list.component.html',
-  styleUrls: ['./armor-group-item-list.component.css']
+    selector: 'app-armor-group-item-list',
+    templateUrl: './armor-group-item-list.component.html',
+    styleUrls: ['./armor-group-item-list.component.css'],
+    standalone: false
 })
 export class ArmorGroupItemList implements OnInit {
   armorGroups!: { name: string, armors: Armor[] }[]

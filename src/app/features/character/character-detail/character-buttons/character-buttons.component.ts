@@ -7,9 +7,10 @@ import {MatDialog} from "@angular/material/dialog";
 import {Character} from "../../../../core/model/character/character.model";
 
 @Component({
-  selector: 'app-character-buttons',
-  templateUrl: './character-buttons.component.html',
-  styleUrls: ['./character-buttons.component.css']
+    selector: 'app-character-buttons',
+    templateUrl: './character-buttons.component.html',
+    styleUrls: ['./character-buttons.component.css'],
+    standalone: false
 })
 export class CharacterButtonsComponent {
   @Input() character!: Character

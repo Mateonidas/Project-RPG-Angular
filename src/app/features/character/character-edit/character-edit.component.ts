@@ -37,9 +37,10 @@ import {CharacterArmor} from "../../../core/model/armor/character-armor.model";
 import {ArmorBodyLocalization} from "../../../core/model/body-localization/armor-body-localization.model";
 
 @Component({
-  selector: 'app-character-edit',
-  templateUrl: './character-edit.component.html',
-  styleUrls: ['./character-edit.component.css']
+    selector: 'app-character-edit',
+    templateUrl: './character-edit.component.html',
+    styleUrls: ['./character-edit.component.css'],
+    standalone: false
 })
 export class CharacterEditComponent implements OnInit {
 

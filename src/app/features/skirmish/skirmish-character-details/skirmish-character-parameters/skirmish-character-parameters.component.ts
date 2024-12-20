@@ -10,9 +10,10 @@ import {
 import {MatBottomSheet} from "@angular/material/bottom-sheet";
 
 @Component({
-  selector: 'app-skirmish-character-parameters',
-  templateUrl: './skirmish-character-parameters.component.html',
-  styleUrls: ['./skirmish-character-parameters.component.css']
+    selector: 'app-skirmish-character-parameters',
+    templateUrl: './skirmish-character-parameters.component.html',
+    styleUrls: ['./skirmish-character-parameters.component.css'],
+    standalone: false
 })
 export class SkirmishCharacterParametersComponent {
   text = TextResourceService

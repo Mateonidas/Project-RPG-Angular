@@ -13,9 +13,10 @@ import {BottomSheetDescription} from "../../bottom-sheet/bottom-sheet-descriptio
 import {CharacterService} from "../../../../core/services/character-service/character.service";
 
 @Component({
-  selector: 'app-details-body-localizations',
-  templateUrl: './details-body-localizations.component.html',
-  styleUrls: ['./details-body-localizations.component.css']
+    selector: 'app-details-body-localizations',
+    templateUrl: './details-body-localizations.component.html',
+    styleUrls: ['./details-body-localizations.component.css'],
+    standalone: false
 })
 export class DetailsBodyLocalizationsComponent implements OnInit {
 

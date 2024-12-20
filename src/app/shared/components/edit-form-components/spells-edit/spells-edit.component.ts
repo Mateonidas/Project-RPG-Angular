@@ -7,9 +7,10 @@ import {SpellService} from "../../../../core/services/spell-service/spell.servic
 import {Spell} from "../../../../core/model/spell/spell.model";
 
 @Component({
-  selector: 'app-spells-edit',
-  templateUrl: './spells-edit.component.html',
-  styleUrls: ['./spells-edit.component.css']
+    selector: 'app-spells-edit',
+    templateUrl: './spells-edit.component.html',
+    styleUrls: ['./spells-edit.component.css'],
+    standalone: false
 })
 export class SpellsEditComponent implements OnInit {
   @Input() editCharacterForm!: FormGroup

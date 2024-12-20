@@ -5,9 +5,10 @@ import {TalentService} from "../../../core/services/talent-service/talent.servic
 import {TraitService} from "../../../core/services/trait-service/trait.service";
 
 @Component({
-  selector: 'app-talent-and-trait-list',
-  templateUrl: './talent-and-trait-list.component.html',
-  styleUrls: ['./talent-and-trait-list.component.css']
+    selector: 'app-talent-and-trait-list',
+    templateUrl: './talent-and-trait-list.component.html',
+    styleUrls: ['./talent-and-trait-list.component.css'],
+    standalone: false
 })
 export class TalentAndTraitListComponent implements OnInit {
   talents!: Model[];

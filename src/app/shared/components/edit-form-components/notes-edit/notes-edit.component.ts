@@ -4,9 +4,10 @@ import {TextResourceService} from "../../../../core/services/text-resource-servi
 import {Note} from "../../../../core/model/note/note.model";
 
 @Component({
-  selector: 'app-notes-edit',
-  templateUrl: './notes-edit.component.html',
-  styleUrls: ['./notes-edit.component.css']
+    selector: 'app-notes-edit',
+    templateUrl: './notes-edit.component.html',
+    styleUrls: ['./notes-edit.component.css'],
+    standalone: false
 })
 export class NotesEditComponent {
   @Input() editCharacterForm!: FormGroup

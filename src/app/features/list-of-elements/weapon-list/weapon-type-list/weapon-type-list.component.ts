@@ -8,9 +8,10 @@ import {EditWeaponDialog} from "../../../../shared/components/dialog-window/edit
 import {MatDialog} from "@angular/material/dialog";
 
 @Component({
-  selector: 'app-weapon-type-list',
-  templateUrl: './weapon-type-list.component.html',
-  styleUrls: ['./weapon-type-list.component.css']
+    selector: 'app-weapon-type-list',
+    templateUrl: './weapon-type-list.component.html',
+    styleUrls: ['./weapon-type-list.component.css'],
+    standalone: false
 })
 export class WeaponTypeListComponent implements OnInit {
   subscription!: Subscription

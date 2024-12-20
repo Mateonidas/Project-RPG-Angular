@@ -4,9 +4,10 @@ import {TextResourceService} from "../../../core/services/text-resource-service/
 import {SpellService} from "../../../core/services/spell-service/spell.service";
 
 @Component({
-  selector: 'app-spell-list',
-  templateUrl: './spell-list.component.html',
-  styleUrls: ['./spell-list.component.css']
+    selector: 'app-spell-list',
+    templateUrl: './spell-list.component.html',
+    styleUrls: ['./spell-list.component.css'],
+    standalone: false
 })
 export class SpellListComponent implements OnInit{
   spellGroups!: SpellGroup[]

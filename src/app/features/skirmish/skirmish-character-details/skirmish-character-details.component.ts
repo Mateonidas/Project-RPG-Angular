@@ -7,9 +7,10 @@ import {Subscription} from "rxjs";
 import {CharacterService} from "../../../core/services/character-service/character.service";
 
 @Component({
-  selector: 'app-skirmish-character-details',
-  templateUrl: './skirmish-character-details.component.html',
-  styleUrls: ['./skirmish-character-details.component.css']
+    selector: 'app-skirmish-character-details',
+    templateUrl: './skirmish-character-details.component.html',
+    styleUrls: ['./skirmish-character-details.component.css'],
+    standalone: false
 })
 export class SkirmishCharacterDetailsComponent implements OnInit {
 
