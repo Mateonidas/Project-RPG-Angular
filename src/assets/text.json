@@ -2367,7 +2367,7 @@
     },
     {
       "name": "MURMURED_WHISPER",
-      "nameTranslation": "Daleki szpet",
+      "nameTranslation": "Daleki szept",
       "description": "PZ: 0\nZasięg: Liczba metrów równa Sile Woli\nCel: Specjalny\nCzas: Liczba Rund równa Bonusowi z Siły Woli\n\nWysyłasz swój głos do jednego punktu na odległość równą Sile Woli w metrach – niezależnie od tego, czy punkt jest w zasięgu wzroku, czy też nie. Twój głos rozlega się z tego miejsca i słyszą go wszyscy w zasięgu słuchu."
     },
     {
