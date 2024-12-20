@@ -31,7 +31,11 @@ export class BaseService {
 
   public prepareListTranslation(list: Model[], resourceType: TextResourceKeys): void {
     for (let item of list) {
-      item.nameTranslation = TextResourceService.getTranslation(resourceType, item.name).nameTranslation;
+      const translation = TextResourceService.getTranslation(resourceType, item.name);
+      item.nameTranslation = translation.nameTranslation;
+      if(translation.description != null) {
+        item.description = translation.description;
+      }
     }
     list.sort(
       (a, b) => (a.nameTranslation > b.nameTranslation) ? 1 : ((b.nameTranslation > a.nameTranslation) ? -1 : 0)

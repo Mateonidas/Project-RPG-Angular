@@ -6,6 +6,8 @@ import {TextResourceService} from "../text-resource-service/text-resource.servic
 import {Model} from "../../model/model"
 import {TranslateService} from "../translate-service/translate.service"
 import {WeaponGroup} from "../../model/weapon/weapons-group.model"
+import {BaseService} from "../base.service";
+import {TextResourceKeys} from "../../model/types";
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +27,8 @@ export class WeaponService {
   weaponsList: Weapon[] = []
 
   constructor(private http: HttpClient,
-              private translateService: TranslateService) {
+              private translateService: TranslateService,
+              private baseService: BaseService) {
   }
 
   fetchWeapons() {
@@ -87,90 +90,29 @@ export class WeaponService {
       .toPromise()
   }
 
-  getWeapon(id: number) {
-    let weapons = Weapon.arrayFromJSON(JSON.parse(<string>localStorage.getItem('weapons')))
-    return weapons.find(value => value.id == id)
-  }
-
   getWeaponGroups() {
     this.weaponGroups = WeaponGroup.arrayFromJSON(JSON.parse(<string>localStorage.getItem('weaponGroups')))
     return this.weaponGroups.slice();
   }
 
-  getWeaponGroup(name: string) {
-    let weaponGroups = WeaponGroup.arrayFromJSON(JSON.parse(<string>localStorage.getItem('weaponGroups')))
-    return weaponGroups.find(value => value.name == name)
-  }
-
   fetchWeaponTypes() {
-    return this.http.get<Model[]>('http://localhost:8080/weaponType').toPromise()
-      .then(data => {
-        if(data != undefined) {
-          this.prepareWeaponTypeListTranslation(data)
-          this.weaponTypesList = data
-          this.weaponTypesListChanged.next(this.weaponTypesList.slice())
-        }
-      })
-  }
-
-  private prepareWeaponTypeListTranslation(list: Model[]) {
-    for (let element of list) {
-      element.nameTranslation = TextResourceService.getTranslation("weaponType", element.name).nameTranslation
-    }
+    return this.baseService.fetchMethod('weaponType', <TextResourceKeys>'weaponType',
+      this.weaponTypesList, this.weaponTypesListChanged)
   }
 
   fetchWeaponGroups() {
-    return this.http.get<Model[]>('http://localhost:8080/weaponGroup').toPromise()
-      .then(data => {
-        if(data != undefined) {
-          this.prepareWeaponGroupsListTranslation(data)
-          this.weaponGroupsList = data
-          this.weaponGroupsListChanged.next(this.weaponGroupsList.slice())
-        }
-      })
-  }
-
-  private prepareWeaponGroupsListTranslation(list: Model[]) {
-    for (let element of list) {
-      element.nameTranslation = TextResourceService.getTranslation("weaponGroup", element.name).nameTranslation
-    }
+    return this.baseService.fetchMethod('weaponGroup', <TextResourceKeys>'weaponGroup',
+      this.weaponGroupsList, this.weaponGroupsListChanged)
   }
 
   fetchWeaponReaches() {
-    return this.http.get<Model[]>('http://localhost:8080/weaponReach').toPromise()
-      .then(data => {
-        if(data != undefined) {
-          this.prepareWeaponReachesListTranslation(data)
-          this.weaponReachesList = data
-          this.weaponReachesListChanged.next(this.weaponReachesList.slice())
-        }
-      })
-  }
-
-  private prepareWeaponReachesListTranslation(list: Model[]) {
-    for (let element of list) {
-      element.nameTranslation = TextResourceService.getTranslation("weaponReach", element.name).nameTranslation
-    }
+    return this.baseService.fetchMethod('weaponReach', <TextResourceKeys>'weaponReach',
+      this.weaponReachesList, this.weaponReachesListChanged)
   }
 
   fetchWeaponQualities() {
-    return this.http.get<Model[]>('http://localhost:8080/weaponQuality').toPromise()
-      .then(data => {
-        if(data != undefined) {
-          this.prepareWeaponQualitiesListTranslation(data)
-          this.weaponQualitiesList = data
-          this.weaponQualitiesListChanged.next(this.weaponQualitiesList.slice())
-        }
-      })
-  }
-
-  private prepareWeaponQualitiesListTranslation(list: Model[]) {
-    for (let quality of list) {
-      this.translateService.prepareWeaponQuality(quality)
-    }
-    list.sort(
-      (a, b) => (a.nameTranslation > b.nameTranslation) ? 1 : ((b.nameTranslation > a.nameTranslation) ? -1 : 0)
-    )
+    return this.baseService.fetchMethod('weaponQuality', <TextResourceKeys>'weaponQualities',
+      this.weaponQualitiesList, this.weaponQualitiesListChanged)
   }
 
   async removeWeapon(id: number) {
