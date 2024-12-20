@@ -4,9 +4,10 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {TextResourceService} from "../../../../core/services/text-resource-service/text-resource.service";
 
 @Component({
-  selector: 'app-roll-dialog-window',
-  templateUrl: './roll-dialog-window.component.html',
-  styleUrls: ['./roll-dialog-window.component.css']
+    selector: 'app-roll-dialog-window',
+    templateUrl: './roll-dialog-window.component.html',
+    styleUrls: ['./roll-dialog-window.component.css'],
+    standalone: false
 })
 export class RollDialogWindow {
 

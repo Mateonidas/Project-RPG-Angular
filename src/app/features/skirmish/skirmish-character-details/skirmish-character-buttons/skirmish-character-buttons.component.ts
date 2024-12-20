@@ -9,9 +9,10 @@ import {SkirmishCharacter} from "../../../../core/model/skirmish/skirmish-charac
 import {SkirmishCharacterService} from "../../../../core/services/skirmish-character-service/skirmish-character.service";
 
 @Component({
-  selector: 'app-skirmish-character-buttons',
-  templateUrl: './skirmish-character-buttons.component.html',
-  styleUrls: ['./skirmish-character-buttons.component.css']
+    selector: 'app-skirmish-character-buttons',
+    templateUrl: './skirmish-character-buttons.component.html',
+    styleUrls: ['./skirmish-character-buttons.component.css'],
+    standalone: false
 })
 export class SkirmishCharacterButtonsComponent {
   text = TextResourceService

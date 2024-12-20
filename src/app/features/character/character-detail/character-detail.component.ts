@@ -6,9 +6,10 @@ import {TextResourceService} from "../../../core/services/text-resource-service/
 import {SkirmishCharacter} from "../../../core/model/skirmish/skirmish-character.model"
 
 @Component({
-  selector: 'app-character-detail',
-  templateUrl: './character-detail.component.html',
-  styleUrls: ['./character-detail.component.css']
+    selector: 'app-character-detail',
+    templateUrl: './character-detail.component.html',
+    styleUrls: ['./character-detail.component.css'],
+    standalone: false
 })
 export class CharacterDetailComponent implements OnInit {
   character!: Character

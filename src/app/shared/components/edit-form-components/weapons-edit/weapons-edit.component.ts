@@ -9,9 +9,10 @@ import {MatDialog} from "@angular/material/dialog";
 import {CharacterWeapon} from "../../../../core/model/weapon/character-weapon.model";
 
 @Component({
-  selector: 'app-weapons-edit',
-  templateUrl: './weapons-edit.component.html',
-  styleUrls: ['./weapons-edit.component.css']
+    selector: 'app-weapons-edit',
+    templateUrl: './weapons-edit.component.html',
+    styleUrls: ['./weapons-edit.component.css'],
+    standalone: false
 })
 export class WeaponsEditComponent implements OnInit {
   @Input() editCharacterForm!: FormGroup

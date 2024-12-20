@@ -6,9 +6,10 @@ import {SkirmishCharacter} from "../../../../../../core/model/skirmish/skirmish-
 import {Model} from "../../../../../../core/model/model"
 
 @Component({
-  selector: 'app-receive-damage-dialog',
-  templateUrl: './receive-damage-dialog.component.html',
-  styleUrls: ['./receive-damage-dialog.component.css']
+    selector: 'app-receive-damage-dialog',
+    templateUrl: './receive-damage-dialog.component.html',
+    styleUrls: ['./receive-damage-dialog.component.css'],
+    standalone: false
 })
 export class ReceiveDamageDialog implements OnInit {
 

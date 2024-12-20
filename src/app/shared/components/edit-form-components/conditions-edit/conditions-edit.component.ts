@@ -14,9 +14,10 @@ import {ConditionService} from "../../../../core/services/condition-service/cond
 import {CharacterCondition} from "../../../../core/model/condition/character-condition.model";
 
 @Component({
-  selector: 'app-conditions-edit',
-  templateUrl: './conditions-edit.component.html',
-  styleUrls: ['./conditions-edit.component.css']
+    selector: 'app-conditions-edit',
+    templateUrl: './conditions-edit.component.html',
+    styleUrls: ['./conditions-edit.component.css'],
+    standalone: false
 })
 export class ConditionsEditComponent {
   @Input() editCharacterForm!: FormGroup

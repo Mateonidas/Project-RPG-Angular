@@ -6,9 +6,10 @@ import {CharacterCharacteristic} from "../../../../core/model/characteristic/cha
 import {Model} from "../../../../core/model/model";
 
 @Component({
-  selector: 'app-characteristics-edit',
-  templateUrl: './characteristics-edit.component.html',
-  styleUrls: ['./characteristics-edit.component.css']
+    selector: 'app-characteristics-edit',
+    templateUrl: './characteristics-edit.component.html',
+    styleUrls: ['./characteristics-edit.component.css'],
+    standalone: false
 })
 export class CharacteristicsEditComponent {
   @Input() editCharacterForm!: FormGroup

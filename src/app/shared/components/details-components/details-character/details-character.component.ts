@@ -21,9 +21,10 @@ export interface Group {
 }
 
 @Component({
-  selector: 'app-details-character',
-  templateUrl: './details-character.component.html',
-  styleUrls: ['./details-character.component.css']
+    selector: 'app-details-character',
+    templateUrl: './details-character.component.html',
+    styleUrls: ['./details-character.component.css'],
+    standalone: false
 })
 export class DetailsCharacterComponent {
   @Input() character!: Character

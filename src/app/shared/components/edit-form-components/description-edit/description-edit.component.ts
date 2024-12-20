@@ -3,9 +3,10 @@ import {TextResourceService} from "../../../../core/services/text-resource-servi
 import {FormGroup} from "@angular/forms";
 
 @Component({
-  selector: 'app-description-edit',
-  templateUrl: './description-edit.component.html',
-  styleUrls: ['./description-edit.component.css']
+    selector: 'app-description-edit',
+    templateUrl: './description-edit.component.html',
+    styleUrls: ['./description-edit.component.css'],
+    standalone: false
 })
 export class DescriptionEditComponent {
   @Input() editCharacterForm!: FormGroup

@@ -10,9 +10,10 @@ import {AvailabilityService} from "../../../../core/services/availability-servic
 import {BodyLocalization} from "../../../../core/model/body-localization/body-localization.model";
 
 @Component({
-  selector: 'app-edit-armor-dialog',
-  templateUrl: './edit-armor-dialog.component.html',
-  styleUrls: ['./edit-armor-dialog.component.css']
+    selector: 'app-edit-armor-dialog',
+    templateUrl: './edit-armor-dialog.component.html',
+    styleUrls: ['./edit-armor-dialog.component.css'],
+    standalone: false
 })
 export class EditArmorDialog implements OnInit {
 

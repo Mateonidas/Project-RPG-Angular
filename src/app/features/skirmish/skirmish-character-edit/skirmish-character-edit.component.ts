@@ -16,9 +16,10 @@ import {TraitService} from "../../../core/services/trait-service/trait.service";
 import {InjuryService} from "../../../core/services/injuries-service/injury.service";
 
 @Component({
-  selector: 'app-skirmish-character-edit',
-  templateUrl: './skirmish-character-edit.component.html',
-  styleUrls: ['./skirmish-character-edit.component.css']
+    selector: 'app-skirmish-character-edit',
+    templateUrl: './skirmish-character-edit.component.html',
+    styleUrls: ['./skirmish-character-edit.component.css'],
+    standalone: false
 })
 export class SkirmishCharacterEditComponent extends CharacterEditComponent implements OnInit {
 

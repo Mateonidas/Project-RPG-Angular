@@ -14,9 +14,10 @@ import {MatMenuTrigger} from "@angular/material/menu";
 import {Weapon} from "../../../../../core/model/weapon/weapon.model";
 
 @Component({
-  selector: 'app-weapon-group-table',
-  templateUrl: './weapon-group-table.component.html',
-  styleUrls: ['./weapon-group-table.component.css']
+    selector: 'app-weapon-group-table',
+    templateUrl: './weapon-group-table.component.html',
+    styleUrls: ['./weapon-group-table.component.css'],
+    standalone: false
 })
 export class WeaponGroupTableComponent implements OnInit, OnChanges{
   @Input() weaponGroup!: WeaponGroup;

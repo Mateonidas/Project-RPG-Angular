@@ -14,9 +14,10 @@ import {
 } from "../../../../shared/components/dialog-window/confirmation-dialog/confirmation-dialog.component";
 
 @Component({
-  selector: 'app-weapon-group-item-list',
-  templateUrl: './weapon-group-item-list.component.html',
-  styleUrls: ['./weapon-group-item-list.component.css']
+    selector: 'app-weapon-group-item-list',
+    templateUrl: './weapon-group-item-list.component.html',
+    styleUrls: ['./weapon-group-item-list.component.css'],
+    standalone: false
 })
 export class WeaponGroupItemListComponent implements OnInit {
   name!: string

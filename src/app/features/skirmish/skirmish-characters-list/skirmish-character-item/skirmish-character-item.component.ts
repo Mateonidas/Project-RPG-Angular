@@ -3,9 +3,10 @@ import {SkirmishCharacter} from "../../../../core/model/skirmish/skirmish-charac
 import {TextResourceService} from "../../../../core/services/text-resource-service/text-resource.service";
 
 @Component({
-  selector: 'app-skirmish-character-item',
-  templateUrl: './skirmish-character-item.component.html',
-  styleUrls: ['./skirmish-character-item.component.css']
+    selector: 'app-skirmish-character-item',
+    templateUrl: './skirmish-character-item.component.html',
+    styleUrls: ['./skirmish-character-item.component.css'],
+    standalone: false
 })
 export class SkirmishCharacterItemComponent implements OnInit {
   @Input() skirmishCharacter!: SkirmishCharacter;

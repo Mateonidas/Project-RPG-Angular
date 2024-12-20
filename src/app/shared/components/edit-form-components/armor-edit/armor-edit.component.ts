@@ -9,9 +9,10 @@ import {MatDialog} from "@angular/material/dialog";
 import {CharacterArmor} from "../../../../core/model/armor/character-armor.model";
 
 @Component({
-  selector: 'app-armor-edit',
-  templateUrl: './armor-edit.component.html',
-  styleUrls: ['./armor-edit.component.css']
+    selector: 'app-armor-edit',
+    templateUrl: './armor-edit.component.html',
+    styleUrls: ['./armor-edit.component.css'],
+    standalone: false
 })
 export class ArmorEditComponent implements OnInit {
   @Input() editCharacterForm!: FormGroup

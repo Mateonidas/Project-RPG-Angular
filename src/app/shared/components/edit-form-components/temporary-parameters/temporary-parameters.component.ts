@@ -3,9 +3,10 @@ import {TextResourceService} from "../../../../core/services/text-resource-servi
 import {FormGroup} from "@angular/forms";
 
 @Component({
-  selector: 'app-temporary-parameters',
-  templateUrl: './temporary-parameters.component.html',
-  styleUrls: ['./temporary-parameters.component.css']
+    selector: 'app-temporary-parameters',
+    templateUrl: './temporary-parameters.component.html',
+    styleUrls: ['./temporary-parameters.component.css'],
+    standalone: false
 })
 export class TemporaryParametersComponent {
   @Input() editCharacterForm!: FormGroup

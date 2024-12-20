@@ -6,9 +6,10 @@ import {MatDialog} from "@angular/material/dialog";
 import {SkirmishCharacterService} from "../../../../core/services/skirmish-character-service/skirmish-character.service";
 
 @Component({
-  selector: 'app-shared-buttons',
-  templateUrl: './shared-buttons.component.html',
-  styleUrls: ['./shared-buttons.component.css']
+    selector: 'app-shared-buttons',
+    templateUrl: './shared-buttons.component.html',
+    styleUrls: ['./shared-buttons.component.css'],
+    standalone: false
 })
 export class SharedButtonsComponent {
   text = TextResourceService
