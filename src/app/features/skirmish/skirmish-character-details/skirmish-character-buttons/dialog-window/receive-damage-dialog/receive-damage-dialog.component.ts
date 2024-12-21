@@ -29,6 +29,21 @@ export class ReceiveDamageDialog implements OnInit {
       true,
       1,
       false)
+    this.receivedDamage.shield = this.checkShieldValue()
+  }
+
+  checkShieldValue(): number {
+    let shieldValue = 0;
+    this.skirmishCharacter.character.weapons.forEach(characterWeapon => {
+      characterWeapon.weapon.weaponQualities.forEach(quality => {
+        if(quality.weaponQuality.name === "SHIELD") {
+          if(shieldValue < Number.parseInt(quality.value)) {
+            shieldValue = Number.parseInt(quality.value);
+          }
+        }
+      })
+    })
+    return shieldValue;
   }
 
   compareModels(c1: Model, c2: Model): boolean {
